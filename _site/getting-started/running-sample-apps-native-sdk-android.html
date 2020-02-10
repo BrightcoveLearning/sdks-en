@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Brightcove Native SDK Features</title>
+  <title>Running Sample Apps for the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -88,7 +88,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       <li class="breadcrumb-item"><a href="/getting-started/">Getting Started</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Brightcove Native SDK Features</li>
+      <li class="breadcrumb-item active" aria-current="page">Running Sample Apps for the Native SDK for Android</li>
     </ol>
   </nav>
 </header>
@@ -156,121 +156,140 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Brightcove Native SDK Features</h1>
-  <summary>The Brightcove Native SDKs can be implemented to provide anything from a basic player experience, to a feature-rich user experience with analytics, advertising and more. The SDKs are adapted to easily work with both Brightcove Video Cloud and Brightcove Player accounts, providing simple ways to deliver your video content.</summary>
+  <h1>Running Sample Apps for the Native SDK for Android</h1>
+  <summary>In this topic, you will learn how to run the sample apps associated with the Brightcove Native SDK for Android. These samples provide a good starting point for creating your own apps.</summary>
 
-<section id="top" class="bcls-section">
-<p>The Brightcove Native SDKs support the following feature categories:</p>
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
 
-<table class="bcls-table">
-	<tbody class="bcls-table__body">
-		<tr>
-			<td><a href="#advertising">Advertising</a></td>
-			<td><a href="#analytics">Analytics</a></td>
-		</tr>
-		<tr>
-			<td><a href="#controls">Brightcove Native Player Controls </a></td>
-			<td><a href="#drm">Digital Rights Management (DRM)</a></td>
-		</tr>
-		<tr>
-			<td><a href="#live">Live Playback</a></td>
-			<td><a href="#media">Media Content</a></td>
-		</tr>
-		<tr>
-			<td><a href="#mat">Multiple Audio Tracks</a></td>
-			<td><a href="#odrm">Offline Playback</a></td>
-		</tr>
-		<tr>
-			<td><a href="#playbackformats">Playback Formats and Captions </a></td>
-			<td><a href="#360video">360° Video</a></td>
-		</tr>
-	</tbody>
-</table>
+<p>The Brightcove Native SDK for Android provides a variety of sample apps to help you get started with your own implementations. For a complete list of samples, see the following:</p>
 
-<p>&nbsp;</p>
+<ul>
+	<li><a href="https://github.com/BrightcoveOS/android-player-samples">Player samples for Android</a></li>
+</ul>
 
-<p id="playbackformats"><span><img alt="" height="20px" width="20px" src="/assets/images/getting-started/bcls-icon-mobile-app.png" />&nbsp;<strong>Playback Formats and Captions</strong></span></p>
+<aside class="bcls-aside bcls-aside--tip">In addition to the sample apps, there is also a collection of code snippets that you may find helpful. They can be found in the <a href="https://support.brightcove.com/code-snippets-using-native-sdk-android">Code Snippets using the Native SDK for Android</a> document.</aside>
 
-<p>Staying on top of changing technologies is essential for providing the best playback experience to viewers. The Brightcove SDKs strive to support the most popular video and captions formats to ensure publishers are able to reach audiences around the world.</p>
-
-<p>Learn more about <a href="/node/15088">Video Formats and Captions</a>.</p>
-&nbsp;
-
-<p id="advertising"><img alt="" height="20px" width="24px" src="/assets/images/getting-started/bcls-icon-money.png" />&nbsp;<strong>Advertising</strong></p>
-
-<p>Through partnerships with some of the biggest names in online video advertising such as DoubleClick and FreeWheel, we provide plugins that integrate with the core Brightcove SDK in just a few lines of code.</p>
-
-<p>In addition, the Brightcove Native SDKs support Brightcove Once, our industry-leading server-side ad insertion solution which delivers optimized video performance and prevents ad blocking technology.</p>
-
-<p>Learn more about <a href="/node/15056">Advertising with the SDKs</a>.</p>
-&nbsp;
-
-<p id="analytics"><img alt="" height="20px" width="20px" src="/assets/images/getting-started/bcls-icon-analytics.png" />&nbsp;<strong>Analytics</strong></p>
-
-<p>As data consumers ourselves, we recognize that analytics are a powerful tool for understanding trends in your content. The Brightcove SDKs allow you to easily gather data whether you're a Video Cloud customer using Brightcove Analytics, a Brightcove Player customer using the analytics API's with your own backend, or some combination with a third-party integration such as Omniture.</p>
-
-<p>Learn more about <a href="/node/15057">Analytics with the SDKs</a>.</p>
-&nbsp;
-
-<p id="drm"><img alt="" height="20px" width="20px" src="/assets/images/getting-started/bcls-icon-security.png" />&nbsp;<strong>Digital Rights Management (DRM)</strong></p>
-
-<p>We recognize that the security provided to video content using standards such as HLSe may not be enough to meet your strict protection requirements. DRM is a robust content protection program that enables you to enforce polices and rules for usage of your content.</p>
-
-<p>The Brightcove SDKs enable you to integrate powerful DRM solutions and ensure the protection of your content without sacrificing the video experience your audience expects.</p>
-
-<p>Learn more about <a href="/node/18213">Digital Rights Management with the SDKs</a>.</p>
-&nbsp;
-
-<p id="media"><img alt="" height="20px" width="24px" src="/assets/images/getting-started/bcls-icon-mobilevideo.png" />&nbsp;<strong>Media Content</strong></p>
-
-<p>As a Brightcove Video Cloud customer, you have access to your Brightcove content (videos, image assets and playlists) through the Playback API, CMS API or the Brightcove catalog. The catalog is a library of helper methods you can use to access your Video Cloud library.</p>
-
-<p>The tools for accessing your content through the Playback/CMS APIs and the catalog are built into the foundation of the Brightcove Mobile SDKs.</p>
-
-<aside class="bcls-aside bcls-aside--information">Access to the Brightcove Playback/CMS APIs and Brightcove catalog are only available to Brightcove Video Cloud customers.</aside>
-&nbsp;
-
-<p id="live"><img alt="" height="20px" width="24px" src="/assets/images/getting-started/bcls-icon-camera.png" />&nbsp;<strong>Live Playback</strong></p>
-
-<p>Tap into the benefits of live playback in your application with the Brightcove SDKs. Launch a live stream event to boost viewership and generate interest, or supply long form live content such as news feeds and sporting events to keep your viewers informed and entertained.</p>
-
-<p>Enabling high quality playback of live streams, the Brightcove SDKs allow you to easily configure and play Live and DVR Live content.</p>
-
-<p>Learn more about <a href="/node/15262">Live Playback with the SDKs</a>.</p>
-&nbsp;
-
-<p id="controls"><img alt="" height="20px" width="20px" src="/assets/images/getting-started/bcls-icon-ui.png" />&nbsp;<strong>Brightcove Native Player Controls</strong></p>
-
-<p>Save developer costs, reduce time to market and keep your app clean of unnecessary code clutter. Included with our core iOS and Android player SDKs, the Brightcove Native Player Controls provide common user interface components to fit your player interface needs. Completely customizable, you can change sizes, colors, and even add or remove buttons to easily build a user interface that suits your application.</p>
-
-<p>Learn more about <a href="/node/15321">Brightcove Native Player Controls</a>.</p>
-&nbsp;
-
-<p id="360video"><img alt="" height="24px" width="30px" src="/assets/images/getting-started/bcls-360-icon.png" />&nbsp;<strong>360° Video</strong></p>
-
-<p>Drive views with compelling 360° video experiences. The experience lets viewers immerse themselves into the scene and allows them to interact and explore by scrolling around the video. The Native SDKs automatically detect if your content is a 360° video type and plays it, while allowing the user to scroll around the view.</p>
-
-<p>Learn more about <a href="/node/16788">Using 360° Videos with the Native SDKs</a>.</p>
-&nbsp;
-
-<p id="mat"><img alt="" height="20px" width="24px" src="/assets/images/getting-started/headphone-icon.svg" />&nbsp;<strong>Multiple Audio Tracks</strong></p>
-
-<p>Reach a wider audience by including additional audio tracks for different languages, for commentary and descriptive audio, or provide stereo sound. When your video content has multiple audio tracks, the SDKs automatically detect them and displays a track selection menu.</p>
-
-<p>Learn more about <a href="/node/16834">Multiple Audio Tracks with the Native SDKs</a>.</p>
-&nbsp;
-
-<p id="odrm"><img alt="" height="20px" width="24px" src="/assets/images/getting-started/download-icon.svg" />&nbsp;<strong>Offline playback</strong></p>
-
-<p>Simplifying the complexities around managing offline playback while also providing content security and analytics, the Brightcove Native SDKs provide the tools to build such apps. This means users can download their favorite videos before they travel and then play them back without an internet connection.</p>
-
-<p>Learn more about <a href="/node/16844">Offline playback with the Native SDKs</a>.</p>
-
-<p>&nbsp;</p>
+<p>If you are new to the Brightcove Native SDKs, check out the <a href="/node/18481">Getting Started with the Native SDKs</a> videos.</p>
 </section>
 
-<!-- <div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/2216';">&lt; Prev</button></div> -->
+<section class="bcls-section">
+<h2 id="Framework">Framework</h2>
+
+<p>The Android sample apps support the latest version of the Brightcove Native SDK and plugins.</p>
+
+<p>It is recommended that you use the ExoPlayer 2 framework for your apps to implement the latest features available with the Native SDK. If you are not currently using this framework, see the <a href="/node/18467">Migrating to ExoPlayer 2 Framework</a> document.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Installing_the_sample_apps">Installing the sample apps</h2>
+
+<p>The Android sample apps support the latest version of the Brightcove Native SDK and plugins.</p>
+
+<p>Currently, all of the Android samples apps must be installed together as a bundle. The easiest way to get started is to import the sample apps into Android Studio. That's what we will do in the following steps.</p>
+
+<aside class="bcls-aside bcls-aside--tip">For more details about the samples and to learn about the Version Control option for installation, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/README.md">Android player samples readme</a> file.</aside>
+
+<p>To import the sample apps, follow these steps:</p>
+
+<ol class="bcls-tasklist">
+	<li>If you don't already have it, download and install the latest version of <a href="https://developer.android.com/studio/index.html">Android Studio</a>.</li>
+	<li>Clone the <a href="https://github.com/BrightcoveOS/android-player-samples">Player samples for Android</a> to your computer.</li>
+	<li>In Android Studio, select <strong>Import project</strong>.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Import project" src="/assets/images/getting-started/running-sample-apps-for-android/import-project.png" />
+	<figcaption class="bcls-caption--image">Import project</figcaption>
+	</figure>
+	</li>
+	<li>
+	<p>In the file selection dialog, select the top level <strong>build.gradle</strong> file from your local cloned repository.</p>
+
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="File selection" src="/assets/images/getting-started/running-sample-apps-for-android/build-gradle.png" />
+	<figcaption class="bcls-caption--image">File selection</figcaption>
+	</figure>
+
+	<aside class="bcls-aside bcls-aside--information">The Native SDK for Android sample apps have been tested using the Gradle build process up to and including version 3.1.4.</aside>
+	</li>
+	<li>In Android Studio, you should see all of the sample app projects.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Sample app projects" src="/assets/images/getting-started/running-sample-apps-for-android/project-files.png" />
+	<figcaption class="bcls-caption--image">Sample app projects</figcaption>
+	</figure>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Running_the_sample_apps">Running the sample apps</h2>
+
+<p>The sample apps can be run using the following:</p>
+
+<ul>
+	<li>Android Studio emulator</li>
+	<li>Android Studio using a physical device connected to your computer
+	<ul>
+		<li>The device must have Android OS 4.4.4 or later</li>
+		<li>On your device, make sure USB debugging is enabled</li>
+	</ul>
+	</li>
+</ul>
+
+<p>To run a sample app, follow these steps:</p>
+
+<ol class="bcls-tasklist__restart">
+	<li>In Android Studio, in the left-side project list, expand the <strong>BasicSampleApp</strong> project.</li>
+	<li>Expand the <strong>java</strong> folder and open the <strong>MainActivity.java</strong> file.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="MainActivity.java file" src="/assets/images/getting-started/running-sample-apps-for-android/main-activity.png" />
+	<figcaption class="bcls-caption--image">MainActivity.java file</figcaption>
+	</figure>
+	</li>
+	<li>In the project selection dropdown, select the <strong>BasicSampleApp</strong>.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Project selection" src="/assets/images/getting-started/running-sample-apps-for-android/project-selection.png" />
+	<figcaption class="bcls-caption--image">Project selection</figcaption>
+	</figure>
+	</li>
+	<li>To the right of the project selection dropdown, select the <strong>Run</strong> button.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Run button" src="/assets/images/getting-started/running-sample-apps-for-android/run-button.png" />
+	<figcaption class="bcls-caption--image">Run button</figcaption>
+	</figure>
+	</li>
+	<li>If you have a device connected to your computer, you should see it listed in the <strong>Select Deployment Target</strong> dialog. Otherwise, after you create a virtual device, you will also see it listed here. Select your device and select <strong>OK</strong>.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select Deployment Target" src="/assets/images/getting-started/running-sample-apps-for-android/deploy-target.png" />
+	<figcaption class="bcls-caption--image">Select Deployment Target</figcaption>
+	</figure>
+	</li>
+	<li>You should see the app running on your device or in the emulator.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Android Studio emulator" src="/assets/images/getting-started/running-sample-apps-for-android/emulator.png" />
+	<figcaption class="bcls-caption--image">Android Studio emulator</figcaption>
+	</figure>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Debugging">Debugging</h2>
+
+<p>Android Studio has a debugger that allows you to set breakpoints, examine variables and evaluate expressions at runtime. To debug your app in the emulator, do the following:</p>
+
+<ol class="bcls-tasklist__restart">
+	<li>In Android Studio, locate the line of code where you would like to pause execution.</li>
+	<li>In the left gutter for the line of code, click to add a breakpoint.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Breakpoint" src="/assets/images/getting-started/running-sample-apps-for-android/breakpoint.png" />
+	<figcaption class="bcls-caption--image">Breakpoint</figcaption>
+	</figure>
+	</li>
+	<li>Select the <strong>debug</strong> button to start execution.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Start debugging" src="/assets/images/getting-started/running-sample-apps-for-android/debug.png" />
+	<figcaption class="bcls-caption--image">Start debugging</figcaption>
+	</figure>
+	</li>
+	<li>
+	<p>When execution pauses at your breakpoint, you will have several options to inspect variables and expressions, as well as stepping through/over/into lines of code.</p>
+
+	<aside class="bcls-aside bcls-aside--tip">For details about debugging your apps, see <a href="https://developer.android.com/studio/debug/index.html">Android Studio's User Guide for Debugging</a>.</aside>
+	</li>
+</ol>
+</section>
 </article>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
@@ -286,7 +305,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 07 Feb 2020
+  Page last updated on 10 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
