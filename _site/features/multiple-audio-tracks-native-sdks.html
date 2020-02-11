@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Live Streams with the Native SDKs</title>
+  <title>Multiple Audio Tracks with the Native SDKs</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -82,13 +82,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb arr-right">
       
-      <li class="breadcrumb-item"><a href="/">Home</a></li>
       
       
-      
-      <li class="breadcrumb-item"><a href="/features/">Getting Started</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">Live Streams with the Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Multiple Audio Tracks with the Native SDKs</li>
     </ol>
   </nav>
 </header>
@@ -199,52 +195,53 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Live Streams with the Native SDKs</h1>
-  <summary>In this topic, you will learn about live streams with the Brightcove Native SDKs.</summary>
+  <h1>Multiple Audio Tracks with the Native SDKs</h1>
+  <summary>In this topic, you will learn how to use multiple audio tracks with the Brightcove Native SDKs.</summary>
 
 <section class="bcls-section">
   <h2 id="Introduction">Introduction</h2>
-  <p>Live stream support with the Brightcove Native Player SDKs means integrating high-quality live broadcasts into your application quickly and easily from any source.</p>
-<p>The Native SDKs support both Live streaming and DVR Live streaming. With Live streaming, the Native SDKs support timed metadata/ ID3 tags.</p>
+  <p>Multiple audio tracks allow you to provide additional information and reach a wider audience. Some examples include additional tracks for different languages, commentary, descriptive audio and stereo sound.</p>
 
-<aside class="bcls-aside bcls-aside--tip">The Android SDK supports ID3 metadata tags when using the BrightcoveExoPlayer view.</aside>
+<p>The SDKs automatically detect when a video has multiple audio tracks in the HLS or DASH manifest. If you are using the Brightcove default controls, you will see a unique list of audio tracks based on language and variant. There should be no duplicates.</p>
 
-<p>There are several ways to create Live streams, including the following:</p>
+<p>This topic contains the following sections:</p>
 
 <ul>
-	<li><a href="#Brightcove_Live">Brightcove Live</a></li>
+	<li><a href="#Creating_your_video">Creating your video</a></li>
+	<li><a href="#Using_multiple_audio_tracks">Using multiple audio tracks</a></li>
 </ul>
-
-<p>For a complete list of options for delivering live streams, see the <a href="https://support.brightcove.com/node/11397">Delivering Live Streams</a> document.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="DVR Live" src="/assets/images/getting-started/live/live-playback-iphone.png" />
-<figcaption class="bcls-caption--image">DVR Live</figcaption>
-</figure>
 </section>
 
-<section class="bcls-section">
-<h2 id="Brightcove_Live">Brightcove Live</h2>
+<section id="Creating_your_video" class="bcls-section">
+<h2>Creating your video</h2>
 
-<p>Brightcove Live is the easiest way to create your live streams. With it, you can deliver and monetize high definition (HD), adaptive bitrate live video streams that are both scalable and cost effective.</p>
+<p>While we work on bringing this feature to Video Cloud Studio, both Video Cloud and Brightcove Player customers need to supply their own manifests that follow HLS and DASH standards.</p>
 
-<p>Set up your Brightcove Live streams, and play them seamlessly on mobile devices and connected TV using the Native Player SDKs for Android, iOS and tvOS. Learn more about Brightcove Live with the following:</p>
+<p>Here are some helpful links about multiple audio tracks:</p>
 
 <ul>
-	<li><a href="/node/18642">Brightcove Live</a></li>
-	<li><a href="/node/17765">Quick Start: Brightcove Live API </a></li>
+	<li><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#media-resources-with-multiple-media-tracks">HTML Standards</a></li>
+	<li><a href="https://developer.apple.com/library/content/referencelibrary/GettingStarted/AboutHTTPLiveStreaming/about/about.html#//apple_ref/doc/uid/TP40013978-CH3-SW17">Apple Guidance about HLS</a></li>
+	<li><a href="http://dashif.org/guidelines/">DASH Industry Forum</a></li>
 </ul>
+</section>
 
-<h3>Supported Features</h3>
+<section id="Using_multiple_audio_tracks" class="bcls-section">
+<h2>Using multiple audio tracks</h2>
 
-<p>The live experience is enhanced with the following features supported with the Native SDKs:</p>
+<p>Once you create your content, you can load and play it just like any other video.</p>
 
-<h4>Out-of-the-box cloud DVR controls</h4>
+<p>Here is the player with a video. If the video is prepared with multiple alternate audio tracks, a headphone icon will automatically appear in the control bar.</p>
 
-<p>DVR Live goes above and beyond the classic approach to Live Streaming by allowing viewers to take control of their viewing experience. Providing the viewer full control over playback, DVR Live enables your audience to seek to past moments in a VOD styled setting. Then, with the click of a button, seamlessly jump back to the live action to continue watching in real time.</p>
+<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Multiple audio track icon" src="/assets/images/getting-started/mat/mat-icon.png" />
+<figcaption class="bcls-caption--image">Multiple audio track icon</figcaption>
+</figure>
 
-<h4>Brightcove Live server-side ad insertion (SSAI)</h4>
+<p>When the headphone icon is selected, a list of audio tracks will display for you to choose from.</p>
 
-<p>Server-side ad insertion (SSAI) allows you to stitch ads into your live stream on the server side, bypassing any ad blockers. For details about how to setup SSAI with your live streams, see the <a href="/node/17763">Brightcove Live API: Server-Side Ad Insertion</a> document.</p>
+<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Multiple audio track selection menu" src="/assets/images/getting-started/mat/mat-selection.png" />
+<figcaption class="bcls-caption--image">Multiple audio track selection menu</figcaption>
+</figure>
 </section>
 </article>
 
