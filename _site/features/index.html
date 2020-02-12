@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Using Captions with the Brightcove Native SDKs</title>
+  <title>Features</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/features/">Getting Started</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">Using Captions with the Brightcove Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Features</li>
     </ol>
   </nav>
 </header>
@@ -210,182 +208,87 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
+  }
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+  }
+  .bcls-card ul li {
+    font-size: small;
+  }
+</style>
+
 <article class="bcls-article">
-  <h1>Using Captions with the Brightcove Native SDKs</h1>
-  <summary>In this topic, you will learn how to use captions with apps built with the Brightcove Native SDKs.</summary>
-
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
-
-<p>Closed captions provide additional information about your video for individuals who wish to access it. Captions are necessary for the deaf and hard of hearing to access the audio portion of your videos. If you are new to captions, see the <a href="/node/17952">Overview: Adding Captions to a Video</a> document.</p>
-
-<p>It is important to understand which types of captions work best for each video format. Begin by reviewing the <a href="/node/15088">Video Formats and Captioning</a> document. Brightcove recommends using HLS or DASH videos with WebVTT captions.</p>
-
-<aside class="bcls-aside bcls-aside--tip">When you use the Dynamic Ingest API to add SRT or DFXP captions to Dynamic Delivery videos, the captions will automatically be converted to WebVTT format. Learn more about the <a href="/node/17938#adding_srt_dfxp">adding text tracks with the Dynamic Ingest API</a>.</aside>
-</section>
-
-<section class="bcls-section">
-<h2 id="Captions">Captions</h2>
-
-<p>With HLS and DASH video, there are two options for captions playback:</p>
-
-<ul>
-	<li><a href="#In_manifest_WebVTT">In-manifest WebVTT</a></li>
-	<li><a href="#External_WebVTT">External (Sidecar) WebVTT</a></li>
-</ul>
-
-<h3 id="In_manifest_WebVTT">In-manifest WebVTT</h3>
-
-<p>When using In-manifest WebVTT captions with HLS or DASH videos, your captions will just work. There is nothing extra that you need to do to implement these captions.</p>
-
-<p>In-manifest WebVTT captions are ingested with your videos. You can only create in-manifest files if you use Dynamic Ingest with Dynamic Delivery. For details, see the following:</p>
-
-<ul>
-	<li><a href="/node/17938">Ingesting WebVTT files</a></li>
-	<li><a href="/node/17949#ingest_captions">Ingesting Captions using the Dynamic Ingest API</a></li>
-</ul>
-
-<p>Captions are recognized as in-manifest when the <strong>m3u8</strong> file contains the following tag:</p>
-
-<pre>
-<code class="notranslate language-json">#EXT-X-MEDIA:TYPE=SUBTITLES</code></pre>
-
-<h4 id="Example1" class="bcls-expander-head">Example</h4>
-
-<div class="bcls-expander-content">
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Segmented</td>
-			<td>Yes</td>
-		</tr>
-	</tbody>
-</table>
-</div>
-
-<aside class="bcls-aside bcls-aside--information">Notes:
-<ul>
-	<li>Using the Media Module in Studio to add captions to a video will not create in-manifest captions.</li>
-	<li>Using legacy ingestion does not create in-manifest captions.</li>
-</ul>
-</aside>
-
-<h3 id="External_WebVTT">External (Sidecar) WebVTT</h3>
-
-<p>External WebVTT captions are text files separate from the video. You can associate captions files with a video as follows:</p>
-
-<ul>
-	<li><a href="/node/15481">Adding Captions using the Media Module</a></li>
-	<li><a href="/node/18013">Adding Captions using the CMS API</a></li>
-</ul>
-
-<h4 id="Example2" class="bcls-expander-head">Examples</h4>
-
-<div class="bcls-expander-content">
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Remote URL<br />
-			Media Module or CMS API</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			remote URL<br />
-			Media Module or CMS APII</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-	</tbody>
-</table>
-</div>
-
-<h4>Android</h4>
-
-<p>The <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/WebVTTSampleApp/src/main">WebVTTSampleApp</a> shows you how to add WebVTT captions files for video playback.</p>
-
-<h4>iOS/tvOS</h4>
-
-<p>When using external WebVTT captions, you need to use the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/SidecarSubtitles.md">Sidecar Subtitles</a> functionality for the Player SDK for iOS and tvOS.</p>
-
-<p>When retrieving videos from your Video Cloud library using the <code class="notranslate">BCOVPlaybackService</code>, your videos and text tracks will be formatted for Sidecar Subtitles.</p>
-
-<p>For Brightcove Player customer without Video Cloud or you are providing your own videos, then you need to structure the text tracks as shown in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles#manually-populating-subtitle-data">Manually populating subtitle data</a> section of the Sidecar Subtitles documentation.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Synchronizing_WebVTT_captions">Synchronizing WebVTT captions</h2>
-
-<p>If you are using WebVTT captions, make sure the video and audio is synchronized with the captions. Learn how to do this in the <a href="/node/18216">Synchronizing WebVTT Captions</a> document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Styling_captions">Styling captions</h2>
-
-<p>WebVTT captions can be styled to match your company preferences. For details, see the <a href="/node/17952#style">Styling captions section</a> of the Add Captions to Videos document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Example">Example</h2>
-
-<p>If a video has captions associated with it, you will see a captions icon in the control bar. Select this icon.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions icon" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-icon.png" />
-<figcaption class="bcls-caption--image">Captions icon</figcaption>
-</figure>
-
-<p>Then, choose your preferred language.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select language" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-set.png" />
-<figcaption class="bcls-caption--image">Select language</figcaption>
-</figure>
-
-<p>During video playback, you should see captions displayed.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions display" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-display.png" />
-<figcaption class="bcls-caption--image">Captions displayed</figcaption>
-</figure>
-</section>
+  <h1><i class="fas fa-award"></i> Features</h1>
+  <summary>Features supported by the Brightcove Native SDKs</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in this section</h2>
+        <ul>
+        
+        
+      
+        
+      
+        
+              
+                <li><a href="/features/advertising-sdks.html">Advertising</a>
+                
+                </li>
+              
+                <li><a href="/features/analytics-sdks.html">Analytics</a>
+                
+                </li>
+              
+                <li><a href="/features/using-captions-brightcove-native-sdks.html">Captions</a>
+                
+                </li>
+              
+                <li><a href="/features/using-360deg-videos-native-sdks.html">360 Degree Video</a>
+                
+                </li>
+              
+                <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV</a>
+                
+                </li>
+              
+                <li><a href="/features/live-streams-native-sdks.html">Live Streams</a>
+                
+                </li>
+              
+                <li><a href="/features/multiple-audio-tracks-native-sdks.html">Multiple Audio Tracks</a>
+                
+                </li>
+              
+                <li><a href="/features/brightcove-native-player-controls.html">Player Controls</a>
+                
+                </li>
+              
+                <li><a href="/features/picture-picture-native-sdks.html">Picture-in-Picture</a>
+                
+                </li>
+              
+        
+      
+        
+      
+  
+      </div>
+    </section>
+  </section>
 </article>
 
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -393,7 +296,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 11 Feb 2020
+  Page last updated on 12 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -474,8 +377,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="/assets/js/feedback.js"></script>
