@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Picture-in-Picture with the Native SDKs</title>
+  <title>Video Formats and Captioning with the Native SDKs</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -84,7 +84,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item active" aria-current="page">Picture-in-Picture with the Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Video Formats and Captioning with the Native SDKs</li>
     </ol>
   </nav>
 </header>
@@ -211,250 +211,309 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Picture-in-Picture with the Native SDKs</h1>
-  <summary>In this topic, you will learn how to implement Picture-in-Picture mode in your apps using the Brightcove Native Player SDKs.</summary>
+  <h1>Video Formats and Captioning with the Native SDKs</h1>
+  <summary>In this topic, you will learn about the video formats and captioning supported by the Brightcove Native Player SDKs.</summary>
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
+<p>Understanding your options when choosing which video format to use and what captions to apply, is essential for ensuring your application will deliver the desired video experience to viewers.</p>
 
-<p>Picture-in-picture (PIP) mode allows users to multitask on their devices. With this feature, you can create apps where a small video playback window is pinned to a corner of the screen while the user performs other tasks.</p>
+<p>The Brightcove Native Player SDKs for mobile platforms strive to ensure your application reaches a wider audience and meets FCC guidelines by ensuring that your content provides an exceptional caption experience.</p>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" width="600" alt="Picture-in-picture mode" src="/assets/images/getting-started/pip/android-steps.png" />
-<figcaption class="bcls-caption--image">Picture-in-picture mode</figcaption>
-</figure>
-</section>
+<p>For more information about standards and techniques for using captions, check out the <a href="https://www.brightcove.com/en/blog/2012/07/closed-captioning-for-web-mobile-and-tv">Zencoder's blog post on closed captioning</a>.</p>
 
-<section class="bcls-section">
-<h2 id="Features">Features</h2>
-
-<p>The picture-in-picture functionality provided by the Brightcove Native SDKs, supports the following features:</p>
+<p>Review the video formats and captions for each category:</p>
 
 <ul>
-	<li class="language-editable">Where a user enters picture-in-picture mode by clicking on the PIP icon in the control bar, a developer can enter PIP mode programmatically.</li>
-	<li class="language-editable">The user can drag the PIP window around the corners of the screen to place it in the most convenient location.</li>
-	<li class="language-editable">The user can pause and play the video in the PIP window, or remove it completely. The user can also maximize the video back to the in-app experience.</li>
-	<li class="language-editable">PIP mode works on top of the app, the device background and other applications.</li>
+	<li><a href="#Progressive_Download">Progressive Download</a></li>
+	<li><a href="#Adaptive_Bitrate_Streaming">Adaptive Bitrate Streaming</a></li>
+	<li><a href="#Digital_Rights_Management">Digital Rights Management (DRM)</a></li>
 </ul>
 </section>
 
 <section class="bcls-section">
-<h2 id="Supported_versions">Supported versions</h2>
+<h2 id="Progressive_Download">Progressive Download</h2>
 
-<p>Picture-in-picture mode is supported with the following versions:</p>
+<p>Video formats using this scheme force the content to download from start to finish with no gaps and results in the full piece of content being downloaded to the device. This behavior means that viewers will be unable to seek to any area that has not already been buffered.</p>
 
-<h3>Device OS version</h3>
+<p>Based on this functionality, we advise that mid-roll advertisements are not used in combination with progressive download video formats. In addition to this, application publishers should be aware that any action that clears the video buffer will result in the client buffering from the start of the content should they attempt to resume playback afterwards.</p>
 
-<ul>
-	<li class="language-editable"><strong>Android:</strong> Oreo 8.0+ (API level 26+)</li>
-	<li class="language-editable"><strong>iOS:</strong> 10.0+</li>
-</ul>
+<h3 class="BCL_subsectionTitle">Table for MP4/M4V support</h3>
 
-<h3>Native SDK version</h3>
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Video format</th>
+			<th style="text-align: center;">iOS SDK</th>
+			<th style="text-align: center;">Android SDK</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td>MP4/M4V</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<th>Caption format</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Sidecar WebVTT</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar TTML (DFXP)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>608 / 708</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
 
-<ul>
-	<li class="language-editable"><strong>Android:</strong> Brightcove Native SDK for Android version 6.1.0+</li>
-	<li class="language-editable"><strong>iOS:</strong> Brightcove Native SDK for iOS version 6.4.4+</li>
-</ul>
+<aside class="bcls-aside bcls-aside--information">Because 608/708 captions are built into the MP4 stream, video files need to be re-created to change the captions. This can be a problem if you are wanting to localize a video. There is also no way to add new captions to an MP4 file, because there is no manifest to work with. In contrast, captions can be added to HLS files, since they do contain a manifest.</aside>
 </section>
 
-<section class="bcls-section">
-<h2 id="Android_implementation">Android implementation</h2>
+<section id="Adaptive_Bitrate_Streaming" class="bcls-section">
+<h2>Adaptive Bitrate Streaming</h2>
 
-<p>The following topics will help you get started with the picture-in-picture feature:</p>
+<p>Video formats using this scheme are broken up into short segments that are downloaded when needed by the player. This allows users to seek anywhere in the content and only need to download the segment that they’ve jumped into. Generally, formats following this scheme use a “manifest” that contains all the details of the video such as the number of segments and where to find them.</p>
 
-<ul>
-	<li class="language-editable"><a href="#Using_BrightcovePlayer">Using BrightcovePlayer</a></li>
-	<li class="language-editable"><a href="#Using_a_regular_Activity">Using a regular Activity</a></li>
-	<li class="language-editable"><a href="#Customizing_Picture-in-Picture">Customizing picture-in-picture</a></li>
-</ul>
+<h3 class="BCL_subsectionTitle">Table for HTTP Live Streaming (HLS) support</h3>
 
-<p>For more details, see Android's <a href="https://developer.android.com/guide/topics/ui/picture-in-picture.html">Picture-in-picture support guide</a>.</p>
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Video format</th>
+			<th style="text-align: center;">iOS SDK</th>
+			<th style="text-align: center;">Android SDK</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td>HTTP Live Streaming (HLS)</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<th>Caption format</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>In-Manifest WebVTT</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar WebVTT</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar TTML (DFXP)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>608 / 708</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
 
-<h3 id="Using_BrightcovePlayer">Using BrightcovePlayer</h3>
-
-<p>The easiest way to start using picture-in-picture is to have your activity extend the <code>BrightcovePlayer</code>. To do this, follow these steps:</p>
-
-<ol class="bcls-tasklist">
-	<li class="language-editable">In your <strong>styles.xml</strong> file, enable the picture-in-picture button by adding the following code:
-
-	<pre class="line-numbers">
-  <code class="language-xml">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
-         &lt;item name="brightcove_picture_in_picture"&gt;true&lt;/item&gt;
-      &lt;/style&gt;</code></pre>
-	</li>
-	<li class="language-editable">In your <strong>AndroidManifest.xml</strong> file, <a href="https://developer.android.com/guide/topics/ui/picture-in-picture.html#declaring">declare picture-in-picture support</a> for the activity by adding the following:
-	<pre class="line-numbers">
-  <code class="language-xml">&lt;activity android:name="VideoActivity"
-        android:resizeableActivity="true"
-      <span class="bcls-highlight">  android:supportsPictureInPicture="true"
-        android:configChanges=
-            "screenSize|smallestScreenSize|screenLayout|orientation"</span>
-        ...
-      </code></pre>
-
-	<p>This is an important step. If you do not declare it, when a user presses the picture-in-picture button in the Brightcove Media Controller, an <code>IllegalStateException</code> will be thrown:</p>
-
-	<pre>
-  <code class="language-java">java.lang.IllegalStateException: enterPictureInPictureMode: Current activity does not support picture-in-picture</code></pre>
-	</li>
-</ol>
-
-<p>When going into picture-in-picture mode, the activity itself is resized, retaining all of the activity components in the picture-In-picture window. To avoid this and to provide an easier implementation, the Brightcove video view will go into Full Screen automatically to match the parent layout width and height showing only the video in the picture-in-picture window. Once you leave this mode, Brightcove video view will return to its original state.</p>
-
-<p>If you do not want picture-in-picture in your app, you can disable the picture-in-picture button by adding the following code in your <strong>styles.xml</strong> file:</p>
-
-<pre class="line-numbers">
-  <code class="language-xml">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
-     &lt;item name="brightcove_picture_in_picture"&gt;false&lt;/item&gt;
-  &lt;/style&gt;</code></pre>
-
-<h3 id="Using_a_regular_Activity">Using a regular Activity</h3>
-
-<p>If you are using an activity which does not extend <code>BrightcovePlayer</code>, in addition to declaring support for picture-in-picture as mentioned in the previous section, you need to follow a few extra steps:</p>
-
-<ol class="bcls-tasklist__restart">
-	<li class="language-editable">Open the <strong>MainActivity.java</strong> file.</li>
-	<li class="language-editable">In the <code>onCreate</code> method of the activity, register the Activity with the Brightcove <code>PictureInPictureManager</code>:
-	<pre>
-  <code class="language-java">PictureInPictureManager.getInstance().registerActivity(Activity, BrightcoveVideoView)</code></pre>
-	</li>
-	<li class="language-editable">In the <code>onDestroy</code> method, unregister the Activity:
-	<pre>
-  <code class="language-java">PictureInPictureManager.getInstance().unregisterActivity(Activity)</code></pre>
-	</li>
-	<li class="language-editable">Override the <code>onPictureInPictureModeChanged</code> Activity method, and call <code>onPictureInPictureModeChanged()</code> method as shown below:
-	<pre class="line-numbers">
-  <code class="language-java">@Override
-  public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
-     super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
-     PictureInPictureManager.getInstance().onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
-  }</code></pre>
-	</li>
-	<li class="language-editable">Finally, override the <code>onUserLeaveHint()</code> Activity method, and call <code>onUserLeaveHint()</code> as shown below:
-	<pre class="line-numbers">
-  <code class="language-java">@Override
-  public void onUserLeaveHint () {
-     super.onUserLeaveHint();
-     PictureInPictureManager.getInstance().onUserLeaveHint();
-  }</code></pre>
-	</li>
-</ol>
-
-<p>After following these steps, the picture-in-picture button will appear in the Brightcove Media Controller automatically. You can also trigger picture-in-picture programmatically as follows:</p>
-
-<pre>
-  <code class="language-java">PictureInPictureManager.getInstance().enterPictureInPictureMode()</code></pre>
-
-<aside class="bcls-aside bcls-aside--information">Note that calling this method will throw a <code>PictureInPictureManagerException</code> if an Activity has not been registered.</aside>
-
-<h3 id="Customizing_picture-in-picture">Customizing picture-in-picture</h3>
-
-<p>You can customize the behavior and appearance of the picture-in-picture window through the <code>PictureInPictureManager</code>. For example, you can change the aspect ratio of the window or enable/disable captions for your videos.</p>
-
-<p>Android Oreo natively provides three parameters that can be customized:</p>
+<aside class="bcls-aside bcls-aside--information">
+<p>Notes for the Brightcove Player SDKs for iOS and tvOS:</p>
 
 <ul>
-	<li class="language-editable"><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setAspectRatio(android.util.Rational)">aspect ratio</a>
-
-	<pre>
-  <code class="language-java">setAspectRatio(Rational)</code></pre>
-	</li>
-	<li class="language-editable"><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setSourceRectHint(android.graphics.Rect)">source bounds hint</a>
-	<pre>
-  <code class="language-java">setSourceRectHint(Rect)</code></pre>
-	</li>
-	<li class="language-editable"><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setActions(java.util.List%3Candroid.app.RemoteAction%3E)">list of remote actions</a>
-	<pre>
-  <code class="language-java">setUserActions(List&lt;RemoteAction&gt;)</code></pre>
-	</li>
+	<li>Adaptive Bitrate Streaming, specifically, HLS, is required for most online playback on iOS devices. For details, see <a href="https://developer.apple.com/library/content/qa/qa1767/_index.html">Apple's technical document about HLS</a>.</li>
+	<li>The Sidecar WebVTT plugin supports playback over AirPlay with captions.</li>
+	<li>For details about using WebVTT captions for HLS content, see the <a href="/node/18216">Synchronizing WebVTT Captions</a> document.</li>
 </ul>
+</aside>
+<!-- <aside class="bcls-aside bcls-aside--information">
+      <p>Notes for the Brightcove Player SDKs for Android:
+      </p>
+      <ul>
+        <li>Dynamic Adaptive Streaming over HTTP (DASH), also known as MPEG-DASH, is supported with the Native SDK for Android.</li>
+      </ul>
+    </aside> -->
 
-<h4>User actions</h4>
+<p>&nbsp;</p>
 
-<p>Brightcove adds a <code>RemoteAction</code> by default, which handles the <code>Play/Pause</code> video events and sets their respective icons. This means that the default <code>RemoteAction</code> will be added to the list of remote actions you set with the following:</p>
+<p>Similar to HLS, MPEG-DASH enables high quality streaming of media content over HTTP. It also works by breaking content into a sequence of file segments.</p>
 
-<pre>
-  <code class="language-java">setUserActions</code></pre>
+<h3 class="BCL_subsectionTitle">Table for Dynamic Adaptive Streaming over HTTP (MPEG-DASH) support</h3>
 
-<p>Keep in mind that you can only set a limited number of actions. To get the <a href="https://developer.android.com/reference/android/app/Activity.html#getMaxNumPictureInPictureActions()">maximum number of actions</a>, call the following:</p>
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Video format</th>
+			<th style="text-align: center;">iOS SDK</th>
+			<th style="text-align: center;">Android SDK</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td>Dynamic Adaptive Streaming over HTTP (MPEG-DASH)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<th>Caption format</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>In-Manifest WebVTT</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar WebVTT</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar TTML (DFXP)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+	</tbody>
+</table>
 
-<pre>
-  <code class="language-java">Activity.getMaxNumPictureInPictureActions()</code></pre>
-
-<h4>Closed captions</h4>
-
-<p>You can enable/disable Closed Captions when playing a video in Picture-in-Picture mode by calling the following in the <code>inPictureInPictureManager</code>.</p>
-
-<pre>
-  <code class="language-java">setClosedCaptionsEnabled(boolean)</code></pre>
-
-<p>Closed Captions are disabled by default in phones but enabled in tablets. To reduce the size of the Closed Captions while playing in Picture-in-Picture mode, call the following to set a value between <code>0</code> and <code>1.0f</code>.</p>
-
-<pre>
-  <code class="language-java">setClosedCaptionsReductionScaleFactor(float)</code></pre>
-
-<p>By default, the Closed Captions size in picture-in-picture mode is <code>0.5f</code> or 50% the original size. Lastly, to enter picture-in-picture mode when the Activity <code>onUserLeaveHint()</code> is called, set the following to <code>true</code>:</p>
-
-<pre>
-  <code class="language-java">setOnUserLeaveEnable(boolean)</code></pre>
-
-<h4>Parameters</h4>
-
-<p>In order to retrieve the current picture-in-picture parameters, you can call the following:</p>
-
-<pre>
-  <code class="language-java">PictureInPicture.getBrightcovePictureInPictureParams()</code></pre>
-
-<p>This call returns the <code>BrightcovePictureInPictureParams</code> object, which has the getters for all the parameters previously discussed.</p>
+<p>&nbsp;</p>
 </section>
 
-<section class="bcls-section">
-<h2 id="iOS_implementation">iOS implementation</h2>
+<section id="Digital_Rights_Management" class="bcls-section">
+<h2>Digital Rights Management (DRM)</h2>
 
-<p>To get started with picture-in-picture, add <code>showPictureInPictureButton</code> to <code>BCOVPUIPlayerViewOptions</code>. When set to true, a picture-in-picture button will be added to the player controls on supported devices.</p>
+<p>A third set of formats worth noting are those proprietary formats that some DRM partners use.</p>
 
-<p>For more details, see the following:</p>
+<p>The Brightcove Native Player SDKs can not access or control the properties and functionality of these formats. Issues found with these formats may need to be addressed to their proprietors directly.</p>
+
+<h3 class="BCL_subsectionTitle">Table for Widevine Media (.wvm) support</h3>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Video format</th>
+			<th style="text-align: center;">iOS SDK</th>
+			<th style="text-align: center;">Android SDK</th>
+		</tr>
+	</thead>
+	<!--
+<tr>
+<td>Widevine Classic</td>
+<td style="text-align: center;"><img src="/assets/images/getting-started/box-checked.png" height="20" width="20" alt="yes" /></td>
+<td style="text-align: center;"><img src="/assets/images/getting-started/box-checked.png" height="20" width="20" alt="yes" /></td>
+</tr>
+-->
+	<tbody class="bcls-table__body">
+		<tr>
+			<td>Widevine Modular (DASH-CENC)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<th>Caption format</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Sidecar WebVTT</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>Sidecar TTML (DFXP)</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<td>608 / 708</td>
+			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
+
+<aside class="bcls-aside bcls-aside--information">
+<p>Widevine notes:</p>
 
 <ul>
-	<li class="language-editable">The <a href="https://github.com/brightcove/brightcove-player-sdk-ios#PIP">Picture in Picture</a> section of the Brightcove Native SDK for iOS reference</li>
-	<li class="language-editable">Apple's <a href="https://developer.apple.com/documentation/avkit/adopting_picture_in_picture_in_a_custom_player">Adopting Picture in Picture in a Custom Player</a> document</li>
+	<li>Widevine Media is supported only when using the Widevine integration.</li>
+	<li>For the Android SDK, Widevine Modular is supported for Android versions 4.4+ only.</li>
+	<li>For iOS apps built using the Brightcove Player SDK for iOS, you should use FairPlay if you require DRM.</li>
 </ul>
+</aside>
 
-<p>For a code example, see the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">Basic Video Playback App</a>.</p>
-</section>
+<p>&nbsp;</p>
 
-<section class="bcls-section">
-<h2 id="Limitations">Limitations</h2>
+<p>Apple's FairPlay Streaming (FPS) technology can be used to deliver secure content when using HTTP Live Streaming (HLS).</p>
 
-<h3>Android</h3>
+<h3 class="BCL_subsectionTitle">Table for FairPlay Streaming (FPS) support</h3>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Video format</th>
+			<th style="text-align: center;">iOS SDK</th>
+			<th style="text-align: center;">tvOS SDK</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td>HTTP Live Streaming (HLS)</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+		<tr>
+			<th>Caption format</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Sidecar WebVTT</td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+		</tr>
+	</tbody>
+</table>
+<br/>
+
+<aside class="bcls-aside bcls-aside--information">
+<p>FairPlay notes:</p>
 
 <ul>
-	<li class="language-editable">Picture-in-picture will only work on devices with Android Oreo or higher</li>
-	<li class="language-editable">It is currently not supported for Android TV</li>
-	<li class="language-editable">Videos with ads are not supported</li>
-	<li class="language-editable">360 videos are not supported</li>
+	<li>Known Apple issues - FairPlay streaming content will not work in the following cases:
+	<ul>
+		<li>AirPlay Mirroring mode</li>
+		<li>Using AirPlay to play back offline videos protected with FairPlay</li>
+		<li>Videos representing 360° content</li>
+	</ul>
+	</li>
 </ul>
+</aside>
 
-<h3>iOS</h3>
+<p>&nbsp;</p>
 
-<ul>
-	<li class="language-editable">Currently, Apple only supports iPad devices</li>
-	<li class="language-editable">Videos with ads are not supported</li>
-	<li class="language-editable">360 videos are not supported</li>
-</ul>
-</section>
+<p>For more information about content protection with the Native SDKs, check out the <a href="/node/18436">Digital Rights Integrations</a> page.</p>
 
-<section class="bcls-section">
-<h2 id="Known_issues">Known issues</h2>
-
-<h3>Android</h3>
-
-<ul>
-	<li class="language-editable">We found that Widevine-protected videos playing in picture-in-picture mode will turn transparent or black in the Pixel C with Android 8.0. The issue is not reproducible in the same device with Android 8.1.</li>
-</ul>
+<p>&nbsp;</p>
 </section>
 </article>
-
+<!-- End of Drupal content -->
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
