@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Getting Started</title>
+  <title>Android: Understanding the BrightcovePlayer Class</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,7 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
+      <li class="breadcrumb-item"><a href="/android/">Android Development</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">Android: Understanding the BrightcovePlayer Class</li>
     </ol>
   </nav>
 </header>
@@ -227,81 +229,131 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
-<style>
-  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
-    font-size: 3rem;
-    color:rgb(239, 108, 42);
-    margin-right: .5rem;
-  }
-  .card-icon i {
-    color: rgb(239, 108, 42);
-  }
-  .card-wrapper {
-  justify-content: start;
-  }
-  .bcls-card ul li {
-    font-size: small;
-  }
-</style>
-
 <article class="bcls-article">
-  <h1><i class="far fa-location-arrow"></i> Getting Started</h1>
-  <summary>Guides to help you get started</summary>
-  <section class="card-wrapper">
-    <section class="bcls-card">
-      <div class="card-content">
-        <h2 id="Topics_in_this_section">Topics in this section</h2>
-        <ul>
-        
-        
-      
-        
-              
-                <li><a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/native-video-playback.html">Native Video Playback</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/brightcove-native-sdk-features.html">Native SDK Features</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/brightcove-native-sdks-feature-support.html">Feature Support Table</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/running-sample-apps-native-sdk-android.html">Running Android Sample Apps</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/running-sample-apps-native-sdk-ios.html">Running iOS/tvOS Sample Apps</a>
-                
-                </li>
-              
-                <li><a href="/getting-started/brightcove-native-sdks-training-videos.html">Native SDK Training Videos</a>
-                
-                </li>
-              
-        
-      
-        
-      
-        
-      
-        
-      
-  
-      </div>
-    </section>
-  </section>
-</article>
+  <h1>Android: Understanding the BrightcovePlayer Class</h1>
+  <summary>In this topic, you will learn about the BrightcovePlayer class and how it provides basic lifecycle management.</summary>
 
+<section class="bcls-section">
+<h2 id="BrightcovePlayer_class">BrightcovePlayer class</h2>
+
+<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> class resides in the core Brightcove SDK for Android and extends Android's <a href="https://developer.android.com/reference/android/app/Activity">Activity</a> class.</p>
+
+<p>As a basic <code>Activity</code>, the <code>BrightcovePlayer</code> class wraps a <code>BrightcoveExoPlayerVideoView</code> and sets up an <code>EventLogger</code> and default <code>MediaController</code>. It implements basic lifecycle management and full screen logic. It is meant to be subclassed.</p>
+
+<pre>
+<code class="language-java">public class MainActivity extends BrightcovePlayer {
+...
+}</code></pre>
+
+<p>At a minimum the <code>onCreate()</code> method should be overridden with logic to wire up the <code>BrightcoveExoPlayerVideoView</code> variable to the <strong>layout.xml</strong> file. For example:</p>
+
+<pre>
+<code class="language-java">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
+
+<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a> code sample.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Support_library_components">Support library components</h2>
+
+<p>If you choose not to use the <code>BrightcovePlayer</code> class, the <code>BrightcovePlayerActivity</code> and <code>BrightcovePlayerFragment</code> classes are available to you. To use either of these classes, you need to include the <code>appcompat</code> plugin in your <strong>build.gradle</strong> file as follows:</p>
+
+<pre>
+<code class="language-java">compile "com.brightcove.player:android-appcompat-plugin:${anpVersion}"</code></pre>
+
+<h3 id="BrightcovePlayerFragment_class">BrightcovePlayerFragment class</h3>
+
+<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/appcompat/BrightcovePlayerFragment.html">BrightcovePlayerFragment</a> class extends the <a href="https://developer.android.com/reference/android/support/v4/app/Fragment">android.support.v4.app.Fragment</a> class.</p>
+
+<p>If you want to combine the Brightcove Player with other design elements in your layout, you can use the <code>BrightcovePlayerFragment</code> class. This is useful when designing for a tablet or larger screen, which has more room to combine UI components. For example, with a tablet, you could display multiple fragments at the same time, both living within the same activity.</p>
+
+<pre>
+<code class="language-java">public class MainFragment extends BrightcovePlayerFragment {
+...
+}</code></pre>
+
+<p>The <code>onCreateView()</code> should be extended to wire up the fragment's layout to the <code>baseVideoView</code> instance variable before calling <code>super.onCreateView()</code>.</p>
+
+<pre>
+<code class="language-java">baseVideoView = (BaseVideoView) result.findViewById(R.id.brightcove_video_view);</code></pre>
+
+<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatFragmentSampleApp">AppCompatFragmentSampleApp</a> code sample.</p>
+
+<h3 id="BrightcovePlayerFragment_class">BrightcovePlayerActivity class</h3>
+
+<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/appcompat/BrightcovePlayerActivity.html">BrightcovePlayerActivity</a> class extends the <a href="https://developer.android.com/reference/android/support/v7/app/AppCompatActivity">android.support.v7.app.AppCompatActivity</a> class.</p>
+
+<p>If you choose to use an Activity, you can use the <code>BrightcovePlayerActivity</code> class.</p>
+
+<pre>
+<code class="language-java">public class MainActivity extends BrightcovePlayerActivity {
+...
+}</code></pre>
+
+<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatActivitySampleApp">AppCompatActivitySampleApp</a> code sample.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Lifecycle_management">Lifecycle management</h2>
+
+<p>It is best practice to start with either the <code>BrightcovePlayer</code> activity or the <code>BrightcovePlayerFragment</code>, since these provide default lifecycle management implementation, including the following:</p>
+
+<ul>
+	<li>When a user pauses the app, the class keeps track of where they stopped.</li>
+	<li>When your app comes back from the background, the class remembers whether the video was playing or not, and restart playback where it left off.</li>
+	<li>If your app is killed due to memory issues, the class will seek to time in video to where it was.</li>
+	<li>An event logger is setup, which logs all events to logcat. This can be helpful for debugging.</li>
+	<li>The class dispatches events to communicate with plugins.</li>
+</ul>
+</section>
+&nbsp;
+
+<p>Now that you have an activity, you are ready to choose a video view, as detailed in the next document.</p>
+
+<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/18250';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18248';">Next &gt;</button></div>
+</article>
+<!-- Learning path right navigation -->
+<link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/css/learning-paths/learning-paths.css" /><script>
+    var learning_path = [
+      {
+        node: '18250',
+        title: 'Native SDK Architecture'
+      },
+      {
+        node: '18252',
+        title: 'Understand the Activity Class'
+      },
+      {
+        node: '18248',
+        title: 'Choose a Video View'
+      }
+      ,
+      {
+        node: '18247',
+        title: 'Register Your App'
+      },
+      {
+        node: '18251',
+        title: 'Use Media Content'
+      },
+      {
+        node: '18249',
+        title: 'Understand Events'
+      },
+      {
+        node: '18238',
+        title: 'Step-by-Step: Simple Video App'
+      }
+    ]
+  </script><script src="https://learning-services-media.brightcove.com/doc-assets/js/learning-paths/learning-paths.js"></script>
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav">
+        <h6 class="toc">Page Contents</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
       
     </div>
   </div>
@@ -309,7 +361,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 12 Feb 2020
+  Page last updated on 13 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -390,6 +442,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
+  
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
