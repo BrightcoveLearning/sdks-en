@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Android: Choosing a Video View</title>
+  <title>Android: Working with Media Content</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -88,7 +88,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       <li class="breadcrumb-item"><a href="/android/">Android Development</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Android: Choosing a Video View</li>
+      <li class="breadcrumb-item active" aria-current="page">Android: Working with Media Content</li>
     </ol>
   </nav>
 </header>
@@ -242,153 +242,183 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Android: Choosing a Video View</h1>
-  <summary>In this topic, you will learn how to select the video view to use in your Android application.</summary>
+  <h1>Android: Working with Media Content</h1>
+  <summary>In this topic, you will learn how to retrieve and play your videos using the Native SDK for Android.</summary>
 
 <section class="bcls-section">
-<h2 id="Recommendations">Recommendations</h2>
+<h2 id="Overview">Overview</h2>
 
-<p>Brightcove recommends using one of the following ExoPlayer views:</p>
-
-<ul>
-	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a></li>
-	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></li>
-</ul>
-
-<aside class="bcls-aside bcls-aside--warning">
-<p>Brightcove recommends using one of the ExoPlayer implementations listed above.</p>
-Support for the MediaPlayer implementations (<a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a> and <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveTextureVideoView.html">BrightcoveTextureVideoView</a>) will be discontinued in the near future. For details, see the <a href="#MediaPlayer">MediaPlayer</a> section.</aside>
+<p>Video Cloud customers have access to their media data and metadata from Video Cloud Studio. Brightcove Player customers will supply the URL for their media content.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Brightcove_video_views">Brightcove video views</h2>
+<h2 id="Video_Cloud_customers">Video Cloud customers</h2>
 
-<p>The Brightcove video views provide the basic functionality for the video view:</p>
+<p>As a Video Cloud customer, you can access your media data stored in Video Cloud Studio. For more information, see the <a href="https://github.com/BrightcoveOS/android-player-samples">Player SDK for Android code samples</a>.</p>
+
+<h3>Retrieving media data</h3>
+
+<p>You can retrieve your video and playlist data from your Video Cloud library by using the Playback API. For details about the API, see the <a href="/node/17906">Playback API Overview</a> document.</p>
+
+<ol class="bcls-tasklist">
+	<li>
+	<p>Use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">com.brightcove.player.edge.Catalog</a> class methods to retrieve your videos and playlists from Brightcove's Playback API. Your requests can supply the video/playlist <code class="notranslate">ID</code> or <code class="notranslate">ReferenceID</code>. This service will make the URL requests and parse the returned data.</p>
+
+	<aside class="bcls-aside bcls-aside--information">If you include special characters with a <code>ReferenceID</code>, you must URI encode it before making a catalog request.</aside>
+	</li>
+	<li>
+	<p>For this request, you will need a Policy Key. If you are not familiar with Policy Keys, see the <a href="/node/18003">Policy API Overview</a> document.</p>
+
+	<aside class="bcls-aside bcls-aside--information">Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code class="notranslate">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</aside>
+
+	<p>Here is an example of how to retrieve a video using the <code class="notranslate">com.brightcove.player.edge.Catalog </code> class:</p>
+
+	<pre class="line-numbers">
+<code class="language-java notranslate">package com.brightcove.player.samples.exoplayer.basic;
+import android.os.Bundle;
+import android.util.Log;
+import com.brightcove.player.edge.Catalog;
+import com.brightcove.player.edge.VideoListener;
+import com.brightcove.player.event.EventEmitter;
+import com.brightcove.player.model.Video;
+import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
+import com.brightcove.player.view.BrightcovePlayer;
+/**
+* This app illustrates how to use the ExoPlayer with the Brightcove
+* Native Player SDK for Android.
+*/
+public class MainActivity extends BrightcovePlayer {
+	private final String TAG = this.getClass().getSimpleName();
+	@Override
+
+	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.activity_main);
+		brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+		super.onCreate(savedInstanceState);
+
+		// Get the event emitter from the SDK and create a catalog request to fetch a video from the
+		// Brightcove Edge service, given a video id, an account id and a policy key.
+		EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+		Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));
+
+		catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+		  // Add the video found to the queue with add().
+		  // Start playback of the video with start().
+		  @Override
+		  public void onVideo(Video video) {
+		    Log.v(TAG, "onVideo: video = " + video);
+		    brightcoveVideoView.add(video);
+		    brightcoveVideoView.start();
+		  }
+		});
+	}
+}</code></pre>
+	</li>
+</ol>
+
+<ol class="bcls-tasklist">
+	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/Video.html">Video object</a> provides methods to retrieve media information as shown below:
+
+	<pre class="line-numbers">
+<code class="language-java notranslate">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+  // Add the video found to the queue with add().
+  // Start playback of the video with start().
+  @
+  Override
+  public void onVideo(Video video) {
+<span class="bcls-highlight">    Log.v(TAG, "onVideo: video = " + video);
+    Log.v(TAG, "onVideo: videoID = " + video.getId());
+    Log.v(TAG, "onVideo: videoName = " + video.getName());
+    Log.v(TAG, "onVideo: videoDescription = " + video.getDescription());
+    Log.v(TAG, "onVideo: videoImage = " + video.getStillImageUri());
+    Log.v(TAG, "onVideo: sourceCollections = " + video.getSourceCollections());
+    SourceCollection dashCollection = video.getSourceCollections().get(DeliveryType.DASH);
+    if (dashCollection != null) {
+      Set &lt; Source &gt; sources = dashCollection.getSources();
+      for (Source source: sources) {
+        if (!TextUtils.isEmpty(source.getUrl())) {
+          Log.v(TAG, "onVideo: DASH source = " + source.getUrl());
+        }
+      }
+    }</span>
+
+    brightcoveVideoView.add(video);
+    brightcoveVideoView.start();
+  }
+});</code></pre>
+
+	<p>The above <code class="notranslate">Log()</code> methods return the following media information:</p>
+
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video object" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/getting-started/media-content/video-object.png" />
+	<figcaption class="bcls-caption--image">Video object</figcaption>
+	</figure>
+	</li>
+</ol>
+
+<h3>Geo-filtered videos</h3>
+
+<p>The Brightcove Player SDK for Android supports geo-filtered videos.</p>
+
+<aside class="bcls-aside bcls-aside--warning">Notes:
+<ul>
+	<li>You need to use the Playback API when working with geo-filtered videos.</li>
+	<li>The playback service will only return an error if your video is geo-filtered in Video Cloud. The error will be null if your video is geo-filtered at the CDN level.</li>
+</ul>
+</aside>
+
+<p>There are two ways you can add geo-filtering to your videos to control which countries they can (or cannot) be viewed in:</p>
 
 <ul>
-	<li>They are designed to be dropped into your XML Layout file to replace Android's <a href="https://developer.android.com/reference/android/widget/VideoView.html">VideoView</a> widget.</li>
-	<li>They provide public methods to mirror those from Android's <a href="https://developer.android.com/reference/android/widget/VideoView.html">VideoView</a> widget.</li>
-	<li>They provide additional logic for playlists.</li>
+	<li><a href="/node/18034">Brightcove's CMS API</a></li>
+	<li><a href="/node/15476#geofilter">Video Cloud Studio's Media Module</a></li>
 </ul>
 
-<aside class="bcls-aside bcls-aside--information">The Brightcove video views can be used outside of a <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayerFragment.html">BrightcovePlayerFragment</a>, but require life cycle management and full screen support to be implemented by the developer.</aside>
+<p>In your Android app, when you retrieve a video using Brightcove's edge <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">Catalog</a> object (Playback API) in a country which is geo-filtered for that video, you should see this message:</p>
 
-<p>Use the following table to choose the appropriate Brightcove video view:</p>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="width:25%;border-bottom:1px solid #707070;">If You Are Using</th>
-			<th style="width:75%;border-bottom:1px solid #707070;">Then...</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">DRM - Widevine Modular</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a></p>
-
-			<p>The BrigthcoveTextureVideoView cannot be used because Widevine requires hardware rendering, and the TextureView uses software rendering.</p>
-
-			<p>A plugin is not necessary since Widevine Modular support is built into the ExoPlayer.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">HLS</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></p>
-
-			<p>These views use the ExoPlayer as the underlying video player, which has excellent support for HLS.</p>
-
-			<p>It is not recommended to use either BrightcoveVideoView or BrightcoveTextureVideoView. Both use the MediaPlayer as the underlying video player, which has poor support for HLS.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">DASH or Smooth Streaming</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></p>
-
-			<p>These views use the ExoPlayer as the underlying video player, which supports these formats.</p>
-
-			<p>The MediaPlayer does not support these formats.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">effects</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></p>
-
-			<p>The TextureView uses software rendering. Since the SurfaceView uses hardware rendering, it does not support effects.</p>
-
-			<p>TextureView comes with a performance penalty due to increased CPU usage.</p>
-
-			<p>The BrightcoveTextureVideoView also supports effects, but is limited by the MediaPlayer known issues.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">ID3 tags</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></p>
-
-			<p>These views use the ExoPlayer as the underlying video player, which supports ID3 tags.</p>
-
-			<p>The MediaPlayer does not support ID3 tags.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">608/708 closed captions</td>
-			<td>
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerTextureVideoView.html">BrightcoveExoPlayerTextureVideoView</a></p>
-
-			<p>These views use the ExoPlayer as the underlying video player, which supports 608/708 closed caption tags.</p>
-
-			<p>The MediaPlayer does not support 608/708 closed captions.</p>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;border-bottom:1px solid #707070;">DRM - Widevine Classic (deprecated)</td>
-			<td style="background-color:#dbdbdb;">
-			<p>Use <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a> with WidevinePlugin</p>
-
-			<aside class="bcls-aside bcls-aside--warning">Google has stopped supporting Widevine Classic in the latest Android versions, so you should stop using it as soon as possible. Since Android's ExoPlayer does not support Widevine Classic, you should use Widevine Modular.</aside>
-
-			<p>The BrightcoveVideoView uses the Android Media Player. Before using this view, review the <a href="#MediaPlayer">MediaPlayer</a> section of this doc.</p>
-
-			<p>The BrigthcoveTextureVideoView cannot be used because Widevine requires hardware rendering. The TextureView uses software rendering.</p>
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<p class="BCL-aside" style="padding:1em;">For more details about these classes, refer to the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Brightcove Player SDK for Android Reference</a> documents.</p>
+<pre class="line-numbers">
+<code class="language-java notranslate">error { message: Access to this resource is forbidden by access policy.
+client_geo: us
+error_subcode: CLIENT_GEO
+error_code: ACCESS_DENIED }</code></pre>
 </section>
 
 <section class="bcls-section">
-<h2 id="MediaPlayer">MediaPlayer</h2>
+<h2 id="Brightcove_Player_customers">Brightcove Player customers</h2>
 
-<p>Should you use a MediaPlayer-based video view? The ExoPlayer has matured to the point that you should be able to use it in most cases.</p>
+<p>As a Brightcove Player customer, you will supply the URL for your video assets.</p>
 
-<aside class="bcls-aside bcls-aside--warning">Brightcove does NOT recommend using the MediaPlayer implementations.</aside>
+<aside class="bcls-aside bcls-aside--information">For Android SDK Nougat (7.x), the Server Name Indication (SNI) extension in Android uses the <code class="notranslate">toASCII()</code> method to enforce restrictions on characters in hostnames for TLS connections. If you try to load a source with a US_ASCII-non-compliant hostname (e.g. the hostname contains underscores in the subdomain: test_example.example.com), you will get an exception when trying to fetch the stream.<br />
+<br />
+So, when loading your source file over HTTPS, the hostname of the stream must be US_ASCII compliant.</aside>
 
-<p>If you need to use a MediaPlayer-based video view, consider the following:</p>
+<p>Here is an example of adding a video to your video view and starting playback:</p>
 
-<ul>
-	<li>
-	<p><strong>Application size</strong> - An apk using the ExoPlayer-based video view will be roughly 300K larger than one using the MediaPlayer. This is because the ExoPlayer is a library, where the MediaPlayer is built into the Android OS. Even though an ExoPlayer apk is larger than using the MediaPlayer, the benefits of using the ExoPlayer far outweigh the file size.</p>
-	</li>
-	<li>
-	<p><strong>Reliability and features</strong> - The reliability of the MediaPlayer has been less than perfect, and new features are rarely added. On the other hand, since the ExoPlayer is a library, it has been improving at a very fast rate with new features being added often.</p>
-	</li>
-	<li>
-	<p><strong>Support</strong> - Any bugs with the MediaPlayer are difficult to fix because they require an Android OS change and Android OS deployment. ExoPlayer bugs are relatively easier and faster to fix, since the library is not part of the Android OS. Also, ExoPlayer bugs can be fixed by a larger community, including the Google ExoPlayer team, the Brightcove Player SDK for Android team or other ExoPlayer developers.</p>
-	</li>
-</ul>
+<pre class="line-numbers">
+<code class="language-java notranslate">import com.brightcove.player.model.DeliveryType;
+import com.brightcove.player.model.Video;
+import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
+import com.brightcove.player.view.BrightcovePlayer;
+import com.brightcove.player.analytics.Analytics;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+	BrightcoveVideoView brightcoveVideoView = (BrightcoveVideoView) findViewById(R.id.brightcove_video_view);
+
+	Analytics analytics = brightcoveVideoView.getAnalytics();
+	analytics.setAccount("123456789");
+
+	MediaController controller = new MediaController(this);
+	brightcoveVideoView.setMediaController(controller);
+	brightcoveVideoView.add(Video.createVideo("http://solutions.brightcove.com/bcls/assets/videos/Bird_Titmouse.mp4", DeliveryType.MP4));
+	brightcoveVideoView.start();
+}</code></pre>
 </section>
 &nbsp;
 
-<p>Now that you have selected a video view, you are ready to learn about registering your app.</p>
+<p>Next, let's take a look at how events work within the SDK architecture.</p>
 
-<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/18252';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18247';">Next &gt;</button></div>
+<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/18247';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18249';">Next &gt;</button></div>
 </article>
 <!-- Learning path right navigation -->
 <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/css/learning-paths/learning-paths.css" /><script>
