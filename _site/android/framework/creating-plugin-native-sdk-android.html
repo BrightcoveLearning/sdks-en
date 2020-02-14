@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Using Captions with the Brightcove Native SDKs</title>
+  <title>Creating a plugin for the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/features/">Getting Started</a></li>
+      <li class="breadcrumb-item"><a href="/android/framework/">Framework</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Using Captions with the Brightcove Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Creating a plugin for the Native SDK for Android</li>
     </ol>
   </nav>
 </header>
@@ -296,170 +296,117 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Using Captions with the Brightcove Native SDKs</h1>
-  <summary>In this topic, you will learn how to use captions with apps built with the Brightcove Native SDKs.</summary>
+  <h1>Creating a plugin for the Native SDK for Android</h1>
+  <summary>In this topic, you will learn how to create a plugin for the Native SDK for Android.</summary>
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p>Closed captions provide additional information about your video for individuals who wish to access it. Captions are necessary for the deaf and hard of hearing to access the audio portion of your videos. If you are new to captions, see the <a href="/node/17952">Overview: Adding Captions to a Video</a> document.</p>
+<p>At a high level, a plugin integrates with the player by listening for and emitting events. A plugin can listen to events from the player and from other plugins. A plugin can emit events for the player and for other plugins.</p>
 
-<p>It is important to understand which types of captions work best for each video format. Begin by reviewing the <a href="/node/15088">Video Formats and Captioning</a> document. Brightcove recommends using HLS or DASH videos with WebVTT captions.</p>
-
-<aside class="bcls-aside bcls-aside--tip">When you use the Dynamic Ingest API to add SRT or DFXP captions to Dynamic Delivery videos, the captions will automatically be converted to WebVTT format. Learn more about the <a href="/node/17938#adding_srt_dfxp">adding text tracks with the Dynamic Ingest API</a>.</aside>
+<p>This content along with sample code is located at <a href="https://github.com/BrightcoveOS/android-plugin-guide">https://github.com/BrightcoveOS/android-plugin-guide</a></p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Captions">Captions</h2>
+<h2 id="Plugin_architecture">Plugin architecture</h2>
 
-<p>With HLS and DASH video, there are two options for captions playback:</p>
+<div class="BCL-concept">
+<p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code>REGISTER_PLUGIN</code> event with a <code>PLUGIN_NAME</code> property. For example:</p>
 
-<ul>
-	<li><a href="#In_manifest_WebVTT">In-manifest WebVTT</a></li>
-	<li><a href="#External_WebVTT">External (Sidecar) WebVTT</a></li>
-</ul>
+<pre class="line-numbers">
+  <code class="notranslate language-java">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
+  properties.put(Event.PLUGIN_NAME, "my custom plugin");
+  eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
 
-<h3 id="In_manifest_WebVTT">In-manifest WebVTT</h3>
+<p>Video playback typically goes through a standard life cycle event flow:</p>
 
-<p>When using In-manifest WebVTT captions with HLS or DASH videos, your captions will just work. There is nothing extra that you need to do to implement these captions.</p>
-
-<p>In-manifest WebVTT captions are ingested with your videos. You can only create in-manifest files if you use Dynamic Ingest with Dynamic Delivery. For details, see the following:</p>
-
-<ul>
-	<li><a href="/node/17938">Ingesting WebVTT files</a></li>
-	<li><a href="/node/17949#ingest_captions">Ingesting Captions using the Dynamic Ingest API</a></li>
-</ul>
-
-<p>Captions are recognized as in-manifest when the <strong>m3u8</strong> file contains the following tag:</p>
-
-<pre>
-<code class="notranslate language-json">#EXT-X-MEDIA:TYPE=SUBTITLES</code></pre>
-
-<h4 id="Example1" class="bcls-expander-head">Example</h4>
-
-<div class="bcls-expander-content">
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Segmented</td>
-			<td>Yes</td>
-		</tr>
-	</tbody>
-</table>
+<figure class="bcls-figure"><img class="bcls-image" alt="Plugin event flow" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/guides/plugin-guide/plugin-event-flow.png" />
+<figcaption class="bcls-caption--image">Plugin event flow</figcaption>
+</figure>
 </div>
+</section>
 
-<aside class="bcls-aside bcls-aside--information">Notes:
-<ul>
-	<li>Using the Media Module in Studio to add captions to a video will not create in-manifest captions.</li>
-	<li>Using legacy ingestion does not create in-manifest captions.</li>
-</ul>
-</aside>
+<section class="bcls-section">
+<h2 id="Event_details">Event details</h2>
 
-<h3 id="External_WebVTT">External (Sidecar) WebVTT</h3>
+<div class="BCL-concept">
+<p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
 
-<p>External WebVTT captions are text files separate from the video. You can associate captions files with a video as follows:</p>
+<ol>
+	<li class="language-editable"><code>WILL_CHANGE_VIDEO</code></li>
+	<li class="language-editable"><code>SET_VIDEO</code></li>
+	<li class="language-editable"><code>SET_SOURCE</code></li>
+	<li class="language-editable"><code>PLAY</code></li>
+	<li class="language-editable"><code>PAUSE</code></li>
+	<li class="language-editable"><code>SEEK_TO</code></li>
+	<li class="language-editable"><code>STOP</code></li>
+</ol>
 
-<ul>
-	<li><a href="/node/15481">Adding Captions using the Media Module</a></li>
-	<li><a href="/node/18013">Adding Captions using the CMS API</a></li>
-</ul>
+<p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code>preventDefault()</code> method. Event propagation can be stopped by calling the <code>stopPropagation()</code> method. If only <code>preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code>stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
 
-<h4 id="Example2" class="bcls-expander-head">Examples</h4>
+<p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
 
-<div class="bcls-expander-content">
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Remote URL<br />
-			Media Module or CMS API</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			remote URL<br />
-			Media Module or CMS APII</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
-		</tr>
-	</tbody>
-</table>
+<ol>
+	<li class="language-editable"><code>DID_CHANGE_LIST</code></li>
+	<li class="language-editable"><code>DID_SELECT_SOURCE</code></li>
+	<li class="language-editable"><code>DID_PAUSE</code></li>
+	<li class="language-editable"><code>DID_PLAY</code></li>
+	<li class="language-editable"><code>DID_SEEK_TO</code></li>
+	<li class="language-editable"><code>DID_SET_SOURCE</code></li>
+	<li class="language-editable"><code>DID_STOP</code></li>
+	<li class="language-editable"><code>PROGRESS</code></li>
+	<li class="language-editable"><code>COMPLETED</code></li>
+</ol>
 </div>
-
-<h4>Android</h4>
-
-<p>The <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/WebVTTSampleApp/src/main">WebVTTSampleApp</a> shows you how to add WebVTT captions files for video playback.</p>
-
-<h4>iOS/tvOS</h4>
-
-<p>When using external WebVTT captions, you need to use the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/SidecarSubtitles.md">Sidecar Subtitles</a> functionality for the Player SDK for iOS and tvOS.</p>
-
-<p>When retrieving videos from your Video Cloud library using the <code class="notranslate">BCOVPlaybackService</code>, your videos and text tracks will be formatted for Sidecar Subtitles.</p>
-
-<p>For Brightcove Player customer without Video Cloud or you are providing your own videos, then you need to structure the text tracks as shown in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles#manually-populating-subtitle-data">Manually populating subtitle data</a> section of the Sidecar Subtitles documentation.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Synchronizing_WebVTT_captions">Synchronizing WebVTT captions</h2>
+<h2 id="Interrupt_playback">Interrupt playback</h2>
 
-<p>If you are using WebVTT captions, make sure the video and audio is synchronized with the captions. Learn how to do this in the <a href="/node/18216">Synchronizing WebVTT Captions</a> document.</p>
+<div class="BCL-concept">
+<p>A plugin, which desires to interrupt the video content playback, should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code>. These events are typically used by advertising plugins. A plugin should emit <code>WILL_INTERRUPT_CONTENT</code> to request that playback be suspended, if it is currently playing, and to request that the video view be made invisible. A plugin should emit <code>WILL_RESUME_CONTENT</code> to request that the video view be made visible again. The <code>WILL_RESUME_CONTENT</code> event should include an <code>ORIGINAL_EVENT</code> property which will be emitted after the video view is made visible. The <code>ORIGINAL_EVENT</code> should be a <code>PLAY</code> event to resume playback, a <code>CUE_POINT</code> event to continue cue point processing, or a <code>COMPLETED</code> event to complete playback. A <code>SKIP_CUE_POINTS</code> property should be added to the <code>ORIGINAL_EVENT</code> to prevent recursive cue point processing.</p>
+</div>
 </section>
 
 <section class="bcls-section">
-<h2 id="Styling_captions">Styling captions</h2>
+<h2 id="Cue_points">Cue points</h2>
 
-<p>WebVTT captions can be styled to match your company preferences. For details, see the <a href="/node/17952#style">Styling captions section</a> of the Add Captions to Videos document.</p>
+<div class="BCL-concept">
+<p>Many plugins will want to listen for <code>CUE_POINT</code> events. There are three types of cue points, <code>BEFORE</code>, <code>POINT_IN_TIME</code>, and <code>AFTER</code>. <code>BEFORE</code> cue points are emitted just before playback begins. <code>POINT_IN_TIME</code> cue points are emitted when playback reaches the cue point's position. <code>AFTER</code> cue points are emitted just after playback completes. A plugin should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code> events to interrupt and resume content playback when handling a cue point event. In the case of before and after cue points, the event will include an <code>ORIGINAL_EVENT</code> property, with either a <code>PLAY</code> event or a <code>COMPLETED</code> event. Cue point events also include a <code>CUE_POINTS</code> property with the batch of cue points. <code>START_TIME</code> and <code>END_TIME</code> properties define the cue point time range.</p>
+</div>
 </section>
 
 <section class="bcls-section">
-<h2 id="Example">Example</h2>
+<h2 id="Sample_directory">Sample directory</h2>
 
-<p>If a video has captions associated with it, you will see a captions icon in the control bar. Select this icon.</p>
+<div class="BCL-concept">
+<p>The <a href="https://github.com/BrightcoveOS/android-plugin-guide/tree/master/sample">sample directory</a> includes an Android Studio based project with two modules:</p>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions icon" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-icon.png" />
-<figcaption class="bcls-caption--image">Captions icon</figcaption>
-</figure>
+<ul>
+	<li class="language-editable"><strong>SamplePlugin</strong> - An example plugin, which can be used as the basis for writing new plugins.</li>
+	<li class="language-editable"><strong>SamplePluginApplication</strong> - Shows how plugins are incorporated into a Brightcove video application and can be used to test the SamplePlugin or new plugins.</li>
+</ul>
+</div>
+</section>
 
-<p>Then, choose your preferred language.</p>
+<section class="bcls-section">
+<h2 id="Implementation_steps">Implementation steps</h2>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select language" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-set.png" />
-<figcaption class="bcls-caption--image">Select language</figcaption>
-</figure>
+<div class="BCL-concept">
+<p>The steps to writing a plugin include:</p>
 
-<p>During video playback, you should see captions displayed.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions display" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-display.png" />
-<figcaption class="bcls-caption--image">Captions displayed</figcaption>
-</figure>
+<ol>
+	<li class="language-editable">Copy the sample plugin to a new repository.</li>
+	<li class="language-editable">Change the package and class names.</li>
+	<li class="language-editable">Update the <code>TAG</code> initializer.</li>
+	<li class="language-editable">Edit the <code>@Emits</code> and <code>@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
+	<li class="language-editable">Modify the constructor as necessary.</li>
+	<li class="language-editable">Replace or remove the <code>videoView</code> related logic as necessary.</li>
+	<li class="language-editable">Modify <code>initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
+	<li class="language-editable">Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
+	<!--                <li class="language-editable">Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
+</ol>
+</div>
 </section>
 </article>
 
@@ -478,7 +425,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 11 Feb 2020
+  Page last updated on 14 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">

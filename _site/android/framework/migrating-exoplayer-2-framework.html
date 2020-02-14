@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Using Captions with the Brightcove Native SDKs</title>
+  <title>Migrating to ExoPlayer 2 Framework</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/features/">Getting Started</a></li>
+      <li class="breadcrumb-item"><a href="/android/framework/">Framework</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Using Captions with the Brightcove Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Migrating to ExoPlayer 2 Framework</li>
     </ol>
   </nav>
 </header>
@@ -296,170 +296,337 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Using Captions with the Brightcove Native SDKs</h1>
-  <summary>In this topic, you will learn how to use captions with apps built with the Brightcove Native SDKs.</summary>
+  <h1>Migrating to ExoPlayer 2 Framework</h1>
+  <summary>In this topic, you will learn how to use the ExoPlayer 2 framework with the Brightcove Native Player SDK for Android..</summary>
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
+<aside class="bcls-aside bcls-aside--information">
+<p>The Brightcove Native SDK for Android using ExoPlayer 1 has been deprecated.</p>
 
-<p>Closed captions provide additional information about your video for individuals who wish to access it. Captions are necessary for the deaf and hard of hearing to access the audio portion of your videos. If you are new to captions, see the <a href="/node/17952">Overview: Adding Captions to a Video</a> document.</p>
-
-<p>It is important to understand which types of captions work best for each video format. Begin by reviewing the <a href="/node/15088">Video Formats and Captioning</a> document. Brightcove recommends using HLS or DASH videos with WebVTT captions.</p>
-
-<aside class="bcls-aside bcls-aside--tip">When you use the Dynamic Ingest API to add SRT or DFXP captions to Dynamic Delivery videos, the captions will automatically be converted to WebVTT format. Learn more about the <a href="/node/17938#adding_srt_dfxp">adding text tracks with the Dynamic Ingest API</a>.</aside>
-</section>
-
-<section class="bcls-section">
-<h2 id="Captions">Captions</h2>
-
-<p>With HLS and DASH video, there are two options for captions playback:</p>
-
-<ul>
-	<li><a href="#In_manifest_WebVTT">In-manifest WebVTT</a></li>
-	<li><a href="#External_WebVTT">External (Sidecar) WebVTT</a></li>
-</ul>
-
-<h3 id="In_manifest_WebVTT">In-manifest WebVTT</h3>
-
-<p>When using In-manifest WebVTT captions with HLS or DASH videos, your captions will just work. There is nothing extra that you need to do to implement these captions.</p>
-
-<p>In-manifest WebVTT captions are ingested with your videos. You can only create in-manifest files if you use Dynamic Ingest with Dynamic Delivery. For details, see the following:</p>
-
-<ul>
-	<li><a href="/node/17938">Ingesting WebVTT files</a></li>
-	<li><a href="/node/17949#ingest_captions">Ingesting Captions using the Dynamic Ingest API</a></li>
-</ul>
-
-<p>Captions are recognized as in-manifest when the <strong>m3u8</strong> file contains the following tag:</p>
-
-<pre>
-<code class="notranslate language-json">#EXT-X-MEDIA:TYPE=SUBTITLES</code></pre>
-
-<h4 id="Example1" class="bcls-expander-head">Example</h4>
-
-<div class="bcls-expander-content">
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Segmented</td>
-			<td>Yes</td>
-		</tr>
-	</tbody>
-</table>
-</div>
-
-<aside class="bcls-aside bcls-aside--information">Notes:
-<ul>
-	<li>Using the Media Module in Studio to add captions to a video will not create in-manifest captions.</li>
-	<li>Using legacy ingestion does not create in-manifest captions.</li>
-</ul>
+<p>If you need to, you can view the <a href="https://docs.brightcove.com/android-sdk/exoplayer1/javadoc/index.html">the ExoPlayer 1 reference documentation</a>, but it is recommended that you migrate to the ExoPlayer 2 Framework.</p>
 </aside>
 
-<h3 id="External_WebVTT">External (Sidecar) WebVTT</h3>
+<p><a href="https://google.github.io/ExoPlayer/">Google's ExoPlayer</a> is an open source, application-level media player for Android. Brightcove leverages the ExoPlayer to take advantage of the benefits it provides. For more information about the benefits of upgrading to the ExoPlayer, see the <a href="https://www.brightcove.com/en/blog/2018/01/brightcove-native-sdk-exoplayer-2">Brightcove Native SDK with ExoPlayer 2</a> blog post.</p>
 
-<p>External WebVTT captions are text files separate from the video. You can associate captions files with a video as follows:</p>
+<p>Learn how to migrate for the following project types:</p>
 
 <ul>
-	<li><a href="/node/15481">Adding Captions using the Media Module</a></li>
-	<li><a href="/node/18013">Adding Captions using the CMS API</a></li>
+	<li><a href="#New_project">New project</a></li>
+	<li><a href="#Existing_ExoPlayer_1_project">Existing ExoPlayer 1 project</a></li>
+	<li><a href="#Existing_MediaPlayer_project">Existing MediaPlayer project</a></li>
 </ul>
 
-<h4 id="Example2" class="bcls-expander-head">Examples</h4>
+<p>Refer to the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/ExoPlayer2/brightcove-exoplayer">ExoPlayer sample applications</a> for additional guidance on integrating the <a href="https://medium.com/google-exoplayer/exoplayer-2-x-new-package-and-class-names-ef8e1d9ba96f">ExoPlayer 2</a> framework into your project.</p>
+</section>
 
-<div class="bcls-expander-content">
+<section class="bcls-section">
+<h2 id="New_project">New project</h2>
+
+<p>Follow these steps to add ExoPlayer 2 to a new Android project:</p>
+
+<ol class="bcls-tasklist">
+	<li>In your <strong>build.gradle</strong> file, add the following dependency:
+
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer2:${anpVersion}"
+}</code></pre>
+	</li>
+	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following statement:
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
+}</code></pre>
+	</li>
+	<li>If you are using an environment variable for the SDK version, then open the <strong>gradle.properties</strong> file, and set the current version value for the Native SDK for Android. It should look similar to this:
+	<pre class="line-numbers">
+<code class="language-java">anpVersion=6.5.0</code></pre>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Existing_ExoPlayer_1_project">Existing ExoPlayer 1 project</h2>
+
+<p>Follow these steps to update an existing ExoPlayer 1 project to use the ExoPlayer 2 framework:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In your <strong>constants.gradle</strong> file, update the Android Build Tools version:
+
+	<pre class="line-numbers">
+<code class="language-java">buildToolsVersion "28.0.2"
+</code></pre>
+	</li>
+	<li>In your <strong>build.gradle</strong> file, update Android support libraries:
+	<pre class="line-numbers">
+<code class="language-java">implementation 'com.android.support:appcompat-v7:${APPCOMPAT_V7_VERSION}'
+implementation 'com.android.support:support-v4:${SUPPORT_V4_VERSION}'
+implementation 'com.android.support:recyclerview-v7:${SUPPORT_V4_VERSION}'
+implementation 'com.android.support:support-vector-drawable:${SUPPORT_V4_VERSION}'
+</code></pre>
+
+	<p>The current values for the constants can be found in the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/constants.gradle">constants.gradle</a> file.</p>
+	</li>
+	<li>In your <strong>build.gradle</strong> file, add the Google Maven Repository:
+	<pre class="line-numbers">
+<code class="language-java">maven {
+  url 'https://maven.google.com'
+}
+</code></pre>
+	</li>
+	<li>If your project uses advertising with Google IMA, update Google Play Services Ads:
+	<pre class="line-numbers">
+<code class="language-java">implementation 'com.google.android.gms:play-services-ads:'+PLAY_SERVICES_VERSION
+</code></pre>
+
+	<aside class="bcls-aside bcls-aside--information">It is important to note here that the Brightcove Native Player SDK for Android does not support applications that attempt to use both ExoPlayer and ExoPlayer 2.</aside>
+	</li>
+	<li>In your <strong>build.gradle</strong> file, where you previously imported the Brightcove ExoPlayer library as a dependency like this:
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer:${anpVersion}"
+}
+</code></pre>
+
+	<p>Change the name of the dependency:</p>
+
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer2:${anpVersion}"
+}
+</code></pre>
+
+	<p>The current value for the Brightcove SDK version (<code>anpVersion</code>) can be found in the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/gradle.properties">gradle.properties</a> file.</p>
+	</li>
+	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following:
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+	implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
+}</code></pre>
+	</li>
+	<li>If you are using an environment variable for the SDK version, then open the <strong>gradle.properties</strong> file, and set the current version value for the Native SDK for Android. It should look similar to this:
+	<pre class="line-numbers">
+<code class="language-java">anpVersion=6.5.0</code></pre>
+
+	<p>There should be no additional coding required to integrate ExoPlayer 2 into your project.</p>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Existing_MediaPlayer_project">Existing MediaPlayer project</h2>
+
+<p>Follow these steps to update an existing MediaPlayer project to use the ExoPlayer 2 framework:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In your <strong>build.gradle</strong> file, add the following dependency:
+
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer2:${anpVersion}"
+}</code></pre>
+	</li>
+	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following:
+	<pre class="line-numbers">
+<code class="language-java">dependencies {
+  implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
+}</code></pre>
+	</li>
+	<li>If you are using an environment variable for the SDK version, then open the <strong>gradle.properties</strong> file, and set the current version value for the Native SDK for Android. It should look similar to this:
+	<pre class="line-numbers">
+<code class="language-java">anpVersion=6.5.0</code></pre>
+	</li>
+	<li>In your app, use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> instead of the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a>, which uses the Android Media Player.</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Breaking_changes">Breaking changes</h2>
+
+<p>The following changes to the Brightcove Native SDK for Android are breaking changes with the ExoPlayer 2. Use of the ExoPlayer 1 has been deprecated with the Brightcove Native SDK.</p>
+
+<h3>ExoPlayerVideoDisplayComponent internal listeners</h3>
+
+<p>The <code>ExoPlayerVideoDisplayComponent</code> class allows you to set listeners to get the status of the ExoPlayer components. Below is a list of some of the listeners:</p>
+
 <table class="bcls-table">
 	<thead class="bcls-table__head">
 		<tr>
-			<th>Scenario</th>
-			<th>Location of text track</th>
-			<th>Type of text track</th>
-			<th>#EXT-X-MEDIA:TYPE=SUBTITLES tag</th>
+			<th>Set the listener</th>
+			<th>Receive status info about</th>
 		</tr>
 	</thead>
 	<tbody class="bcls-table__body">
 		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Dynamic Ingest API</td>
-			<td>CDN</td>
-			<td>Not segmented</td>
-			<td>No</td>
+			<td>setDebugListener</td>
+			<td>InfoListener</td>
 		</tr>
 		<tr>
-			<td>Legacy ingested video (no Dynamic Delivery)<br />
-			Remote URL<br />
-			Media Module or CMS API</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
+			<td>setCaptionListener</td>
+			<td>CaptionListener</td>
 		</tr>
 		<tr>
-			<td>Dynamic Delivery ingested video<br />
-			remote URL<br />
-			Media Module or CMS APII</td>
-			<td>Original</td>
-			<td>Not segmented</td>
-			<td>No</td>
+			<td>setMetadataListener</td>
+			<td>MetadataListener</td>
+		</tr>
+		<tr>
+			<td>setInternalErrorListener</td>
+			<td>InternalErrorListener</td>
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<h4>Android</h4>
+<p>Below are recommendations for using the ExoPlayer 2.</p>
 
-<p>The <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/WebVTTSampleApp/src/main">WebVTTSampleApp</a> shows you how to add WebVTT captions files for video playback.</p>
+<h4>InfoListener</h4>
 
-<h4>iOS/tvOS</h4>
+<p>For the <code>InfoListener</code> interface, the following changes were made:</p>
 
-<p>When using external WebVTT captions, you need to use the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/SidecarSubtitles.md">Sidecar Subtitles</a> functionality for the Player SDK for iOS and tvOS.</p>
+<ul>
+	<li>The <code>onAvailableRangeChanged</code> method was removed</li>
+	<li>The <code>onLoadStarted</code> method has an additional <code>length</code> parameter</li>
+</ul>
 
-<p>When retrieving videos from your Video Cloud library using the <code class="notranslate">BCOVPlaybackService</code>, your videos and text tracks will be formatted for Sidecar Subtitles.</p>
+<p>Example: ExoPlayerVideoDisplayComponent using ExoPlayer 2</p>
 
-<p>For Brightcove Player customer without Video Cloud or you are providing your own videos, then you need to structure the text tracks as shown in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles#manually-populating-subtitle-data">Manually populating subtitle data</a> section of the Sidecar Subtitles documentation.</p>
+<pre class="line-numbers">
+<code class="language-java">public interface InfoListener {
+void onVideoFormatEnabled(Format format, int trigger, long mediaTimeMs);
+void onAudioFormatEnabled(Format format, int trigger, long mediaTimeMs);
+void onDroppedFrames(int count, long elapsed);
+void onBandwidthSample(int elapsedMs, long bytes, long bitrateEstimate);
+void onLoadStarted(int sourceId, int type, int trigger, Format format,
+				long mediaStartTimeMs, long mediaEndTimeMs);
+void onLoadCompleted(int sourceId, long bytesLoaded, int type, int trigger, Format format,
+				long mediaStartTimeMs, long mediaEndTimeMs, long elapsedRealtimeMs, long loadDurationMs);
+void onDecoderInitialized(String decoderName, long initializedTimestampMs,
+				long initializationDurationMs);
+}</code></pre>
+
+<h4>CaptionListener</h4>
+
+<p>The <code>CaptionListener</code> interface is unchanged.</p>
+
+<p>Example: ExoPlayerVideoDisplayComponent using ExoPlayer v2</p>
+
+<pre class="line-numbers">
+<code class="language-java">public interface CaptionListener {
+void onCues(List&lt;Cue&gt; cues);
+}</code></pre>
+
+<h4>MetadataListener</h4>
+
+<p>The <code>MetadataListener</code> interface was introduced with ExoPlayer v2. The previous use of the <code>Id3MetadataListener</code> is now deprecated.</p>
+
+<p>Example: ExoPlayerVideoDisplayComponent using ExoPlayer v2</p>
+
+<pre class="line-numbers">
+<code class="language-java">public interface MetadataListener {
+void onMetadata(Metadata metadata);
+}</code></pre>
+
+<p>With the new <code>MetadataListener</code> you will receive a <code>Metadadata</code> object in the <code>onMetadata</code> callback. With the deprecated <code>Id3MetadataListener</code>, you received a list of Id3Frame objects. With the new listener, you can still get a list of <code>Id3Frame</code> objects as shown below:</p>
+
+<pre class="line-numbers">
+<code class="language-java">exoPlayerVideoDisplayComponent.setMetadataListener(new ExoPlayerVideoDisplayComponent.MetadataListener() {
+@Override
+public void onMetadata(Metadata metadata) {
+ for(int i = 0; i &lt; metadata.length(); i++) {
+		 Metadata.Entry entry = metadata.get(i);
+		 if (entry instanceof Id3Frame) {
+				 Id3Frame id3Frame = (Id3Frame) entry;
+		 }
+ }
+}
+});
+</code></pre>
+
+<h4>InternalErrorListener</h4>
+
+<p>The <code>InternalErrorListener</code> interface has many changes. Please check the code below for comparison:</p>
+
+<p>ExoPlayerVideoDisplayComponent using ExoPlayer v2</p>
+
+<pre class="line-numbers">
+<code class="language-java">public interface InternalErrorListener {
+void onPlayerError(Exception e);
+void onAudioTrackUnderrun(int bufferSize, long bufferSizeMs, long elapsedSinceLastFeedMs);
+void onLoadError(int sourceId, IOException e);
+void onDrmSessionManagerError(Exception e);
+}
+</code></pre>
+
+<p>ExoPlayerVideoDisplayComponent using ExoPlayer v1 (<strong>deprecated</strong>)</p>
+
+<pre class="line-numbers">
+<code class="language-java">public interface InternalErrorListener {
+void onRendererInitializationError(Exception e);
+void onAudioTrackInitializationError(AudioTrack.InitializationException e);
+void onAudioTrackWriteError(AudioTrack.WriteException e);
+void onAudioTrackUnderrun(int bufferSize, long bufferSizeMs, long elapsedSinceLastFeedMs);
+void onDecoderInitializationError(MediaCodecTrackRenderer.DecoderInitializationException e);
+void onCryptoError(MediaCodec.CryptoException e);
+void onLoadError(int sourceId, IOException e);
+void onDrmSessionManagerError(Exception e);
+}
+</code></pre>
+
+<p>When using ExoPlayer 2, the type of exception you get in <code>onPlayerError(Exception e)</code> is <code>com.google.android.exoplayer2.ExoPlaybackException</code>, but this may change in the future.</p>
+
+<p>By using com.google.android.exoplayer2.ExoPlaybackException, you can get the following exception types:</p>
+
+<ul>
+	<li><code>ExoPlaybackException.TYPE_SOURCE</code></li>
+	<li><code>ExoPlaybackException.TYPE_RENDERER</code></li>
+	<li><code>ExoPlaybackException.TYPE_UNEXPECTED</code></li>
+</ul>
+
+<p>You can also retrieve the cause of the error by getting the <code>Throwable</code> object with <code>ExoPlaybackException.getSourceException()</code>.</p>
+
+<h3>Offline playback support</h3>
+
+<p>If your project is using the <code>MediaDownloadable.setConfigurationBundle(Bundle)</code> method to specify the download preferences such as video bitrate, then please update your code as follows:</p>
+
+<p>Old format (deprecated)</p>
+
+<pre class="line-numbers">
+<code class="language-java">com.google.android.exoplayer.MediaFormat
+</code></pre>
+
+<p>New format</p>
+
+<pre class="line-numbers">
+<code class="language-java">com.brightcove.player.model.MediaFormat
+</code></pre>
+
+<h3>Legacy Media API classes</h3>
+
+<p>The deprecated legacy Media API classes, in the <code>com.brightcove.player.media package</code>, were removed from the Brightcove Native SDK for Android.</p>
+
+<p>If you were using the Media classes, you need to migrate and start using the <code>com.brightcove.player.edge.Catalog</code> class.</p>
+
+<p>The following classes were moved from <code>com.brightcove.player.media</code> to <code>com.brightcove.player.model</code>:</p>
+
+<ul>
+	<li><code>DeliveryType.java</code></li>
+	<li><code>CaptionType.java</code></li>
+	<li><code>ErrorFields.java</code></li>
+	<li><code>VideoFields.java</code></li>
+</ul>
+
+<aside class="bcls-aside bcls-aside--tip">If you are using any of these four classes, you only need to replace the import package and you will be all set.</aside>
 </section>
 
 <section class="bcls-section">
-<h2 id="Synchronizing_WebVTT_captions">Synchronizing WebVTT captions</h2>
+<h2 id="Additional_Resources">Additional Resources</h2>
 
-<p>If you are using WebVTT captions, make sure the video and audio is synchronized with the captions. Learn how to do this in the <a href="/node/18216">Synchronizing WebVTT Captions</a> document.</p>
-</section>
+<p>For more information about using the ExoPlayer 2 framework, see the following documents:</p>
 
-<section class="bcls-section">
-<h2 id="Styling_captions">Styling captions</h2>
-
-<p>WebVTT captions can be styled to match your company preferences. For details, see the <a href="/node/17952#style">Styling captions section</a> of the Add Captions to Videos document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Example">Example</h2>
-
-<p>If a video has captions associated with it, you will see a captions icon in the control bar. Select this icon.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions icon" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-icon.png" />
-<figcaption class="bcls-caption--image">Captions icon</figcaption>
-</figure>
-
-<p>Then, choose your preferred language.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select language" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-set.png" />
-<figcaption class="bcls-caption--image">Select language</figcaption>
-</figure>
-
-<p>During video playback, you should see captions displayed.</p>
-
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Captions display" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/captions/captions-display.png" />
-<figcaption class="bcls-caption--image">Captions displayed</figcaption>
-</figure>
+<ul>
+	<li><a href="https://medium.com/google-exoplayer/exoplayer-2-x-new-package-and-class-names-ef8e1d9ba96f">ExoPlayer 2 - New package and class names</a></li>
+	<li><a href="https://google.github.io/ExoPlayer/guide.html">ExoPlayer developer guide</a></li>
+</ul>
 </section>
 </article>
 
@@ -478,7 +645,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 11 Feb 2020
+  Page last updated on 14 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
