@@ -1,0 +1,820 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- remember to remove the following line when the site is ready to go live -->
+  <!-- <meta name="robots" content="noindex" /> -->
+  <title>SSAI Plugin for the Native SDK for Android</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="/assets/css/site/bc-icons.css"> -->
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/google-analytics.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><img class="product-logo" src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/product-logos/logo-bc-video-cloud.svg" alt="product logo" style="max-height: 100px;max-width: 232px;"></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);" style="margin-right: 1rem;">
+  <option value="">Select a language</option>
+  <option value="en|en">English</option>
+  <option value="en|zh-TW">繁體中文</option>
+  <option value="en|fr">Français</option>
+  <option value="en|de">Deutsch</option>
+  <option value="en|ja">日本語</option>
+  <option value="en|ko">한국어</option>
+  <option value="en|es">Español</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+<select id="site_select" style="margin-right: 1rem;">
+  <option value="">Other Brightcove Documentation</option>
+  
+    
+      <option value="https://support.brightcove.com">Documentation Home</option>
+    
+  
+    
+      <option value="https://audience.support.brightcove.com">Brightcove Audience</option>
+    
+  
+    
+      <option value="https://beacon.support.brightcove.com">Brightcove Beacon</option>
+    
+  
+    
+      <option value="https://campaign.support.brightcove.com">Brightcove Campaign</option>
+    
+  
+    
+      <option value="https://gallery.support.brightcove.com">Gallery</option>
+    
+  
+    
+      <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+    
+  
+</select>
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?language=en_US"><img src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/support.png" alt="support"> Contact Support</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/status.png" alt="system status"> System Status</a></span>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/android/advertising/">Advertising</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">SSAI Plugin for the Native SDK for Android</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        <nav class="sidenav">
+          
+            
+            <h5><a href="/">Home</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/getting-started/">Getting Started <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/native-video-playback.html">Native Video Playback</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdk-features.html">Native SDK Features</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdks-feature-support.html">Feature Support Table</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/running-sample-apps-native-sdk-android.html">Running Android Sample Apps</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/running-sample-apps-native-sdk-ios.html">Running iOS/tvOS Sample Apps</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdks-training-videos.html">Native SDK Training Videos</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/features/">Features <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/features/advertising-sdks.html">Advertising</a></li>
+                  
+                
+                  
+                    <li><a href="/features/analytics-sdks.html">Analytics</a></li>
+                  
+                
+                  
+                    <li><a href="/features/using-captions-brightcove-native-sdks.html">Captions</a></li>
+                  
+                
+                  
+                    <li><a href="/features/using-360deg-videos-native-sdks.html">360 Degree Video</a></li>
+                  
+                
+                  
+                    <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV</a></li>
+                  
+                
+                  
+                    <li><a href="/features/live-streams-native-sdks.html">Live Streams</a></li>
+                  
+                
+                  
+                    <li><a href="/features/multiple-audio-tracks-native-sdks.html">Multiple Audio Tracks</a></li>
+                  
+                
+                  
+                    <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                  
+                
+                  
+                    <li><a href="/features/brightcove-native-player-controls.html">Player Controls</a></li>
+                  
+                
+                  
+                    <li><a href="/features/picture-picture-native-sdks.html">Picture-in-Picture</a></li>
+                  
+                
+                  
+                    <li><a href="/features/video-formats-and-captioning-native-sdks.html">Video Formats and Captioning</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/android/">Android Development <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/overview/">Overview <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/overview/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                        
+                        <li><a href="/android/overview/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
+                        
+                        <li><a href="/android/overview/android-choosing-video-view.html">Choosing a Video View</a></li>
+                        
+                        <li><a href="/android/overview/android-brightcove-registration.html">Brightcove Registration</a></li>
+                        
+                        <li><a href="/android/overview/android-working-media-content.html">Working with Media Content</a></li>
+                        
+                        <li><a href="/android/overview/understanding-events-native-sdk-android.html">Understanding Events</a></li>
+                        
+                        <li><a href="/android/overview/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/advertising/">Advertising <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/advertising/implementing-client-side-ads-native-sdks.html">Implementing Client-Side Ads (CSAI)</a></li>
+                        
+                        <li><a href="/android/advertising/implementing-server-side-ads-native-player-sdks.html">Implementing Server-Side Ads (SSAI)</a></li>
+                        
+                        <li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">SSAI Plugin for Android</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/">Support <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/support/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
+                  
+                
+                  
+                    <li><a href="/support/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<!-- search bar -->
+<div id="search_bar" class="search-bar">
+  <!-- TODO - cx value below must be changed for each site and new GCS instance set up-->
+  <!-- <script async src="https://cse.google.com/cse.js?cx=017969773216783359937:6sd3di5mwuw"></script> -->
+  <div id="search_box" class="gcse-search"></div>
+</div>
+
+<article class="bcls-article">
+  <h1>SSAI Plugin for the Native SDK for Android</h1>
+  <summary>In this topic, you will learn how to use the Server-Side Ad Insertion (SSAI) plugin with the Brightcove Native SDK for Android. It also details how to migrate from using the OnceUX plugin.</summary>
+
+<section class="bcls-section">
+<h2 id="Using_the_SSAI_Plugin">Using the SSAI Plugin</h2>
+
+<p>The SSAI plugin allows you to play content with Dynamic Delivery and server-side advertising.</p>
+
+<p>There are two options for playing content with server-side ads:</p>
+
+<ol class="bcls-tasklist">
+	<li><a href="#Provide_a_URL_for_SSAI_content">Provide a URL for SSAI content</a></li>
+	<li><a href="#Provide_a_Video_with_VMAP">Provide a Video with VMAP</a></li>
+</ol>
+
+<p>In either case, the SSAI plugin will request the VMAP source, parse it and automatically add it to the VideoView.</p>
+
+<h3 id="Provide_a_URL_for_SSAI_content">Provide a URL for SSAI content</h3>
+
+<p>With an SSAI asset URL, call the following method:</p>
+
+<pre>
+<code class="language-java">SSAIComponent.processVideo(String url)</code></pre>
+
+<p>Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">String ssaiUrl = "https://onceux.host.com/path/to/content.once"
+SSAIComponent ssaiComponent = new SSAIComponent(context, brightcoveVideoView);
+ssaiComponent.processVideo(ssaiUrl);
+</code></pre>
+
+<h3 id="Provide_a_Video_with_VMAP">Provide a Video with VMAP</h3>
+
+<p>For this option, you will provide a Video with a Source containing a VMAP property with the SSAI asset URL. To use the SSAI plugin, follow these steps:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In order to request VideoCloud SSAI content, your account must first be configured to use Dynamic Delivery and SSAI. For details, see the <a href="/node/18623">Video Cloud SSAI Overview</a> document.</li>
+	<li>Next, you will need to create an Ad Configuration (adConfig) object. For details, see the <a href="/node/18748">Configuring Server-Side Ad Settings</a> document. Please note that the Brightcove Native SDK for Android does not itself contain any functionality to create or manage adConfigs.</li>
+	<li>Use the adConfig's <code>id</code> property as a URL parameter (<code>ad_config_id</code>) added to the Catalog method call:
+	<pre>
+<code class="language-java">findVideoById</code></pre>
+
+	<p>or</p>
+
+	<pre>
+<code class="language-java">findVideoByReferenceId  </code></pre>
+	</li>
+	<li>Having retrieved the Video object with the findVideo method, call the following method in the SSAI plugin:
+	<pre>
+<code class="language-java">SSAIComponent.processVideo(Video ssaiVideo)</code></pre>
+	</li>
+</ol>
+
+<p>Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">Catalog catalog = new Catalog(eventEmitter, myAccountId, myPolicyKey);
+SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
+
+// Set the ad_config_id URL parameter
+HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+        .addQueryParameter("ad_config_id", myAdConfig)
+        .build();
+
+// Find the Video by ID
+catalog.findVideoByID(myVideoId, httpRequestConfig, new VideoListener() {
+        @Override
+        public void onVideo(Video video) {
+
+        // Process the Video
+        plugin.processVideo(video);
+    }
+});
+</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Working_with_companion_ads">Working with companion ads</h2>
+
+<p>If your ads have Companions, you can easily display them in your app by providing a <code>ViewGroup</code> to hold the Companion image, by calling:</p>
+
+<pre>
+<code class="language-java">SSAIComponent.addCompanionContainer(ViewGroup companionContainer)
+</code></pre>
+
+<p>Here is an example. First, Add the FrameLayout to your activity or fragment layout:</p>
+
+<pre class="line-numbers">
+<code class="language-xml">// my_activity.xml
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"&gt;
+ ...
+  &lt;FrameLayout
+        android:id="@+id/ad_frame"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:visibility="invisible" /&gt;
+…
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>Then, use that <code>FrameLayout</code> to pass it to the plugin:</p>
+
+<pre class="line-numbers">
+<code class="language-java">ViewGroup viewGroup = findViewById(R.id.ad_frame);
+plugin.addCompanionContainer(viewGroup);
+
+// process your Video
+plugin.processVideo(video);
+</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Handling_events">Handling events</h2>
+
+<p>For SSAI-specific events, you can listen to them using the <code>EventEmitter</code>. These events can be found in the <code>SSAIEventType</code> class.</p>
+
+<p>The <code>START_AD_SEGMENT</code> and <code>END_AD_SEGMENT</code> events were replaced with <code>EventType.AD_BREAK_STARTED</code> and <code>EventType.AD_BREAK_COMPLETED</code> respectively. For details, see <a href="#Appendix_B">Appendix B</a> and <a href="#Appendix_C">Appendix C</a>.</p>
+
+<p>To get relative and absolute positions, get the <code>com.brightcove.ssai.AdPod</code> with the <code>SSAIEvent.AD_POD</code> key. Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">private void registerEventHandlers() {
+  EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+  eventEmitter.on(EventType.AD_BREAK_STARTED, new EventListener() {
+    @Override
+    public void processEvent(Event event) {
+      Object adPodObject = event.getProperties().get(SSAIEvent.AD_POD);
+      if (adPodObject instanceof AdPod) {
+        AdPod adPod = (AdPod) adPodObject;
+        adPod.getRelativeStartPosition();
+        adPod.getAbsoluteStartPosition();
+        adPod.getAbsoluteEndPosition();
+      }
+    }
+  });
+}
+</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Handling_errors">Handling errors</h2>
+
+<p>All errors will be surface to the developer using the <code>EventType.ERROR</code> event, as shown here:</p>
+
+<pre class="line-numbers">
+<code class="language-java">eventEmitter.on(EventType.ERROR, new EventListener() {
+  @Override
+  public void processEvent(Event event) {
+    String errorMessage = event.getProperty(Event.ERROR_MESSAGE, String.class);
+    Throwable error = event.getProperty(Event.ERROR, Throwable.class);
+    Log.w(TAG, String.format("Received the error message: %s with error: %s", errorMessage, error));
+  }
+});
+</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUx Plugin</h2>
+
+<p>If you are already using the OnceUx plugin to play your SSAI videos in your app, you only need to follow a few steps to migrate to the new SSAI plugin.</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In your app’s <strong>build.gradle</strong> file, replace
+
+	<pre>
+<code class="language-java">implementation 'com.brightcove.player:android-onceux-plugin:6.5.1'
+</code></pre>
+
+	<p>with the following: (use the latest plugin version)</p>
+
+	<pre>
+<code class="language-java">implementation 'com.brightcove.player:android-ssai-plugin:6.7.0'
+</code></pre>
+	</li>
+	<li>Replace the <code>OnceUxComponent</code> class with the <code>SSAIComponent</code> class.</li>
+	<li>Replace <code>OnceUxEventType.NO_AD_DATA_URL</code> with <code>EventType.ERROR</code>.</li>
+	<li>If your code uses any of the constants that were found in <code>OnceUxEventType</code> class, replace these with <code>SSAIEventType</code> and <code>SSAIEvent</code> constants, according to their function:
+	<ul>
+		<li>The constants used to listen for an event are now found in the <code>SSAIEventType</code> class. For example:
+		<pre>
+<code class="language-java">SSAIEventtType.AD_DATA_READY</code></pre>
+		</li>
+		<li>The constants used as keys for Event properties are now found in the SSAIEvent class. For example:
+		<pre>
+<code class="language-java">SSAIEvent.SSAI_AD</code></pre>
+		</li>
+	</ul>
+	</li>
+	<li>The SSAI and OnceUx plugins share an internal library responsible for parsing the VMAP object. If your app directly uses objects from this library (<code>package com.brightcove.iab</code>), there are changes in the new version that you might find useful.</li>
+	<li>
+	<p>For more information, see <a href="#Appendix_A">Appendix A</a>.</p>
+
+	<p>For a comparison between the Events sent in the OnceUx plugin and the SSAI plugin, see the following:</p>
+
+	<ul>
+		<li><a href="#Appendix_B">Appendix B</a></li>
+		<li><a href="#Appendix_C">Appendix C</a></li>
+	</ul>
+	</li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Appendix_A">Appendix A</h2>
+
+<p>This table shows the changes in the internal IAB Android library 1.5.0:</p>
+
+<ul>
+	<li>Added the following methods to return timed values in microseconds:
+	<ul>
+		<li><code>com.brightcove.iab.ssai.BrightcoveSSAI.getContentLengthUs():long</code></li>
+		<li><code>com.brightcove.iab.ssai.BrightcoveSSAI.getPayloadLengthUs():long</code></li>
+		<li><code>com.brightcove.iab.vmap.AdBreak.getTimeOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vmap.AdBreak.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Linear.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Linear.getSkipOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.NonLinear.getMinSuggestedDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Icon.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Icon.getOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Tracking.getOffsetUs():long</code></li>
+	</ul>
+	</li>
+	<li>Added <code>AdBreak.POST_ROLL_TIME_OFFSET_US</code> to specify the value of a post-roll AdBreak when using <code>AdBreak.getTimeOffsetUs()</code>.</li>
+	<li>Added the <code>BrightcoveSSAI</code> property getters following the camelcase naming convention.</li>
+	<li>Deprecated the <code>BrightcoveSSAI</code> property getters not following the camelcase naming convention.</li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Appendix_B">Appendix B</h2>
+
+<p>This table shows the differences between the <code>EventType</code> properties sent with the OnceUx and the SSAI plugin:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="width:20%">EventType class</th>
+			<th style="width:40%">OnceUx plugin</th>
+			<th style="width:40%">SSAI plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_BREAK_STARTED">AD_BREAK_STARTED</a></td>
+			<td>none</td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer<br />
+			<code>SSAIEvent.AD_POD:com.brightcove.ssai.AdPod</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_STARTED">AD_STARTED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_PAUSED">AD_PAUSED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.VIDEO</code>:Video</td>
+			<td>same</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_RESUMED">AD_RESUMED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer</td>
+			<td>same</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_PROGRESS">AD_PROGRESS</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.ORIGINAL_PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_SEGMENT_INDEX</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.ORIGINAL_PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_COMPLETED">AD_COMPLETED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION:Integer</code></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION:Integer</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_BREAK_COMPLETED">AD_BREAK_COMPLETED</a></td>
+			<td>none</td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer<br />
+			<code>SSAIEvent.AD_POD:com.brightcove.ssai.AdPod</code></td>
+		</tr>
+	</tbody>
+</table>
+</section>
+
+<section class="bcls-section">
+<h2 id="Appendix_C">Appendix C</h2>
+
+<p>This table shows the differences between the <code>OnceUxEventType</code> and the <code>SSAIEventType</code> classes and their properties:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="width:20%">Plugin Constant</th>
+			<th style="width:40%">OnceUx plugin - OnceUxEventType class</th>
+			<th style="width:40%">SSAI plugin - SSAIEventType class</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#AD_DATA_READY">AD_DATA_READY</a></td>
+			<td><code>OnceUxEventType.VMAP_EVENT_MAP</code>:List&lt;Event&gt;<br />
+			<code>OnceUxEventType.VMAP_TIMELINE</code>:TImeline<br />
+			<code>OnceUxEventType.VMAP_RESPONSE</code>:VMAP</td>
+			<td><code>SSAIEvent.VMAP_TIMELINE</code>:TImeline (ssai)<br />
+			<code>SSAIEvent.VMAP_RESPONSE</code>:VMAP (iab)</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD_SEGMENT">START_AD_SEGMENT</a></td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SEEK_CONTROLS_VISIBILITY</code>:HashMap&lt;String:View.Visibility&gt;<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_AD_SEGMENT</code>:<code>com.brightcove.iab.vmap.AdSegment</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD_BREAK">START_AD_BREAK</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td>none</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD">START_AD</a></td>
+			<td><code>OnceUxEventType.VAST_AD:com.brightcove.iab.vast.Ad </code></td>
+			<td><code>SSAIEvent.VAST_AD:com.brightcove.iab.vast.Ad</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_LINEAR">START_LINEAR</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent..STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_LINEAR">END_LINEAR</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD">END_AD</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td><code>SSAIEvent.VAST_AD:com.brightcove.iab.vast.Ad</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD_BREAK">END_AD_BREAK</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td>none</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD_SEGMENT">END_AD_SEGMENT</a></td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SEEK_CONTROLS_VISIBILITY</code>:HashMap&lt;String:View.Visibility&gt;<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_AD_SEGMENT</code>:<code>com.brightcove.iab.vmap.AdSegment</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_COMPANION">START_COMPANION</a></td>
+			<td><code>OnceUxEventType.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+			<td><code>SSAIEvent.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_COMPANION">END_COMPANION</a></td>
+			<td><code>OnceUxEventType.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+			<td><code>SSAIEvent.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#SEND_IMPRESSION">SEND_IMPRESSION</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.IMPRESSION:com.brightcove.iab.vast.Impression</code></td>
+			<td><code>SSAIEvent.IMPRESSION:com.brightcove.iab.vast.Impression</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#SEND_TRACKING_BEACON">SEND_TRACKING_BEACON</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer <code>OnceUxEventType.VAST_TRACKING:com.brightcove.iab.vast.Tracking</code></td>
+			<td><code>SSAIEvent.VAST_TRACKING:com.brightcove.iab.vast.Tracking SSAIEvent.TRACKING_TYPE</code>: Creative.TrackingType</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#CLICK_THROUGH_LINEAR">CLICK_THROUGH_LINEAR</a></td>
+			<td><code>OnceUxEventType.VAST_VIDEO_CLICKS:com.brightcove.iab.vast.VideoClicks</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td>CLICK_LINEAR_CREATIVE</td>
+			<td>n/a</td>
+			<td><code>SSAIEvent.CREATIVE_CLICKS:com.brightcove.ssai.ad.creative.Click</code></td>
+		</tr>
+	</tbody>
+</table>
+</section>
+</article>
+
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav">
+        <h6 class="toc">Page Contents</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="last-updated">
+  Page last updated on 14 Feb 2020
+</div>
+
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>Brightcove Support</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">System Status</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?language=en_US">Contact Support</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">Documentation</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>Training</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://support.brightcove.com/online-training-courses">Online Courses</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/register-training">Register for a course</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">Brightcove.com</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?language=en_US" data-drupal-link-system-path="node/18330">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> Brightcove Inc. All rights reserved.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">Privacy</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">Terms &amp; Conditions</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/https-fix.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/setDate.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
+  
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
+  
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  <script src="/assets/js/search.js"></script>
+  <script async src="https://cse.google.com/cse.js?cx=017969773216783359937:pcgjqitzi3b"></script>
+</body>
+
+</html>
