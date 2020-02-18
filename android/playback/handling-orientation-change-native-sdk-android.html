@@ -1,0 +1,32 @@
+---
+title: 'Handling Orientation Change with the Native SDK for Android'
+description: In this topic, you will learn how to prevent the <code>BrightcoveVideoView</code> from restarting the currently playing video on an orientation change.
+parent: Playback
+grandparent: Android Development
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Default_behavior">Default behavior</h2>
+
+<p>By default when an orientation change occurs the current <code>Activity</code> is destroyed and recreated. When retrieving and playing a Brightcove video, this causes the catalog request to be performed again and the <code>BrightcoveVideoView</code> is recreated. This takes both time and bandwidth.</p>
+<p>By adding code to the <strong>AndroidManifest.xml</strong> you can prevent this unwanted default behavior.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Best_practice">Best practice</h2>
+
+<p>It's more efficient to handle the orientation change as a device configuration change. This keeps the <code>Activity</code> instantiated, and just the layout is invalidated. To do this, you can modify the <strong>AndroidManifest.xml</strong>.</p>
+
+<aside class="bcls-aside bcls-aside--information">The device configuration is a set of characteristics that describe the current state of the device. The characteristics that make up the configuration include screen orientation, screen size, language and others.</aside>
+
+<p>To make a device rotation a configuration change add the following code to the <code>&lt;activity&gt;</code> tag in the <strong>AndroidManifest.xml</strong>.</p>
+
+<pre>
+<code class="language-java">android:configChanges="orientation|screenSize"</code></pre>
+
+</section>
+</article>
