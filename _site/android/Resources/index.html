@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Android: Working with Media Content</title>
+  <title>Resources</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/overview/">Android Development</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">Android: Working with Media Content</li>
+      <li class="breadcrumb-item active" aria-current="page">Resources</li>
     </ol>
   </nav>
 </header>
@@ -197,22 +195,22 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                 
                   
                     <li class="submenu-header">
-                      <a href="/android/overview/">Overview <strong>+</strong></a>
+                      <a href="/android/basics/">Basics <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/overview/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                        <li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
                         
-                        <li><a href="/android/overview/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
+                        <li><a href="/android/basics/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
                         
-                        <li><a href="/android/overview/android-choosing-video-view.html">Choosing a Video View</a></li>
+                        <li><a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a></li>
                         
-                        <li><a href="/android/overview/android-brightcove-registration.html">Brightcove Registration</a></li>
+                        <li><a href="/android/basics/android-brightcove-registration.html">Brightcove Registration</a></li>
                         
-                        <li><a href="/android/overview/android-working-media-content.html">Working with Media Content</a></li>
+                        <li><a href="/android/basics/android-working-media-content.html">Working with Media Content</a></li>
                         
-                        <li><a href="/android/overview/understanding-events-native-sdk-android.html">Understanding Events</a></li>
+                        <li><a href="/android/basics/understanding-events-native-sdk-android.html">Understanding Events</a></li>
                         
-                        <li><a href="/android/overview/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
+                        <li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
                         
                       </ul>
                     </li>
@@ -289,6 +287,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                         
                         <li><a href="/android/playback/hls-playback-native-sdk-android.html">HLS Playback</a></li>
                         
+                        <li><a href="/android/playback/multiple-audio-tracks-offline-playback-native-sdk-android.html">Multiple Audio Tracks for Offline Playback</a></li>
+                        
                         <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
                         
                         <li><a href="/android/playback/handling-orientation-change-native-sdk-android.html">Orientation Change</a></li>
@@ -327,6 +327,27 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                         
                         <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
                         
+                        <li><a href="/android/other-guides/removing-android-captions-background-image.html">Removing the Captions Background Image</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/android-player-samples">Android Code Samples</a></li>
+                        
+                        <li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Small Code Snippets</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Native SDK for Android Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></li>
+                        
                       </ul>
                     </li>
                   
@@ -361,227 +382,86 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
-<article class="bcls-article">
-  <h1>Android: Working with Media Content</h1>
-  <summary>In this topic, you will learn how to retrieve and play your videos using the Native SDK for Android.</summary>
-
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
-
-<p>Video Cloud customers have access to their media data and metadata from Video Cloud Studio. Brightcove Player customers will supply the URL for their media content.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Video_Cloud_customers">Video Cloud customers</h2>
-
-<p>As a Video Cloud customer, you can access your media data stored in Video Cloud Studio. For more information, see the <a href="https://github.com/BrightcoveOS/android-player-samples">Player SDK for Android code samples</a>.</p>
-
-<h3>Retrieving media data</h3>
-
-<p>You can retrieve your video and playlist data from your Video Cloud library by using the Playback API. For details about the API, see the <a href="/node/17906">Playback API Overview</a> document.</p>
-
-<ol class="bcls-tasklist">
-	<li>
-	<p>Use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">com.brightcove.player.edge.Catalog</a> class methods to retrieve your videos and playlists from Brightcove's Playback API. Your requests can supply the video/playlist <code class="notranslate">ID</code> or <code class="notranslate">ReferenceID</code>. This service will make the URL requests and parse the returned data.</p>
-
-	<aside class="bcls-aside bcls-aside--information">If you include special characters with a <code>ReferenceID</code>, you must URI encode it before making a catalog request.</aside>
-	</li>
-	<li>
-	<p>For this request, you will need a Policy Key. If you are not familiar with Policy Keys, see the <a href="/node/18003">Policy API Overview</a> document.</p>
-
-	<aside class="bcls-aside bcls-aside--information">Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code class="notranslate">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</aside>
-
-	<p>Here is an example of how to retrieve a video using the <code class="notranslate">com.brightcove.player.edge.Catalog </code> class:</p>
-
-	<pre class="line-numbers">
-<code class="language-java notranslate">package com.brightcove.player.samples.exoplayer.basic;
-import android.os.Bundle;
-import android.util.Log;
-import com.brightcove.player.edge.Catalog;
-import com.brightcove.player.edge.VideoListener;
-import com.brightcove.player.event.EventEmitter;
-import com.brightcove.player.model.Video;
-import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
-import com.brightcove.player.view.BrightcovePlayer;
-/**
-* This app illustrates how to use the ExoPlayer with the Brightcove
-* Native Player SDK for Android.
-*/
-public class MainActivity extends BrightcovePlayer {
-	private final String TAG = this.getClass().getSimpleName();
-	@Override
-
-	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_main);
-		brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
-		super.onCreate(savedInstanceState);
-
-		// Get the event emitter from the SDK and create a catalog request to fetch a video from the
-		// Brightcove Edge service, given a video id, an account id and a policy key.
-		EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-		Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));
-
-		catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
-		  // Add the video found to the queue with add().
-		  // Start playback of the video with start().
-		  @Override
-		  public void onVideo(Video video) {
-		    Log.v(TAG, "onVideo: video = " + video);
-		    brightcoveVideoView.add(video);
-		    brightcoveVideoView.start();
-		  }
-		});
-	}
-}</code></pre>
-	</li>
-</ol>
-
-<ol class="bcls-tasklist">
-	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/Video.html">Video object</a> provides methods to retrieve media information as shown below:
-
-	<pre class="line-numbers">
-<code class="language-java notranslate">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
-  // Add the video found to the queue with add().
-  // Start playback of the video with start().
-  @
-  Override
-  public void onVideo(Video video) {
-<span class="bcls-highlight">    Log.v(TAG, "onVideo: video = " + video);
-    Log.v(TAG, "onVideo: videoID = " + video.getId());
-    Log.v(TAG, "onVideo: videoName = " + video.getName());
-    Log.v(TAG, "onVideo: videoDescription = " + video.getDescription());
-    Log.v(TAG, "onVideo: videoImage = " + video.getStillImageUri());
-    Log.v(TAG, "onVideo: sourceCollections = " + video.getSourceCollections());
-    SourceCollection dashCollection = video.getSourceCollections().get(DeliveryType.DASH);
-    if (dashCollection != null) {
-      Set &lt; Source &gt; sources = dashCollection.getSources();
-      for (Source source: sources) {
-        if (!TextUtils.isEmpty(source.getUrl())) {
-          Log.v(TAG, "onVideo: DASH source = " + source.getUrl());
-        }
-      }
-    }</span>
-
-    brightcoveVideoView.add(video);
-    brightcoveVideoView.start();
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
   }
-});</code></pre>
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+}
+.bcls-card h2 {
+  font-size: 1rem;
+}
+.bcls-card ul {
+  font-size: small;
+  margin-left: -3em;
+}
+</style>
 
-	<p>The above <code class="notranslate">Log()</code> methods return the following media information:</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video object" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/getting-started/media-content/video-object.png" />
-	<figcaption class="bcls-caption--image">Video object</figcaption>
-	</figure>
-	</li>
-</ol>
-
-<h3>Geo-filtered videos</h3>
-
-<p>The Brightcove Player SDK for Android supports geo-filtered videos.</p>
-
-<aside class="bcls-aside bcls-aside--warning">Notes:
-<ul>
-	<li>You need to use the Playback API when working with geo-filtered videos.</li>
-	<li>The playback service will only return an error if your video is geo-filtered in Video Cloud. The error will be null if your video is geo-filtered at the CDN level.</li>
-</ul>
-</aside>
-
-<p>There are two ways you can add geo-filtering to your videos to control which countries they can (or cannot) be viewed in:</p>
-
-<ul>
-	<li><a href="/node/18034">Brightcove's CMS API</a></li>
-	<li><a href="/node/15476#geofilter">Video Cloud Studio's Media Module</a></li>
-</ul>
-
-<p>In your Android app, when you retrieve a video using Brightcove's edge <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">Catalog</a> object (Playback API) in a country which is geo-filtered for that video, you should see this message:</p>
-
-<pre class="line-numbers">
-<code class="language-java notranslate">error { message: Access to this resource is forbidden by access policy.
-client_geo: us
-error_subcode: CLIENT_GEO
-error_code: ACCESS_DENIED }</code></pre>
-</section>
-
-<section class="bcls-section">
-<h2 id="Brightcove_Player_customers">Brightcove Player customers</h2>
-
-<p>As a Brightcove Player customer, you will supply the URL for your video assets.</p>
-
-<aside class="bcls-aside bcls-aside--information">For Android SDK Nougat (7.x), the Server Name Indication (SNI) extension in Android uses the <code class="notranslate">toASCII()</code> method to enforce restrictions on characters in hostnames for TLS connections. If you try to load a source with a US_ASCII-non-compliant hostname (e.g. the hostname contains underscores in the subdomain: test_example.example.com), you will get an exception when trying to fetch the stream.<br />
-<br />
-So, when loading your source file over HTTPS, the hostname of the stream must be US_ASCII compliant.</aside>
-
-<p>Here is an example of adding a video to your video view and starting playback:</p>
-
-<pre class="line-numbers">
-<code class="language-java notranslate">import com.brightcove.player.model.DeliveryType;
-import com.brightcove.player.model.Video;
-import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
-import com.brightcove.player.view.BrightcovePlayer;
-import com.brightcove.player.analytics.Analytics;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_main);
-	BrightcoveVideoView brightcoveVideoView = (BrightcoveVideoView) findViewById(R.id.brightcove_video_view);
-
-	Analytics analytics = brightcoveVideoView.getAnalytics();
-	analytics.setAccount("123456789");
-
-	MediaController controller = new MediaController(this);
-	brightcoveVideoView.setMediaController(controller);
-	brightcoveVideoView.add(Video.createVideo("http://solutions.brightcove.com/bcls/assets/videos/Bird_Titmouse.mp4", DeliveryType.MP4));
-	brightcoveVideoView.start();
-}</code></pre>
-</section>
-&nbsp;
-
-<p>Next, let's take a look at how events work within the SDK architecture.</p>
-
-<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/18247';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18249';">Next &gt;</button></div>
+<article class="bcls-article">
+  <h1><i class="fab fa-android"></i> Resources</h1>
+  <summary>Review additional resources, including code samples, references and training videos.</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in Resources</h2>
+        <ul>
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                
+                  <li><a href="https://github.com/BrightcoveOS/android-player-samples">Android Code Samples</a></li>
+                
+                  <li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Small Code Snippets</a></li>
+                
+                  <li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Native SDK for Android Reference</a></li>
+                
+                  <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                
+                  <li><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></li>
+                
+              
+            
+          
+        
+          
+        
+      </div>
+    </section>
+  </section>
 </article>
-<!-- Learning path right navigation -->
-<link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/css/learning-paths/learning-paths.css" /><script>
-    var learning_path = [
-      {
-        node: '18250',
-        title: 'Native SDK Architecture'
-      },
-      {
-        node: '18252',
-        title: 'Understand the Activity Class'
-      },
-      {
-        node: '18248',
-        title: 'Choose a Video View'
-      }
-      ,
-      {
-        node: '18247',
-        title: 'Register Your App'
-      },
-      {
-        node: '18251',
-        title: 'Use Media Content'
-      },
-      {
-        node: '18249',
-        title: 'Understand Events'
-      },
-      {
-        node: '18238',
-        title: 'Step-by-Step: Simple Video App'
-      }
-    ]
-  </script><script src="https://learning-services-media.brightcove.com/doc-assets/js/learning-paths/learning-paths.js"></script>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -589,7 +469,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 18 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -670,8 +550,6 @@ protected void onCreate(Bundle savedInstanceState) {
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>

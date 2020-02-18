@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Android: Brightcove Registration</title>
+  <title>Basics</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/overview/">Android Development</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">Android: Brightcove Registration</li>
+      <li class="breadcrumb-item active" aria-current="page">Basics</li>
     </ol>
   </nav>
 </header>
@@ -197,22 +195,22 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                 
                   
                     <li class="submenu-header">
-                      <a href="/android/overview/">Overview <strong>+</strong></a>
+                      <a href="/android/basics/">Basics <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/overview/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                        <li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
                         
-                        <li><a href="/android/overview/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
+                        <li><a href="/android/basics/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
                         
-                        <li><a href="/android/overview/android-choosing-video-view.html">Choosing a Video View</a></li>
+                        <li><a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a></li>
                         
-                        <li><a href="/android/overview/android-brightcove-registration.html">Brightcove Registration</a></li>
+                        <li><a href="/android/basics/android-brightcove-registration.html">Brightcove Registration</a></li>
                         
-                        <li><a href="/android/overview/android-working-media-content.html">Working with Media Content</a></li>
+                        <li><a href="/android/basics/android-working-media-content.html">Working with Media Content</a></li>
                         
-                        <li><a href="/android/overview/understanding-events-native-sdk-android.html">Understanding Events</a></li>
+                        <li><a href="/android/basics/understanding-events-native-sdk-android.html">Understanding Events</a></li>
                         
-                        <li><a href="/android/overview/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
+                        <li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
                         
                       </ul>
                     </li>
@@ -289,6 +287,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                         
                         <li><a href="/android/playback/hls-playback-native-sdk-android.html">HLS Playback</a></li>
                         
+                        <li><a href="/android/playback/multiple-audio-tracks-offline-playback-native-sdk-android.html">Multiple Audio Tracks for Offline Playback</a></li>
+                        
                         <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
                         
                         <li><a href="/android/playback/handling-orientation-change-native-sdk-android.html">Orientation Change</a></li>
@@ -327,6 +327,27 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                         
                         <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
                         
+                        <li><a href="/android/other-guides/removing-android-captions-background-image.html">Removing the Captions Background Image</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/android-player-samples">Android Code Samples</a></li>
+                        
+                        <li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Small Code Snippets</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Native SDK for Android Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></li>
+                        
                       </ul>
                     </li>
                   
@@ -361,91 +382,90 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
+  }
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+}
+.bcls-card h2 {
+  font-size: 1rem;
+}
+.bcls-card ul {
+  font-size: small;
+  margin-left: -3em;
+}
+</style>
+
 <article class="bcls-article">
-  <h1>Android: Brightcove Registration</h1>
-  <summary>In this topic, you will learn how to register your app with Brightcove.</summary>
-
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
-
-<p>For Video Cloud customers, in most cases, when you use the Brightcove Player SDK for Android, your app is registered automatically. For Brightcove Player customers, you need to send your account id from your app. See the details below.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Video_Cloud_customers">Video Cloud customers</h2>
-
-<p>If you use the Brightcove player and the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">Catalog</a> class included in the SDK to retrieve and play videos, your app will be registered with Brightcove automatically. Also, analytics data will be collected and will appear in your Video Cloud Analytics.</p>
-
-<p>If you override the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a> class or do not use the Brightcove player and catalog, you need to send your Video Cloud Publisher ID to Video Cloud Analytics. You can do this by using the analytics <code>setAccount() </code> method. This also allows you to view data for this app in Video Cloud Analytics.</p>
-
-<pre class="line-numbers">
-<code class="language-java">Analytics analytics = brightcoveVideoView.getAnalytics();
-analytics.setAccount("123456789");
-</code>
-</pre>
-
-<aside class="bcls-aside bcls-aside--information">For details about sending data to Video Cloud Analytics, see the <a href="/node/18214">Using Brightcove Analytics</a> guide.</aside>
-</section>
-
-<section class="bcls-section">
-<h2 id="Perform_customers">Brightcove Player customers</h2>
-
-<p>As a Brightcove Player customer, you need to register your apps with Brightcove. To do this, you will send your Account ID to Brightcove using the analytics <code>setAccount() </code> method.</p>
-
-<pre class="line-numbers">
-<code class="language-java">Analytics analytics = brightcoveVideoView.getAnalytics();
-analytics.setAccount("123456789");
-</code>
-</pre>
-</section>
-&nbsp;
-
-<p>Now that you know how to register your app, you are ready to learn how to work with your media content.</p>
-
-<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/node/18248';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18251';">Next &gt;</button></div>
+  <h1><i class="fab fa-android"></i> Basics</h1>
+  <summary>Understand the basic concepts for the Brightcove Native SDK for Android</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in Basics</h2>
+        <ul>
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+                
+                  <li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                
+                  <li><a href="/android/basics/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
+                
+                  <li><a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a></li>
+                
+                  <li><a href="/android/basics/android-brightcove-registration.html">Brightcove Registration</a></li>
+                
+                  <li><a href="/android/basics/android-working-media-content.html">Working with Media Content</a></li>
+                
+                  <li><a href="/android/basics/understanding-events-native-sdk-android.html">Understanding Events</a></li>
+                
+                  <li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
+                
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          
+        
+          
+        
+      </div>
+    </section>
+  </section>
 </article>
-<!-- Learning path right navigation -->
-<link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/css/learning-paths/learning-paths.css" /><script>
-    var learning_path = [
-      {
-        node: '18250',
-        title: 'Native SDK Architecture'
-      },
-      {
-        node: '18252',
-        title: 'Understand the Activity Class'
-      },
-      {
-        node: '18248',
-        title: 'Choose a Video View'
-      }
-      ,
-      {
-        node: '18247',
-        title: 'Register Your App'
-      },
-      {
-        node: '18251',
-        title: 'Use Media Content'
-      },
-      {
-        node: '18249',
-        title: 'Understand Events'
-      },
-      {
-        node: '18238',
-        title: 'Step-by-Step: Simple Video App'
-      }
-    ]
-  </script><script src="https://learning-services-media.brightcove.com/doc-assets/js/learning-paths/learning-paths.js"></script>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -453,7 +473,7 @@ analytics.setAccount("123456789");
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 18 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -534,8 +554,6 @@ analytics.setAccount("123456789");
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
