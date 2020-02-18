@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Creating a plugin for the Native SDK for Android</title>
+  <title>Error Messages from the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/framework/">Framework</a></li>
+      <li class="breadcrumb-item"><a href="/android/troubleshooting/">Troubleshooting</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Creating a plugin for the Native SDK for Android</li>
+      <li class="breadcrumb-item active" aria-current="page">Error Messages from the Native SDK for Android</li>
     </ol>
   </nav>
 </header>
@@ -343,117 +343,117 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Creating a plugin for the Native SDK for Android</h1>
-  <summary>In this topic, you will learn how to create a plugin for the Native SDK for Android.</summary>
+  <h1>Error Messages from the Native SDK for Android</h1>
+  <summary>In this topic, you will learn about the error messages returned by the Brightcove player SDK for Android.</summary>
 
 <section class="bcls-section">
-<h2 id="Overview">Overview</h2>
+<h2 id="Error_messages">Error messages</h2>
 
-<p>At a high level, a plugin integrates with the player by listening for and emitting events. A plugin can listen to events from the player and from other plugins. A plugin can emit events for the player and for other plugins.</p>
+<p>The error messages that are defined in the Brightcove player SDK for Android can be found in the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">SDK Reference</a> document.</p>
 
-<p>This content along with sample code is located at <a href="https://github.com/BrightcoveOS/android-plugin-guide">https://github.com/BrightcoveOS/android-plugin-guide</a></p>
+<h3>EventType errors</h3>
+
+<p>Refer to the SDK Reference doc for a complete list of <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html">EventType</a> messages.</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="width: 30%;">Field</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_ERROR">AD_ERROR</a></code></td>
+			<td>When a plugin encounters an error while playing an advertisement, it will emit this event.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#CLOSED_CAPTIONING_ERROR">CLOSED_CAPTIONING_ERROR</a></code></td>
+			<td>Indicates that there was an error processing closed captioning information.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ERROR">ERROR</a></code></td>
+			<td>Indicates an error occurred in a component in the course of processing an earlier event.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ODRM_LICENSE_ERROR">ODRM_LICENSE_ERROR</a></code></td>
+			<td>This event will be fired when an offline playback license could be acquired because of an error that occurred during the license retrieval process. The event property <code>Event.VIDEO</code> will point the Video. Please inspect the property Event.ERROR for the actual cause of the failure.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ODRM_LICENSE_NOT_AVAILABLE">ODRM_LICENSE_NOT_AVAILABLE</a></code></td>
+			<td>This event will be fired when an offline playback license was not provided by the license server.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ODRM_PLAYBACK_NOT_ALLOWED">ODRM_PLAYBACK_NOT_ALLOWED</a></code></td>
+			<td>This event will be fired when download is requested for a video that is not eligible for offline playback.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ODRM_SOURCE_NOT_FOUND">ODRM_SOURCE_NOT_FOUND</a></code></td>
+			<td>This event will be fired when download is requested for a video that does not include any Source suitable of offline playback.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SOURCE_NOT_FOUND">SOURCE_NOT_FOUND</a></code></td>
+			<td>Indicates a Source is not found by the current player.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SOURCE_NOT_PLAYABLE">SOURCE_NOT_PLAYABLE</a></code></td>
+			<td>Indicates a Source is not playable by the current player.</td>
+		</tr>
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#VIDEO_DOWNLOAD_FAILED">VIDEO_DOWNLOAD_FAILED</a></code></td>
+			<td>This event will be fired when a Video download fails.</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>GoogleIMAEventType errors</h3>
+
+<p>Refer to the SDK Reference doc for a complete list of <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ima/GoogleIMAEventType.html">GoogleIMAEventType</a> messages.</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th>Field</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ima/GoogleIMAEventType.html#DID_FAIL_TO_PLAY_AD">DID_FAIL_TO_PLAY_AD</a></code></td>
+		</tr>
+	</tbody>
+</table>
 </section>
 
 <section class="bcls-section">
-<h2 id="Plugin_architecture">Plugin architecture</h2>
+<h2 id="Pass_through_messages">Pass-through messages</h2>
 
-<div class="BCL-concept">
-<p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code>REGISTER_PLUGIN</code> event with a <code>PLUGIN_NAME</code> property. For example:</p>
+<p>Most error messages are passed through from the component being called within your app. This includes messages returned from calls to the <a href="https://support.brightcove.com/getting-started-brightcove-apis">Brightcove API's</a>.</p>
+
+<h3>Error listener</h3>
+
+<p>The <code><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/ErrorListener.html">onError()</a></code> method handles errors that occur during asynchronous operations. You will get this callback only if there is a message property in the JSON response or there is an exception while parsing the JSON object.</p>
+
+<h3>Error EventType</h3>
+
+<p>Most errors that are passed through the Native SDK will be emitted through the <code>EventType.ERROR</code> with some properties, including the exception. Here is an example of how you can listen for these errors:</p>
 
 <pre class="line-numbers">
-  <code class="notranslate language-java">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
-  properties.put(Event.PLUGIN_NAME, "my custom plugin");
-  eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
+<code class="language-java">eventEmitter.on(EventType.ERROR, new EventListener() {
+@Override
+public void processEvent(Event event) {
+	Exception exception = (Exception) event.properties.get(Event.ERROR);
+	String message = (String) event.properties.get(Event.ERROR_MESSAGE);
+	Video video = (Video) event.properties.get(Event.VIDEO);
+	Source source = (Source) event.properties.get(Event.SOURCE);
+	if (event.properties.containsKey("error_code")) {
+		String errorCode = (String) event.properties.get("error_code");
+		Log.e(TAG, "Error code: " + errorCode);
+	}
+}
+});</code></pre>
+<br/>
 
-<p>Video playback typically goes through a standard life cycle event flow:</p>
-
-<figure class="bcls-figure"><img class="bcls-image" alt="Plugin event flow" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/guides/plugin-guide/plugin-event-flow.png" />
-<figcaption class="bcls-caption--image">Plugin event flow</figcaption>
-</figure>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Event_details">Event details</h2>
-
-<div class="BCL-concept">
-<p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
-
-<ol>
-	<li class="language-editable"><code>WILL_CHANGE_VIDEO</code></li>
-	<li class="language-editable"><code>SET_VIDEO</code></li>
-	<li class="language-editable"><code>SET_SOURCE</code></li>
-	<li class="language-editable"><code>PLAY</code></li>
-	<li class="language-editable"><code>PAUSE</code></li>
-	<li class="language-editable"><code>SEEK_TO</code></li>
-	<li class="language-editable"><code>STOP</code></li>
-</ol>
-
-<p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code>preventDefault()</code> method. Event propagation can be stopped by calling the <code>stopPropagation()</code> method. If only <code>preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code>stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
-
-<p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
-
-<ol>
-	<li class="language-editable"><code>DID_CHANGE_LIST</code></li>
-	<li class="language-editable"><code>DID_SELECT_SOURCE</code></li>
-	<li class="language-editable"><code>DID_PAUSE</code></li>
-	<li class="language-editable"><code>DID_PLAY</code></li>
-	<li class="language-editable"><code>DID_SEEK_TO</code></li>
-	<li class="language-editable"><code>DID_SET_SOURCE</code></li>
-	<li class="language-editable"><code>DID_STOP</code></li>
-	<li class="language-editable"><code>PROGRESS</code></li>
-	<li class="language-editable"><code>COMPLETED</code></li>
-</ol>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Interrupt_playback">Interrupt playback</h2>
-
-<div class="BCL-concept">
-<p>A plugin, which desires to interrupt the video content playback, should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code>. These events are typically used by advertising plugins. A plugin should emit <code>WILL_INTERRUPT_CONTENT</code> to request that playback be suspended, if it is currently playing, and to request that the video view be made invisible. A plugin should emit <code>WILL_RESUME_CONTENT</code> to request that the video view be made visible again. The <code>WILL_RESUME_CONTENT</code> event should include an <code>ORIGINAL_EVENT</code> property which will be emitted after the video view is made visible. The <code>ORIGINAL_EVENT</code> should be a <code>PLAY</code> event to resume playback, a <code>CUE_POINT</code> event to continue cue point processing, or a <code>COMPLETED</code> event to complete playback. A <code>SKIP_CUE_POINTS</code> property should be added to the <code>ORIGINAL_EVENT</code> to prevent recursive cue point processing.</p>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Cue_points">Cue points</h2>
-
-<div class="BCL-concept">
-<p>Many plugins will want to listen for <code>CUE_POINT</code> events. There are three types of cue points, <code>BEFORE</code>, <code>POINT_IN_TIME</code>, and <code>AFTER</code>. <code>BEFORE</code> cue points are emitted just before playback begins. <code>POINT_IN_TIME</code> cue points are emitted when playback reaches the cue point's position. <code>AFTER</code> cue points are emitted just after playback completes. A plugin should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code> events to interrupt and resume content playback when handling a cue point event. In the case of before and after cue points, the event will include an <code>ORIGINAL_EVENT</code> property, with either a <code>PLAY</code> event or a <code>COMPLETED</code> event. Cue point events also include a <code>CUE_POINTS</code> property with the batch of cue points. <code>START_TIME</code> and <code>END_TIME</code> properties define the cue point time range.</p>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Sample_directory">Sample directory</h2>
-
-<div class="BCL-concept">
-<p>The <a href="https://github.com/BrightcoveOS/android-plugin-guide/tree/master/sample">sample directory</a> includes an Android Studio based project with two modules:</p>
-
-<ul>
-	<li class="language-editable"><strong>SamplePlugin</strong> - An example plugin, which can be used as the basis for writing new plugins.</li>
-	<li class="language-editable"><strong>SamplePluginApplication</strong> - Shows how plugins are incorporated into a Brightcove video application and can be used to test the SamplePlugin or new plugins.</li>
-</ul>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Implementation_steps">Implementation steps</h2>
-
-<div class="BCL-concept">
-<p>The steps to writing a plugin include:</p>
-
-<ol>
-	<li class="language-editable">Copy the sample plugin to a new repository.</li>
-	<li class="language-editable">Change the package and class names.</li>
-	<li class="language-editable">Update the <code>TAG</code> initializer.</li>
-	<li class="language-editable">Edit the <code>@Emits</code> and <code>@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
-	<li class="language-editable">Modify the constructor as necessary.</li>
-	<li class="language-editable">Replace or remove the <code>videoView</code> related logic as necessary.</li>
-	<li class="language-editable">Modify <code>initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
-	<li class="language-editable">Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
-	<!--                <li class="language-editable">Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
-</ol>
-</div>
+<aside class="bcls-aside bcls-aside--information">There may be error events which do not have an <code>error_code</code> key, so you need to check if it exists.</aside>
 </section>
 </article>
 
@@ -472,7 +472,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 18 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">

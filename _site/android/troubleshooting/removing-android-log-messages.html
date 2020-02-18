@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Creating a plugin for the Native SDK for Android</title>
+  <title>Removing Android Log Messages</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/framework/">Framework</a></li>
+      <li class="breadcrumb-item"><a href="/android/troubleshooting/">Troubleshooting</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Creating a plugin for the Native SDK for Android</li>
+      <li class="breadcrumb-item active" aria-current="page">Removing Android Log Messages</li>
     </ol>
   </nav>
 </header>
@@ -343,117 +343,71 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Creating a plugin for the Native SDK for Android</h1>
-  <summary>In this topic, you will learn how to create a plugin for the Native SDK for Android.</summary>
+  <h1>Removing Android Log Messages</h1>
+  <summary>In this topic, you will learn how to remove the log messages from the Brightcove Native Player SDK for Android.</summary>
 
 <section class="bcls-section">
-<h2 id="Overview">Overview</h2>
-
-<p>At a high level, a plugin integrates with the player by listening for and emitting events. A plugin can listen to events from the player and from other plugins. A plugin can emit events for the player and for other plugins.</p>
-
-<p>This content along with sample code is located at <a href="https://github.com/BrightcoveOS/android-plugin-guide">https://github.com/BrightcoveOS/android-plugin-guide</a></p>
+<h2 id="Introduction">Introduction</h2>
+<p>Test your video apps with the default log messages to assist with debugging. When you are ready to publish your app, then you can remove these log messages.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Plugin_architecture">Plugin architecture</h2>
+<h2 id="Remove_log_messages">Remove log messages</h2>
 
-<div class="BCL-concept">
-<p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code>REGISTER_PLUGIN</code> event with a <code>PLUGIN_NAME</code> property. For example:</p>
+<p>To remove the default log messages from the Native SDK for Android, follow these steps:</p>
 
-<pre class="line-numbers">
-  <code class="notranslate language-java">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
-  properties.put(Event.PLUGIN_NAME, "my custom plugin");
-  eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
+<ol class="bcls-tasklist">
+	<li>In your app, open the <strong>proguard-rules.pro</strong> file.<br />
+	&nbsp;
+	<aside class="bcls-aside bcls-aside--tip">In Android Studio, this file is created by default. If you are wondering where this file is in our Brightcove Android samples, we have renamed this file to <strong>proguard-project.txt</strong>.</aside>
+	</li>
+	<li>Add the following code block to remove the log from your app:
+	<pre class="line-numbers">
+<code class="language-java">-assumenosideeffects class android.util.Log {
+  public static *** v(...);
+  public static *** d(...);
+  public static *** i(...);
+  public static *** w(...);
+  public static *** e(...);
+}
+</code></pre>
 
-<p>Video playback typically goes through a standard life cycle event flow:</p>
+	<aside class="bcls-aside bcls-aside--tip">For details about log messages, see the <a href="https://developer.android.com/reference/android/util/Log.html">Android Log class</a> documentation.</aside>
+	</li>
+	<li>Next, open your app's <strong>build.gradle</strong> file.</li>
+	<li>In the <code>buildTypes</code> section, add the <code>minifyEnabled</code> attribute with a value of <code>true</code>.</li>
+	<li>Below the previous code, add a <code>proguardFiles</code> attribute as follows:
+	<ul>
+		<li>Use the <code>getDefaultProguardFile()</code> method to get the <strong>proguard-android-optimize.txt</strong> file from the Android SDK.</li>
+		<li>Reference the <strong>proguard-rules.pro</strong> file.</li>
+	</ul>
+	<br />
+	Your <strong>build.gradle</strong> file should look similar to this:
 
-<figure class="bcls-figure"><img class="bcls-image" alt="Plugin event flow" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/guides/plugin-guide/plugin-event-flow.png" />
-<figcaption class="bcls-caption--image">Plugin event flow</figcaption>
-</figure>
-</div>
-</section>
+	<pre class="line-numbers">
+<code class="language-java">android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
 
-<section class="bcls-section">
-<h2 id="Event_details">Event details</h2>
+    defaultConfig {
+        ...
+    }
 
-<div class="BCL-concept">
-<p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
-
-<ol>
-	<li class="language-editable"><code>WILL_CHANGE_VIDEO</code></li>
-	<li class="language-editable"><code>SET_VIDEO</code></li>
-	<li class="language-editable"><code>SET_SOURCE</code></li>
-	<li class="language-editable"><code>PLAY</code></li>
-	<li class="language-editable"><code>PAUSE</code></li>
-	<li class="language-editable"><code>SEEK_TO</code></li>
-	<li class="language-editable"><code>STOP</code></li>
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+            'proguard-rules.pro'
+        }
+    }
+}
+</code></pre>
+	</li>
 </ol>
 
-<p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code>preventDefault()</code> method. Event propagation can be stopped by calling the <code>stopPropagation()</code> method. If only <code>preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code>stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
-
-<p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
-
-<ol>
-	<li class="language-editable"><code>DID_CHANGE_LIST</code></li>
-	<li class="language-editable"><code>DID_SELECT_SOURCE</code></li>
-	<li class="language-editable"><code>DID_PAUSE</code></li>
-	<li class="language-editable"><code>DID_PLAY</code></li>
-	<li class="language-editable"><code>DID_SEEK_TO</code></li>
-	<li class="language-editable"><code>DID_SET_SOURCE</code></li>
-	<li class="language-editable"><code>DID_STOP</code></li>
-	<li class="language-editable"><code>PROGRESS</code></li>
-	<li class="language-editable"><code>COMPLETED</code></li>
-</ol>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Interrupt_playback">Interrupt playback</h2>
-
-<div class="BCL-concept">
-<p>A plugin, which desires to interrupt the video content playback, should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code>. These events are typically used by advertising plugins. A plugin should emit <code>WILL_INTERRUPT_CONTENT</code> to request that playback be suspended, if it is currently playing, and to request that the video view be made invisible. A plugin should emit <code>WILL_RESUME_CONTENT</code> to request that the video view be made visible again. The <code>WILL_RESUME_CONTENT</code> event should include an <code>ORIGINAL_EVENT</code> property which will be emitted after the video view is made visible. The <code>ORIGINAL_EVENT</code> should be a <code>PLAY</code> event to resume playback, a <code>CUE_POINT</code> event to continue cue point processing, or a <code>COMPLETED</code> event to complete playback. A <code>SKIP_CUE_POINTS</code> property should be added to the <code>ORIGINAL_EVENT</code> to prevent recursive cue point processing.</p>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Cue_points">Cue points</h2>
-
-<div class="BCL-concept">
-<p>Many plugins will want to listen for <code>CUE_POINT</code> events. There are three types of cue points, <code>BEFORE</code>, <code>POINT_IN_TIME</code>, and <code>AFTER</code>. <code>BEFORE</code> cue points are emitted just before playback begins. <code>POINT_IN_TIME</code> cue points are emitted when playback reaches the cue point's position. <code>AFTER</code> cue points are emitted just after playback completes. A plugin should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code> events to interrupt and resume content playback when handling a cue point event. In the case of before and after cue points, the event will include an <code>ORIGINAL_EVENT</code> property, with either a <code>PLAY</code> event or a <code>COMPLETED</code> event. Cue point events also include a <code>CUE_POINTS</code> property with the batch of cue points. <code>START_TIME</code> and <code>END_TIME</code> properties define the cue point time range.</p>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Sample_directory">Sample directory</h2>
-
-<div class="BCL-concept">
-<p>The <a href="https://github.com/BrightcoveOS/android-plugin-guide/tree/master/sample">sample directory</a> includes an Android Studio based project with two modules:</p>
-
-<ul>
-	<li class="language-editable"><strong>SamplePlugin</strong> - An example plugin, which can be used as the basis for writing new plugins.</li>
-	<li class="language-editable"><strong>SamplePluginApplication</strong> - Shows how plugins are incorporated into a Brightcove video application and can be used to test the SamplePlugin or new plugins.</li>
-</ul>
-</div>
-</section>
-
-<section class="bcls-section">
-<h2 id="Implementation_steps">Implementation steps</h2>
-
-<div class="BCL-concept">
-<p>The steps to writing a plugin include:</p>
-
-<ol>
-	<li class="language-editable">Copy the sample plugin to a new repository.</li>
-	<li class="language-editable">Change the package and class names.</li>
-	<li class="language-editable">Update the <code>TAG</code> initializer.</li>
-	<li class="language-editable">Edit the <code>@Emits</code> and <code>@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
-	<li class="language-editable">Modify the constructor as necessary.</li>
-	<li class="language-editable">Replace or remove the <code>videoView</code> related logic as necessary.</li>
-	<li class="language-editable">Modify <code>initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
-	<li class="language-editable">Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
-	<!--                <li class="language-editable">Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
-</ol>
-</div>
+<aside class="bcls-aside bcls-aside--tip">Android Studio temporarily disables the Java Code Coverage Library (JaCoCo) and ProGuard while using Instant Run. Because Instant Run only works with debug builds, this does not affect your release build (<strong>https://developer.android.com/studio/run/index.html</strong>).<br />
+<br />
+If you want to remove logs on your debug build type, you need to <a href="https://developer.android.com/studio/run/index.html#disable-ir">disable Instant Run</a>.</aside>
 </section>
 </article>
 
@@ -472,7 +426,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 18 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
