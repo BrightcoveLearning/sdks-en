@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Video Formats and Captioning with the Native SDKs</title>
+  <title>Content Protection</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/features/">Features</a></li>
+      <li class="breadcrumb-item"><a href="/android/content-protection/">Android</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Video Formats and Captioning with the Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Content Protection</li>
     </ol>
   </nav>
 </header>
@@ -514,318 +514,84 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
+  }
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+}
+.bcls-card h2 {
+  font-size: 1rem;
+}
+.bcls-card ul {
+  font-size: small;
+  margin-left: -3em;
+}
+</style>
+
 <article class="bcls-article">
-  <h1>Video Formats and Captioning with the Native SDKs</h1>
-  <summary>In this topic, you will learn about the video formats and captioning supported by the Brightcove Native Player SDKs.</summary>
-
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
-<p>Understanding your options when choosing which video format to use and what captions to apply, is essential for ensuring your application will deliver the desired video experience to viewers.</p>
-
-<p>The Brightcove Native Player SDKs for mobile platforms strive to ensure your application reaches a wider audience and meets FCC guidelines by ensuring that your content provides an exceptional caption experience.</p>
-
-<p>For more information about standards and techniques for using captions, check out the <a href="https://www.brightcove.com/en/blog/2012/07/closed-captioning-for-web-mobile-and-tv">Zencoder's blog post on closed captioning</a>.</p>
-
-<p>Review the video formats and captions for each category:</p>
-
-<ul>
-	<li><a href="#Progressive_Download">Progressive Download</a></li>
-	<li><a href="#Adaptive_Bitrate_Streaming">Adaptive Bitrate Streaming</a></li>
-	<li><a href="#Digital_Rights_Management">Digital Rights Management (DRM)</a></li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Progressive_Download">Progressive Download</h2>
-
-<p>Video formats using this scheme force the content to download from start to finish with no gaps and results in the full piece of content being downloaded to the device. This behavior means that viewers will be unable to seek to any area that has not already been buffered.</p>
-
-<p>Based on this functionality, we advise that mid-roll advertisements are not used in combination with progressive download video formats. In addition to this, application publishers should be aware that any action that clears the video buffer will result in the client buffering from the start of the content should they attempt to resume playback afterwards.</p>
-
-<h3 class="BCL_subsectionTitle">Table for MP4/M4V support</h3>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Video format</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">Android SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>MP4/M4V</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<th>Caption format</th>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>Sidecar WebVTT</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar TTML (DFXP)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>608 / 708</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
-</table>
-<br/>
-
-<aside class="bcls-aside bcls-aside--information">Because 608/708 captions are built into the MP4 stream, video files need to be re-created to change the captions. This can be a problem if you are wanting to localize a video. There is also no way to add new captions to an MP4 file, because there is no manifest to work with. In contrast, captions can be added to HLS files, since they do contain a manifest.</aside>
-</section>
-
-<section id="Adaptive_Bitrate_Streaming" class="bcls-section">
-<h2>Adaptive Bitrate Streaming</h2>
-
-<p>Video formats using this scheme are broken up into short segments that are downloaded when needed by the player. This allows users to seek anywhere in the content and only need to download the segment that they’ve jumped into. Generally, formats following this scheme use a “manifest” that contains all the details of the video such as the number of segments and where to find them.</p>
-
-<h3 class="BCL_subsectionTitle">Table for HTTP Live Streaming (HLS) support</h3>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Video format</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">Android SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>HTTP Live Streaming (HLS)</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<th>Caption format</th>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>In-Manifest WebVTT</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar WebVTT</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar TTML (DFXP)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>608 / 708</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
-</table>
-<br/>
-
-<aside class="bcls-aside bcls-aside--information">
-<p>Notes for the Brightcove Player SDKs for iOS and tvOS:</p>
-
-<ul>
-	<li>Adaptive Bitrate Streaming, specifically, HLS, is required for most online playback on iOS devices. For details, see <a href="https://developer.apple.com/library/content/qa/qa1767/_index.html">Apple's technical document about HLS</a>.</li>
-	<li>The Sidecar WebVTT plugin supports playback over AirPlay with captions.</li>
-	<li>For details about using WebVTT captions for HLS content, see the <a href="/node/18216">Synchronizing WebVTT Captions</a> document.</li>
-</ul>
-</aside>
-<!-- <aside class="bcls-aside bcls-aside--information">
-      <p>Notes for the Brightcove Player SDKs for Android:
-      </p>
-      <ul>
-        <li>Dynamic Adaptive Streaming over HTTP (DASH), also known as MPEG-DASH, is supported with the Native SDK for Android.</li>
-      </ul>
-    </aside> -->
-
-<p>&nbsp;</p>
-
-<p>Similar to HLS, MPEG-DASH enables high quality streaming of media content over HTTP. It also works by breaking content into a sequence of file segments.</p>
-
-<h3 class="BCL_subsectionTitle">Table for Dynamic Adaptive Streaming over HTTP (MPEG-DASH) support</h3>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Video format</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">Android SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Dynamic Adaptive Streaming over HTTP (MPEG-DASH)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<th>Caption format</th>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>In-Manifest WebVTT</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar WebVTT</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar TTML (DFXP)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
-</table>
-
-<p>&nbsp;</p>
-</section>
-
-<section id="Digital_Rights_Management" class="bcls-section">
-<h2>Digital Rights Management (DRM)</h2>
-
-<p>A third set of formats worth noting are those proprietary formats that some DRM partners use.</p>
-
-<p>The Brightcove Native Player SDKs can not access or control the properties and functionality of these formats. Issues found with these formats may need to be addressed to their proprietors directly.</p>
-
-<h3 class="BCL_subsectionTitle">Table for Widevine Media (.wvm) support</h3>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Video format</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">Android SDK</th>
-		</tr>
-	</thead>
-	<!--
-<tr>
-<td>Widevine Classic</td>
-<td style="text-align: center;"><img src="/assets/images/getting-started/box-checked.png" height="20" width="20" alt="yes" /></td>
-<td style="text-align: center;"><img src="/assets/images/getting-started/box-checked.png" height="20" width="20" alt="yes" /></td>
-</tr>
--->
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Widevine Modular (DASH-CENC)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<th>Caption format</th>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>Sidecar WebVTT</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Sidecar TTML (DFXP)</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>608 / 708</td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-unchecked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
-</table>
-<br/>
-
-<aside class="bcls-aside bcls-aside--information">
-<p>Widevine notes:</p>
-
-<ul>
-	<li>Widevine Media is supported only when using the Widevine integration.</li>
-	<li>For the Android SDK, Widevine Modular is supported for Android versions 4.4+ only.</li>
-	<li>For iOS apps built using the Brightcove Player SDK for iOS, you should use FairPlay if you require DRM.</li>
-</ul>
-</aside>
-
-<p>&nbsp;</p>
-
-<p>Apple's FairPlay Streaming (FPS) technology can be used to deliver secure content when using HTTP Live Streaming (HLS).</p>
-
-<h3 class="BCL_subsectionTitle">Table for FairPlay Streaming (FPS) support</h3>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Video format</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">tvOS SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>HTTP Live Streaming (HLS)</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<th>Caption format</th>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>Sidecar WebVTT</td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
-</table>
-<br/>
-
-<aside class="bcls-aside bcls-aside--information">
-<p>FairPlay notes:</p>
-
-<ul>
-	<li>Known Apple issues - FairPlay streaming content will not work in the following cases:
-	<ul>
-		<li>AirPlay Mirroring mode</li>
-		<li>Using AirPlay to play back offline videos protected with FairPlay</li>
-		<li>Videos representing 360° content</li>
-	</ul>
-	</li>
-</ul>
-</aside>
-
-<p>&nbsp;</p>
-
-<p>For more information about content protection with the Native SDKs, check out the <a href="/node/18436">Digital Rights Integrations</a> page.</p>
-
-<p>&nbsp;</p>
-</section>
+  <h1><i class="fab fa-android"></i> Content Protection</h1>
+  <summary>Learn how to protect your content with the Brightcove Native SDK for Android</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in Content Protection</h2>
+        <ul>
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                
+                  <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
+                
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          
+        
+          
+        
+          
+        
+      </div>
+    </section>
+  </section>
 </article>
-<!-- End of Drupal content -->
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -833,7 +599,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 19 Feb 2020
+  Page last updated on 20 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -914,8 +680,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
