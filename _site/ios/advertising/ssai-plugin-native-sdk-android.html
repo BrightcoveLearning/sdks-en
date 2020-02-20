@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Offline Playback with the Native Player SDKs</title>
+  <title>SSAI Plugin for the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/features/">Features</a></li>
+      <li class="breadcrumb-item"><a href="/ios/advertising/">Advertising</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Offline Playback with the Native Player SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">SSAI Plugin for the Native SDK for Android</li>
     </ol>
   </nav>
 </header>
@@ -438,433 +438,454 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Offline Playback with the Native Player SDKs</h1>
-  <summary>In this topic, you will learn how offline playback works with the Brightcove Native Player SDKs.</summary>
+  <h1>SSAI Plugin for the Native SDK for Android</h1>
+  <summary>In this topic, you will learn how to use the Server-Side Ad Insertion (SSAI) plugin with the Brightcove Native SDK for Android. It also details how to migrate from using the OnceUX plugin.</summary>
 
 <section class="bcls-section">
-<h2 id="Overview">Overview</h2>
+<h2 id="Using_the_SSAI_Plugin">Using the SSAI Plugin</h2>
 
-<p>Offline Playback with the Brightcove Native Player SDKs for iOS and Android allows publishers to reach their viewers in entirely new ways while ensuring their content remains secure. Our SDKs offer powerfully simple solutions for complex offline playback problems including download management, offline catalog management, analytics, DRM, and of course playback.</p>
+<p>The SSAI plugin allows you to play content with Dynamic Delivery and server-side advertising.</p>
 
-<p>Using offline playback, users can download both DRM-protected and clear (non-encrypted) video content to their devices and watch it when they are not connected.</p>
+<p>There are two options for playing content with server-side ads:</p>
 
-<aside class="bcls-aside bcls-aside--tip">To use this feature, you need to be a Video Cloud customer using Dynamic Delivery.</aside>
+<ol class="bcls-tasklist">
+	<li><a href="#Provide_a_URL_for_SSAI_content">Provide a URL for SSAI content</a></li>
+	<li><a href="#Provide_a_Video_with_VMAP">Provide a Video with VMAP</a></li>
+</ol>
+
+<p>In either case, the SSAI plugin will request the VMAP source, parse it and automatically add it to the VideoView.</p>
+
+<h3 id="Provide_a_URL_for_SSAI_content">Provide a URL for SSAI content</h3>
+
+<p>With an SSAI asset URL, call the following method:</p>
+
+<pre>
+<code class="language-java">SSAIComponent.processVideo(String url)</code></pre>
+
+<p>Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">String ssaiUrl = "https://onceux.host.com/path/to/content.once"
+SSAIComponent ssaiComponent = new SSAIComponent(context, brightcoveVideoView);
+ssaiComponent.processVideo(ssaiUrl);
+</code></pre>
+
+<h3 id="Provide_a_Video_with_VMAP">Provide a Video with VMAP</h3>
+
+<p>For this option, you will provide a Video with a Source containing a VMAP property with the SSAI asset URL. To use the SSAI plugin, follow these steps:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In order to request VideoCloud SSAI content, your account must first be configured to use Dynamic Delivery and SSAI. For details, see the <a href="/node/18623">Video Cloud SSAI Overview</a> document.</li>
+	<li>Next, you will need to create an Ad Configuration (adConfig) object. For details, see the <a href="/node/18748">Configuring Server-Side Ad Settings</a> document. Please note that the Brightcove Native SDK for Android does not itself contain any functionality to create or manage adConfigs.</li>
+	<li>Use the adConfig's <code>id</code> property as a URL parameter (<code>ad_config_id</code>) added to the Catalog method call:
+	<pre>
+<code class="language-java">findVideoById</code></pre>
+
+	<p>or</p>
+
+	<pre>
+<code class="language-java">findVideoByReferenceId  </code></pre>
+	</li>
+	<li>Having retrieved the Video object with the findVideo method, call the following method in the SSAI plugin:
+	<pre>
+<code class="language-java">SSAIComponent.processVideo(Video ssaiVideo)</code></pre>
+	</li>
+</ol>
+
+<p>Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">Catalog catalog = new Catalog(eventEmitter, myAccountId, myPolicyKey);
+SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
+
+// Set the ad_config_id URL parameter
+HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+        .addQueryParameter("ad_config_id", myAdConfig)
+        .build();
+
+// Find the Video by ID
+catalog.findVideoByID(myVideoId, httpRequestConfig, new VideoListener() {
+        @Override
+        public void onVideo(Video video) {
+
+        // Process the Video
+        plugin.processVideo(video);
+    }
+});
+</code></pre>
 </section>
 
 <section class="bcls-section">
-<h2 id="Supported_device_versions">Supported versions</h2>
+<h2 id="Working_with_companion_ads">Working with companion ads</h2>
 
-<p>The Brightcove Native Player SDKs support offline playback with the following versions:</p>
+<p>If your ads have Companions, you can easily display them in your app by providing a <code>ViewGroup</code> to hold the Companion image, by calling:</p>
 
-<h3>Device OS version</h3>
+<pre>
+<code class="language-java">SSAIComponent.addCompanionContainer(ViewGroup companionContainer)
+</code></pre>
 
-<ul>
-	<li>iOS 10.0+, but 10.3+ is recommended</li>
-	<li>Android 5.0+</li>
-</ul>
+<p>Here is an example. First, Add the FrameLayout to your activity or fragment layout:</p>
 
-<h3>Brightcove Native SDK version</h3>
+<pre class="line-numbers">
+<code class="language-xml">// my_activity.xml
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"&gt;
+ ...
+  &lt;FrameLayout
+        android:id="@+id/ad_frame"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:visibility="invisible" /&gt;
+…
+&lt;/RelativeLayout&gt;
+</code></pre>
 
-<ul>
-	<li>Native SDK for iOS 6.0.1+</li>
-	<li>Native SDK for Android 5.0.3+</li>
-</ul>
+<p>Then, use that <code>FrameLayout</code> to pass it to the plugin:</p>
+
+<pre class="line-numbers">
+<code class="language-java">ViewGroup viewGroup = findViewById(R.id.ad_frame);
+plugin.addCompanionContainer(viewGroup);
+
+// process your Video
+plugin.processVideo(video);
+</code></pre>
 </section>
 
 <section class="bcls-section">
-<h2 id="Content_delivery">Content delivery</h2>
+<h2 id="Handling_events">Handling events</h2>
 
-<p>Streaming video takes advantage of Video Cloud's multi-bitrate streaming feature which detects bandwidth at the source and delivers the best quality for the device. The offline playback feature supports the following streaming types:</p>
+<p>For SSAI-specific events, you can listen to them using the <code>EventEmitter</code>. These events can be found in the <code>SSAIEventType</code> class.</p>
 
-<ul>
-	<li><strong>Android</strong>: Dynamic Adaptive Streaming over HTTP (DASH)</li>
-	<li><strong>iOS</strong>: Apple HTTP Live Streaming (HLS)</li>
-</ul>
+<p>The <code>START_AD_SEGMENT</code> and <code>END_AD_SEGMENT</code> events were replaced with <code>EventType.AD_BREAK_STARTED</code> and <code>EventType.AD_BREAK_COMPLETED</code> respectively. For details, see <a href="#Appendix_B">Appendix B</a> and <a href="#Appendix_C">Appendix C</a>.</p>
+
+<p>To get relative and absolute positions, get the <code>com.brightcove.ssai.AdPod</code> with the <code>SSAIEvent.AD_POD</code> key. Here is an example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">private void registerEventHandlers() {
+  EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+  eventEmitter.on(EventType.AD_BREAK_STARTED, new EventListener() {
+    @Override
+    public void processEvent(Event event) {
+      Object adPodObject = event.getProperties().get(SSAIEvent.AD_POD);
+      if (adPodObject instanceof AdPod) {
+        AdPod adPod = (AdPod) adPodObject;
+        adPod.getRelativeStartPosition();
+        adPod.getAbsoluteStartPosition();
+        adPod.getAbsoluteEndPosition();
+      }
+    }
+  });
+}
+</code></pre>
 </section>
 
 <section class="bcls-section">
-<h2 id="Security">Security</h2>
+<h2 id="Handling_errors">Handling errors</h2>
 
-<p>The protection of downloaded content is top-of-mind with our Offline solution. The Brightcove Native Player SDKs provide the following functionality to ensure your content is stored safely on viewers' devices:</p>
+<p>All errors will be surface to the developer using the <code>EventType.ERROR</code> event, as shown here:</p>
 
-<h3>DRM-protected content</h3>
+<pre class="line-numbers">
+<code class="language-java">eventEmitter.on(EventType.ERROR, new EventListener() {
+  @Override
+  public void processEvent(Event event) {
+    String errorMessage = event.getProperty(Event.ERROR_MESSAGE, String.class);
+    Throwable error = event.getProperty(Event.ERROR, Throwable.class);
+    Log.w(TAG, String.format("Received the error message: %s with error: %s", errorMessage, error));
+  }
+});
+</code></pre>
+</section>
 
-<ul>
-	<li>For DRM-protected content, the Native SDKs use the following technologies:
+<section class="bcls-section">
+<h2 id="Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUx Plugin</h2>
+
+<p>If you are already using the OnceUx plugin to play your SSAI videos in your app, you only need to follow a few steps to migrate to the new SSAI plugin.</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In your app’s <strong>build.gradle</strong> file, replace
+
+	<pre>
+<code class="language-java">implementation 'com.brightcove.player:android-onceux-plugin:6.5.1'
+</code></pre>
+
+	<p>with the following: (use the latest plugin version)</p>
+
+	<pre>
+<code class="language-java">implementation 'com.brightcove.player:android-ssai-plugin:6.7.0'
+</code></pre>
+	</li>
+	<li>Replace the <code>OnceUxComponent</code> class with the <code>SSAIComponent</code> class.</li>
+	<li>Replace <code>OnceUxEventType.NO_AD_DATA_URL</code> with <code>EventType.ERROR</code>.</li>
+	<li>If your code uses any of the constants that were found in <code>OnceUxEventType</code> class, replace these with <code>SSAIEventType</code> and <code>SSAIEvent</code> constants, according to their function:
 	<ul>
-		<li><strong>Android</strong>: DASH with <a href="http://www.widevine.com/wv_drm.html">Widevine Modular</a></li>
-		<li>
-		<p><strong>iOS</strong>: HLS with <a href="https://developer.apple.com/streaming/fps/">FairPlay</a></p>
+		<li>The constants used to listen for an event are now found in the <code>SSAIEventType</code> class. For example:
+		<pre>
+<code class="language-java">SSAIEventtType.AD_DATA_READY</code></pre>
+		</li>
+		<li>The constants used as keys for Event properties are now found in the SSAIEvent class. For example:
+		<pre>
+<code class="language-java">SSAIEvent.SSAI_AD</code></pre>
 		</li>
 	</ul>
 	</li>
+	<li>The SSAI and OnceUx plugins share an internal library responsible for parsing the VMAP object. If your app directly uses objects from this library (<code>package com.brightcove.iab</code>), there are changes in the new version that you might find useful.</li>
 	<li>
-	<p>Video content can only be watched on the device and app that has downloaded the content.</p>
-	</li>
-	<li>
-	<p>Video content can only be watched until a specific date and time expiration.</p>
+	<p>For more information, see <a href="#Appendix_A">Appendix A</a>.</p>
 
-	<p>The Native SDKs allow users to rent or buy videos. The expiration applies to rentals, and is set in the DRM license using the Native SDKs API for downloading videos. In contrast, the expiration set in the Fastly token applies to streaming content.</p>
-	</li>
-	<li>Video URLs returned to the client will expire so that others can not use them.</li>
-</ul>
+	<p>For a comparison between the Events sent in the OnceUx plugin and the SSAI plugin, see the following:</p>
 
-<h3>All content</h3>
-
-<ul>
-	<li>When the app is deleted, all downloaded content is removed.
-	<aside class="bcls-aside bcls-aside--information">For Android, this is true as long as the default storage location is not overridden.</aside>
-	</li>
-	<li>Your app can delete locally stored content at any time.</li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Download_management">Download management</h2>
-
-<p>The Brightcove Native Player SDKs handle the complexities of downloading content to a viewer's device, greatly simplifying the process for native applications.</p>
-
-<ul>
-	<li>Publishers can choose the rendition quality of the content to download.</li>
-	<li>Captions can be downloaded and displayed while offline.</li>
-	<li>Multiple audio tracks are supported by the Native SDKs. For details about downloading additional tracks, see the following:
 	<ul>
-		<li><a href="/node/18710">Multiple Audio Tracks for Offline Playback with the Native SDK for Android</a></li>
-		<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#downloading-secondary-tracks">iOS App Developer's Guide for Offline Playback</a>.</li>
+		<li><a href="#Appendix_B">Appendix B</a></li>
+		<li><a href="#Appendix_C">Appendix C</a></li>
 	</ul>
 	</li>
-</ul>
-
-<h3>Functionality</h3>
-
-<p>The following functionality can be added to your apps to support download management:</p>
-
-<ul>
-	<li><a href="#Display_content">Display content</a></li>
-	<li><a href="#Check_download_size">Check download size</a></li>
-	<li><a href="#Show_download_status">Show download status</a></li>
-	<li><a href="#Manage_the_download_queue">Manage the download queue</a></li>
-	<li><a href="#Show_local_storage_space">Show local storage space</a></li>
-	<li><a href="#Pause_resume_cancel_download">Pause/resume/cancel download</a></li>
-</ul>
-
-<h3 id="Display_content">Display content</h3>
-
-<p>Display a list of content available for streaming or download.</p>
-
-<p>When you set a video's <code class="notranslate">offline_enabled</code> property to <strong>true</strong>, the Native SDKs will mark this video as downloadable.</p>
-
-<h4 id="Using_the_CodePen" class="bcls-expander-head">Prepare videos</h4>
-
-<div class="bcls-expander-content">
-<p>To mark a video as downloadable, you need to do the following:</p>
-
-<ol class="bcls-tasklist">
-	<li>Contact your account manager to enable your account for offline playback.</li>
-	<li>
-	<p>For each video that you want to be downloadable, set offline enabled by doing one of the following:</p>
-
-	<h4>Use Video Cloud Studio</h4>
-
-	<p>Use Video Cloud Studio to <a href="/node/15482#videoinfo">enable offline playback</a>.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Offline enabled" src="/assets/images/getting-started/offline/offline-enabled.png" />
-	<figcaption class="bcls-caption--image">Offline enabled</figcaption>
-	</figure>
-
-	<h4>Use CMS API</h4>
-
-	<p>You can also use the <a href="/node/18034">CMS API</a> to set the <a href="/node/18020">offline_enabled</a> field to a value of <strong>true</strong>.</p>
-
-	<p>Here is an example using curl:</p>
-
-	<pre class="line-numbers" data-start="1">
-  <code class="notranslate language-json">curl --header "Authorization: Bearer $oauth_token" --request PATCH --data '
-  {"offline_enabled" : true}
-  ' https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">your account id</span>/videos/<span class="bcls-input">your video id</span></code></pre>
-	</li>
 </ol>
-</div>
+</section>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Display content" src="/assets/images/getting-started/offline/content-list.png" />
-<figcaption class="bcls-caption--image">Display content</figcaption>
-</figure>
+<section class="bcls-section">
+<h2 id="Appendix_A">Appendix A</h2>
 
-<p>When working with clear content, see the <a href="#Best_practices">Best practices</a> section for tips on how to display your content.</p>
-
-<h3 id="Check_download_size">Check download size</h3>
-
-<p>Brightcove recommends that before a download is requested, you make sure there is enough space in device storage for the download. To get an estimate of the total size of the video download, follow these steps:</p>
+<p>This table shows the changes in the internal IAB Android library 1.5.0:</p>
 
 <ul>
-	<li>For iOS, review the information in the <strong>Check Download Size</strong> section of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#check-download-size">iOS App Developer's Guide to Offline Playback</a>.</li>
-	<li>
-	<p>For Android, you can get an estimate in the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.DownloadEventListener.html#onDownloadStarted-com.brightcove.player.model.Video-long-java.util.Map-"> OnDownloadStarted</a> callback from the <code class="notranslate">DownloadEventListener</code>. Here is an example of how to set the event listener:</p>
-
-	<pre>
-  <code class="notranslate language-java">MediaDownloadable.DownloadEventListener downloadEventListener = new MediaDownloadable.DownloadEventListener() {
-  //Your implementation.
-  }
-  OfflineCatalog catalog = new OfflineCatalog(context, eventEmitter, accountId, policyKey);
-  catalog.addDownloadEventListener(downloadEventListener);</code></pre>
+	<li>Added the following methods to return timed values in microseconds:
+	<ul>
+		<li><code>com.brightcove.iab.ssai.BrightcoveSSAI.getContentLengthUs():long</code></li>
+		<li><code>com.brightcove.iab.ssai.BrightcoveSSAI.getPayloadLengthUs():long</code></li>
+		<li><code>com.brightcove.iab.vmap.AdBreak.getTimeOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vmap.AdBreak.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Linear.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Linear.getSkipOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.NonLinear.getMinSuggestedDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Icon.getDurationUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Icon.getOffsetUs():long</code></li>
+		<li><code>com.brightcove.iab.vast.Tracking.getOffsetUs():long</code></li>
+	</ul>
 	</li>
-</ul>
-
-<p>&nbsp;</p>
-
-<h3 id="Show_local_storage_space">Show local storage space</h3>
-
-<p>Inform the user when there is not enough local storage to complete downloading the current item and any items in the queue.</p>
-
-<p>The SDKs provide the estimated size and progress so that you can determine if there is sufficient space for downloads.</p>
-<!-- <figure class="bcls-figure">
-      <img class="bcls-image--no-border" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/odrm/download-space.png" alt="Local storage space">
-      <figcaption class="bcls-caption--image">Local storage space</figcaption>
-      </figure> -->
-
-<h3 id="Show_download_status">Show download status</h3>
-
-<p>Display the current download along with its status.</p>
-
-<p>Total estimated size, current download status and percent of downloading progress information will be returned by the SDKs.</p>
-<!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Download status" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/odrm/download-progress.png" />
-      <figcaption class="bcls-caption--image">Download status</figcaption>
-      </figure> -->
-
-<aside class="bcls-aside bcls-aside--tip">For Android devices, download status is also shown in the Notification Area. The notification title is set to the video title. The notification is removed if the download is paused or cancelled. For details, see the <a href="/node/18246#Offline_playback_with_DRM">Code Snippets using the Native SDK for Android</a> document.</aside>
-
-<h3 id="Manage_the_download_queue">Manage the download queue</h3>
-
-<p>Create and manage the download queue.</p>
-
-<p>The Native SDKs will allow multiple videos to be queued for downloads. For example, a user can download multiple episodes of a season and the Native SDKs will manage the process by providing download status for each asset.</p>
-
-<aside class="bcls-aside bcls-aside--information">If your app is targeting iOS 11.0 - 11.2, we don't recommend concurrent downloads because pause and resume behavior is unreliable with multiple simultaneous downloads. The problem has been fixed with iOS 11.3.</aside>
-<!-- <figure class="bcls-figure">
-      <img class="bcls-image--no-border" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/odrm/download-queue.png" alt="Download queue">
-      <figcaption class="bcls-caption--image">Download queue</figcaption>
-      </figure> -->
-
-<h3 id="Pause_resume_cancel_download">Pause/resume/cancel download</h3>
-
-<p>Allow the user to pause, resume or cancel content download.</p>
-
-<p>Download functionality will resume where it left off if the user pauses/resumes or if the download is interrupted. For example, it you lose Wi-Fi connection during download, it will resume where it left off when you are reconnected.</p>
-
-<p>If you cancel a video download, then any progress made will be erased.</p>
-<!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Pause/resume/cancel download" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/odrm/download-cancelled.png" />
-      <figcaption class="bcls-caption--image">Pause/resume/cancel download</figcaption>
-      </figure> --></section>
-
-<section class="bcls-section">
-<h2 id="Local_catalog_management">Local catalog management</h2>
-
-<p>The Brightcove Native Player SDKs simplify the process of managing downloaded local content.</p>
-
-<p>The following functionality can be added to your apps to support local catalog management:</p>
-
-<ul>
-	<li><a href="#Show_downloaded_content">Show downloaded content</a></li>
-	<li><a href="#Play_local_content">Play local content</a></li>
-	<li><a href="#Delete_local_content">Delete local content</a></li>
-</ul>
-
-<h3 id="Show_downloaded_content">Show downloaded content</h3>
-
-<p>Show all of the downloaded episodes for each show/season.</p>
-
-<p>The SDKs return metadata and playback details for all downloaded content. This metadata includes video title, description, thumbnails, available captions, available audio tracks, etc.</p>
-
-<p>There are new metadata properties specific to offline playback, which include the following:</p>
-
-<h4>DRM-protected content</h4>
-
-<ul>
-	<li>Token identifier</li>
-	<li>License expiration date</li>
-</ul>
-
-<h4>All content</h4>
-
-<ul>
-	<li>Download start and end time</li>
-	<li>Downloaded thumbnail name along with its file URL</li>
-	<li>Downloaded poster name along with its file URL</li>
-	<li>Relative and derived file URL of the video bundle</li>
-</ul>
-
-<p>You can then filter the results for your specific implementation.</p>
-
-<aside class="bcls-aside bcls-aside--tip">You will be able to see the time remaining for a rental license.</aside>
-
-<h3 id="Delete_local_content">Delete local content</h3>
-
-<p>Allow users to delete content from local storage.</p>
-
-<p>The SDKs expose a method to delete a video along with its metadata and related assets.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Content_playback">Content playback</h2>
-
-<p>The Native SDKs allow you to play content in the following situations:</p>
-
-<ul>
-	<li>Play a video while it downloads.</li>
-	<li>Play a video after it has been downloaded. Downloaded content can be played back locally when the device is offline or online. The offline video can only be played from local storage.</li>
-	<li>If you choose to stream an online version of the video, you should retrieve a new video object from the Playback Service.</li>
+	<li>Added <code>AdBreak.POST_ROLL_TIME_OFFSET_US</code> to specify the value of a post-roll AdBreak when using <code>AdBreak.getTimeOffsetUs()</code>.</li>
+	<li>Added the <code>BrightcoveSSAI</code> property getters following the camelcase naming convention.</li>
+	<li>Deprecated the <code>BrightcoveSSAI</code> property getters not following the camelcase naming convention.</li>
 </ul>
 </section>
 
 <section class="bcls-section">
-<h2 id="Analytics">Analytics</h2>
+<h2 id="Appendix_B">Appendix B</h2>
 
-<p>Analytics have been introduced for measuring data related to the Offline flow. For details, see the <a href="/node/18527">Analytics Related to Offline Playback with the Native SDKs</a> document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Samples">Samples</h2>
-
-<p>The following table contains links to code samples to show you how to get started with offline playback:</p>
+<p>This table shows the differences between the <code>EventType</code> properties sent with the OnceUx and the SSAI plugin:</p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
 		<tr>
-			<th style="width:25%">Sample Application</th>
-			<th style="width:75%">Description</th>
+			<th style="width:20%">EventType class</th>
+			<th style="width:40%">OnceUx plugin</th>
+			<th style="width:40%">SSAI plugin</th>
 		</tr>
 	</thead>
 	<tbody class="bcls-table__body">
 		<tr>
-			<td><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Offline">iOS Offline Playback</a></td>
-			<td>Download and play HLS videos, including those protected with FairPlay encryption. For developer details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developers Guide for Offline Playback</a>.</td>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_BREAK_STARTED">AD_BREAK_STARTED</a></td>
+			<td>none</td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer<br />
+			<code>SSAIEvent.AD_POD:com.brightcove.ssai.AdPod</code></td>
 		</tr>
 		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">Android Offline Playback</a></td>
-			<td>Download and play DASH videos, including those protected with Widevine encryption.</td>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_STARTED">AD_STARTED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_PAUSED">AD_PAUSED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.VIDEO</code>:Video</td>
+			<td>same</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_RESUMED">AD_RESUMED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer</td>
+			<td>same</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_PROGRESS">AD_PROGRESS</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.ORIGINAL_PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_SEGMENT_INDEX</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>Event.VIDEO_DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.ORIGINAL_PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SOURCE</code>:Source<br />
+			<code>Event.VIDEO</code>:Video<br />
+			<code>Event.FORWARD_BUFFER_SECONDS</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_COMPLETED">AD_COMPLETED</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION:Integer</code></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event.AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR:com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION:Integer</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#AD_BREAK_COMPLETED">AD_BREAK_COMPLETED</a></td>
+			<td>none</td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer<br />
+			<code>SSAIEvent.AD_POD:com.brightcove.ssai.AdPod</code></td>
 		</tr>
 	</tbody>
 </table>
 </section>
 
 <section class="bcls-section">
-<h2 id="Notes">Notes</h2>
+<h2 id="Appendix_C">Appendix C</h2>
 
-<p>The following notes apply to the offline playback feature supported by the Native SDKs:</p>
+<p>This table shows the differences between the <code>OnceUxEventType</code> and the <code>SSAIEventType</code> classes and their properties:</p>
 
-<h3>All</h3>
-
-<p><strong>Advertising</strong>: Neither client-side nor server-side advertising is supported with offline playback.</p>
-
-<p><strong>HLSe</strong>: Currently, HLSe content is not supported with offline playback using the Brightcove Native SDK for Android, iOS or tvOS.</p>
-
-<p><strong>Low power mode</strong>: Low power mode on devices may affect certain features, including downloading. For more information, see the following:</p>
-
-<p><strong>Shared videos</strong>: shared videos can be downloaded for offline viewing only if the original video can be. The property is inherited from the original video and cannot be changed for shared video only.</p>
-
-<ul>
-	<li><a href="https://developer.android.com/about/versions/pie/power">Power management Android 9 (API level 28)</a></li>
-	<li><a href="https://support.apple.com/en-us/HT205234">Low power mode on your iPhone</a></li>
-	<li><a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html">React to Low Power Mode on iPhones</a></li>
-</ul>
-
-<h3>Android</h3>
-
-<p><strong>App deletion</strong>: When the app is deleted, all downloaded content is removed. This is true as long as the default storage location is not overridden.</p>
-
-<h3>iOS</h3>
-
-<p><strong>AirPlay</strong>: As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code class="notranslate">AVFoundation</code> limitation.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="FAQ">FAQ</h2>
-
-<p>Below you will find answers to some general questions.</p>
-
-<h3>DRM-protected content</h3>
-
-<p class="bcls-question">Can the user change the system clock to bypass the expiration date?</p>
-
-<p class="bcls-answer"><strong>Android</strong>: Absolute expiration determines the date and time until which a license is valid. This is enforced by Widevine and the Android DRM layer. Theoretically, the DRM layer in Android must prevent the user from bypassing the expiration period. Any issues that we may have found is described in the Android OS release notes.<br />
-<br />
-<strong>iOS</strong>: License expiration is enforced by FairPlay. iOS handles all checking for clock changes, etc. An app has the option of checking the license expiration to alert the user that the license has expired. This may be preferable to simply playing back an expired video and then receiving a playback error.</p>
-<!-- <p class="bcls-answer">Absolute expiration determines the date and time until which a license is valid. This is enforced by Widevine and the Android DRM layer. Theoretically, the DRM layer in Android must prevent the user from bypassing the expiration period. Any issues that we may have found is described in the <a href="https://docs.brightcove.com/android-sdk/release-notes.txt">Native SDK for Android release notes</a>.</p> -->
-
-<p class="bcls-question">Will the license and offline videos continue loading while the app is in the background?</p>
-
-<p class="bcls-answer"><strong>Android</strong>: Yes. Typically, the license is downloaded immediately, but even the license can be downloaded while the app is backgrounded.<br />
-<br />
-<strong>iOS</strong>: License loading should happen in the foreground. We have a <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVOfflineVideoManager.h#L631">method to preload the license</a>. Downloading of the main video content can happen while the app is in the background.</p>
-<!-- <p class="bcls-answer">License loading should happen in the foreground. We have a method to preload the license.
-      Downloading of the main video content can happen while the app is in the background.</p> -->
-
-<h3>All content</h3>
-
-<p class="bcls-question">What is the video format used for downloading offline content?</p>
-
-<p class="bcls-answer"><strong>Android</strong>: DRM-protected DASH or non-encrypted DASH.<br />
-<br />
-<strong>iOS</strong>: HLS steaming. You can specify a bitrate for the download to use a specific variant.</p>
-
-<p class="bcls-question">Will downloaded videos playback locally or streaming when the user is online?</p>
-
-<p class="bcls-answer">A downloaded video can be played back while online or offline, but it will always use the downloaded video. If you choose to play back an online version of the video, you should retrieve a new video object from the Playback Service. The offline video can only be played from local storage.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Best_practices">Best practices</h2>
-
-<p>The following guidelines should help when developing your app for offline playback.</p>
-
-<h3>Displaying pause/cancel buttons</h3>
-
-<p>The pause and cancel buttons should be displayed when video download has started.</p>
-
-<p><strong>Android:</strong> You should display the pause and cancel buttons as part of calling the <code class="notranslate">onDownloadStarted</code> callback in the <code class="notranslate">DownloadEventListener</code>. For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">Offline Playback sample app</a>.</p>
-
-<p><strong>iOS:</strong> For details about how to create an app for Offline Playback, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developer's Guide</a>.</p>
-
-<h3>Displaying clear content</h3>
-
-<p>If your account is not DRM-enabled or you are working with clear content, the Brightcove Native SDKs will not perform a server-side license request. Therefore, clear content is not considered available for rental or purchase. In most cases, for clear content, it is recommended that you hide the <strong>rent</strong> and <strong>buy</strong> buttons and display a single <strong>download</strong> button instead.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Enabling_the_feature">Enabling the feature</h2>
-
-<p>Contact your account manager to learn about pricing and to enable the Offline Playback feature for your account.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Troubleshooting">Troubleshooting</h2>
-
-<p>The following tips may help you to investigate issues when downloading videos.</p>
-
-<p>An error may occur when a user tries to download an asset at a higher bitrate than the device can handle due to a slow network.</p>
-
-<p>To avoid this, you could add code to check device capabilities and prevent devices on slow connections from attempting to download high bitrate assets. You can test with a real device while throttling the connection, and view the network traffic with the <a href="https://www.charlesproxy.com/">Charles proxy</a> tool.</p>
-
-<h3>Android</h3>
-
-<p>For details about handling errors, see the <a href="/node/18236">Error Messages from the Native SDK for Android</a> document. This includes error messages related to offline playback.</p>
-
-<h3>iOS</h3>
-
-<p>For details about handling errors, see the <a href="/node/18671/">Error Handling with the Native SDK for iOS</a> document.</p>
-
-<p>When the offline playback code receives an error, we catch it and throw an NSError. To get the underlying error, you can try this:</p>
-
-<pre class="line-numbers">
-  <code class="language-objectivec">NSError *underlyingError = initialError.userInfo[NSUnderlyingErrorKey];</code></pre>
-
-<p>For more information, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developers Guide for Offline Playback</a>.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Known_issues">Known issues</h2>
-
-<p>For a list of known issues for the Android and iOS operating systems that affect Offline Playback with the Native SDKs, see the <a href="/node/18784">Known Issues</a> support document.</p>
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="width:20%">Plugin Constant</th>
+			<th style="width:40%">OnceUx plugin - OnceUxEventType class</th>
+			<th style="width:40%">SSAI plugin - SSAIEventType class</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#AD_DATA_READY">AD_DATA_READY</a></td>
+			<td><code>OnceUxEventType.VMAP_EVENT_MAP</code>:List&lt;Event&gt;<br />
+			<code>OnceUxEventType.VMAP_TIMELINE</code>:TImeline<br />
+			<code>OnceUxEventType.VMAP_RESPONSE</code>:VMAP</td>
+			<td><code>SSAIEvent.VMAP_TIMELINE</code>:TImeline (ssai)<br />
+			<code>SSAIEvent.VMAP_RESPONSE</code>:VMAP (iab)</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD_SEGMENT">START_AD_SEGMENT</a></td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SEEK_CONTROLS_VISIBILITY</code>:HashMap&lt;String:View.Visibility&gt;<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_AD_SEGMENT</code>:<code>com.brightcove.iab.vmap.AdSegment</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD_BREAK">START_AD_BREAK</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td>none</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_AD">START_AD</a></td>
+			<td><code>OnceUxEventType.VAST_AD:com.brightcove.iab.vast.Ad </code></td>
+			<td><code>SSAIEvent.VAST_AD:com.brightcove.iab.vast.Ad</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_LINEAR">START_LINEAR</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent..STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_LINEAR">END_LINEAR</a></td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer</td>
+			<td><code>Event.AD_ID</code>:String<br />
+			<code>Event:AD_TITLE</code>:String<br />
+			<code>SSAIEvent.VAST_LINEAR</code>:<code>com.brightcove.iab.vast.Linear</code><br />
+			<code>SSAIEvent.STITCHED_POSITION</code>:Integer</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD">END_AD</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td><code>SSAIEvent.VAST_AD:com.brightcove.iab.vast.Ad</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD_BREAK">END_AD_BREAK</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer</td>
+			<td>none</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_AD_SEGMENT">END_AD_SEGMENT</a></td>
+			<td><code>Event.DURATION</code>:Integer<br />
+			<code>Event.PLAYHEAD_POSITION</code>:Integer<br />
+			<code>Event.SEEK_CONTROLS_VISIBILITY</code>:HashMap&lt;String:View.Visibility&gt;<br />
+			<code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.STITCHED_POSITION</code>:Integer<br />
+			<code>OnceUxEventType.VMAP_AD_SEGMENT</code>:<code>com.brightcove.iab.vmap.AdSegment</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#START_COMPANION">START_COMPANION</a></td>
+			<td><code>OnceUxEventType.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+			<td><code>SSAIEvent.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#END_COMPANION">END_COMPANION</a></td>
+			<td><code>OnceUxEventType.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+			<td><code>SSAIEvent.VAST_COMPANION:com.brightcove.iab.vast.Companion</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#SEND_IMPRESSION">SEND_IMPRESSION</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer<br />
+			<code>OnceUxEventType.IMPRESSION:com.brightcove.iab.vast.Impression</code></td>
+			<td><code>SSAIEvent.IMPRESSION:com.brightcove.iab.vast.Impression</code></td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#SEND_TRACKING_BEACON">SEND_TRACKING_BEACON</a></td>
+			<td><code>OnceUxEventType.EXECUTED</code>:Integer <code>OnceUxEventType.VAST_TRACKING:com.brightcove.iab.vast.Tracking</code></td>
+			<td><code>SSAIEvent.VAST_TRACKING:com.brightcove.iab.vast.Tracking SSAIEvent.TRACKING_TYPE</code>: Creative.TrackingType</td>
+		</tr>
+		<tr>
+			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/onceux/event/OnceUxEventType.html#CLICK_THROUGH_LINEAR">CLICK_THROUGH_LINEAR</a></td>
+			<td><code>OnceUxEventType.VAST_VIDEO_CLICKS:com.brightcove.iab.vast.VideoClicks</code></td>
+			<td>removed</td>
+		</tr>
+		<tr>
+			<td>CLICK_LINEAR_CREATIVE</td>
+			<td>n/a</td>
+			<td><code>SSAIEvent.CREATIVE_CLICKS:com.brightcove.ssai.ad.creative.Click</code></td>
+		</tr>
+	</tbody>
+</table>
 </section>
 </article>
 
@@ -883,7 +904,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 12 Feb 2020
+  Page last updated on 14 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
