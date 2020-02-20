@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Android: Adding View/Managing Layout</title>
+  <title>Troubleshooting</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/other-guides/">Other Guides</a></li>
-      
-      <li class="breadcrumb-item active" aria-current="page">Android: Adding View/Managing Layout</li>
+      <li class="breadcrumb-item active" aria-current="page">Troubleshooting</li>
     </ol>
   </nav>
 </header>
@@ -271,6 +269,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                 
                   
                     <li class="submenu-header">
+                      <a href="/android/tv/">Connected TV <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/tv/cast-plugin-native-sdk-android.html">Chromecast Plugin</a></li>
+                        
+                        <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV Apps</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
                       <a href="/android/content-protection/">Content Protection <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
@@ -284,6 +295,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                     <li class="submenu-header">
                       <a href="/android/framework/">Framework <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/framework/android-adding-viewmanaging-layout.html">Adding View/Managing Layout</a></li>
                         
                         <li><a href="/android/framework/android-pie-support-native-sdk-android.html">Android Pie Support</a></li>
                         
@@ -339,19 +352,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                         <li><a href="/android/troubleshooting/error-messages-native-sdk-android.html">Error Message Guide</a></li>
                         
                         <li><a href="/android/troubleshooting/removing-android-log-messages.html">Removing Android Log Messages</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-                
-                  
-                    <li class="submenu-header">
-                      <a href="/android/other-guides/">Other Guides <strong>+</strong></a>
-                      <ul class="sidenav-subsubmenu" style="display:none;">
-                        
-                        <li><a href="/android/other-guides/android-adding-viewmanaging-layout.html">Adding View/Managing Layout</a></li>
-                        
-                        <li><a href="/android/other-guides/cast-plugin-native-sdk-android.html">Chromecast Plugin</a></li>
                         
                       </ul>
                     </li>
@@ -449,6 +449,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                 
                   
                     <li class="submenu-header">
+                      <a href="/android/tv/">Connected TV <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">Chromecast Plugin</a></li>
+                        
+                        <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV Apps</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
                       <a href="/ios/content-protection/">Content Protection <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
@@ -525,101 +538,86 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
+  }
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+}
+.bcls-card h2 {
+  font-size: 1rem;
+}
+.bcls-card ul {
+  font-size: small;
+  margin-left: -3em;
+}
+</style>
+
 <article class="bcls-article">
-  <h1>Android: Adding View/Managing Layout</h1>
-  <summary>In this topic, you will learn how to manage the layout of a View added to the <code>BrightcoveVideoView</code>.</summary>
-
-<section class="bcls-section">
-<h2 id="Understanding_layouts">Understanding layouts</h2>
-
-<p>Before working with the Brightcove Native SDK for Android, it is a good idea to understand how to manage and customize layouts in your Android app.</p>
-
-<p>Start by reviewing the <a href="https://developer.android.com/guide/topics/ui/declaring-layout.html">Android Developer User Interface</a> guide.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Overriding_layout_params">Overriding layout params</h2>
-
-<p>The <code>BrightcoveVideoView</code> is the parent class of the <code>BrightcoveExoPlayerVideoView</code>.</p>
-
-<p>If you’re adding a <code>View</code> to the <code>BrightcoveVideoView</code>, then you need to override the <code>setLayoutParams()</code> method on the <code>View</code> child to apply only the layout params that make sense for the <code>View</code> child.</p>
-
-<p>Here is an example with the <code>setLayoutParams()</code> method:</p>
-
-<pre class="line-numbers">
-<code class="language-java">@Override
-public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
-    Log.v(TAG, "setLayoutParams: " + layoutParams);
-    super.setLayoutParams(layoutParams);
-    if (layoutParams != null) {
-        int childCount = getChildCount();
-        FrameLayout.LayoutParams frameLayoutParams =
-            new FrameLayout.LayoutParams(layoutParams.width, layoutParams.height);
-        frameLayoutParams.gravity = Gravity.CENTER;
-        for (int i = 0; i &lt; childCount; i++) {
-            getChildAt(i).setLayoutParams(frameLayoutParams);
-        }
-    }
-}</code></pre>
-
-<p>This allows the <code>SurfaceView</code> and the <code>ImageView</code> to get the layout params specified for the <code>BrightcoveVideoView</code>.</p>
-
-<p>Although it is possible to apply the layout params only to the <code>SurfaceView</code> and <code>ImageView</code> children, it would be difficult for additional children to react when the <code>BrightcoveVideoView</code> has its layout params updated.</p>
-
-<p>Brightcove suggests overriding <code>setLayoutParams()</code> in the <code>LinearLayout</code> child so that it passes through the width, but leaves the height and gravity unmodified.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="When_to_add_a_view">When to add a View</h2>
-
-<p>Applications to add a <code>View</code> in the <code>BrightcoveExoPlayerVideoView</code> can be varied depending on the objective to add an object in front of the Player. For example, you may use views to add/remove <code>TextViews</code> to display the captions, or to add a layout for the controller in the App.</p>
-
-<p>The <code>BrightcoveExoPlayerVideoView</code> variant extends from the <code>BaseVideoView</code> which extends the Android <code>FrameLayout</code>. This means you could add a view to the <code>BrightcoveExoPlayerVideoView</code> the same way you would do it to a <code>FrameLayout</code>.</p>
-
-<p>Here is an example in the activity_main.xml file of an Android App:</p>
-
-<pre class="line-numbers">
-<code class="language-java">
-&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity" &gt;
-
-    &lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
-        android:id="@+id/brightcove_video_view"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_gravity="center_horizontal|top"&gt;
-        &lt;RelativeLayout
-            android:id="@+id/rl_elephant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
-            &gt;
-            &lt;TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=“HELLO WORLD”
-                android:textColor="@color/white"
-                &gt;
-        &lt;/RelativeLayout&gt;
-    &lt;/com.brightcove.player.view.BrightcoveExoPlayerVideoView&gt;
-&lt;/LinearLayout&gt;
-
-</code></pre>
-</section>
+  <h1><i class="fab fa-android"></i> Troubleshooting</h1>
+  <summary>Learn about troubleshooting topics, including error messages and logs related to the Brightcove Native SDK for Android.</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in Troubleshooting</h2>
+        <ul>
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                
+                  <li><a href="/android/troubleshooting/error-messages-native-sdk-android.html">Error Message Guide</a></li>
+                
+                  <li><a href="/android/troubleshooting/removing-android-log-messages.html">Removing Android Log Messages</a></li>
+                
+              
+            
+              
+            
+          
+        
+          
+        
+          
+        
+      </div>
+    </section>
+  </section>
 </article>
 
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -708,8 +706,6 @@ public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
