@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Video Cloud Native SDKs Documentation</title>
+  <title>Error Handling with the Native SDK for iOS</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -82,9 +82,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb arr-right">
       
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
       
       
-      <li class="breadcrumb-item active" aria-current="page">Video Cloud Native SDKs Documentation</li>
+      
+      <li class="breadcrumb-item"><a href="/ios/troubleshooting/">Troubleshooting</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">Error Handling with the Native SDK for iOS</li>
     </ol>
   </nav>
 </header>
@@ -521,130 +525,108 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
-<article class="landing-page-wrapper">
-  <section class="landing-page-header" id="landing_page_header">
-    <h1>Brightcove Native SDKs Documentation</h1>
+<article class="bcls-article">
+  <h1>Error Handling with the Native SDK for iOS</h1>
+  <summary>In this topic, you will learn how the Brightcove Native SDK for iOS handles playback errors.</summary>
 
-    <p>Included with Video Cloud, you get access to the Brightcove Native SDKs. These enable you to deliver fast, innovative, out-of-the-box, video experiences for mobile devices and connected TV. To get started, see the <a href="/getting-started/brightcove-native-sdks-training-videos.html">Brightcove Native SDKs Training Videos</a>.</p>
-  </section>
-  <section class="card-wrapper">
-    
-    <section class="bcls-card-small" onclick="window.location.href='/getting-started/'">
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
 
-      <div class="card-icon">
-        <i class="far fa-location-arrow"></i>
-      </div>
+<p>Error codes have the term <code class="notranslate">ErrorCode</code> in the name. For example:</p>
 
-      <div class="card-content">
-        <h2>Getting Started</h2>
-        <ul>
-          
-          <li><a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a></li>
-          
-          <li><a href="/getting-started/native-video-playback.html">Native Video Playback</a></li>
-          
-          <li><a href="/getting-started/brightcove-native-sdk-features.html">Native SDK Features</a></li>
-          
-          <li><a href="/getting-started/brightcove-native-sdks-feature-support.html">Feature Support Table</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/getting-started/">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/features/'">
+<pre>
+<code class="notranslate language-objectivec">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
 
-      <div class="card-icon">
-        <i class="fas fa-award"></i>
-      </div>
+<p>Events have the word <code class="notranslate">Event</code> in the name. For example:</p>
 
-      <div class="card-content">
-        <h2>Features</h2>
-        <ul>
-          
-          <li><a href="/features/advertising-sdks.html">Advertising</a></li>
-          
-          <li><a href="/features/analytics-sdks.html">Analytics</a></li>
-          
-          <li><a href="/features/using-captions-brightcove-native-sdks.html">Captions</a></li>
-          
-          <li><a href="/features/using-360deg-videos-native-sdks.html">360 Degree Video</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/features/">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/android/'">
+<pre>
+<code class="notranslate language-objectivec">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
+</section>
 
-      <div class="card-icon">
-        <i class="fab fa-android"></i>
-      </div>
+<section class="bcls-section">
+<h2 id="Playback_errors">Playback errors</h2>
 
-      <div class="card-content">
-        <h2>Android Development</h2>
-        <ul>
-          
-          <li><a href="/android/basics/">Basics</a></li>
-          
-          <li><a href="/android/advertising/">Advertising</a></li>
-          
-          <li><a href="/android/analytics/">Analytics</a></li>
-          
-          <li><a href="/android/captions/">Captions</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/android/">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/ios/'">
+<p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code class="notranslate">BCOVPlaybackController</code>:</p>
 
-      <div class="card-icon">
-        <i class="fa fa-apple"></i>
-      </div>
+<pre>
+<code class="notranslate language-objectivec">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
+  didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent</code></pre>
 
-      <div class="card-content">
-        <h2>iOS Development</h2>
-        <ul>
-          
-          <li><a href="/ios/basics/">Basics</a></li>
-          
-          <li><a href="/ios/advertising/">Advertising</a></li>
-          
-          <li><a href="/ios/analytics/">Analytics</a></li>
-          
-          <li><a href="/ios/captions/">Captions</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/ios/">View all...</a></p>
-      </div>
-    </section>
-    
-    <section class="bcls-card-small" onclick="window.location.href='/support/'">
+<p>To get further information, do the following:</p>
 
-      <div class="card-icon">
-        <i class="far fa-question-circle"></i>
-      </div>
+<ol class="bcls-tasklist-restart">
+	<li>
+	<p>If you get an error event like <code class="notranslate">kBCOVPlaybackSessionLifecycleEventFail</code> or <code class="notranslate">kBCOVPlaybackSessionLifecycleEventResumeFail</code>, check the event's <code class="notranslate">properties</code> dictionary for an <code class="notranslate">@"error"</code> key.</p>
 
-      <div class="card-content">
-        <h2>Support</h2>
-        <ul>
-          
-          <li><a href="/support/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
-          
-          <li><a href="/support/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
-          
-        </ul>
-        <p style="font-size:small;"><a href="/support/">View all...</a></p>
-      </div>
-    </section>
-    
-  </section>
+	<p>This will provide an <code class="notranslate">NSError</code> object with information about the problem.</p>
+	</li>
+	<li>
+	<p>Each <code class="notranslate">NSError</code> will have an error domain, like the following:</p>
+
+	<ul>
+		<li><code class="notranslate">NSCocoaErrorDomain</code></li>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorDomain</code></li>
+	</ul>
+	&nbsp;
+
+	<p>Each error domain will have an associated error code and error description, like the following:</p>
+
+	<ul>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+	</ul>
+	</li>
+	<li>
+	<p>Some errors will also have an underlying error that can be retrieved from the error object's <code class="notranslate">userInfo</code> dictionary with the <code class="notranslate">NSUnderlyingErrorKey</code> key. This will typically be a system <code class="notranslate">NSError</code> that can provide more information.</p>
+	</li>
+	<li>
+	<p>To find all the error domains in the SDK, search the headers for the following:</p>
+
+	<pre>
+<code class="notranslate language-objectivec">ErrorDomain</code></pre>
+
+	<p>Here is a list of headers that have <code class="notranslate">ErrorDomain</code> references:</p>
+
+	<ul>
+		<li><code class="notranslate">BCOVFPSAuthorizationProxy.h</code></li>
+		<li><code class="notranslate">BCOVFPSBrightcoveAuthProxy.h</code></li>
+		<li><code class="notranslate">BCOVOfflineVideoManager.h</code></li>
+		<li><code class="notranslate">BCOVOnceCommon.h</code></li>
+		<li><code class="notranslate">BCOVOnceONOXMLDocument.h</code></li>
+		<li><code class="notranslate">BCOVOUXConstants.h</code></li>
+		<li><code class="notranslate">BCOVPlaybackService.h</code></li>
+		<li><code class="notranslate">BCOVPlaybackSession.h</code></li>
+	</ul>
+	</li>
+	<li>
+	<p>To find all the error codes, search each <code class="notranslate">ErrorDomain</code> for the following:</p>
+
+	<pre>
+<code class="notranslate language-objectivec">ErrorCode</code></pre>
+
+	<p>For example, in <code class="notranslate">BCOVPlaybackSession.h</code>, you'll see <code class="notranslate">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
+
+	<ul>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
+		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+	</ul>
+	</li>
+	<li>
+	<p>Other domains may return errors differently. For example, the <code class="notranslate">BCOVPlaybackService</code> object will return errors in its completion blocks if there are network errors when requesting videos from the online catalog. It uses the error domain <code class="notranslate">kBCOVPlaybackServiceErrorDomain</code>.</p>
+	</li>
+</ol>
+</section>
 </article>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav">
+        <h6 class="toc">Page Contents</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
       
     </div>
   </div>
@@ -652,7 +634,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 06 Feb 2020
+  Page last updated on 20 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -733,6 +715,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
+  
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
