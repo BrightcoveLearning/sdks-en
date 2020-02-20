@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Using Player Enhancements for Live SSAI with the Native SDKs</title>
+  <title>Sending Brightcove Analytics from the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/live/">Live</a></li>
+      <li class="breadcrumb-item"><a href="/features/">Analytics</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Using Player Enhancements for Live SSAI with the Native SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Sending Brightcove Analytics from the Native SDK for Android</li>
     </ol>
   </nav>
 </header>
@@ -246,11 +246,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <a href="/android/analytics/">Analytics <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/analytics/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
                         
                         <li><a href="/android/analytics/analytics-related-offline-playback-native-sdks.html">Analytics Related to Offline Playback</a></li>
                         
-                        <li><a href="/android/analytics/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
                         
                       </ul>
                     </li>
@@ -276,9 +276,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <a href="/android/live/">Live <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/live/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
                         
-                        <li><a href="/android/live/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
                         
                       </ul>
                     </li>
@@ -403,6 +403,45 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                     </li>
                   
                 
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/analytics/">Analytics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/live/">Live <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                        
+                        <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
               </ul>
             
           
@@ -434,153 +473,99 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>Using Player Enhancements for Live SSAI with the Native SDKs</h1>
-  <summary>In this topic, you will learn how to play a live stream with the Brightcove Native SDKs that includes server-side ads and utilizes Player Enhancements for Live SSAI for an improved user experience.</summary>
+  <h1>Sending Brightcove Analytics from the Native SDK for Android</h1>
+  <summary>In this topic, you will learn how to set properties in Brightcove Analytics from your mobile app using the Brightcove SDK for Android.</summary>
 
 <section class="bcls-section">
-<h2 id="Introduction">Introduction</h2>
+<h2 id="Analytics_integration">Analytics integration</h2>
 
-<p>Brightcove's Player Enhancements for Live SSAI allows you to improve the ad breaks in live streams with ad counts, ad countdown timers, click through ads and companion ads. These live streams can be played using the Brightcove Native SDKs.</p>
+<p>If you use the Brightcove player and <code>catalog</code> included in the SDK to retrieve and play videos, analytics data will be automatically collected and will appear in the Video Cloud Analytics module.</p>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Client-side ad components" src="//learning-services-media.brightcove.com/doc-assets/node/18946-sls-overview/client-components-sls.png" />
-<figcaption class="bcls-caption--image">Client-side ad components</figcaption>
-</figure>
-
-<p>Since TVs do not support a web browser, companion and click-through ads are not available on connected TVs.</p>
-
-<p>If you are new to this feature, see the following:</p>
-
-<ul>
-	<li><a href="node/18946/">Overview: Player Enhancements for Live SSAI</a></li>
-	<li><a href="node/18949/">Implementing Player Enhancements for Live SSAI</a></li>
-</ul>
+<p>If you override the <code>BrightcoveVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Account Id to Video Cloud Analytics.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Steps">Steps</h2>
+<h2 id="Customize_properties">Customize properties</h2>
 
-<p>To play live streams with an enhanced player using the Brightcove Native SDKs, follow these steps:</p>
+<p>As of version 4.2.7 of the Brightcove Mobile SDK for Android, you can send custom values to Brightcove Analytics from your app for Account Id, Destination URI and Source URI.</p>
 
-<ol class="bcls-tasklist">
-	<li>Follow the workflow in the <a href="node/18949/">Implementing Player Enhancements for Live SSAI</a> document, up through creating your playback token.</li>
-	<li>
-	<p>Build your app:</p>
+<p>Your Account Id is required, but is automatically set when you use the Brightcove player and the <code>catalog</code>.</p>
 
-	<ul>
-		<li><a href="#Android_implementation">Android implementation</a></li>
-		<li><a href="#iOS_implementation">iOS implementation</a></li>
-	</ul>
-	</li>
-	<li>Continue with the workflow in the the <a href="node/18949/">Implementing Player Enhancements for Live SSAI</a> document.</li>
-</ol>
+<p>You can set the Destination and Source URIs if you choose. The default values are based on the application package name.</p>
+
+<p>These properties can be set in your Android <code>MainActivity</code> class file:</p>
+
+<pre class="line-numbers">
+<code class="language-java">brightcoveVideoView = (SeamlessVideoView) findViewById(R.id.brightcove_video_view);
+
+Analytics analytics = brightcoveVideoView.getAnalytics();
+analytics.setAccount("<span class="bcls-input">your accountID</span>");
+analytics.setDestination("<span class="bcls-input">valid URI</span>");
+analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
 </section>
 
 <section class="bcls-section">
-<h2 id="Android_implementation">Android implementation</h2>
+<h3 id="Account">Account</h3>
 
-<p>You will need the following values to build your app using the Native SDK for Android:</p>
+<p>Use the <code>account</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code>accountId</code> value in the video’s metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code>accountId</code> property, and non-Video Cloud videos, which will not contain the <code>accountId</code> property).</p>
 
-<ul>
-	<li>Playback token</li>
-	<li>Account Id</li>
-	<li>Video Id</li>
-	<li>Policy Key</li>
-</ul>
+<p>For example, you can set the accountId property as follows:</p>
 
-<p>To get your Policy Key, review the <a href="node/18125/">Policy Keys</a> document.</p>
+<pre class="line-numbers">
+<code class="language-java">brightcoveVideoView.getAnalytics().setAccount("<span class="bcls-input">your accountId</span>");</code></pre>
 
-<p>Follow these steps to build your app:</p>
+<p>When you set the account property, the value of this property will be used for any of your videos which do not already have an <code>accountId</code> property. The most useful value for this property is your own Account Id. These videos will be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
 
-<ol class="bcls-tasklist-restart">
-	<li>Use the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Sample App</a> as a starting point for your code.</li>
-	<li>In the <strong>res/values/strings.xml</strong> file, replace the following with your own values:
-	<ul>
-		<li>Account Id</li>
-		<li>Video Id</li>
-		<li>Policy Key</li>
-	</ul>
-	</li>
-	<li>
-	<p>In the <strong>MainActivity.java</strong> file, replace the <code>ad_config_id</code> value with your <a href="node/18949#Configure_the_player">playback token</a>.</p>
-
-	<pre>
-<code class="language-html">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "<span class="bcls-input">your playback token</span>";</code></pre>
-	</li>
-	<li>
-	<p>The <code>ad_config_id</code> with your playback token value is added to the HTTP request as a query parameter.</p>
-
-	<pre class="line-numbers">
-<code class="language-html">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-  .addQueryParameter(<span class="bcls-highlight">AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE</span>)
-  .build();</code></pre>
-	</li>
-	<li>
-	<p>Make the catalog call to the Playback API with your live stream video id and the updated HTTP request.</p>
-
-	<pre class="line-numbers">
-<code class="language-html">catalog.findVideoByID(<span class="bcls-highlight">getString(R.string.video_id), httpRequestConfig</span>, new VideoListener() {
-     @Override
-     public void onVideo(Video video) {
-         plugin.processVideo(video);
-     }
- });</code></pre>
-	</li>
-	<li>Your player is ready to play your live stream.</li>
-</ol>
+<p>For Video Cloud videos, setting this account override has no effect on reporting, since the video's <code>accountId</code> metadata value remains unchanged. That value can not be overridden by setting this account value.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="iOS_implementation">iOS implementation</h2>
+<h3 id="Destination">Destination</h3>
 
-<p>You will need the following values to build your app using the Native SDK for iOS:</p>
+<p>Use the <code>destination</code> property to set the value of the location that originates the event. The value of the destination property MUST be in proper URI format, similar to this example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">bcsdk://com.mhogben.source</code></pre>
+
+<p>The default value the destination property is <code>bcsdk://</code> followed by the app name, followed by the package name.</p>
+
+<p>For example, in the Android SDK HLS Sample App, the destination value would be:</p>
+
+<pre class="line-numbers">
+<code class="language-java">bcsdk://HLSSampleApp/com.brightcove.player.samples.hls.basic</code></pre>
+
+<p>Any screen in your app that instantiates a <code>brightcoveVideoView</code> can set this destination override to a distinct value, to better track video views within the app itself.</p>
+</section>
+
+<section class="bcls-section">
+<h3 id="Source">Source</h3>
+
+<p>Use the <code>source</code> property to set the URI that sent the end-user to the destination URI. As with the destination value, the value of the source property MUST be in proper URI format, similar to this example:</p>
+
+<pre class="line-numbers">
+<code class="language-java">bcsdk://com.mhogben.source</code></pre>
+
+<p>The default value of the source property is null. When the value is null, the source property is not sent to the Analytics server.</p>
+
+<p>For example, you can set the source property as follows:</p>
+
+<pre class="line-numbers">
+<code class="language-java">brightcoveVideoView.getAnalytics().setSource("bcsdk://com.brightcove.HLSPlayerSampleAppSource");</code></pre>
+
+<p class="BCL-aside">Note: For more details about URI structures for use in the destination and source fields, see the <a href="//en.wikipedia.org/wiki/URI_scheme">URI Scheme</a> Wikipedia page. You can use a tool like this <a href="https://www.url-encode-decode.com/">URL Encoder</a> to convert characters into UTF-8 encoding format.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="View_analytics"><a name="viewAnalytics"></a>View analytics</h2>
+
+<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video.To learn how, view the following docs:</p>
 
 <ul>
-	<li>Playback token</li>
-	<li>Account Id</li>
-	<li>Video Id</li>
-	<li>Policy Key</li>
+	<li><a href="/node/18214">Viewing Brightcove Analytics</a></li>
+	<li><a href="/node/10104">Performance Report Reference</a></li>
 </ul>
 
-<p>To get your Policy Key, review the <a href="node/18125">Policy Keys</a> document.</p>
-
-<p>Follow these steps to build your app:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>Use the <a href="https://github.com/BrightcoveOS/ios-player-samples">Basic SSAI Player</a> sample as a starting point for your code.</li>
-	<li>In the <strong>ViewController.swift</strong> file, replace the following with your own values:
-	<ul>
-		<li>Account Id</li>
-		<li>Video Id</li>
-		<li>Policy Key</li>
-	</ul>
-	</li>
-	<li>
-	<p>Replace the <code>AdConfigId</code> value with your <a href="node/18949#Configure_the_player">playback token</a>.</p>
-
-	<pre>
-<code class="language-html">static let AdConfigId = "<span class="bcls-input">your playback token</span>"</code></pre>
-	</li>
-	<li>
-	<p>The <code>AdConfigId</code> with your playback token value is added as a query parameter.</p>
-
-	<pre>
-<code class="language-html">let queryParameters = [kBCOVPlaybackServiceParamaterKeyAdConfigId: <span class="bcls-highlight">Constants.AdConfigId</span>]</code></pre>
-	</li>
-	<li>
-	<p>Make the catalog call to the Playback API with your live stream video id and the query parameter.</p>
-
-	<pre class="line-numbers">
-<code class="language-html">playbackService.findVideo(withVideoID: <span class="bcls-highlight">Constants.VideoId</span>, parameters: <span class="bcls-highlight">queryParameters</span>)
-  { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
-  guard let _video = video else {
-    print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")
-    return
-  }
-  self?.playbackController?.setVideos([_video] as NSFastEnumeration)
-}</code></pre>
-	</li>
-	<li>Your player is ready to play your live stream.</li>
-</ol>
+<p class="BCL-aside">Note: Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</p>
 </section>
 </article>
 
@@ -599,7 +584,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 20 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">

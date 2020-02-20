@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Viewing Brightcove Analytics for the Player SDKs</title>
+  <title>Playback</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/analytics/">Analytics</a></li>
+      <li class="breadcrumb-item"><a href="/ios/playback/">iOS Development</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Viewing Brightcove Analytics for the Player SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Playback</li>
     </ol>
   </nav>
 </header>
@@ -246,11 +246,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <a href="/android/analytics/">Analytics <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/analytics/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
                         
                         <li><a href="/android/analytics/analytics-related-offline-playback-native-sdks.html">Analytics Related to Offline Playback</a></li>
                         
-                        <li><a href="/android/analytics/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
                         
                       </ul>
                     </li>
@@ -276,9 +276,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <a href="/android/live/">Live <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/live/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
                         
-                        <li><a href="/android/live/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
                         
                       </ul>
                     </li>
@@ -403,6 +403,45 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                     </li>
                   
                 
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/analytics/">Analytics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/live/">Live <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Using Player Enhancements for Live SSAI</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                        
+                        <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
               </ul>
             
           
@@ -433,190 +472,74 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
+<style>
+  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
+    font-size: 3rem;
+    color:rgb(239, 108, 42);
+    margin-right: .5rem;
+  }
+  .card-icon i {
+    color: rgb(239, 108, 42);
+  }
+  .card-wrapper {
+  justify-content: start;
+}
+.bcls-card h2 {
+  font-size: 1rem;
+}
+.bcls-card ul {
+  font-size: small;
+  margin-left: -3em;
+}
+</style>
+
 <article class="bcls-article">
-  <h1>Viewing Brightcove Analytics for the Player SDKs</h1>
-  <summary>In this topic, you will learn how to view Brightcove Analytics for your apps which use the Brightcove Native Player SDKs</summary>
-
-<section class="bcls-section" id="Overview">
-<h2>Overview</h2>
-
-<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video. For details about viewing the Performance reports in Video Cloud Analytics, see the <a href="/node/10104">Performance Report Reference</a> document.</p>
-
-<p>Here are some options for viewing your data:</p>
-
-<ul>
-	<li><a href="#accountId">accountId</a></li>
-	<li><a href="#destination">destination</a></li>
-	<li><a href="#player">player</a></li>
-	<li><a href="#source">source</a></li>
-</ul>
-
-<aside class="bcls-aside bcls-aside--information">Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</aside>
-
-<p>You can also learn about <a href="#Sending_data_to_Video_Cloud">sending data to Video Cloud Analytics</a>.</p>
-</section>
-
-<section class="bcls-section" id="accountId">
-<h2>accountId</h2>
-
-<p>View the source values that you have set from your app.</p>
-
-<h3>accountId - video level</h3>
-
-<p>View video analytics where you have set the accountId.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Video</strong> from the context menu that appears.</p>
-	</li>
-	<li>
-	<p>The <strong>Other/Third Party</strong> list item will show a roll-up of performance from all the videos for which you have set the accountId property. You will not see these videos listed separately since Brightcove Analytics currently does not support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Other/Third Party Videos" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/account-accountId.png" />
-	<figcaption class="bcls-caption--image">Other/Third Party Videos</figcaption>
-	</figure>
-	</li>
-</ol>
-</section>
-
-<section class="bcls-section" id="destination">
-<h2>destination</h2>
-
-<p>View the destination values that you have set from your app.</p>
-
-<h3>destination - account level</h3>
-
-<p>View the destination values that you have set at the account level.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Display Domain</strong> from the context menu that appears.</p>
-	</li>
-	<li>
-	<p>This Account Performance report lists destination values, including those you have specified in your app code.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Display Domains Report" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/account-destination.png" />
-	<figcaption class="bcls-caption--image">Display Domains Report</figcaption>
-	</figure>
-	</li>
-	<li>Select a destination domain to see the details.</li>
-</ol>
-
-<h3>destination - video level</h3>
-
-<p>View the destination values that you have set at the video level.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Video</strong> from the context menu that appears.</p>
-	</li>
-	<li>
-	<p>Select a video to view.</p>
-	</li>
-	<li>
-	<p>Expand the <strong>Performance by</strong> drop-down menu and select the <strong>Display Domain</strong> option.</p>
-	</li>
-	<li>
-	<p>This Video Performance report lists destination values, including those you have specified in your app code.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video Domains Report" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/video-destination.png" />
-	<figcaption class="bcls-caption--image">Video Domains Report</figcaption>
-	</figure>
-	</li>
-</ol>
-</section>
-
-<section class="bcls-section" id="player">
-<h2>player</h2>
-
-<p>View the players at the account level which are used in your app.</p>
-
-<h3>player - account level</h3>
-
-<p>View player analytics for players in your app.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Player</strong> from the context menu that appears.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image" alt="Other/Third Party Videos" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/account-player.png" />
-	<figcaption class="bcls-caption--image">Other/Third Party Videos</figcaption>
-	</figure>
-	</li>
-</ol>
-</section>
-
-<section class="bcls-section" id="source">
-<h2>source</h2>
-
-<p>View the source values that you have set from your app.</p>
-
-<h3>source - account level</h3>
-
-<p>View the source values that you have set at the account level.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Source of Traffic</strong> from the context menu that appears.</p>
-	</li>
-	<li>
-	<p>In the <strong>Summary</strong> list, select the <strong>Referral</strong> link to view a detailed report by source.</p>
-	</li>
-	<li>
-	<p>This Account Performance report will include the source values you have specified in your app code.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Source Details" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/account-source.png" />
-	<figcaption class="bcls-caption--image">Source Details</figcaption>
-	</figure>
-	</li>
-</ol>
-
-<h3>source - video level</h3>
-
-<p>View the source values that you have set at the video level.</p>
-
-<ol>
-	<li>
-	<p>In the Analytics module, select <strong>Performance</strong> in the left-side menu and select <strong>Video</strong> from the context menu that appears.</p>
-	</li>
-	<li>
-	<p>Select a video to view.</p>
-	</li>
-	<li>
-	<p>Expand the <strong>Performance by</strong> drop-down menu and select the <strong>Source of Traffic</strong> option.</p>
-	</li>
-	<li>
-	<p>This list will show you the performance for sources, including the source values you specified in your app code. Note that the Analytics module does not support drilling into each list item, such as <strong>Direct</strong>.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video Source Report" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/analytics/video-source.png" />
-	<figcaption class="bcls-caption--image">Video Source Report</figcaption>
-	</figure>
-	<!-- <p>The <strong>Referral</strong> list item will show a roll-up of performance from all sources, including the source values you specified in your app code. Note that the Analytics module does not support drilling into this <strong>Referral</strong> view.</p> --></li>
-</ol>
-</section>
-
-<section class="bcls-section" id="Sending_data_to_Video_Cloud">
-<h2>Sending data to Video Cloud</h2>
-
-<p>For details on how to send data to Video Cloud Analytics from your apps see the following:</p>
-
-<ul>
-	<li><a href="/node/18221">Brightcove Player SDK for iOS</a></li>
-	<li><a href="/node/18239">Brightcove Player SDK for Android</a></li>
-</ul>
-
-<p class="BCL-aside">If you use the Brightcove player and catalog included in the SDK to retrieve and play videos, analytics data will be automatically collected and will appear in the Video Cloud Analytics module.</p>
-</section>
+  <h1><i class="fa fa-apple"></i> Playback</h1>
+  <summary>Learn about the options available for video playback when using the Brightcove Native SDK for iOS.</summary>
+  <section class="card-wrapper">
+    <section class="bcls-card">
+      <div class="card-content">
+        <h2 id="Topics_in_this_section">Topics in Playback</h2>
+        <ul>
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                
+                  <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                
+                  <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                
+              
+            
+          
+        
+          
+        
+      </div>
+    </section>
+  </section>
 </article>
 
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
-      
-      <nav class="right-side-nav">
-        <h6 class="toc">Page Contents</h6>
-        <ul id="in_page_nav" class="list-none"></ul>
-      </nav>
       
     </div>
   </div>
@@ -624,7 +547,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 14 Feb 2020
+  Page last updated on 20 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -705,8 +628,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
-  
-  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
