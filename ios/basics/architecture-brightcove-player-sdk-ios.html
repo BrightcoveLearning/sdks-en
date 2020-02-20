@@ -1,0 +1,78 @@
+---
+title: Architecture: Brightcove Player SDK for iOS
+description: In this topic, you will learn about the some of the main components for Native SDK for iOS and how they interact with each other.
+parent: Basics
+grandparent: iOS Development
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+
+<p>The Brightcove Native Player SDK for iOS provides integration points for advertising, analytics and content protection. It also provides player controls similar to the Brightcove web player and allows you to play back live stream events.</p>
+
+<p>The entry point to the Brightcove Player SDK for iOS is the <code>BCOVPlayerSDKManager</code> singleton object. It provides the following functionality:</p>
+
+<ul>
+	<li>Serves as an object factory for components, including the <code>BCOVPlaybackController</code></li>
+	<li>Hooks up analytics</li>
+	<li>Keeps track of which plugins are being used</li>
+</ul>
+
+<p>To create a player, start with the <code>BCOVPlayerSDKManager</code>.</p>
+
+<p>For installation notes and a detailed architecture overview, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK for iOS GitHub README</a> notes.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Component_flow_diagram">Component flow diagram</h2>
+
+<p>This diagram shows some of the components in the Native SDK for iOS and how they relate to each other.</p>
+
+<figure class="bcls-figure"><img class="bcls-image" alt="iOS Architecture" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/ios/getting-started/overview/ios-architecture.png" />
+<figcaption class="bcls-caption--image">iOS Architecture</figcaption>
+</figure>
+&nbsp;
+
+<p>Brightcove Player SDK fundamentally uses the <code>AVFoundation</code>. HLS support is whatever is made available by the <code>AVFoundation</code>.</p>
+&nbsp;
+
+<p>Now that you have a basic understanding of the component flow, you are ready to learn about registering your app.</p>
+
+<div style="text-align:center"><button class="bcls-button" type="button" title="Next button" onclick="location.href='/node/18229';">Next &gt;</button></div>
+
+<p>&nbsp;</p>
+</section>
+</article>
+<!-- Learning path right navigation -->
+<link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/css/learning-paths/learning-paths.css" /><script>
+    var learning_path = [
+      {
+        node: '18231',
+        title: 'Native SDK Architecture'
+      },
+      {
+        node: '18229',
+        title: 'Register Your App'
+      },
+      {
+        node: '18232',
+        title: 'Use Media Content'
+      },
+      {
+        node: '18230',
+        title: 'Understand Events'
+      },
+      {
+        node: '18219',
+        title: 'Step-by-Step: Simple Obj-C Video App'
+      },
+      {
+        node: '18220',
+        title: 'Step-by-Step: Simple Swift Video App'
+      }
+    ]
+  </script><script src="https://learning-services-media.brightcove.com/doc-assets/js/learning-paths/learning-paths.js"></script>
