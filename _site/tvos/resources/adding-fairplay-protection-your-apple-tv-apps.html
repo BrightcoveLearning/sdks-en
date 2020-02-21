@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>iOS: Source Selection</title>
+  <title>Adding FairPlay protection to your Apple TV Apps</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/tvos/playback/">Playback</a></li>
+      <li class="breadcrumb-item"><a href="/tvos/resources/">Resources</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">iOS: Source Selection</li>
+      <li class="breadcrumb-item active" aria-current="page">Adding FairPlay protection to your Apple TV Apps</li>
     </ol>
   </nav>
 </header>
@@ -657,6 +657,51 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                     </li>
                   
                 
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/tvos/playback/apple-tv-ui-controls-native-sdk-tvos.html">Apple TV UI Controls</a></li>
+                        
+                        <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/troubleshooting/">Troubleshooting <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/troubleshooting/error-handling-native-sdk-ios.html">Error Handling</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/AppleTV">Basic Apple TV Sample</a></li>
+                        
+                        <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAItvOSPlayer">Apple TV with SSAI</a></li>
+                        
+                        <li><a href="/tvos/resources/adding-fairplay-protection-your-apple-tv-apps.html">Apple TV with FairPlay</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/ios-sdk/index.html">Native SDK for iOS Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/CHANGELOG.md">Release Notes</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
               </ul>
             
           
@@ -688,55 +733,183 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </div>
 
 <article class="bcls-article">
-  <h1>iOS: Source Selection</h1>
-  <summary>In this topic, you will learn how the Brightcove Native Player SDK for iOS uses a default source (rendition) selection process when playing a video.</summary>
+  <h1>Adding FairPlay protection to your Apple TV Apps</h1>
+  <summary>In this topic, you will learn how to add FairPlay content protection to your Apple TV apps that use the Brightcove Native SDK for tvOS.</summary>
 
 <section class="bcls-section">
-<h2 id="Default_selection_process">Default selection process</h2>
+<h2 id="Overview">Overview</h2>
 
-<p>When you retrieve videos from the Brightcove catalog or construct a <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVVideo.html">BCOVVideo</a> object with multiple <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVSource.html">BCOVSource</a> elements, the player has to decide which <code>BCOVSource</code> (rendition) to play back.</p>
+<p>The Native SDK for tvOS supports Digital rights management (DRM) protection using HLS with FairPlay Streaming. When your account is DRM-enabled and configured for Dynamic Delivery, your videos will automatically be packaged for DRM when you ingest them.</p>
 
-<p>Apple introduced App Transport Security in iOS 9, and strongly encourages the use of HTTPS instead of HTTP for all web traffic. Therefore, the Brightcove default source selection policy is: <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVBasicSourceSelectionPolicy.html#//api/name/sourceSelectionHLSWithScheme:">[BCOVBasicSourceSelectionPolicy sourceSelectionHLSWithScheme:NSURLProtectionSpaceHTTPS]</a>.</p>
+<p>Because support for FairPlay-protected videos is integrated into the core framework of the Brightcove Native SDK, you won't need to load an application certificate. For details, see the <a href="/node/18213">Content Security (DRM) with the Native Player SDKs</a> document.</p>
 
-<aside class="bcls-aside bcls-aside--information">Although you can't control which source in the HLS manifest gets selected by the AVPlayer, you can apply a <a href="/node/18228#Limiting_the_bitrate">bitrate cap on playback</a>.</aside>
+<aside class="bcls-aside bcls-aside--information">This example uses FairPlay-protected content with Dynamic Delivery. If you are using legacy ingestion, see the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/FairPlay/BasicFairPlayPlayer/swift">Basic FairPlay</a> sample.</aside>
+</section>
 
-<p>Brightcove provides a default implementation as follows:</p>
+<section class="bcls-section">
+<h2 id="Code_sample">Code sample</h2>
 
-<ol class="bcls-tasklist-restart">
-	<li>It looks for the first source that has a <code>deliveryType</code> of <strong>HLS</strong> using the HTTPS scheme.</li>
-	<li>If no such source is found, the first <strong>HLS</strong> with an HTTP scheme is returned.</li>
-	<li>If no <strong>HLS</strong> sources are present, it will fall back to the first source with a <code>deliveryType</code> of <strong>MP4</strong>.</li>
-	<li>If none of the above is found, the first playable source of any kind is returned.</li>
-	<li>The source URL is provided to the <code>AVPlayer</code> for playback.</li>
-	<li>When playback begins, the <code>AVPlayer</code> is responsible for selecting which bit rate and resolution to serve.</li>
-	<li>The <code>AVPlayer</code> will start at the first item in the index and adjust accordingly.</li>
+<p>To add FairPlay content protection to your Apple TV app, follow these steps:</p>
+
+<ol class="bcls-tasklist">
+	<li>Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/AppleTV/swift">Basic Apple TV</a> sample app.</li>
+	<li>Add FairPlay license code to your app. This can be found in the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/FairPlay/BasicFairPlayPlayer/swift">Basic FairPlay</a> sample.</li>
 </ol>
 
-<p>When using the default transcode settings, the first HLS source should be the master m3u8 playlist that points to all of your individual renditions.</p>
+<p>Your code for the <strong>ViewController.swift</strong> file should look similar to this:</p>
+
+<pre class="line-numbers">
+<code class="language-swift">//
+//  ViewController.swift
+//  Fairplay-Video-Playback
+//
+//  Copyright © 2019 Brightcove. All rights reserved.
+//
+
+import UIKit
+import BrightcovePlayerSDK
+
+// This example is for content using Dynamic Delivery. Because of this, you do NOT need to specify your FairPlay Application ID or the FairPlay Publisher ID.
+fileprivate struct playbackConfig {
+    static let policyKey = "<span class="bcls-input">your policy key</span>"
+    static let accountID = "<span class="bcls-input">your account ID</span>"
+    static let videoID = "<span class="bcls-input">your video ID</span>"
+}
+
+class ViewController: UIViewController {
+    @IBOutlet weak var videoContainerView: UIView!
+
+    var playbackController: BCOVPlaybackController = BCOVPlayerSDKManager.shared().createPlaybackController()
+    var fairPlayAuthProxy: BCOVFPSBrightcoveAuthProxy?
+
+    lazy var playerView: BCOVTVPlayerView? = {
+        // Set ourself as the presenting view controller
+        // so that tab bar panels can present other view controllers
+        let options = BCOVTVPlayerViewOptions()
+        options.presentingViewController = self
+
+        // Create and add to the video container view
+        guard let _playerView = BCOVTVPlayerView(options: options) else {
+            return nil
+        }
+
+        // Link the playback controller to the Player View
+        _playerView.playbackController = playbackController
+
+        videoContainerView.addSubview(_playerView)
+
+        _playerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            _playerView.topAnchor.constraint(equalTo: videoContainerView.topAnchor),
+            _playerView.rightAnchor.constraint(equalTo: videoContainerView.rightAnchor),
+            _playerView.leftAnchor.constraint(equalTo: videoContainerView.leftAnchor),
+            _playerView.bottomAnchor.constraint(equalTo: videoContainerView.bottomAnchor)
+            ])
+
+        return _playerView
+    }()
+
+    lazy var playbackService: BCOVPlaybackService = {
+        return BCOVPlaybackService(accountId: playbackConfig.accountID, policyKey: playbackConfig.policyKey)
+    }()
+
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+
+        // With Dynamic Delivery, you don't need to load
+        // an application certificate. The FairPlay session will load an
+        // application certificate for you if needed.
+        // You can just load and play your FairPlay videos.
+
+        // With Dynamic Delivery, you can pass nil for the publisherId and applicationId
+        self.fairPlayAuthProxy = BCOVFPSBrightcoveAuthProxy(publisherId: nil,
+                                                            applicationId: nil)
+
+        let sdkManager = BCOVPlayerSDKManager.sharedManager()
+
+        // Create chain of session providers
+        let psp = sdkManager?.createBasicSessionProvider(with:nil)
+        let fps = sdkManager?.createFairPlaySessionProvider(withApplicationCertificate:nil,
+                                                            authorizationProxy:self.fairPlayAuthProxy!,
+                                                            upstreamSessionProvider:psp)
+
+        createSampleTabBarItemView()
+
+        // Create the playback controller
+        playbackController = (sdkManager?.createPlaybackController(with:fps, viewStrategy:nil))!
+        // Configure the playback controller
+        playbackController.isAutoAdvance = false
+        playbackController.isAutoPlay = true
+        playbackController.delegate = self
+
+        // Link the playback controller to the Player View
+        playerView?.playbackController = playbackController
+
+        requestContentFromPlaybackService()
+    }
+
+    private func createSampleTabBarItemView() {
+
+        guard let playerView = playerView, var topTabBarItemViews = playerView.settingsView.topTabBarItemViews else {
+            return
+        }
+
+        let sampleTabBarItemView = SampleTabBarItemView(size: CGSize.init(width: 620, height: 200), playerView: playerView)
+
+        // Insert our new tab bar item view at the end of the top tab bar
+        topTabBarItemViews.append(sampleTabBarItemView)
+        playerView.settingsView.topTabBarItemViews = topTabBarItemViews
+    }
+
+    private func requestContentFromPlaybackService() {
+        playbackService.findVideo(withVideoID: playbackConfig.videoID, parameters: nil) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+
+            if let _video = video {
+                //  since "isAutoPlay" is true, setVideos will begin playing the content
+                self?.playbackController.setVideos([_video] as NSArray)
+            } else {
+                print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")
+            }
+
+        }
+    }
+}
+
+// MARK: - UIFocusEnvironment overrides
+extension ViewController {
+
+    // Focus Environment override for tvOS 9
+    override var preferredFocusedView: UIView? {
+        return playerView
+    }
+
+    // Focus Environment override for tvOS 10+
+    override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        return (playerView != nil ? [ playerView! ] : [])
+    }
+
+}
+
+// MARK: - BCOVPlaybackControllerDelegate
+extension ViewController: BCOVPlaybackControllerDelegate {
+
+    func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+        NSLog("ViewController Debug - Advanced to new session.")
+    }
+
+    func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+        NSLog("Event: %@", lifecycleEvent.eventType)
+    }
+
+}</code></pre>
 </section>
-
-<section class="bcls-section">
-<h2 id="Alternate_rendition_selection_policies">Alternate source selection policies</h2>
-
-<p>You can easily override the default source selection policy if this does not work for you. For details, see the <strong>Source Selection</strong> section of the <a href="https://docs.brightcove.com/ios-sdk/index.html">Brightcove Player SDK for iOS</a> reference document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Overriding_source">Overriding source</h2>
-
-<p>If you want to override which <code>BCOVSource</code> gets provided to the <code>AVPlayer</code>, you can implement the <code>sourceSelectionPolicy</code> block property on the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVBasicSessionProviderOptions.html#//api/name/sourceSelectionPolicyy">BCOVBasicSessionProviderOptions</a> class.</p>
-</section>
-<!-- <section class="bcls-section" id="Widevine_plugin">
-      				<h2>Widevine plugin</h2>
-                <p>The Widevine plugin has a slightly different behavior. Its implementation is as follows:</p>
-                <ol>
-                    <li>It looks for the first source with a <code>deliveryType</code> of <strong>WVM</strong>.</li>
-                    <li>The source URL is provided to the <code>AVPlayer</code> for playback.</li>
-                    <li>When playback begins, the <code>AVPlayer</code> is responsible for selecting which bit rate and resolution to serve.</li>
-                </ol>
-                <p>Bit rate and resolution selection is handled by the <code>AVPlayer</code>, unless you enable Widevine&rsquo;s rendition selection option as documented <a href="//www.widevine.com/wv_drm.html">here</a>.</p>
-                <aside class="bcls-aside bcls-aside--information">Widevine does not document how their bit rate and resolution selection works.</aside>
-      			</section> --></article>
+</article>
 
 <!-- complete bootstrap layout -->
     </div>
