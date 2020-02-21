@@ -1,0 +1,2945 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- remember to remove the following line when the site is ready to go live -->
+  <!-- <meta name="robots" content="noindex" /> -->
+  <title>Brightcove Player SDK for iOS: Previous SDK information</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="/assets/css/site/bc-icons.css"> -->
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/prism.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/styles.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/landing-page.css">
+  <link rel="stylesheet" href="https://learning-services-media.brightcove.com/doc-assets/site-assets/css/site/tabs.css">
+  <link rel="stylesheet" href="/assets/css/local.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/381443caa8.js" crossorigin="anonymous"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/google-analytics.js"></script>
+</head>
+
+<body class="body">
+
+<header>
+  <div class="div-header">
+    <a href="/"><img class="product-logo" src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/product-logos/logo-bc-video-cloud.svg" alt="product logo" style="max-height: 100px;max-width: 232px;"></a>
+<!-- GTranslate: https://gtranslate.io/ -->
+<select onchange="doGTranslate(this);" style="margin-right: 1rem;">
+  <option value="">Select a language</option>
+  <option value="en|en">English</option>
+  <option value="en|zh-TW">繁體中文</option>
+  <option value="en|fr">Français</option>
+  <option value="en|de">Deutsch</option>
+  <option value="en|ja">日本語</option>
+  <option value="en|ko">한국어</option>
+  <option value="en|es">Español</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;if(lang_pair=='')return;var lang=lang_pair.split('|')[1];var plang=location.hostname.split('.')[0];if(plang.length !=2 && plang.toLowerCase() != 'zh-cn' && plang.toLowerCase() != 'zh-tw')plang='en';location.href=location.protocol+'//'+(lang == 'en' ? '' : lang+'.')+location.hostname.replace('www.', '').replace(RegExp('^' + plang + '\\.'), '')+location.pathname+location.search;}
+/* ]]> */
+</script>
+
+<select id="site_select" style="margin-right: 1rem;">
+  <option value="">Other Brightcove Documentation</option>
+  
+    
+      <option value="https://support.brightcove.com">Documentation Home</option>
+    
+  
+    
+      <option value="https://audience.support.brightcove.com">Brightcove Audience</option>
+    
+  
+    
+      <option value="https://beacon.support.brightcove.com">Brightcove Beacon</option>
+    
+  
+    
+      <option value="https://campaign.support.brightcove.com">Brightcove Campaign</option>
+    
+  
+    
+      <option value="https://gallery.support.brightcove.com">Gallery</option>
+    
+  
+    
+      <option value="https://zencoder.support.brightcove.com">Zencoder</option>
+    
+  
+</select>
+
+
+    <span class="secondary-nav"><a href="https://supportportal.brightcove.com/s/login/?language=en_US"><img src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/support.png" alt="support"> Contact Support</a> <span style="vertical-align: top;margin-left:1em;margin-right:1em;">|</span> <a href="https://status.brightcove.com/"><img src="https://learning-services-media.brightcove.com/doc-assets/site-assets/images/site/status.png" alt="system status"> System Status</a></span>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb arr-right">
+      
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      
+      
+      
+      <li class="breadcrumb-item"><a href="/ios/">iOS Development</a></li>
+      
+      <li class="breadcrumb-item active" aria-current="page">Brightcove Player SDK for iOS: Previous SDK information</li>
+    </ol>
+  </nav>
+</header>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3 left-side-bar">
+        <nav class="sidenav">
+          
+            
+            <h5><a href="/">Home</a></h5>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/getting-started/">Getting Started <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/native-video-playback.html">Native Video Playback</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdk-features.html">Native SDK Features</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdks-feature-support.html">Feature Support Table</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/running-sample-apps-native-sdk-android.html">Running Android Sample Apps</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/running-sample-apps-native-sdk-ios.html">Running iOS/tvOS Sample Apps</a></li>
+                  
+                
+                  
+                    <li><a href="/getting-started/brightcove-native-sdks-training-videos.html">Native SDK Training Videos</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/features/">Features <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li><a href="/features/advertising-sdks.html">Advertising</a></li>
+                  
+                
+                  
+                    <li><a href="/features/analytics-sdks.html">Analytics</a></li>
+                  
+                
+                  
+                    <li><a href="/features/using-captions-brightcove-native-sdks.html">Captions</a></li>
+                  
+                
+                  
+                    <li><a href="/features/using-360deg-videos-native-sdks.html">360 Degree Video</a></li>
+                  
+                
+                  
+                    <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV</a></li>
+                  
+                
+                  
+                    <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
+                  
+                
+                  
+                    <li><a href="/features/live-streams-native-sdks.html">Live Streams</a></li>
+                  
+                
+                  
+                    <li><a href="/features/multiple-audio-tracks-native-sdks.html">Multiple Audio Tracks</a></li>
+                  
+                
+                  
+                    <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                  
+                
+                  
+                    <li><a href="/features/brightcove-native-player-controls.html">Player Controls</a></li>
+                  
+                
+                  
+                    <li><a href="/features/picture-picture-native-sdks.html">Picture-in-Picture</a></li>
+                  
+                
+                  
+                    <li><a href="/features/video-formats-and-captioning-native-sdks.html">Video Formats and Captioning</a></li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/android/">Android Development <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/basics/">Basics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                        
+                        <li><a href="/android/basics/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
+                        
+                        <li><a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a></li>
+                        
+                        <li><a href="/android/basics/android-brightcove-registration.html">Brightcove Registration</a></li>
+                        
+                        <li><a href="/android/basics/android-working-media-content.html">Working with Media Content</a></li>
+                        
+                        <li><a href="/android/basics/understanding-events-native-sdk-android.html">Understanding Events</a></li>
+                        
+                        <li><a href="/android/basics/training-demand-developing-brightcove-native-player-sdk-android.html">Native SDK Training Videos</a></li>
+                        
+                        <li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/advertising/">Advertising <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/implementing-client-side-ads-native-sdks.html">Implementing Client-Side Ads (CSAI)</a></li>
+                        
+                        <li><a href="/features/implementing-server-side-ads-native-player-sdks.html">Implementing Server-Side Ads (SSAI)</a></li>
+                        
+                        <li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">SSAI Plugin for Android</a></li>
+                        
+                        <li><a href="/features/appending-ad-query-params-native-sdks.html">Appending Ad Query Params</a></li>
+                        
+                        <li><a href="/android/advertising/android-ad-ui-customization-server-side-ad-insertion-ssai.html">Ad UI Customization with SSAI</a></li>
+                        
+                        <li><a href="/features/ima-open-measurement-native-sdks.html">IMA Open Measurement</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/analytics/">Analytics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        
+                        <li><a href="/android/analytics/analytics-related-offline-playback-native-sdks.html">Analytics Related to Offline Playback</a></li>
+                        
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/captions/">Captions <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/captions/removing-android-captions-background-image.html">Removing the Captions Background Image</a></li>
+                        
+                        <li><a href="/features/synchronizing-webvtt-captions.html">Synchronizing WebVTT Captions</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/tv/">Connected TV <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/tv/cast-plugin-native-sdk-android.html">Chromecast Plugin</a></li>
+                        
+                        <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV Apps</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/content-protection/">Content Protection <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/framework/">Framework <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/framework/android-adding-viewmanaging-layout.html">Adding View/Managing Layout</a></li>
+                        
+                        <li><a href="/android/framework/android-pie-support-native-sdk-android.html">Android Pie Support</a></li>
+                        
+                        <li><a href="/android/framework/migrating-exoplayer-2-framework.html">Migrating to ExoPlayer 2 Framework</a></li>
+                        
+                        <li><a href="/android/framework/creating-plugin-native-sdk-android.html">Creating a Plugin</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/live/">Live <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Player Enhancements for Live SSAI</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/playback/hls-playback-native-sdk-android.html">HLS Playback</a></li>
+                        
+                        <li><a href="/android/playback/multiple-audio-tracks-offline-playback-native-sdk-android.html">Multiple Audio Tracks for Offline Playback</a></li>
+                        
+                        <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                        
+                        <li><a href="/android/playback/handling-orientation-change-native-sdk-android.html">Orientation Change</a></li>
+                        
+                        <li><a href="/android/playback/android-managing-player-controls.html">Managing Player Controls</a></li>
+                        
+                        <li><a href="/android/playback/android-source-selection.html">Source Selection</a></li>
+                        
+                        <li><a href="/android/playback/video-and-playlist-objects-json.html">Video and Playlist Objects from JSON</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/troubleshooting/">Troubleshooting <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/android/troubleshooting/error-messages-native-sdk-android.html">Error Message Guide</a></li>
+                        
+                        <li><a href="/android/troubleshooting/removing-android-log-messages.html">Removing Android Log Messages</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/android/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/android-player-samples">Android Code Samples</a></li>
+                        
+                        <li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Small Code Snippets</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Native SDK for Android Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/ios/">iOS Development <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/basics/">Basics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/basics/architecture-brightcove-player-sdk-ios.html">Architecture</a></li>
+                        
+                        <li><a href="/ios/basics/ios-brightcove-registration.html">Brightcove Registration</a></li>
+                        
+                        <li><a href="/ios/basics/ios-working-media-content.html">Working with Media Content</a></li>
+                        
+                        <li><a href="/ios/basics/understanding-events-native-sdk-ios.html">Understanding Events</a></li>
+                        
+                        <li><a href="/ios/basics/training-demand-developing-brightcove-native-player-sdk-ios.html">Native SDK Training Videos</a></li>
+                        
+                        <li><a href="/ios/basics/step-step-simple-video-app-using-objective-c.html">Step-by-Step: Simple Video App using Objective-C</a></li>
+                        
+                        <li><a href="/ios/basics/step-step-simple-video-app-using-swift.html">Step-by-Step: Simple Video App using Swift</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/advertising/">Advertising <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/implementing-client-side-ads-native-sdks.html">Implementing Client-Side Ads (CSAI)</a></li>
+                        
+                        <li><a href="/features/implementing-server-side-ads-native-player-sdks.html">Implementing Server-Side Ads (SSAI)</a></li>
+                        
+                        <li><a href="/features/appending-ad-query-params-native-sdks.html">Appending Ad Query Params</a></li>
+                        
+                        <li><a href="/features/ima-open-measurement-native-sdks.html">IMA Open Measurement</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/analytics/">Analytics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/captions/">Captions <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/synchronizing-webvtt-captions.html">Synchronizing WebVTT Captions</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/tv/">Connected TV <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">Chromecast Plugin</a></li>
+                        
+                        <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV Apps</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/content-protection/">Content Protection <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/framework/">Framework <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/live/">Live <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Player Enhancements for Live SSAI</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/offline-playback-native-player-sdks.html">Offline Playback</a></li>
+                        
+                        <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/troubleshooting/">Troubleshooting <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/troubleshooting/error-handling-native-sdk-ios.html">Error Handling</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/ios/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/ios-player-samples">iOS Code Samples</a></li>
+                        
+                        <li><a href="/ios/resources/code-snippets-using-native-sdk-ios.html">Small Code Snippets</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/ios-sdk/index.html">Native SDK for iOS Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/CHANGELOG.md">Release Notes</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/tvos/">tvOS Development <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/basics/">Basics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/basics/architecture-brightcove-player-sdk-ios.html">Architecture</a></li>
+                        
+                        <li><a href="/ios/basics/ios-brightcove-registration.html">Brightcove Registration</a></li>
+                        
+                        <li><a href="/ios/basics/ios-working-media-content.html">Working with Media Content</a></li>
+                        
+                        <li><a href="/ios/basics/understanding-events-native-sdk-ios.html">Understanding Events</a></li>
+                        
+                        <li><a href="/features/connected-tv-set-top-box-apps.html">Connected TV Apps</a></li>
+                        
+                        <li><a href="/ios/basics/training-demand-developing-brightcove-native-player-sdk-ios.html">Native SDK Training Videos</a></li>
+                        
+                        <li><a href="/tvos/basics/step-step-simple-tv-video-app-using-swift.html">Step-by-Step: Simple TV Video App using Swift</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/advertising/">Advertising <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/implementing-client-side-ads-native-sdks.html">Implementing Client-Side Ads (CSAI)</a></li>
+                        
+                        <li><a href="/features/implementing-server-side-ads-native-player-sdks.html">Implementing Server-Side Ads (SSAI)</a></li>
+                        
+                        <li><a href="/features/appending-ad-query-params-native-sdks.html">Appending Ad Query Params</a></li>
+                        
+                        <li><a href="/features/ima-open-measurement-native-sdks.html">IMA Open Measurement</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/analytics/">Analytics <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/sending-brightcove-analytics-native-sdk-android.html">Sending Brightcove Analytics</a></li>
+                        
+                        <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/captions/">Captions <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/synchronizing-webvtt-captions.html">Synchronizing WebVTT Captions</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/content-protection/">Content Protection <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/content-security-drm-native-player-sdks.html">Content Security (DRM)</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/framework/">Framework <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/live/">Live <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI</a></li>
+                        
+                        <li><a href="/features/using-player-enhancements-live-ssai-native-sdks.html">Player Enhancements for Live SSAI</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/playback/">Playback <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/tvos/playback/apple-tv-ui-controls-native-sdk-tvos.html">Apple TV UI Controls</a></li>
+                        
+                        <li><a href="/ios/playback/ios-source-selection.html">Source Selection</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/troubleshooting/">Troubleshooting <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/ios/troubleshooting/error-handling-native-sdk-ios.html">Error Handling</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/tvos/resources/">Resources <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/AppleTV">Basic Apple TV Sample</a></li>
+                        
+                        <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAItvOSPlayer">Apple TV with SSAI</a></li>
+                        
+                        <li><a href="/tvos/resources/adding-fairplay-protection-your-apple-tv-apps.html">Apple TV with FairPlay</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/ios-sdk/index.html">Native SDK for iOS Reference</a></li>
+                        
+                        <li><a href="https://docs.brightcove.com/index.html">Plugin References</a></li>
+                        
+                        <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/CHANGELOG.md">Release Notes</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+            
+              <h5 class="submenu-header"><a href="/support/">Developer Support <strong>+</strong></a></h5>            
+              <ul class="sidenav-submenu" style="display:none;">
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/support/announcements/">Announcements <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/support/announcements/native-sdk-android-will-eol-support-exoplayer-1.html">Android SDK EOL support for ExoPlayer 1</a></li>
+                        
+                        <li><a href="/support/announcements/announcement-brightcove-sdk-android-version-support.html">Android Version Support</a></li>
+                        
+                        <li><a href="/support/announcements/apple-announces-new-app-submission-requirement.html">Apple App Submission Requirement</a></li>
+                        
+                        <li><a href="/support/announcements/ios-sdk-deprecating-support-ios-10-and-eol-support-ios-9.html">iOS SDK deprecating support for iOS 10</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/support/questions/">Questions and Issues <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="https://groups.google.com/forum/#!forum/brightcove-native-player-sdks">SDK Developer Forum</a></li>
+                        
+                        <li><a href="/support/questions/faq-brightcove-native-player-sdks.html">Frequently Asked Questions</a></li>
+                        
+                        <li><a href="/support/questions/known-issues-brightcove-native-player-sdks.html">Known Issues</a></li>
+                        
+                        <li><a href="/support/questions/report-issue-brightcove-native-sdks.html">Report an Issue</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/support/help">Help <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/support/help/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
+                        
+                        <li><a href="/support/help/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+              </ul>
+            
+          
+      </nav>
+    </div>
+    <div class="col-lg-7" style="background-color: white;color: #333333;margin-top: -1em;margin-bottom: -1em;padding-bottom:1em;">
+  <!-- bootstrap layout -->
+
+<!-- search bar -->
+<div id="search_bar" class="search-bar">
+  <!-- TODO - cx value below must be changed for each site and new GCS instance set up-->
+  <!-- <script async src="https://cse.google.com/cse.js?cx=017969773216783359937:6sd3di5mwuw"></script> -->
+  <div id="search_box" class="gcse-search"></div>
+</div>
+
+<article class="bcls-article">
+  <h1>Brightcove Player SDK for iOS: Previous SDK information</h1>
+  <summary>This topic shows the previous SDK and plugin versions for the Native Player SDK for iOS.</summary>
+
+<header id="bcls_header" class="bcls-header"><!-- <p>This topic shows the previous SDK and plugin versions for the Native Player SDK for iOS.</p> -->
+<aside class="bcls-aside bcls-aside--warning">The following links for the previous version of the Brightcove Native Player SDK for iOS is for reference only. It is recommended to use the latest version of the SDK along with the plugin integrations.</aside>
+</header>
+
+<section class="bcls-section">
+<h2 id="Previous_SDK_version">Previous releases</h2>
+<!-- <h3>SDK v6.7.0</h3>
+<h4>7 Feb 2020</h4>
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p> --><!-- add table here -->
+
+<h3>SDK v6.6.2</h3>
+
+<h4>3 Feb 2020</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.6.2</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.6.2</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.6.2</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.6.2</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.6.2</a></td>
+			<td class="language-editable">Google Cast SDK v4.4.5</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.6.1</h3>
+
+<h4>30 Jan 2020</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.6.1</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.6.1</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.6.1</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.6.1</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.6.1</a></td>
+			<td class="language-editable">Google Cast SDK v4.4.5</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.6.0</h3>
+
+<h4>16 Dec 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.6.0</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.6.0</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.6.0</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.6.0</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.6.0</a></td>
+			<td class="language-editable">Google Cast SDK v4.4.5</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.5.0</h3>
+
+<h4>24 Oct 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.5.0</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.5.0</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.5.0</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.5.0</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.5.0</a></td>
+			<td class="language-editable">Google Cast SDK v4.4.5</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.5</h3>
+
+<h4>7 Aug 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.4.5</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.4.5</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.4.5</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.4.5</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.4.5</a></td>
+			<td class="language-editable">Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.4</h3>
+
+<h4>10 July 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.4.4</a></td>
+			<td class="language-editable">Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.4.4</a></td>
+			<td class="language-editable">FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td class="language-editable" style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.4.4</a></td>
+			<td class="language-editable">None</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.4.4</a></td>
+			<td class="language-editable">Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td class="language-editable" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td class="language-editable"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.4.4</a></td>
+			<td class="language-editable">Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.3</h3>
+
+<h4>22 Apr 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin 6.4.3</a></td>
+			<td>Google IMA v3.9.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin 6.4.3</a></td>
+			<td>FreeWheel Ad Manager 6.26.0</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin 6.4.3</a><br />
+			<span style="color:#da861a;">(Deprecated)</span></td>
+			<td style="background-color:#dbdbdb;">None</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">SSAI plugin 6.4.3</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin 6.4.3</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin 6.4.3</a></td>
+			<td>Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.2</h3>
+
+<h4>29 Mar 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.4.2</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.4.2</a></td>
+			<td>FreeWheel Ad Manager v6.26.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.4.2</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.4.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin v6.4.2</a></td>
+			<td>Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.1</h3>
+
+<h4>28 Feb 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.4.1</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.4.1</a></td>
+			<td>FreeWheel Ad Manager v6.26.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.4.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.4.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">GoogleCast plugin v6.4.1</a></td>
+			<td>Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.4.0</h3>
+
+<h4>23 Jan 2019</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.4.0</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.4.0</a></td>
+			<td>FreeWheel Ad Manager v6.26.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.4.0</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.4.0</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">Cast plugin v6.4.0</a></td>
+			<td>Google Cast SDK v4.3.3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.11</h3>
+
+<h4>30 Nov 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.11</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.11</a></td>
+			<td>FreeWheel Ad Manager v6.25.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.11</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.11</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.10</h3>
+
+<h4>31 Oct 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.10</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.10</a></td>
+			<td>FreeWheel Ad Manager v6.25.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.10</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.10</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.9</h3>
+
+<h4>27 Sep 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.9</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.9</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.9</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.9</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.8</h3>
+
+<h4>11 Sep 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.8</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.8</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.8</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.8</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.7</h3>
+
+<h4>30 Aug 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.7</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.7</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.7</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.7</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.5</h3>
+
+<h4>2 Aug 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.5</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.5</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.5</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.5</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.4</h3>
+
+<h4>2 July 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.4</a></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.4</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.4</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.4</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.3</h3>
+
+<h4>8 June 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.3</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.3</a></td>
+			<td>FreeWheel Ad Manager v6.22.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.3</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.3</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.2</h3>
+
+<h4>8 May 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.2</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.7.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.2</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.2</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.1</h3>
+
+<h4>11 Apr 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.1</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.1</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.3.0</h3>
+
+<h4>30 Mar 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.3.0</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.3.0</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.3.0</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.3.0</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.2.2</h3>
+
+<h4>29 Jan 2018</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.2.2</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.2.2</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.2.2</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.2.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.2.1</h3>
+
+<h4>22 Dec 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.2.1</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.2.1</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.2.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.2.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.1<br />
+			<br />
+			Adobe Marketing Cloud v4.14.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.2.0</h3>
+
+<h4>21 Nov 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.2.0</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.2.0</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.2.0</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.2.0</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.1.4</h3>
+
+<h4>5 Nov 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.1.4</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.1.4</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.1.4</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.1.4</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.1.3</h3>
+
+<h4>28 Oct 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.1.3</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.1.3</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.1.3</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.1.3</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.1.2</h3>
+
+<h4>19 Oct 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.1.2</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.1.2</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.1.2</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.1.1</h3>
+
+<h4>3 Oct 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.1.1</a></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.1.1</a></td>
+			<td>FreeWheel Ad Manager v6.17.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.1.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.1.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.6</h3>
+
+<h4>7 Sep 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.6</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.6.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.6</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.6</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.6</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.5</h3>
+
+<h4>24 Aug 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.5</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.5</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.5</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.5</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.3.4</h3>
+
+<h4>24 Aug 2017</h4>
+
+<p>For more information, see the following:</p>
+
+<ul>
+	<li><a href="https://cocoapods.org/pods/Brightcove-Player-SDK">SDK v5.3.4 release notes</a></li>
+	<li><a href="https://cocoapods.org/pods/Brightcove-Player-SDK#changelog">SDK v5.x change log</a></li>
+	<li><a href="https://github.com/CocoaPods/Specs/tree/master/Specs/2/4/f/Brightcove-Player-SDK">Podspecs for SDK v5.3.4 and earlier</a></li>
+</ul>
+
+<aside class="bcls-aside bcls-aside--tip">Note that there are no changes from v5.3.3 to v5.3.4, except that the README has been updated to point to the latest v6.x version of the SDK.</aside>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.3.1</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.3</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.10</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.4</h3>
+
+<h4>10 Aug 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.4</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.4</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.4</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.4</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6 (integrated into core SDK)</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Controls</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (integrated into core SDK)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;">DRM</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3 (integrated into core SDK)</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.3</h3>
+
+<h4>1 Aug 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.3</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.3</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.3</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.3</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6 (integrated into core SDK)</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Controls</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (integrated into core SDK)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;">DRM</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3 (integrated into core SDK)</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.2</h3>
+
+<h4>17 July 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.2</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.2</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.2</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6 (integrated into core SDK)</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Controls</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (integrated into core SDK)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;">DRM</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3 (integrated into core SDK)</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v6.0.1</h3>
+
+<h4>11 July 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v6.0.1</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v6.0.1</a></td>
+			<td>FreeWheel Ad Manager v6.15.0</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v6.0.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v6.0.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6 (integrated into core SDK)</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Controls</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (integrated into core SDK)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;">DRM</td>
+			<td style="background-color:#dff0d8;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3 (integrated into core SDK)</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td style="background-color:#dff0d8;">None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.3.3</h3>
+
+<h4>5 Apr 2017</h4>
+
+<p>Podspecs for SDK version 5.3.3 and below can be found <a href="https://github.com/CocoaPods/Specs/tree/master/Specs/2/4/f/Brightcove-Player-SDK">here</a>.</p>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.3.1</a> <sup><a href="#n1"> [1]</a></sup><sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.5.2</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.3</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.10</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6</a> <sup><a href="#n3"> [3]</a></sup><sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.3.2</h3>
+
+<h4>2 Mar 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.4</a> <sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.3.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.3</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.10</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.3</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.3.1</h3>
+
+<h4>8 Feb 2017</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.4</a> <sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.3.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.3</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.9</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6</a> <sup><a href="#n3"> [3]</a></sup> <sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.2</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.3.0</h3>
+
+<h4>19 Dec 2016</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+<!-- add table here -->
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.4</a> <sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.3.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.3</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.9</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.2</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.6</a> <sup><a href="#n3"> [3]</a></sup> <sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.2</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.4 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.2.0</h3>
+
+<h4>14 Oct 2016</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.2</a> <sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.3.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.2</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.7</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.1</a></td>
+			<td>Adobe Video Heartbeat v2.0.0<br />
+			<br />
+			Adobe Marketing Cloud v4.11.1</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.2</a> <sup><a href="#n3"> [3]</a></sup> <sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.1</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine v2.1.2 (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.1.4</h3>
+
+<h4>11 Oct 2016</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.1</a> <sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.2.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.0</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.5</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.0</a></td>
+			<td>Adobe Video Heartbeat v1.5.1.2<br />
+			<br />
+			Adobe Mobile Service v4.3.0</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.1</a> <sup><a href="#n3"> [3]</a></sup> <sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.0</a> <sup><a href="#n5">[5]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine (iOS 7+ support) (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#ffcccc;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#ffcccc;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n7"> [7]</a></sup></td>
+			<td style="background-color:#ffcccc;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.1.3</h3>
+
+<h4>1 Sep 2016</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.1</a> &nbsp;<sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.2.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.0</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.3</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.0</a></td>
+			<td>Adobe Video Heartbeat v1.5.1.2<br />
+			<br />
+			Adobe Mobile Service v4.3.0</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.0</a> &nbsp;<sup><a href="#n3"> [3]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.0</a> &nbsp;<sup><a href="#n4">[4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine (iOS 7+ support) (deprecated)</a> <sup><a href="#n5"> [5]</a></sup></td>
+			<td style="background-color:#dbdbdb;">Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n6"> [6]</a></sup></td>
+			<td style="background-color:#dbdbdb;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>SDK v5.1.2</h3>
+
+<h4>19 Jul 2016</h4>
+
+<p>The following table contains the Brightcove plugins and partner plugin versions associated with the previous version of the Brightcove Native SDK:</p>
+
+<table class="bcls-table">
+	<thead class="bcls-table__head">
+		<tr>
+			<th style="border-bottom:1px solid #707070;">Category</th>
+			<th style="border-bottom:1px solid #707070;">Brightcove Plugin<br />
+			(Github Repo)</th>
+			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th>
+		</tr>
+	</thead>
+	<tbody class="bcls-table__body">
+		<tr>
+			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima">IMA plugin v2.2.0</a> &nbsp;<sup><a href="#n1"> [1]</a></sup> <sup><a href="#n2"> [2]</a></sup></td>
+			<td>Google IMA v3.2.1</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw">FreeWheel plugin v2.1.0</a></td>
+			<td>FreeWheel SDK v6.5</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-oux">Once UX plugin v2.1.1</a></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-omniture">Omniture plugin v1.1.0</a></td>
+			<td>Adobe Video Heartbeat v1.5.1.2<br />
+			<br />
+			Adobe Mobile Service v4.3.0</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Captions</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-sidecarsubtitles">Sidecar Subtitles plugin v2.1.0</a> &nbsp;<sup><a href="#n3"> [3]</a></sup> <sup><a href="#n4"> [4]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td rowspan="2" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">DRM</td>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-fairplay">FairPlay plugin v1.1.0</a> &nbsp;<sup><a href="#n6">[6]</a></sup></td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/brightcove/brightcove-player-sdk-ios-widevine">Widevine (iOS 7+ support) </a></td>
+			<td>Widevine v6.0.0.12790</td>
+		</tr>
+		<tr>
+			<td style="background-color:#dbdbdb;font-weight: bold;">Controls</td>
+			<td style="background-color:#dbdbdb;"><a href="https://github.com/brightcove/brightcove-player-sdk-ios-player-ui">Player UI (deprecated)</a> <sup><a href="#n5"> [5]</a></sup></td>
+			<td style="background-color:#dbdbdb;">None</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+</section>
+</article>
+<!-- complete bootstrap layout -->
+    </div>
+    <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav">
+        <h6 class="toc">Page Contents</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="last-updated">
+  Page last updated on 21 Feb 2020
+</div>
+
+<footer class="bcls-footer" role="contentinfo">
+  <div class="row">
+    <div class="region region-footer-top-center col-md-12">
+      <nav role="navigation" aria-labelledby="block-brightcovesupport-menu" id="block-brightcovesupport" class="footer-menu">
+
+        <h2>Brightcove Support</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://status.brightcove.com">System Status</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?language=en_US">Contact Support</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/">Documentation</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-training-menu" id="block-training" class="footer-menu">
+
+        <h2>Training</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://support.brightcove.com/online-training-courses">Online Courses</a>
+          </li>
+          <li>
+            <a href="https://support.brightcove.com/register-training">Register for a course</a>
+          </li>
+        </ul>
+
+      </nav>
+      <nav role="navigation" aria-labelledby="block-brightcove-menu" class="footer-menu">
+
+        <h2>Brightcove</h2>
+
+        <ul class="menu">
+          <li>
+            <a href="https://www.brightcove.com">Brightcove.com</a>
+          </li>
+          <li>
+            <a href="https://supportportal.brightcove.com/s/login/?language=en_US" data-drupal-link-system-path="node/18330">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="region region-footer-bottom-center col-md-12">
+      <div class="bcls-copyright footer-menu">
+        <table>
+          <tr>
+            <td>
+              <div id="bc_copyright" class="field field--name-field-copyright-year field--type-string field--label-hidden field--item" style="float: left;"> Brightcove Inc. All rights reserved.</div>
+            </td>
+            <td><a href="https://www.brightcove.com/en/legal/privacy">Privacy</a> | <a href="https://www.brightcove.com/en/terms-and-conditions">Terms &amp; Conditions</a></td>
+            <td>
+              <div class="gf-links-cols footer-menu">
+                <div class="gf-social"><a href="https://www.linkedin.com/company/16439" title="LinkedIn" newtab="newtab" class="gf-social-linkedin"><i class="fab fa-linkedin-in" style="font-size: 1.5rem;"></i></a><a href="https://twitter.com/brightcove" title="Twitter" newtab="newtab" class="gf-social-twitter"><i class="fab fa-twitter" style="font-size: 1.5rem;"></i></a><a href="https://www.facebook.com/Brightcove" title="Facebook" newtab="newtab" class="gf-social-facebook"><i class="fab fa-facebook-f" style="font-size: 1.5rem;"></i></a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/https-fix.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/setDate.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
+  
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
+  
+  <script src="/assets/js/sites_nav.js"></script>
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
+  <script src="/assets/js/feedback.js"></script>
+  <script src="/assets/js/search.js"></script>
+  <script async src="https://cse.google.com/cse.js?cx=017969773216783359937:pcgjqitzi3b"></script>
+</body>
+
+</html>
