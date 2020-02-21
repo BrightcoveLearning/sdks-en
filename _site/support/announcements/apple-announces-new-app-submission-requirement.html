@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- remember to remove the following line when the site is ready to go live -->
   <!-- <meta name="robots" content="noindex" /> -->
-  <title>Connected TV</title>
+  <title>Apple announces new app submission requirement</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -86,9 +86,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/tvos/tv/">tvOS Development</a></li>
+      <li class="breadcrumb-item"><a href="/support/announcements/">Announcements</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Connected TV</li>
+      <li class="breadcrumb-item active" aria-current="page">Apple announces new app submission requirement</li>
     </ol>
   </nav>
 </header>
@@ -695,15 +695,48 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
             
           
             
-              <h5 class="submenu-header"><a href="/support/">Support <strong>+</strong></a></h5>            
+              <h5 class="submenu-header"><a href="/support/">Developer Support <strong>+</strong></a></h5>            
               <ul class="sidenav-submenu" style="display:none;">
                 
                   
-                    <li><a href="/support/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
+                    <li class="submenu-header">
+                      <a href="/support/announcements/">Announcements <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/support/announcements/native-sdk-android-will-eol-support-exoplayer-1.html">Android SDK EOL support for ExoPlayer 1</a></li>
+                        
+                        <li><a href="/support/announcements/announcement-brightcove-sdk-android-version-support.html">Android Version Support</a></li>
+                        
+                        <li><a href="/support/announcements/apple-announces-new-app-submission-requirement.html">Apple App Submission Requirement</a></li>
+                        
+                        <li><a href="/support/announcements/ios-sdk-deprecating-support-ios-10-and-eol-support-ios-9.html">iOS SDK deprecating support for iOS 10</a></li>
+                        
+                      </ul>
+                    </li>
                   
                 
                   
-                    <li><a href="/support/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
+                    <li class="submenu-header">
+                      <a href="/support/questions/">Questions and Issues <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/support/questions/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+                
+                  
+                    <li class="submenu-header">
+                      <a href="/support/help">Help <strong>+</strong></a>
+                      <ul class="sidenav-subsubmenu" style="display:none;">
+                        
+                        <li><a href="/support/help/opening-case-with-brightcove-support.html">Opening a Support Case</a></li>
+                        
+                        <li><a href="/support/help/viewing-brightcove-system-status-page.html">Viewing the Brightcove System Status Page</a></li>
+                        
+                      </ul>
+                    </li>
                   
                 
               </ul>
@@ -721,80 +754,37 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <div id="search_box" class="gcse-search"></div>
 </div>
 
-<style>
-  h1 i.fal, h1 i.fab, h1 i.fas, h1 i.far {
-    font-size: 3rem;
-    color:rgb(239, 108, 42);
-    margin-right: .5rem;
-  }
-  .card-icon i {
-    color: rgb(239, 108, 42);
-  }
-  .card-wrapper {
-  justify-content: start;
-}
-.bcls-card h2 {
-  font-size: 1rem;
-}
-.bcls-card ul {
-  font-size: small;
-  margin-left: -3em;
-}
-</style>
-
 <article class="bcls-article">
-  <h1><i class="fa fa-apple"></i> Connected TV</h1>
-  <summary>Learn how to create apps for connected TV using the Brightcove Native SDK for tvOS.</summary>
-  <section class="card-wrapper">
-    <section class="bcls-card">
-      <div class="card-content">
-        <h2 id="Topics_in_this_section">Topics in Connected TV</h2>
-        <ul>
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-          
-        
-          
-        
-      </div>
-    </section>
-  </section>
+  <h1>Apple announces new app submission requirement</h1>
+  <summary>Apple announces that you will need to build your projects using the iOS 12.1 SDK when submitting new apps to the App Store.</summary>
+
+<section class="bcls-section">
+<h2 id="Requirements_for_App_Store">Requirements for App Store</h2>
+
+<p>To take advantage of the new features provided by the iOS SDK, Apple will require that all new apps submitted to the App Store must be built with the iOS 12.1 SDK or later. This requirement takes effect starting <strong>March 2019</strong>.</p>
+
+<p>This means that to submit any new apps, you will have to use Xcode 10.1, which provides the tools to build apps for the latest SDKs, including iOS 12, tvOS 12 and Swift 4.2.</p>
+
+<p>For details, see the <a href="https://developer.apple.com/ios/submit/">Submitting iOS apps to the App Store</a> documentation.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Native_SDKs_support">Native SDK support</h2>
+
+<p>Following Apple’s lead, the Brightcove Native SDK for iOS/tvOS v6.3.10+ supports building with Xcode 10.1. If you have not already done so, please migrate to Xcode 10.1 as soon as possible.</p>
+
+<aside class="bcls-aside bcls-aside--information">The Brightcove Native SDK for iOS/tvOS v6.3.5+ no longer supports building with Xcode 8.</aside>
+</section>
 </article>
 
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
+      
+      <nav class="right-side-nav">
+        <h6 class="toc">Page Contents</h6>
+        <ul id="in_page_nav" class="list-none"></ul>
+      </nav>
       
     </div>
   </div>
@@ -802,7 +792,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 20 Feb 2020
+  Page last updated on 21 Feb 2020
 </div>
 
 <footer class="bcls-footer" role="contentinfo">
@@ -883,6 +873,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/prism.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/site.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/tabs.js"></script>
+  
+  <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/toc.js"></script>
   
   <script src="/assets/js/sites_nav.js"></script>
   <script src="https://learning-services-media.brightcove.com/doc-assets/site-assets/js/site/bcls-utils.js"></script>
