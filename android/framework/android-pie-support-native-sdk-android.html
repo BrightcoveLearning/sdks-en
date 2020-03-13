@@ -61,13 +61,17 @@ https://docs.google.com/document/d/1PfXOq59MG8s87gcwiZvzWCZ_CuKDpLi3VO-VRF_LkjY/
 
 <p>One option is to make sure all of your network requests use HTTPS. To do so, follow these steps:</p>
 
-<ol class="bcls-tasklist-restart">
+<ol class="bcls-tasklist__restart">
 	<li>
 	<p>Enable your CDN for secure communication.</p>
 
 	<ul>
 		<li>Video Cloud customers (whether you are using the house CDN or a named CDN) should contact their Brightcove account managers to ensure accounts are configured to deliver over HTTPS.</li>
-		<li>For those using remote assets, you may need to configure your CDN appropriately.</li>
+		<li>
+			<p>
+				For those using remote assets, you may need to configure your CDN appropriately.
+			</p>
+		<aside class="bcls-aside bcls-aside--information">If you are using BYO CDN, you need to pass the correct <code>X-Forwarded-Proto: https</code> headers. For Akamai or Cloudfront, you can use <code>X-Forwarded-Proto-Akamai</code> or <code>CloudFront-Forwarded-Proto</code> respectively.</aside></li>
 	</ul>
 	</li>
 	<li>
@@ -95,7 +99,7 @@ https://docs.google.com/document/d/1PfXOq59MG8s87gcwiZvzWCZ_CuKDpLi3VO-VRF_LkjY/
 
 <h4 id="Update_the_application_tag">Update the application tag</h4>
 
-<ol class="bcls-tasklist-restart">
+<ol class="bcls-tasklist__restart">
 	<li>
 	<p>To enable this, open the <strong>AndroidManifest</strong> file, and add the following line in the <code class="notranslate">application</code> tag. For example:</p>
 
@@ -110,7 +114,7 @@ https://docs.google.com/document/d/1PfXOq59MG8s87gcwiZvzWCZ_CuKDpLi3VO-VRF_LkjY/
 
 <h4 id="Add_a_network_security_configuration_file">Add a network security configuration file</h4>
 
-<ol class="bcls-tasklist-restart">
+<ol class="bcls-tasklist__restart">
 	<li>
 	<p>Create an xml file, for example <strong>network-security-config.xml</strong>, and add it to the <strong>res/xml</strong> directory. See the following example for how to allow clear traffic:</p>
 
@@ -137,7 +141,7 @@ https://docs.google.com/document/d/1PfXOq59MG8s87gcwiZvzWCZ_CuKDpLi3VO-VRF_LkjY/
 
 <p>You can specify certain domains to be permitted to use clear HTTP requests. To do this, follow these steps:</p>
 
-<ol class="bcls-tasklist-restart">
+<ol class="bcls-tasklist__restart">
 	<li>
 	<p>Create an xml file, for example <strong>network-security-config.xml</strong>, and add it to the <strong>res/xml</strong> directory. See the following example for how to set your domains:</p>
 
