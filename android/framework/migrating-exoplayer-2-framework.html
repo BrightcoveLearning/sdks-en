@@ -109,7 +109,7 @@ implementation 'com.android.support:support-vector-drawable:${SUPPORT_V4_VERSION
 
 	<p>The current value for the Brightcove SDK version (<code>anpVersion</code>) can be found in the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/gradle.properties">gradle.properties</a> file.</p>
 	</li>
-	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following:
+	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_management.html">transitive dependencies</a> are off by default. So, you will need to add the following:
 	<pre class="line-numbers">
 <code class="language-java">dependencies {
 	implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
