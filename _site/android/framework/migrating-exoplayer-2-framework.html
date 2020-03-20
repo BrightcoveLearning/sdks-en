@@ -784,7 +784,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li><a href="#Existing_MediaPlayer_project">Existing MediaPlayer project</a></li>
 </ul>
 
-<p>Refer to the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/ExoPlayer2/brightcove-exoplayer">ExoPlayer sample applications</a> for additional guidance on integrating the <a href="https://medium.com/google-exoplayer/exoplayer-2-x-new-package-and-class-names-ef8e1d9ba96f">ExoPlayer 2</a> framework into your project.</p>
+<p>Refer to the <a href="https://github.com/BrightcoveOS/android-player-samples">ExoPlayer sample applications</a> for additional guidance on integrating the <a href="https://medium.com/google-exoplayer/exoplayer-2-x-new-package-and-class-names-ef8e1d9ba96f">ExoPlayer 2</a> framework into your project.</p>
 </section>
 
 <section class="bcls-section">
@@ -800,7 +800,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   implementation "com.brightcove.player:exoplayer2:${anpVersion}"
 }</code></pre>
 	</li>
-	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following statement:
+	<li>Setting the <code>transitive</code> option to <code>true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_management.html">transitive dependencies</a> are off by default. So, you will need to add the following statement:
 	<pre class="line-numbers">
 <code class="language-java">dependencies {
   implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>

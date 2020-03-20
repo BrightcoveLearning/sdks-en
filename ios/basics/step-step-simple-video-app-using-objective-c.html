@@ -210,7 +210,7 @@ end</code></pre>
 
 <p>The audio session handles audio behavior at the app level. Learn more about the <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession">AVAudioSession</a> class.</p>
 
-<aside class="bcls-aside bcls-aside--tip">You can choose from several audio session categories and settings to customize your app's audio behavior. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_categories">Choose the best audio session category</a> for your app.</aside>
+<aside class="bcls-aside bcls-aside--tip">You can choose from several audio session categories and settings to customize your app's audio behavior. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession">Choose the best audio session category</a> for your app.</aside>
 
 <p>For this sample, we will use <code>AVAudioSessionCategoryPlayback</code>. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. To keep it simple, we will put the code for this in the App Delegate.</p>
 
@@ -678,7 +678,7 @@ return self;
 	<li>Below the <code>init</code> function, create a method named <code>setup</code>, which is called when the app loads.
 
 	<ul>
-		<li>Line 37: Creates the playback controller using a shared manager. The <a href="https:/docs.brightcove.com/ios-sdk/Classes/BCOVPlayerSDKManager.html"><code>BCOVPlayerSDKManager</code></a> class is a singleton that allows you to create other objects in the SDK ecosystem.</li>
+		<li>Line 37: Creates the playback controller using a shared manager. The <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPlayerSDKManager.html"><code>BCOVPlayerSDKManager</code></a> class is a singleton that allows you to create other objects in the SDK ecosystem.</li>
 		<li>Line 39: Registers your app with Brightcove by sending your Account Id.</li>
 		<li>
 		<p>Lines 41-43: set the delegate and turn on the autoadvance and autoplay features.</p>
@@ -931,7 +931,7 @@ return [[BCOVVideo alloc] initWithSource:source cuePoints:[BCOVCuePointCollectio
 <code class="language-swift">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
 Temporary exceptions can be configured via your app's Info.plist file.</code></pre>
 
-		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href=" ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>
+		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>
 		</li>
 	</ul>
 	</li>
