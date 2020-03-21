@@ -12,13 +12,13 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p class="video-cloud-only">This example plays a video returned from the <a href="/node/17906">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library.</p>
+<p class="video-cloud-only">This example plays a video returned from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library.</p>
 
-<p class="video-cloud-only">For this option, you will need a Policy Key. If you are not familiar with Policy Keys, see <a href="/node/18003">Policy API Overview</a>.</p>
+<p class="video-cloud-only">For this option, you will need a Policy Key. If you are not familiar with Policy Keys, see <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</p>
 
 <aside class="bcls-aside bcls-aside--tip">This example is written in Swift, but you can also experiment with Objective-C. See the following:
 <ul>
-	<li><a href="/node/18219">Step-by-Step:: Simple Video App using Obj-C</a></li>
+	<li><a href="/ios/basics/step-step-simple-video-app-using-objective-c.html">Step-by-Step:: Simple Video App using Obj-C</a></li>
 	<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer/objc">Obj-C version of the VideoCloudBasicPlayer</a></li>
 </ul>
 </aside>
@@ -52,7 +52,7 @@ grandparent: iOS Development
 	<li>Open and run the newly created workspace.</li>
 </ol>
 
-<p>For details, see the <a href="/node/18566">Running Sample Apps for the Native SDK for iOS/tvOS</a> document.</p>
+<p>For details, see the <a href="/getting-started/running-sample-apps-native-sdk-ios.html">Running Sample Apps for the Native SDK for iOS/tvOS</a> document.</p>
 
 <h3>Build the app by following the steps in this guide</h3>
 
@@ -214,7 +214,7 @@ end</code></pre>
 
 <p>The audio session handles audio behavior at the app level. Learn more about the <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession">AVAudioSession</a> class.</p>
 
-<aside class="bcls-aside bcls-aside--tip">You can choose from several audio session categories and settings to customize your app's audio behavior. <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_categories">Choose the best audio session category</a> for your app.</aside>
+<aside class="bcls-aside bcls-aside--tip">You can choose from several audio session categories and settings to customize your app's audio behavior. <a href="https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html#//apple_ref/doc/uid/TP40007875-CH10">Choose the best audio session category</a> for your app.</aside>
 
 <p>For this sample, we will use the <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession/category/1616509-playback">playback</a> category. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. Since we are playing video, we will use the <a href="https://developer.apple.com/documentation/avfoundation/avaudiosession/mode/1616623-movieplayback">moviePlayback</a> mode. To keep it simple, we will put this code in the App Delegate.</p>
 
@@ -321,7 +321,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <p>Add values to access your Video Cloud account.</p>
 
-<p>This example plays a video returned from the <a href="/node/17906">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library. If you are not familiar with Policy Keys, see the <a href="/node/18003">Policy API Overview</a>.</p>
+<p>This example plays a video returned from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library. If you are not familiar with Policy Keys, see the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</p>
 
 <ol class="bcls-tasklist">
 	<li>
@@ -391,7 +391,7 @@ let kViewControllerVideoID = "<span class="bcls-input">your video id</span>"</co
 		<li>
 		<p>Line 27: <strong>Optional:</strong> Sends your Video Cloud Account ID to analytics. This is only needed if you override the <code class="notranslate">BCOVVideo</code> class or do not use the Brightcove Playback service or catalog.</p>
 
-		<aside class="bcls-aside bcls-aside--tip">For details about sending data to Video Cloud Analytics, see the <a href="/node/18214">Using Brightcove Analytics</a> guide.</aside>
+		<aside class="bcls-aside bcls-aside--tip">For details about sending data to Video Cloud Analytics, see the <a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a> guide.</aside>
 		</li>
 		<li>
 		<p>Lines 29-31: set the delegate and turn on the auto-advance and autoplay features.</p>
@@ -895,7 +895,7 @@ class ViewController: UIViewController, BCOVPlaybackControllerDelegate {
 <code class="notranslate language-swift">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
 Temporary exceptions can be configured via your app's Info.plist file.</code></pre>
 
-		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href=" ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>
+		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>
 		</li>
 	</ul>
 	</li>

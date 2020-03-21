@@ -57,7 +57,7 @@ This program will be captioned</code></pre>
 <h3>360° videos</h3>
 
 <ul>
-	<li>If you do not use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> class, your 360° video will play, but the app may crash when pausing and resuming it. To learn more about using this class, see the <a href="/node/18252">Understanding the BrightcovePlayer class</a> document.</li>
+	<li>If you do not use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> class, your 360° video will play, but the app may crash when pausing and resuming it. To learn more about using this class, see the <a href="/android/basics/android-choosing-video-view.html">Understanding the BrightcovePlayer class</a> document.</li>
 	<li>You may experience some video drift after rotating the device. The problem is related to how the device gyroscope is calibrated, and this can affect performance. It is not associated with specific device makes and models, but instead on the motion sensor hardware installed on the device. The newer Android OS's have more sophisticated filter algorithms to correct the problem. A simple fix is to turn off the device and turn it on while it is lying on a flat, stable surface.</li>
 </ul>
 
@@ -71,7 +71,7 @@ This program will be captioned</code></pre>
 
 <ul>
 	<li>With Android 8.0 Oreo, when <strong>Background Activity</strong> is switched off, a download is started, and the app is put in the background, the download stops and does not continue when the app is reopened. The notification bar displays a status of <strong>Downloading...</strong></li>
-	<li>When using Widevine with Android 8.0 Oreo, you may notice that on some devices the rental license acquired is already expired. This is a known issue with Google's ExoPlayer, but it has been fixed with Android 8.1.0 on most devices. Unfortunately, there is no workaround for Android 8.0.</li>
+	<li>When using Widevine with Android 8.0 Oreo, you may notice that on some devices the rental license acquired is already expired. This is a known issue with Widevine CDM. This issue is fixed in Android 8.1 for most devices. Unfortunately, there is no workaround for Android 8.0.</li>
 	<li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code class="”notranslate”">OfflineLicenseManager.releaseLicense </code> method, a <code class="”notranslate”">MediaDrmStateException </code> error is thrown.</li>
 	<li>
 	<p>In the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">OfflinePlaybackSampleApp</a>, there are two Widevine license expiration periods.</p>

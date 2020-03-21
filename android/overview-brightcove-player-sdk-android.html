@@ -18,7 +18,6 @@ parent: Android Development
 
 <ul>
 	<li>Brightcove's Native SDK for Android now supports <a href="https://developer.android.com/jetpack">Android Jetpack (AndroidX)</a> libraries. For more details, see the <a href="#Download_the_SDK">Download the SDK</a> section</li>
-	<li>For a quick reference to all of the SDK documents, check out the <a href="/node/18367">Brightcove Native SDKs landing page</a>.</li>
 </ul>
 </aside>
 </section>
@@ -100,18 +99,18 @@ parent: Android Development
 	<li>Maven repo
 	<p>The Brightcove Native Player for Android Maven artifacts (jar files) are now available in the Brightcove Maven Repo - <a href="https://repo.brightcove.com/releases">https://repo.brightcove.com/releases</a></p>
 
-	<aside class="bcls-aside bcls-aside--tip">For details about adding the Maven repo to your Android project, see the <a href="/node/18238#Create_a_project">Build an app using the Native SDK for Android</a> document.</aside>
+	<aside class="bcls-aside bcls-aside--tip">For details about adding the Maven repo to your Android project, see the <a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html#Create_a_project">Build an app using the Native SDK for Android</a> document.</aside>
 	</li>
-	<li><a href="/node/18250">Android SDK overview</a>
+	<li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Android SDK overview</a>
 	<p>To aid in your understanding of the SDK, learn how critical components interact to handle the complexities of controlling the native video player.</p>
 	</li>
-	<li><a href="/node/18238">Build an app using the Native SDK for Android</a>
+	<li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Build an app using the Native SDK for Android</a>
 	<p>Create your first app with the Brightcove Player SDK for Android, which plays a video from your own backend system. Video Cloud customers will additionally retrieve and play a video from the Brightcove Catalog service.</p>
 	</li>
 	<li><a href="https://groups.google.com/forum/#!forum/brightcove-native-player-sdks">SDK developer forum</a>
 	<p>Join us in the SDK developer forum where SDK related questions are answered by Brightcove engineers and the community. Search for previously answered questions or post a new one. As a public group, you can gain access by providing your email address.</p>
 	</li>
-	<li><a href="/node/18276">Video-on-Demand training</a>
+	<li><a href="/android/basics/training-demand-developing-brightcove-native-player-sdk-android.html">Video-on-Demand training</a>
 	<p>View a series of training videos that walk you through the steps of building an app in Android Studio that plays a video and a playlist from your Video Cloud library.</p>
 	</li>
 </ol>
@@ -139,7 +138,7 @@ parent: Android Development
 			<td style="background-color:#dbdbdb;font-weight: bold;">SDK</td>
 			<td><a href="https://learning-services-media.brightcove.com/doc-assets/device-sdks/android/reference/android-native-player-public-6.12.0.zip">Native SDK for Android v6.12.0</a></td>
 			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">SDK Reference</a></td>
-			<td><a href="node/18760">Release Notes</a></td>
+			<td><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></td>
 			<td><a href="https://github.com/brightcove/ExoPlayer">ExoPlayer 2 v2.10.8</a></td>
 			<td><a href="https://github.com/BrightcoveOS/android-player-samples">Sample Applications</a></td>
 		</tr>
@@ -150,7 +149,7 @@ parent: Android Development
 
 <p><button class="bcls-button" type="button" title="Android Player SDK" onclick="location.href='https://learning-services-media.brightcove.com/doc-assets/device-sdks/android/reference/android-native-player-public-6.12.0.zip';">Download the SDK</button></p>
 
-<p>To view the product updates for all of the Native SDKs and the associated plugins, see the <a href="/node/18253">Release Notes for the Brightcove Native SDKs</a> document.</p>
+<p>To view the product updates for all of the Native SDKs and the associated plugins, see the <a href="/support/questions/release-notes-brightcove-native-sdks.html">Release Notes for the Brightcove Native SDKs</a> document.</p>
 
 <h3>Notes</h3>
 
@@ -226,7 +225,7 @@ parent: Android Development
 
 <p>The sample applications demonstrate the basic functionality of each plugin integrated with the SDK. These sample apps are a good way to learn about each plugin, and serve as a reference point when debugging.</p>
 
-<p><a href="/node/18244">Previous integration versions</a></p>
+<p><a href="/android/brightcove-player-sdk-android-previous-sdk-information.html">Previous integration versions</a></p>
 <!-- **** begin copy table for previous versions doc **** -->
 
 <table class="bcls-table">
@@ -318,7 +317,7 @@ parent: Android Development
 	<p>You cannot pick and choose individual Brightcove plugin versions with partner plugin versions. You must use the partner plugin versions that are specified, as this is what has been tested.</p>
 	</li>
 	<li>To avoid problems with conflicting java libraries, make sure that you remove old versions from the path before adding the new libraries to your path. For the sample apps, include plugin libraries into the <code class="notranslate">libs/ </code> top-level directory.</li>
-	<!-- <li>The Brightcove Native SDKs have deprecated support for the Widevine Classic integration. For details, see the following <a href="/node/16613">announcement</a>.</li> -->
+	<!-- <li>The Brightcove Native SDKs have deprecated support for the Widevine Classic integration.</li> -->
 </ul>
 
 <p id="n1"><sup>[1]</sup> The Native SDK for Android v4.11.0 supports the functionality for the <code class="notranslate">skipCurrentAd </code> and <code class="notranslate">skipCurrentAdBreak </code> methods, but it does require the FreeWheel AdManager library v6.10.0. If you do not upgrade the FreeWheel library when using these methods, your application may crash.</p>
@@ -333,7 +332,7 @@ parent: Android Development
 
 <p id="n5"><sup>[5]</sup> You must independently obtain and install the <code class="notranslate">adobeMobileLibrary.jar </code> file into the top-level directory. The <code class="notranslate">adobeMobileLibrary.jar </code> file version 4.11.0 is provided along with the <code class="notranslate">VideoHeartbeat.jar </code> file version 2.0.</p>
 
-<p id="n6"><sup>[6]</sup> The Brightcove Native SDKs support <a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">VMAP</a> XML templates that contain the VAST protocol, including <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast-3-0/">VAST 3.0</a>, and limited support for <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast/">VAST 4.0</a>. For more details about VAST version compatibility, see <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/compatibility">Google's Support and Compatibility document</a> for the IMA SDK for Android. The Native SDKs also support the <a href="node/18847">IAB Open Measurement SDK</a>.</p>
+<p id="n6"><sup>[6]</sup> The Brightcove Native SDKs support <a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">VMAP</a> XML templates that contain the VAST protocol, including <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast-3-0/">VAST 3.0</a>, and limited support for <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast/">VAST 4.0</a>. For more details about VAST version compatibility, see <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/compatibility">Google's Support and Compatibility document</a> for the IMA SDK for Android. The Native SDKs also support the <a href="/features/ima-open-measurement-native-sdks.html">IAB Open Measurement SDK</a>.</p>
 </aside>
 
 <h3>Combining plugins</h3>
@@ -354,7 +353,7 @@ parent: Android Development
 		<li><strong>brightcove-player-controls</strong> folder – Concepts can be used with the ExoPlayer implementation.</li>
 	</ul>
 	</li>
-	<li><a href="/node/18246">Code snippets to help with specific tasks</a></li>
+	<li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Code snippets to help with specific tasks</a></li>
 </ul>
 
 <p>The following table contains links to code samples that are in addition to the samples associated with the integrations in the previous section.</p>
@@ -381,7 +380,8 @@ parent: Android Development
 		</tr>
 		<tr>
 			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/WidevineModularSampleApp/src/main">DRM with Widevine</a></td>
-			<td>Protect your content with Widevine. The Android framework supports Widevine Modular when using the ExoPlayer Video View. For details, see the <a href="https://google.github.io/ExoPlayer/guide.html#digital-rights-management">Widevine reference</a>. For the latest Widevine release announcements and product updates, see the <a href="https://www.widevine.com/product_news.html">Widevine Product News</a>.</td>
+			<td>Protect your content with Widevine. The Android framework supports Widevine Modular when using the ExoPlayer Video View. For details, see the <a href="https://google.github.io/ExoPlayer/guide.html#digital-rights-management">Widevine reference</a>.</td>
+      <!-- <td>For the latest Widevine release announcements and product updates, see the <a href="https://www.widevine.com/product_news.html">Widevine Product News</a>.</td> -->
 		</tr>
 		<tr>
 			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/LiveSampleApp">Live Stream</a></td>
@@ -421,7 +421,7 @@ parent: Android Development
 	</thead>
 	<tbody class="bcls-table__body">
 		<tr>
-			<td><a href="/node/18238">Brightcove Player SDK for Android Setup</a></td>
+			<td><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Brightcove Player SDK for Android Setup</a></td>
 			<td>Learn the basics of working with the Brightcove Player SDK for Android by walking you through the development of a simple video playback app using content from your own backend system.<br />
 			<br />
 			Video Cloud customers will additionally retrieve and play a video from the Brightcove Catalog service.</td>
@@ -431,27 +431,27 @@ parent: Android Development
 			<td>Learn how to create a plugin for the Brightcove Player SDK for Android.</td>
 		</tr>
 		<tr>
-			<td><a href="/node/18280">Managing View Layout</a></td>
+			<td><a href="/android/framework/android-adding-viewmanaging-layout.html">Managing View Layout</a></td>
 			<td>Learn how to manage the layout of a View added to the <code class="notranslate">BrightcoveVideoView </code>.</td>
 		</tr>
 		<tr>
-			<td><a href="/node/18237">Handling Orientation Changes</a></td>
+			<td><a href="/android/playback/handling-orientation-change-native-sdk-android.html">Handling Orientation Changes</a></td>
 			<td>Learn how to manage unwanted default behavior when the orientation changes.</td>
 		</tr>
 		<tr>
-			<td><a href="node/18847">IAB Open Measurement</a></td>
+			<td><a href="/features/ima-open-measurement-native-sdks.html">IAB Open Measurement</a></td>
 			<td>Learn how to use the Open Measurement SDK with the IMA plugin for support of third-party tools for ad measurement and verifcation.</td>
 		</tr>
 		<tr>
-			<td><a href="/node/18234">Source Selection</a></td>
+			<td><a href="/android/playback/android-source-selection.html">Source Selection</a></td>
 			<td>Learn about the default rendition selection process when playing a video.</td>
 		</tr>
 		<tr>
-			<td><a href="/node/18214">Using Brightcove Analytics</a></td>
+			<td><a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a></td>
 			<td>Learn how to set properties in Brightcove Analytics from your mobile app using the Brightcove SDK for Android.</td>
 		</tr>
 		<tr>
-			<td><a href="/node/18279">Working with Player Controls</a></td>
+			<td><a href="/android/playback/android-managing-player-controls.html">Working with Player Controls</a></td>
 			<td>Learn how to customize and hide player controls.</td>
 		</tr>
 	</tbody>
