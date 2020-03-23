@@ -1095,6 +1095,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h4>Shared videos</h4>
 <p>Shared videos can be downloaded for offline viewing only if the original video can be. The property is inherited from the original video and cannot be changed for shared video only.</p>
 
+<h4>Audio-only</h4>
+<p>The Native SDKs support audio-only content with Offline Playback. You control what viewers see, whether it is a poster image or a custom screen.</p>
+<p>
+	The Native SDK for Android requires a <code>VideoView</code>, and the Native SDK for iOS requires a <code>UIView</code>. Because of this, background audio is not supported. This means that audio will not keep playing when a user sends the app to the background.
+</p>
+
 <h3>Android</h3>
 <h4>App deletion</h4>
 <p>When the app is deleted, all downloaded content is removed. This is true as long as the default storage location is not overridden.</p>
