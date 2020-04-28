@@ -117,6 +117,35 @@ public class MainActivity extends BrightcovePlayer {
 	<figcaption class="bcls-caption--image">Video object</figcaption>
 	</figure>
 	</li>
+  <li>
+    <p>
+      You may want to see the custom fields, if any, exist for the <code>Video</code> object. Add the following code to the <code>onVideo</code> callback method to loop through the <code>customField</code> map.
+    </p>
+     <pre class="line-numbers">
+  <code class="language-java notranslate">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+   @
+   Override
+   public void onVideo(Video video) {
+     <span class="bcls-highlight"> Map&lt;String, String&gt; customFieldMap = (HashMap&lt;String, String&gt;) video.getProperties().get(Video.Fields.CUSTOM_FIELDS);
+     if (customFieldMap != null &amp;&amp; customFieldMap.size() &gt; 0) {
+       for (Map.Entry&lt;String, String&gt; entry : customFieldMap.entrySet()) {
+         Log.v(TAG, &quot;onVideo: Custom fields: Key: &quot; + entry.getKey() + &quot; Value: &quot; + entry.getValue());
+       }
+     }</span>
+     brightcoveVideoView.add(video);
+     brightcoveVideoView.start();
+  }
+});</code></pre>
+<p>
+  Here is an example of the logged output you may see from the code above:
+</p>
+<pre class="line-numbers">
+<code class="language-java notranslate">MainActivity: onVideo: Custom fields: Key: genre Value: Action
+MainActivity: onVideo: Custom fields: Key: customlist Value: customListValue1</code></pre>
+<p>
+  Note that custom fields can be represented as <code>Strings</code> or <code>Lists</code>. Even though a custom field can be a <code>List</code> type, it is a list of <code>String</code> values from which one value is chosen to set the field's value.
+</p>
+  </li>
 </ol>
 
 <h3>Geo-filtered videos</h3>
