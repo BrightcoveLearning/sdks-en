@@ -126,38 +126,69 @@ content.vmap<span class="bcls-highlight">?bc_token=XXX&amp;rule=discos-enabled&a
 
 <ol class="bcls-tasklist-restart">
 	<li>With an SSAI ad configuration id, retrieve a video object from the Brightcove catalog (Playback API). For details, see the <a href="/features/implementing-server-side-ads-native-player-sdks.html#Android_implementation">Android implementation</a> section of the Implementing Server-Side Ads with the Native Player SDKs document.</li>
-	<li>
-	<p>From the video object, select and extract the appropriate VMAP URL. Retrieve the default source using the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ssai/controller/SSAISourceSelector.html">SSAISourceSelector</a> object. The source object returned will have these properties:</p>
-
-	<pre>
-<code class="notranslate language-java">source.getProperties().get(Source.Fields.VMAP);</code></pre>
-	</li>
-	<li>Append query parameters to the VMAP URL.</li>
-	<li>
-	<p>Process the modified URL with the Once UX plugin as follows:</p>
-
-	<pre>
-<code class="notranslate language-java">plugin.processVideo(videoUrlString);</code></pre>
-	</li>
-</ol>
-<!-- <p>
-  Alternatively, you can select and extract the appropriate manifest URL as follows:
-</p>
-<pre><code class="notranslate language-java">source.getProperties().get(Source.Fields.URL);</code></pre>
-<p>
-  Once you append query parameters to the manifest URL, you can create the Video object and add it to the VideoView.
-</p> --><!-- <h3 id="Android_MainActivity_file" class="bcls-expander-head">Android MainActivity file</h3>
-<div class="bcls-expander-content">
-<p>Your <strong>MainActivity.java</strong> file should look similar to this:</p>
-
-<pre class="line-numbers">
-<code class="notranslate language-java">package com.brightcove.player.samples.onceux.basic;
-
-import android.os.Bundle;
-
+  <li>
+    <p>
+      In the <code>Catalog</code>'s <code>onVideo</code> callback method, select and extract the appropriate VMAP URL from the <code>Video</code> object's default source, using the <code>SSAISourceSelector</code>. The source object returned should have a VMAP URL property.
+    </p>
+    <pre>
+<code class="notranslate language-java">SSAISourceSelector sourceSelector = new SSAISourceSelector();
+Source source = sourceSelector.selectSource(video);            
+String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
+  </li>
+  <li>
+    <p>
+      Append your query parameters to the VMAP URL:
+    </p>
+    <pre>
+<code class="notranslate language-java">private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
+    Uri.Builder vmapBuilder = Uri.parse(vmapUrl).buildUpon();
+    for (Map.Entry&lt;String, String&gt; entry : vmapUrlParams.entrySet()) {
+        vmapBuilder.appendQueryParameter((entry.getKey(), entry.getValue());
+    }
+    return vmapBuilder.toString();
 }</code></pre>
-</div>
-&nbsp; -->
+  </li>
+  <li>
+    <p>
+      Process the updated <code>Video</code> object with the SSAI plugin as follows:
+    </p>
+    <pre>
+<code class="notranslate language-java">plugin.processVideo(video);</code></pre>
+  </li>
+</ol>
+<p>Here is a complete code sample:</p>
+<pre>
+<code class="notranslate language-java">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+        .addQueryParameter(AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE)
+        .build();
+Map&lt;String, String&gt; vmapUrlParams = new HashMap&lt;&gt;();
+vmapUrlParams.put(&quot;section&quot;, &quot;sports&quot;);
+vmapUrlParams.put(&quot;multi&quot;, &quot;baseball,tennis&quot;);
+
+catalog.findVideoByID(getString(R.string.video_id), httpRequestConfig, new VideoListener() {
+    @Override public void onVideo(Video video) {
+        // The Video Sources will have a VMAP url which will be processed by the SSAI plugin,
+        // If there is not a VMAP url, or if there are any requesting or parsing error,
+        // an EventType.ERROR event will be emitted.
+        try{
+            SSAISourceSelector sourceSelector = new SSAISourceSelector();
+            Source source = sourceSelector.selectSource(video);
+            String vmapUrl = source.getStringProperty(Source.Fields.VMAP);
+            source.getProperties().put(Source.Fields.VMAP, configureVmapUrlWithCustomParams(vmapUrl, vmapUrlParams)); plugin.processVideo(video);
+        }
+        catch (NoSourceFoundException ns) {
+            Log.e(TAG, &quot;No usable source was found - &quot; + ns.getMessage());
+        }
+    }
+});
+
+private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
+    Uri.Builder vmapBuilder = Uri.parse(vmapUrl).buildUpon();
+    for (Map.Entry&lt;String, String&gt; entry : vmapUrlParams.entrySet()) {
+        vmapBuilder.appendQueryParameter((entry.getKey(), entry.getValue());
+    }
+    return vmapBuilder.toString();
+}</code></pre>
 
 <h3 id="iOS_implementation">iOS implementation</h3>
 
