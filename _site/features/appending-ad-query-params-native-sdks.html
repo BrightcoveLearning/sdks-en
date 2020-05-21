@@ -830,28 +830,72 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <section class="bcls-section">
 <h2 id="Client_side_ads">Client-side ads</h2>
+<p>You can provide custom values through URL parameters appended to the VMAP URL.</p>
+<aside class="bcls-aside bcls-aside--information">Adding query parameters to an ad tag URL is possible only with Google IMA ads. Google IMA is the only ad provider that exposes the ad tag URL for this purpose; other ad providers, such as FreeWheel and Pulse, provide a set of configuration parameters.</aside>
 
-<p>To provide custom values through URL parameters appended to the VMAP URL, follow these steps:</p>
+<h3>Android implementation</h3>
+<p>Ad targeting key/value pairs can be added to your ad tag URL in two ways:</p>
+<ul>
+  <li>
+    Add your key/value pairs directly to the ad tag URL. Google IMA allows the addition of ad targeting key/value pairs using the <code>cust_params</code> parameter. For details, see Google's <a href="https://support.google.com/admanager/answer/1080597">Add key-values to a master video ad tag</a> document.
+  </li>
+  <li>
+    Apply a Map of values to the ad tag URL using the <code>updateAdTargetingValues</code> method for the <code>GoogleIMAComponent</code>.
+  </li>
+</ul>
+<p>For either approach, the key/value pairs are added to the ad tag URL in the <code>ADS_REQUEST_FOR_VIDEO</code> event listener. The code sample below adds the key/value pairs using the <code>updateAdTargetingValues</code> method for the <code>GoogleIMAComponent</code>.</p>
 
-<ol class="bcls-tasklist">
+<p>Here is the code to create a Map of key/value pairs, using the <code>CUSTOM_FIELDS</code> property of the <code>Video</code> object property of the <code>ADS_REQUEST_FOR_VIDEO</code> event:</p>
+<pre>
+<code class="notranslate language-java">Video video = (Video) event.getProperties().get(Event.VIDEO);
+if (video != null) {
+    Map&lt;String, String&gt; customFieldsMap = (HashMap&lt;String, String&gt;) video.getProperties().get(Video.Fields.CUSTOM_FIELDS);
+}
+</code></pre>
+
+<p>Here is a complete code sample for the <code>ADS_REQUEST_FOR_VIDEO</code> event listener, which is added to the setup method for the Google IMA plugin:</p>
+<pre>
+<code class="notranslate language-java">eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, event -&gt; {
+    // Create a container object for the ads to be presented.
+    AdDisplayContainer container = sdkFactory.createAdDisplayContainer();
+    container.setPlayer(googleIMAComponent.getVideoAdPlayer());
+    container.setAdContainer(brightcoveVideoView);
+    // Build an ads request object and point it to the ad
+    // display container created above.
+    AdsRequest adsRequest = sdkFactory.createAdsRequest();
+
+    // Set Ad Targeting values, using the Video object's Custom Fields
+    // (if they are present; if they are not present, use default values instead) 
+    Video video = (Video) event.getProperties().get(Event.VIDEO);
+    if (video != null) {
+        Map&lt;String, String&gt; customFieldsMap = (HashMap&lt;String, String&gt;) video.getProperties().get(Video.Fields.CUSTOM_FIELDS);
+        if (customFieldsMap != null) { 
+            googleIMAComponent.updateAdTargetingValues(customFieldsMap);
+        }
+    }
+
+    adsRequest.setAdTagUrl(adRulesURL);
+    adsRequest.setAdDisplayContainer(container);
+    ArrayList&lt;AdsRequest&gt; adsRequests = new ArrayList&lt;AdsRequest&gt;(1);
+    adsRequests.add(adsRequest);
+    // Respond to the event with the new ad requests.
+    event.properties.put(GoogleIMAComponent.ADS_REQUESTS, adsRequests);
+    eventEmitter.respond(event);
+});
+</code></pre>
+
+<h3>iOS implementation</h3>
+<p>To append ad query parameters with the Native SDK for iOS, follow these steps:</p>
+<ol class="bcls-tasklist-restart">
 	<li>
-	<p>Start with one of the client-side code samples for IMA advertising with the Brightcove Native SDKs:</p>
+	<p>Start with one of the client-side code sample for IMA advertising with the Brightcove Native SDK:</p>
 
 	<ul>
-		<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer">Android player samples</a></li>
 		<li><a href="https://github.com/BrightcoveOS/ios-player-samples">iOS player samples</a></li>
 	</ul>
 	</li>
 	<li>
 	<p>Append the URL query parameters to the VMAP URL before calling the IMA plugin. This can be done before the following methods:</p>
-
-	<p><strong>Android</strong></p>
-
-	<pre>
-<code class="notranslate language-java">adsRequest.setAdTagUrl(adRulesURL);</code></pre>
-
-	<p>&nbsp;</p>
-	<strong>iOS</strong>
 
 	<pre>
 <code class="notranslate language-objectivec">for video in mutablePlaylist.videos {
@@ -955,7 +999,7 @@ String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
 <code class="notranslate language-java">private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
     Uri.Builder vmapBuilder = Uri.parse(vmapUrl).buildUpon();
     for (Map.Entry&lt;String, String&gt; entry : vmapUrlParams.entrySet()) {
-        vmapBuilder.appendQueryParameter((entry.getKey(), entry.getValue());
+        vmapBuilder.appendQueryParameter(entry.getKey(), entry.getValue());
     }
     return vmapBuilder.toString();
 }</code></pre>
@@ -997,7 +1041,7 @@ catalog.findVideoByID(getString(R.string.video_id), httpRequestConfig, new Video
 private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
     Uri.Builder vmapBuilder = Uri.parse(vmapUrl).buildUpon();
     for (Map.Entry&lt;String, String&gt; entry : vmapUrlParams.entrySet()) {
-        vmapBuilder.appendQueryParameter((entry.getKey(), entry.getValue());
+        vmapBuilder.appendQueryParameter(entry.getKey(), entry.getValue());
     }
     return vmapBuilder.toString();
 }</code></pre>
@@ -1194,7 +1238,6 @@ NSString *adConfigId = @"<span class="bcls-input">your ad configuration Id</span
 @end</code></pre>
 </div> --></section>
 </article>
-
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
