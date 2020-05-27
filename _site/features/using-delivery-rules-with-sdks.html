@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="In this topic, you will learn about the known issues associated with the Brightcove Native Player SDKs.">
+  <meta name="description" content="In this topic, you will learn how to use Brightcove's Delivery Rules with the Native SDKs.">
   
-  <title>Known Issues: Brightcove Native Player SDKs</title>
+  <title>Using Delivery Rules with the Native SDKs</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -119,9 +120,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/developer-support/questions/">Questions and Issues</a></li>
+      <li class="breadcrumb-item"><a href="/features/">Features</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Known Issues: Brightcove Native Player SDKs</li>
+      <li class="breadcrumb-item active" aria-current="page">Using Delivery Rules with the Native SDKs</li>
     </ol>
   </nav>
 </header>
@@ -817,144 +818,130 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 
 <article class="bcls-article">
-  <h1>Known Issues: Brightcove Native Player SDKs</h1>
-  <summary>In this topic, you will learn about the known issues associated with the Brightcove Native Player SDKs.</summary>
+  <h1>Using Delivery Rules with the Native SDKs</h1>
+  <summary>In this topic, you will learn how to use Brightcove's Delivery Rules with the Native SDKs.</summary>
+
+<article class="bcls-article">
 
   <section class="bcls-section">
-    <h2 id="General">General</h2>
+    <h2 id="Introduction">Introduction</h2>
 
-    <h3>Large caption files</h3>
-
-    <p>Captions recorded as part of a live event will sometimes produce a captions file with cues that look like this:</p>
-
-    <pre class="line-numbers">
-<code class="language-text">00:00:03.760 --&gt; 00:00:03.960
-This
-
-00:00:03.960 --&gt; 00:00:04.160
-This program
-
-00:00:04.160 --&gt; 00:00:04.400
-This program will
-
-00:00:04.400 --&gt; 00:00:04.600
-This program will be
-
-00:00:04.600 --&gt; 00:00:04.840
-This program will be captioned</code></pre>
-
-    <p>This style of captioning produces a marquee effect, but may have the unintended side effect of producing a caption file up to several megabytes in size. When these captions are selected in the player, the player attempts to download the entire file for parsing and display (VTT captions can not be streamed). This may lead to performance problems in the player, including <code>OutOfMemory</code> errors.</p>
-
-    <p>Brightcove recommends that you reformat these captions into fewer lines:</p>
-
-    <pre class="line-numbers">
-<code class="language-text">00:00:03.760 --&gt; 00:00:04.840
-This program will be captioned</code></pre>
-
-    <h3>Third-party frameworks</h3>
-
-    <p>Brightcove does not test or provide support for integrating the Brightcove Native SDKs with third-party development frameworks such as Xamarin, React Native and Titanium. Contact your framework provider for integration support. Here are some issues you may run into:</p>
-
+    <p>Brightcove's Delivery Rules allows you to leverage the just-in-time manifest generation capability to use custom rules to control how your content is delivered to the viewer.</p>
+    <p>For more details about Delivery Rules, see the following:</p>
     <ul>
-      <li>When using the Brightcove Native SDK for Android with the Titanium framework, you may experience playback errors with DRM content. This is because the Titanium framework overrides the default <code class="”notranslate”">Java.net.ResponseCache </code> with its own <code class="”notranslate”">TiResponseCache </code>.</li>
+      <li>
+        <a href="https://apis.support.brightcove.com/delivery-rules/overview-delivery-rules.html">Overview: Delivery Rules</a>
+      </li>
+      <li>
+        <a href="https://apis.support.brightcove.com/delivery-rules/implementing-delivery-rules.html">Implementing Delivery Rules</a>
+      </li>
+      <li>
+        <a href="https://player.support.brightcove.com/playback/using-delivery-rules-with-bcp.html">Using Delivery Rules with Brightcove Player</a>
+      </li>
+      <li>
+        <a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">Overview of Dynamic Delivery</a>
+      </li>
     </ul>
-
-    <h3>Using emulators</h3>
-
-    <p>Whether you are using the Android Studio emulator or the Xcode simulator to test video playback, be aware that emulators do not accurately represent how an actual device will perform. While you can use emulators for initial testing during development, it is best practice to use real devices for accurate results.</p>
-
-    <h3 id="small_dimension_videos">Videos with very small dimensions</h3>
-    <p>Video renditions with very small dimensions (less than 50px) will not play on iOS or Android (in the SDK players or otherwise)</p>
   </section>
 
-  <h2 id="Native_SDK_for_Android">Native SDK for Android</h2>
+  <section class="bcls-section">
+    <h2 id="Android_implementation">Android implementation</h2>
+    <p>To use Delivery Rules with the Native SDK for Android, follow these steps:</p>
+    <ol class="bcls-tasklist__restart">
+      <li>
+        Define the parameter for your Delivery Rules ID.
+      </li>
+      <li>
+        Create the <code>HttpRequestConfig</code> with the delivery rule that you want applied. Pass a String value for your <code>config_id</code>, using the <code>HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID</code> parameter.
+      </li>
+      <li>
+        <p>
+          Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API. You can use either the <code>findVideoByID</code> or <code>findPlaylistByID</code> methods. Here is the code:
+        </p>
+        <pre>
+<code class="language-java">public class MainActivity extends BrightcovePlayer {
 
-  <h3>360° videos</h3>
+    private final String TAG = this.getClass().getSimpleName();
 
-  <ul>
-    <li>If you do not use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> class, your 360° video will play, but the app may crash when pausing and resuming it. To learn more about using this class, see the <a href="/android/basics/android-choosing-video-view.html">Understanding the BrightcovePlayer class</a> document.</li>
-    <li>You may experience some video drift after rotating the device. The problem is related to how the device gyroscope is calibrated, and this can affect performance. It is not associated with specific device makes and models, but instead on the motion sensor hardware installed on the device. The newer Android OS's have more sophisticated filter algorithms to correct the problem. A simple fix is to turn off the device and turn it on while it is lying on a flat, stable surface.</li>
-  </ul>
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Assign the brightcoveVideoView before entering the superclass.
+        // This allows for video player lifecycle management.
+        setContentView(R.layout.activity_main);
+        brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+        super.onCreate(savedInstanceState);
 
-  <h3>Live streams</h3>
+        // Get the event emitter from the SDK for notifications and logging
+        EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
 
-  <ul>
-    <li>The Native Player SDK does not support DASH Live streams, nor does it support ads with HLS Live streams.</li>
-  </ul>
+        // Create a catalog request to retrieve a video from your Video Cloud library
+        Catalog catalog = new Catalog(eventEmitter,
+                getString(R.string.account),
+                getString(R.string.policy));
 
-  <h3>Offline playback</h3>
+        // Create HttpRequestConfig with the delivery rule you want to be applied.
+        // Use the HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID with a String value for config_id
+        <span class="bcls-highlight">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+                .addQueryParameter(HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID, &quot;<span class="bcls-input">your rules id</span>&quot;)
+                .build();</span>
 
-  <ul>
-    <li>With Android 8.0 Oreo, when <strong>Background Activity</strong> is switched off, a download is started, and the app is put in the background, the download stops and does not continue when the app is reopened. The notification bar displays a status of <strong>Downloading...</strong></li>
-    <li>When using Widevine with Android 8.0 Oreo, you may notice that on some devices the rental license acquired is already expired. This is a known issue with Widevine CDM. This issue is fixed in Android 8.1 for most devices. Unfortunately, there is no workaround for Android 8.0.</li>
-    <li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code class="”notranslate”">OfflineLicenseManager.releaseLicense </code> method, a <code class="”notranslate”">MediaDrmStateException </code> error is thrown.</li>
-    <li>
-      <p>In the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">OfflinePlaybackSampleApp</a>, there are two Widevine license expiration periods.</p>
+        // Add the HttpRequestConfig to the catalog request.
+        <span class="bcls-highlight">catalog.findVideoByID(getString(R.string.videoId), httpRequestConfig, new VideoListener() {</span>
 
-      <ul>
-        <li><code>absoluteExpiration</code> is an expiration date of the license to start playback of downloaded video</li>
-        <li><code>playDuration</code> is how long the video can be played</li>
-      </ul>
+            // Add the video found to the queue with add().
+            // Start playback of the video with start().
+            @Override
+            public void onVideo(Video video) {
+                Log.v(TAG, &quot;onVideo: video = &quot; + video);
+                brightcoveVideoView.add(video);
+                brightcoveVideoView.start();
+            }
+        });
+    }
+}</code></pre>
+      </li>
+    </ol>
 
-      <p>When <code>playDuration</code> becomes less than 60 seconds, the Widevine CDM handles the license as expired and throws a <strong>Failed to get key request</strong> error. Playback will not start with this Widevine license exception.</p>
-
-      <p>With the Brightcove Native SDK for Android v6.1.0+, you can try calling <code>AbstractOfflineCatalog.requestRentalLicense(Video, Date, long, EventListener)</code> or <code>AbstractOfflineCatalog.requestPurchaseLicense(Video, EventListener)</code> to retrieve a new license. Note: The device must be online to acquire a new license.</p>
-    </li>
-  </ul>
-
-  <h3>Playing local videos</h3>
-
-  <ul>
-    <li>You will receive an exception error if you try to play MP4 videos stored in the application resource folder (/res/raw). The work-around is to move your MP4 videos to the application asset folder if you want to play local videos.</li>
-  </ul>
-
-  <h3>Source selection</h3>
-
-  <ul>
-    <li>If your video has both HTTP and HTTPS sources for WebVTT captions/subtitles, then the Native SDK for Android may not return the HTTPS version. Brightcove is aware of this situation and will have a fix in a future release.</li>
-  </ul>
-
-  <h3>Subtitles</h3>
-
-  <ul>
-    <li>The CC button will not appear in the control bar and the player will not load text tracks if you assign text tracks to a video in Video Cloud Studio and set the <strong>KIND</strong> field value to <strong>Subtitles</strong>. The work-around is to set the <strong>KIND</strong> field value to <strong>Close Captions</strong> when you assign text tracks in Studio.</li>
-  </ul>
-
-  <h3>Version 4.11.0: Known Issues</h3>
-
-  <ul>
-    <li>When playing IMA ads on a Fire TV, you may experience a 5 to 10 second delay between the end of one ad playback and the beginning of the next ad. This is especially noticeable when playing multiple ads in an Ad Break. This may be an issue with the Fire TV, since this does not happen on the Nexus player.</li>
-  </ul>
-
-  <h3>Version 4.10.0: Known Issues</h3>
-
-  <ul>
-    <li>With the release of Android TV, there is a known issue when playing Widevine content on the Asus Nexus player. The content appears with several trash pixels. This issue is resolved by updating the Nexus player to Android N (7.0). All research points to a hardware issue. Widevine content plays fine on the Nvidia Shield TV (which has Android TV on it).</li>
-  </ul>
-
-  <ul>
-    <li>When the captions/audio settings exceed the space provided to display the full list, the list is not scrollable on Android TV. The list is scrollable on Android phones and tablets.</li>
-  </ul>
-
-  <h2 id="Native_SDK_for_iOS">Native SDK for iOS</h2>
-  <!-- <p>No issues currently reported.</p> -->
-
-  <h3>Live streams</h3>
-
-  <ul>
-    <li>The Native Player SDK does not support ads with HLS Live streams.</li>
-  </ul>
-
-  <h3>Offline playback</h3>
-
-  <ul>
-    <li>With iOS 12, setting the <code>kBCOVOfflineVideoManagerDisplayNameKey</code> field value with multibyte characters may cause a download error. This is because multibyte characters are encoded as longer string values, and iOS restricts the string length to 255bytes. This problem has been reported to Apple.</li>
-    <li>With iOS 12, the <code>didProgress</code> event may stop firing when your app is resumed from background to foreground while downloading. You will notice that the downloading status is no longer updated. This problem has been reported to Apple.</li>
-    <li>When playback is attempted for the same offline video two times in a row, the user may experience unexpected network activity. The <code class="notranslate">AVPlayer</code> may switch to playing the online version of the video. A bug report has been submitted to Apple. For work-around steps, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#playing-the-same-offline-video-twice">Playing the Same Offline Video Twice</a> section of the reference document.</li>
-    <li>If your app is targeting iOS 11.0 - 11.2, we don't recommend concurrent downloads because pause and resume behavior is unreliable with multiple simultaneous downloads. The problem has been fixed with iOS 11.3.</li>
-  </ul>
   </section>
+
+  <section class="bcls-section">
+    <h2 id="iOS_implementation">iOS implementation</h2>
+    <p>To use Delivery Rules with the Native SDK for iOS, follow these steps:</p>
+    <ol class="bcls-tasklist__restart">
+      <li>
+        Define the parameter for your Delivery Rules ID.
+      </li>
+      <li>
+        <p>
+          Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API. You can use either the <code>findVideoWithVideoID</code> or <code>findPlaylistWithPlaylistID</code> methods. Here is the code:
+        </p>
+        <pre>
+<code class="language-objectivec">- (void)requestContentFromPlaybackService
+{
+    <span class="bcls-highlight">NSDictionary *playbackAPIParameters = @{@&quot;config_id&quot;:@&quot;<span class="bcls-input">your rules id</span>&quot;};</span>
+    [self.playbackService findVideoWithVideoID:kViewControllerVideoID
+        <span class="bcls-highlight">parameters:playbackAPIParameters</span>
+        completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+
+        if (video)
+        {
+            [self.playbackController setVideos:@[ video ]];
+        }
+        else
+        {
+            NSLog(@&quot;ViewController Debug - Error retrieving video playlist: `%@`&quot;, error);
+        }
+    }];
+}</code></pre>
+      </li>
+    </ol>
+
+<br>
+    <!-- <aside class="bcls-aside bcls-aside--information">This will override any Delivery Rules set in the player configuration.</aside> -->
+  </section>
+
 </article>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
@@ -970,7 +957,7 @@ This program will be captioned</code></pre>
 
 <hr>
 <div class="last-updated">
-  Page last updated on 26 May 2020
+  Page last updated on 27 May 2020
 </div>
 
 
