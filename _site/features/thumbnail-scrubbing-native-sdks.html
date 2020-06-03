@@ -884,6 +884,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     </p>
     <pre><code class="language-java">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
   </li>
+  <li>
+    For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleAp</a>
+  </li>
 </ol>
 
 <h3>Additional steps for SSAI</h3>
@@ -934,14 +937,28 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <section class="bcls-section">
 <h2 id="iOS_Implementation">iOS Implementation</h2>
-
-<p>There is a new <code>BCOVPlaybackController</code> property that enables or disables thumbnail scrubbing for the playback controller. The default value is <code>YES</code>. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/thumbnailScrubbingEnabled">Native SDK for iOS reference</a>.</p>
+<p>To use thumbnail scrubbing with the Native SDK for iOS, follow these steps</p>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>There is a new <code>BCOVPlaybackController</code> property that enables or disables thumbnail scrubbing for the playback controller. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/thumbnailScrubbingEnabled">Native SDK for iOS reference</a>.
+  </li>
+  <li>
+    <p>
+      The default value is <code>YES</code>. To disable thumbnail scrubbing, set the value to <code>NO</code>.</p>
 <pre class="line-numbers"><code class="language-objectivec">/**
  * Enables or disables thumbnail scrubbing for this playback controller.
  *
  * Default value is YES
  */
 @property (nonatomic, readwrite, assign) BOOL thumbnailScrubbingEnabled;</code></pre>
+    </p>
+  </li>
+  <!-- <li>
+    For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleAp</a>
+  </li> -->
+</ol>
+
+
 </section>
 
 <section class="bcls-section">
@@ -971,7 +988,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 24 Apr 2020
+  Page last updated on 03 Jun 2020
 </div>
 
 
