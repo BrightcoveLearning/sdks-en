@@ -105,8 +105,8 @@ layout: staging
       Set the user identifier for Brightcove analytics.
     </p>
     <pre><code class="language-java">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
-baseParams.put(Analytics.Fields.USER, &quot;YourUserValue&quot;);
-baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;YourAppId&quot;);
+baseParams.put(Analytics.Fields.USER, &quot;<span class="bcls-input">user id</span>&quot;);
+baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;<span class="bcls-input">application id</span>&quot;);
 
 HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
 eventParams.put(Analytics.Fields.BASE_PARAMS, baseParams);
@@ -115,7 +115,10 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
   </li>
   <li>
     <p>
-        Get the user playback position from the Cross-Device Resume (XDR) API. For details, see the following:
+        Get the user playback position from the Cross-Device Resume (XDR) API. 
+    </p>
+    <p>
+       For details, see the following:
     </p>
     <ul>
       <li>
@@ -128,14 +131,17 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
   </li>
   <li>
     <p>
-      Resume playback. Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>brightcoveVideoView.seekTo()</code> method.
+      Resume playback.
+    </p>
+    <p>
+      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>brightcoveVideoView.seekTo()</code> method.
     </p>
     <pre><code class="language-java">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
 eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, new EventListener() {
   @Override
   public void processEvent(final Event event) {
     playbackController.setAdsDisabled(true);
-    brightcoveVideoView.seekTo(&lt;user playback position&gt;);
+    brightcoveVideoView.seekTo(&lt;<span class="bcls-input">user playhead position</span>&gt;);
   }
 });
 
@@ -161,8 +167,8 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
     <pre><code class="language-objectivec">@try
   {
     [BCOVGlobalConfiguration.sharedConfig setValue:@{
-      @&quot;privateUser&quot;: self.testProfileManager.userId,
-      @&quot;privateApplication&quot;: @&quot;killer.app&quot;
+      @&quot;privateUser&quot;: self.<span class="bcls-input">user id</span>,
+      @&quot;privateApplication&quot;: @&quot;<span class="bcls-input">application id</span>&quot;
     }
     forKey:@&quot;privateSessionAnalytics&quot;];
   }
@@ -174,7 +180,10 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
   </li>
   <li>
     <p>
-        Get the user playback position from the Cross-Device Resume (XDR) API. For details, see the following:
+        Get the user playback position from the Cross-Device Resume (XDR) API. 
+    </p>
+    <p>
+      For details, see the following:
     </p>
     <ul>
       <li>
@@ -187,10 +196,39 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
   </li>
   <li>
     <p>
-      Resume playback. Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>resumeVideoAtTime:withAutoPlay:</code> method.
+      Resume playback.
     </p>
-    <pre><code class="language-objectivec">[[BCOVPlaybackController resumeVideoAtTime:withAutoPlay:]]
+    <p>
+      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the following method:
+    </p>
+    <pre><code class="language-objectivec">-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]
 </code></pre>
+    <p>
+      This allows you to resume playback at a specific time without forcing the user to watch ads scheduled before <code>seekToTime</code>.
+    </p>
+    <p>
+      In preparation for <code>seekWithoutAds:completionHandler:</code>, disable <code>autoPlay</code> when setting up the <code>BCOVPlaybackController</code>.
+    </p>
+    <p>
+      Apple recommends waiting for the status of an <code>AVPlayerItem</code> to change to ready-to-play before using the <code>AVPlayerItem</code>. Therefore, call <code>seekWithoutAds:completionHandler:</code> in the <code>kBCOVPlaybackSessionLifecycleEventReady</code> handler of the <code>playbackController:playbackSession:didReceiveLifecycleEvent</code> method of your <code>BCOVPlaybackControllerDelegate</code>.
+    </p>
+    <p>
+      For details about seek without ads, see the following:
+    </p>
+    <ul>
+      <li>
+        <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#seek-without-ads">IMA</a>
+      </li>
+      <li>
+        <a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw#seek-without-ads">FreeWheel</a>
+      </li>
+      <li>
+        Pulse implements seek without ads the same way as IMA or FreeWheel
+      </li>
+      <li>
+        <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#seek-without-ads">SSAI</a>
+      </li>
+    </ul>
   </li>
 </ol>
 
