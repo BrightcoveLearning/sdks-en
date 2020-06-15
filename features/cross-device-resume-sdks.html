@@ -1,0 +1,211 @@
+---
+title: 'Cross-Device Resume with the Native SDKs'
+description: In this topic, you will learn how to use Cross-Device Resume with the Brightcove Native SDKs.
+parent: Features
+grandparent: Home
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+
+<p>Cross-Device Resume lets you start watching a video on one device, and at a later time, continue watching the video where you left off on a different device.</p>
+<p>
+  If you are not familiar with this feature, see the <a href="https://apis.support.brightcove.com/xdr/getting-started/xdr-overview.html">Overview: Cross-Device Resume</a> document.
+</p>
+<!-- <figure class="bcls-figure">
+  <img
+    class="bcls-image--no-border"
+    alt="Thumbnail scrubbing"
+    src="/assets/images/features/thumbnail-scrubbing.png"
+  />
+</figure> -->
+</section>
+
+<section class="bcls-section">
+<h2 id="Requirements">Requirements</h2>
+
+<p>The following requirements are needed for cross-device resume with the Brightcove Native SDKs:</p>
+<h3>Device OS version</h3>
+<ul>
+  <li>
+    Android 6.0+
+  </li>
+  <li>
+    iOS 11.0+
+  </li>
+</ul>
+
+<h3>Brightcove Native SDK version</h3>
+<ul>
+  <li>
+    Native SDK for Android 6.13.1+
+  </li>
+  <li>
+    Native SDK for iOS 6.7.7+
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Setup">Setup</h2>
+
+  <p>This feature is available to anyone with a Brightcove Video Cloud account.</p>
+  <p>
+    To get started, do the following
+  </p>
+  <ul>
+    <li>
+      Contact your account manager to enable your account for cross-device resume
+    </li>
+    <li>
+      Make sure the videos you are using are ingested for Dynamic Delivery
+    </li>
+  </ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Implementing_cross_device_resume">Implementing cross-device resume</h2>
+
+  <p>To implement cross-device resume, you will follow these steps:</p>
+ <ol class="bcls-tasklist">
+    <li>
+      <p>
+        Set the user identifier for Brightcove analytics
+      </p>
+      <p>
+        Even though viewer data is sent to Brightcove analytics automatically, you need to set the user identifier.
+      </p>
+      <p>
+        You can use an authentication gateway or some identity management solution to keep track of viewers. Use this viewer id as the user identifier to pass to Brightcove analytics.
+      </p>
+    </li>
+    <li>
+      <p>
+        Get the user playback position from the Cross-Device Resume (XDR) API
+      </p>
+    </li>
+    <li>
+      Resume playback
+    </li>
+  </ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="Android_Implementation">Android Implementation</h2>
+
+<p>For the Native SDK for Android, follow these steps:</p>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>
+      Set the user identifier for Brightcove analytics.
+    </p>
+    <pre><code class="language-java">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
+baseParams.put(Analytics.Fields.USER, &quot;YourUserValue&quot;);
+baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;YourAppId&quot;);
+
+HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
+eventParams.put(Analytics.Fields.BASE_PARAMS, baseParams);
+eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
+</code></pre>
+  </li>
+  <li>
+    <p>
+        Get the user playback position from the Cross-Device Resume (XDR) API. For details, see the following:
+    </p>
+    <ul>
+      <li>
+        <a href="https://apis.support.brightcove.com/xdr/getting-started/get-playback-position.html">Getting Playback Position from the Cross-Device Resume (XDR) API</a>
+      </li>
+      <li>
+        <a href="https://apis.support.brightcove.com/xdr/references/reference.html">Cross-Device Resume (XDR) API Reference</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Resume playback. Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>brightcoveVideoView.seekTo()</code> method.
+    </p>
+    <pre><code class="language-java">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
+eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, new EventListener() {
+  @Override
+  public void processEvent(final Event event) {
+    playbackController.setAdsDisabled(true);
+    brightcoveVideoView.seekTo(&lt;user playback position&gt;);
+  }
+});
+
+eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
+  @Override
+  public void processEvent(final Event event) {
+    playbackController.setAdsDisabled(false);
+  }
+});
+</code></pre>
+  </li>
+</ol>
+</section>
+
+<section class="bcls-section">
+<h2 id="iOS_Implementation">iOS Implementation</h2>
+<p>For the Native SDK for iOS, follow these steps:</p>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>
+      Set the user identifier for Brightcove analytics.
+    </p>
+    <pre><code class="language-objectivec">@try
+  {
+    [BCOVGlobalConfiguration.sharedConfig setValue:@{
+      @&quot;privateUser&quot;: self.testProfileManager.userId,
+      @&quot;privateApplication&quot;: @&quot;killer.app&quot;
+    }
+    forKey:@&quot;privateSessionAnalytics&quot;];
+  }
+  @catch (NSException *e)
+  {
+    NSLog(@&quot;%@&quot;, e.description);
+  }
+</code></pre>
+  </li>
+  <li>
+    <p>
+        Get the user playback position from the Cross-Device Resume (XDR) API. For details, see the following:
+    </p>
+    <ul>
+      <li>
+        <a href="https://apis.support.brightcove.com/xdr/getting-started/get-playback-position.html">Getting Playback Position from the Cross-Device Resume (XDR) API</a>
+      </li>
+      <li>
+        <a href="https://apis.support.brightcove.com/xdr/references/reference.html">Cross-Device Resume (XDR) API Reference</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Resume playback. Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>resumeVideoAtTime:withAutoPlay:</code> method.
+    </p>
+    <pre><code class="language-objectivec">[[BCOVPlaybackController resumeVideoAtTime:withAutoPlay:]]
+</code></pre>
+  </li>
+</ol>
+
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Notes">Notes</h2>
+
+<p>The following notes apply to this feature:</p>
+<ul>
+  <li>
+    
+  </li>
+</ul>
+</section>
+
+</article>
