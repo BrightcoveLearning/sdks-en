@@ -930,7 +930,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li><a href="#Display_content">Display content</a></li>
 	<li><a href="#Check_download_size">Check download size</a></li>
 	<li><a href="#Show_download_status">Show download status</a></li>
-	<li><a href="#Manage_the_download_queue">Manage the download queue</a></li>
+	<li><a href="#Manage_downloads">Manage downloads</a></li>
 	<li><a href="#Show_local_storage_space">Show local storage space</a></li>
 	<li><a href="#Pause_resume_cancel_download">Pause/resume/cancel download</a></li>
 </ul>
@@ -1020,9 +1020,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <aside class="bcls-aside bcls-aside--tip">For Android devices, download status is also shown in the Notification Area. The notification title is set to the video title. The notification is removed if the download is paused or cancelled. For details, see the <a href="/android/resources/code-snippets-using-native-sdk-android.html#Offline_playback_with_DRM">Code Snippets using the Native SDK for Android</a> document.</aside>
 
-<h3 id="Manage_the_download_queue">Manage the download queue</h3>
+<h3 id="Manage_downloads">Manage downloads</h3>
 
-<p>Create and manage the download queue.</p>
+<h4>Downloading multiple videos</h4>
 
 <p>The Native SDKs will allow multiple videos to be queued for downloads. For example, a user can download multiple episodes of a season and the Native SDKs will manage the process by providing download status for each asset.</p>
 
@@ -1031,6 +1031,50 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       <img class="bcls-image--no-border" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/guides/odrm/download-queue.png" alt="Download queue">
       <figcaption class="bcls-caption--image">Download queue</figcaption>
       </figure> -->
+
+  <h4>Downloading secondary tracks (iOS)</h4>
+  <p>
+    With iOS 13, Apple has changed how downloads work. For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#downloading-secondary-tracks">iOS App Developer's Guide to Video Downloading and Offline Playback</a> guide.
+  </p>
+  <p>
+    Because of this change, the iOS Offline Download sample app may appear to re-download videos with multiple audio tracks. This is because download progress is given for each track. So, the progress bar will start again from zero for each additional audio track.
+  </p>
+  <p>
+    Here's a brief overview of <code>AVMediaSelectionOptions</code>, subtitles and alternative audio tracks: <a href="https://developer.apple.com/documentation/avfoundation/media_playback_and_selection/adding_subtitles_and_alternative_audio_tracks?preferredLanguage=occ">Adding Subtitles and Alternative Audio Tracks</a>
+  </p>
+  <h5>Determine total download</h5>
+  <p>
+    Is there any way to get <code>didProgressTo</code> for total download for one video token?
+  </p>
+  <p>
+    No. For a video offline token, there is no aggregated download progress value. The app developer determines how many asset downloads will occur. The first asset download is the main video and the preferred audio and text tracks. It is typically the largest download and progress will advance from 0.00 to 100.00.
+  </p>
+  <p>
+    If a download request includes additional media selections (which the app developer explicitly requests), the total download time is simply that of the main video and preferred media selection, plus that of each additional media selection. When representing total progress in the UI, chose a scale value for each download such that the sum of all downloads will total 100% and sum the scaled download times of each media selection.
+  </p>
+
+  <h5>Identify object types</h5>
+  <p>
+    Is there any way to identify which type of object(video or text track) each <code>didProgressTo</code> events related to?
+  </p>
+  <p>
+    Yes. The additional downloads are of Apple Media Selection Option objects (<code>AVMediaSelectionOption</code>), not tracks. The media selection object being downloaded is identified in the progress callback. (<a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVOfflineVideoManagerDelegate.html#//api/name/offlineVideoToken:aggregateDownloadTask:didProgressTo:forMediaSelection:">BCOVOfflineVideoManagerDelegate.h</a>)
+  </p>
+  <p>
+    Apple provides methods for examining the attributes of a media selection option. For details, see Apple's <a href="https://developer.apple.com/documentation/avfoundation/avmediaselectionoption">AVMediaSelectionOption</a>. 
+  </p>
+  <p>
+    You can see metadata values in the Xcode debugger console when running the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Offline">OfflinePlayer sample app</a> (don't be misled by the two English options - it's just a sample app)
+  </p>
+  <pre class="line-numbers">
+<code class="language-objectivec">OfflinePlayer[523:355259] AVMediaSelection option 0 | legible display name: English
+OfflinePlayer[523:355259] AVMediaSelection option 0 | audible display name: English
+OfflinePlayer[523:355259] AVMediaSelection option 1 | legible display name: English
+OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: English</code></pre>
+<p>
+  You can see how that's done in the <a href="https://github.com/BrightcoveOS/ios-player-samples/blob/master/Offline/OfflinePlayer/objc/OfflinePlayer/ManagersUtilities/DownloadManager.m#L253-L262">DownloadManager code</a>.
+</p>
+
 
 <h3 id="Pause_resume_cancel_download">Pause/resume/cancel download</h3>
 
@@ -1168,14 +1212,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>When the app is deleted, all downloaded content is removed. This is true as long as the default storage location is not overridden.</p>
 
 <h3>iOS</h3>
-<h4>Download management</h4>
-  <p>
-    With iOS 13, Apple has changed how downloads work. For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#downloading-secondary-tracks">iOS App Developer's Guide to Video Downloading and Offline Playback</a> guide.
-  </p>
-  <p>
-    Because of this change, the iOS Offline Download sample app may appear to re-download videos with multiple audio tracks. This is because download progress is given for each track. So, the progress bar will start again from zero for each additional audio track.
-  </p>
-
 <h4>AirPlay</h4>
 <p>As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code class="notranslate">AVFoundation</code> limitation.</p>
 </section>
