@@ -461,11 +461,33 @@ playbackController = nil</code></pre>
 
 <p>To control the playback rate, you can set the <code class="notranslate">rate </code> property on the <code class="notranslate">AVPlayer </code> class exposed on the session.</p>
 
-<p>By default, the play rate can only be set on regular intervals (0.50, 0.67, 1.0, 1.25, 1.50 and 2.0). By setting the <code>audioTimePitchAlgorithm</code>, you can use more granular rate values (like 1.7). For more details, see this <a href="https://stackoverflow.com/questions/6630356/avplayer-rate-property-does-not-work">stackoverflow discussion</a>.</p>
+<p>By default, the play rate can only be set on regular intervals (0.50, 0.67, 1.0, 1.25, 1.50 and 2.0). By setting the <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm">audioTimePitchAlgorithm</a>, you can use more granular rate values (like 1.7). For more details, see this <a href="https://stackoverflow.com/questions/6630356/avplayer-rate-property-does-not-work">stackoverflow discussion</a>.</p>
 
 <pre>
 <code class="notranslate language-objectivec">avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;</code></pre>
 &nbsp;
+<aside class="bcls-aside bcls-aside--information">
+  <p>
+    Even though this sample uses the <code>varispeed</code> property type, the <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm">AVAudioTimePitchAlgorithm</a> class has 4 property types that you can use:
+  </p>
+  <ul>
+    <li>
+      <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/1621212-lowqualityzerolatency">lowQualityZeroLatency</a>
+    </li>
+    <li>
+      <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/1388153-spectral">spectral</a>
+    </li>
+    <li>
+      <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/1387220-timedomain">timeDomain</a>
+    </li>
+    <li>
+      <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/1387887-varispeed">varispeed</a>
+    </li>
+  </ul>
+  <p>
+    Notice that the <code>varispeed</code> option does not provide pitch correction. This can cause audio to be unnaturally high-pitched with a high playback rate such as 1.7. Choose the property option that best fits your needs.
+  </p>
+</aside>
 
 <p>For a <code class="notranslate">BCOVPlaybackSession </code>, your code would look similar to this:</p>
 
@@ -482,13 +504,13 @@ playbackController = nil</code></pre>
 }</code></pre>
 
 <aside class="bcls-aside bcls-aside--information">
-<p>Notes</p>
-
-<ul><!-- <li>For iOS6, a stream can only play at 2X if <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>YES</strong>.</li>
-	<li>For iOS7, you can play up to 2X always, but it won't go higher unless <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>Yes</strong>.</li> -->
-	<li>The Native SDK for iOS does not support negative values for the playback rate (ie. we do not support playing videos in reverse.).</li>
+  The Native SDK for iOS does not support negative values for the playback rate (ie. we do not support playing videos in reverse).
+<!-- <p>Notes</p>
+<ul>
+  <li>For iOS6, a stream can only play at 2X if <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>YES</strong>.</li>
+	<li>For iOS7, you can play up to 2X always, but it won't go higher unless <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>Yes</strong>.</li>
 	<li>For more information about managing playback, see Apple's <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/instp/AVPlayer/rate">AVPlayer Class Reference</a>.</li>
-</ul>
+</ul> -->
 </aside>
 </section>
 
