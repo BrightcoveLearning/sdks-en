@@ -845,11 +845,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Using offline playback, users can download both DRM-protected and clear (non-encrypted) video content to their devices and watch it when they are not connected.</p>
 
-<aside class="bcls-aside bcls-aside--tip">To use this feature, you need to be a Video Cloud customer using Dynamic Delivery.</aside>
+<!-- <aside class="bcls-aside bcls-aside--tip">To use this feature, you need to be a Video Cloud customer using Dynamic Delivery.</aside> -->
 </section>
 
 <section class="bcls-section">
-<h2 id="Supported_device_versions">Supported versions</h2>
+<h2 id="Requirements">Requirements</h2>
 
 <p>The Brightcove Native Player SDKs support offline playback with the following versions:</p>
 
@@ -865,6 +865,17 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <ul>
 	<li>Native SDK for iOS 6.0.1+</li>
 	<li>Native SDK for Android 5.0.3+</li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Requirements">Setup</h2>
+
+<p>To get started, do the following:</p>
+<ul>
+	<li>Contact your account manager to enable your account for offline playback.</li>
+	<li>Make sure to use Dynamic Delivery when ingesting your videos.</li>
+  <li><a href="#Prepare_videos">Prepare each video</a> that you want enabled for download.</li>
 </ul>
 </section>
 
@@ -951,9 +962,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>When you set a video's <code class="notranslate">offline_enabled</code> property to <strong>true</strong>, the Native SDKs will mark this video as downloadable.</p>
 
-<h4 id="Using_the_CodePen" class="bcls-expander-head">Prepare videos</h4>
+<h4 id="Prepare_videos">Prepare videos</h4>
 
-<div class="bcls-expander-content">
 <p>To mark a video as downloadable, you need to do the following:</p>
 
 <ol class="bcls-tasklist">
@@ -981,7 +991,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   ' https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">your account id</span>/videos/<span class="bcls-input">your video id</span></code></pre>
 	</li>
 </ol>
-</div>
 
 <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Display content" src="/assets/images/getting-started/offline/content-list.png" />
 <figcaption class="bcls-caption--image">Display content</figcaption>
