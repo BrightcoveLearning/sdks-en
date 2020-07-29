@@ -2,7 +2,7 @@
 title: 'Client-Side Pre-roll Ads with Live SSAI and the Native SDKs'
 description: In this topic, you will learn how to use the Brightcove Native SDKs to play client-side pre-roll ads with live streams enabled for server-side ad insertion (SSAI).
 parent: Live
-grandparent: Android Development
+grandparent: Features
 layout: staging
 ---
 
@@ -12,12 +12,15 @@ layout: staging
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
-<p>When delivering live streams with server-side ad insertion (SSAI) using the Native SDKs, you can insert a client-side, IMA pre-roll ad.</p>
+<p>When delivering live streams with server-side ad insertion (SSAI), you can request mid-roll ad breaks using the Live module. For details, see the <a href="/features/using-live-ssai-native-sdks.html">Using Live SSAI with the Native SDKs</a> document.</p>
+<p>
+  You may also want to include a pre-roll ad before the live stream begins. This is when viewers are engaged and willing to sit through a short ad. With this feature, you can insert client-side, IMA pre-roll ads.
+</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="Requirements">Requirements</h2>
-<p>The following requirements are needed for this feature:</p>
+<p>The following requirements are needed for this feature:</p> 
 
 <h3>Brightcove Native SDK version</h3>
 <ul>
@@ -58,7 +61,7 @@ layout: staging
     <p>
       Use the IMA plugin to enable client-side pre-roll ads. For details, see the <a href="/features/implementing-client-side-ads-native-sdks.html">Implementing Client-Side Ads with the Native SDKs</a> document.
     </p>
-    <aside class="bcls-aside bcls-aside--information">Mid-roll and post-roll ads will be ignored.</aside>
+    <aside class="bcls-aside bcls-aside--information">IMA Mid-roll and post-roll ads will be ignored.</aside>
   </li>
   <li>
     Begin streaming.
@@ -89,7 +92,21 @@ layout: staging
   </li>
 </ul>
 
-<h3>Steps</h3>
+<h3>Code samples</h3>
+<p>To implement this feature, review the following examples:</p>
+<ul>
+  <li>
+    Live streams with Android SDK (<a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/LiveSampleApp/src/main">LiveSampleApp</a>)
+  </li>
+  <li>
+    SSAI with Android SDK (<a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">BasicSsaiSampleApp</a>)
+  </li>
+  <li>
+    IMA ads with Android SDK (<a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">AdRulesIMASampleApp</a>)
+  </li>
+</ul>
+
+<!-- <h3>Steps</h3>
 <p>To implement this feature, follow these steps:</p>
 <ol class="bcls-tasklist-restart">
 	<li>Use the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Sample App</a> as a starting point for your code.</li>
@@ -104,29 +121,17 @@ layout: staging
 	<p>In the <strong>MainActivity.java</strong> file, replace the <code>ad_config_id</code> value with your <a href="/features/using-player-enhancements-live-ssai-native-sdks.html#Configure_the_player">playback token</a>.</p>
 
 	<pre>
-<code class="language-html">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "<span class="bcls-input">your playback token</span>";</code></pre>
+<code class="language-java">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "<span class="bcls-input">your playback token</span>";</code></pre>
 	</li>
 	<li>
 	<p>The <code>ad_config_id</code> with your playback token value is added to the HTTP request as a query parameter.</p>
 
 	<pre class="line-numbers">
-<code class="language-html">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+<code class="language-java">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
   .addQueryParameter(<span class="bcls-highlight">AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE</span>)
   .build();</code></pre>
 	</li>
-	<li>
-	<p>Make the catalog call to the Playback API with your live stream video id and the updated HTTP request.</p>
-
-	<pre class="line-numbers">
-<code class="language-html">catalog.findVideoByID(<span class="bcls-highlight">getString(R.string.video_id), httpRequestConfig</span>, new VideoListener() {
-     @Override
-     public void onVideo(Video video) {
-         plugin.processVideo(video);
-     }
- });</code></pre>
-	</li>
-	<li>Your player is ready to play your live stream.</li>
-</ol>
+</ol> -->
 </section>
 
 <section class="bcls-section">
