@@ -851,57 +851,84 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="General_questions">General questions</h2>
 
-<p class="bcls-question">Are closed captions supported?</p>
+<details>
+    <summary>Are closed captions supported?</summary>
+    <p>The Player SDKs support in-manifest WebVTT(HLS) as well as sidecar WebVTT and 608/708 captions. For support details, see the <a href="/features/video-formats-and-captioning-native-sdks.html">Video Formats and Captioning</a> document.</p>
+</details>
+<br/>
 
-<p class="bcls-answer">The Player SDKs support in-manifest WebVTT(HLS) as well as sidecar WebVTT and 608/708 captions. For support details, see the <a href="/features/video-formats-and-captioning-native-sdks.html">Video Formats and Captioning</a> document.</p>
+<details>
+    <summary>Can I customize the seek bar?</summary>
+    <p>Yes. If you use the Brightcove Native Player controls, you can customize the elements, including the seek bar. For more information, see the <a href="/features/brightcove-native-player-controls.html">Brightcove Native Player Controls</a> document.</p>
+</details>
+<br/>
 
-<p class="bcls-question">Can I customize the seek bar?</p>
+<details>
+    <summary>Can I overlay the video with custom controls?</summary>
+    <p>The Player SDKs don't force you to use its controls. You can choose to use them or not. If you use the Brightcove Native Player controls, you can customize the elements. For more information, see the <a href="/features/brightcove-native-player-controls.html">Brightcove Native Player Controls</a> document.</p>
+</details>
+<br/>
 
-<p class="bcls-answer">Yes. If you use the Brightcove Native Player controls, you can customize the elements, including the seek bar. For more information, see the <a href="/features/brightcove-native-player-controls.html">Brightcove Native Player Controls</a> document.</p>
+<details>
+    <summary>Can I add 10sec ff/rew video functionality?</summary>
+    <p>The Player SDKs support seeking, so you can implement this functionality.</p>
+</details>
+<br/>
 
-<p class="bcls-question">Can I overlay the video with custom controls?</p>
+<details>
+    <summary>Is Chromecast supported?</summary>
+    <p>The Brightcove Native SDKs support streaming videos to Chromecast-connected TVs.</p>
+    <ul>
+      <li>
+        For Android devices, use the <a href="/android/tv/cast-plugin-native-sdk-android.html">Cast plugin for the Native SDK for Android</a>.
+      </li>
+      <li>
+        For iOS devices, use the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">Cast Plugin for Native SDK for iOS</a>.
+      </li>
+    </ul>
+</details>
+<br/>
 
-<p class="bcls-answer">The Player SDKs don't force you to use its controls. You can choose to use them or not. If you use the Brightcove Native Player controls, you can customize the elements. For more information, see the <a href="/features/brightcove-native-player-controls.html">Brightcove Native Player Controls</a> document.</p>
-
-<p class="bcls-question">Can I add 10sec ff/rew video functionality?</p>
-
-<p class="bcls-answer">The Player SDKs support seeking, so you can implement this functionality.</p>
-
-<p class="bcls-question">Is Chromecast supported?</p>
-
-<p class="bcls-answer">The Brightcove Native SDKs support streaming videos to Chromecast-connected TVs.<br />
-For Android devices, use the <a href="/android/tv/cast-plugin-native-sdk-android.html">Cast plugin for the Native SDK for Android</a>.<br />
-For iOS devices, use the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-googlecast">Cast Plugin for Native SDK for iOS</a>.</p>
-
-<p class="bcls-question">Are playlists supported?</p>
-
-<p class="bcls-answer">Yes, the Brightcove Native SDKs provide methods for retrieving a video or playlist from the Playback API. For details, see the following:<br />
-<a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/VideoListSampleApp">VideoListSampleApp for the Native SDK for Android</a><br />
-<a href="https://github.com/brightcove/brightcove-player-sdk-ios#retrieving-brightcove-assets-using-the-playback-service-">Retrieving Brightcove Assets Using the Playback Service for the Native SDK for iOS</a></p>
+<details>
+    <summary>Are playlists supported?</summary>
+    <p>Yes, the Brightcove Native SDKs provide methods for retrieving a video or playlist from the Playback API. For details, see the following:</p>
+    <ul>
+      <li>
+        <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/VideoListSampleApp">VideoListSampleApp for the Native SDK for Android</a><br />
+      </li>
+      <li>
+        <a href="https://github.com/brightcove/brightcove-player-sdk-ios#retrieving-brightcove-assets-using-the-playback-service-">Retrieving Brightcove Assets Using the Playback Service for the Native SDK for iOS</a>
+      </li>
+    </ul>
+</details>
 </section>
 
 <section class="bcls-section">
 <h2 id="Android_specific">Android specific</h2>
+<details>
+    <summary>How can I get HLS to work on Android?</summary>
+    <p>Brightcove's Player SDK for Android provides HLS playback functionality for Android 4.1 and newer.</p>
+</details>
+<br/>
 
-<p class="bcls-question">How can I get HLS to work on Android?</p>
-
-<p class="bcls-answer">Brightcove's Player SDK for Android provides HLS playback functionality for Android 4.1 and newer.</p>
-
-<p class="bcls-question">What about HLSe?</p>
-
-<p class="bcls-answer">Brightcove's Player SDK for Android supports playback with HLSe.</p>
+<details>
+    <summary>What about HLSe?</summary>
+    <p>Brightcove's Player SDK for Android supports playback with HLSe.</p>
+</details>
 </section>
 
 <section class="bcls-section">
 <h2 id="iOS_specific">iOS specific</h2>
+<details>
+    <summary>Is AirPlay supported?</summary>
+    <p>The Player SDK for iOS supports AirPlay as long as you do not have ads. <a href="https://support.apple.com/en-us/HT204289">Apple's AirPlay</a> allows you to wirelessly stream content from your Apple devices.</p>
+</details>
+<br/>
 
-<p class="bcls-question">Is AirPlay supported?</p>
-
-<p class="bcls-answer">The Player SDK for iOS supports AirPlay as long as you do not have ads. <a href="https://support.apple.com/en-us/HT204289">Apple's AirPlay</a> allows you to wirelessly stream content from your Apple devices.</p>
-
-<p class="bcls-question">Is Apple TV supported?</p>
-
-<p class="bcls-answer">The latest release of the Player SDK for iOS supports Apple TV's tvOS operating system.</p>
+<details>
+    <summary>Is Apple TV supported?</summary>
+    <p>The latest release of the Player SDK for iOS supports Apple TV's tvOS operating system.</p>
+</details>
 </section>
 </article>
 
