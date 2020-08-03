@@ -916,8 +916,9 @@ This program will be captioned</code></pre>
 
   <ul>
     <li>With Android 8.0 Oreo, when <strong>Background Activity</strong> is switched off, a download is started, and the app is put in the background, the download stops and does not continue when the app is reopened. The notification bar displays a status of <strong>Downloading...</strong></li>
-    <li>When using Widevine with Android 8.0 Oreo, you may notice that on some devices the rental license acquired is already expired. This is a known issue with Widevine CDM. This issue is fixed in Android 8.1 for most devices. Unfortunately, there is no workaround for Android 8.0.</li>
-    <li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code class="”notranslate”">OfflineLicenseManager.releaseLicense </code> method, a <code class="”notranslate”">MediaDrmStateException </code> error is thrown.</li>
+    <li>
+      When using Widevine Modular with Android 8.0.0 (and 8.1.0 on some devices), you may notice that a rental license is already expired when you acquire it. This is a known issue with the Widevine Modular CDM, and can not be addressed in either the Brightcove Android SDK or ExoPlayer. Although this issue is not reproducible for most devices using Android 8.1.0, there is no workaround for those devices using Android 8.0.0 or 8.1.0, where it does occur.</li>
+    <li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code class="”notranslate”">OfflineLicenseManager.releaseLicense </code> method, a <code class="”notranslate”">MediaDrmStateException </code> error is thrown.</li> 
     <li>
       <p>In the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">OfflinePlaybackSampleApp</a>, there are two Widevine license expiration periods.</p>
 
