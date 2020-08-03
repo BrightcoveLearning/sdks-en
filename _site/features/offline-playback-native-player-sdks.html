@@ -1245,33 +1245,44 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 <p>Below you will find answers to some general questions.</p>
 
 <h3>DRM-protected content</h3>
-
-<p class="bcls-question">Can the user change the system clock to bypass the expiration date?</p>
-
-<p class="bcls-answer"><strong>Android</strong>: Absolute expiration determines the date and time until which a license is valid. This is enforced by Widevine and the Android DRM layer. Theoretically, the DRM layer in Android must prevent the user from bypassing the expiration period. Any issues that we may have found is described in the Android OS release notes.<br />
-<br />
-<strong>iOS</strong>: License expiration is enforced by FairPlay. iOS handles all checking for clock changes, etc. An app has the option of checking the license expiration to alert the user that the license has expired. This may be preferable to simply playing back an expired video and then receiving a playback error.</p>
+<details style="padding:0;">
+    <summary style="font-size:1.25em;">Can the user change the system clock to bypass the expiration date?</summary>
+    <p ><strong>Android</strong>: Absolute expiration determines the date and time until which a license is valid. This is enforced by Widevine and the Android DRM layer. Theoretically, the DRM layer in Android must prevent the user from bypassing the expiration period. Any issues that we may have found is described in the Android OS release notes.<br />
+    <br />
+    <strong>iOS</strong>: License expiration is enforced by FairPlay. iOS handles all checking for clock changes, etc. An app has the option of checking the license expiration to alert the user that the license has expired. This may be preferable to simply playing back an expired video and then receiving a playback error.</p>
 <!-- <p class="bcls-answer">Absolute expiration determines the date and time until which a license is valid. This is enforced by Widevine and the Android DRM layer. Theoretically, the DRM layer in Android must prevent the user from bypassing the expiration period. Any issues that we may have found is described in the <a href="https://docs.brightcove.com/android-sdk/release-notes.txt">Native SDK for Android release notes</a>.</p> -->
+</details>
+<br/>
 
-<p class="bcls-question">Will the license and offline videos continue loading while the app is in the background?</p>
-
-<p class="bcls-answer"><strong>Android</strong>: Yes. Typically, the license is downloaded immediately, but even the license can be downloaded while the app is backgrounded.<br />
-<br />
-<strong>iOS</strong>: License loading should happen in the foreground. We have a <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVOfflineVideoManager.h#L631">method to preload the license</a>. Downloading of the main video content can happen while the app is in the background.</p>
+<details style="padding:0;">
+    <summary style="font-size:1.25em;">Will the license and offline videos continue loading while the app is in the background?</summary>
+    <p><strong>Android</strong>: Yes. Typically, the license is downloaded immediately, but even the license can be downloaded while the app is backgrounded.<br />
+    <br />
+    <strong>iOS</strong>: License loading should happen in the foreground. We have a <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVOfflineVideoManager.h#L631">method to preload the license</a>. Downloading of the main video content can happen while the app is in the background.</p>
 <!-- <p class="bcls-answer">License loading should happen in the foreground. We have a method to preload the license.
       Downloading of the main video content can happen while the app is in the background.</p> -->
+</details>
 
 <h3>All content</h3>
+<details style="padding:0;">
+    <summary style="font-size:1.25em;">What is the video format used for downloading offline content?</summary>
+    <p><strong>Android</strong>: DRM-protected DASH or non-encrypted DASH.<br />
+    <br />
+    <strong>iOS</strong>: HLS steaming. You can specify a bitrate for the download to use a specific variant.</p>
+</details>
+<br/>
 
-<p class="bcls-question">What is the video format used for downloading offline content?</p>
+<details style="padding:0;">
+    <summary style="font-size:1.25em;">Will downloaded videos playback locally or streaming when the user is online?</summary>
+    <p>A downloaded video can be played back while online or offline, but it will always use the downloaded video. If you choose to play back an online version of the video, you should retrieve a new video object from the Playback Service. The offline video can only be played from local storage.</p>
+</details>
+<br/>
 
-<p class="bcls-answer"><strong>Android</strong>: DRM-protected DASH or non-encrypted DASH.<br />
-<br />
-<strong>iOS</strong>: HLS steaming. You can specify a bitrate for the download to use a specific variant.</p>
 
-<p class="bcls-question">Will downloaded videos playback locally or streaming when the user is online?</p>
 
-<p class="bcls-answer">A downloaded video can be played back while online or offline, but it will always use the downloaded video. If you choose to play back an online version of the video, you should retrieve a new video object from the Playback Service. The offline video can only be played from local storage.</p>
+<p class="bcls-question"></p>
+
+
 </section>
 
 <section class="bcls-section">
