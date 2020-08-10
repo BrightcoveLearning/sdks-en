@@ -105,45 +105,138 @@ grandparent: Features
   </li>
 </ul>
 
-<!-- <h3>Steps</h3>
-<p>To implement this feature, follow these steps:</p>
-<ol class="bcls-tasklist-restart">
-	<li>Use the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Sample App</a> as a starting point for your code.</li>
-	<li>In the <strong>res/values/strings.xml</strong> file, replace the following with your own values:
-	<ul>
-		<li>Account Id</li>
-		<li>Video Id</li>
-		<li>Policy Key</li>
-	</ul>
-	</li>
-	<li>
-	<p>In the <strong>MainActivity.java</strong> file, replace the <code>ad_config_id</code> value with your <a href="/features/using-player-enhancements-live-ssai-native-sdks.html#Configure_the_player">playback token</a>.</p>
+<details>
+    <summary><h2 id="Example">Example</h2></summary>
+    <p>Here is a code example that combines Live, SSAI and IMA preroll ads:</p>
+    <pre><code class="language-java">/**
+ * We start by adding some variables that are focused on the CSAI integration:
+ * Also make the EventEmitter a global variable, it will be needed in the setupGoogleIMA method below
+ */
+private EventEmitter eventEmitter;
+private GoogleIMAComponent googleIMAComponent;
+private String adRulesURL = &quot;YOUR_AD_RULES_URL&quot;;
 
-	<pre>
-<code class="language-java">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "<span class="bcls-input">your playback token</span>";</code></pre>
-	</li>
-	<li>
-	<p>The <code>ad_config_id</code> with your playback token value is added to the HTTP request as a query parameter.</p>
+private final String AD_CONFIG_ID_QUERY_PARAM_KEY = &quot;ad_config_id&quot;;
 
-	<pre class="line-numbers">
-<code class="language-java">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-  .addQueryParameter(<span class="bcls-highlight">AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE</span>)
-  .build();</code></pre>
-	</li>
-</ol> -->
+// Note that for live SSAI streams, the adConfigId will start with the string &quot;live.&quot;
+// Ads will be injected into a live SSAI stream using the cue point API
+private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = &quot;YOUR_AD_CONFIG_ID&quot;;
+
+private SSAIComponent plugin;
+
+/**
+ * The BasicSSAISampleApp's onCreateMethod, with the setupGoogleIMA method from the AdRulesImaSampleApp added
+ */
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    setContentView(R.layout.ssai_activity_main);
+    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+    super.onCreate(savedInstanceState);
+
+    eventEmitter = brightcoveVideoView.getEventEmitter();
+
+    // Here we use the same setupGoogleIMA method as found in the AdRulesImaSampleApp:
+    setupGoogleIMA();
+
+    final EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+    Catalog catalog = new Catalog(eventEmitter, YOUR_ACCOUNT_ID, YOUR_POLICY_KEY);
+
+    // Setup the error event handler for the SSAI plugin.
+    registerErrorEventHandler();
+    plugin = new SSAIComponent(this, brightcoveVideoView);
+
+    View view = findViewById(R.id.ad_frame);
+    if (view instanceof ViewGroup) {
+        // Set the companion ad container,
+        plugin.addCompanionContainer((ViewGroup) view);
+    }
+
+    // Set the HttpRequestConfig with the Ad Config Id configured in
+    // your https://studio.brightcove.com account.
+    HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+            .addQueryParameter(AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE)
+            .build();
+
+    catalog.findVideoByID(&quot;YOUR_VIDEO_ID&quot;, httpRequestConfig, new VideoListener() {
+        @Override
+        public void onVideo(Video video) {
+            // The Video Sources will have a VMAP url which will be processed by the SSAI plugin,
+            // If there is not a VMAP url, or if there are any requesting or parsing error,
+            // an EventType.ERROR event will be emitted.
+            plugin.processVideo(video);
+        }
+    });
+}
+
+The setupGoogleIMA method, for reference:
+
+/**
+ * Setup the Brightcove IMA Plugin.
+ */
+private void setupGoogleIMA() {
+    // Establish the Google IMA SDK factory instance.
+    final ImaSdkFactory sdkFactory = ImaSdkFactory.getInstance();
+
+    // Enable logging up ad start.
+    eventEmitter.on(EventType.AD_STARTED, new EventListener() {
+        @Override
+        public void processEvent(Event event) {
+            Log.v(TAG, event.getType());
+        }
+    });
+
+    // Enable logging any failed attempts to play an ad.
+    eventEmitter.on(GoogleIMAEventType.DID_FAIL_TO_PLAY_AD, new EventListener() {
+        @Override
+        public void processEvent(Event event) {
+            Log.v(TAG, event.getType());
+        }
+    });
+
+    // Enable Logging upon ad completion.
+    eventEmitter.on(EventType.AD_COMPLETED, new EventListener() {
+        @Override
+        public void processEvent(Event event) {
+            Log.v(TAG, event.getType());
+        }
+    });
+
+    // Set up a listener for initializing AdsRequests. The Google
+    // IMA plugin emits an ad request event as a result of
+    // initializeAdsRequests() being called.
+    eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, new EventListener() {
+        @Override
+        public void processEvent(Event event) {
+            // Create a container object for the ads to be presented.
+            AdDisplayContainer container = sdkFactory.createAdDisplayContainer();
+            container.setPlayer(googleIMAComponent.getVideoAdPlayer());
+            container.setAdContainer(brightcoveVideoView);
+
+            // Build an ads request object and point it to the ad
+            // display container created above.
+            AdsRequest adsRequest = sdkFactory.createAdsRequest();
+            adsRequest.setAdTagUrl(adRulesURL);
+            adsRequest.setAdDisplayContainer(container);
+
+            ArrayList&lt;AdsRequest&gt; adsRequests = new ArrayList&lt;AdsRequest&gt;(1);
+            adsRequests.add(adsRequest);
+
+            // Respond to the event with the new ad requests.
+            event.properties.put(GoogleIMAComponent.ADS_REQUESTS, adsRequests);
+            eventEmitter.respond(event);
+        }
+    });
+
+    // Create the Brightcove IMA Plugin and pass in the event
+    // emitter so that the plugin can integrate with the SDK.
+    googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter, true);
+}
+</code></pre>
+</details>
 </section>
 
 <section class="bcls-section">
 <h2 id="iOS_implementation">iOS implementation</h2>
-
-<!-- <p>You will need the following values to build your app using the Native SDK for iOS:</p>
-<ul>
-	<li>Playback token</li>
-	<li>Account Id</li>
-	<li>Video Id</li>
-	<li>Policy Key</li>
-</ul>
-<p>To get your Policy Key, review the <a href="/general/policy-keys.html">Policy Keys</a> document.</p> -->
 
 <p>For this feature, you will use both the IMA and SSAI plugins:</p>
 <ul>
