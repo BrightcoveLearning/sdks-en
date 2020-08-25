@@ -237,7 +237,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <a href="/android/basics/index.html">Basics <strong>+</strong></a>
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
-                        <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.14.0: Player SDK for Android Overview</a></li>
+                        <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.15.0: Player SDK for Android Overview</a></li>
                         
                         <li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Architecture</a></li>
                         
@@ -845,9 +845,105 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <summary>In this topic, you will find the latest information on changes and enhancements to the Brightcove Native SDK for Android.</summary>
 
 <section id="Current_release" class="section">
+<h2>Version 6.15.0</h2>
+
+<h3>25 Aug 2020</h3>
+
+<p>SDK Changes:</p>
+
+<ul>
+	<li>
+		<p>Implemented additional null checking for caption URIs</p>
+	</li>
+</ul>
+
+<p>IMA Plugin Changes:</p>
+
+<ul>
+	<li>
+		<p>The Google IMA SDK has been updated to version 3.19.4. Some of the changes include:</p>
+    <ul>
+      <li>
+        <code>SdkFactory.createAdDisplayContainer()</code> is deprecated
+      </li>
+      <li>
+        <code>AdDisplayContainer.setPlayer(VideoAdPlayer)</code> is deprecated
+      </li>
+      <li>
+        <code>AdDisplayContainer.setAdContainer(ViewGroup)</code> is deprecated
+      </li>
+      <li>
+        <p>
+          <code>AdsRequest.setAdDisplayContainer(AdDisplayContainer)</code> is removed
+        </p>
+        <p>For the full list of changes, please refer to the Google IMA Android SDK release history.</p>
+      </li>
+    </ul>
+	</li>
+  <li>
+    The <code>GoogleIMAComponent</code> now uses a Builder for its construction.
+  </li>
+  <li>
+    <p>
+      The IMA plugin automatically creates the <code>AdDisplayContainer</code> using the <code>BrightcoveVideoView</code> by default.
+    </p>
+    <p>
+      You may provide an <code>AdDisplayContainerFactory</code> to the <code>GoogleIMAComponent.Builder</code> to provide your own <code>AdDisplayContainer</code>.
+    </p>
+  </li>
+  <li>
+    The following methods were deprecated in the <code>GoogleIMAVideoAdPlayer</code> class:
+    <ul>
+      <li>
+        <code>playAd(). Use playAd(AdMediaInfo)</code> instead
+      </li>
+      <li>
+        <code>loadAd(String). Use loadAd(AdMediaInfo, AdPodInfo)</code> instead
+      </li>
+      <li>
+        <code>stopAd(). Use stopAd(AdMediaInfo)</code> instead
+      </li>
+      <li>
+        <code>resumeAd(). Use playAd(AdMediaInfo)</code> instead
+      </li>
+      <li>
+        <p>
+          <code>pauseAd(). Use pauseAd(AdMediaInfo)</code> instead
+        </p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Fixed an issue where the IMA plugin was not emitting the <code>AD_PAUSED/AD_RESUME</code> events when calling <code>GoogleIMAVideoAdPlayer.pauseAd</code> and <code>GoogleIMAVideoAdPlayer.resumeAd</code>, respectively.
+    </p>
+    <p>For more information, please visit the Brightcove Android SDK Overview in the Brightcove Support site.</p>
+  </li>
+</ul>
+
+<p>VMAP Plugin changes:</p>
+<ul>
+	<li>
+		The deprecated VMAP plugin has been removed from the Brightcove Native SDK for Android. For VMAP ad delivery, please continue to use the IMA plugin.
+	</li>
+</ul>
+
+<p>OnceUx Plugin Changes:</p>
+<ul>
+	<li>
+		The deprecated OnceUx plugin has been removed from the Brightcove Native SDK for Android. Please use the SSAI plugin instead.
+	</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h2>Version 6.14.0</h2>
 
-<h3>8 July 2020</h3>
+<h3>8 Jul 2020</h3>
 
 <p>SDK Changes:</p>
 
@@ -877,12 +973,6 @@ would fail to display after Server-Side Ad Insertion ad breaks completed.</p>
 		<p>ExoPlayer is now used for Ad playback instead of MediaPlayer.</p>
 	</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h2>Version 6.13.3</h2>
 
