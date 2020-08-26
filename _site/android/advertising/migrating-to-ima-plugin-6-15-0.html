@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Welcome to the Android SDK developer documentation. Here you will find the information needed to develop with the Android SDK.">
+  <meta name="description" content="In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0 or later.">
   
-  <title>Overview: Brightcove Native SDK for Android</title>
+  <title>Migrating to Brightcove's IMA Plugin 6.15.0</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -119,9 +119,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/android/basics/">Basics</a></li>
+      <li class="breadcrumb-item"><a href="/android/advertising/">Advertising</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Overview: Brightcove Native SDK for Android</li>
+      <li class="breadcrumb-item active" aria-current="page">Migrating to Brightcove's IMA Plugin 6.15.0</li>
     </ol>
   </nav>
 </header>
@@ -840,522 +840,427 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
+<h1>Migrating to Brightcove's IMA Plugin 6.15.0</h1>
 <article class="bcls-article">
-  <h1>Overview: Brightcove Native SDK for Android</h1>
-  <summary>Welcome to the Android SDK developer documentation. Here you will find the information needed to develop with the Android SDK.</summary> 
+  <summary>In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0 or later.</summary>
+
 
 <section class="bcls-section">
-<h2 id="Documentation_structure">Documentation structure</h2>
-
-<p>At Brightcove, we strive to keep the documentation structured, clean and intuitive. As such, we leverage github READMEs for details on all our plugins and integrations. For your convenience, we've listed and linked to these plugins below.</p>
-
-<aside class="bcls-aside bcls-aside--tip">
-<p>Notes:</p>
-
+<h2 id="Overview">Overview</h2>
+<p>The Brightcove Native SDK for Android 6.15.0 or later supports the Google IMA SDK version 3.19.4. If you are using IMA advertising, there are a few things to be aware of to use this version of the IMA plugin. They include the following:</p>
 <ul>
-	<li>Brightcove's Native SDK for Android now supports <a href="https://developer.android.com/jetpack">Android Jetpack (AndroidX)</a> libraries. For more details, see the <a href="#Download_the_SDK">Download the SDK</a> section</li>
+  <li>
+    Changes in the Google IMA SDK
+  </li>
+  <li>
+    Changes in the Brightcove IMA plugin
+  </li>
+  <li>
+    Migrating to the IMA Plugin 6.15.0
+  </li>
 </ul>
-</aside>
+
 </section>
 
 <section class="bcls-section">
-<h2 id="Supported_versions">Supported versions</h2>
-
-<p>The Native Player SDK for Android offers support for the following versions of Android:</p>
-
-<h3>Active support</h3>
-
-<p>Brightcove provides active support for the latest Android SDK on the following Android versions:</p>
-
-<ul>
-	<li>10.0</li>
-	<li>9.0</li>
-	<li>8.0, 8.1</li>
-	<li>7.0, 7.1</li>
-	<li>6.0</li>
-</ul>
-
-<h3>Passive support</h3>
-
-<p>Brightcove provides passive support for the following Android versions:</p>
-
-<ul><!-- <li>Currently, there is no Android OS in passive support</li> -->
-	<li>5.0, 5.1</li>
-</ul>
-
-<h3>Understanding support levels</h3>
-
-<p>Support is defined in terms of the <strong>[major version]</strong>.<strong>[minor version]</strong> of an OS (for example: Android 8.1). In order to take advantage of the latest technology improvements from Google, we offer two levels of support:</p>
-
-<ul>
-	<li><strong>Active</strong>: Brightcove will test and fix bugs on these OS versions.</li>
-	<li><strong>Passive</strong>: Brightcove will test on these OS versions, but bug fixes will be handled on a case by case basis.</li>
-</ul>
-
-<p>Generally, Brightcove provides active support for the versions of the OS that are used by 80% of the user base, and passive support for other versions used by at least 5% of the user base.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Connected_TV_Set_top_boxes">Connected TV / Set top boxes</h2>
-
-<p>The Native Player SDK for Android offers support for the following Android-based set top boxes:</p>
-
-<ul>
-	<li>Android TV</li>
-	<li>Fire TV (FireOS 5.0+ devices)</li>
-</ul>
-
-<p>The set top box devices we tested with include:</p>
-
-<ul>
-	<li>Nexus Player</li>
-	<li>Nvidia Shield</li>
-</ul>
-
-<p>The <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer">Brightcove Native SDK for Android sample apps</a> will work on Android TV and Fire TV. This means your TV-based apps can include advertising, content protection (DRM), live playback, custom UI controls, Brightcove Analytics and QoE metrics.</p>
-
-<p>Check out the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls/StyledControlsSampleApp">Styled Controls sample app</a> for details on styling the UI controls in your TV app.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Getting_started">Getting started</h2>
-
-<p>Before beginning development with the Android SDK there are a few concepts you should learn about:</p>
-
+<h2 id="Steps">Steps</h2>
+<p>
+  Once a campaign is created  in the Pulse platform, you can start using the Pulse Plugin for the Brightcove Native SDK for Android. Follow these steps to integrate the Pulse Plugin with your project:
+</p>
 <ol class="bcls-tasklist">
-	<li>Media
-	<p>The current version of the Native Player SDK supports playing content from your Video Cloud account through the Playback API, or as remote assets with internet accessible URLs.</p>
-	</li>
-	<li>Analytics
-	<p>With the Native Player SDK, Video Cloud customers automatically get robust analytics data reported in Video Cloud.</p>
-	</li>
-	<li><a href="https://gradle.org/getting-started-android-build/">Gradle</a>
-	<p>Gradle is the foundation of the Android SDK build system, and is integrated with Android Studio.</p>
-	</li>
-	<li>Maven repo
-	<p>The Brightcove Native Player for Android Maven artifacts (jar files) are now available in the Brightcove Maven Repo - <a href="https://repo.brightcove.com/releases">https://repo.brightcove.com/releases</a></p>
+	<li>
+    <p>
+      In your module <strong>build.gradle</strong> file, add the Pulse plugin dependency.
+    </p>
+    <pre class="line-numbers"><code class="language-java">dependencies {
+    implementation 'com.brightcove.player:android-pulse-plugin:6.12.0'
+}</code></pre>
+  </li>
+  <li>
+    <p>
+      Download the <a href="https://docs.videoplaza.com/oadtech/ad_serving/dg/pulse_sdks_resources.html">Pulse SDK .aar file</a>.
+    </p>
+  </li>
+  <li>
+    <p>
+      In your <strong>app/libs</strong> folder, open the <strong>build.gradle</strong> file from your module. Modify the following:
+    </p>
+    <pre class="line-numbers"><code class="language-java">dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', <span class="bcls-highlight">'*.aar'</span>])
+}</code></pre>
+  </li>
+  <li>
+    <p>
+      In your <strong>MainActivity.java</strong> file, initialize the Pulse Plugin by instantiating a <code>PulseComponent</code> with the Pulse host URL created for your campaign.
+    </p>
+    <pre class="line-numbers"><code class="language-java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    // ...
+    // Creating pulse component
+    PulseComponent pulseComponent = new PulseComponent(
+            &quot;<span class="bcls-input">your pulse host url</span>&quot;,
+            brightcoveVideoView.getEventEmitter(),
+            brightcoveVideoView);
+    // ...
+}</code></pre>
+  </li>
+  <li>
+    <p>
+      Set the <code>PulseComponent</code> Listener.
+    </p>
+    <pre class="line-numbers"><code class="language-java">pulseComponent.setListener(new PulseComponent.Listener() {
+  @NonNull
+  @Override
+  public PulseSession onCreatePulseSession(
+    @NonNull String hostUrl,
+    @NonNull Video video,
+    @NonNull ContentMetadata contentMetadata,
+    @NonNull RequestSettings requestSettings) {
+    // See step 3a
+    return Pulse.createSession(contentMetadata, requestSettings);
+  }
 
-	<aside class="bcls-aside bcls-aside--tip">For details about adding the Maven repo to your Android project, see the <a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html#Create_a_project">Build an app using the Native SDK for Android</a> document.</aside>
-	</li>
-	<li><a href="/android/basics/architecture-brightcove-player-sdk-android.html">Android SDK overview</a>
-	<p>To aid in your understanding of the SDK, learn how critical components interact to handle the complexities of controlling the native video player.</p>
-	</li>
-	<li><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Build an app using the Native SDK for Android</a>
-	<p>Create your first app with the Brightcove Player SDK for Android, which plays a video from your own backend system. Video Cloud customers will additionally retrieve and play a video from the Brightcove Catalog service.</p>
-	</li>
-	<li><a href="https://groups.google.com/forum/#!forum/brightcove-native-player-sdks">SDK developer forum</a>
-	<p>Join us in the SDK developer forum where SDK related questions are answered by Brightcove engineers and the community. Search for previously answered questions or post a new one. As a public group, you can gain access by providing your email address.</p>
-	</li>
-	<li><a href="/android/basics/training-demand-developing-brightcove-native-player-sdk-android.html">Video-on-Demand training</a>
-	<p>View a series of training videos that walk you through the steps of building an app in Android Studio that plays a video and a playlist from your Video Cloud library.</p>
-	</li>
+  @Override
+  public void onOpenClickthrough(@NonNull PulseVideoAd pulseVideoAd) {
+  }
+});</code></pre>
+  </li>
+  <li>
+    <p>
+      Implement the <code>onCreatePulseSession</code> method, which creates a <code>PulseSession</code> and returns it to the <code>PulseComponent</code>. There are three parameters:
+    </p>
+    <ul>
+      <li>
+        The pulse host
+      </li>
+      <li>
+        The content metadata settings
+      </li>
+      <li>
+        The request settings
+      </li>
+    </ul>
+    <br/>
+
+    <pre class="line-numbers"><code class="language-java">@NonNull
+@Override
+public PulseSession onCreatePulseSession(
+    @NonNull String hostUrl,
+    @NonNull Video video,
+    @NonNull ContentMetadata contentMetadata,
+    @NonNull RequestSettings requestSettings) {
+  // Set the pulse Host:
+  Pulse.setPulseHost(pulseHostUrl, null, null);
+
+  // Content metadata settings
+  contentMetadata.setCategory(&quot;skip-always&quot;);
+  contentMetadata.setTags(Collections.singletonList(&quot;standard-linears&quot;));
+  contentMetadata.setIdentifier(&quot;demo&quot;);
+
+  // Request Settings:
+  // Adding mid-rolls
+  List&lt;Float&gt; midrollCuePoints = new ArrayList&lt;&gt;();
+  midrollCuePoints.add(60f);
+  requestSettings.setLinearPlaybackPositions(midrollCuePoints);
+
+  // Create and return the PulseSession
+  return Pulse.createSession(contentMetadata, requestSettings);
+}</code></pre>
+  </li>
+  <li>
+    <p>
+      Implement the <code>onOpenClickthrough</code> method, which is called when the <strong>learn more</strong> button from a Linear Ad is clicked. A typical action for this callback is to open the browser with the expected url.
+    </p>
+    <pre class="line-numbers"><code class="language-java">@Override
+public void onOpenClickthrough(@NonNull PulseVideoAd pulseVideoAd) {
+  Intent intent = new Intent(Intent.ACTION_VIEW)
+    .setData(Uri.parse(pulseVideoAd.getClickthroughURL().toString()));
+  brightcoveVideoView.getContext().startActivity(intent);
+  pulseVideoAd.adClickThroughTriggered();
+}</code></pre>
+  </li>
+  <li>
+    <p>
+      Play your content
+    </p>
+    <pre class="line-numbers"><code class="language-java">Catalog catalog = new Catalog.Builder(
+  eventEmitter,
+  getString(R.string.account))
+  .setPolicy(getString(R.string.policy))
+  .build();
+
+catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+  // Add the video found to the queue with add().
+  // Start playback of the video with start().
+  @Override
+  public void onVideo(Video video) {
+    brightcoveVideoView.add(video);
+    brightcoveVideoView.start();
+  }
+});</code></pre>
+  </li>
 </ol>
 </section>
 
 <section class="bcls-section">
-<h2 id="Download_the_SDK">Download the SDK</h2>
+<h2 id="Pulse_Pause_Ads">Pulse Pause Ads</h2>
+<p>When the Pulse campaign has "Pause Ads" configured, the Pulse plugin will show the user when the content is paused.</p>
+</section>
 
-<p>Get the latest version of the Brightcove Native SDK for Android:</p>
+<section class="bcls-section">
+<h2 id="Error_handling">Error handling</h2>
+<p>All errors will be surfaced to the developer using the EventType.AD_ERROR event, as shown below:</p>
+<pre class="line-numbers"><code class="language-java">eventEmitter.on(EventType.AD_ERROR, event -&gt; {
+    Throwable error = event.getProperty(Event.ERROR, Throwable.class);
+    Log.e(TAG, &quot;AD_ERROR: &quot;, error);
+});</code></pre>
+</section>
 
+<section class="bcls-section">
+<h2 id="UI_Customization">UI Customization</h2>
+<p>Internally, the Pulse plugin inflates the <code>PulseAdView</code> using the <code>R.layout.pulse_ad_view</code> layout id. For a different layout, you can create a layout file with the same name and add it to the <strong>res/layout</strong> directory. This overrides the default layout. </p>
+<p>
+  Use the following ids to replace the defaults:
+</p>
+<figure class="bcls-figure">
+  <img class="bcls-image--no-border" width="800" src="//learning-services-media.brightcove.com/doc-assets/node/18962-pulse-plugin-android/component-views.png" alt="Component Views">
+  <figcaption class="bcls-caption--image">Component Views</figcaption>
+</figure>
 <table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="border-bottom:1px solid #707070;">&nbsp;</th>
-			<th style="border-bottom:1px solid #707070;">Package<br />
-			(Github Repo)</th>
-			<th style="border-bottom:1px solid #707070;">Reference Documentation</th>
-			<th style="border-bottom:1px solid #707070;">Notes</th>
-			<th style="border-bottom:1px solid #707070;">Supported Framework</th>
-			<th style="border-bottom:1px solid #707070;">Samples</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td style="background-color:#dbdbdb;font-weight: bold;">SDK</td>
-			<td><a href="https://learning-services-media.brightcove.com/doc-assets/device-sdks/android/reference/android-native-player-public-6.15.0.zip">Native SDK for Android v6.15.0</a></td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">SDK Reference</a></td>
-			<td><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></td>
-			<td><a href="https://github.com/brightcove/ExoPlayer">ExoPlayer 2 v2.10.8</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples">Sample Applications</a></td>
-		</tr>
-	</tbody>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Index</th>
+      <th>View Type</th>
+      <th>View Id</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td>A</td>
+      <td>TextView</td>
+      <td><code>pulse_ad_number_view</code></td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>TextView</td>
+      <td><code>pulse_ad_countdown_view</code></td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>TextView</td>
+      <td><code>pulse_ad_name_view</code></td>
+    </tr>
+    <tr>
+      <td>D</td>
+      <td>TextView</td>
+      <td><code>pulse_ad_learn_more_view</code></td>
+    </tr>
+    <tr>
+      <td>E</td>
+      <td>TextView</td>
+      <td><code>pulse_skip_ad_view</code></td>
+    </tr>
+  </tbody>
 </table>
+</section>
 
-<p>or select this button:</p>
+<section class="bcls-section">
+<h2 id="Complete_code_sample">Complete code sample</h2>
+<p>Here is a complete code sample for using the Pulse plugin with the Native SDK for Android.</p>
 
-<p><button class="bcls-button" type="button" title="Android Player SDK" onclick="location.href='https://learning-services-media.brightcove.com/doc-assets/device-sdks/android/reference/android-native-player-public-6.15.0.zip';">Download the SDK</button></p>
+<details>
+    <summary><h2 id="Activity">Activity</h2></summary>
+  <p>
+    Here is a example of the full Activity code:
+  </p>
+  <pre class="line-numbers"><code class="language-java">public class MainActivity extends AppCompatActivity {
 
-<p>To view the product updates for all of the Native SDKs and the associated plugins, see the <a href="/developer-support/questions/release-notes-brightcove-native-sdks.html">Release Notes for the Brightcove Native SDKs</a> document.</p>
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      setContentView(R.layout.activity_main);
 
-<h3>Notes</h3>
+      final BrightcoveVideoView videoView = findViewById(R.id.video_view);
+      super.onCreate(savedInstanceState);
 
-<p>The following notes refer to the latest version of the Native SDK:</p>
+      EventEmitter eventEmitter = videoView.getEventEmitter();
 
-<ul>
-	<li>
-	<p>Starting with version 6.10.0, Brightcove's Native SDK for Android uses the Jetpack (androidx.*) libraries instead of the original support libraries. This change is required for Exoplayer version 2.10.0 and above. To use Jetpack, your apps must meet the following requirements:</p>
+      // Pulse setup
+      PulseComponent pulseComponent = new PulseComponent(
+          &quot;https://pulse-demo.videoplaza.tv&quot;,
+          eventEmitter,
+          videoView);
 
-	<ul>
-		<li>Migrate to Jetpack (AndroidX) dependencies</li>
-		<li>Android Gradle Tools 3.2.0</li>
-		<li>Gradle version 4.6</li>
-	</ul>
+      pulseComponent.setListener(new PulseComponent.Listener() {
+          @NonNull
+          @Override
+          public PulseSession onCreatePulseSession(
+                @NonNull String pulseHostUrl,
+                @NonNull Video video,
+                @NonNull ContentMetadata contentMetadata,
+                @NonNull RequestSettings requestSettings) {
+            Pulse.setPulseHost(pulseHostUrl, null, null);
+            contentMetadata.setCategory(&quot;skip-always&quot;);
+            contentMetadata.setTags(Collections.singletonList(&quot;standard-linears&quot;));
+            contentMetadata.setIdentifier(&quot;demo&quot;);
 
-	<p>For more information on how to migrate to JetPack refer to the official <a href="https://developer.android.com/jetpack/androidx/migrate">Android migration guide</a>.</p>
-	</li>
-	<li>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is now 19.</li>
-	<li>For ExoPlayer v2.9.0+, you need to enable Java 8 support. To do this, add the following to the <code>android</code> section of your app's <strong>build.gradle</strong> file. For details, see <a href="https://exoplayer.dev/hello-world.html">Android's ExoPlayer</a> document.
-	<pre class="line-numbers">
-<code class="language-java">android {
-    compileOptions {
-      targetCompatibility JavaVersion.VERSION_1_8
+            // Adding mid-rolls
+            List&lt;Float&gt; midrollCuePoints = new ArrayList&lt;&gt;();
+            midrollCuePoints.add(60f);
+            requestSettings.setLinearPlaybackPositions(midrollCuePoints);
+
+            return Pulse.createSession(
+              contentMetadata,
+              requestSettings);
+          }
+
+          @Override
+          public void onOpenClickthrough(@NonNull PulseVideoAd ad) {
+            Intent intent = new Intent(Intent.ACTION_VIEW)
+              .setData(Uri.parse(ad.getClickthroughURL().toString()));
+            videoView.getContext().startActivity(intent);
+            ad.adClickThroughTriggered();
+          }
+      });
+
+      Catalog catalog = new Catalog.Builder(eventEmitter, &quot;YourAccountId&quot;)
+          .setPolicy(&quot;YourPolicyKey&quot;)
+          .build();
+      catalog.findVideoByID(&quot;YourVideoId&quot;, new VideoListener() {
+
+        // Add the video found to the queue with add().
+        // Start playback of the video with start().
+        @Override
+        public void onVideo(Video video) {
+          videoView.add(video);
+          videoView.start();
+        }
+      });
     }
   }</code></pre>
-
-	<p>This overrides the default Java version based on the project's <code>compileSdkVersion</code> value.</p>
-	</li>
-</ul>
-
-<aside class="bcls-aside bcls-aside--information">Support for ExoPlayer 1 has been removed from the Native SDK for Android. If you haven't already done so, please migrate to the <a href=" /android/framework/migrating-exoplayer-2-framework.html">ExoPlayer 2 Framework</a>.</aside>
-</section>
-
-<section class="bcls-section">
-<h2 id="Core_SDK_installation">Core SDK installation</h2>
-
-<p>Installation of the Brightcove core SDK is very straightforward. There are two ways to do this:</p>
-
-<ul>
-	<li><a href="#Using_the_gradle_build_system">Using the gradle build system</a></li>
-	<li><a href="#Manually_downloading_the_SDK">Manually downloading the SDK</a></li>
-</ul>
-
-<h3 id="Using_the_gradle_build_system">Using the gradle build system</h3>
-
-<p>The easiest way to add the Brightcove SDK and its dependencies is to use the gradle build system in Android Studio.</p>
-
-<p>Using a dynamic dependency version with the '+' character is discouraged in the Gradle community. Using dynamic versioning brings a significant risk to your build process, as newer APIs may become unexpectedly incompatible with your app's source code.</p>
-
-<aside class="bcls-aside bcls-aside--information">
-<p>Brightcove recommends always using the latest version with a specific version string. For example, review the <strong>build.gradle</strong> and <strong>gradle.properties</strong> files in the <a href="https://github.com/BrightcoveOS/android-player-samples">android-player-samples</a> project.</p>
-</aside>
-
-<p>For more information about using gradle, see Android's <a href="https://developer.android.com/studio/build/dependencies.html">Add Build Dependencies</a> documentation.</p>
-
-<h3 id="Manually_downloading_the_SDK">Manually downloading the SDK</h3>
-
-<p>You can also manually download the Brightcove SDK as follows:</p>
-
-<ol class="bcls-tasklist__restart">
-	<li>Simply download the SDK and unzip it. You will find a number of folders.</li>
-	<li>Inside the <strong>sdk</strong> folder, you will find the core SDK with the name <strong>android-sdk-x.x.x.aar</strong>, where <strong>x.x.x</strong> is the latest SDK version number.</li>
-	<li>Add the <strong>android-sdk-x.x.x.aar</strong> file to your library, along with any plugin files that you may need.</li>
-</ol>
-</section>
-
-<section class="bcls-section">
-<h2 id="Integrations">Integrations</h2>
-
-<p>The following table contains links to get plugins integrated with your SDK implementation. The plugins can be downloaded from their respective Github Repos, and each repo contains a detailed README with instructions on how to setup the plugin.</p>
-
-<aside class="bcls-aside bcls-aside--tip">It is recommended that you use the <code class="notranslate">BrightcoveExoPlayerVideoView </code> class whenever possible. Widevine Modular is supported when using this class.</aside>
-
-<p>The sample applications demonstrate the basic functionality of each plugin integrated with the SDK. These sample apps are a good way to learn about each plugin, and serve as a reference point when debugging.</p>
-
-<p><a href="/android/resources/brightcove-player-sdk-android-previous-sdk-information.html">Previous integration versions</a></p>
-<!-- **** begin copy table for previous versions doc **** --> 
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="border-bottom:1px solid #707070;">Category</th>
-			<th style="border-bottom:1px solid #707070;width: 20%;">Brightcove Plugin</th>
-			<th style="border-bottom:1px solid #707070;width: 20%;">Reference Documentation</th>
-			<th style="border-bottom:1px solid #707070;width: 20%">Sample Apps</th>
-			<th style="border-bottom:1px solid #707070;">Supported Partner/Vendor Plugin</th> 
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td rowspan="8" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
-			<td>FreeWheel plugin 6.15.0 <sup><a href="#n1"> [1]</a></sup></td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/freewheel/controller/package-frame.html">FreeWheel Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelSampleApp/src/main">Basic FreeWheel Sample</a></td>
-			<td>FreeWheel AdManager library 6.28.0</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelWidevineModularSampleApp/src/main">FreeWheel with Widevine Modular Sample</a></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>IMA plugin 6.15.0 <sup><a href="#n4"> [6]</a></sup></td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ima/package-frame.html">IMA Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">Ad Rules with IMA Sample</a></td>
-			<td>Google IMA 3.19.4</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">Ad Rules with IMA and Widevine Sample</a></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/BasicIMASampleApp/src/main">Basic IMA Sample</a> <sup><a href="#n2"> [2]</a></sup></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>Pulse plugin 6.15.0</td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/pulse/package-frame.html">Pulse Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/PulseSampleApp">Pulse Sample</a></td>
-			<td>Pulse SDK 2.5.20.1.0</td>
-		</tr>
-		<tr>
-			<td>SSAI plugin 6.15.0</td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ssai/package-frame.html">SSAI Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Sample</a></td>
-			<td>None</td>
-		</tr>
-		<tr>
-			<td>VMAP plugin 6.15.0 <sup><a href="#n4"> [4]</a></sup> <sup><a href="#n4"> [6]</a></sup></td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/vmap/package-frame.html">VMAP Reference</a></td>
-			<td><!-- <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/VMAPSampleApp">Basic VMAP Sample</a> --></td>
-			<td>None</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
-			<td>Omniture plugin 6.15.0 <sup><a href="#n5"> [5]</a></sup></td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/omniture/package-frame.html">Omniture Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/BasicOmnitureSampleApp/src/main">Basic Omniture Sample</a></td>
-			<td>AdobeVideoLibrary 4.11.0<br />
-			<br />
-			VideoHeartbeat 2.0.0</td>
-		</tr>
-		<tr>
-			<td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
-			<td>Cast plugin 6.15.0</td>
-			<td><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/cast/package-frame.html">Cast Reference</a></td>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicCastSampleApp">Cast Sample</a></td>
-			<td>ExoPlayer Cast Extension 2.10.8</td>
-		</tr>
-	</tbody>
-</table>
-<!-- **** end copy table for previous versions doc **** -->
-
+</details>
 <br/>
-<aside class="bcls-aside bcls-aside--information">
-<p>The following notes refer to the integrations in the table above.</p>
 
-<ul>
-	<li>
-	<p>You cannot pick and choose individual Brightcove plugin versions with partner plugin versions. You must use the partner plugin versions that are specified, as this is what has been tested.</p>
-	</li>
-	<li>To avoid problems with conflicting java libraries, make sure that you remove old versions from the path before adding the new libraries to your path. For the sample apps, include plugin libraries into the <code class="notranslate">libs/ </code> top-level directory.</li>
-	<!-- <li>The Brightcove Native SDKs have deprecated support for the Widevine Classic integration.</li> -->
-</ul>
+<details>
+    <summary><h2 id="Layout">Layout</h2></summary>
+  <p>
+    Here is an example of the layout code for the <code>R.layout.pulse_ad_view</code>.
+  </p>
+  <pre class="line-numbers"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+  &lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+      xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+      android:layout_width=&quot;match_parent&quot;
+      android:layout_height=&quot;match_parent&quot;&gt;
 
-<p id="n1"><sup>[1]</sup> The Native SDK for Android v4.11.0 supports the functionality for the <code class="notranslate">skipCurrentAd </code> and <code class="notranslate">skipCurrentAdBreak </code> methods, but it does require the FreeWheel AdManager library v6.10.0. If you do not upgrade the FreeWheel library when using these methods, your application may crash.</p>
+      &lt;RelativeLayout
+          android:id=&quot;@+id/view_ad_details&quot;
+          android:layout_width=&quot;match_parent&quot;
+          android:layout_height=&quot;wrap_content&quot;
+          android:background=&quot;@drawable/pulse_skip_button_background_selector&quot;&gt;
 
-<p>The Native SDK for Android v5.2.0 has been updated to support FreeWheel AdManager v6.17.0. The SDK will not work with previous versions of the FreeWheel AdManager.</p>
+          &lt;TextView
+              android:id=&quot;@+id/pulse_ad_name_view&quot;
+              android:layout_width=&quot;wrap_content&quot;
+              android:layout_height=&quot;wrap_content&quot;
+              android:layout_alignParentTop=&quot;true&quot;
+              android:layout_marginTop=&quot;4dp&quot;
+              android:paddingTop=&quot;4dp&quot;
+              android:paddingStart=&quot;8dp&quot;
+              android:paddingEnd=&quot;8dp&quot;
+              android:textColor=&quot;@color/white&quot;
+              android:background=&quot;@color/bmc_live&quot;
+              android:textStyle=&quot;bold&quot;
+              tools:text=&quot;Preroll blue&quot;/&gt;
 
-<p id="n2"><sup>[2]</sup> For the Basic IMA Sample, Brightcove recommends that you change the <code class="notranslate">BrightcoveVideoView </code> to <code class="notranslate">BrightcoveExoPlayerVideoView</code>, so that you use the ExoPlayer framework.</p>
+          &lt;TextView
+              android:id=&quot;@+id/pulse_ad_number_view&quot;
+              android:layout_width=&quot;wrap_content&quot;
+              android:layout_height=&quot;wrap_content&quot;
+              android:paddingStart=&quot;8dp&quot;
+              android:paddingEnd=&quot;4dp&quot;
+              android:paddingBottom=&quot;4dp&quot;
+              android:layout_marginBottom=&quot;8dp&quot;
+              android:layout_below=&quot;@id/pulse_ad_name_view&quot;
+              android:textColor=&quot;@color/white&quot;
+              android:background=&quot;@color/white_semi_trans&quot;
+              tools:text=&quot;Ad (1 of 2)&quot;/&gt;
 
-<p id="n4"><sup>[4]</sup> The VMAP plugin is intended to provide VMAP support when not using Google's IMA plugin.</p>
+          &lt;TextView
+              android:id=&quot;@+id/pulse_ad_countdown_view&quot;
+              android:layout_width=&quot;wrap_content&quot;
+              android:layout_height=&quot;wrap_content&quot;
+              android:paddingStart=&quot;4dp&quot;
+              android:paddingEnd=&quot;4dp&quot;
+              android:paddingBottom=&quot;4dp&quot;
+              android:layout_marginBottom=&quot;4dp&quot;
+              android:layout_below=&quot;@id/pulse_ad_name_view&quot;
+              android:layout_toEndOf=&quot;@+id/pulse_ad_number_view&quot;
+              android:textColor=&quot;@color/green_almost_opaque&quot;
+              android:text=&quot;&quot;
+              tools:text=&quot;00:06&quot;/&gt;
 
-<p id="n5"><sup>[5]</sup> You must independently obtain and install the <code class="notranslate">adobeMobileLibrary.jar </code> file into the top-level directory. The <code class="notranslate">adobeMobileLibrary.jar </code> file version 4.11.0 is provided along with the <code class="notranslate">VideoHeartbeat.jar </code> file version 2.0.</p>
+          &lt;TextView
+              android:id=&quot;@+id/pulse_ad_learn_more_view&quot;
+              android:layout_width=&quot;wrap_content&quot;
+              android:layout_height=&quot;wrap_content&quot;
+              android:layout_marginStart=&quot;@dimen/pulse_ad_learn_more_margin_left&quot;
+              android:layout_marginTop=&quot;@dimen/pulse_ad_learn_more_margin_top&quot;
+              android:layout_marginEnd=&quot;@dimen/pulse_ad_learn_more_margin_right&quot;
+              android:layout_marginBottom=&quot;@dimen/pulse_ad_learn_more_margin_bottom&quot;
+              android:layout_alignTop=&quot;@id/pulse_ad_name_view&quot;
+              android:layout_alignBottom=&quot;@id/pulse_ad_countdown_view&quot;
+              android:layout_alignParentEnd=&quot;true&quot;
+              android:background=&quot;@drawable/pulse_learn_more_button_background&quot;
+              android:paddingStart=&quot;12dp&quot;
+              android:paddingEnd=&quot;12dp&quot;
+              android:padding=&quot;@dimen/pulse_ad_learn_more_padding_default&quot;
+              android:gravity=&quot;center&quot;
+              android:shadowColor=&quot;@color/brightcove_semitransparent&quot;
+              android:shadowDx=&quot;-1&quot;
+              android:shadowDy=&quot;1&quot;
+              android:shadowRadius=&quot;1.5&quot;
+              android:text=&quot;@string/pulse_message_learn_more&quot;
+              android:textColor=&quot;@color/pulse_button_text_color&quot;
+              android:nextFocusUp=&quot;@id/pulse_skip_ad_view&quot;
+              android:textSize=&quot;@dimen/pulse_message_text_size&quot;
+              android:visibility=&quot;gone&quot;
+              tools:visibility=&quot;visible&quot; /&gt;
 
-<p id="n6"><sup>[6]</sup> The Brightcove Native SDKs support <a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">VMAP</a> XML templates that contain the VAST protocol, including <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast-3-0/">VAST 3.0</a>, and limited support for <a href="https://www.iab.com/guidelines/digital-video-ad-serving-template-vast/">VAST 4.0</a>. For more details about VAST version compatibility, see <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/compatibility">Google's Support and Compatibility document</a> for the IMA SDK for Android. The Native SDKs also support the <a href="/features/ima-open-measurement-native-sdks.html">IAB Open Measurement SDK</a>.</p>
-</aside>
+      &lt;/RelativeLayout&gt;
 
-<h3>Combining plugins</h3>
+      &lt;TextView
+          android:id=&quot;@+id/pulse_skip_ad_view&quot;
+          android:layout_width=&quot;wrap_content&quot;
+          android:layout_height=&quot;wrap_content&quot;
+          android:maxWidth=&quot;164dp&quot;
+          android:layout_alignParentEnd=&quot;true&quot;
+          android:layout_centerVertical=&quot;true&quot;
+          android:layout_marginBottom=&quot;@dimen/pulse_skip_ad_margin_bottom&quot;
+          android:background=&quot;@drawable/pulse_skip_button_background_selector&quot;
+          android:ellipsize=&quot;none&quot;
+          android:gravity=&quot;center&quot;
+          android:maxLines=&quot;2&quot;
+          android:paddingStart=&quot;@dimen/pulse_skip_ad_padding_left&quot;
+          android:paddingEnd=&quot;@dimen/pulse_skip_ad_padding_right&quot;
+          android:paddingTop=&quot;@dimen/pulse_skip_ad_padding&quot;
+          android:paddingBottom=&quot;@dimen/pulse_skip_ad_padding&quot;
+          android:scrollHorizontally=&quot;false&quot;
+          android:shadowColor=&quot;@color/brightcove_shadow&quot;
+          android:shadowDx=&quot;-1&quot;
+          android:shadowDy=&quot;1&quot;
+          android:shadowRadius=&quot;1.5&quot;
+          android:text=&quot;@string/pulse_message_skip_ad&quot;
+          android:textColor=&quot;@color/pulse_button_text_color&quot;
+          android:textSize=&quot;@dimen/pulse_message_text_size&quot;
+          android:visibility=&quot;gone&quot;
+          android:nextFocusUp=&quot;@id/pulse_ad_learn_more_view&quot;
+          android:focusable=&quot;true&quot;
+          tools:visibility=&quot;visible&quot;/&gt;
 
-<p>With the Native SDK for Android, most plugins can be combined. This <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">sample app</a> shows you how to use the Brightcove ExoPlayer with Google IMA ads and content protection with Widevine Modular.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Samples">Samples</h2>
-
-<p>Brightcove recommends using the <code class="notranslate">BrightcoveExoPlayerVideoView </code> implementation when possible. For samples and code snippets, see the following:</p>
-
-<ul>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples">All samples for the Brightcove Player SDK for Android</a>
-
-	<ul>
-		<li><strong>brightcove-exoplayer</strong> folder – Samples use the ExoPlayer implementation.</li>
-		<li><strong>brightcove-player-controls</strong> folder – Concepts can be used with the ExoPlayer implementation.</li>
-	</ul>
-	</li>
-	<li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Code snippets to help with specific tasks</a></li>
-</ul>
-
-<p>The following table contains links to code samples that are in addition to the samples associated with the integrations in the previous section.</p>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="width:25%">Sample Application</th>
-			<th style="width:75%">Description</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">Basic Sample</a></td>
-			<td>Create a basic app that plays videos from your Video Cloud library.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicCastSampleApp">Chromecast</a></td>
-			<td>Cast your videos to a Chromecast-connected TV. For an overview, see the <a href=" /android/tv/cast-plugin-native-sdk-android.html">The Cast plugin for the Native SDK for Android</a> document.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls">Custom Controls</a></td>
-			<td>Customize the player controls.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/WidevineModularSampleApp/src/main">DRM with Widevine</a></td>
-			<td>Protect your content with Widevine. The Android framework supports Widevine Modular when using the ExoPlayer Video View. For details, see the <a href="https://google.github.io/ExoPlayer/guide.html#digital-rights-management">Widevine reference</a>.</td>
-      <!-- <td>For the latest Widevine release announcements and product updates, see the <a href="https://www.widevine.com/product_news.html">Widevine Product News</a>.</td> -->
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/LiveSampleApp">Live Stream</a></td>
-			<td>Create an app that runs an HLS live stream.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">Offline playback</a></td>
-			<td>Download and play DASH videos, including those protected with Widevine encryption. For an overview, see the <a href="/features/offline-playback-native-player-sdks.html">Offline Playback with the Native SDKs</a> document.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatActivitySampleApp">Remote Video</a></td>
-			<td>Load a video from a remote server.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/VideoListSampleApp">Video list</a></td>
-			<td>Use a <code class="notranslate">RecyclerView </code> to handle a set of videos.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/360VideoSampleApp/src/main">360° Video</a></td>
-			<td>Plays a 360° video, as long as the projection property is set. When the Video 360 button in the control bar is tapped, the video is displayed in VR Goggles mode with side-by-side images. For details, see the <a href="/features/using-360deg-videos-native-sdks.html">Using 360° Videos with the Mobile SDKs</a> document.</td>
-		</tr>
-	</tbody>
-</table>
-</section>
-
-<section class="bcls-section">
-<h2 id="Solution_guides">Solution guides</h2>
-
-<p>The following table contains links to developer docs which will help you get started with your own app using the Brightcove Player SDK, and guide you through some of the features and functionality available.</p>
-
-<table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="width:25%">Guide</th>
-			<th style="width:75%">Description</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td><a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Brightcove Player SDK for Android Setup</a></td>
-			<td>Learn the basics of working with the Brightcove Player SDK for Android by walking you through the development of a simple video playback app using content from your own backend system.<br />
-			<br />
-			Video Cloud customers will additionally retrieve and play a video from the Brightcove Catalog service.</td>
-		</tr>
-		<tr>
-			<td><a href="https://github.com/BrightcoveOS/android-plugin-guide">Creating Plugins</a></td>
-			<td>Learn how to create a plugin for the Brightcove Player SDK for Android.</td>
-		</tr>
-		<tr>
-			<td><a href="/android/framework/android-adding-viewmanaging-layout.html">Managing View Layout</a></td>
-			<td>Learn how to manage the layout of a View added to the <code class="notranslate">BrightcoveVideoView </code>.</td>
-		</tr>
-		<tr>
-			<td><a href="/android/playback/handling-orientation-change-native-sdk-android.html">Handling Orientation Changes</a></td>
-			<td>Learn how to manage unwanted default behavior when the orientation changes.</td>
-		</tr>
-		<tr>
-			<td><a href="/features/ima-open-measurement-native-sdks.html">IAB Open Measurement</a></td>
-			<td>Learn how to use the Open Measurement SDK with the IMA plugin for support of third-party tools for ad measurement and verifcation.</td>
-		</tr>
-		<tr>
-			<td><a href="/android/playback/android-source-selection.html">Source Selection</a></td>
-			<td>Learn about the default rendition selection process when playing a video.</td>
-		</tr>
-		<tr>
-			<td><a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a></td>
-			<td>Learn how to set properties in Brightcove Analytics from your mobile app using the Brightcove SDK for Android.</td>
-		</tr>
-		<tr>
-			<td><a href="/android/playback/android-managing-player-controls.html">Working with Player Controls</a></td>
-			<td>Learn how to customize and hide player controls.</td>
-		</tr>
-	</tbody>
-</table>
-</section>
-
-<section class="bcls-section">
-<h2 id="Best_practices">Best practices</h2>
-
-<p>Here is additional information that you may find helpful when working with the Brightcove Native SDK.</p>
-
-<h3>Advertising with IMA</h3>
-
-<p>The placement of VAST ads is typically specified by a VMAP document. VAST describes an ad while VMAP describes the placement of ads in a video. For code details, see the following:</p>
-
-<ul>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">AdRulesIMASampleApp</a></li>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">AdRulesIMAWidevineModularSampleApp</a></li>
-	<li>
-	<p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-mediaplayer/BasicIMASampleApp/src/main">BasicIMASampleApp</a></p>
-
-	<aside class="bcls-aside bcls-aside--tip">For the Basic IMA Sample, it is recommended that you change the <code class="notranslate">BrightcoveVideoView </code> to <code class="notranslate">BrightcoveExoPlayerVideoView</code>, so that you use the ExoPlayer framework.</aside>
-	</li>
-</ul>
-
-<p>&nbsp;</p>
-
-<p>When working with IMA ads, it is best practice to check that your ads work outside of the SDK before implementing them. The following links will be helpful for this:</p>
-
-<ul>
-	<li><a href="https://developers.google.com/interactive-media-ads/docs/sdks/html5/vastinspector">Google VAST Ad Response validator</a></li>
-	<li><a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">Digital Video Multiple Ad Playlist (VMAP) guide</a></li>
-	<li><a href="https://groups.google.com/forum/#!forum/ima-sdk">Google IMA Technical Forum</a></li>
-</ul>
-
-<h3>Companion ads</h3>
-
-<p>Companion ads and click-through ads are not supported on Android TV. Because there is no web browser support on Android TV, there is no destination for a click-through URL.</p>
-
-<h3>Working with ProGuard</h3>
-
-<p>Using <a href="https://stuff.mit.edu/afs/sipb/project/android/docs/tools/help/proguard.html">ProGuard</a> allows you to create more secure apps, making them harder to reverse engineer. ProGuard is integrated into the Android build system, so you can choose to enable it or build without it.</p>
-
-<p>If you receive an error when ProGuard is enabled in Gradle, try adding the following exclusion rules:</p>
-
-<pre class="line-numbers">
-  <code class="notranslate language-java">-dontwarn com.google.**
-  -dontwarn android.media.**
-  -keep class android.media.** { *; }
-  -keep class com.google.** { *; }
-  -keep interface com.google.** { *; }
-  -keep class com.google.ads.interactivemedia.** { *; }
-  -keep interface com.google.ads.interactivemedia.** { *; }
-  </code>
-  </pre>
-
-<p>For a complete list of ProGuard rules used by the Brightcove Native SDK, download and unzip the <a href="#Download_the_SDK">current Native SDK for Android</a>. Open the <strong>sdk</strong> folder and view the <code class="notranslate">proguard.txt </code> file.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Playback_behavior">Playback behavior</h2>
-
-<p>You may notice some of the following playback behaviors on certain Android devices:</p>
-
-<h3>Video pause</h3>
-
-<p>Android's <a href="http://www.samsung.com/in/support/skp/faq/1048380">Smart Pause</a> feature on Samsung devices will pause a video when the user looks away from the device screen. You can disable this feature if you do not want videos to pause on Smart Pause-enabled devices.</p>
+  &lt;/RelativeLayout&gt;
+  </code></pre>
+</details>
 </section>
 </article>
-
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
