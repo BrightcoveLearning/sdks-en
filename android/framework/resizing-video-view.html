@@ -1,0 +1,64 @@
+---
+title: 'Resizing Video View with the Native SDK for Android'
+description: In this topic, you will learn how to resize/stretch the inner Video View (<code>SurfaceView</code>/<code>TextureView</code>) to fill the <code>BrightcoveVideoView</code> (<code>FrameLayout</code>) when working with the Native SDK for Android.
+parent: Framework
+grandparent: Android Development
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+<p>As a developer, you can change the default behavior for how the Video is displayed on the Video View. To do this, you can listen for the <code>EventType.VIDEO_SIZE_KNOWN</code> event, do some math and set the display values.</p>
+<p>There are two ways to change the Video View:</p>
+<ul>
+  <li>
+    <a href="#Resizing_the_container">Resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>)</a>
+  </li>
+  <li>
+    <a href="#Resize_the_actual_video">Resize the actual video (<code>SurfaceView</code>)</a>
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Resizing_the_container">Resizing the container</h2>
+<p>You may want to develop an app that sets the Video View to fit the entire device screen in portrait mode. You can do this by resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>).</p>
+<aside class="bcls-aside bcls-aside--information">Because the Video height is initially unknown, it will match its parent view size (the whole screen in the BasicSampleApp) until the VIDEO_SIZE_KNOWN event is triggered. Then, the BaseVideoView will wrap the SurfaceView. When resizing the container, you may see an initial flicker.</aside>
+
+<h3>Set the container property</h3>
+<p>If you see black margins around your video, you can try setting the <code>BrightcoveVideoView</code> <code>layout-height</code>.</p>
+<ol class="bcls-tasklist">
+    <li>Open the XML <strong>layout</strong> file</li>
+    <li>Set the <code>BrightcoveVideoView layout-height</code> to <code>wrap_content</code>.</li>
+</ol>
+
+<h3>Set the Video View size</h3>
+<p>Another way to control the Video View is to set the size programmatically.</p>
+
+
+
+
+
+
+<pre class="line-numbers">
+<code class="language-java">@Override
+public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+    Log.v(TAG, "setLayoutParams: " + layoutParams);
+    super.setLayoutParams(layoutParams);
+    if (layoutParams != null) {
+        int childCount = getChildCount();
+        FrameLayout.LayoutParams frameLayoutParams =
+            new FrameLayout.LayoutParams(layoutParams.width, layoutParams.height);
+        frameLayoutParams.gravity = Gravity.CENTER;
+        for (int i = 0; i &lt; childCount; i++) {
+            getChildAt(i).setLayoutParams(frameLayoutParams);
+        }
+    }
+}</code></pre>
+</section>
+
+
+</article>
