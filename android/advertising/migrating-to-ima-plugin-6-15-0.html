@@ -21,7 +21,7 @@ grandparent: Android Development
      <a href="#">Changes in the Brightcove IMA plugin</a>
   </li>
   <li>
-     <a href="#">>Migrating to the IMA Plugin 6.15.0</a
+     <a href="#">Migrating to the IMA Plugin 6.15.0</a
   </li>
 </ul>
 </section>
@@ -58,14 +58,94 @@ grandparent: Android Development
     <a href="#Using_the_GoogleIMAComponent_Builder">Using the GoogleIMAComponent Builder</a>
   </li>
   <li>
-     <a href="#">Changes in the Brightcove IMA plugin</a>
+     <a href="#Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</a>
   </li>
   <li>
-     <a href="#">>Migrating to the IMA Plugin 6.15.0</a
+     <a href="#Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</a>
   </li>
 </ul>
 
 <h3 id="Using_the_GoogleIMAComponent_Builder">Using the GoogleIMAComponent Builder</h3>
+<p>We recommend using the Builder to create the <code>GoogleIMAComponent</code> instance. This makes it easier to configure the <code>GoogleIMAComponent</code>.</p>
+<pre class="line-numbers"><code class="language-java">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setUseAdRules(true)
+  .setImaSdkSettings(customIMASDKSettings)
+  .setAdsRenderingSettings(customAdsRenderingSettings)
+  .setAdDisplayContainerFactory(customAdDisplayContainerFactory)
+  .build();
+}</code></pre>
+
+<h3 id="Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</h3>
+<p>Because the Google IMA SDK removed <code>AdsRequest.setAdDisplayContainer(...)</code>, the Brightcove IMA plugin now creates this automatically, using the <code>GoogleIMAVideoAdPlayer</code> and the <code>BaseVideoView</code>.</p>
+<p>The plugin requires an <code>AdDisplayContainerFactory</code> to create the <code>AdDisplayContainer</code>.</p>
+<pre class="line-numbers"><code class="language-java">public interface AdDisplayContainerFactory {
+  /**
+  * Creates the AdDisplayContainer with the provided GoogleIMAVideoAdPlayer
+  * and the ViewGroup retrieved with getViewContainer()
+  *
+  * @param googleIMAVideoAdPlayer the Brightcove Ad Player for Google IMA
+  */
+  AdDisplayContainer createAdDisplayContainer(GoogleIMAVideoAdPlayer googleIMAVideoAdPlayer);
+
+  /**
+  * Returns the ViewGroup container used for both,
+  * the creation of the GoogleIMAVideoAdPlayer and the AdDisplayContainer
+  */
+  ViewGroup getViewContainer();
+}
+</code></pre>
+<p>Under the hood, the plugin uses the <code>DefaultAdDisplayContainerFactory</code>, an <code>AdDisplayContainerFactory</code>, to create the <code>AdDisplayContainer</code>. The <code>getViewContainer()</code> returns the <code>BaseVideoView</code> passed in its constructor, and the <code>createAdDisplayContainer</code> method returns:</p>
+
+<pre><code class="language-java">ImaSdkFactory.createAdDisplayContainer(getViewContainer(), googleIMAVideoAdPlayer);</code></pre>
+
+<h4>Add your AdDisplayContainerFactory</h4>
+<p>If you need a different implementation, you must pass your own <code>AdDisplayContainerFactory</code>  to the <code>GoogleIMAComponent</code> Builder:</p>
+<pre class="line-numbers"><code class="language-java">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setAdDisplayContainerFactory(customAdDisplayContainerFactory)
+  .build();
+</code></pre>
+
+<p>If you want to play the Ads in a different view other than the <code>BaseVideoView</code>, you can provide the <code>DefaultAdDisplayContainerFactory</code> with your <code>ViewGroup</code>.</p>
+<pre class="line-numbers"><code class="language-java">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setAdDisplayContainerFactory(new DefaultAdDisplayContainerFactory(myViewGroup))
+  .build();
+</code></pre>
+
+<h3 id="Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</h3>
+<p>The following methods are deprecated in the <code>GoogleIMAVideoAdPlayer</code> class:</p>
+<table class="bcls-table">
+  <thead class="bcls-table__head">
+    <tr>
+      <!-- <th style="width:10%">Deprecated</th> -->
+      <th>Deprecated method</th>
+      <th>Use instead</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code>playAd()</code></td>
+      <td><code>playAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code>loadAd(String)</code></td>
+      <td><code>loadAd(AdMediaInfo, AdPodInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code>stopAd()</code></td>
+      <td><code>stopAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code>resumeAd()</code></td>
+      <td><code>playAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code>pauseAd()</code></td>
+      <td><code>pauseAd(AdMediaInfo)</code></td>
+    </tr>
+  </tbody>
+</table>
+<br/>
+<p>Notice that the replacement methods now require <code>AdMediaInfo</code>. You can retrieve the current <code>AdMediaInfo</code> object by calling <code>GoogleIMAVideoAdPlayer.getCurrentAdMediaInfo()</code>. This will return the loaded <code>AdMediaInfo</code>, or <code>Null</code>.</p>
 
 </section>
 
