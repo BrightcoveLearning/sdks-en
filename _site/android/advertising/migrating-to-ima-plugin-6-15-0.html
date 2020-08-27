@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0 or later.">
+  <meta name="description" content="In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0.">
   
   <title>Migrating to Brightcove's IMA Plugin 6.15.0</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -842,7 +842,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h1>Migrating to Brightcove's IMA Plugin 6.15.0</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0 or later.</summary>
+  <summary>In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 6.15.0.</summary>
 
 
 <section class="bcls-section">
@@ -853,10 +853,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <a href="#Changes_in_the_Google_IMA_SDK">Changes in the Google IMA SDK</a>
   </li>
   <li>
-     <a href="#">Changes in the Brightcove IMA plugin</a>
+     <a href="#Changes_in_the_Brightcove_IMA_plugin">Changes in the Brightcove IMA plugin</a>
   </li>
   <li>
-     <a href="#">Migrating to the IMA Plugin 6.15.0</a
+     <a href="#Migrating_to_the_IMA_Plugin_6_15_0">Migrating to the IMA Plugin 6.15.0</a
   </li>
 </ul>
 </section>
@@ -953,7 +953,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <tr>
       <!-- <th style="width:10%">Deprecated</th> -->
       <th>Deprecated method</th>
-      <th>Use instead</th>
+      <th style="text-align:center";>Use instead</th>
     </tr>
   </thead>
   <tbody class="bcls-table__body">
@@ -981,28 +981,73 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </table>
 <br/>
 <p>Notice that the replacement methods now require <code>AdMediaInfo</code>. You can retrieve the current <code>AdMediaInfo</code> object by calling <code>GoogleIMAVideoAdPlayer.getCurrentAdMediaInfo()</code>. This will return the loaded <code>AdMediaInfo</code>, or <code>Null</code>.</p>
-
 </section>
-
-
-
-
 
 <section class="bcls-section">
-<h2 id="Pulse_Pause_Ads">Pulse Pause Ads</h2>
-<p>When the Pulse campaign has "Pause Ads" configured, the Pulse plugin will show the user when the content is paused.</p>
-<ol class="bcls-tasklist">
-	<li>
-    <p>
-      In your module <strong>build.gradle</strong> file, add the Pulse plugin dependency.
-    </p>
-    <pre class="line-numbers"><code class="language-java">dependencies {
-    implementation 'com.brightcove.player:android-pulse-plugin:6.12.0'
-}</code></pre>
+<h2 id="Migrating_to_the_IMA_Plugin_6_15_0">Migrating to the IMA Plugin 6.15.0</h2>
+<p>
+  To migrate to the Brightcove IMA Plugin 6.15.0, follow steps:
+</p>
+<ul>
+  <li>
+    <a href="#Update_dependency_versions">Update dependency versions</a>
   </li>
-</ol>
+  <li>
+    <a href="#Remove_deprecated_methods">Remove deprecated methods</a>
+  </li>
+</ul>
+
+<h3 id="Update_dependency_versions">Update dependency versions</h3>
+<p>Update your app to use the following dependency versions:</p>
+<ul>
+  <li>
+    All of the Brightcove SDK dependencies set to version 6.15.0
+  </li>
+  <li>
+    Use Google IMA SDK version 3.19.4
+  </li>
+  <li>
+    Use Google Play Services version 19.2.0
+  </li>
+</ul>
+<p>Here is an example of the <strong>build.gradle</strong> file:</p>
+<pre class="line-numbers"><code class="language-java">//build.gradle
+dependencies {
+ //Brightcove SDK dependencies
+ implementation &quot;com.brightcove.player:android-sdk6.15.0:&quot;
+ implementation &quot;com.brightcove.player:exoplayer2:6.15.0&quot;
+ implementation &quot;com.brightcove.player:android-ima-plugin:6.15.0&quot;
+
+ //Google IMA SDK
+ implementation &quot;com.google.ads.interactivemedia.v3:interactivemedia:3.19.4&quot;
+
+ //Google Play Services
+ implementation &quot;com.google.android.gms:play-services-ads:19.2.0&quot;
+ ...
+}
+</code></pre>
+
+<h3 id="Remove_deprecated_methods">Remove deprecated methods</h3>
+<p>Your current Google IMA setup might look similar to this:</p>
+<pre class="line-numbers"><code class="language-java">AdDisplayContainer container = sdkFactory.createAdDisplayContainer();
+container.setPlayer(googleIMAComponent.getVideoAdPlayer());
+container.setAdContainer(brightcoveVideoView);
+</code></pre>
+<p>These three methods are deprecated and will go away.</p>
+<p>You must now call <code>googleIMAComponent.getAdDisplayContainer()</code> and it will return the <code>AdDisplayContainer</code> associated with the <code>GoogleIMAVideoAdPlayer</code>, or null if not available.</p>
+<p>For details about creating the <code>AdDisplayContainer</code>, see the <a href="#Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</a> section.</p>
+<p>The following method has also been removed from the Google IMA SDK:</p>
+<pre><code class="language-java">adsRequest.setAdDisplayContainer(container);
+</code></pre>
+<p>Instead, use the <code>AdDisplayContainer</code> to create an instance of the Google IMA <code>AdsLoader</code>.</p>
+<p>For details about deprecated methods and their replacements, see the <a href="#Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</a> section.</p>
 </section>
 
+<section class="bcls-section">
+<h2 id="More_information">More information</h2>
+<p>For more details about IMA changes, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/history">Google IMA Android SDK release history</a> documentation.</p>
+<p>For any related questions, feel free to reach out to the Brightcove SDK team through the <a href="https://groups.google.com/g/brightcove-native-player-sdks">Brightcove SDK forum</a>.</p>
+</section>
 
 </article>
 <!-- complete bootstrap layout -->
@@ -1020,7 +1065,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 26 Aug 2020
+  Page last updated on 27 Aug 2020
 </div>
 
 
