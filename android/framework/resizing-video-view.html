@@ -26,13 +26,14 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Resizing_the_container">Resizing the container</h2>
 <p>You may want to develop an app that sets the Video View to fit the entire device screen in portrait mode. You can do this by resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>).</p>
-<aside class="bcls-aside bcls-aside--information">Because the Video height is initially unknown, it will match its parent view size (the whole screen in the BasicSampleApp) until the VIDEO_SIZE_KNOWN event is triggered. Then, the BaseVideoView will wrap the SurfaceView. When resizing the container, you may see an initial flicker.</aside>
+<aside class="bcls-aside bcls-aside--information">Because the <code>Video</code> height is initially unknown, it will match its parent view size (the whole screen in the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a>) until the <code>VIDEO_SIZE_KNOWN</code> event is triggered. Then, the <code>BaseVideoView</code> will wrap the <code>SurfaceView</code>. When resizing the container, you may see an initial flicker.</aside>
 
 <h3>Set the container property</h3>
 <p>If you see black margins around your video, you can try setting the <code>BrightcoveVideoView</code> <code>layout-height</code>.</p>
 <ol class="bcls-tasklist">
     <li>Open the XML <strong>layout</strong> file.</li>
     <li>Set the <code>BrightcoveVideoView layout-height</code> to <code>wrap_content</code>.</li>
+    <li>You may experience an initial flicker as explained in the note above.</li>
 </ol>
 
 <h3>Set the Video View size</h3>
@@ -61,7 +62,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
     int videoWidth = metrics.widthPixels; // We cover the entire display's width
     int videoHeight = (int) (videoWidth*aspectRatio); //Calculate the height based on the ratio
 
-    // Set the layout params (In this example the BrightcoveVideoView was held inside a LinearLayout).
+    // Set the layout params
     brightcoveVideoView.setLayoutParams(new FrameLayout.LayoutParams(videoWidth,videoHeight));
   }
 });
