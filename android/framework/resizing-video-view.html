@@ -114,7 +114,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
           You need to decide when to update your view for the above conditions.
         </li>
       </ul>
-  <p>One scenario could be that you set the <code>BaseVideoView layout_height</code> to <code>280dp</code> and then resize the <code>SurfaceView</code> to match <code>280dp</code>. The aspect ratio will be modified slightly. If a user goes to full screen in portrait mode and <code>updateVideoViewMatchToParent</code> is called, then both the <code>BaseVideoView</code> and <code>SurfaceView</code> will fill the device’s display and the video aspect ratio will be slightly modified.</p>
+  <p>One scenario could be that you set the <code>BaseVideoView layout_height</code> to <code>280dp</code> and then resize the <code>SurfaceView</code> to match <code>280dp</code>. The aspect ratio will be modified slightly. If a user goes to full screen in portrait mode and <code>updateVideoViewMatchToParent()</code> is called, then both the <code>BaseVideoView</code> and <code>SurfaceView</code> will fill the device’s display and the video aspect ratio will be slightly modified.</p>
 <pre class="line-numbers">
 <code class="language-java">public void updateVideoViewMatchToParent(@NonNull BaseVideoView brightcoveVideoView) {
   RenderView renderView = brightcoveVideoView.getRenderView();
@@ -126,7 +126,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
 <p>To detect the double tap, you can use the <a href="https://developer.android.com/reference/android/view/GestureDetector.OnDoubleTapListener">GestureDetector.OnDoubleTapListener</a> interface. For details, see the <a href="https://developer.android.com/training/gestures/detector">Detect common gestures</a> document.</p>
     </li>
 </ol>
-<p>If you want to stretch the video without taking the aspect ratio into account (without cropping the video), you try this:</p>
+<p>If you want to stretch the video without taking the aspect ratio into account (without cropping the video), you can try this:</p>
 <pre class="line-numbers">
 <code class="language-java">eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
   @Override
@@ -145,7 +145,14 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
 
 <p>Keep in mind that the values you get are affected by the orientation of the device. To stretch the video for both portrait and landscape, you need to do the following:</p>
 <ol class="bcls-tasklist-restart">
-    <li>Override the Activity <code>public void onConfigurationChanged(Configuration configuration)</code>. </li>
+    <li>
+      <p>
+        Override the following <code>Activity</code>:
+      </p> 
+      <pre>
+<code class="language-java">public void onConfigurationChanged(Configuration configuration)</code>
+</pre>
+    </li>
     <li>Reset the video size.</li>
 </ol>
 </section>
