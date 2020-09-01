@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="In this topic, you will learn how to resize/stretch the inner Video View (SurfaceView/TextureView) to fill the BrightcoveVideoView (FrameLayout) when working with the Native SDK for Android.">
+  <meta name="description" content="In this topic, you will learn how to resize/stretch the inner Video View to fill the BrightcoveVideoView when working with the Native SDK for Android.">
   
   <title>Resizing Video View with the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -846,18 +846,18 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h1>Resizing Video View with the Native SDK for Android</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn how to resize/stretch the inner Video View (<code>SurfaceView</code>/<code>TextureView</code>) to fill the <code>BrightcoveVideoView</code> (<code>FrameLayout</code>) when working with the Native SDK for Android.</summary>
+  <summary>In this topic, you will learn how to resize/stretch the inner Video View to fill the <code>BrightcoveVideoView</code> when working with the Native SDK for Android.</summary>
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
-<p>As a developer, you can change the default behavior for how the Video is displayed on the Video View. To do this, you can listen for the <code>EventType.VIDEO_SIZE_KNOWN</code> event, do some math and set the display values.</p>
+<p>As a developer, you can change the default behavior for how the Video is displayed on the Video View. You can resize/stretch the inner Video View (<code>SurfaceView</code>/<code>TextureView</code>) to fill the <code>BrightcoveVideoView</code> (<code>FrameLayout</code>). To do this, you can listen for the <code>EventType.VIDEO_SIZE_KNOWN</code> event, do some math and set the display values.</p>
 <p>There are two ways to change the Video View:</p>
 <ul>
   <li>
     <a href="#Resizing_the_container">Resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>)</a>
   </li>
   <li>
-    <a href="#Resizing_the_actual_video">Resizing the actual video (<code>SurfaceView</code>)</a>
+    <a href="#Resizing_the_video">Resizing the video (<code>SurfaceView</code>)</a>
   </li>
 </ul>
 </section>
@@ -910,7 +910,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
 </section>
 
 <section class="bcls-section">
-<h2 id="Resizing_the_actual_video">Resizing the actual video</h2>
+<h2 id="Resizing_the_video">Resizing the video</h2>
 <p>You may want to implement a double-tap that fills the screen. This would take a 16:9 video and fill the screen on an 18:9 or 19:9 device.</p>
 <p>You can do this by resizing the actual video (<code>SurfaceView</code>).</p>
 <ol class="bcls-tasklist-restart">
