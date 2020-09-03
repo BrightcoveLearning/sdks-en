@@ -942,6 +942,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li><strong>Organization Identifier:</strong> com.example-company<br />
 		This makes the product name unique for the app store.</li>
 		<li><strong>Language:</strong> Swift</li>
+    <li><strong>User Interface:</strong> Storyboard
+    <p>In this example, we are using the storyboard interface.</p></li>
 	</ul>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Add project information" src="/assets/images/ios/step-by-step-swift/project-info.png" />
@@ -1022,15 +1024,21 @@ end</code></pre>
 	<li>
 	<p>In the Terminal session, type the command</p>
 
-	<pre class="line-numbers" data-start="1">
+	<pre>
 <code class="notranslate language-swift">pod install</code></pre>
 
 	<p>and press <strong>Return</strong> to run the it.</p>
+  <p>If CocoaPods can not find a compatible version for the pod, or it is not the latest version, try running the following in the Terminal app:</p>
+  <pre>
+<code class="notranslate language-swift">pod update</code></pre>
   <p>You should see a series of messages in the terminal indicating that the Brightcove Player SDK has been added to your project.</p>
 	</li>
 	<li>
     <p>The <code class="notranslate">pod install</code> command creates a <code class="notranslate">.xcworkspace</code> file for your project.</p>
 	<p>From this point on, you must open the <strong>Simple-Video-Playback.xcworkspace</strong> file in Xcode, <strong>not</strong> the <em>Simple-Video-Playback.xcodeproj</em> file. </p>
+  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Workspace" src="/assets/images/ios/step-by-step-swift/workspace.png" />
+	<figcaption class="bcls-caption--image">Workspace</figcaption>
+	</figure>
 	</li>
 </ol>
 
@@ -1807,7 +1815,7 @@ Temporary exceptions can be configured via your app's Info.plist file.</code></p
 
 <hr>
 <div class="last-updated">
-  Page last updated on 02 Sep 2020
+  Page last updated on 03 Sep 2020
 </div>
 
 
