@@ -867,6 +867,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <figcaption class="bcls-caption--image">Server-side ad</figcaption>
 </figure>
 
+<p>Any video that you retrieve from Video Cloud that has been ingested with Dynamic Delivery, will include the ads specified in the VMAP file in your ad configuration.</p>
+
 <p>To play server-side ads with your video content stored in Video Cloud, follow these steps:</p>
 
 <ol class="bcls-tasklist">
@@ -964,24 +966,31 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 	</li>
 </ol>
 
-<p>For more details and a complete code sample, see the following:</p>
+<h3>Captions</h3>
+<aside class="bcls-aside bcls-aside--information">The Native SDK for Android only supports in-manifest captions with SSAI. Sidecar (or remote) captions may not synchronize with the content and ad breaks.</aside>
 
-<ul>
-	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">The SSAI Plugin for the Native SDK for Android</a></li>
-	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html#Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUX plugin</a></li>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Player using the Native SDK for Android</a></li>
-</ul>
-&nbsp;
-
-<aside class="bcls-aside bcls-aside--tip">
+<h3>Events</h3>
 <p>Events associated with Server-side ad insertion include the following:</p>
-
 <ul>
 	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html?com/brightcove/ssai/event/package-summary.html">Lifecycle events that are specific to SSAI</a></li>
 	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html">Lifecycle events associated with ads</a></li>
 </ul>
-</aside>
-<aside class="bcls-aside bcls-aside--information">The Native SDK for Android only supports in-manifest captions with SSAI. Sidecar (or remote) captions may not synchronize with the content and ad breaks.</aside>
+
+<h3>Seek without ads</h3>
+<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="/android/resources/code-snippets-using-native-sdk-android.html#Seek_without_ads">Seek without ads code snippet</a>.</p>
+
+<h3>Code sample</h3>
+<p>Here is a complete code sample:</p>
+<ul>
+	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Player using the Native SDK for Android</a></li>
+</ul>
+
+<h3>Related topics</h3>
+<p>For more details, see the following:</p>
+<ul>
+	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">The SSAI Plugin for the Native SDK for Android</a></li>
+	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html#Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUX plugin</a></li>
+</ul>
 </section>
 
 <section class="bcls-section">
@@ -1039,51 +1048,48 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 	</li>
 </ol>
 
-<p>For more details and a complete code sample, see the following:</p>
-
-<ul>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">The SSAI Plugin for the Native SDK for iOS</a></li>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li>
-	<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAIPlayer">Basic SSAI Player using the Native SDK for iOS (Objective-C and Swift)</a></li>
-</ul>
-&nbsp;
-
-<aside class="bcls-aside bcls-aside--tip">
+<h3>Events</h3>
 <p>Events associated with Server-side ad insertion include the following:</p>
-
 <ul>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">Lifecycle events that are specific to SSAI</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Lifecycle events associated with ads</a></li>
 </ul>
-</aside>
+
+<h3>Seek without ads</h3>
+<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#seek-without-ads">Seek without ads section</a> of the SDK reference.</p>
+
+<h3>Code sample</h3>
+<p>Here is a complete code sample:</p>
+<ul>
+		<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAIPlayer">Basic SSAI Player using the Native SDK for iOS (Objective-C and Swift)</a></li>
+</ul>
+
+<h3>Related topics</h3>
+<p>For more details, see the following:</p>
+<ul>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">The SSAI Plugin for the Native SDK for iOS</a></li>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li>
+</ul>
 </section>
 
 <section class="bcls-section">
 <h2 id="tvOS_implementation">tvOS implementation</h2>
 
-<p>The code to implement SSAI with the Native SDK for tvOS is similar to the code for iSO above.</p>
+<p>The code to implement SSAI with the Native SDK for tvOS is similar to the <a href="#iOS_implementation">iOS implementation</a> above.</p>
 
-<p>For a complete code sample, see the following:</p>
-
-<ul>
-	<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAItvOSPlayer">Basic SSAI Player using the Native SDK for tvOS (Objective-C and Swift)</a></li>
-</ul>
-&nbsp;
-
-<aside class="bcls-aside bcls-aside--tip">
+<h3>Events</h3>
 <p>Events associated with Server-side ad insertion include the following:</p>
 
 <ul>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">Lifecycle events that are specific to SSAI</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Lifecycle events associated with ads</a></li>
 </ul>
-</aside>
-</section>
 
-<section class="bcls-section">
-<h2 id="Play_a_video_with_ads">Playing a video with ads</h2>
-
-<p>Any video that you retrieve from Video Cloud that has been ingested with Dynamic Delivery, will include the ads specified in the VMAP file in your ad configuration.</p>
+<h3>Code sample</h3>
+<p>Here is a complete code sample:</p>
+<ul>
+		<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAItvOSPlayer">Basic SSAI Player using the Native SDK for tvOS (Objective-C and Swift)</a></li>
+</ul>
 </section>
 
 <section class="bcls-section">
