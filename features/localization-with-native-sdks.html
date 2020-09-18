@@ -1,0 +1,85 @@
+---
+title: 'Localization with the Brightcove Native SDKs'
+description: In this topic, you will learn about localizing the player with the Brightcove Native SDKs.
+parent: Features
+grandparent: Home
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+
+<p>By default, the  Brightcove Native SDKs use English for player controls, including caption selection and advertising messages such as "<strong>Skip Ad</strong>", “<strong>Learn More</strong>” and "<strong>Ad 1 of 3</strong>". You can localize the player controls in other languages, as described in this document.</p>
+<p>The default layout for the Arabic language is set from left-to-right (LTR) to right-to-left (RTL).</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Android">Android</h2>
+<p>The Native SDK for Android version 6.15.0 and later supports localizing the player in the following language:</p>
+<ul>
+  <li>Arabic (ar)</li>
+</ul>
+
+<h3 id="Working_with_IMA_Ads">Working with IMA Ads</h3>
+
+<p>If you are working with IMA advertising, be aware that the IMA SDK does not localize text automatically. Therefore, you must set it manually. </p>
+<ol class="bcls-tasklist">
+	<li>
+    <p>First, find the current language of the device:</p>
+    <pre>
+<code class="language-java">Locale.getDefault().getLanguage();</code></pre>
+  </li>
+  <li>
+    <p>Then, set the language when initializing the <code>GoogleIMAComponent</code>:</p>
+    <pre class="line-numbers">
+<code class="language-java">ImaSdkSettings settings = ImaSdkFactory.getInstance().createImaSdkSettings();
+settings.setLanguage(&quot;ar&quot;);
+googleIMAComponent = new GoogleIMAComponent(
+    brightcoveVideoView, 
+    eventEmitter, 
+    settings);
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="Forcing_left_to_right_layouts">Forcing left-to-right layouts</h3>
+
+<p>Some languages, such as Arabic, will change the layout direction, and set it as RTL. If this does not fit your use case, you can enforce the LTR layout by modifying the <code>AndroidManifest.xml</code> as follows:</p>
+<pre class="line-numbers">
+<code class="language-java">&lt;application
+  android:name=&quot;.PlaybackTestApplication&quot;
+  android:allowBackup=&quot;true&quot;
+  android:icon=&quot;@mipmap/ic_launcher&quot;
+  android:banner=&quot;@drawable/tv_banner&quot;
+  android:label=&quot;@string/app_name&quot;
+  android:theme=&quot;@style/AppTheme&quot;
+  android:usesCleartextTraffic=&quot;true&quot;
+<span class="bcls-highlight">  android:supportsRtl=&quot;false&quot;
+  tools:replace=&quot;android:supportsRtl&quot;</span>&gt;
+</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="iOS">iOS</h2>
+<p>The Native SDK for iOS version 6.7.4 and later supports localizing the player in the following languages:</p>
+<ul>
+  <li>Arabic (ar)</li>
+  <li>French (fr)</li>
+  <li>German (de)</li>
+  <li>Japanese (ja)</li>
+  <li>Korean (ko)</li>
+  <li>Spanish (es)</li>
+</ul>
+<p>The built-in playback and ad controls follow a modern RTL layout, with the progress bar moving from LTR.</p>
+
+<h3 id="Working_with_IMA_Ads">Working with IMA Ads</h3>
+
+<p>The Native SDK for iOS currently does not support Arabic with IMA advertising.</p>
+</section>
+
+</article>
+
