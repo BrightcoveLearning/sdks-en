@@ -10,6 +10,81 @@ grandparent: Android Development
   <summary>{{ page.description }}</summary>
 
 <section id="Current_release" class="section">
+<h2>Version 6.15.1</h2>
+
+<h3>22 Sep 2020</h3>
+
+<p>SDK Changes:</p>
+
+<ul>
+	<li>
+		<p>The Brightcove Native SDK for Android now supports Arabic (RTL)
+language in player controls and UI labels.</p>
+	</li>
+  <li>
+		<p>Please note: While the Arabic language (RTL) text is supported, only left-to-right (LTR) player control layouts
+are currently supported.</p>
+	</li>
+  <li>
+		<p>Fixed an issue where certain <code>video_view</code> and <code>video_engagement</code> Analytics
+event parameters could include non-Western Arabic numerals for the
+following parameters:</p>
+    <ul>
+      <li><code>video_view</code></li>
+      <li><code>start_time_ms</code></li>
+      <li><code>load_time_ms</code></li>
+      <li><code>video_engagement</code></li>
+      <li><code>range</code></li>
+      <li><code>video_seconds_viewed</code></li>
+    </ul>
+	</li>
+</ul>
+
+<p>Cast Plugin Changes:</p>
+<ul>
+	<li>
+		The Cast plugin now supports Arabic (RTL) text in cast controls and UI
+labels.
+	</li>
+  <li>
+		<p>Please note that Arabic language support does not extend to the
+displays (video elapsed time and duration) in the Cast expanded controller.</p>
+	</li>
+  <li>
+		<p>Displaying these components is controlled by the Google Cast API.</p>
+	</li>
+</ul>
+
+<p>Offline Playback Plugin Changes:</p>
+
+<ul>
+	<li>
+		<p>The Offline Playback plugin now supports Arabic (RTL) text in UI labels.</p>
+	</li>
+</ul>
+
+<p>Pulse Plugin Changes:</p>
+<ul>
+	<li>
+		The Pulse plugin now supports Arabic (RTL) text in Ad controls and UI
+labels.
+	</li>
+</ul>
+
+<p>SSAI Plugin Changes:</p>
+<ul>
+	<li>
+		The SSAI plugin now supports Arabic (RTL) text in Ad controls and UI
+labels.
+	</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h2>Version 6.15.0</h2>
 
 <h3>25 Aug 2020</h3>
@@ -106,12 +181,6 @@ grandparent: Android Development
 		The deprecated OnceUx plugin has been removed from the Brightcove Native SDK for Android. Please use the SSAI plugin instead.
 	</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h2>Version 6.14.1</h2>
 
