@@ -960,7 +960,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Follow these steps to use Google IMA Ad Rules:</p>
 
-<ol class="bcls-tasklist">
+<ol class="bcls-tasklist-restart">
 	<li>Locate and review the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">Ad Rules IMA</a> sample app.</li>
 	<li>Open the <strong>MainActivity.java</strong> file.</li>
 	<li>
@@ -984,11 +984,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>The <code>setupAdMarkers()</code> method is optional. This method calls the IMA AdManager and creates ad markers on the seek bar, so that users can visually see when ads will play.</li>
 </ol>
 
-<p>To use VAST tags, your app should create a set of cue points from the Video object metadata returned from the Playback API call. The metadata will include the ad cue points that you created in Video Cloud Studio.</p>
-
-<p>Alternatively, your app can create a set of cue point objects in the player Activity class.</p>
-
-<p>If you want to combine client-side ads with content protection, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">Ad Rules IMA Widevine Modular</a> sample app.</p>
+<h4>Code samples</h4>
+<p>Here are complete code samples:</p>
+<ul>
+		<li>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicIMAVASTSampleApp">Basic IMA Vast player</a>: To use VAST tags, your app should create a set of cue points from the <code>Video</code> object metadata returned from the Playback API call. The metadata will include the ad cue points that you created in Video Cloud Studio.</p>
+    </li>
+    <li>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">IMA Ad Rules IMA player</a>: Alternatively, your app can create a set of cue point objects in the player <code>Activity</code> class.</p>
+    </li>
+    <li>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">Ad Rules IMA Widevine Modular</a>: Combine client-side ads with content protection.</p>
+    </li>
+</ul>
 
 <h3>FreeWheel</h3>
 
@@ -1015,8 +1023,16 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>This will be used later to instantiate the FreeWheel <code>AdRequestConfiguration</code> class.</li>
 	<li>Listen for the <code>FreeWheelEventType.WILL_SUBMIT_AD_REQUEST</code> event. Here, you will get the FreeWheel controller and setup the pre-roll, mid-roll, post-roll and overlay ad slots.</li>
 </ol>
-
-<p>If you want to combine client-side ads with content protection, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelWidevineModularSampleApp/src/main">FreeWheel Widevine Modular</a> sample app.</p>
+<h4>Code samples</h4>
+<p>Here are complete code samples:</p>
+<ul>
+		<li>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelSampleApp/src/main">Basic FreeWheel player</a></p>
+    </li>
+    <li>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelWidevineModularSampleApp/src/main">FreeWheel Widevine Modular player</a>: Combine client-side ads with content protection.</p>
+    </li>
+</ul>
 </section>
 
 <section class="bcls-section">
@@ -1056,7 +1072,16 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>The sample app includes functions to hide the player controls while ads are playing and show them when ads are finished.</li>
 </ol>
 
-<p>If you want to combine client-side ads with content protection, see the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA/FairPlayIMAPlayer">FairPlay IMA Player</a> sample app.</p>
+<h4>Seek without ads</h4> 
+<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#seek-without-ads">Seek without ads section</a> of the plugin reference.</p>
+
+<h4>Code samples</h4>
+<p>Here are complete code samples:</p>
+<ul>
+		<li><p><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA/BasicIMAPlayer">Basic IMA player</a></p></li>
+    <li><p><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA/FairPlayIMAPlayer">Basic IMA player with FairPlay</a>: Combine client-side ads with content protection.</p></li>
+    
+</ul>
 
 <h3>FreeWheel</h3>
 
@@ -1082,6 +1107,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>Customize the project with your own FreeWheel configuration values. Refer to <a href="https://www.freewheel.com/">FreeWheel documentation</a> or contact your FreeWheel account manager.</li>
 	<li>Configure the ad view, ad controls and companion slot.</li>
 </ol>
+<h4>Seek without ads</h4> 
+<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw#seek-without-ads">Seek without ads section</a> of the plugin reference.</p>
+
+<h4>Code sample</h4>
+<p>Here is a complete code sample:</p>
+<ul>
+		<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Freewheel">Basic Freewheel player</a></li>
+</ul>
 </section>
 </article>
 
