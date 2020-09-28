@@ -49,7 +49,7 @@ This program will be captioned</code></pre>
 <p>Brightcove does not test or provide support for integrating the Brightcove Native SDKs with third-party development frameworks such as Xamarin, React Native and Titanium. Contact your framework provider for integration support. Here are some issues you may run into:</p>
 
 <ul>
-	<li>When using the Brightcove Native SDK for Android with the Titanium framework, you may experience playback errors with DRM content. This is because the Titanium framework overrides the default <code class="”notranslate”">Java.net.ResponseCache </code> with its own <code class="”notranslate”">TiResponseCache </code>.</li>
+	<li>When using the Brightcove Native SDK for Android with the Titanium framework, you may experience playback errors with DRM content. This is because the Titanium framework overrides the default <code translate="No">Java.net.ResponseCache </code> with its own <code translate="No">TiResponseCache </code>.</li>
 </ul>
 
 <h3>Using emulators</h3>
@@ -76,7 +76,7 @@ This program will be captioned</code></pre>
 <ul>
 	<li>With Android 8.0 Oreo, when <strong>Background Activity</strong> is switched off, a download is started, and the app is put in the background, the download stops and does not continue when the app is reopened. The notification bar displays a status of <strong>Downloading...</strong></li>
 	<li>When using Widevine with Android 8.0 Oreo, you may notice that on some devices the rental license acquired is already expired. This is a known issue with Widevine CDM. This issue is fixed in Android 8.1 for most devices. Unfortunately, there is no workaround for Android 8.0.</li>
-	<li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code class="”notranslate”">OfflineLicenseManager.releaseLicense </code> method, a <code class="”notranslate”">MediaDrmStateException </code> error is thrown.</li>
+	<li>Observed only with Android 5.x devices: When releasing the Widevine license by calling the <code translate="No">OfflineLicenseManager.releaseLicense </code> method, a <code translate="No">MediaDrmStateException </code> error is thrown.</li>
 	<li>
 	<p>In the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">OfflinePlaybackSampleApp</a>, there are two Widevine license expiration periods.</p>
 
