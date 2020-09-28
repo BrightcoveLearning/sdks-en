@@ -44,25 +44,25 @@ grandparent: Android Development
       <p>
         At this point, you can retrieve caption sources as follows:
       </p>
-      <pre><code class="language-java">video.getProperties().get(Video.Fields.CAPTION_SOURCES);</code></pre>
+      <pre><code class="language-java" translate="No">video.getProperties().get(Video.Fields.CAPTION_SOURCES);</code></pre>
     </li>
     <li>
       <p>
         Set the video view. The video is added to ExoPlayer.
       </p>
-      <pre><code class="language-java">brightcoveVideoView.add(video);</code></pre>
+      <pre><code class="language-java" translate="No">brightcoveVideoView.add(video);</code></pre>
     </li>
     <li>
       <p>
         The Native SDK gets caption sources and emits the following event:
       </p>
-      <pre><code class="language-java">EventType.CAPTIONS_LANGUAGES</code></pre>
+      <pre><code class="language-java" translate="No">EventType.CAPTIONS_LANGUAGES</code></pre>
     </li>
     <li>
       <p>
         After the video is added to ExoPlayer, the Native SDK looks for in-manifest captions. Any captions not already present in the video caption sources are added. If there are new caption sources, the following event is sent to update the Brightcove media controller.
       </p>
-      <pre><code class="language-java">EventType.CAPTIONS_LANGUAGES</code></pre>
+      <pre><code class="language-java" translate="No">EventType.CAPTIONS_LANGUAGES</code></pre>
     </li>
   </ol>
 </section>
@@ -77,7 +77,7 @@ grandparent: Android Development
       <p>
         Create a method to find an specific caption source with the language code. For example:
       </p>
-      <pre><code class="language-java">private Pair&lt;Uri, BrightcoveCaptionFormat&gt; getCaptionsForLanguageCode(Video video, String languageCode) {
+      <pre><code class="language-java" translate="No">private Pair&lt;Uri, BrightcoveCaptionFormat&gt; getCaptionsForLanguageCode(Video video, String languageCode) {
  Object payload = video == null ? null : video.getProperties().get(Video.Fields.CAPTION_SOURCES);
 
 if (payload instanceof List) {
@@ -111,7 +111,7 @@ return null;
       <p>
         Create a method responsible for selecting closed captions from a video with a given language code, by emitting the <code translate="No">EventType.SELECT_CLOSED_CAPTION_TRACK</code> event.
       </p>
-      <pre><code class="language-java">private void selectCaption(Video video, String language) {
+      <pre><code class="language-java" translate="No">private void selectCaption(Video video, String language) {
  Pair&lt;Uri, BrightcoveCaptionFormat&gt; pair = getCaptionsForLanguageCode(video, language);
 
 if (pair != null &amp;&amp; !pair.first.equals(Uri.EMPTY)) {
@@ -130,7 +130,7 @@ if (pair != null &amp;&amp; !pair.first.equals(Uri.EMPTY)) {
       <p>
         Listen to the <code translate="No">EventType.CAPTIONS_LANGUAGES</code> event and select the desired language by the language code.
       </p>
-      <pre><code class="language-java">brightcoveVideoView.getEventEmitter().once(EventType.CAPTIONS_LANGUAGES, new EventListener() {
+      <pre><code class="language-java" translate="No">brightcoveVideoView.getEventEmitter().once(EventType.CAPTIONS_LANGUAGES, new EventListener() {
 @Override
 public void processEvent(Event event) {
  brightcoveVideoView.setClosedCaptioningEnabled(true);

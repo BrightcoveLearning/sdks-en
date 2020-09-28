@@ -863,14 +863,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>As a basic <code translate="No">Activity</code>, the <code translate="No">BrightcovePlayer</code> class wraps a <code translate="No">BrightcoveExoPlayerVideoView</code> and sets up an <code translate="No">EventLogger</code> and default <code translate="No">MediaController</code>. It implements basic lifecycle management and full screen logic. It is meant to be subclassed.</p>
 
 <pre>
-<code class="language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
 ...
 }</code></pre>
 
 <p>At a minimum the <code translate="No">onCreate()</code> method should be overridden with logic to wire up the <code translate="No">BrightcoveExoPlayerVideoView</code> variable to the <strong>layout.xml</strong> file. For example:</p>
 
 <pre>
-<code class="language-java">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
+<code class="language-java" translate="No">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
 
 <p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a> code sample.</p>
 </section>
@@ -881,7 +881,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>If you choose not to use the <code translate="No">BrightcovePlayer</code> class, the <code translate="No">BrightcovePlayerActivity</code> and <code translate="No">BrightcovePlayerFragment</code> classes are available to you. To use either of these classes, you need to include the <code translate="No">appcompat</code> plugin in your <strong>build.gradle</strong> file as follows:</p>
 
 <pre>
-<code class="language-java">compile "com.brightcove.player:android-appcompat-plugin:${anpVersion}"</code></pre>
+<code class="language-java" translate="No">compile "com.brightcove.player:android-appcompat-plugin:${anpVersion}"</code></pre>
 
 <h3 id="BrightcovePlayerFragment_class">BrightcovePlayerFragment class</h3>
 
@@ -890,14 +890,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>If you want to combine the Brightcove Player with other design elements in your layout, you can use the <code translate="No">BrightcovePlayerFragment</code> class. This is useful when designing for a tablet or larger screen, which has more room to combine UI components. For example, with a tablet, you could display multiple fragments at the same time, both living within the same activity.</p>
 
 <pre>
-<code class="language-java">public class MainFragment extends BrightcovePlayerFragment {
+<code class="language-java" translate="No">public class MainFragment extends BrightcovePlayerFragment {
 ...
 }</code></pre>
 
 <p>The <code translate="No">onCreateView()</code> should be extended to wire up the fragment's layout to the <code translate="No">baseVideoView</code> instance variable before calling <code translate="No">super.onCreateView()</code>.</p>
 
 <pre>
-<code class="language-java">baseVideoView = (BaseVideoView) result.findViewById(R.id.brightcove_video_view);</code></pre>
+<code class="language-java" translate="No">baseVideoView = (BaseVideoView) result.findViewById(R.id.brightcove_video_view);</code></pre>
 
 <p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatFragmentSampleApp">AppCompatFragmentSampleApp</a> code sample.</p>
 
@@ -908,7 +908,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>If you choose to use an Activity, you can use the <code translate="No">BrightcovePlayerActivity</code> class.</p>
 
 <pre>
-<code class="language-java">public class MainActivity extends BrightcovePlayerActivity {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayerActivity {
 ...
 }</code></pre>
 

@@ -28,12 +28,12 @@ grandparent: Android Development
 <p>With an SSAI asset URL, call the following method:</p>
 
 <pre>
-<code class="language-java">SSAIComponent.processVideo(String url)</code></pre>
+<code class="language-java" translate="No">SSAIComponent.processVideo(String url)</code></pre>
 
 <p>Here is an example:</p>
 
 <pre class="line-numbers">
-<code class="language-java">String ssaiUrl = "https://onceux.host.com/path/to/content.once"
+<code class="language-java" translate="No">String ssaiUrl = "https://onceux.host.com/path/to/content.once"
 SSAIComponent ssaiComponent = new SSAIComponent(context, brightcoveVideoView);
 ssaiComponent.processVideo(ssaiUrl);
 </code></pre>
@@ -47,23 +47,23 @@ ssaiComponent.processVideo(ssaiUrl);
 	<li>Next, you will need to create an Ad Configuration (adConfig) object. For details, see the <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Configuring Server-Side Ad Settings</a> document. Please note that the Brightcove Native SDK for Android does not itself contain any functionality to create or manage adConfigs.</li>
 	<li>Use the adConfig's <code translate="No">id</code> property as a URL parameter (<code translate="No">ad_config_id</code>) added to the Catalog method call:
 	<pre>
-<code class="language-java">findVideoById</code></pre>
+<code class="language-java" translate="No">findVideoById</code></pre>
 
 	<p>or</p>
 
 	<pre>
-<code class="language-java">findVideoByReferenceId  </code></pre>
+<code class="language-java" translate="No">findVideoByReferenceId  </code></pre>
 	</li>
 	<li>Having retrieved the Video object with the findVideo method, call the following method in the SSAI plugin:
 	<pre>
-<code class="language-java">SSAIComponent.processVideo(Video ssaiVideo)</code></pre>
+<code class="language-java" translate="No">SSAIComponent.processVideo(Video ssaiVideo)</code></pre>
 	</li>
 </ol>
 
 <p>Here is an example:</p>
 
 <pre class="line-numbers">
-<code class="language-java">Catalog catalog = new Catalog(eventEmitter, myAccountId, myPolicyKey);
+<code class="language-java" translate="No">Catalog catalog = new Catalog(eventEmitter, myAccountId, myPolicyKey);
 SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 
 // Set the ad_config_id URL parameter
@@ -89,7 +89,7 @@ catalog.findVideoByID(myVideoId, httpRequestConfig, new VideoListener() {
 <p>If your ads have Companions, you can easily display them in your app by providing a <code translate="No">ViewGroup</code> to hold the Companion image, by calling:</p>
 
 <pre>
-<code class="language-java">SSAIComponent.addCompanionContainer(ViewGroup companionContainer)
+<code class="language-java" translate="No">SSAIComponent.addCompanionContainer(ViewGroup companionContainer)
 </code></pre>
 
 <p>Here is an example. First, Add the FrameLayout to your activity or fragment layout:</p>
@@ -113,7 +113,7 @@ catalog.findVideoByID(myVideoId, httpRequestConfig, new VideoListener() {
 <p>Then, use that <code translate="No">FrameLayout</code> to pass it to the plugin:</p>
 
 <pre class="line-numbers">
-<code class="language-java">ViewGroup viewGroup = findViewById(R.id.ad_frame);
+<code class="language-java" translate="No">ViewGroup viewGroup = findViewById(R.id.ad_frame);
 plugin.addCompanionContainer(viewGroup);
 
 // process your Video
@@ -131,7 +131,7 @@ plugin.processVideo(video);
 <p>To get relative and absolute positions, get the <code translate="No">com.brightcove.ssai.AdPod</code> with the <code translate="No">SSAIEvent.AD_POD</code> key. Here is an example:</p>
 
 <pre class="line-numbers">
-<code class="language-java">private void registerEventHandlers() {
+<code class="language-java" translate="No">private void registerEventHandlers() {
   EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
   eventEmitter.on(EventType.AD_BREAK_STARTED, new EventListener() {
     @Override
@@ -155,7 +155,7 @@ plugin.processVideo(video);
 <p>All errors will be surface to the developer using the <code translate="No">EventType.ERROR</code> event, as shown here:</p>
 
 <pre class="line-numbers">
-<code class="language-java">eventEmitter.on(EventType.ERROR, new EventListener() {
+<code class="language-java" translate="No">eventEmitter.on(EventType.ERROR, new EventListener() {
   @Override
   public void processEvent(Event event) {
     String errorMessage = event.getProperty(Event.ERROR_MESSAGE, String.class);
@@ -175,13 +175,13 @@ plugin.processVideo(video);
 	<li>In your app’s <strong>build.gradle</strong> file, replace
 
 	<pre>
-<code class="language-java">implementation 'com.brightcove.player:android-onceux-plugin:6.5.1'
+<code class="language-java" translate="No">implementation 'com.brightcove.player:android-onceux-plugin:6.5.1'
 </code></pre>
 
 	<p>with the following: (use the latest plugin version)</p>
 
 	<pre>
-<code class="language-java">implementation 'com.brightcove.player:android-ssai-plugin:6.7.0'
+<code class="language-java" translate="No">implementation 'com.brightcove.player:android-ssai-plugin:6.7.0'
 </code></pre>
 	</li>
 	<li>Replace the <code translate="No">OnceUxComponent</code> class with the <code translate="No">SSAIComponent</code> class.</li>
@@ -190,11 +190,11 @@ plugin.processVideo(video);
 	<ul>
 		<li>The constants used to listen for an event are now found in the <code translate="No">SSAIEventType</code> class. For example:
 		<pre>
-<code class="language-java">SSAIEventtType.AD_DATA_READY</code></pre>
+<code class="language-java" translate="No">SSAIEventtType.AD_DATA_READY</code></pre>
 		</li>
 		<li>The constants used as keys for Event properties are now found in the SSAIEvent class. For example:
 		<pre>
-<code class="language-java">SSAIEvent.SSAI_AD</code></pre>
+<code class="language-java" translate="No">SSAIEvent.SSAI_AD</code></pre>
 		</li>
 	</ul>
 	</li>

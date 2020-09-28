@@ -78,7 +78,7 @@ grandparent: Android Development
       Define your custom values.
     </p>
     <pre class="line-numbers">
-<code class="language-java">private static final int DEFAULT_TV_SEEK_TIME = (int) TimeUnit.SECONDS.toMillis(3);
+<code class="language-java" translate="No">private static final int DEFAULT_TV_SEEK_TIME = (int) TimeUnit.SECONDS.toMillis(3);
 private static final int DEFAULT_TV_ON_HOLD_WAIT_TIME = (int) TimeUnit.SECONDS.toMillis(1);
 private static final int DEFAULT_TV_SEEK_PERCENTAGE = 1;
 private static final int DEFAULT_TV_ON_HOLD_UPDATE_FREQUENCY_TIME = 500;
@@ -89,7 +89,7 @@ private static final int DEFAULT_TV_ON_HOLD_UPDATE_FREQUENCY_TIME = 500;
       Include a method to create the properties map, add the desired values and emit the <code translate="No">EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.
     </p>
     <pre class="line-numbers">
-<code class="language-java">private void setupTelevisionMode() {
+<code class="language-java" translate="No">private void setupTelevisionMode() {
    Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();
    properties.put(Event.SEEK_DEFAULT, DEFAULT_TV_SEEK_TIME);
    properties.put(Event.SEEK_RELATIVE_ENABLED, true);
@@ -105,7 +105,7 @@ private static final int DEFAULT_TV_ON_HOLD_UPDATE_FREQUENCY_TIME = 500;
       Check if your app is in TV mode to setup the seek controller configuration.
     </p>
     <pre class="line-numbers">
-<code class="language-java">if (BrightcoveMediaController.checkTvMode(mBaseVideoView.getContext())) {
+<code class="language-java" translate="No">if (BrightcoveMediaController.checkTvMode(mBaseVideoView.getContext())) {
    setupTelevisionMode();
 }</code></pre>
   </li>

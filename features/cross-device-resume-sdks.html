@@ -104,7 +104,7 @@ grandparent: Home
     <p>
       Set the user identifier for Brightcove analytics.
     </p>
-    <pre><code class="language-java">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
+    <pre><code class="language-java" translate="No">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
 baseParams.put(Analytics.Fields.USER, &quot;<span class="bcls-input">user id</span>&quot;);
 baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;<span class="bcls-input">application id</span>&quot;);
 
@@ -136,7 +136,7 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
     <p>
       Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code translate="No">brightcoveVideoView.seekTo()</code> method.
     </p>
-    <pre><code class="language-java">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
+    <pre><code class="language-java" translate="No">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
 eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, new EventListener() {
   @Override
   public void processEvent(final Event event) {

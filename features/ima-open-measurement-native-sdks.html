@@ -55,7 +55,7 @@ imaSettings.playerVersion = @"<span class="bcls-input">your-player-version</span
 <p>If you are using UI control elements which overlay the IMA ad view, then you'll want to register these with the OM SDK. To do this, your code would look something like this:</p>
 
 <pre class="line-numbers">
-<code class="language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
  // ...
  private AdDisplayContainer adDisplayContainer;
  private View adOverlayView;
@@ -106,13 +106,13 @@ imaSettings.playerVersion = @"<span class="bcls-input">your-player-version</span
 <p>By default, the Brightcove Native SDK for iOS sets the <code translate="No">playerType</code> and <code translate="No">playerVersion</code> properties with the following values:</p>
 
 <pre class="line-numbers">
-<code class="language-java">imaSdkSettings.setPlayerType("bcov/and-sdk-player");
+<code class="language-java" translate="No">imaSdkSettings.setPlayerType("bcov/and-sdk-player");
 imaSdkSettings.setPlayerVersion("&lt;replaced with current sdk version&gt;");</code></pre>
 
 <p>You may want to override these values. One example would be to get advertising metrics reported directly from Google IMA. To use your own values, set the following on the <code translate="No">imaSdkSettings</code> object:</p>
 
 <pre class="line-numbers">
-<code class="language-java">ImaSdkSettings imaSdkSettings = imaSdkFactory.createImaSdkSettings();
+<code class="language-java" translate="No">ImaSdkSettings imaSdkSettings = imaSdkFactory.createImaSdkSettings();
 imaSdkSettings.setPlayerType("<span class="bcls-input">your-player-type</span>");
 imaSdkSettings.setPlayerVersion("<span class="bcls-input">your-player-version</span>");
 GoogleIMAComponent googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter, imaSdkSettings);</code></pre>

@@ -878,12 +878,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>
     <p>First, find the current language of the device:</p>
     <pre>
-<code class="language-java">Locale.getDefault().getLanguage();</code></pre>
+<code class="language-java" translate="No">Locale.getDefault().getLanguage();</code></pre>
   </li>
   <li>
     <p>Then, set the language when initializing the <code translate="No">GoogleIMAComponent</code>:</p>
     <pre class="line-numbers">
-<code class="language-java">ImaSdkSettings settings = ImaSdkFactory.getInstance().createImaSdkSettings();
+<code class="language-java" translate="No">ImaSdkSettings settings = ImaSdkFactory.getInstance().createImaSdkSettings();
 settings.setLanguage(&quot;ar&quot;);
 googleIMAComponent = new GoogleIMAComponent(
     brightcoveVideoView, 
@@ -897,7 +897,7 @@ googleIMAComponent = new GoogleIMAComponent(
 
 <p>Some languages, such as Arabic, will change the layout direction, and set it as RTL. If this does not fit your use case, you can enforce the LTR layout by modifying the <code translate="No">AndroidManifest.xml</code> as follows:</p>
 <pre class="line-numbers">
-<code class="language-java">&lt;application
+<code class="language-java" translate="No">&lt;application
   android:name=&quot;.PlaybackTestApplication&quot;
   android:allowBackup=&quot;true&quot;
   android:icon=&quot;@mipmap/ic_launcher&quot;

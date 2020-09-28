@@ -47,7 +47,7 @@ grandparent: Android Development
 </ol>
 <p>This solution will look similar to this:</p>
 <pre class="line-numbers">
-<code class="language-java">//Event sent when we know the Video dimensions.
+<code class="language-java" translate="No">//Event sent when we know the Video dimensions.
 eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
   @Override
   public void processEvent(Event event) {
@@ -81,7 +81,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
       </p>
       <aside class="bcls-aside bcls-aside--information">This does not stretch the actual video. We'll do that in the next step.</aside>
       <pre class="line-numbers">
-<code class="language-java">//Event sent when we know the Video dimensions.
+<code class="language-java" translate="No">//Event sent when we know the Video dimensions.
 eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
   @Override
   public void processEvent(Event event) {
@@ -116,7 +116,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
       </ul>
   <p>One scenario could be that you set the <code translate="No">BaseVideoView layout_height</code> to <code translate="No">280dp</code> and then resize the <code translate="No">SurfaceView</code> to match <code translate="No">280dp</code>. The aspect ratio will be modified slightly. If a user goes to full screen in portrait mode and <code translate="No">updateVideoViewMatchToParent()</code> is called, then both the <code translate="No">BaseVideoView</code> and <code translate="No">SurfaceView</code> will fill the device’s display and the video aspect ratio will be slightly modified.</p>
 <pre class="line-numbers">
-<code class="language-java">public void updateVideoViewMatchToParent(@NonNull BaseVideoView brightcoveVideoView) {
+<code class="language-java" translate="No">public void updateVideoViewMatchToParent(@NonNull BaseVideoView brightcoveVideoView) {
   RenderView renderView = brightcoveVideoView.getRenderView();
   if (renderView != null) {
       renderView.setVideoSize(brightcoveVideoView.getWidth(), brightcoveVideoView.getHeight());
@@ -128,7 +128,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
 </ol>
 <p>If you want to stretch the video without taking the aspect ratio into account (without cropping the video), you can try this:</p>
 <pre class="line-numbers">
-<code class="language-java">eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
+<code class="language-java" translate="No">eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
   @Override
   public void processEvent(Event event) {
       //Get the display metrics
@@ -150,7 +150,7 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
         Override the following <code translate="No">Activity</code>:
       </p> 
       <pre>
-<code class="language-java">public void onConfigurationChanged(Configuration configuration)</code>
+<code class="language-java" translate="No">public void onConfigurationChanged(Configuration configuration)</code>
 </pre>
     </li>
     <li>Reset the video size.</li>

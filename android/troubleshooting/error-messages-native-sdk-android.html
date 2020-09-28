@@ -101,7 +101,7 @@ grandparent: Android Development
 <p>Most errors that are passed through the Native SDK will be emitted through the <code translate="No">EventType.ERROR</code> with some properties, including the exception. Here is an example of how you can listen for these errors:</p>
 
 <pre class="line-numbers">
-<code class="language-java">eventEmitter.on(EventType.ERROR, new EventListener() {
+<code class="language-java" translate="No">eventEmitter.on(EventType.ERROR, new EventListener() {
 @Override
 public void processEvent(Event event) {
 	Exception exception = (Exception) event.properties.get(Event.ERROR);

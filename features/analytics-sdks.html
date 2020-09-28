@@ -119,18 +119,18 @@ grandparent: Home
 	<p>In the <strong>app/res/layout/omniture_activity_main.xml</strong> file, replace the following</p>
 
 	<pre>
-<code class="language-java">&lt;com.brightcove.player.view.BrightcoveVideoView</code></pre>
+<code class="language-java" translate="No">&lt;com.brightcove.player.view.BrightcoveVideoView</code></pre>
 
 	<p>with this</p>
 
 	<pre>
-<code class="language-java">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView</code></pre>
+<code class="language-java" translate="No">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView</code></pre>
 	</li>
 	<li>
 	<p>In the <strong>build.gradle</strong>, locate the Omniture code block and replace it with this:</p>
 
 	<pre class="line-numbers">
-<code class="language-java">if (project.name.contains('Omniture')) {
+<code class="language-java" translate="No">if (project.name.contains('Omniture')) {
   dependencies {
     implementation "com.brightcove.player:android-omniture-plugin:${anpVersion}"
     implementation files(libraryDirectory + "adobeMobileLibrary.jar")
@@ -142,7 +142,7 @@ grandparent: Home
 	<p>In the <strong>MainActivity.java</strong> file, locate the <code translate="No">onCreate()</code> function. Where the <code translate="No">BrightcoveVideoView</code> is created, replace it with this:</p>
 
 	<pre>
-<code class="language-java">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
+<code class="language-java" translate="No">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
 	</li>
 	<li>You are ready to run the sample app with the ExoPlayer framework.</li>
 </ol>

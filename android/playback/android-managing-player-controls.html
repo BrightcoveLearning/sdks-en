@@ -31,7 +31,7 @@ grandparent: Android Development
 <p>In your app code, extend the <code translate="No">MainActivity</code> class from one of the classes above. For example:</p>
 
 <pre class="line-numbers">
-<code class="language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
 }</code></pre>
 
 <p>Now, you are ready to instantiate the video view in your code.</p>
@@ -41,7 +41,7 @@ grandparent: Android Development
 <p>In the <code translate="No">MainActivity.java</code> file, and in the <code translate="No">onCreate()</code> method, add the following code:</p>
 
 <pre class="line-numbers">
-<code class="language-java">@Override
+<code class="language-java" translate="No">@Override
 protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
     brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
@@ -131,7 +131,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	<p>You can use the <code translate="No">BrightcoveMediaController</code> class. Here is one example of how to show player controls for a defined playhead position range.</p>
 
 	<pre class="line-numbers">
-<code class="language-java">brightcoveVideoView.getEventEmitter().on(EventType.PROGRESS, new EventListener() {
+<code class="language-java" translate="No">brightcoveVideoView.getEventEmitter().on(EventType.PROGRESS, new EventListener() {
     @Override
     public void processEvent(Event event) {
         int playheadPosition = brightcoveVideoView.getCurrentPosition();
@@ -151,7 +151,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	<p>You can use events as follows:</p>
 
 	<pre class="line-numbers">
-<code class="language-java">import static com.brightcove.player.mediacontroller.ShowHideController.SHOW_MEDIA_CONTROLS;
+<code class="language-java" translate="No">import static com.brightcove.player.mediacontroller.ShowHideController.SHOW_MEDIA_CONTROLS;
 import static com.brightcove.player.mediacontroller.ShowHideController.HIDE_MEDIA_CONTROLS;
 ...
 eventEmitter.emit(HIDE_MEDIA_CONTROLS);
@@ -166,7 +166,7 @@ eventEmitter.emit(SHOW_MEDIA_CONTROLS);</code></pre>
 <p>While designing your app layout and functionality, you may have a need to turn off the player controls. This can be done by setting the <code translate="No">MediaController</code> to null as follows:</p>
 
 <pre class="line-numbers">
-<code class="language-java">@
+<code class="language-java" translate="No">@
 Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
    View rootView = inflater.inflate(R.layout.fragment_player, container, false);
@@ -189,12 +189,12 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 <p>To set fullscreen mode, use the following code:</p>
 
 <pre>
-<code class="language-java">brightcoveVideoView.getEventEmitter().emit(EventType.ENTER_FULL_SCREEN);</code></pre>
+<code class="language-java" translate="No">brightcoveVideoView.getEventEmitter().emit(EventType.ENTER_FULL_SCREEN);</code></pre>
 
 <p>To exit fullscreen mode, use the following code:</p>
 
 <pre>
-<code class="language-java">brightcoveVideoView.getEventEmitter().emit(EventType.EXIT_FULL_SCREEN);</code></pre>
+<code class="language-java" translate="No">brightcoveVideoView.getEventEmitter().emit(EventType.EXIT_FULL_SCREEN);</code></pre>
 
 <p>For a complete list of event types, see the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Player SDK for Android Reference</a>, and navigate to the <strong>EventType</strong> class document.</p>
 

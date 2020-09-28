@@ -912,19 +912,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>
       In the <strong>build.gradle</strong> file, add the following Gradle dependency:
     </p>
-    <pre><code class="language-java">implementation &quot;com.brightcove.player:android-thumbnail-plugin:6.13.0&quot;</code></pre>
+    <pre><code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-thumbnail-plugin:6.13.0&quot;</code></pre>
   </li>
   <li>
     <p>
       In the <strong>MainActivity.java</strong> file, create an instance of the <code translate="No">ThumbnailComponent</code>.
     </p>
-    <pre><code class="language-java">ThumbnailComponent thumbnailComponent = new ThumbnailComponent(brightcoveVideoView);</code></pre>
+    <pre><code class="language-java" translate="No">ThumbnailComponent thumbnailComponent = new ThumbnailComponent(brightcoveVideoView);</code></pre>
   </li>
   <li>
     <p>
       Setup the preview media controller.
     </p>
-    <pre><code class="language-java">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
+    <pre><code class="language-java" translate="No">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
   </li>
   <li>
     For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleAp</a>
@@ -968,7 +968,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>
       Here is a code example:
     </p>
-    <pre class="line-numbers"><code class="language-java">eventEmitter.once(AD_DATA_READY, event -&gt; {
+    <pre class="line-numbers"><code class="language-java" translate="No">eventEmitter.once(AD_DATA_READY, event -&gt; {
   Timeline timeline = event.getProperty(SSAIEvent.VMAP_TIMELINE, Timeline.class);
   ThumbnailDocumentCreator creator = new SSAIThumbnailDocumentCreatorWrapper(new   DefaultThumbnailDocumentCreator(), timeline);
   thumbnailComponent.setThumbnailDocumentCreator(creator);

@@ -129,13 +129,13 @@ grandparent: Android Development
 	<p>In the <strong>MainActivity.java</strong> file, replace the <code translate="No">ad_config_id</code> value with your playback token (live URL) that you you copied from the Live module in the previous section.</p>
 
 	<pre>
-<code class="language-java">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
+<code class="language-java" translate="No">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
 	</li>
 	<li>
 	<p>The <code translate="No">ad_config_id</code> with your playback token value is added to the HTTP request as a query parameter.</p>
 
 	<pre class="line-numbers">
-<code class="language-java">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+<code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
   .addQueryParameter(AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE)
   .build();
 </code></pre>
@@ -144,7 +144,7 @@ grandparent: Android Development
 	<p>Make the catalog call to the Playback API with your live stream video id and the updated HTTP request.</p>
 
 	<pre class="line-numbers">
-<code class="language-java">catalog.findVideoByID(getString(R.string.video_id), httpRequestConfig, new VideoListener() {
+<code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.video_id), httpRequestConfig, new VideoListener() {
    @Override
    public void onVideo(Video video) {
        plugin.processVideo(video);
