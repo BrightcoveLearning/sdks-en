@@ -889,13 +889,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
 
 <ol>
-	<li class="language-editable"><code translate="No">WILL_CHANGE_VIDEO</code></li>
-	<li class="language-editable"><code translate="No">SET_VIDEO</code></li>
-	<li class="language-editable"><code translate="No">SET_SOURCE</code></li>
-	<li class="language-editable"><code translate="No">PLAY</code></li>
-	<li class="language-editable"><code translate="No">PAUSE</code></li>
-	<li class="language-editable"><code translate="No">SEEK_TO</code></li>
-	<li class="language-editable"><code translate="No">STOP</code></li>
+	<li ><code translate="No">WILL_CHANGE_VIDEO</code></li>
+	<li ><code translate="No">SET_VIDEO</code></li>
+	<li ><code translate="No">SET_SOURCE</code></li>
+	<li ><code translate="No">PLAY</code></li>
+	<li ><code translate="No">PAUSE</code></li>
+	<li ><code translate="No">SEEK_TO</code></li>
+	<li ><code translate="No">STOP</code></li>
 </ol>
 
 <p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code translate="No">preventDefault()</code> method. Event propagation can be stopped by calling the <code translate="No">stopPropagation()</code> method. If only <code translate="No">preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code translate="No">stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
@@ -903,15 +903,15 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
 
 <ol>
-	<li class="language-editable"><code translate="No">DID_CHANGE_LIST</code></li>
-	<li class="language-editable"><code translate="No">DID_SELECT_SOURCE</code></li>
-	<li class="language-editable"><code translate="No">DID_PAUSE</code></li>
-	<li class="language-editable"><code translate="No">DID_PLAY</code></li>
-	<li class="language-editable"><code translate="No">DID_SEEK_TO</code></li>
-	<li class="language-editable"><code translate="No">DID_SET_SOURCE</code></li>
-	<li class="language-editable"><code translate="No">DID_STOP</code></li>
-	<li class="language-editable"><code translate="No">PROGRESS</code></li>
-	<li class="language-editable"><code translate="No">COMPLETED</code></li>
+	<li ><code translate="No">DID_CHANGE_LIST</code></li>
+	<li ><code translate="No">DID_SELECT_SOURCE</code></li>
+	<li ><code translate="No">DID_PAUSE</code></li>
+	<li ><code translate="No">DID_PLAY</code></li>
+	<li ><code translate="No">DID_SEEK_TO</code></li>
+	<li ><code translate="No">DID_SET_SOURCE</code></li>
+	<li ><code translate="No">DID_STOP</code></li>
+	<li ><code translate="No">PROGRESS</code></li>
+	<li ><code translate="No">COMPLETED</code></li>
 </ol>
 </div>
 </section>
@@ -939,8 +939,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <a href="https://github.com/BrightcoveOS/android-plugin-guide/tree/master/sample">sample directory</a> includes an Android Studio based project with two modules:</p>
 
 <ul>
-	<li class="language-editable"><strong>SamplePlugin</strong> - An example plugin, which can be used as the basis for writing new plugins.</li>
-	<li class="language-editable"><strong>SamplePluginApplication</strong> - Shows how plugins are incorporated into a Brightcove video application and can be used to test the SamplePlugin or new plugins.</li>
+	<li ><strong>SamplePlugin</strong> - An example plugin, which can be used as the basis for writing new plugins.</li>
+	<li ><strong>SamplePluginApplication</strong> - Shows how plugins are incorporated into a Brightcove video application and can be used to test the SamplePlugin or new plugins.</li>
 </ul>
 </div>
 </section>
@@ -952,15 +952,15 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The steps to writing a plugin include:</p>
 
 <ol>
-	<li class="language-editable">Copy the sample plugin to a new repository.</li>
-	<li class="language-editable">Change the package and class names.</li>
-	<li class="language-editable">Update the <code translate="No">TAG</code> initializer.</li>
-	<li class="language-editable">Edit the <code translate="No">@Emits</code> and <code translate="No">@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
-	<li class="language-editable">Modify the constructor as necessary.</li>
-	<li class="language-editable">Replace or remove the <code translate="No">videoView</code> related logic as necessary.</li>
-	<li class="language-editable">Modify <code translate="No">initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
-	<li class="language-editable">Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
-	<!--                <li class="language-editable">Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
+	<li >Copy the sample plugin to a new repository.</li>
+	<li >Change the package and class names.</li>
+	<li >Update the <code translate="No">TAG</code> initializer.</li>
+	<li >Edit the <code translate="No">@Emits</code> and <code translate="No">@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
+	<li >Modify the constructor as necessary.</li>
+	<li >Replace or remove the <code translate="No">videoView</code> related logic as necessary.</li>
+	<li >Modify <code translate="No">initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
+	<li >Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
+	<!--                <li >Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
 </ol>
 </div>
 </section>
