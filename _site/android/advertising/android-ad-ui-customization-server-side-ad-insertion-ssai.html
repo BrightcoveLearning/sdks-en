@@ -925,7 +925,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <strong>Learn More</strong> view will appear only when the Linear Creative contains a <code translate="No">ClickThrough</code> URL, as shown here:</p>
 
 <pre class="line-numbers">
-<code class="language-xml"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+<code class="language-xml" translate="No"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;Ad id="blue-01-5s"&gt;
     &lt;InLine&gt;
       ...
@@ -948,7 +948,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <strong>Skip Ad</strong> view will appear only when there is a valid <code translate="No">skipoffset</code> value in the Linear Creative:</p>
 
 <pre class="line-numbers">
-<code class="language-xml"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+<code class="language-xml" translate="No"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;Ad id="blue-01-5s"&gt;
     &lt;InLine&gt;
       ...
@@ -971,7 +971,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <aside class="bcls-aside bcls-aside--information">Modifying the ad UI using the ad configuration only applies to Live SSAI.</aside>
 
 <pre class="line-numbers">
-<code class="language-json">{
+<code class="language-json" translate="No">{
   "application_ad_configuration": {
 	"ad_configuration_description": "$YOUR_DESCRIPTION",
 	"ad_configuration_expected_response_type": "Vast",
@@ -1035,7 +1035,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>Explore the Ad Overlay files using Android Studio. As of version 6.9.0 of the Native SDK for Android, the SSAI plugin's <strong>ssai_ad_overlay.xml</strong> looks like this:</p>
 
 <pre class="line-numbers">
-<code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<code class="language-xml" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -1083,7 +1083,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <strong>Ad Pod duration</strong> view uses the following strings:</p>
 
 <pre class="line-numbers">
-<code class="language-xml">&lt;plurals name="ssai_message_ad_break_duration_countdown"&gt;
+<code class="language-xml" translate="No">&lt;plurals name="ssai_message_ad_break_duration_countdown"&gt;
    &lt;item quantity="one"&gt;Your video will resume in\n%1$d second&lt;/item&gt;
    &lt;item quantity="other"&gt;Your video will resume in\n%1$d seconds&lt;/item&gt;
 &lt;/plurals&gt;
@@ -1094,13 +1094,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <strong>Learn More</strong> view uses the following string:</p>
 
 <pre>
-<code class="language-xml">&lt;string name="ssai_message_learn_more"&gt;Learn More &gt;&gt; &lt;/string&gt;
+<code class="language-xml" translate="No">&lt;string name="ssai_message_learn_more"&gt;Learn More &gt;&gt; &lt;/string&gt;
 </code></pre>
 
 <p>The <strong>Skip Ad</strong> view uses the following strings:</p>
 
 <pre class="line-numbers">
-<code class="language-xml">&lt;plurals name="you_can_skip_text"&gt;
+<code class="language-xml" translate="No">&lt;plurals name="you_can_skip_text"&gt;
    &lt;item quantity="one"&gt;You can skip this ad in\n%d second&lt;/item&gt;
    &lt;item quantity="other"&gt;You can skip this ad in\n%d seconds&lt;/item&gt;
 &lt;/plurals&gt;
@@ -1122,7 +1122,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>When working with your own layout, use the same view type and view ids as originally specified to avoid unintended results. Explore the Ad Media Controller layout using Android Studio. For the SSAI plugin version 6.9.0, the <strong>default_ssai_ad_media_controller.xml</strong> looks like this:</p>
 
 <pre class="line-numbers">
-<code class="language-xml">&lt;com.brightcove.player.mediacontroller.BrightcoveControlBar
+<code class="language-xml" translate="No">&lt;com.brightcove.player.mediacontroller.BrightcoveControlBar
    xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools"
    android:id="@+id/brightcove_control_bar"
@@ -1216,13 +1216,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>The <strong>Ad number countdown</strong> view uses the following string:</p>
 
 <pre>
-<code class="language-xml">&lt;string name="ssai_message_ad_number_countdown"&gt;Ad %1$d of %2$d&lt;/string&gt;
+<code class="language-xml" translate="No">&lt;string name="ssai_message_ad_number_countdown"&gt;Ad %1$d of %2$d&lt;/string&gt;
 </code></pre>
 
 <p>The <strong>Single Ad duration countdown</strong> view uses the following string:</p>
 
 <pre>
-<code class="language-xml">&lt;string name="ssai_message_ad_duration_countdown"&gt;(%1$s)&lt;/string&gt;
+<code class="language-xml" translate="No">&lt;string name="ssai_message_ad_duration_countdown"&gt;(%1$s)&lt;/string&gt;
 </code></pre>
 </section>
 
@@ -1257,7 +1257,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 12 Jun 2020
+  Page last updated on 28 Sep 2020
 </div>
 
 

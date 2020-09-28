@@ -891,7 +891,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>
   Depending on your account configuration, the <code translate="No">Catalog</code> response may contain several sources, with or without HEVC renditions. Here is an example:
 </p>
-<pre class="line-numbers"><code class="language-json"> &quot;sources&quot;: [
+<pre class="line-numbers"><code class="language-json" translate="No"> &quot;sources&quot;: [
   {
     &quot;type&quot;: &quot;application/dash+xml&quot;,
     &quot;src&quot;: &quot;http://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/clear/4800266849001/11023209-08e4-40d4-9a8b-25aa659421e2/2s/manifest.mpd?fastly_token=ZYZ&quot;,
@@ -1003,7 +1003,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>
   In this scenario, most of the HEVC and AVC codec’s resolutions are duplicated. For example:
 </p>
-<pre class="line-numbers"><code class="language-html">AVC &lt;Representation bandwidth=&quot;453000&quot; height=&quot;270&quot; width=&quot;480&quot;&gt;
+<pre class="line-numbers"><code class="language-html" translate="No">AVC &lt;Representation bandwidth=&quot;453000&quot; height=&quot;270&quot; width=&quot;480&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;704000&quot; height=&quot;360&quot; width=&quot;640&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;903000&quot; height=&quot;360&quot; width=&quot;640&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;1202000&quot; height=&quot;540&quot; width=&quot;960&quot;&gt;
@@ -1021,7 +1021,7 @@ HVC &lt;Representation bandwidth=&quot;2809000&quot; height=&quot;720&quot; widt
 <p>
   Given the above video renditions, the Brightcove Natvie SDK will select the following renditions:
 </p>
-<pre class="line-numbers"><code class="language-html">AVC &lt;Representation bandwidth=&quot;1202000&quot; height=&quot;540&quot; width=&quot;960&quot;&gt;
+<pre class="line-numbers"><code class="language-html" translate="No">AVC &lt;Representation bandwidth=&quot;1202000&quot; height=&quot;540&quot; width=&quot;960&quot;&gt;
 HVC &lt;Representation bandwidth=&quot;304000&quot; height=&quot;270&quot; width=&quot;480&quot;&gt;
 HVC &lt;Representation bandwidth=&quot;548000&quot; height=&quot;360&quot; width=&quot;640&quot;&gt;
 HVC &lt;Representation bandwidth=&quot;993000&quot; height=&quot;432&quot; width=&quot;768&quot;&gt;
@@ -1037,7 +1037,7 @@ HVC &lt;Representation bandwidth=&quot;2809000&quot; height=&quot;720&quot; widt
 <p>
   In this scenario, there are lower-resolution renditions with the AVC codec, and higher-resolution renditions with the HVC codec. For example:
 </p>
-<pre class="line-numbers"><code class="language-html">AVC &lt;Representation bandwidth=&quot;453000&quot; height=&quot;270&quot; width=&quot;480&quot;&gt;
+<pre class="line-numbers"><code class="language-html" translate="No">AVC &lt;Representation bandwidth=&quot;453000&quot; height=&quot;270&quot; width=&quot;480&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;704000&quot; height=&quot;360&quot; width=&quot;640&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;903000&quot; height=&quot;360&quot; width=&quot;640&quot;&gt;
 AVC &lt;Representation bandwidth=&quot;1202000&quot; height=&quot;540&quot; width=&quot;960&quot;&gt;
@@ -1070,7 +1070,7 @@ HVC &lt;Representation bandwidth=&quot;2809000&quot; height=&quot;720&quot; widt
 
 <hr>
 <div class="last-updated">
-  Page last updated on 12 Jun 2020
+  Page last updated on 28 Sep 2020
 </div>
 
 
