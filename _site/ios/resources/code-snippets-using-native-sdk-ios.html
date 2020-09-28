@@ -976,7 +976,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>Set up the player view with a standard VOD layout:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-objectivec">// Set up our player view. Create with a standard VOD layout.
+<code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
 BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
 [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
 	</li>
@@ -984,7 +984,7 @@ BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackContr
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-objectivec">// Customize the CC button.
+<code class="language-objectivec" translate="No">// Customize the CC button.
 BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
 ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
 ccButton.primaryTitle = @"CC";
@@ -1116,7 +1116,7 @@ var preferredPeakBitRate: Double
 	<p>Retrieve a playlist from your account.</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-objectivec">- (void)retrievePlaylist
+<code class="language-objectivec" translate="No">- (void)retrievePlaylist
 {
 [self.refreshControl beginRefreshing];
 
@@ -1158,7 +1158,7 @@ BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequ
 	<p>When the table view is selected, the row's index is used to create a new <code translate="No">videoDictionary</code>. Next, ask the dictionary for the video. If the video is not null, then load the video in the <code translate="No">playbackController</code>.</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-objectivec">// Play the video in this row when selected
+<code class="language-objectivec" translate="No">// Play the video in this row when selected
 - (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
 NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
@@ -1208,7 +1208,7 @@ return;
 <p>This example returns 6 videos starting with the 10th video in the playlist:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-objectivec">NSDictionary *params =
+<code class="language-objectivec" translate="No">NSDictionary *params =
 @{
 @"limit": @6,
 @"offset": @9
@@ -1297,7 +1297,7 @@ for (BCOVCuePoint *cp in cpc) {
 </p>
 
 <pre>
-<code class="notranslate language-objectivec">playerView?.removeFromSuperview()
+<code class="language-objectivec" translate="No">playerView?.removeFromSuperview()
 playerView = nil
 playbackController = nil</code></pre>
 </section>
@@ -1310,7 +1310,7 @@ playbackController = nil</code></pre>
 <p>By default, the play rate can only be set on regular intervals (0.50, 0.67, 1.0, 1.25, 1.50 and 2.0). By setting the <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm">audioTimePitchAlgorithm</a>, you can use more granular rate values (like 1.7). For more details, see this <a href="https://stackoverflow.com/questions/6630356/avplayer-rate-property-does-not-work">stackoverflow discussion</a>.</p>
 
 <pre>
-<code class="notranslate language-objectivec">avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;</code></pre>
+<code class="language-objectivec" translate="No">avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;</code></pre>
 
 <aside class="bcls-aside bcls-aside--information">
   <p>
@@ -1338,7 +1338,7 @@ playbackController = nil</code></pre>
 <p>For a <code translate="No">BCOVPlaybackSession </code>, your code would look similar to this:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-objectivec">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
   playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent {
 
   if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] ) {
@@ -1366,7 +1366,7 @@ playbackController = nil</code></pre>
 <p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code translate="No">BCOVPlaybackController </code> protocol's <code translate="No">viewProjection </code> property as follows:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-objectivec"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
 {
 BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
 [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
@@ -1390,7 +1390,7 @@ BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjec
 <p>This example shows how to customize the accessibility values for the play button:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-objectivec"><a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">// After creating the BCOVPUIPlayerView, store it in a playerView property
+<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">// After creating the BCOVPUIPlayerView, store it in a playerView property
 // Then set the accessibilityLabel and accessibilityHint properties
 self.playerView.controlsView.playbackButton.accessibilityLabel = @"Playback Button";
 self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause the video";</a>
@@ -1409,7 +1409,7 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 <p>You can change the player layer background with the following code:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-objectivec">(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+<code class="language-objectivec" translate="No">(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
 {
 session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
 }</code></pre>

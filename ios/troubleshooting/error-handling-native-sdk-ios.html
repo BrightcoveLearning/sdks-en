@@ -15,12 +15,12 @@ grandparent: iOS Development
 <p>Error codes have the term <code translate="No">ErrorCode</code> in the name. For example:</p>
 
 <pre>
-<code class="notranslate language-objectivec">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
+<code class="language-objectivec" translate="No">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
 
 <p>Events have the word <code translate="No">Event</code> in the name. For example:</p>
 
 <pre>
-<code class="notranslate language-objectivec">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
+<code class="language-objectivec" translate="No">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
 </section>
 
 <section class="bcls-section">
@@ -29,7 +29,7 @@ grandparent: iOS Development
 <p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code translate="No">BCOVPlaybackController</code>:</p>
 
 <pre>
-<code class="notranslate language-objectivec">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
+<code class="language-objectivec" translate="No">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
   didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent</code></pre>
 
 <p>To get further information, do the following:</p>
@@ -63,7 +63,7 @@ grandparent: iOS Development
 	<p>To find all the error domains in the SDK, search the headers for the following:</p>
 
 	<pre>
-<code class="notranslate language-objectivec">ErrorDomain</code></pre>
+<code class="language-objectivec" translate="No">ErrorDomain</code></pre>
 
 	<p>Here is a list of headers that have <code translate="No">ErrorDomain</code> references:</p>
 
@@ -82,7 +82,7 @@ grandparent: iOS Development
 	<p>To find all the error codes, search each <code translate="No">ErrorDomain</code> for the following:</p>
 
 	<pre>
-<code class="notranslate language-objectivec">ErrorCode</code></pre>
+<code class="language-objectivec" translate="No">ErrorCode</code></pre>
 
 	<p>For example, in <code translate="No">BCOVPlaybackSession.h</code>, you'll see <code translate="No">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
 
