@@ -1,6 +1,6 @@
 ---
 title: 'Resizing Video View with the Native SDK for Android'
-description: In this topic, you will learn how to resize/stretch the inner Video View to fill the <code>BrightcoveVideoView</code> when working with the Native SDK for Android.
+description: In this topic, you will learn how to resize/stretch the inner Video View to fill the <code translate="No">BrightcoveVideoView</code> when working with the Native SDK for Android.
 parent: Framework
 grandparent: Android Development
 ---
@@ -11,37 +11,37 @@ grandparent: Android Development
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
-<p>As a developer, you can change the default behavior for how the Video is displayed on the Video View. You can resize/stretch the inner Video View (<code>SurfaceView</code>/<code>TextureView</code>) to fill the <code>BrightcoveVideoView</code> (<code>FrameLayout</code>). To do this, you can listen for the <code>EventType.VIDEO_SIZE_KNOWN</code> event, do some math and set the display values.</p>
+<p>As a developer, you can change the default behavior for how the Video is displayed on the Video View. You can resize/stretch the inner Video View (<code translate="No">SurfaceView</code>/<code translate="No">TextureView</code>) to fill the <code translate="No">BrightcoveVideoView</code> (<code translate="No">FrameLayout</code>). To do this, you can listen for the <code translate="No">EventType.VIDEO_SIZE_KNOWN</code> event, do some math and set the display values.</p>
 <p>There are two ways to change the Video View:</p>
 <ul>
   <li>
-    <a href="#Resizing_the_container">Resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>)</a>
+    <a href="#Resizing_the_container">Resizing the container (<code translate="No">BaseVideoView</code>/<code translate="No">FrameLayout</code>)</a>
   </li>
   <li>
-    <a href="#Resizing_the_video">Resizing the video (<code>SurfaceView</code>)</a>
+    <a href="#Resizing_the_video">Resizing the video (<code translate="No">SurfaceView</code>)</a>
   </li>
 </ul>
 </section>
 
 <section class="bcls-section">
 <h2 id="Resizing_the_container">Resizing the container</h2>
-<p>You may want to develop an app that sets the Video View to fit the entire device screen in portrait mode. You can do this by resizing the container (<code>BaseVideoView</code>/<code>FrameLayout</code>).</p>
-<aside class="bcls-aside bcls-aside--information">Because the <code>Video</code> height is initially unknown, it will match its parent view size (the whole screen in the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a>) until the <code>VIDEO_SIZE_KNOWN</code> event is triggered. Then, the <code>BaseVideoView</code> will wrap the <code>SurfaceView</code>. When resizing the container, you may see an initial flicker.</aside>
+<p>You may want to develop an app that sets the Video View to fit the entire device screen in portrait mode. You can do this by resizing the container (<code translate="No">BaseVideoView</code>/<code translate="No">FrameLayout</code>).</p>
+<aside class="bcls-aside bcls-aside--information">Because the <code translate="No">Video</code> height is initially unknown, it will match its parent view size (the whole screen in the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a>) until the <code translate="No">VIDEO_SIZE_KNOWN</code> event is triggered. Then, the <code translate="No">BaseVideoView</code> will wrap the <code translate="No">SurfaceView</code>. When resizing the container, you may see an initial flicker.</aside>
 
 <h3>Set the container property</h3>
-<p>If you see black margins around your video, you can try setting the <code>BrightcoveVideoView</code> <code>layout-height</code>.</p>
+<p>If you see black margins around your video, you can try setting the <code translate="No">BrightcoveVideoView</code> <code translate="No">layout-height</code>.</p>
 <ol class="bcls-tasklist">
     <li>Open the XML <strong>layout</strong> file.</li>
-    <li>Set the <code>BrightcoveVideoView layout-height</code> to <code>wrap_content</code>.</li>
+    <li>Set the <code translate="No">BrightcoveVideoView layout-height</code> to <code translate="No">wrap_content</code>.</li>
     <li>You may experience an initial flicker as explained in the note above.</li>
 </ol>
 
 <h3>Set the Video View size</h3>
 <p>Another way to control the Video View is to set the size programmatically.</p>
 <ol class="bcls-tasklist-restart">
-    <li>To minimize the initial flicker, try setting the the <code>layout_height</code> to a specific value (e.g. 280dp). The goal is for the height set to be close to the calculated height.</li>
-    <li>Listen for the <code>EventType.VIDEO_SIZE_KNOWN</code> event.</li>
-    <li>Get the <code>Event.VIDEO_WIDTH</code> and <code>Event.VIDEO_HEIGHT</code></li>
+    <li>To minimize the initial flicker, try setting the the <code translate="No">layout_height</code> to a specific value (e.g. 280dp). The goal is for the height set to be close to the calculated height.</li>
+    <li>Listen for the <code translate="No">EventType.VIDEO_SIZE_KNOWN</code> event.</li>
+    <li>Get the <code translate="No">Event.VIDEO_WIDTH</code> and <code translate="No">Event.VIDEO_HEIGHT</code></li>
     <li>With those values, determine the aspect ratio.</li>
     <li>Use the aspect ratio to calculate the width and height on the display.</li>
 </ol>
@@ -73,11 +73,11 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
 <section class="bcls-section">
 <h2 id="Resizing_the_video">Resizing the video</h2>
 <p>You may want to implement a double-tap that fills the screen. This would take a 16:9 video and fill the screen on an 18:9 or 19:9 device.</p>
-<p>You can do this by resizing the actual video (<code>SurfaceView</code>).</p>
+<p>You can do this by resizing the actual video (<code translate="No">SurfaceView</code>).</p>
 <ol class="bcls-tasklist-restart">
     <li>
       <p>
-        If you set the width and the height to the <code>renderView</code> to match the size of the device display, the video will resize to match the entire screen.
+        If you set the width and the height to the <code translate="No">renderView</code> to match the size of the device display, the video will resize to match the entire screen.
       </p>
       <aside class="bcls-aside bcls-aside--information">This does not stretch the actual video. We'll do that in the next step.</aside>
       <pre class="line-numbers">
@@ -104,17 +104,17 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
     </li>
     <li>
       <p>
-        The code below updates the underlying video view (e.g. <code>SurfaceView</code>) to match its parent <code>BaseVideoView</code> (<code>FrameLayout</code>). There are several things to keep in mind:
+        The code below updates the underlying video view (e.g. <code translate="No">SurfaceView</code>) to match its parent <code translate="No">BaseVideoView</code> (<code translate="No">FrameLayout</code>). There are several things to keep in mind:
       </p>
       <ul>
         <li>
-          You need to listen for the <code>VIDEO_SIZE_KNOWN</code> event when entering and exiting full screen, and when rotating the device.
+          You need to listen for the <code translate="No">VIDEO_SIZE_KNOWN</code> event when entering and exiting full screen, and when rotating the device.
         </li>
         <li>
           You need to decide when to update your view for the above conditions.
         </li>
       </ul>
-  <p>One scenario could be that you set the <code>BaseVideoView layout_height</code> to <code>280dp</code> and then resize the <code>SurfaceView</code> to match <code>280dp</code>. The aspect ratio will be modified slightly. If a user goes to full screen in portrait mode and <code>updateVideoViewMatchToParent()</code> is called, then both the <code>BaseVideoView</code> and <code>SurfaceView</code> will fill the device’s display and the video aspect ratio will be slightly modified.</p>
+  <p>One scenario could be that you set the <code translate="No">BaseVideoView layout_height</code> to <code translate="No">280dp</code> and then resize the <code translate="No">SurfaceView</code> to match <code translate="No">280dp</code>. The aspect ratio will be modified slightly. If a user goes to full screen in portrait mode and <code translate="No">updateVideoViewMatchToParent()</code> is called, then both the <code translate="No">BaseVideoView</code> and <code translate="No">SurfaceView</code> will fill the device’s display and the video aspect ratio will be slightly modified.</p>
 <pre class="line-numbers">
 <code class="language-java">public void updateVideoViewMatchToParent(@NonNull BaseVideoView brightcoveVideoView) {
   RenderView renderView = brightcoveVideoView.getRenderView();
@@ -141,13 +141,13 @@ eventEmitter.on(EventType.VIDEO_SIZE_KNOWN, new EventListener() {
   }
 });
 </code></pre>
-<aside class="bcls-aside bcls-aside--information"> It is important that the <code>BaseVideoView</code> uses <code>match_parent</code> for both <code>layout_width</code> and <code>layout_height</code> for the <code>SurfaceView</code> to fill the device's display.</aside>
+<aside class="bcls-aside bcls-aside--information"> It is important that the <code translate="No">BaseVideoView</code> uses <code translate="No">match_parent</code> for both <code translate="No">layout_width</code> and <code translate="No">layout_height</code> for the <code translate="No">SurfaceView</code> to fill the device's display.</aside>
 
 <p>Keep in mind that the values you get are affected by the orientation of the device. To stretch the video for both portrait and landscape, you need to do the following:</p>
 <ol class="bcls-tasklist-restart">
     <li>
       <p>
-        Override the following <code>Activity</code>:
+        Override the following <code translate="No">Activity</code>:
       </p> 
       <pre>
 <code class="language-java">public void onConfigurationChanged(Configuration configuration)</code>

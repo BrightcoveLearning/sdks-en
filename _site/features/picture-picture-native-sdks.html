@@ -913,7 +913,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3 id="Using_BrightcovePlayer">Using BrightcovePlayer</h3>
 
-<p>The easiest way to start using picture-in-picture is to have your activity extend the <code>BrightcovePlayer</code>. To do this, follow these steps:</p>
+<p>The easiest way to start using picture-in-picture is to have your activity extend the <code translate="No">BrightcovePlayer</code>. To do this, follow these steps:</p>
 
 <ol class="bcls-tasklist">
 	<li class="language-editable">In your <strong>styles.xml</strong> file, enable the picture-in-picture button by adding the following code:
@@ -933,7 +933,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
         ...
       </code></pre>
 
-	<p>This is an important step. If you do not declare it, when a user presses the picture-in-picture button in the Brightcove Media Controller, an <code>IllegalStateException</code> will be thrown:</p>
+	<p>This is an important step. If you do not declare it, when a user presses the picture-in-picture button in the Brightcove Media Controller, an <code translate="No">IllegalStateException</code> will be thrown:</p>
 
 	<pre>
   <code class="language-java">java.lang.IllegalStateException: enterPictureInPictureMode: Current activity does not support picture-in-picture</code></pre>
@@ -951,19 +951,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3 id="Using_a_regular_Activity">Using a regular Activity</h3>
 
-<p>If you are using an activity which does not extend <code>BrightcovePlayer</code>, in addition to declaring support for picture-in-picture as mentioned in the previous section, you need to follow a few extra steps:</p>
+<p>If you are using an activity which does not extend <code translate="No">BrightcovePlayer</code>, in addition to declaring support for picture-in-picture as mentioned in the previous section, you need to follow a few extra steps:</p>
 
 <ol class="bcls-tasklist__restart">
 	<li class="language-editable">Open the <strong>MainActivity.java</strong> file.</li>
-	<li class="language-editable">In the <code>onCreate</code> method of the activity, register the Activity with the Brightcove <code>PictureInPictureManager</code>:
+	<li class="language-editable">In the <code translate="No">onCreate</code> method of the activity, register the Activity with the Brightcove <code translate="No">PictureInPictureManager</code>:
 	<pre>
   <code class="language-java">PictureInPictureManager.getInstance().registerActivity(Activity, BrightcoveVideoView)</code></pre>
 	</li>
-	<li class="language-editable">In the <code>onDestroy</code> method, unregister the Activity:
+	<li class="language-editable">In the <code translate="No">onDestroy</code> method, unregister the Activity:
 	<pre>
   <code class="language-java">PictureInPictureManager.getInstance().unregisterActivity(Activity)</code></pre>
 	</li>
-	<li class="language-editable">Override the <code>onPictureInPictureModeChanged</code> Activity method, and call <code>onPictureInPictureModeChanged()</code> method as shown below:
+	<li class="language-editable">Override the <code translate="No">onPictureInPictureModeChanged</code> Activity method, and call <code translate="No">onPictureInPictureModeChanged()</code> method as shown below:
 	<pre class="line-numbers">
   <code class="language-java">@Override
   public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
@@ -971,7 +971,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
      PictureInPictureManager.getInstance().onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
   }</code></pre>
 	</li>
-	<li class="language-editable">Finally, override the <code>onUserLeaveHint()</code> Activity method, and call <code>onUserLeaveHint()</code> as shown below:
+	<li class="language-editable">Finally, override the <code translate="No">onUserLeaveHint()</code> Activity method, and call <code translate="No">onUserLeaveHint()</code> as shown below:
 	<pre class="line-numbers">
   <code class="language-java">@Override
   public void onUserLeaveHint () {
@@ -986,11 +986,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <pre>
   <code class="language-java">PictureInPictureManager.getInstance().enterPictureInPictureMode()</code></pre>
 
-<aside class="bcls-aside bcls-aside--information">Note that calling this method will throw a <code>PictureInPictureManagerException</code> if an Activity has not been registered.</aside>
+<aside class="bcls-aside bcls-aside--information">Note that calling this method will throw a <code translate="No">PictureInPictureManagerException</code> if an Activity has not been registered.</aside>
 
 <h3 id="Customizing_picture-in-picture">Customizing picture-in-picture</h3>
 
-<p>You can customize the behavior and appearance of the picture-in-picture window through the <code>PictureInPictureManager</code>. For example, you can change the aspect ratio of the window or enable/disable captions for your videos.</p>
+<p>You can customize the behavior and appearance of the picture-in-picture window through the <code translate="No">PictureInPictureManager</code>. For example, you can change the aspect ratio of the window or enable/disable captions for your videos.</p>
 
 <p>Android Oreo natively provides three parameters that can be customized:</p>
 
@@ -1012,7 +1012,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h4>User actions</h4>
 
-<p>Brightcove adds a <code>RemoteAction</code> by default, which handles the <code>Play/Pause</code> video events and sets their respective icons. This means that the default <code>RemoteAction</code> will be added to the list of remote actions you set with the following:</p>
+<p>Brightcove adds a <code translate="No">RemoteAction</code> by default, which handles the <code translate="No">Play/Pause</code> video events and sets their respective icons. This means that the default <code translate="No">RemoteAction</code> will be added to the list of remote actions you set with the following:</p>
 
 <pre>
   <code class="language-java">setUserActions</code></pre>
@@ -1024,17 +1024,17 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h4>Closed captions</h4>
 
-<p>You can enable/disable Closed Captions when playing a video in Picture-in-Picture mode by calling the following in the <code>inPictureInPictureManager</code>.</p>
+<p>You can enable/disable Closed Captions when playing a video in Picture-in-Picture mode by calling the following in the <code translate="No">inPictureInPictureManager</code>.</p>
 
 <pre>
   <code class="language-java">setClosedCaptionsEnabled(boolean)</code></pre>
 
-<p>Closed Captions are disabled by default in phones but enabled in tablets. To reduce the size of the Closed Captions while playing in Picture-in-Picture mode, call the following to set a value between <code>0</code> and <code>1.0f</code>.</p>
+<p>Closed Captions are disabled by default in phones but enabled in tablets. To reduce the size of the Closed Captions while playing in Picture-in-Picture mode, call the following to set a value between <code translate="No">0</code> and <code translate="No">1.0f</code>.</p>
 
 <pre>
   <code class="language-java">setClosedCaptionsReductionScaleFactor(float)</code></pre>
 
-<p>By default, the Closed Captions size in picture-in-picture mode is <code>0.5f</code> or 50% the original size. Lastly, to enter picture-in-picture mode when the Activity <code>onUserLeaveHint()</code> is called, set the following to <code>true</code>:</p>
+<p>By default, the Closed Captions size in picture-in-picture mode is <code translate="No">0.5f</code> or 50% the original size. Lastly, to enter picture-in-picture mode when the Activity <code translate="No">onUserLeaveHint()</code> is called, set the following to <code translate="No">true</code>:</p>
 
 <pre>
   <code class="language-java">setOnUserLeaveEnable(boolean)</code></pre>
@@ -1046,13 +1046,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <pre>
   <code class="language-java">PictureInPicture.getBrightcovePictureInPictureParams()</code></pre>
 
-<p>This call returns the <code>BrightcovePictureInPictureParams</code> object, which has the getters for all the parameters previously discussed.</p>
+<p>This call returns the <code translate="No">BrightcovePictureInPictureParams</code> object, which has the getters for all the parameters previously discussed.</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="iOS_implementation">iOS implementation</h2>
 
-<p>To get started with picture-in-picture, add <code>showPictureInPictureButton</code> to <code>BCOVPUIPlayerViewOptions</code>. When set to true, a picture-in-picture button will be added to the player controls on supported devices.</p>
+<p>To get started with picture-in-picture, add <code translate="No">showPictureInPictureButton</code> to <code translate="No">BCOVPUIPlayerViewOptions</code>. When set to true, a picture-in-picture button will be added to the player controls on supported devices.</p>
 
 <p>For more details, see the following:</p>
 

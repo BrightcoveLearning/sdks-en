@@ -24,11 +24,11 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Default_player_controls">Default player controls</h2>
 
-<p>When you create an app using the Brightcove Player SDK for Android, you should start with either the <code>BrightcovePlayer</code> or the <code>BrightcovePlayerFragment</code> class.</p>
+<p>When you create an app using the Brightcove Player SDK for Android, you should start with either the <code translate="No">BrightcovePlayer</code> or the <code translate="No">BrightcovePlayerFragment</code> class.</p>
 
 <h3>Extend the BrightcovePlayer</h3>
 
-<p>In your app code, extend the <code>MainActivity</code> class from one of the classes above. For example:</p>
+<p>In your app code, extend the <code translate="No">MainActivity</code> class from one of the classes above. For example:</p>
 
 <pre class="line-numbers">
 <code class="language-java">public class MainActivity extends BrightcovePlayer {
@@ -38,7 +38,7 @@ grandparent: Android Development
 
 <h3>Instantiate the BrightcoveVideoView</h3>
 
-<p>In the <code>MainActivity.java</code> file, and in the <code>onCreate()</code> method, add the following code:</p>
+<p>In the <code translate="No">MainActivity.java</code> file, and in the <code translate="No">onCreate()</code> method, add the following code:</p>
 
 <pre class="line-numbers">
 <code class="language-java">@Override
@@ -128,7 +128,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	<p>The user can tap on the device screen to toggle the player controls between showing and hiding the controls.</p>
 	</li>
 	<li>
-	<p>You can use the <code>BrightcoveMediaController</code> class. Here is one example of how to show player controls for a defined playhead position range.</p>
+	<p>You can use the <code translate="No">BrightcoveMediaController</code> class. Here is one example of how to show player controls for a defined playhead position range.</p>
 
 	<pre class="line-numbers">
 <code class="language-java">brightcoveVideoView.getEventEmitter().on(EventType.PROGRESS, new EventListener() {
@@ -143,7 +143,7 @@ protected void onCreate(Bundle savedInstanceState) {
 });</code></pre>
 <br/>
 
-	<aside class="bcls-aside bcls-aside--warning">You will get a null pointer exception if you try to call the <code>getBrightcoveMediaController()</code> method before the video is loaded. You can also listen for the <code>DID_SET_VIDEO</code> event before calling this method.<br />
+	<aside class="bcls-aside bcls-aside--warning">You will get a null pointer exception if you try to call the <code translate="No">getBrightcoveMediaController()</code> method before the video is loaded. You can also listen for the <code translate="No">DID_SET_VIDEO</code> event before calling this method.<br />
 	<br />
 	Be aware that the player controls will automatically hide 3 seconds after you show them, unless you override this default behavior.</aside>
 	</li>
@@ -163,7 +163,7 @@ eventEmitter.emit(SHOW_MEDIA_CONTROLS);</code></pre>
 <section class="bcls-section">
 <h2 id="Disable_player_controls">Disable player controls</h2>
 
-<p>While designing your app layout and functionality, you may have a need to turn off the player controls. This can be done by setting the <code>MediaController</code> to null as follows:</p>
+<p>While designing your app layout and functionality, you may have a need to turn off the player controls. This can be done by setting the <code translate="No">MediaController</code> to null as follows:</p>
 
 <pre class="line-numbers">
 <code class="language-java">@
@@ -176,9 +176,9 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
    return rootView;
 }</code></pre>
 
-<p>This example uses the <code>BrightcovePlayerFragment</code>.</p>
+<p>This example uses the <code translate="No">BrightcovePlayerFragment</code>.</p>
 
-<aside class="bcls-aside bcls-aside--information">The <code>BrightcoveMediaController</code> class provides the default Brightcove player controls and allows you to manage and customize them, including the control bar, seek bar and a set of media control buttons. You can also disable the Brightcove Player controls to use the Android native controls.</aside>
+<aside class="bcls-aside bcls-aside--information">The <code translate="No">BrightcoveMediaController</code> class provides the default Brightcove player controls and allows you to manage and customize them, including the control bar, seek bar and a set of media control buttons. You can also disable the Brightcove Player controls to use the Android native controls.</aside>
 </section>
 
 <section class="bcls-section">
@@ -198,7 +198,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle sa
 
 <p>For a complete list of event types, see the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Player SDK for Android Reference</a>, and navigate to the <strong>EventType</strong> class document.</p>
 
-<p>Alternatively, you can use the <code>fullScreen()</code> and <code>normalScreen()</code> methods. You can find these methods in the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Player SDK for Android Reference</a>, and navigating to the <strong>BrightcovePlayer</strong> class document.</p>
+<p>Alternatively, you can use the <code translate="No">fullScreen()</code> and <code translate="No">normalScreen()</code> methods. You can find these methods in the <a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Player SDK for Android Reference</a>, and navigating to the <strong>BrightcovePlayer</strong> class document.</p>
 </section>
 
 <section class="bcls-section">

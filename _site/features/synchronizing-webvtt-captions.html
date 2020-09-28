@@ -875,11 +875,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Add_a_metadata_header">Add a metadata header</h2>
 
-<p>As part of the HLS spec, you need to add an <code>X-TIMESTAMP-MAP</code> metadata header to each WebVTT header in order to synchronize timestamps between the audio and video with your subtitles.</p>
+<p>As part of the HLS spec, you need to add an <code translate="No">X-TIMESTAMP-MAP</code> metadata header to each WebVTT header in order to synchronize timestamps between the audio and video with your subtitles.</p>
 
-<p>If you are missing this header or the <code>MPEGTS</code> value is not correct, you may see that your subtitles are not in sync with the video. This is because when the <code>X-TIMESTAMP-MAP</code> header is missing, the client assumes a default timestamp offset of <strong>0</strong>. For example, the difference between using a value of <strong>900000</strong> and <strong>0</strong> can cause your captions to be off by 10 seconds.</p>
+<p>If you are missing this header or the <code translate="No">MPEGTS</code> value is not correct, you may see that your subtitles are not in sync with the video. This is because when the <code translate="No">X-TIMESTAMP-MAP</code> header is missing, the client assumes a default timestamp offset of <strong>0</strong>. For example, the difference between using a value of <strong>900000</strong> and <strong>0</strong> can cause your captions to be off by 10 seconds.</p>
 
-<p><code>X-TIMESTAMP-MAP</code> format:</p>
+<p><code translate="No">X-TIMESTAMP-MAP</code> format:</p>
 
 <pre class="line-numbers">
 <code class="language-swift">X-TIMESTAMP-MAP=MPEGTS:&lt;MPEG-2 time&gt;,LOCAL:&lt;cue time&gt;</code></pre>
@@ -887,7 +887,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Here is a sample WebVTT file:</p>
 
-<aside class="bcls-aside bcls-aside--information">The <code>X-TIMESTAMP-MAP</code> header must appear on line 2, directly after the <code>WEBVTT</code> line. You may experience unexpected results if the timestamp header is not placed on line 2.</aside>
+<aside class="bcls-aside bcls-aside--information">The <code translate="No">X-TIMESTAMP-MAP</code> header must appear on line 2, directly after the <code translate="No">WEBVTT</code> line. You may experience unexpected results if the timestamp header is not placed on line 2.</aside>
 
 <pre class="line-numbers">
 <code class="language-swift">WEBVTT
@@ -905,11 +905,11 @@ about how Video Cloud Studio is</code></pre>
 <section class="bcls-section">
 <h2 id="Determine_the_offset_value">Determine the offset value</h2>
 
-<p>If you are using Brightcove's Dynamic Ingest or Zencoder to transcode your content, use an offset value of <code>MPEGTS:900000</code>.</p>
+<p>If you are using Brightcove's Dynamic Ingest or Zencoder to transcode your content, use an offset value of <code translate="No">MPEGTS:900000</code>.</p>
 
 <p>If you are using an encoding system other than Zencoder, it is best to obtain the value needed. Apple recommends that you set the offset to match your encoded video.</p>
 
-<p>The <code>MPEGTS</code> value corresponds to the presentation timestamp (PTS) value of the MPEG frame at the given <code>LOCAL</code> time. If you are using Brightcove's legacy ingest system, you may find that you can use a value of <code>MPEGTS:0</code>.</p>
+<p>The <code translate="No">MPEGTS</code> value corresponds to the presentation timestamp (PTS) value of the MPEG frame at the given <code translate="No">LOCAL</code> time. If you are using Brightcove's legacy ingest system, you may find that you can use a value of <code translate="No">MPEGTS:0</code>.</p>
 
 <p>If your account is enabled for <a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">Dynamic Delivery</a>, and you are hosting captions with us <em>(non-remote captions)</em>, then we will make everything work auto-magically (PTS needs to be zero and we will make sure it is.)</p>
 
@@ -919,7 +919,7 @@ about how Video Cloud Studio is</code></pre>
 
 <h3>Request1:</h3>
 
-<p>In the terminal, get an HLS video and store it in a local file. In this case, we are naming it <code>seg.ts</code>.</p>
+<p>In the terminal, get an HLS video and store it in a local file. In this case, we are naming it <code translate="No">seg.ts</code>.</p>
 
 <pre class="line-numbers">
 <code class="language-http">curl -o seg.ts "http://brightcove.vo.llnwd.net/v1/unsecured/media/4360108595001/201507/1154/4360341622001/4360108595001_4360341622001_s-1.ts?pubId=4360108595001&amp;videoId=4360283683001"</code></pre>
@@ -927,7 +927,7 @@ about how Video Cloud Studio is</code></pre>
 
 <h3>Request2:</h3>
 
-<p>Then, use the <code>ffprobe</code> command to get the offset value. <code>ffprobe</code> is a multimedia stream analyzer, which is part of the <a href="//ffmpeg.org/about.html">FFmpeg framework</a>. You will need to download and install this on your computer.</p>
+<p>Then, use the <code translate="No">ffprobe</code> command to get the offset value. <code translate="No">ffprobe</code> is a multimedia stream analyzer, which is part of the <a href="//ffmpeg.org/about.html">FFmpeg framework</a>. You will need to download and install this on your computer.</p>
 
 <pre class="line-numbers">
 <code class="language-http">ffprobe -show_frames seg.ts</code></pre>

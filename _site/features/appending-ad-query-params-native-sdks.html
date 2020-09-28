@@ -872,15 +872,15 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>Ad targeting key/value pairs can be added to your ad tag URL in two ways:</p>
 <ul>
   <li>
-    Add your key/value pairs directly to the ad tag URL. Google IMA allows the addition of ad targeting key/value pairs using the <code>cust_params</code> parameter. For details, see Google's <a href="https://support.google.com/admanager/answer/1080597">Add key-values to a master video ad tag</a> document.
+    Add your key/value pairs directly to the ad tag URL. Google IMA allows the addition of ad targeting key/value pairs using the <code translate="No">cust_params</code> parameter. For details, see Google's <a href="https://support.google.com/admanager/answer/1080597">Add key-values to a master video ad tag</a> document.
   </li>
   <li>
-    Apply a Map of values to the ad tag URL using the <code>updateAdTargetingValues</code> method for the <code>GoogleIMAComponent</code>.
+    Apply a Map of values to the ad tag URL using the <code translate="No">updateAdTargetingValues</code> method for the <code translate="No">GoogleIMAComponent</code>.
   </li>
 </ul>
-<p>For either approach, the key/value pairs are added to the ad tag URL in the <code>ADS_REQUEST_FOR_VIDEO</code> event listener. The code sample below adds the key/value pairs using the <code>updateAdTargetingValues</code> method for the <code>GoogleIMAComponent</code>.</p>
+<p>For either approach, the key/value pairs are added to the ad tag URL in the <code translate="No">ADS_REQUEST_FOR_VIDEO</code> event listener. The code sample below adds the key/value pairs using the <code translate="No">updateAdTargetingValues</code> method for the <code translate="No">GoogleIMAComponent</code>.</p>
 
-<p>Here is the code to create a Map of key/value pairs, using the <code>CUSTOM_FIELDS</code> property of the <code>Video</code> object property of the <code>ADS_REQUEST_FOR_VIDEO</code> event:</p>
+<p>Here is the code to create a Map of key/value pairs, using the <code translate="No">CUSTOM_FIELDS</code> property of the <code translate="No">Video</code> object property of the <code translate="No">ADS_REQUEST_FOR_VIDEO</code> event:</p>
 <pre>
 <code class="notranslate language-java">Video video = (Video) event.getProperties().get(Event.VIDEO);
 if (video != null) {
@@ -888,7 +888,7 @@ if (video != null) {
 }
 </code></pre>
 
-<p>Here is a complete code sample for the <code>ADS_REQUEST_FOR_VIDEO</code> event listener, which is added to the setup method for the Google IMA plugin:</p>
+<p>Here is a complete code sample for the <code translate="No">ADS_REQUEST_FOR_VIDEO</code> event listener, which is added to the setup method for the Google IMA plugin:</p>
 <pre>
 <code class="notranslate language-java">eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, event -&gt; {
     // Create a container object for the ads to be presented.
@@ -1019,7 +1019,7 @@ content.vmap<span class="bcls-highlight">?bc_token=XXX&amp;rule=discos-enabled&a
 	<li>With an SSAI ad configuration id, retrieve a video object from the Brightcove catalog (Playback API). For details, see the <a href="/features/implementing-server-side-ads-native-player-sdks.html#Android_implementation">Android implementation</a> section of the Implementing Server-Side Ads with the Native Player SDKs document.</li>
   <li>
     <p>
-      In the <code>Catalog</code>'s <code>onVideo</code> callback method, select and extract the appropriate VMAP URL from the <code>Video</code> object's default source, using the <code>SSAISourceSelector</code>. The source object returned should have a VMAP URL property.
+      In the <code translate="No">Catalog</code>'s <code translate="No">onVideo</code> callback method, select and extract the appropriate VMAP URL from the <code translate="No">Video</code> object's default source, using the <code translate="No">SSAISourceSelector</code>. The source object returned should have a VMAP URL property.
     </p>
     <pre>
 <code class="notranslate language-java">SSAISourceSelector sourceSelector = new SSAISourceSelector();
@@ -1041,7 +1041,7 @@ String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
   </li>
   <li>
     <p>
-      Process the updated <code>Video</code> object with the SSAI plugin as follows:
+      Process the updated <code translate="No">Video</code> object with the SSAI plugin as follows:
     </p>
     <pre>
 <code class="notranslate language-java">plugin.processVideo(video);</code></pre>

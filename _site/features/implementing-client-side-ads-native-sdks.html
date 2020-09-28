@@ -979,19 +979,19 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li>Ad Rules URL</li>
 	</ul>
 	</li>
-	<li>The <code>setupGoogleIMA()</code> method establishes a connection with the Brightcove IMA plugin.</li>
-	<li>Listen for the <code>GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO</code> event. Here, you will build an ads request object and point to your Ad Tag URL. In this case, it is an Ad Rules VMAP file.</li>
-	<li>The <code>setupAdMarkers()</code> method is optional. This method calls the IMA AdManager and creates ad markers on the seek bar, so that users can visually see when ads will play.</li>
+	<li>The <code translate="No">setupGoogleIMA()</code> method establishes a connection with the Brightcove IMA plugin.</li>
+	<li>Listen for the <code translate="No">GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO</code> event. Here, you will build an ads request object and point to your Ad Tag URL. In this case, it is an Ad Rules VMAP file.</li>
+	<li>The <code translate="No">setupAdMarkers()</code> method is optional. This method calls the IMA AdManager and creates ad markers on the seek bar, so that users can visually see when ads will play.</li>
 </ol>
 
 <h4>Code samples</h4>
 <p>Here are complete code samples:</p>
 <ul>
 		<li>
-      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicIMAVASTSampleApp">Basic IMA Vast player</a>: To use VAST tags, your app should create a set of cue points from the <code>Video</code> object metadata returned from the Playback API call. The metadata will include the ad cue points that you created in Video Cloud Studio.</p>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicIMAVASTSampleApp">Basic IMA Vast player</a>: To use VAST tags, your app should create a set of cue points from the <code translate="No">Video</code> object metadata returned from the Playback API call. The metadata will include the ad cue points that you created in Video Cloud Studio.</p>
     </li>
     <li>
-      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">IMA Ad Rules IMA player</a>: Alternatively, your app can create a set of cue point objects in the player <code>Activity</code> class.</p>
+      <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">IMA Ad Rules IMA player</a>: Alternatively, your app can create a set of cue point objects in the player <code translate="No">Activity</code> class.</p>
     </li>
     <li>
       <p><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">Ad Rules IMA Widevine Modular</a>: Combine client-side ads with content protection.</p>
@@ -1018,10 +1018,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li>Ad Profile</li>
 	</ul>
 	</li>
-	<li>The <code>setupFreeWheel()</code> method establishes a connection with the Brightcove FreeWheel plugin.</li>
-	<li>Configure the FreeWheel controller to point to your Ad URL. <code>freeWheelController.setAdURL("http://demo.v.fwmrm.net/");</code></li>
-	<li>This will be used later to instantiate the FreeWheel <code>AdRequestConfiguration</code> class.</li>
-	<li>Listen for the <code>FreeWheelEventType.WILL_SUBMIT_AD_REQUEST</code> event. Here, you will get the FreeWheel controller and setup the pre-roll, mid-roll, post-roll and overlay ad slots.</li>
+	<li>The <code translate="No">setupFreeWheel()</code> method establishes a connection with the Brightcove FreeWheel plugin.</li>
+	<li>Configure the FreeWheel controller to point to your Ad URL. <code translate="No">freeWheelController.setAdURL("http://demo.v.fwmrm.net/");</code></li>
+	<li>This will be used later to instantiate the FreeWheel <code translate="No">AdRequestConfiguration</code> class.</li>
+	<li>Listen for the <code translate="No">FreeWheelEventType.WILL_SUBMIT_AD_REQUEST</code> event. Here, you will get the FreeWheel controller and setup the pre-roll, mid-roll, post-roll and overlay ad slots.</li>
 </ol>
 <h4>Code samples</h4>
 <p>Here are complete code samples:</p>
@@ -1067,7 +1067,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li>Ad Tag URL</li>
 	</ul>
 	</li>
-	<li>Create the <code>playbackController</code> with the appropriate IMA settings, including the ad request policy (VAST, VMAP or server-side ad rules).</li>
+	<li>Create the <code translate="No">playbackController</code> with the appropriate IMA settings, including the ad request policy (VAST, VMAP or server-side ad rules).</li>
 	<li>Ad events are emitted by the BCOVIMA plugin through lifecycle events. These events are defined in <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h">BCOVIMAComponent.h</a> file.</li>
 	<li>The sample app includes functions to hide the player controls while ads are playing and show them when ads are finished.</li>
 </ol>

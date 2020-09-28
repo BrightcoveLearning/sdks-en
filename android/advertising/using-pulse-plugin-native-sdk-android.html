@@ -54,7 +54,7 @@ grandparent: Android Development
   </li>
   <li>
     <p>
-      In your <strong>MainActivity.java</strong> file, initialize the Pulse Plugin by instantiating a <code>PulseComponent</code> with the Pulse host URL created for your campaign.
+      In your <strong>MainActivity.java</strong> file, initialize the Pulse Plugin by instantiating a <code translate="No">PulseComponent</code> with the Pulse host URL created for your campaign.
     </p>
     <pre class="line-numbers"><code class="language-java">@Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ protected void onCreate(Bundle savedInstanceState) {
   </li>
   <li>
     <p>
-      Set the <code>PulseComponent</code> Listener.
+      Set the <code translate="No">PulseComponent</code> Listener.
     </p>
     <pre class="line-numbers"><code class="language-java">pulseComponent.setListener(new PulseComponent.Listener() {
   @NonNull
@@ -90,7 +90,7 @@ protected void onCreate(Bundle savedInstanceState) {
   </li>
   <li>
     <p>
-      Implement the <code>onCreatePulseSession</code> method, which creates a <code>PulseSession</code> and returns it to the <code>PulseComponent</code>. There are three parameters:
+      Implement the <code translate="No">onCreatePulseSession</code> method, which creates a <code translate="No">PulseSession</code> and returns it to the <code translate="No">PulseComponent</code>. There are three parameters:
     </p>
     <ul>
       <li>
@@ -132,7 +132,7 @@ public PulseSession onCreatePulseSession(
   </li>
   <li>
     <p>
-      Implement the <code>onOpenClickthrough</code> method, which is called when the <strong>learn more</strong> button from a Linear Ad is clicked. A typical action for this callback is to open the browser with the expected url.
+      Implement the <code translate="No">onOpenClickthrough</code> method, which is called when the <strong>learn more</strong> button from a Linear Ad is clicked. A typical action for this callback is to open the browser with the expected url.
     </p>
     <pre class="line-numbers"><code class="language-java">@Override
 public void onOpenClickthrough(@NonNull PulseVideoAd pulseVideoAd) {
@@ -181,7 +181,7 @@ catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
 <section class="bcls-section">
 <h2 id="UI_Customization">UI Customization</h2>
-<p>Internally, the Pulse plugin inflates the <code>PulseAdView</code> using the <code>R.layout.pulse_ad_view</code> layout id. For a different layout, you can create a layout file with the same name and add it to the <strong>res/layout</strong> directory. This overrides the default layout. </p>
+<p>Internally, the Pulse plugin inflates the <code translate="No">PulseAdView</code> using the <code translate="No">R.layout.pulse_ad_view</code> layout id. For a different layout, you can create a layout file with the same name and add it to the <strong>res/layout</strong> directory. This overrides the default layout. </p>
 <p>
   Use the following ids to replace the defaults:
 </p>
@@ -201,27 +201,27 @@ catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
     <tr>
       <td>A</td>
       <td>TextView</td>
-      <td><code>pulse_ad_number_view</code></td>
+      <td><code translate="No">pulse_ad_number_view</code></td>
     </tr>
     <tr>
       <td>B</td>
       <td>TextView</td>
-      <td><code>pulse_ad_countdown_view</code></td>
+      <td><code translate="No">pulse_ad_countdown_view</code></td>
     </tr>
     <tr>
       <td>C</td>
       <td>TextView</td>
-      <td><code>pulse_ad_name_view</code></td>
+      <td><code translate="No">pulse_ad_name_view</code></td>
     </tr>
     <tr>
       <td>D</td>
       <td>TextView</td>
-      <td><code>pulse_ad_learn_more_view</code></td>
+      <td><code translate="No">pulse_ad_learn_more_view</code></td>
     </tr>
     <tr>
       <td>E</td>
       <td>TextView</td>
-      <td><code>pulse_skip_ad_view</code></td>
+      <td><code translate="No">pulse_skip_ad_view</code></td>
     </tr>
   </tbody>
 </table>
@@ -306,7 +306,7 @@ catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 <details>
     <summary><h2 id="Layout">Layout</h2></summary>
   <p>
-    Here is an example of the layout code for the <code>R.layout.pulse_ad_view</code>.
+    Here is an example of the layout code for the <code translate="No">R.layout.pulse_ad_view</code>.
   </p>
   <pre class="line-numbers"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
   &lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;

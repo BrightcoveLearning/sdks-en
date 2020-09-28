@@ -922,7 +922,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>The <strong>Learn More</strong> and <strong>Skip Ad</strong> views can be displayed or hidden based on the ad definition in the VAST document.</p>
 
-<p>The <strong>Learn More</strong> view will appear only when the Linear Creative contains a <code>ClickThrough</code> URL, as shown here:</p>
+<p>The <strong>Learn More</strong> view will appear only when the Linear Creative contains a <code translate="No">ClickThrough</code> URL, as shown here:</p>
 
 <pre class="line-numbers">
 <code class="language-xml"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -945,7 +945,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 &lt;/VAST&gt;
 </code></pre>
 
-<p>The <strong>Skip Ad</strong> view will appear only when there is a valid <code>skipoffset</code> value in the Linear Creative:</p>
+<p>The <strong>Skip Ad</strong> view will appear only when there is a valid <code translate="No">skipoffset</code> value in the Linear Creative:</p>
 
 <pre class="line-numbers">
 <code class="language-xml"> &lt;VAST xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -966,7 +966,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3 id="Specifying_the_ad_configuration">Specifying the ad configuration</h3>
 
-<p>When using <a href="/features/using-player-enhancements-live-ssai-native-sdks.html#Create_an_ad_configuration">Player Enhancements for Live SSAI</a>, you can enable or disable components within the <code>application_ad_configuration</code> of your ad configuration. The <code>client_options</code> object allows you to turn ad UI components on or off.</p>
+<p>When using <a href="/features/using-player-enhancements-live-ssai-native-sdks.html#Create_an_ad_configuration">Player Enhancements for Live SSAI</a>, you can enable or disable components within the <code translate="No">application_ad_configuration</code> of your ad configuration. The <code translate="No">client_options</code> object allows you to turn ad UI components on or off.</p>
 
 <aside class="bcls-aside bcls-aside--information">Modifying the ad UI using the ad configuration only applies to Live SSAI.</aside>
 
@@ -991,23 +991,23 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 }
 </code></pre>
 
-<aside class="bcls-aside bcls-aside--tip">If you are using any <code>client_options</code> components, you must have <code>ad_configuration_client_sdk_enabled</code> set to <code>true</code>.</aside>
+<aside class="bcls-aside bcls-aside--tip">If you are using any <code translate="No">client_options</code> components, you must have <code translate="No">ad_configuration_client_sdk_enabled</code> set to <code translate="No">true</code>.</aside>
 
 <p>Use the client_options object to enable/disable the following components:</p>
 
 <ul>
-	<li><code>Show_ad_break_remaining_time</code>: The Ad Pod total duration countdown
+	<li><code translate="No">Show_ad_break_remaining_time</code>: The Ad Pod total duration countdown
 
 	<ul>
 		<li>Example: <strong>Your video will resume in 15 seconds</strong></li>
 	</ul>
 	</li>
-	<li><code>Show_ad_remaining_time</code>: The single Ad duration countdown
+	<li><code translate="No">Show_ad_remaining_time</code>: The single Ad duration countdown
 	<ul>
 		<li>Example: <strong>(0:15)</strong></li>
 	</ul>
 	</li>
-	<li><code>Show_number_of_remaining_ads</code>: The Ad number countdown
+	<li><code translate="No">Show_number_of_remaining_ads</code>: The Ad number countdown
 	<ul>
 		<li>Example: <strong>Ad 1 of 3</strong>, <strong>Ad 2 of 3</strong>, etc.</li>
 	</ul>
@@ -1047,7 +1047,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 &lt;/FrameLayout&gt;
 </code></pre>
 
-<p>When replacing a component xml file, you must use a <code>TextView</code> with the original view Id specified to avoid unintended results. For details, see the following table</p>
+<p>When replacing a component xml file, you must use a <code translate="No">TextView</code> with the original view Id specified to avoid unintended results. For details, see the following table</p>
 
 <table class="bcls-table">
 	<thead class="bcls-table__head">
@@ -1060,25 +1060,25 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<tbody class="bcls-table__body">
 		<tr>
 			<td>Ad Pod duration view</td>
-			<td><code>text_ad_countdown</code></td>
-			<td><code>TextView</code></td>
+			<td><code translate="No">text_ad_countdown</code></td>
+			<td><code translate="No">TextView</code></td>
 		</tr>
 		<tr>
 			<td>Learn More view</td>
-			<td><code>text_ad_learn_more</code></td>
-			<td><code>TextView</code></td>
+			<td><code translate="No">text_ad_learn_more</code></td>
+			<td><code translate="No">TextView</code></td>
 		</tr>
 		<tr>
 			<td>Skip Ad view</td>
-			<td><code>text_ad_skip</code></td>
-			<td><code>TextView</code></td>
+			<td><code translate="No">text_ad_skip</code></td>
+			<td><code translate="No">TextView</code></td>
 		</tr>
 	</tbody>
 </table>
 
 <h3>Modifying the default text</h3>
 
-<p>All of the Ad Overlay components are <code>TextViews</code>s defined in your app's <strong>string.xml</strong> file. To change the display text, override it by creating a <code>string</code> or <code>plurals</code> item using the same string id used by the Native SDK for Android.</p>
+<p>All of the Ad Overlay components are <code translate="No">TextViews</code>s defined in your app's <strong>string.xml</strong> file. To change the display text, override it by creating a <code translate="No">string</code> or <code translate="No">plurals</code> item using the same string id used by the Native SDK for Android.</p>
 
 <p>The <strong>Ad Pod duration</strong> view uses the following strings:</p>
 
@@ -1186,22 +1186,22 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<tbody class="bcls-table__body">
 		<tr>
 			<td>Play button</td>
-			<td><code>play</code></td>
+			<td><code translate="No">play</code></td>
 			<td>Button</td>
 		</tr>
 		<tr>
 			<td>Full Screen button</td>
-			<td><code>full_screen</code></td>
+			<td><code translate="No">full_screen</code></td>
 			<td>Button</td>
 		</tr>
 		<tr>
 			<td>Ad number countdown</td>
-			<td><code>text_ad_number_countdown</code></td>
+			<td><code translate="No">text_ad_number_countdown</code></td>
 			<td>TextView</td>
 		</tr>
 		<tr>
 			<td>Single Ad duration countdown</td>
-			<td><code>text_single_ad_duration_countdown</code></td>
+			<td><code translate="No">text_single_ad_duration_countdown</code></td>
 			<td>TextView</td>
 		</tr>
 	</tbody>
@@ -1211,7 +1211,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>Modifying the default text</h3>
 
-<p>All of the Ad Media Controller components are <code>TextViews</code>s defined in your app's <strong>string.xml</strong> file. To change the display text, override it by creating a <code>string</code> or <code>plurals</code> item using the same string id used by the Native SDK for Android.</p>
+<p>All of the Ad Media Controller components are <code translate="No">TextViews</code>s defined in your app's <strong>string.xml</strong> file. To change the display text, override it by creating a <code translate="No">string</code> or <code translate="No">plurals</code> item using the same string id used by the Native SDK for Android.</p>
 
 <p>The <strong>Ad number countdown</strong> view uses the following string:</p>
 
@@ -1233,7 +1233,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ul>
 	<li>Configure/hide certain components through your VAST configuration</li>
-	<li>Show/hide components using the <code>client_options</code> object in your ad configuration (currently Live SSAI only)</li>
+	<li>Show/hide components using the <code translate="No">client_options</code> object in your ad configuration (currently Live SSAI only)</li>
 	<li>Change the string value displayed</li>
 	<li>Override the UI layout</li>
 </ul>

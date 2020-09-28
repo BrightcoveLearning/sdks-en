@@ -22,7 +22,7 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Configuring_seek_buttons">Configuring seek buttons</h2>
 
-<p>The rewind and fast-forward buttons can be configured through the <code>EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.</p>
+<p>The rewind and fast-forward buttons can be configured through the <code translate="No">EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.</p>
 <p>
   For simplicity, we’ll refer to either of these buttons as the seek button since the following properties apply to both.
 </p>
@@ -36,29 +36,29 @@ grandparent: Android Development
 	</thead>
 	<tbody class="bcls-table__body">
 		<tr>
-			<td><code>Event.SEEK_DEFAULT</code></td>
+			<td><code translate="No">Event.SEEK_DEFAULT</code></td>
 			<td>3000 ms</td>
       <td>The default seek value in milliseconds the seek button will seek to.</td>
 		</tr>
     <tr>
-			<td><code>Event.SEEK_RELATIVE_ENABLED</code></td>
+			<td><code translate="No">Event.SEEK_RELATIVE_ENABLED</code></td>
 			<td>false</td>
-      <td>If enabled, allows the seek value to be relative to the video duration set by the <code>EventType.VIDEO_DURATION_CHANGED</code> event. The percentage is set by <code>Event.SEEK_PERCENTAGE</code>.</td>
+      <td>If enabled, allows the seek value to be relative to the video duration set by the <code translate="No">EventType.VIDEO_DURATION_CHANGED</code> event. The percentage is set by <code translate="No">Event.SEEK_PERCENTAGE</code>.</td>
 		</tr>
     <tr>
-			<td><code>Event.SEEK_PERCENTAGE</code></td>
+			<td><code translate="No">Event.SEEK_PERCENTAGE</code></td>
 			<td>1%</td>
       <td>The percentage relative to the video duration used to calculate the default seek value.</td>
 		</tr>
     <tr>
-			<td><code>Event.SEEK_ON_HOLD_WAIT_TIME</code></td>
+			<td><code translate="No">Event.SEEK_ON_HOLD_WAIT_TIME</code></td>
 			<td>500 ms</td>
       <td>The time in milliseconds to be waited for the key event to be considered a long press instead of a regular press.</td>
 		</tr>
     <tr>
-			<td><code>Event.SEEK_ON_HOLD_UPDATE_FREQ</code></td>
+			<td><code translate="No">Event.SEEK_ON_HOLD_UPDATE_FREQ</code></td>
 			<td>40 ms</td>
-      <td>The time in milliseconds used to send the <code>EventType.SEEKBAR_DRAGGING_PROGRESS</code> event to update the Media Controller seek bar.</td>
+      <td>The time in milliseconds used to send the <code translate="No">EventType.SEEKBAR_DRAGGING_PROGRESS</code> event to update the Media Controller seek bar.</td>
 		</tr>
 	</tbody>
 </table>
@@ -66,7 +66,7 @@ grandparent: Android Development
 
 <section class="bcls-section">
 <h2 id="Customizing_event_properties">Customizing event properties</h2>
-<p>You may want additional event properties from those listed in the table above. You can do that by defining the expected values and emitting the <code>EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.</p>
+<p>You may want additional event properties from those listed in the table above. You can do that by defining the expected values and emitting the <code translate="No">EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.</p>
 
 <p>
   To add custom properties to the event, follow these steps:
@@ -86,7 +86,7 @@ private static final int DEFAULT_TV_ON_HOLD_UPDATE_FREQUENCY_TIME = 500;
   </li>
   <li>
     <p>
-      Include a method to create the properties map, add the desired values and emit the <code>EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.
+      Include a method to create the properties map, add the desired values and emit the <code translate="No">EventType.SEEK_CONTROLLER_CONFIGURATION</code> event.
     </p>
     <pre class="line-numbers">
 <code class="language-java">private void setupTelevisionMode() {

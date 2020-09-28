@@ -1040,7 +1040,7 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <code class="language-swift">let queryParameters = [kBCOVPlaybackServiceParamaterKeyAdConfigId: Constants.AdConfigId]</code></pre>
 	</li>
 	<li>
-	<p>Call the <code>playbackService</code> to retrieve your video along with your ad configuration from the Playback API. Start video playback with your specified ads.</p>
+	<p>Call the <code translate="No">playbackService</code> to retrieve your video along with your ad configuration from the Playback API. Start video playback with your specified ads.</p>
 
 	<pre class="line-numbers">
 <code class="language-swift">playbackService.findVideo(withVideoID: Constants.VideoId, parameters: queryParameters) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
@@ -1107,7 +1107,7 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <h3>Brightcove Native SDK for iOS/tvOS</h3>
 
 <ul>
-	<li><strong>Post-rolls:</strong> The OnceUX plugin translates the <code>timeOffset</code> value of <code>end</code> on the final ad break (post-roll) to a <code>CMTime</code> value of <code>+INFINITY</code>, for speed and efficiency. This translation is done AFTER the VMAP document is received (which occurs after the Playback API response is received) and BEFORE playback begins.</li>
+	<li><strong>Post-rolls:</strong> The OnceUX plugin translates the <code translate="No">timeOffset</code> value of <code translate="No">end</code> on the final ad break (post-roll) to a <code translate="No">CMTime</code> value of <code translate="No">+INFINITY</code>, for speed and efficiency. This translation is done AFTER the VMAP document is received (which occurs after the Playback API response is received) and BEFORE playback begins.</li>
 </ul>
 </section>
 </article>

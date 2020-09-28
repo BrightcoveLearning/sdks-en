@@ -867,7 +867,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h2 id="Plugin_architecture">Plugin architecture</h2>
 
 <div class="BCL-concept">
-<p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code>REGISTER_PLUGIN</code> event with a <code>PLUGIN_NAME</code> property. For example:</p>
+<p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code translate="No">REGISTER_PLUGIN</code> event with a <code translate="No">PLUGIN_NAME</code> property. For example:</p>
 
 <pre class="line-numbers">
   <code class="notranslate language-java">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
@@ -889,29 +889,29 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
 
 <ol>
-	<li class="language-editable"><code>WILL_CHANGE_VIDEO</code></li>
-	<li class="language-editable"><code>SET_VIDEO</code></li>
-	<li class="language-editable"><code>SET_SOURCE</code></li>
-	<li class="language-editable"><code>PLAY</code></li>
-	<li class="language-editable"><code>PAUSE</code></li>
-	<li class="language-editable"><code>SEEK_TO</code></li>
-	<li class="language-editable"><code>STOP</code></li>
+	<li class="language-editable"><code translate="No">WILL_CHANGE_VIDEO</code></li>
+	<li class="language-editable"><code translate="No">SET_VIDEO</code></li>
+	<li class="language-editable"><code translate="No">SET_SOURCE</code></li>
+	<li class="language-editable"><code translate="No">PLAY</code></li>
+	<li class="language-editable"><code translate="No">PAUSE</code></li>
+	<li class="language-editable"><code translate="No">SEEK_TO</code></li>
+	<li class="language-editable"><code translate="No">STOP</code></li>
 </ol>
 
-<p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code>preventDefault()</code> method. Event propagation can be stopped by calling the <code>stopPropagation()</code> method. If only <code>preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code>stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
+<p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code translate="No">preventDefault()</code> method. Event propagation can be stopped by calling the <code translate="No">stopPropagation()</code> method. If only <code translate="No">preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code translate="No">stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
 
 <p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
 
 <ol>
-	<li class="language-editable"><code>DID_CHANGE_LIST</code></li>
-	<li class="language-editable"><code>DID_SELECT_SOURCE</code></li>
-	<li class="language-editable"><code>DID_PAUSE</code></li>
-	<li class="language-editable"><code>DID_PLAY</code></li>
-	<li class="language-editable"><code>DID_SEEK_TO</code></li>
-	<li class="language-editable"><code>DID_SET_SOURCE</code></li>
-	<li class="language-editable"><code>DID_STOP</code></li>
-	<li class="language-editable"><code>PROGRESS</code></li>
-	<li class="language-editable"><code>COMPLETED</code></li>
+	<li class="language-editable"><code translate="No">DID_CHANGE_LIST</code></li>
+	<li class="language-editable"><code translate="No">DID_SELECT_SOURCE</code></li>
+	<li class="language-editable"><code translate="No">DID_PAUSE</code></li>
+	<li class="language-editable"><code translate="No">DID_PLAY</code></li>
+	<li class="language-editable"><code translate="No">DID_SEEK_TO</code></li>
+	<li class="language-editable"><code translate="No">DID_SET_SOURCE</code></li>
+	<li class="language-editable"><code translate="No">DID_STOP</code></li>
+	<li class="language-editable"><code translate="No">PROGRESS</code></li>
+	<li class="language-editable"><code translate="No">COMPLETED</code></li>
 </ol>
 </div>
 </section>
@@ -920,7 +920,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h2 id="Interrupt_playback">Interrupt playback</h2>
 
 <div class="BCL-concept">
-<p>A plugin, which desires to interrupt the video content playback, should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code>. These events are typically used by advertising plugins. A plugin should emit <code>WILL_INTERRUPT_CONTENT</code> to request that playback be suspended, if it is currently playing, and to request that the video view be made invisible. A plugin should emit <code>WILL_RESUME_CONTENT</code> to request that the video view be made visible again. The <code>WILL_RESUME_CONTENT</code> event should include an <code>ORIGINAL_EVENT</code> property which will be emitted after the video view is made visible. The <code>ORIGINAL_EVENT</code> should be a <code>PLAY</code> event to resume playback, a <code>CUE_POINT</code> event to continue cue point processing, or a <code>COMPLETED</code> event to complete playback. A <code>SKIP_CUE_POINTS</code> property should be added to the <code>ORIGINAL_EVENT</code> to prevent recursive cue point processing.</p>
+<p>A plugin, which desires to interrupt the video content playback, should use <code translate="No">WILL_INTERRUPT_CONTENT</code> and <code translate="No">WILL_RESUME_CONTENT</code>. These events are typically used by advertising plugins. A plugin should emit <code translate="No">WILL_INTERRUPT_CONTENT</code> to request that playback be suspended, if it is currently playing, and to request that the video view be made invisible. A plugin should emit <code translate="No">WILL_RESUME_CONTENT</code> to request that the video view be made visible again. The <code translate="No">WILL_RESUME_CONTENT</code> event should include an <code translate="No">ORIGINAL_EVENT</code> property which will be emitted after the video view is made visible. The <code translate="No">ORIGINAL_EVENT</code> should be a <code translate="No">PLAY</code> event to resume playback, a <code translate="No">CUE_POINT</code> event to continue cue point processing, or a <code translate="No">COMPLETED</code> event to complete playback. A <code translate="No">SKIP_CUE_POINTS</code> property should be added to the <code translate="No">ORIGINAL_EVENT</code> to prevent recursive cue point processing.</p>
 </div>
 </section>
 
@@ -928,7 +928,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h2 id="Cue_points">Cue points</h2>
 
 <div class="BCL-concept">
-<p>Many plugins will want to listen for <code>CUE_POINT</code> events. There are three types of cue points, <code>BEFORE</code>, <code>POINT_IN_TIME</code>, and <code>AFTER</code>. <code>BEFORE</code> cue points are emitted just before playback begins. <code>POINT_IN_TIME</code> cue points are emitted when playback reaches the cue point's position. <code>AFTER</code> cue points are emitted just after playback completes. A plugin should use <code>WILL_INTERRUPT_CONTENT</code> and <code>WILL_RESUME_CONTENT</code> events to interrupt and resume content playback when handling a cue point event. In the case of before and after cue points, the event will include an <code>ORIGINAL_EVENT</code> property, with either a <code>PLAY</code> event or a <code>COMPLETED</code> event. Cue point events also include a <code>CUE_POINTS</code> property with the batch of cue points. <code>START_TIME</code> and <code>END_TIME</code> properties define the cue point time range.</p>
+<p>Many plugins will want to listen for <code translate="No">CUE_POINT</code> events. There are three types of cue points, <code translate="No">BEFORE</code>, <code translate="No">POINT_IN_TIME</code>, and <code translate="No">AFTER</code>. <code translate="No">BEFORE</code> cue points are emitted just before playback begins. <code translate="No">POINT_IN_TIME</code> cue points are emitted when playback reaches the cue point's position. <code translate="No">AFTER</code> cue points are emitted just after playback completes. A plugin should use <code translate="No">WILL_INTERRUPT_CONTENT</code> and <code translate="No">WILL_RESUME_CONTENT</code> events to interrupt and resume content playback when handling a cue point event. In the case of before and after cue points, the event will include an <code translate="No">ORIGINAL_EVENT</code> property, with either a <code translate="No">PLAY</code> event or a <code translate="No">COMPLETED</code> event. Cue point events also include a <code translate="No">CUE_POINTS</code> property with the batch of cue points. <code translate="No">START_TIME</code> and <code translate="No">END_TIME</code> properties define the cue point time range.</p>
 </div>
 </section>
 
@@ -954,11 +954,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <ol>
 	<li class="language-editable">Copy the sample plugin to a new repository.</li>
 	<li class="language-editable">Change the package and class names.</li>
-	<li class="language-editable">Update the <code>TAG</code> initializer.</li>
-	<li class="language-editable">Edit the <code>@Emits</code> and <code>@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
+	<li class="language-editable">Update the <code translate="No">TAG</code> initializer.</li>
+	<li class="language-editable">Edit the <code translate="No">@Emits</code> and <code translate="No">@ListensFor</code> annotations to reflect the events which the plugin emits and listens for.</li>
 	<li class="language-editable">Modify the constructor as necessary.</li>
-	<li class="language-editable">Replace or remove the <code>videoView</code> related logic as necessary.</li>
-	<li class="language-editable">Modify <code>initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
+	<li class="language-editable">Replace or remove the <code translate="No">videoView</code> related logic as necessary.</li>
+	<li class="language-editable">Modify <code translate="No">initializeListeners()</code> by adding and/or subtracting event listeners as necessary.</li>
 	<li class="language-editable">Compile and distribute your plugin as an <strong>.aar</strong> file for Android Studio.</li>
 	<!--                <li class="language-editable">Compile and distribute your plugin as a .jar file for Eclipse and/or an .aar file for Android Studio.</li>-->
 </ol>

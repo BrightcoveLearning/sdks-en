@@ -878,16 +878,16 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Using_a_WebView">Using a WebView</h2>
 
-<p>One option for implementing video playback in your app it to use a <code>webView</code>. This creates a view that treats your content like a browser would, enabling the usage of HTML and JavaScript. Some app developers use the HTML5 video player or the Brightcove web player in a <code>webView</code>, however this is not the same as using the Brightcove Native Player SDKs for iOS and Android.</p>
-<p>While a <code>webView </code> simplifies the implementation process, there are a number of issues that make this approach undesirable:</p>
+<p>One option for implementing video playback in your app it to use a <code translate="No">webView</code>. This creates a view that treats your content like a browser would, enabling the usage of HTML and JavaScript. Some app developers use the HTML5 video player or the Brightcove web player in a <code translate="No">webView</code>, however this is not the same as using the Brightcove Native Player SDKs for iOS and Android.</p>
+<p>While a <code translate="No">webView </code> simplifies the implementation process, there are a number of issues that make this approach undesirable:</p>
 <ul>
-	<li>The <code>webView </code> incurs a heavy toll on the processor, consuming far more memory than the native player.</li>
-	<li>Playback in a <code>webView </code> has the same issues as playback in a browser on mobile devices. The implementation forces you to give up control of many UI and playback related features on full-screen-only devices. This means sacrificing some functionality, such as with overlays. Users will not be able to click-through on overlay advertisements. You will also lose the ability to prevent users from skipping ads.</li>
-	<li>Many of our partners explicitly note that they do not work in a <code>webView </code> and instead provide an iOS or Android SDK to implement.</li>
+	<li>The <code translate="No">webView </code> incurs a heavy toll on the processor, consuming far more memory than the native player.</li>
+	<li>Playback in a <code translate="No">webView </code> has the same issues as playback in a browser on mobile devices. The implementation forces you to give up control of many UI and playback related features on full-screen-only devices. This means sacrificing some functionality, such as with overlays. Users will not be able to click-through on overlay advertisements. You will also lose the ability to prevent users from skipping ads.</li>
+	<li>Many of our partners explicitly note that they do not work in a <code translate="No">webView </code> and instead provide an iOS or Android SDK to implement.</li>
 </ul>
-<p>For these reasons, Brightcove does not recommend using a <code>webView</code>, and we do not actively test on this platform.</p>
+<p>For these reasons, Brightcove does not recommend using a <code translate="No">webView</code>, and we do not actively test on this platform.</p>
 
-<!-- <p>One of the most popular options for implementing a video player in an application is the usage of a <code>webView </code>, a <a href="https://developer.apple.com/documentation/webkit/wkwebview">WKWebView for iOS</a> or a <a href="//developer.android.com/reference/android/webkit/WebView.html"> WebView for Android</a>. </p> -->
+<!-- <p>One of the most popular options for implementing a video player in an application is the usage of a <code translate="No">webView </code>, a <a href="https://developer.apple.com/documentation/webkit/wkwebview">WKWebView for iOS</a> or a <a href="//developer.android.com/reference/android/webkit/WebView.html"> WebView for Android</a>. </p> -->
 
 <p>A better solution is to use the <a href="#Brightcove_Native_Player_SDKs">Brightcove Native Player SDKs</a>.</p>
 </section>

@@ -874,7 +874,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>
 	<p>Use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">com.brightcove.player.edge.Catalog</a> class methods to retrieve your videos and playlists from Brightcove's Playback API. Your requests can supply the video/playlist <code class="notranslate">ID</code> or <code class="notranslate">ReferenceID</code>. This service will make the URL requests and parse the returned data.</p>
 
-	<aside class="bcls-aside bcls-aside--information">If you include special characters with a <code>ReferenceID</code>, you must URI encode it before making a catalog request.</aside>
+	<aside class="bcls-aside bcls-aside--information">If you include special characters with a <code translate="No">ReferenceID</code>, you must URI encode it before making a catalog request.</aside>
 	</li>
 	<li>
 	<p>For this request, you will need a Policy Key. If you are not familiar with Policy Keys, see the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a> document.</p>
@@ -965,7 +965,7 @@ public class MainActivity extends BrightcovePlayer {
 	</li>
   <li>
     <p>
-      You may want to see the custom fields, if any, exist for the <code>Video</code> object. Add the following code to the <code>onVideo</code> callback method to loop through the <code>customField</code> map.
+      You may want to see the custom fields, if any, exist for the <code translate="No">Video</code> object. Add the following code to the <code translate="No">onVideo</code> callback method to loop through the <code translate="No">customField</code> map.
     </p>
      <pre class="line-numbers">
   <code class="language-java notranslate">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
@@ -989,7 +989,7 @@ public class MainActivity extends BrightcovePlayer {
 <code class="language-java notranslate">MainActivity: onVideo: Custom fields: Key: genre Value: Action
 MainActivity: onVideo: Custom fields: Key: customlist Value: customListValue1</code></pre>
 <p>
-  Note that custom fields can be represented as <code>Strings</code> or <code>Lists</code>. Even though a custom field can be a <code>List</code> type, it is a list of <code>String</code> values from which one value is chosen to set the field's value.
+  Note that custom fields can be represented as <code translate="No">Strings</code> or <code translate="No">Lists</code>. Even though a custom field can be a <code translate="No">List</code> type, it is a list of <code translate="No">String</code> values from which one value is chosen to set the field's value.
 </p>
   </li>
 </ol>

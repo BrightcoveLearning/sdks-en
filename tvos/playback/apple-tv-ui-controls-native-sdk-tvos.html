@@ -182,7 +182,7 @@ grandparent: tOS Development
 <ol class="bcls-tasklist-restart">
 	<li>Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/AppleTV/swift">basic Apple TV sample code</a>. Open the project in Xcode and open the <strong>ViewController.swift</strong> file.</li>
 	<li>
-	<p>In the <code>createTVPlayerView()</code> function, set the <code>playerType</code> to either <code>live</code> or <code>liveDVR</code>.</p>
+	<p>In the <code translate="No">createTVPlayerView()</code> function, set the <code translate="No">playerType</code> to either <code translate="No">live</code> or <code translate="No">liveDVR</code>.</p>
 
 	<pre class="line-numbers">
 <code class="language-swift">playerView = BCOVTVPlayerView(options: options)
@@ -192,11 +192,11 @@ playerView!.frame = self.videoContainerView.bounds
 self.videoContainerView.addSubview(playerView!)
 }</code></pre>
 	</li>
-	<li>Locate the <code>viewDidLoad()</code> function.</li>
-	<li>The call to the <code>createSampleTabBarItemView()</code> function is optional and shows you how to create a custom view in the tab bar. For this example, we will comment the call to this function.</li>
-	<li>Comment the call to the <code>requestContentFromPlaybackService()</code> function.</li>
+	<li>Locate the <code translate="No">viewDidLoad()</code> function.</li>
+	<li>The call to the <code translate="No">createSampleTabBarItemView()</code> function is optional and shows you how to create a custom view in the tab bar. For this example, we will comment the call to this function.</li>
+	<li>Comment the call to the <code translate="No">requestContentFromPlaybackService()</code> function.</li>
 	<li>
-	<p>In the <code>viewDidLoad()</code> function, before the closing bracket, add code to do the following:</p>
+	<p>In the <code translate="No">viewDidLoad()</code> function, before the closing bracket, add code to do the following:</p>
 
 	<pre class="line-numbers">
 <code class="language-swift">override func viewDidLoad()
@@ -227,8 +227,8 @@ self.playbackController.setVideos([video] as NSArray)</span>
 
 	<ul>
 		<li>Define the URL string for your live or live DVR stream.</li>
-		<li>Create a <code>BCOVVideo</code> object using your live or live DVR stream URL from the previous step.</li>
-		<li>Call the <code>setVideos()</code> function to add your live stream to the <code>playbackController</code>'s playback queue, which is set to automatically start playing.</li>
+		<li>Create a <code translate="No">BCOVVideo</code> object using your live or live DVR stream URL from the previous step.</li>
+		<li>Call the <code translate="No">setVideos()</code> function to add your live stream to the <code translate="No">playbackController</code>'s playback queue, which is set to automatically start playing.</li>
 	</ul>
 	</li>
 </ol>

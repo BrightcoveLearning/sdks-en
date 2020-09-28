@@ -874,19 +874,19 @@ language in player controls and UI labels.</p>
 are currently supported.</p>
 	</li>
   <li>
-		<p>Fixed an issue where certain <code>video_view</code> and <code>video_engagement</code> Analytics
+		<p>Fixed an issue where certain <code translate="No">video_view</code> and <code translate="No">video_engagement</code> Analytics
 event parameters could include non-Western Arabic numerals for the
 following parameters:</p>
     <ul>
-      <li><code>video_view</code>:</li>
+      <li><code translate="No">video_view</code>:</li>
       <ul>
-        <li><code>start_time_ms</code></li>
-        <li><code>load_time_ms</code></li>
+        <li><code translate="No">start_time_ms</code></li>
+        <li><code translate="No">load_time_ms</code></li>
       </ul>
-      <li><code>video_engagement</code>:</li>
+      <li><code translate="No">video_engagement</code>:</li>
       <ul>
-        <li><code>range</code></li>
-        <li><code>video_seconds_viewed</code></li>
+        <li><code translate="No">range</code></li>
+        <li><code translate="No">video_seconds_viewed</code></li>
       </ul>
     </ul>
 	</li>
@@ -952,7 +952,7 @@ labels.
 <p>ExoPlayer Changes:</p>
 <ul>
 	<li>
-		Fixed a regression in the <code>ExoPlayerVideoDisplayComponent setPeakBitrate()</code> method where the specified bitrate would be ignored, and the highest bitrate selected instead.
+		Fixed a regression in the <code translate="No">ExoPlayerVideoDisplayComponent setPeakBitrate()</code> method where the specified bitrate would be ignored, and the highest bitrate selected instead.
 	</li>
 </ul>
 
@@ -963,58 +963,58 @@ labels.
 		<p>The Google IMA SDK has been updated to version 3.19.4. Some of the changes include:</p>
     <ul>
       <li>
-        <code>SdkFactory.createAdDisplayContainer()</code> is deprecated
+        <code translate="No">SdkFactory.createAdDisplayContainer()</code> is deprecated
       </li>
       <li>
-        <code>AdDisplayContainer.setPlayer(VideoAdPlayer)</code> is deprecated
+        <code translate="No">AdDisplayContainer.setPlayer(VideoAdPlayer)</code> is deprecated
       </li>
       <li>
-        <code>AdDisplayContainer.setAdContainer(ViewGroup)</code> is deprecated
+        <code translate="No">AdDisplayContainer.setAdContainer(ViewGroup)</code> is deprecated
       </li>
       <li>
         <p>
-          <code>AdsRequest.setAdDisplayContainer(AdDisplayContainer)</code> is removed
+          <code translate="No">AdsRequest.setAdDisplayContainer(AdDisplayContainer)</code> is removed
         </p>
         <p>For the full list of changes, please refer to the Google IMA Android SDK release history.</p>
       </li>
     </ul>
 	</li>
   <li>
-    The <code>GoogleIMAComponent</code> now uses a Builder for its construction.
+    The <code translate="No">GoogleIMAComponent</code> now uses a Builder for its construction.
   </li>
   <li>
     <p>
-      The IMA plugin automatically creates the <code>AdDisplayContainer</code> using the <code>BrightcoveVideoView</code> by default.
+      The IMA plugin automatically creates the <code translate="No">AdDisplayContainer</code> using the <code translate="No">BrightcoveVideoView</code> by default.
     </p>
     <p>
-      You may provide an <code>AdDisplayContainerFactory</code> to the <code>GoogleIMAComponent.Builder</code> to provide your own <code>AdDisplayContainer</code>.
+      You may provide an <code translate="No">AdDisplayContainerFactory</code> to the <code translate="No">GoogleIMAComponent.Builder</code> to provide your own <code translate="No">AdDisplayContainer</code>.
     </p>
   </li>
   <li>
-    The following methods were deprecated in the <code>GoogleIMAVideoAdPlayer</code> class:
+    The following methods were deprecated in the <code translate="No">GoogleIMAVideoAdPlayer</code> class:
     <ul>
       <li>
-        <code>playAd(). Use playAd(AdMediaInfo)</code> instead
+        <code translate="No">playAd(). Use playAd(AdMediaInfo)</code> instead
       </li>
       <li>
-        <code>loadAd(String). Use loadAd(AdMediaInfo, AdPodInfo)</code> instead
+        <code translate="No">loadAd(String). Use loadAd(AdMediaInfo, AdPodInfo)</code> instead
       </li>
       <li>
-        <code>stopAd(). Use stopAd(AdMediaInfo)</code> instead
+        <code translate="No">stopAd(). Use stopAd(AdMediaInfo)</code> instead
       </li>
       <li>
-        <code>resumeAd(). Use playAd(AdMediaInfo)</code> instead
+        <code translate="No">resumeAd(). Use playAd(AdMediaInfo)</code> instead
       </li>
       <li>
         <p>
-          <code>pauseAd(). Use pauseAd(AdMediaInfo)</code> instead
+          <code translate="No">pauseAd(). Use pauseAd(AdMediaInfo)</code> instead
         </p>
       </li>
     </ul>
   </li>
   <li>
     <p>
-      Fixed an issue where the IMA plugin was not emitting the <code>AD_PAUSED/AD_RESUME</code> events when calling <code>GoogleIMAVideoAdPlayer.pauseAd</code> and <code>GoogleIMAVideoAdPlayer.resumeAd</code>, respectively.
+      Fixed an issue where the IMA plugin was not emitting the <code translate="No">AD_PAUSED/AD_RESUME</code> events when calling <code translate="No">GoogleIMAVideoAdPlayer.pauseAd</code> and <code translate="No">GoogleIMAVideoAdPlayer.resumeAd</code>, respectively.
     </p>
     <p>For more information, please visit the Brightcove Android SDK Overview in the Brightcove Support site.</p>
   </li>
@@ -1042,7 +1042,7 @@ labels.
 
 <ul>
 	<li>
-		<p>Fixes an issue where the <code>CustomClick</code> element would fail to parse.</p>
+		<p>Fixes an issue where the <code translate="No">CustomClick</code> element would fail to parse.</p>
 	</li>
   <li>
 		<p>Fixes an issue in parsing the VAST Extension element.</p>
@@ -1061,11 +1061,11 @@ labels.
 Assistant).</p>
 	</li>
   <li>
-		<p>The <code>VideoParser</code> will now ignore any DRM source that does not contain
+		<p>The <code translate="No">VideoParser</code> will now ignore any DRM source that does not contain
 Widevine key systems.</p>
 	</li>
   <li>
-		<p>Fixed an issue where the <code>VideoParser</code> would fail to parse a Thumbnail
+		<p>Fixed an issue where the <code translate="No">VideoParser</code> would fail to parse a Thumbnail
 VTT Source that does not contain the bandwidth property.</p>
 	</li>
   <li>
@@ -1169,7 +1169,7 @@ pairs are added to the VMAP Source URL.</p>
 
 <ul>
 	<li>
-	<p>Added seek without ads support when setting <code>adsDisabled</code> on <code>VideoPlaybackController</code></p>
+	<p>Added seek without ads support when setting <code translate="No">adsDisabled</code> on <code translate="No">VideoPlaybackController</code></p>
 	</li>
 	<li>
 	<p>Added support to play Pulse passback ads</p>
@@ -1206,7 +1206,7 @@ pairs are added to the VMAP Source URL.</p>
 
 <ul>
 	<li>
-	<p>Deprecated <code>BrightcoveSurfaceView.isVideo360Supported()</code>. Based on current supported versions, it always returns true.</p>
+	<p>Deprecated <code translate="No">BrightcoveSurfaceView.isVideo360Supported()</code>. Based on current supported versions, it always returns true.</p>
 	</li>
 </ul>
 
@@ -1235,31 +1235,31 @@ pairs are added to the VMAP Source URL.</p>
 	<p><strong>Breaking Change</strong>: The Playlist object is now immutable.</p>
 	</li>
 	<li>
-	<p>The Playlist object can now contain a mix of videos with status <code>Status.OK</code> and <code>Status.ERROR</code></p>
+	<p>The Playlist object can now contain a mix of videos with status <code translate="No">Status.OK</code> and <code translate="No">Status.ERROR</code></p>
 	</li>
 	<li>
-	<p><code>Playlist.getErrorVideos()</code>: This new method will return only videos with status of <code>Status.ERROR</code></p>
+	<p><code translate="No">Playlist.getErrorVideos()</code>: This new method will return only videos with status of <code translate="No">Status.ERROR</code></p>
 	</li>
 	<li>
-	<p><code>Playlist.getAllVideosAndErrors()</code>: This new method will return all videos with both status, <code>Status.OK</code> and <code>Status.ERROR</code>, following the same order as returned from the Playback Rights Management Service response</p>
+	<p><code translate="No">Playlist.getAllVideosAndErrors()</code>: This new method will return all videos with both status, <code translate="No">Status.OK</code> and <code translate="No">Status.ERROR</code>, following the same order as returned from the Playback Rights Management Service response</p>
 	</li>
 	<li>
-	<p>Note: <code>Playlist.getVideos()</code> and <code>Playlist.getCount()</code> behave the same way as previous versions, that is, they consider only the videos with status <code>Status.OK</code></p>
+	<p>Note: <code translate="No">Playlist.getVideos()</code> and <code translate="No">Playlist.getCount()</code> behave the same way as previous versions, that is, they consider only the videos with status <code translate="No">Status.OK</code></p>
 	</li>
 	<li>
-	<p>Added <code>ErrorListener.onError(List<catalogerror>)</catalogerror></code> callback.</p>
+	<p>Added <code translate="No">ErrorListener.onError(List<catalogerror>)</catalogerror></code> callback.</p>
 	</li>
 	<li>
-	<p>Deprecated <code>ErrorListener.onError(String)</code> callback.</p>
+	<p>Deprecated <code translate="No">ErrorListener.onError(String)</code> callback.</p>
 	</li>
 	<li>
-	<p>The Video object now has a status code, which can be either <code>Status.OK</code> or <code>Status.ERROR</code>. You may retrieve the status through <code>Video.getStatus():Status</code>.</p>
+	<p>The Video object now has a status code, which can be either <code translate="No">Status.OK</code> or <code translate="No">Status.ERROR</code>. You may retrieve the status through <code translate="No">Video.getStatus():Status</code>.</p>
 	</li>
 	<li>
-	<p><code>Status.OK</code>: The Video has all the expected properties and does not have <code>Video.Fields.ERRORS</code> in it.</p>
+	<p><code translate="No">Status.OK</code>: The Video has all the expected properties and does not have <code translate="No">Video.Fields.ERRORS</code> in it.</p>
 	</li>
 	<li>
-	<p><code>Status.ERROR</code>: The video has <code>Video.Fields.ERRORS</code> in its properties in the form of <code>List&lt;CatalogError&gt;</code>.</p>
+	<p><code translate="No">Status.ERROR</code>: The video has <code translate="No">Video.Fields.ERRORS</code> in its properties in the form of <code translate="No">List&lt;CatalogError&gt;</code>.</p>
 	</li>
 </ul>
 
@@ -1295,10 +1295,10 @@ pairs are added to the VMAP Source URL.</p>
 
 <ul>
 	<li>
-	<p>Added new <code>CastMediaUtil.toMediaInfo</code> methods without the unnecessary Android Context parameter.</p>
+	<p>Added new <code translate="No">CastMediaUtil.toMediaInfo</code> methods without the unnecessary Android Context parameter.</p>
 	</li>
 	<li>
-	<p>Deprecated <code>CastMediaUtil.toMediaInfo</code> methods with the unnecessary Android Context parameter.</p>
+	<p>Deprecated <code translate="No">CastMediaUtil.toMediaInfo</code> methods with the unnecessary Android Context parameter.</p>
 	</li>
 </ul>
 
@@ -1313,10 +1313,10 @@ pairs are added to the VMAP Source URL.</p>
 	<p><strong>Breaking Change</strong>: The Brightcove Android Native SDK is now built using AndroidX (JetPack) libraries. Please refer to the Android SDK Support pages for more information on this change, and required steps to migrate your application code.</p>
 	</li>
 	<li>
-	<p>Fixed an issue with the <code>backgroundOpacity</code> method in <code>BrightcoveCaptionStyle</code> where this method was not setting background opacity on captions as expected.</p>
+	<p>Fixed an issue with the <code translate="No">backgroundOpacity</code> method in <code translate="No">BrightcoveCaptionStyle</code> where this method was not setting background opacity on captions as expected.</p>
 	</li>
 	<li>
-	<p>Fixed an issue where fullscreen functionality was not working as expected in the <code>BrightcovePlayerFragment</code>.</p>
+	<p>Fixed an issue where fullscreen functionality was not working as expected in the <code translate="No">BrightcovePlayerFragment</code>.</p>
 	</li>
 </ul>
 
@@ -1364,8 +1364,8 @@ pairs are added to the VMAP Source URL.</p>
 	<p>Added the following convenience constants as HttpRequestConfig query parameters key:</p>
 
 	<ul>
-		<li><code>HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID</code> Used to add a Delivery Rules Config ID</li>
-		<li><code>HttpRequestConfig.KEY_AD_CONFIG_ID</code> Used to add an SSAI Ad Config ID</li>
+		<li><code translate="No">HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID</code> Used to add a Delivery Rules Config ID</li>
+		<li><code translate="No">HttpRequestConfig.KEY_AD_CONFIG_ID</code> Used to add an SSAI Ad Config ID</li>
 	</ul>
 	</li>
 </ul>
@@ -1385,11 +1385,11 @@ pairs are added to the VMAP Source URL.</p>
 	<p>Live and Live DVR streams with Server Side Ad Insertion (Live SSAI) are now supported.</p>
 	</li>
 	<li>
-	<p><strong>Breaking Change</strong>: The <code>Event.PLAYHEAD_POSITION</code> property in both events, <code>EventType.PROGRESS</code> and <code>EventType.AD_PROGRESS</code>, now contains the absolute playhead position, which is the same playhead position given by the underlying player.<br />
-	Please use <code>Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> instead to get the relative playhead position.</p>
+	<p><strong>Breaking Change</strong>: The <code translate="No">Event.PLAYHEAD_POSITION</code> property in both events, <code translate="No">EventType.PROGRESS</code> and <code translate="No">EventType.AD_PROGRESS</code>, now contains the absolute playhead position, which is the same playhead position given by the underlying player.<br />
+	Please use <code translate="No">Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> instead to get the relative playhead position.</p>
 	</li>
 	<li>
-	<p>The <code>Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> property was introduced for both <code>EventType.PROGRESS</code> and <code>EventType.AD_PROGRESS</code> events which contains the relative playhead position (as <code>Event.PLAYHEAD_POSITION</code> did in older versions).</p>
+	<p>The <code translate="No">Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> property was introduced for both <code translate="No">EventType.PROGRESS</code> and <code translate="No">EventType.AD_PROGRESS</code> events which contains the relative playhead position (as <code translate="No">Event.PLAYHEAD_POSITION</code> did in older versions).</p>
 	</li>
 	<li>
 	<p>Added Ad controls for Android TV.</p>
@@ -1418,20 +1418,20 @@ pairs are added to the VMAP Source URL.</p>
 	<p>Add Playback Authentication Service (PAS) support.</p>
 	</li>
 	<li>
-	<p>The following methods are added to the <code>com.brightcove.player.edge.AbstractOfflineCatalog</code>:</p>
+	<p>The following methods are added to the <code translate="No">com.brightcove.player.edge.AbstractOfflineCatalog</code>:</p>
 
 	<ul>
-		<li><code>findOfflineVideoById(String, @NonNull HttpRequestConfig): Video</code></li>
-		<li><code>findOfflineVideoById(String, @NonNull HttpRequestConfig, @NonNull OfflineCallback&lt;Video&gt;): void</code></li>
-		<li><code>requestPurchaseLicense(@NonNull Video, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
-		<li><code>requestRentalLicense(@NonNull Video, @NonNull Date, long, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
+		<li><code translate="No">findOfflineVideoById(String, @NonNull HttpRequestConfig): Video</code></li>
+		<li><code translate="No">findOfflineVideoById(String, @NonNull HttpRequestConfig, @NonNull OfflineCallback&lt;Video&gt;): void</code></li>
+		<li><code translate="No">requestPurchaseLicense(@NonNull Video, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
+		<li><code translate="No">requestRentalLicense(@NonNull Video, @NonNull Date, long, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
 	</ul>
 	</li>
 	<li>
-	<p>The following method is removed from the <code>com.brightcove.player.edge.AbstractOfflineCatalog</code></p>
+	<p>The following method is removed from the <code translate="No">com.brightcove.player.edge.AbstractOfflineCatalog</code></p>
 
 	<ul>
-		<li><code>renewLicense(@NonNull Video, @NonNull EventListener): void</code></li>
+		<li><code translate="No">renewLicense(@NonNull Video, @NonNull EventListener): void</code></li>
 	</ul>
 	</li>
 	<li>
@@ -1451,7 +1451,7 @@ pairs are added to the VMAP Source URL.</p>
 
 <ul>
 	<li>
-	<p>Fixes an issue where a content source could be loaded directly from the <code>src</code> attribute in the Playback API response, instead of from the <code>contenturi</code> attribute in the VMAP.</p>
+	<p>Fixes an issue where a content source could be loaded directly from the <code translate="No">src</code> attribute in the Playback API response, instead of from the <code translate="No">contenturi</code> attribute in the VMAP.</p>
 	</li>
 </ul>
 
@@ -1486,19 +1486,19 @@ sourceCompatibility JavaVersion.VERSION_1_8
 	<p>Please note that this upgrade has the following API changes:</p>
 	</li>
 	<li>
-	<p><strong>Breaking Change</strong> Removed:<code>constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull MappingTrackSelector trackSelector)</code></p>
+	<p><strong>Breaking Change</strong> Removed:<code translate="No">constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull MappingTrackSelector trackSelector)</code></p>
 
-	<p>Use <code>constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull DefaultTrackSelector trackSelector)</code></p>
+	<p>Use <code translate="No">constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull DefaultTrackSelector trackSelector)</code></p>
 	</li>
 	<li>
-	<p><strong>Breaking Change</strong> Removed: <code>setTrackSelector(@NonNull MappingTrackSelector trackSelector)</code></p>
+	<p><strong>Breaking Change</strong> Removed: <code translate="No">setTrackSelector(@NonNull MappingTrackSelector trackSelector)</code></p>
 
-	<p>Use <code>setTrackSelector(@NonNull DefaultTrackSelector trackSelector)</code></p>
+	<p>Use <code translate="No">setTrackSelector(@NonNull DefaultTrackSelector trackSelector)</code></p>
 	</li>
 	<li>
-	<p>Removed <code>getTrackSelector(): MappingTrackSelector</code></p>
+	<p>Removed <code translate="No">getTrackSelector(): MappingTrackSelector</code></p>
 
-	<p>Use <code>getTrackSelector(): DefaultTrackSelector</code></p>
+	<p>Use <code translate="No">getTrackSelector(): DefaultTrackSelector</code></p>
 	</li>
 </ul>
 

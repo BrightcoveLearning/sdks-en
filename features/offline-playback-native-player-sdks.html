@@ -228,11 +228,11 @@ grandparent: Home
     Because of this change, the iOS Offline Download sample app may appear to re-download videos with multiple audio tracks. This is because download progress is given for each track. So, the progress bar will start again from zero for each additional audio track.
   </p>
   <p>
-    Here's a brief overview of <code>AVMediaSelectionOptions</code>, subtitles and alternative audio tracks: <a href="https://developer.apple.com/documentation/avfoundation/media_playback_and_selection/adding_subtitles_and_alternative_audio_tracks?preferredLanguage=occ">Adding Subtitles and Alternative Audio Tracks</a>
+    Here's a brief overview of <code translate="No">AVMediaSelectionOptions</code>, subtitles and alternative audio tracks: <a href="https://developer.apple.com/documentation/avfoundation/media_playback_and_selection/adding_subtitles_and_alternative_audio_tracks?preferredLanguage=occ">Adding Subtitles and Alternative Audio Tracks</a>
   </p>
   <h5>Determine total download</h5>
   <p>
-    Is there any way to get <code>didProgressTo</code> for total download for one video token?
+    Is there any way to get <code translate="No">didProgressTo</code> for total download for one video token?
   </p>
   <p>
     No. For a video offline token, there is no aggregated download progress value. The app developer determines how many asset downloads will occur. The first asset download is the main video and the preferred audio and text tracks. It is typically the largest download and progress will advance from 0.00 to 100.00.
@@ -243,10 +243,10 @@ grandparent: Home
 
   <h5>Identify object types</h5>
   <p>
-    Is there any way to identify which type of object(video or text track) each <code>didProgressTo</code> events related to?
+    Is there any way to identify which type of object(video or text track) each <code translate="No">didProgressTo</code> events related to?
   </p>
   <p>
-    Yes. The additional downloads are of Apple Media Selection Option objects (<code>AVMediaSelectionOption</code>), not tracks. The media selection object being downloaded is identified in the progress callback. (<a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVOfflineVideoManagerDelegate.html#//api/name/offlineVideoToken:aggregateDownloadTask:didProgressTo:forMediaSelection:">BCOVOfflineVideoManagerDelegate.h</a>)
+    Yes. The additional downloads are of Apple Media Selection Option objects (<code translate="No">AVMediaSelectionOption</code>), not tracks. The media selection object being downloaded is identified in the progress callback. (<a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVOfflineVideoManagerDelegate.html#//api/name/offlineVideoToken:aggregateDownloadTask:didProgressTo:forMediaSelection:">BCOVOfflineVideoManagerDelegate.h</a>)
   </p>
   <p>
     Apple provides methods for examining the attributes of a media selection option. For details, see Apple's <a href="https://developer.apple.com/documentation/avfoundation/avmediaselectionoption">AVMediaSelectionOption</a>. 
@@ -392,7 +392,7 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 <h4>Audio-only</h4>
 <p>The Native SDKs support audio-only content with Offline Playback. You control what viewers see, whether it is a poster image or a custom screen.</p>
 <p>
-	The Native SDK for Android requires a <code>VideoView</code>, and the Native SDK for iOS requires a <code>UIView</code>. Because of this, background audio is not supported. This means that audio will not keep playing when a user sends the app to the background.
+	The Native SDK for Android requires a <code translate="No">VideoView</code>, and the Native SDK for iOS requires a <code translate="No">UIView</code>. Because of this, background audio is not supported. This means that audio will not keep playing when a user sends the app to the background.
 </p>
 
 <h3>Android</h3>

@@ -134,7 +134,7 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
       Resume playback.
     </p>
     <p>
-      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code>brightcoveVideoView.seekTo()</code> method.
+      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code translate="No">brightcoveVideoView.seekTo()</code> method.
     </p>
     <pre><code class="language-java">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
 eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, new EventListener() {
@@ -204,13 +204,13 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
     <pre><code class="language-objectivec">-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]
 </code></pre>
     <p>
-      This allows you to resume playback at a specific time without forcing the user to watch ads scheduled before <code>seekToTime</code>.
+      This allows you to resume playback at a specific time without forcing the user to watch ads scheduled before <code translate="No">seekToTime</code>.
     </p>
     <p>
-      In preparation for <code>seekWithoutAds:completionHandler:</code>, disable <code>autoPlay</code> when setting up the <code>BCOVPlaybackController</code>.
+      In preparation for <code translate="No">seekWithoutAds:completionHandler:</code>, disable <code translate="No">autoPlay</code> when setting up the <code translate="No">BCOVPlaybackController</code>.
     </p>
     <p>
-      Apple recommends waiting for the status of an <code>AVPlayerItem</code> to change to ready-to-play before using the <code>AVPlayerItem</code>. Therefore, call <code>seekWithoutAds:completionHandler:</code> in the <code>kBCOVPlaybackSessionLifecycleEventReady</code> handler of the <code>playbackController:playbackSession:didReceiveLifecycleEvent</code> method of your <code>BCOVPlaybackControllerDelegate</code>.
+      Apple recommends waiting for the status of an <code translate="No">AVPlayerItem</code> to change to ready-to-play before using the <code translate="No">AVPlayerItem</code>. Therefore, call <code translate="No">seekWithoutAds:completionHandler:</code> in the <code translate="No">kBCOVPlaybackSessionLifecycleEventReady</code> handler of the <code translate="No">playbackController:playbackSession:didReceiveLifecycleEvent</code> method of your <code translate="No">BCOVPlaybackControllerDelegate</code>.
     </p>
     <p>
       For details about seek without ads, see the following:

@@ -1,6 +1,6 @@
 ---
 title: 'Android: Adding View/Managing Layout'
-description: In this topic, you will learn how to manage the layout of a View added to the <code>BrightcoveVideoView</code>.
+description: In this topic, you will learn how to manage the layout of a View added to the <code translate="No">BrightcoveVideoView</code>.
 parent: Framework
 grandparent: Android Development
 ---
@@ -20,11 +20,11 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Overriding_layout_params">Overriding layout params</h2>
 
-<p>The <code>BrightcoveVideoView</code> is the parent class of the <code>BrightcoveExoPlayerVideoView</code>.</p>
+<p>The <code translate="No">BrightcoveVideoView</code> is the parent class of the <code translate="No">BrightcoveExoPlayerVideoView</code>.</p>
 
-<p>If you’re adding a <code>View</code> to the <code>BrightcoveVideoView</code>, then you need to override the <code>setLayoutParams()</code> method on the <code>View</code> child to apply only the layout params that make sense for the <code>View</code> child.</p>
+<p>If you’re adding a <code translate="No">View</code> to the <code translate="No">BrightcoveVideoView</code>, then you need to override the <code translate="No">setLayoutParams()</code> method on the <code translate="No">View</code> child to apply only the layout params that make sense for the <code translate="No">View</code> child.</p>
 
-<p>Here is an example with the <code>setLayoutParams()</code> method:</p>
+<p>Here is an example with the <code translate="No">setLayoutParams()</code> method:</p>
 
 <pre class="line-numbers">
 <code class="language-java">@Override
@@ -42,19 +42,19 @@ public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
     }
 }</code></pre>
 
-<p>This allows the <code>SurfaceView</code> and the <code>ImageView</code> to get the layout params specified for the <code>BrightcoveVideoView</code>.</p>
+<p>This allows the <code translate="No">SurfaceView</code> and the <code translate="No">ImageView</code> to get the layout params specified for the <code translate="No">BrightcoveVideoView</code>.</p>
 
-<p>Although it is possible to apply the layout params only to the <code>SurfaceView</code> and <code>ImageView</code> children, it would be difficult for additional children to react when the <code>BrightcoveVideoView</code> has its layout params updated.</p>
+<p>Although it is possible to apply the layout params only to the <code translate="No">SurfaceView</code> and <code translate="No">ImageView</code> children, it would be difficult for additional children to react when the <code translate="No">BrightcoveVideoView</code> has its layout params updated.</p>
 
-<p>Brightcove suggests overriding <code>setLayoutParams()</code> in the <code>LinearLayout</code> child so that it passes through the width, but leaves the height and gravity unmodified.</p>
+<p>Brightcove suggests overriding <code translate="No">setLayoutParams()</code> in the <code translate="No">LinearLayout</code> child so that it passes through the width, but leaves the height and gravity unmodified.</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="When_to_add_a_view">When to add a View</h2>
 
-<p>Applications to add a <code>View</code> in the <code>BrightcoveExoPlayerVideoView</code> can be varied depending on the objective to add an object in front of the Player. For example, you may use views to add/remove <code>TextViews</code> to display the captions, or to add a layout for the controller in the App.</p>
+<p>Applications to add a <code translate="No">View</code> in the <code translate="No">BrightcoveExoPlayerVideoView</code> can be varied depending on the objective to add an object in front of the Player. For example, you may use views to add/remove <code translate="No">TextViews</code> to display the captions, or to add a layout for the controller in the App.</p>
 
-<p>The <code>BrightcoveExoPlayerVideoView</code> variant extends from the <code>BaseVideoView</code> which extends the Android <code>FrameLayout</code>. This means you could add a view to the <code>BrightcoveExoPlayerVideoView</code> the same way you would do it to a <code>FrameLayout</code>.</p>
+<p>The <code translate="No">BrightcoveExoPlayerVideoView</code> variant extends from the <code translate="No">BaseVideoView</code> which extends the Android <code translate="No">FrameLayout</code>. This means you could add a view to the <code translate="No">BrightcoveExoPlayerVideoView</code> the same way you would do it to a <code translate="No">FrameLayout</code>.</p>
 
 <p>Here is an example in the activity_main.xml file of an Android App:</p>
 
