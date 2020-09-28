@@ -922,7 +922,7 @@ about how Video Cloud Studio is</code></pre>
 <p>In the terminal, get an HLS video and store it in a local file. In this case, we are naming it <code translate="No">seg.ts</code>.</p>
 
 <pre class="line-numbers">
-<code class="language-http">curl -o seg.ts "http://brightcove.vo.llnwd.net/v1/unsecured/media/4360108595001/201507/1154/4360341622001/4360108595001_4360341622001_s-1.ts?pubId=4360108595001&amp;videoId=4360283683001"</code></pre>
+<code class="language-http" translate="No">curl -o seg.ts "http://brightcove.vo.llnwd.net/v1/unsecured/media/4360108595001/201507/1154/4360341622001/4360108595001_4360341622001_s-1.ts?pubId=4360108595001&amp;videoId=4360283683001"</code></pre>
 <!-- <p><code data-gist-id="d59006640cce4709fdc2" data-gist-line="17-18"></code></p> -->
 
 <h3>Request2:</h3>
@@ -930,7 +930,7 @@ about how Video Cloud Studio is</code></pre>
 <p>Then, use the <code translate="No">ffprobe</code> command to get the offset value. <code translate="No">ffprobe</code> is a multimedia stream analyzer, which is part of the <a href="//ffmpeg.org/about.html">FFmpeg framework</a>. You will need to download and install this on your computer.</p>
 
 <pre class="line-numbers">
-<code class="language-http">ffprobe -show_frames seg.ts</code></pre>
+<code class="language-http" translate="No">ffprobe -show_frames seg.ts</code></pre>
 
 <h3>Response:</h3>
 
