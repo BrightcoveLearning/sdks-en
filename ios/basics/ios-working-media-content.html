@@ -26,19 +26,19 @@ grandparent: iOS Development
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Use the <code class="notranslate">BCOVPlaybackService</code> class methods to retrieve your videos and playlists from Brightcove's Playback API. Your requests can supply the video/playlist <code class="notranslate">ID</code> or <code class="notranslate">ReferenceID</code>. This service will make the URL requests and parse the returned data.</p>
+	<p>Use the <code translate="No">BCOVPlaybackService</code> class methods to retrieve your videos and playlists from Brightcove's Playback API. Your requests can supply the video/playlist <code translate="No">ID</code> or <code translate="No">ReferenceID</code>. This service will make the URL requests and parse the returned data.</p>
 
 	<aside class="bcls-aside bcls-aside--information">If you include special characters with a <code translate="No">ReferenceID</code>, you must URI encode it before making a catalog request.</aside>
 	</li>
 	<li>
 	<p>For this request, you will need a Policy Key. If you are not familiar with Policy Keys, see the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a> document.</p>
 
-	<aside class="bcls-aside bcls-aside--information">Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code class="notranslate">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</aside>
+	<aside class="bcls-aside bcls-aside--information">Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code translate="No">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</aside>
 
-	<p>Here is an example of how to retrieve a video using the <code class="notranslate">BCOVPlaybackService</code> class in Swift:</p>
+	<p>Here is an example of how to retrieve a video using the <code translate="No">BCOVPlaybackService</code> class in Swift:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-swift">import UIKit
+<code class="language-swift" translate="No">import UIKit
 import BrightcovePlayerSDK
 
 let kViewControllerPlaybackServicePolicyKey = "<span class="bcls-input">your policy key</span>"
@@ -110,7 +110,7 @@ func requestContentFromPlaybackService() {
 	<p>The <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">BCOVVideo</a> object provides video metadata information as shown below:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-swift">func requestContentFromPlaybackService() {
+<code class="language-swift" translate="No">func requestContentFromPlaybackService() {
 playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) { (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
   if let v = video {
@@ -126,7 +126,7 @@ playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil)
 }
 }</code></pre>
 
-	<p>The above <code class="notranslate">print()</code> methods return the following media information:</p>
+	<p>The above <code translate="No">print()</code> methods return the following media information:</p>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video object" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/ios/getting-started/media-content/video-metadata.png" />
 	<figcaption class="bcls-caption--image">Video object</figcaption>
@@ -151,10 +151,10 @@ playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil)
 	<li><a href="https://studio.support.brightcove.com/media/configuring-video-availability.html#geofilter">Video Cloud Studio's Media Module</a></li>
 </ul>
 
-<p>In your iOS app, when you retrieve a video using Brightcove's <code class="notranslate">BCOVPlaybackService</code> class (Playback API) in a country which is geo-filtered for that video, you should see this message:</p>
+<p>In your iOS app, when you retrieve a video using Brightcove's <code translate="No">BCOVPlaybackService</code> class (Playback API) in a country which is geo-filtered for that video, you should see this message:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift">Error Domain=kBCOVPlaybackServiceErrorDomain Code=3 "(null)"
+<code class="language-swift" translate="No">Error Domain=kBCOVPlaybackServiceErrorDomain Code=3 "(null)"
 UserInfo={kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode=403,
 kBCOVPlaybackServiceErrorKeyAPIErrors=
 {type = immutable, count = 1, values = (
@@ -176,7 +176,7 @@ entries =&gt;
 <p>Here is an example of adding an array of videos to the playback controller and starting playback:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift">import UIKit
+<code class="language-swift" translate="No">import UIKit
 import BrightcovePlayerSDK
 
 let kViewControllerAccountID = "<span class="bcls-input">your account id</span>" // For Brightcove registration

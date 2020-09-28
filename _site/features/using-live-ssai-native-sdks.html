@@ -1026,20 +1026,20 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>In the <strong>ViewController.swift</strong> file, replace the <code translate="No">AdConfigId</code> value with your playback token (live URL) that you you copied from the Live module in the previous section.</p>
 
 	<pre>
-<code class="language-swift">static let AdConfigId = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
+<code class="language-swift" translate="No">static let AdConfigId = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
 	</li>
 	<li>
 	<p>The <code translate="No">AdConfigId</code> with your playback token value is added to the HTTP request as a query parameter.</p>
 
 	<pre class="line-numbers">
-<code class="language-swift">let queryParameters = [kBCOVPlaybackServiceParamaterKeyAdConfigId: Constants.AdConfigId]
+<code class="language-swift" translate="No">let queryParameters = [kBCOVPlaybackServiceParamaterKeyAdConfigId: Constants.AdConfigId]
 </code></pre>
 	</li>
 	<li>
 	<p>Make the catalog call to the Playback API with your live stream video id and the updated HTTP request.</p>
 
 	<pre class="line-numbers">
-<code class="language-swift">playbackService.findVideo(withVideoID: Constants.VideoId, parameters: queryParameters) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+<code class="language-swift" translate="No">playbackService.findVideo(withVideoID: Constants.VideoId, parameters: queryParameters) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
    guard let _video = video else {
      print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")

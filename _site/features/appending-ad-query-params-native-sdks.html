@@ -882,7 +882,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Here is the code to create a Map of key/value pairs, using the <code translate="No">CUSTOM_FIELDS</code> property of the <code translate="No">Video</code> object property of the <code translate="No">ADS_REQUEST_FOR_VIDEO</code> event:</p>
 <pre>
-<code class="notranslate language-java">Video video = (Video) event.getProperties().get(Event.VIDEO);
+<code class="language-swift" translate="No">Video video = (Video) event.getProperties().get(Event.VIDEO);
 if (video != null) {
     Map&lt;String, String&gt; customFieldsMap = (HashMap&lt;String, String&gt;) video.getProperties().get(Video.Fields.CUSTOM_FIELDS);
 }
@@ -890,7 +890,7 @@ if (video != null) {
 
 <p>Here is a complete code sample for the <code translate="No">ADS_REQUEST_FOR_VIDEO</code> event listener, which is added to the setup method for the Google IMA plugin:</p>
 <pre>
-<code class="notranslate language-java">eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, event -&gt; {
+<code class="language-swift" translate="No">eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, event -&gt; {
     // Create a container object for the ads to be presented.
     AdDisplayContainer container = sdkFactory.createAdDisplayContainer();
     container.setPlayer(googleIMAComponent.getVideoAdPlayer());
@@ -955,7 +955,7 @@ if (video != null) {
 	<p>A sample ad configuration looks like this:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">{
+<code class="language-swift" translate="No">{
   "name": "SSAI VMAP Ad Server",
   "vmap_response_namespace": "bc",
   "config_id": "<span class="bcls-input">your ad config Id</span>",
@@ -972,31 +972,31 @@ if (video != null) {
   }
 }</code></pre>
 
-	<aside class="bcls-aside bcls-aside--tip">The <code class="notranslate">template_url</code> property contains the ad URL.</aside>
+	<aside class="bcls-aside bcls-aside--tip">The <code translate="No">template_url</code> property contains the ad URL.</aside>
 	</li>
 	<li>
 	<p>In the jsonResponse from the call to the Playback API, examine the sources for the video object. Each source object will contain a VMAP property and a VMAP URL. Select and extract the VMAP URL.</p>
 
 	<pre>
-<code class="notranslate language-java">http://ssaiplayback.prod.boltdns.net/playback/once/v1/vmap/hls/v3/clear/3981276734001/
+<code class="language-swift" translate="No">http://ssaiplayback.prod.boltdns.net/playback/once/v1/vmap/hls/v3/clear/3981276734001/
   b871a6b8-4b3e-4787-b176-aed923287d5a/477b1308-fc18-47a6-bb99-6cb9e2ff2040/
   content.vmap<span class="bcls-highlight">?bc_token=XXX</span></code></pre>
 
-	<aside class="bcls-aside bcls-aside--tip">The only URL parameter on the VMAP URL will be the <code class="notranslate">bc_token</code>.</aside>
+	<aside class="bcls-aside bcls-aside--tip">The only URL parameter on the VMAP URL will be the <code translate="No">bc_token</code>.</aside>
 	</li>
 	<li>
 	<p>Let’s say your ad URL looks like this:</p>
 
 	<pre>
-<code class="notranslate language-java">https://myad.com/ads?rule=&amp;id=</code></pre>
+<code class="language-swift" translate="No">https://myad.com/ads?rule=&amp;id=</code></pre>
 
 	<p>If your ad URL has the above ad macros, then you will add these query parameters to the VMAP URLs with the appropriate values.</p>
 	</li>
 	<li>
-	<p>Append query parameters to the VMAP URL. In this example, the <code class="notranslate"></code> macro in the ad url is replaced with the value <code class="notranslate">discos-enabled</code>, and the <code class="notranslate"></code> macro is replaced with the video id value.</p>
+	<p>Append query parameters to the VMAP URL. In this example, the <code translate="No"></code> macro in the ad url is replaced with the value <code translate="No">discos-enabled</code>, and the <code translate="No"></code> macro is replaced with the video id value.</p>
 
 	<pre>
-<code class="notranslate language-java">http://ssaiplayback.prod.boltdns.net/playback/once/v1/vmap/hls/v3/clear/3981276734001/
+<code class="language-swift" translate="No">http://ssaiplayback.prod.boltdns.net/playback/once/v1/vmap/hls/v3/clear/3981276734001/
 b871a6b8-4b3e-4787-b176-aed923287d5a/477b1308-fc18-47a6-bb99-6cb9e2ff2040/
 content.vmap<span class="bcls-highlight">?bc_token=XXX&amp;rule=discos-enabled&amp;video_id=5625751316001</span></code></pre>
 	</li>
@@ -1022,7 +1022,7 @@ content.vmap<span class="bcls-highlight">?bc_token=XXX&amp;rule=discos-enabled&a
       In the <code translate="No">Catalog</code>'s <code translate="No">onVideo</code> callback method, select and extract the appropriate VMAP URL from the <code translate="No">Video</code> object's default source, using the <code translate="No">SSAISourceSelector</code>. The source object returned should have a VMAP URL property.
     </p>
     <pre>
-<code class="notranslate language-java">SSAISourceSelector sourceSelector = new SSAISourceSelector();
+<code class="language-swift" translate="No">SSAISourceSelector sourceSelector = new SSAISourceSelector();
 Source source = sourceSelector.selectSource(video);            
 String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
   </li>
@@ -1031,7 +1031,7 @@ String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
       Append your query parameters to the VMAP URL:
     </p>
     <pre>
-<code class="notranslate language-java">private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
+<code class="language-swift" translate="No">private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, String&gt; vmapUrlParams) {
     Uri.Builder vmapBuilder = Uri.parse(vmapUrl).buildUpon();
     for (Map.Entry&lt;String, String&gt; entry : vmapUrlParams.entrySet()) {
         vmapBuilder.appendQueryParameter(entry.getKey(), entry.getValue());
@@ -1044,12 +1044,12 @@ String vmapUrl = source.getStringProperty(Source.Fields.VMAP);</code></pre>
       Process the updated <code translate="No">Video</code> object with the SSAI plugin as follows:
     </p>
     <pre>
-<code class="notranslate language-java">plugin.processVideo(video);</code></pre>
+<code class="language-swift" translate="No">plugin.processVideo(video);</code></pre>
   </li>
 </ol>
 <p>Here is a complete code sample:</p>
 <pre>
-<code class="notranslate language-java">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+<code class="language-swift" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
         .addQueryParameter(AD_CONFIG_ID_QUERY_PARAM_KEY, AD_CONFIG_ID_QUERY_PARAM_VALUE)
         .build();
 Map&lt;String, String&gt; vmapUrlParams = new HashMap&lt;&gt;();
@@ -1091,7 +1091,7 @@ private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, S
 	<p>From the video object, select and extract the appropriate manifest or VMAP URL. From the playback service response, the jsonResponse (NSDictionary) contains the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVVideo.html">BCOVVideo</a> object, which includes the sources which hold the URL to the VMAP document. Your code may look similar to this:</p>
 
 	<pre>
-<code class="notranslate language-java">// Create a mutable version of the jsonResponse NSDictionary object
+<code class="language-swift" translate="No">// Create a mutable version of the jsonResponse NSDictionary object
 NSURLComponents *components = [[NSURLComponents alloc] init];
 NSMutableDictionary *videoPropertiesDictionary = [[NSMutableDictionary alloc] init];
 NSMutableArray *updatedSources = [[NSMutableArray alloc] init];
@@ -1107,7 +1107,7 @@ NSURLQueryItem *queryItemVideoId = [NSURLQueryItem queryItemWithName:@"video_id"
 	<p>Append query parameters to the VMAP URL.</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">// For each source, update each VMAP URL stored in the jsonResponse NSDictionary object and assemble the NSURLQueryItem. Store it in the mutable version of the jsonResponse NSDictionary object.
+<code class="language-swift" translate="No">// For each source, update each VMAP URL stored in the jsonResponse NSDictionary object and assemble the NSURLQueryItem. Store it in the mutable version of the jsonResponse NSDictionary object.
 for (NSDictionary *source in videoPropertiesDictionary[@"sources"])
 {
     NSMutableDictionary *mutableSource = [[NSMutableDictionary alloc] init];
@@ -1128,7 +1128,7 @@ for (NSDictionary *source in videoPropertiesDictionary[@"sources"])
 	<p>Process the modified URL with the SSAI plugin as follows:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">videoPropertiesDictionary[@"sources"] = updatedSources;
+<code class="language-swift" translate="No">videoPropertiesDictionary[@"sources"] = updatedSources;
 // Create a new video object with the updated jsonResponse NSDictionary object
 BCOVVideo *video = [BCOVPlaybackService videoFromJSONDictionary:videoPropertiesDictionary];
 // Setting this video object to the BCOVPlaybackController will call the new vmap URL (with the URL parameters appended) when playback starts.

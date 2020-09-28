@@ -878,7 +878,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Events in the Brightcove Player SDK for Android represent a state or action that can be passed down through a chain of listeners. All events have a type and a map of properties associated with them. Events can be stopped from propagating down the chain of listeners, or can be instructed to prevent their default listeners in the video playback classes.</p>
 
-<p>Events can represent state or an action occurring. For example, the event type <code class="notranslate">DID_SEEK_TO </code> represents the state of the action <code class="notranslate">SEEK_TO </code>.</p>
+<p>Events can represent state or an action occurring. For example, the event type <code translate="No">DID_SEEK_TO </code> represents the state of the action <code translate="No">SEEK_TO </code>.</p>
 
 <p>For a complete list of pre-defined events, select the following image:</p>
 
@@ -891,7 +891,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="EventEmitter">EventEmitter</h2>
 
-<p>The Brightcove <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html">BaseVideoView</a> is designed as a drop-in replacement for Android's native <a href="https://developer.android.com/reference/android/widget/VideoView.html">VideoView</a>. This class also starts the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventEmitter.html">EventEmitter</a> which ties all of the SDK components together. When a user interacts with the video view, the <code class="notranslate">EventEmitter </code> emits an event, such as play, pause, etc. Components interested in each event can listen for and act upon them.</p>
+<p>The Brightcove <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html">BaseVideoView</a> is designed as a drop-in replacement for Android's native <a href="https://developer.android.com/reference/android/widget/VideoView.html">VideoView</a>. This class also starts the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventEmitter.html">EventEmitter</a> which ties all of the SDK components together. When a user interacts with the video view, the <code translate="No">EventEmitter </code> emits an event, such as play, pause, etc. Components interested in each event can listen for and act upon them.</p>
 
 <p>Plugins can be added which listen and emit events when they want the SDK to do certain things.</p>
 
@@ -923,7 +923,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>add()/set() method events</h3>
 
-<p>This diagram shows events related to the <code class="notranslate">add(Video) </code>, <code class="notranslate">addAll(Collection) </code>, <code class="notranslate">setVideoPath() </code>, and <code class="notranslate">setVideoURI() </code> methods.</p>
+<p>This diagram shows events related to the <code translate="No">add(Video) </code>, <code translate="No">addAll(Collection) </code>, <code translate="No">setVideoPath() </code>, and <code translate="No">setVideoURI() </code> methods.</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="add()/set() method events" src="/assets/images/android/events/android-events-add-methods.png" />
 <figcaption class="bcls-caption--image">add()/set() method events</figcaption>
@@ -931,7 +931,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>start() method events</h3>
 
-<p>This diagram shows events related to the <code class="notranslate">start() </code> method.</p>
+<p>This diagram shows events related to the <code translate="No">start() </code> method.</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="start() method events" src="/assets/images/android/events/android-events-start-method.png" />
 <figcaption class="bcls-caption--image">start() method events</figcaption>
@@ -939,7 +939,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>seekTo() method events</h3>
 
-<p>This diagram shows events related to the <code class="notranslate">seekTo() </code> method.</p>
+<p>This diagram shows events related to the <code translate="No">seekTo() </code> method.</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="seekTo() method events" src="/assets/images/android/events/android-events-seek-method.png" />
 <figcaption class="bcls-caption--image">seekTo() method events</figcaption>
@@ -947,7 +947,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>pause() method events</h3>
 
-<p>This diagram shows events related to the <code class="notranslate">pause() </code> method.</p>
+<p>This diagram shows events related to the <code translate="No">pause() </code> method.</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="pause() method events" src="/assets/images/android/events/android-events-pause-method.png" />
 <figcaption class="bcls-caption--image">pause() method events</figcaption>
@@ -955,7 +955,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>stopPlayback() method events</h3>
 
-<p>This diagram shows events related to the <code class="notranslate">stopPlayback() </code> method.</p>
+<p>This diagram shows events related to the <code translate="No">stopPlayback() </code> method.</p>
 
 <figure class="bcls-figure"><img class="bcls-image" alt="stopPlayback() method events" src="/assets/images/android/events/android-events-stopPlayback-method.png" />
 <figcaption class="bcls-caption--image">stopPlayback() method events</figcaption>
@@ -994,12 +994,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Code_example">Code Example</h2>
 
-<p>When an Ad break starts, the <code class="notranslate">EventType.AD_BREAK_STARTED</code> event is emitted. When an Ad break ends, the <code class="notranslate">EventType.AD_BREAK_COMPLETED</code> is emitted.</p>
+<p>When an Ad break starts, the <code translate="No">EventType.AD_BREAK_STARTED</code> event is emitted. When an Ad break ends, the <code translate="No">EventType.AD_BREAK_COMPLETED</code> is emitted.</p>
 
 <p>You can listen and react to events as shown here:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-java">eventEmitter.on(EventType.AD_BREAK_STARTED, new EventListener() {
+<code class="language-java" translate="No">eventEmitter.on(EventType.AD_BREAK_STARTED, new EventListener() {
 	@Override
 	public void processEvent(Event event) {
 		// React to the event
@@ -1016,7 +1016,7 @@ eventEmitter.on(EventType.AD_BREAK_COMPLETED, new EventListener() {
 <p>You can emit events by doing the following:</p>
 
 <pre>
-<code class="notranslate language-java">eventEmitter.emit(EventType.STOP);</code></pre>
+<code class="language-java" translate="No">eventEmitter.emit(EventType.STOP);</code></pre>
 </section>
 &nbsp;
 

@@ -24,7 +24,7 @@ grandparent: Android Development
 <p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code translate="No">REGISTER_PLUGIN</code> event with a <code translate="No">PLUGIN_NAME</code> property. For example:</p>
 
 <pre class="line-numbers">
-  <code class="notranslate language-java">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
+  <code class="language-java" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
   properties.put(Event.PLUGIN_NAME, "my custom plugin");
   eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
 

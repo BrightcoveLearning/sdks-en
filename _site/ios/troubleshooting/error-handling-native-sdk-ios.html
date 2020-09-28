@@ -858,12 +858,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p>Error codes have the term <code class="notranslate">ErrorCode</code> in the name. For example:</p>
+<p>Error codes have the term <code translate="No">ErrorCode</code> in the name. For example:</p>
 
 <pre>
 <code class="notranslate language-objectivec">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
 
-<p>Events have the word <code class="notranslate">Event</code> in the name. For example:</p>
+<p>Events have the word <code translate="No">Event</code> in the name. For example:</p>
 
 <pre>
 <code class="notranslate language-objectivec">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
@@ -872,7 +872,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Playback_errors">Playback errors</h2>
 
-<p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code class="notranslate">BCOVPlaybackController</code>:</p>
+<p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code translate="No">BCOVPlaybackController</code>:</p>
 
 <pre>
 <code class="notranslate language-objectivec">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
@@ -882,28 +882,28 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ol class="bcls-tasklist-restart">
 	<li>
-	<p>If you get an error event like <code class="notranslate">kBCOVPlaybackSessionLifecycleEventFail</code> or <code class="notranslate">kBCOVPlaybackSessionLifecycleEventResumeFail</code>, check the event's <code class="notranslate">properties</code> dictionary for an <code class="notranslate">@"error"</code> key.</p>
+	<p>If you get an error event like <code translate="No">kBCOVPlaybackSessionLifecycleEventFail</code> or <code translate="No">kBCOVPlaybackSessionLifecycleEventResumeFail</code>, check the event's <code translate="No">properties</code> dictionary for an <code translate="No">@"error"</code> key.</p>
 
-	<p>This will provide an <code class="notranslate">NSError</code> object with information about the problem.</p>
+	<p>This will provide an <code translate="No">NSError</code> object with information about the problem.</p>
 	</li>
 	<li>
-	<p>Each <code class="notranslate">NSError</code> will have an error domain, like the following:</p>
+	<p>Each <code translate="No">NSError</code> will have an error domain, like the following:</p>
 
 	<ul>
-		<li><code class="notranslate">NSCocoaErrorDomain</code></li>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorDomain</code></li>
+		<li><code translate="No">NSCocoaErrorDomain</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorDomain</code></li>
 	</ul>
 	&nbsp;
 
 	<p>Each error domain will have an associated error code and error description, like the following:</p>
 
 	<ul>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
 	</ul>
 	</li>
 	<li>
-	<p>Some errors will also have an underlying error that can be retrieved from the error object's <code class="notranslate">userInfo</code> dictionary with the <code class="notranslate">NSUnderlyingErrorKey</code> key. This will typically be a system <code class="notranslate">NSError</code> that can provide more information.</p>
+	<p>Some errors will also have an underlying error that can be retrieved from the error object's <code translate="No">userInfo</code> dictionary with the <code translate="No">NSUnderlyingErrorKey</code> key. This will typically be a system <code translate="No">NSError</code> that can provide more information.</p>
 	</li>
 	<li>
 	<p>To find all the error domains in the SDK, search the headers for the following:</p>
@@ -911,35 +911,35 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<pre>
 <code class="notranslate language-objectivec">ErrorDomain</code></pre>
 
-	<p>Here is a list of headers that have <code class="notranslate">ErrorDomain</code> references:</p>
+	<p>Here is a list of headers that have <code translate="No">ErrorDomain</code> references:</p>
 
 	<ul>
-		<li><code class="notranslate">BCOVFPSAuthorizationProxy.h</code></li>
-		<li><code class="notranslate">BCOVFPSBrightcoveAuthProxy.h</code></li>
-		<li><code class="notranslate">BCOVOfflineVideoManager.h</code></li>
-		<li><code class="notranslate">BCOVOnceCommon.h</code></li>
-		<li><code class="notranslate">BCOVOnceONOXMLDocument.h</code></li>
-		<li><code class="notranslate">BCOVOUXConstants.h</code></li>
-		<li><code class="notranslate">BCOVPlaybackService.h</code></li>
-		<li><code class="notranslate">BCOVPlaybackSession.h</code></li>
+		<li><code translate="No">BCOVFPSAuthorizationProxy.h</code></li>
+		<li><code translate="No">BCOVFPSBrightcoveAuthProxy.h</code></li>
+		<li><code translate="No">BCOVOfflineVideoManager.h</code></li>
+		<li><code translate="No">BCOVOnceCommon.h</code></li>
+		<li><code translate="No">BCOVOnceONOXMLDocument.h</code></li>
+		<li><code translate="No">BCOVOUXConstants.h</code></li>
+		<li><code translate="No">BCOVPlaybackService.h</code></li>
+		<li><code translate="No">BCOVPlaybackSession.h</code></li>
 	</ul>
 	</li>
 	<li>
-	<p>To find all the error codes, search each <code class="notranslate">ErrorDomain</code> for the following:</p>
+	<p>To find all the error codes, search each <code translate="No">ErrorDomain</code> for the following:</p>
 
 	<pre>
 <code class="notranslate language-objectivec">ErrorCode</code></pre>
 
-	<p>For example, in <code class="notranslate">BCOVPlaybackSession.h</code>, you'll see <code class="notranslate">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
+	<p>For example, in <code translate="No">BCOVPlaybackSession.h</code>, you'll see <code translate="No">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
 
 	<ul>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
-		<li><code class="notranslate">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
+		<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
 	</ul>
 	</li>
 	<li>
-	<p>Other domains may return errors differently. For example, the <code class="notranslate">BCOVPlaybackService</code> object will return errors in its completion blocks if there are network errors when requesting videos from the online catalog. It uses the error domain <code class="notranslate">kBCOVPlaybackServiceErrorDomain</code>.</p>
+	<p>Other domains may return errors differently. For example, the <code translate="No">BCOVPlaybackService</code> object will return errors in its completion blocks if there are network errors when requesting videos from the online catalog. It uses the error domain <code translate="No">kBCOVPlaybackServiceErrorDomain</code>.</p>
 	</li>
 </ol>
 </section>

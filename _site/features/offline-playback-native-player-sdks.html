@@ -975,7 +975,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Display a list of content available for streaming or download.</p>
 
-<p>When you set a video's <code class="notranslate">offline_enabled</code> property to <strong>true</strong>, the Native SDKs will mark this video as downloadable.</p>
+<p>When you set a video's <code translate="No">offline_enabled</code> property to <strong>true</strong>, the Native SDKs will mark this video as downloadable.</p>
 
 <h4 id="Prepare_videos">Prepare videos</h4>
 
@@ -1001,7 +1001,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>Here is an example using curl:</p>
 
 	<pre class="line-numbers" data-start="1">
-  <code class="notranslate language-json">curl --header "Authorization: Bearer $oauth_token" --request PATCH --data '
+  <code class="language-json" translate="No">curl --header "Authorization: Bearer $oauth_token" --request PATCH --data '
   {"offline_enabled" : true}
   ' https://cms.api.brightcove.com/v1/accounts/<span class="bcls-input">your account id</span>/videos/<span class="bcls-input">your video id</span></code></pre>
 	</li>
@@ -1020,10 +1020,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <ul>
 	<li>For iOS, review the information in the <strong>Check Download Size</strong> section of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#check-download-size">iOS App Developer's Guide to Offline Playback</a>.</li>
 	<li>
-	<p>For Android, you can get an estimate in the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.DownloadEventListener.html#onDownloadStarted-com.brightcove.player.model.Video-long-java.util.Map-"> OnDownloadStarted</a> callback from the <code class="notranslate">DownloadEventListener</code>. Here is an example of how to set the event listener:</p>
+	<p>For Android, you can get an estimate in the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.DownloadEventListener.html#onDownloadStarted-com.brightcove.player.model.Video-long-java.util.Map-"> OnDownloadStarted</a> callback from the <code translate="No">DownloadEventListener</code>. Here is an example of how to set the event listener:</p>
 
 	<pre>
-  <code class="notranslate language-java">MediaDownloadable.DownloadEventListener downloadEventListener = new MediaDownloadable.DownloadEventListener() {
+  <code class="language-java" translate="No">MediaDownloadable.DownloadEventListener downloadEventListener = new MediaDownloadable.DownloadEventListener() {
   //Your implementation.
   }
   OfflineCatalog catalog = new OfflineCatalog(context, eventEmitter, accountId, policyKey);
@@ -1095,13 +1095,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     Yes. The additional downloads are of Apple Media Selection Option objects (<code translate="No">AVMediaSelectionOption</code>), not tracks. The media selection object being downloaded is identified in the progress callback. (<a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVOfflineVideoManagerDelegate.html#//api/name/offlineVideoToken:aggregateDownloadTask:didProgressTo:forMediaSelection:">BCOVOfflineVideoManagerDelegate.h</a>)
   </p>
   <p>
-    Apple provides methods for examining the attributes of a media selection option. For details, see Apple's <a href="https://developer.apple.com/documentation/avfoundation/avmediaselectionoption">AVMediaSelectionOption</a>. 
+    Apple provides methods for examining the attributes of a media selection option. For details, see Apple's <a href="https://developer.apple.com/documentation/avfoundation/avmediaselectionoption">AVMediaSelectionOption</a>.
   </p>
   <p>
     You can see metadata values in the Xcode debugger console when running the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Offline">OfflinePlayer sample app</a> (don't be misled by the two English options - it's just a sample app)
   </p>
   <pre class="line-numbers">
-<code class="language-objectivec">OfflinePlayer[523:355259] AVMediaSelection option 0 | legible display name: English
+<code class="language-objectivec" translate="No">OfflinePlayer[523:355259] AVMediaSelection option 0 | legible display name: English
 OfflinePlayer[523:355259] AVMediaSelection option 0 | audible display name: English
 OfflinePlayer[523:355259] AVMediaSelection option 1 | legible display name: English
 OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: English</code></pre>
@@ -1247,7 +1247,7 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 
 <h3>iOS</h3>
 <h4>AirPlay</h4>
-<p>As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code class="notranslate">AVFoundation</code> limitation.</p>
+<p>As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code translate="No">AVFoundation</code> limitation.</p>
 </section>
 
 <section class="bcls-section">
@@ -1305,7 +1305,7 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 
 <p>The pause and cancel buttons should be displayed when video download has started.</p>
 
-<p><strong>Android:</strong> You should display the pause and cancel buttons as part of calling the <code class="notranslate">onDownloadStarted</code> callback in the <code class="notranslate">DownloadEventListener</code>. For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">Offline Playback sample app</a>.</p>
+<p><strong>Android:</strong> You should display the pause and cancel buttons as part of calling the <code translate="No">onDownloadStarted</code> callback in the <code translate="No">DownloadEventListener</code>. For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/OfflinePlaybackSampleApp">Offline Playback sample app</a>.</p>
 
 <p><strong>iOS:</strong> For details about how to create an app for Offline Playback, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developer's Guide</a>.</p>
 
@@ -1340,7 +1340,7 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 <p>When the offline playback code receives an error, we catch it and throw an NSError. To get the underlying error, you can try this:</p>
 
 <pre class="line-numbers">
-  <code class="language-objectivec">NSError *underlyingError = initialError.userInfo[NSUnderlyingErrorKey];</code></pre>
+  <code class="language-objectivec" translate="No">NSError *underlyingError = initialError.userInfo[NSUnderlyingErrorKey];</code></pre>
 
 <p>For more information, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developers Guide for Offline Playback</a>.</p>
 </section>

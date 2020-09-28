@@ -947,10 +947,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>Learn about AirPlay in <a href="">Apple's developer documentation for AirPlay</a>.</p>
 	</li>
 	<li>
-	<p>Use the playback controller’s <code class="notranslate">allowsExternalPlayback </code> property to set the AVPlayer’s <code class="notranslate">allowsExternalPlayback </code> property:</p>
+	<p>Use the playback controller’s <code translate="No">allowsExternalPlayback </code> property to set the AVPlayer’s <code translate="No">allowsExternalPlayback </code> property:</p>
 
 	<pre>
-<code class="notranslate language-swift"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
 	</li>
 	<li>
 	<p>Set up an AirPlay router control and handle its selection. For details, see <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AirPlayGuide/Introduction/Introduction.html">Apple's AirPlay Overview</a> document.</p>
@@ -981,7 +981,7 @@ BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackContr
 [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
 	</li>
 	<li>
-	<p>The <code class="notranslate">closedCaptionButton</code> is declared as a <code class="notranslate">BCOVPUIButton</code>, which is a subclass of <code class="notranslate">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
+	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
 
 	<pre class="line-numbers">
 <code class="notranslate language-objectivec">// Customize the CC button.
@@ -1001,7 +1001,7 @@ ccButton.primaryTitle = @"CC";
 <p>To display FairPlay-protected videos, set the AVPlayer properties exposed through the Brightcove Playback Controller to allow FairPlay video to play on an external display. The video plays in full screen mode. Here is an example of setting these properties:</p>
 
 <pre>
-<code class="notranslate language-swift"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">playbackController.allowsExternalPlayback = YES;
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">playbackController.allowsExternalPlayback = YES;
 playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</a></code></pre>
 </section>
 
@@ -1018,7 +1018,7 @@ playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</a></c
 	<p>Here is one way you could use Google Analytics to track video playback using Google's Firebase SDK:</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">// This snippet shows one way to track video playback
+<code class="language-swift" translate="No">// This snippet shows one way to track video playback
 // using the Firebase SDK from Google Analytics with
 // the lifecycle event playback controller delegate method.
 - (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
@@ -1069,14 +1069,14 @@ if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.
 <section class="bcls-section">
 <h2 id="Limiting_the_bitrate">Limiting the bitrate</h2>
 
-<p>You can't control which source (rendition) in the HLS manifest gets selected by the <code class="notranslate">AVPlayer </code>, but you can put a bitrate cap on playback. This prevents the player from using sources (renditions) with a bitrate over the specified bitrate.</p>
+<p>You can't control which source (rendition) in the HLS manifest gets selected by the <code translate="No">AVPlayer </code>, but you can put a bitrate cap on playback. This prevents the player from using sources (renditions) with a bitrate over the specified bitrate.</p>
 
-<p>Set the <code class="notranslate">preferredPeakBitRate </code> to the desired limit, in bits per second, of the network bandwidth consumption for the given <code class="notranslate">AVPlayerItem </code>.</p>
+<p>Set the <code translate="No">preferredPeakBitRate </code> to the desired limit, in bits per second, of the network bandwidth consumption for the given <code translate="No">AVPlayerItem </code>.</p>
 
 <p>Use one of the following declarations:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift">// Swift
+<code class="language-swift" translate="No">// Swift
 var preferredPeakBitRate: Double
 // Obj-C
 @property(nonatomic) double preferredPeakBitRate</code></pre>
@@ -1090,7 +1090,7 @@ var preferredPeakBitRate: Double
 <p>This code assumes that you have set the delegate of the playbackController to the object with this method:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+<code class="language-swift" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
 {
   if ([kBCOVPlaybackSessionLifecycleEventEnd isEqualToString:lifecycleEvent.eventType])
   {
@@ -1155,7 +1155,7 @@ BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequ
 	<p>Re-initialize the containers that store information related to the videos in the current playlist.</p>
 	</li>
 	<li>
-	<p>When the table view is selected, the row's index is used to create a new <code class="notranslate">videoDictionary</code>. Next, ask the dictionary for the video. If the video is not null, then load the video in the <code class="notranslate">playbackController</code>.</p>
+	<p>When the table view is selected, the row's index is used to create a new <code translate="No">videoDictionary</code>. Next, ask the dictionary for the video. If the video is not null, then load the video in the <code translate="No">playbackController</code>.</p>
 
 	<pre class="line-numbers">
 <code class="notranslate language-objectivec">// Play the video in this row when selected
@@ -1185,7 +1185,7 @@ BCOVVideo *video = videoDictionary[@"video"];
 <p>If these values are not important to you or interfere with your own progress tracking, they can be easily ignored with a conditional statement like this:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
 {
 if (progress &lt; 0.0 || progress &gt;= INFINITY)
 return;
@@ -1201,8 +1201,8 @@ return;
 <p>To page through a set of videos in a playlist, use the following request URL parameters:</p>
 
 <ul>
-	<li><code class="notranslate"><a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html#playlistRequests">limit</a> </code> - defines the number of videos to return from the Playback API</li>
-	<li><code class="notranslate"><a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html#playlistRequests">offset</a> </code> - sets the number of videos to skip in a playlist from the Playback API</li>
+	<li><code translate="No"><a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html#playlistRequests">limit</a> </code> - defines the number of videos to return from the Playback API</li>
+	<li><code translate="No"><a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html#playlistRequests">offset</a> </code> - sets the number of videos to skip in a playlist from the Playback API</li>
 </ul>
 
 <p>This example returns 6 videos starting with the 10th video in the playlist:</p>
@@ -1227,7 +1227,7 @@ completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
 <p>You can also add cue points to your video programmatically. The code below adds quarterly interval cue points to the video returned from the Playback API:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">// programmatically add cue points to a video
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">// programmatically add cue points to a video
 - (void)requestContentFromPlaybackService
 {
 [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
@@ -1260,14 +1260,14 @@ NSLog(@"ViewController Debug - Error retrieving video: `%@`", error);
 }];
 }</a></code></pre>
 
-<p>Note that the value of <code class="notranslate">your cue point type </code> can be any string value that you want, as long as you are not using any of the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Integrations">iOS plugins</a>. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html#//api/name/type">BCOVCuePoint Protocol Reference</a> document.</p>
+<p>Note that the value of <code translate="No">your cue point type </code> can be any string value that you want, as long as you are not using any of the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Integrations">iOS plugins</a>. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html#//api/name/type">BCOVCuePoint Protocol Reference</a> document.</p>
 
 <p>If you are using cue points with the IMA plugin, learn more about it in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#vast-and-vmapserver-side-ad-rules">VAST and VMAP/Server Side Ad Rules</a> section of the IMA Plugin for the Native SDK for iOS notes. The <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/06bb6f8dff6075340737017a966ad19b20bf6adb/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L39-L42">IMA sample app</a> shows you the value required for IMA ad cue points.</p>
 
 <p>The code below listens for your cue points and displays a message:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-swift"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html">// listen for cue points and display them
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html">// listen for cue points and display them
 -(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo {
 BCOVCuePointCollection *cpc = cuePointInfo[@"kBCOVPlaybackSessionEventKeyCuePoints"];
 for (BCOVCuePoint *cp in cpc) {
@@ -1281,7 +1281,7 @@ for (BCOVCuePoint *cp in cpc) {
 <!-- <section class="bcls-section" id="Setting_the_buffer_size">
 		<h2>Setting the buffer size</h2>
 		<p>You may consider increasing the buffer length to eliminate buffering in the player if the delivery of the next segment is delayed from the CDN. But, you may not be able to do anything better manually that HLS already does.</p>
-		<p>The <code class="notranslate">AVPlayer</code> contains the <code class="notranslate">AVPlayerItem</code>, essentially the video being played, that contains the <code class="notranslate">loadedTimeRanges</code> property. This tells you how much is buffered.</p>
+		<p>The <code translate="No">AVPlayer</code> contains the <code translate="No">AVPlayerItem</code>, essentially the video being played, that contains the <code translate="No">loadedTimeRanges</code> property. This tells you how much is buffered.</p>
 		<p>HLS is designed to play right away and drop quality if it can't keep up. This way, it does not need to preload a buffer. If it can't keep up, it will load as much of the video as it can at the best quality to prevent interruption.</p>
 		</section> -->
 
@@ -1305,7 +1305,7 @@ playbackController = nil</code></pre>
 <section class="bcls-section">
 <h2 id="Setting_the_playback_rate">Setting the playback rate</h2>
 
-<p>To control the playback rate, you can set the <code class="notranslate">rate </code> property on the <code class="notranslate">AVPlayer </code> class exposed on the session.</p>
+<p>To control the playback rate, you can set the <code translate="No">rate </code> property on the <code translate="No">AVPlayer </code> class exposed on the session.</p>
 
 <p>By default, the play rate can only be set on regular intervals (0.50, 0.67, 1.0, 1.25, 1.50 and 2.0). By setting the <a href="https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm">audioTimePitchAlgorithm</a>, you can use more granular rate values (like 1.7). For more details, see this <a href="https://stackoverflow.com/questions/6630356/avplayer-rate-property-does-not-work">stackoverflow discussion</a>.</p>
 
@@ -1335,7 +1335,7 @@ playbackController = nil</code></pre>
   </p>
 </aside>
 
-<p>For a <code class="notranslate">BCOVPlaybackSession </code>, your code would look similar to this:</p>
+<p>For a <code translate="No">BCOVPlaybackSession </code>, your code would look similar to this:</p>
 
 <pre class="line-numbers">
 <code class="notranslate language-objectivec">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
@@ -1353,8 +1353,8 @@ playbackController = nil</code></pre>
   The Native SDK for iOS does not support negative values for the playback rate (ie. we do not support playing videos in reverse).
 <!-- <p>Notes</p>
 <ul>
-  <li>For iOS6, a stream can only play at 2X if <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>YES</strong>.</li>
-	<li>For iOS7, you can play up to 2X always, but it won't go higher unless <code class="notranslate">session.player.currentItem.canPlayFastForward </code> returns <strong>Yes</strong>.</li>
+  <li>For iOS6, a stream can only play at 2X if <code translate="No">session.player.currentItem.canPlayFastForward </code> returns <strong>YES</strong>.</li>
+	<li>For iOS7, you can play up to 2X always, but it won't go higher unless <code translate="No">session.player.currentItem.canPlayFastForward </code> returns <strong>Yes</strong>.</li>
 	<li>For more information about managing playback, see Apple's <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVPlayer_Class/index.html#//apple_ref/occ/instp/AVPlayer/rate">AVPlayer Class Reference</a>.</li>
 </ul> -->
 </aside>
@@ -1363,7 +1363,7 @@ playbackController = nil</code></pre>
 <section class="bcls-section">
 <h2 id="Setting_VR_Goggles_mode_for_360_videos">Setting VR Goggles mode for 360° videos</h2>
 
-<p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code class="notranslate">BCOVPlaybackController </code> protocol's <code class="notranslate">viewProjection </code> property as follows:</p>
+<p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code translate="No">BCOVPlaybackController </code> protocol's <code translate="No">viewProjection </code> property as follows:</p>
 
 <pre class="line-numbers">
 <code class="notranslate language-objectivec"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
@@ -1373,7 +1373,7 @@ BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjec
 [self.playbackController setViewProjection:viewProjection];
 }</a></code></pre>
 
-<aside class="bcls-aside bcls-aside--information">Note that you need to set the controller's projection style in the <code class="notranslate">didAdvanceToPlaybackSession </code> delegate method.</aside>
+<aside class="bcls-aside bcls-aside--information">Note that you need to set the controller's projection style in the <code translate="No">didAdvanceToPlaybackSession </code> delegate method.</aside>
 </section>
 <!-- <section class="bcls-section">
 <h2 id="VoiceOver_support">VoiceOver support</h2>
@@ -1404,7 +1404,7 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 
 <p>When playing a video in portrait mode, you may notice a black border on top and below the player. The player view is the size of the screen, but the video only takes up a small part of the center of the player view. The visible portions around the video is the background of the player layer.</p>
 
-<p>This is normal <code class="notranslate">AVPlayer </code> behavior. It shrinks your video to fit inside the player layer, and the rest is the player layer background.</p>
+<p>This is normal <code translate="No">AVPlayer </code> behavior. It shrinks your video to fit inside the player layer, and the rest is the player layer background.</p>
 
 <p>You can change the player layer background with the following code:</p>
 

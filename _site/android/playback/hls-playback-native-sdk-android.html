@@ -889,18 +889,18 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>In your project's <strong>build.gradle</strong> file, add the following dependency: (use the <a href="/android/basics/overview-brightcove-player-sdk-android.html#Download_the_SDK">latest version of the Native SDK</a>)</p>
 
 	<pre>
-<code class="notranslate language-java">implementation "com.brightcove.player:exoplayer2:6.11.0"</code></pre>
+<code class="language-java" translate="No">implementation "com.brightcove.player:exoplayer2:6.11.0"</code></pre>
 	</li>
 	<li>
 	<p>In your project's XML layout file, use the following video view:</p>
 
 	<pre>
-<code class="notranslate language-java">com.brightcove.player.view.BrightcoveExoPlayerVideoView</code></pre>
+<code class="language-java" translate="No">com.brightcove.player.view.BrightcoveExoPlayerVideoView</code></pre>
 
 	<p>Your XML layout file should look similar to this:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
   &lt;android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
@@ -917,12 +917,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="XML layout for ExoPlayer" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/android/guides/hls/exo-xml-layout.png" />
 	<figcaption class="bcls-caption--image">XML layout for ExoPlayer</figcaption>
 	</figure> --></li>
-	<li>In the <strong>MainActivity.java</strong> file, locate the <code class="notranslate">onCreate()</code> function.</li>
+	<li>In the <strong>MainActivity.java</strong> file, locate the <code translate="No">onCreate()</code> function.</li>
 	<li>
-	<p>Below any existing code in the function, create an instance of <code class="notranslate">BrightcoveExoPlayerVideoView</code> and associate it with the layout using the following:</p>
+	<p>Below any existing code in the function, create an instance of <code translate="No">BrightcoveExoPlayerVideoView</code> and associate it with the layout using the following:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);

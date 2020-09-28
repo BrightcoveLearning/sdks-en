@@ -862,13 +862,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ul class="BCL_objectivesList">
 	<li>Create a project and add the Brightcove Player SDK for Android using Gradle.</li>
-	<li>Alter the layout to include a <code class="notranslate">BrightcoveExoPlayerVideoView</code>.</li>
-	<li>Add to the <code class="notranslate">onCreate()</code> method to play videos<span class="player-only">.</span><span class="video-cloud-only"> from different sources.</span></li>
+	<li>Alter the layout to include a <code translate="No">BrightcoveExoPlayerVideoView</code>.</li>
+	<li>Add to the <code translate="No">onCreate()</code> method to play videos<span class="player-only">.</span><span class="video-cloud-only"> from different sources.</span></li>
 </ul>
 
 <aside class="bcls-aside bcls-aside--tip">Notes:
 <ul>
-	<li>This example uses the <code class="notranslate">BrightcoveExoPlayerVideoView</code>, which is the recommended view to use in most cases. If you think you need to use a different view, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a BaseVideoView</a> document.</li>
+	<li>This example uses the <code translate="No">BrightcoveExoPlayerVideoView</code>, which is the recommended view to use in most cases. If you think you need to use a different view, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a BaseVideoView</a> document.</li>
 	<li class="video-cloud-only">This example uses the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</li>
 </ul>
 </aside>
@@ -954,14 +954,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Expand the <strong>Gradle Scripts</strong> section and open the second <code class="notranslate">build.gradle</code> file, which is associated with the current module in your PlayVideos project.</p>
+	<p>Expand the <strong>Gradle Scripts</strong> section and open the second <code translate="No">build.gradle</code> file, which is associated with the current module in your PlayVideos project.</p>
 
 	<figure class="bcls-figure"><img width="450" class="bcls-image--no-border" alt="Build gradle file" src="/assets/images/android/step-by-step/studioqs-gradle-file.png" />
 	<figcaption class="bcls-caption--image">Build gradle file</figcaption>
 	</figure>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">build.gradle</code> file, do the following:</p>
+	<p>In the <code translate="No">build.gradle</code> file, do the following:</p>
 
 	<ol>
 		<li>In the <code translate="No">android</code> section, add the following <code translate="No">compileOptions</code> value:
@@ -969,7 +969,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<aside class="bcls-aside bcls-aside--information">For ExoPlayer v2.9.0+, you need to enable Java 8 support. To do this, add the following to the <code translate="No">android</code> section of your app's <strong>build.gradle</strong> file. For details, see <a href="https://exoplayer.dev/hello-world.html">Android's ExoPlayer</a> document.</aside>
 
 		<pre class="line-numbers" data-start="1">
-<code class="notranslate language-java">android {
+<code class="language-java" translate="No">android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.brightcove.playvideos1"
@@ -990,17 +990,17 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     }</span>
 }</code></pre>
 		</li>
-		<li>Below the <code translate="No">android</code> section, add a <code class="notranslate">repositories</code> section for the Brightcove Maven repo.
+		<li>Below the <code translate="No">android</code> section, add a <code translate="No">repositories</code> section for the Brightcove Maven repo.
 		<pre class="line-numbers" data-start="1">
-<code class="notranslate language-java"><span class="bcls-highlight">repositories {
+<code class="language-java" translate="No"><span class="bcls-highlight">repositories {
       maven {
           url 'https://repo.brightcove.com/releases'
       }
     }</span></code></pre>
 		</li>
-		<li>In the <code class="notranslate">dependencies</code> section, include the latest version of the Native SDK for Android. Replace the value <code class="notranslate">6.10.0</code> below with the latest SDK version, which can be found in the <a href="/android/basics/overview-brightcove-player-sdk-android.html">Overview: Brightcove Native SDK for Android</a> document.
+		<li>In the <code translate="No">dependencies</code> section, include the latest version of the Native SDK for Android. Replace the value <code translate="No">6.10.0</code> below with the latest SDK version, which can be found in the <a href="/android/basics/overview-brightcove-player-sdk-android.html">Overview: Brightcove Native SDK for Android</a> document.
 		<pre class="line-numbers" data-start="1">
-<code class="notranslate language-java">dependencies {
+<code class="language-java" translate="No">dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation 'com.android.support:appcompat-v7:26.1.0'
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -1020,7 +1020,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li>Brightcove recommends always using the latest version with a specific version string. For example, review the <strong>build.gradle</strong> and <strong>gradle.properties</strong> files in the <a href="https://github.com/BrightcoveOS/android-player-samples">android-player-samples</a> project.</li>
 		<li>The ExoPlayer dependency includes the Native SDK for Android, so you do not have to include the SDK separately. <!-- <p>
 			It is recommended that you use the ExoPlayer. If you are not using the exoplayer, you can use the following:
-		</p> --> <!-- <code class="notranslate">implementation 'com.brightcove.player:android-sdk:6.+'</code> --></li>
+		</p> --> <!-- <code translate="No">implementation 'com.brightcove.player:android-sdk:6.+'</code> --></li>
 		<li><a href="https://google.github.io/ExoPlayer/">Google's ExoPlayer</a> is an open source, application-level media player for Android. Notice that we are using the ExoPlayer 2 framework. For details, see the <a href=" /android/framework/migrating-exoplayer-2-framework.html">Migrating to ExoPlayer 2 Framework</a> document.</li>
 	</ul>
 	</aside>
@@ -1036,10 +1036,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <h3>Define the app's layout</h3>
 
-<p>Even with the Empty Activity, you will get a simple <code class="notranslate">TextView</code> layout. Replace this with the <code class="notranslate">BrightcoveExoPlayerVideoView</code>, which defines the view for the player.</p>
+<p>Even with the Empty Activity, you will get a simple <code translate="No">TextView</code> layout. Replace this with the <code translate="No">BrightcoveExoPlayerVideoView</code>, which defines the view for the player.</p>
 
 <ol class="bcls-tasklist">
-	<li>Open the file <code class="notranslate">app/res/layout/activity_main.xml</code>.</li>
+	<li>Open the file <code translate="No">app/res/layout/activity_main.xml</code>.</li>
 	<li>
 	<p>Click <strong>Text</strong> at the bottom of the file's tab to see the raw XML.</p>
 
@@ -1048,10 +1048,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</figure>
 	</li>
 	<li>
-	<p>Remove the existing <code class="notranslate">TextView</code> element and add a <code class="notranslate">BrightcoveExoPlayerVideoView</code> section so the resulting XML appears as follows. Note for later use the <code class="notranslate">id</code> of the view is named <code class="notranslate">brightcove_video_view</code>.</p>
+	<p>Remove the existing <code translate="No">TextView</code> element and add a <code translate="No">BrightcoveExoPlayerVideoView</code> section so the resulting XML appears as follows. Note for later use the <code translate="No">id</code> of the view is named <code translate="No">brightcove_video_view</code>.</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
     &lt;android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -1071,12 +1071,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h3>Enable the app to use the Internet</h3>
 
 <ol class="bcls-tasklist">
-	<li>Open the <code class="notranslate">app/manifests/AndroidManifest.xml</code> file.</li>
+	<li>Open the <code translate="No">app/manifests/AndroidManifest.xml</code> file.</li>
 	<li>
-	<p>Just after the <code class="notranslate">&lt;application&gt;</code> code block, but above the ending <code class="notranslate">&lt;/manifest&gt;</code> tag, insert the following to enable Internet access.</p>
+	<p>Just after the <code translate="No">&lt;application&gt;</code> code block, but above the ending <code translate="No">&lt;/manifest&gt;</code> tag, insert the following to enable Internet access.</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-java">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code></pre>
+<code class="language-java" translate="No">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code></pre>
 	</li>
 	<li>Sync the project to rebuild it and pick up these changes.</li>
 </ol>
@@ -1085,13 +1085,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Return to the <code class="notranslate">MainActivity.java</code> file. For the <code class="notranslate">MainActivity</code> class, extend the <code class="notranslate">BrightcovePlayer</code> class. This provides default lifecycle management for your app.</p>
+	<p>Return to the <code translate="No">MainActivity.java</code> file. For the <code translate="No">MainActivity</code> class, extend the <code translate="No">BrightcovePlayer</code> class. This provides default lifecycle management for your app.</p>
 
 	<pre class="line-numbers" data-start="13">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {</code></pre>
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {</code></pre>
 	</li>
 	<li>
-	<p>The <code class="notranslate">BrightcovePlayer</code> class is not automatically imported into the project. Press the <strong>option + return</strong> keys to add the <code class="notranslate">import</code> statement for the class.</p>
+	<p>The <code translate="No">BrightcovePlayer</code> class is not automatically imported into the project. Press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the class.</p>
 
 	<p>Before:</p>
 
@@ -1108,52 +1108,52 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>You will do this for all new classes that you add to the project.</p>
 	</li>
 	<li>
-	<p>Locate the <code class="notranslate">onCreate()</code> function. Below any existing code in the function, add the following:</p>
+	<p>Locate the <code translate="No">onCreate()</code> function. Below any existing code in the function, add the following:</p>
 
 	<ul><!-- <li>Set the content view.</li> -->
 		<li>
-		<p>Create an instance of <code class="notranslate">BrightcoveExoPlayerVideoView</code> and associate it with the layout. In most cases, you will use the exoplayer view. For details, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a> document.</p>
+		<p>Create an instance of <code translate="No">BrightcoveExoPlayerVideoView</code> and associate it with the layout. In most cases, you will use the exoplayer view. For details, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a> document.</p>
 		</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="13">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 <span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span></code></pre>
 
-	<p>Don't forget to import the <code class="notranslate">BrightcoveExoPlayerVideoView</code> class.</p>
+	<p>Don't forget to import the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
 	</li>
 	<li class="player-only">
-	<p>Next, you need to send your Brightcove Player Account ID to Brightcove using the analytics <code class="notranslate">setAccount()</code> method.</p>
+	<p>Next, you need to send your Brightcove Player Account ID to Brightcove using the analytics <code translate="No">setAccount()</code> method.</p>
 
 	<pre class="line-numbers" data-start="22">
-<code class="notranslate language-java">Analytics analytics = brightcoveVideoView.getAnalytics();
+<code class="language-java" translate="No">Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setAccount("<span class="bcls-input">your account Id</span>");</code></pre>
 	</li>
 	<li class="video-cloud-only">
-	<p><strong>Optional:</strong> If you override the <code class="notranslate">BrightcoveExoPlayerVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Video Cloud Publisher ID to Video Cloud Analytics. You can do this by using the analytics <code class="notranslate">setAccount()</code> method. This allows you to view data for this app in Video Cloud Analytics.</p>
+	<p><strong>Optional:</strong> If you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Video Cloud Publisher ID to Video Cloud Analytics. You can do this by using the analytics <code translate="No">setAccount()</code> method. This allows you to view data for this app in Video Cloud Analytics.</p>
 
 	<pre class="line-numbers" data-start="22">
-<code class="notranslate language-java">Analytics analytics = brightcoveVideoView.getAnalytics();
+<code class="language-java" translate="No">Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setAccount("<span class="bcls-input">your account Id</span>");</code></pre>
 
 	<aside class="bcls-aside bcls-aside--tip video-cloud-only">For details about sending data to Video Cloud Analytics, see the <a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a> guide.</aside>
 	</li>
 	<li>
-	<p>Create a video object from your video hosted on a remote server. Set the <code class="notranslate">DeliveryType</code> to match the type of video you have.</p>
+	<p>Create a video object from your video hosted on a remote server. Set the <code translate="No">DeliveryType</code> to match the type of video you have.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="notranslate language-java">Video video = Video.createVideo("https://learning-services-media.brightcove.com/videos/hls/greatblueheron/greatblueheron.m3u8",
+<code class="language-java" translate="No">Video video = Video.createVideo("https://learning-services-media.brightcove.com/videos/hls/greatblueheron/greatblueheron.m3u8",
   DeliveryType.HLS);</code></pre>
 	</li>
 	<li>
 	<p>Load a remote image to be used as the poster image before video playback starts.</p>
 
 	<pre class="line-numbers" data-start="29">
-<code class="notranslate language-java">try {
+<code class="language-java" translate="No">try {
   java.net.URI myposterImage = new java.net.URI("https://solutions.brightcove.com/bcls/assets/images/Great-Blue-Heron.png");
   video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
 } catch (URISyntaxException e) {
@@ -1164,14 +1164,14 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 	<p>Add the video to the view and start video playback.</p>
 
 	<pre class="line-numbers" data-start="37">
-<code class="notranslate language-java">brightcoveVideoView.add(video);
+<code class="language-java" translate="No">brightcoveVideoView.add(video);
 brightcoveVideoView.start();</code></pre>
 	</li>
 	<li>
-	<p>Check to be sure your <code class="notranslate">onCreate()</code> method appears as follows:</p>
+	<p>Check to be sure your <code translate="No">onCreate()</code> method appears as follows:</p>
 
 	<pre class="line-numbers" data-start="15">
-<code class="notranslate language-java">@Override
+<code class="language-java" translate="No">@Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -1208,10 +1208,10 @@ brightcoveVideoView.start();</code></pre>
                       <h3>Add controls to the player</h3>
                       <p>You should have seen the default Android player controls when you ran your app in the last section. Now, you will use the Brightcove player controls.</p>
                       <ol start="31">
-                        <li>Add a blank line just after the instantiation of the <code class="notranslate">BrightcoveVideoView</code> and before adding the video.</li>
+                        <li>Add a blank line just after the instantiation of the <code translate="No">BrightcoveVideoView</code> and before adding the video.</li>
                         <li><p>In this position add the following code to add controls to the player.</p>
                         <p><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="59-60"></code></p></li>
-                        <li><p>Be sure your <code class="notranslate">onCreate()</code> method appears as follows:</p>
+                        <li><p>Be sure your <code translate="No">onCreate()</code> method appears as follows:</p>
                         <p class="video-cloud-only"><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="52-64"></code></p>
                         <p class="player-only"><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="160-175"></code></p></li>
                         <li>Run the application and you will see the video playing, now with the controls visible. If you don't see the controls, tap the screen and they will appear.</li>
@@ -1221,19 +1221,19 @@ brightcoveVideoView.start();</code></pre>
 <section class="bcls-section video-cloud-only">
 <h2 id="Get_and_play_a_video">Get and play a video</h2>
 
-<p>In this section, you will use the <code class="notranslate">Catalog</code> class to retrieve a single video from the Video Cloud server, then play it.</p>
+<p>In this section, you will use the <code translate="No">Catalog</code> class to retrieve a single video from the Video Cloud server, then play it.</p>
 
-<p>The <code class="notranslate">com.brightcove.player.edge.Catalog</code> class provides asynchronous methods for retrieving videos and playlists from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</p>
+<p>The <code translate="No">com.brightcove.player.edge.Catalog</code> class provides asynchronous methods for retrieving videos and playlists from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</p>
 
 <h3>Remove unneeded code</h3>
 
 <ol class="bcls-tasklist">
-	<li>Some code from the previous app is no longer needed. In the <code class="notranslate">onCreate()</code> method, remove all code after you instantiate the <code translate="No">brightcoveVideoView</code> .</li>
+	<li>Some code from the previous app is no longer needed. In the <code translate="No">onCreate()</code> method, remove all code after you instantiate the <code translate="No">brightcoveVideoView</code> .</li>
 	<li>
-	<p>Confirm your <code class="notranslate">onCreate()</code> method appears as follows:</p>
+	<p>Confirm your <code translate="No">onCreate()</code> method appears as follows:</p>
 
 	<pre class="line-numbers" data-start="13">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -1259,15 +1259,15 @@ brightcoveVideoView.start();</code></pre>
 	<aside class="bcls-aside bcls-aside--information">Notes:
 	<ul>
 		<li>To access the Playback API, you will need a Policy Key. If you are not familiar with Policy Keys, see the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</li>
-		<li>Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code class="notranslate">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</li>
+		<li>Because the Native SDKs do not send an origin header, you cannot use a domain-restricted Policy Key. If you try this, you will get a <code translate="No">403 Forbidden</code> response when you attempt to fetch content from your Video Cloud library.</li>
 	</ul>
 	</aside>
 	</li>
 	<li>
-	<p>Define your custom values in your project. Open the <code class="notranslate">res/values/strings.xml</code> file and update it as follows:</p>
+	<p>Define your custom values in your project. Open the <code translate="No">res/values/strings.xml</code> file and update it as follows:</p>
 
 	<pre class="line-numbers">
-<code class="notranslate language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
   &lt;resources&gt;
 
       &lt;!-- Application name --&gt;
@@ -1285,28 +1285,28 @@ brightcoveVideoView.start();</code></pre>
   &lt;/resources&gt;</code></pre>
 	</li>
 	<li>
-	<p>Return to the <code class="notranslate">MainActivity.java</code> file and add the following code:</p>
+	<p>Return to the <code translate="No">MainActivity.java</code> file and add the following code:</p>
 
 	<ul>
 		<li>Get the event emitter from the SDK</li>
 		<li>
-		<p>Create an instance of <code class="notranslate">com.brightcove.player.edge.Catalog</code>, using your defined values for Account ID and Policy Key from the previous step.</p>
+		<p>Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code>, using your defined values for Account ID and Policy Key from the previous step.</p>
 		</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="21">
-<code class="notranslate language-java">// Get the event emitter from the SDK and create a catalog request to fetch a video from the
+<code class="language-java" translate="No">// Get the event emitter from the SDK and create a catalog request to fetch a video from the
 // Brightcove Edge service, given a video id, an account id and a policy key.
 <span class="bcls-highlight">EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
 Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));</span>
   </code></pre>
 	</li>
 	<li>
-	<p>Use the Catalog's <code class="notranslate">findVideoByID()</code> method with your video ID and a <code class="notranslate">VideoListener</code> for the callback.</p>
-	<!--				<p>For this example, select the  <code class="notranslate">VideoListener</code> associated with <code class="notranslate">com.brightcove.player.media</code>.</p>-->
+	<p>Use the Catalog's <code translate="No">findVideoByID()</code> method with your video ID and a <code translate="No">VideoListener</code> for the callback.</p>
+	<!--				<p>For this example, select the  <code translate="No">VideoListener</code> associated with <code translate="No">com.brightcove.player.media</code>.</p>-->
 
 	<pre class="line-numbers" data-start="26">
-<code class="notranslate language-java">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+<code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
   // Add the video found to the queue with add().
   // Start playback of the video with start().
@@ -1319,13 +1319,13 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
     }
 });</code></pre>
 
-	<aside class="bcls-aside bcls-aside--information">The <code class="notranslate">VideoListener</code> identifies objects that expect to receive a Video object from an asynchronous operation. On a successful operation, an <code class="notranslate">onVideo()</code> method will be called. If there is an error in the operation, an <code class="notranslate">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
+	<aside class="bcls-aside bcls-aside--information">The <code translate="No">VideoListener</code> identifies objects that expect to receive a Video object from an asynchronous operation. On a successful operation, an <code translate="No">onVideo()</code> method will be called. If there is an error in the operation, an <code translate="No">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">onVideo()</code> method, add the video to <code class="notranslate">brightcoveVideoView</code>, then start the video.</p>
+	<p>In the <code translate="No">onVideo()</code> method, add the video to <code translate="No">brightcoveVideoView</code>, then start the video.</p>
 
 	<pre class="line-numbers" data-start="29">
-<code class="notranslate language-java">// Start playback of the video with start().
+<code class="language-java" translate="No">// Start playback of the video with start().
   @Override
     public void onVideo(Video video) {
       brightcoveVideoView.add(video);
@@ -1333,19 +1333,19 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
     }</code></pre>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">onError()</code> method throw the error string.</p>
+	<p>In the <code translate="No">onError()</code> method throw the error string.</p>
 
 	<pre class="line-numbers" data-start="36">
-<code class="notranslate language-java">@Override
+<code class="language-java" translate="No">@Override
     public void onError(String s) {
       throw new RuntimeException(s);
     }</code></pre>
 	</li>
 	<li>
-	<p>The complete code for your <code class="notranslate">MainActivity</code> class should be similar to this:</p>
+	<p>The complete code for your <code translate="No">MainActivity</code> class should be similar to this:</p>
 
 	<pre class="line-numbers" data-start="15">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -1381,18 +1381,18 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 <section class="bcls-section video-cloud-only">
 <h2 id="Get_and_play_a_playlist">Get and play a playlist</h2>
 
-<p>In this section, you will use the <code class="notranslate">Catalog</code> class to retrieve a playlist from the Video Cloud server, then play the videos in the playlist.</p>
+<p>In this section, you will use the <code translate="No">Catalog</code> class to retrieve a playlist from the Video Cloud server, then play the videos in the playlist.</p>
 
-<p>The <code class="notranslate">com.brightcove.player.edge.Catalog</code> class provides asynchronous methods for retrieving videos and playlists from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</p>
+<p>The <code translate="No">com.brightcove.player.edge.Catalog</code> class provides asynchronous methods for retrieving videos and playlists from the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</p>
 
 <h3>Remove unneeded code</h3>
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Some code from the previous app is no longer needed. Remove the call to the Catalog's <code class="notranslate">findVideoByID()</code> method, and the associated <code class="notranslate">VideoListener</code> anonymous callback function.</p>
+	<p>Some code from the previous app is no longer needed. Remove the call to the Catalog's <code translate="No">findVideoByID()</code> method, and the associated <code translate="No">VideoListener</code> anonymous callback function.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="notranslate language-java">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+<code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
     // Add the video found to the queue with add().
     // Start playback of the video with start().
@@ -1417,15 +1417,15 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 	<p>The existing catalog instance will work for retrieving a playlist, so <strong>no changes are necessary</strong> to these lines of code:</p>
 
 	<pre class="line-numbers" data-start="23">
-<code class="notranslate language-java">EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+<code class="language-java" translate="No">EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
 Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));</code></pre>
 	</li>
 	<li>In Video Cloud Studio's <strong>Media</strong> module, select a playlist and copy the <strong>Playlist ID</strong>.</li>
 	<li>
-	<p>Use the Catalog's <code class="notranslate">findPlaylistByID()</code> method using your playlist ID and a <code class="notranslate">PlaylistListener</code> for the callback.</p>
+	<p>Use the Catalog's <code translate="No">findPlaylistByID()</code> method using your playlist ID and a <code translate="No">PlaylistListener</code> for the callback.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="notranslate language-java">catalog.findPlaylistByID("2764931905001", new PlaylistListener() {
+<code class="language-java" translate="No">catalog.findPlaylistByID("2764931905001", new PlaylistListener() {
   @Override
   public void onPlaylist(Playlist playlist) {
   }
@@ -1435,32 +1435,32 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
   }
 });</code></pre>
 
-	<aside class="bcls-aside bcls-aside--tip">The <code class="notranslate">PlaylistListener</code> identifies objects that expect to receive a Playlist object from an asynchronous operation. On a successful operation, an <code class="notranslate">onPlaylist()</code> method will be called. If there is an error in the operation, an <code class="notranslate">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
+	<aside class="bcls-aside bcls-aside--tip">The <code translate="No">PlaylistListener</code> identifies objects that expect to receive a Playlist object from an asynchronous operation. On a successful operation, an <code translate="No">onPlaylist()</code> method will be called. If there is an error in the operation, an <code translate="No">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">onPlaylist()</code> method, retrieve the videos from the playlist, add all of the videos to <code class="notranslate">brightcoveVideoView</code>, then start the first video.</p>
+	<p>In the <code translate="No">onPlaylist()</code> method, retrieve the videos from the playlist, add all of the videos to <code translate="No">brightcoveVideoView</code>, then start the first video.</p>
 
 	<pre class="line-numbers" data-start="27">
-<code class="notranslate language-java">@Override
+<code class="language-java" translate="No">@Override
     public void onPlaylist(Playlist playlist) {
   <span class="bcls-highlight">    brightcoveVideoView.addAll(playlist.getVideos());
       brightcoveVideoView.start();</span>
     }</code></pre>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">onError()</code> method throw the error string.</p>
+	<p>In the <code translate="No">onError()</code> method throw the error string.</p>
 
 	<pre class="line-numbers" data-start="31">
-<code class="notranslate language-java"> @Override
+<code class="language-java" translate="No"> @Override
     public void onError(String s) {
   <span class="bcls-highlight">    throw new RuntimeException(s);</span>
     }</code></pre>
 	</li>
 	<li>
-	<p>The complete code for your <code class="notranslate">MainActivity</code> class should be similar to this:</p>
+	<p>The complete code for your <code translate="No">MainActivity</code> class should be similar to this:</p>
 
 	<pre class="line-numbers" data-start="15">
-<code class="notranslate language-java">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

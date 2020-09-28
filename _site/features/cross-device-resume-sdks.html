@@ -1010,7 +1010,7 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
     <p>
       Set the user identifier for Brightcove analytics.
     </p>
-    <pre><code class="language-objectivec">@try
+    <pre><code class="language-objectivec" translate="No">@try
   {
     [BCOVGlobalConfiguration.sharedConfig setValue:@{
       @&quot;privateUser&quot;: self.<span class="bcls-input">user id</span>,
@@ -1047,7 +1047,7 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
     <p>
       Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the following method:
     </p>
-    <pre><code class="language-objectivec">-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]
+    <pre><code class="language-objectivec" translate="No">-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]
 </code></pre>
     <p>
       This allows you to resume playback at a specific time without forcing the user to watch ads scheduled before <code translate="No">seekToTime</code>.

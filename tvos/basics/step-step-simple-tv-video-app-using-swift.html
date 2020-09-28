@@ -41,7 +41,7 @@ grandparent: tvOS Development
 <ol>
 	<li>Clone or download the <a href="https://github.com/BrightcoveOS/ios-player-samples">Native SDK for iOS samples</a> to your local system.</li>
 	<li>Navigate to the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/AppleTV/swift">Player/AppleTV/swift</a> sample app.</li>
-	<li>Run the <code class="notranslate">pod install</code> command.</li>
+	<li>Run the <code translate="No">pod install</code> command.</li>
 	<li>Open and run the newly created workspace.</li>
 </ol>
 
@@ -119,11 +119,11 @@ grandparent: tvOS Development
 <aside class="bcls-aside bcls-aside--warning">
 <ul>
 	<li>CocoaPods version 1.0 or newer is required.</li>
-	<li>Using CocoaPods (the <code class="notranslate">pod</code> tool) on an existing Xcode project will modify the project file. You may want to make a backup before doing this.</li>
+	<li>Using CocoaPods (the <code translate="No">pod</code> tool) on an existing Xcode project will modify the project file. You may want to make a backup before doing this.</li>
 </ul>
 </aside>
 
-<aside class="bcls-aside bcls-aside--tip">To easily create and update the <code class="notranslate">Podfile</code>, you can do the following steps inside of the <a href="https://cocoapods.org/app">CocoaPods App</a>.</aside>
+<aside class="bcls-aside bcls-aside--tip">To easily create and update the <code translate="No">Podfile</code>, you can do the following steps inside of the <a href="https://cocoapods.org/app">CocoaPods App</a>.</aside>
 
 <ol class="bcls-tasklist">
 	<li>
@@ -150,7 +150,7 @@ grandparent: tvOS Development
 	</ul>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">source 'https://github.com/brightcove/BrightcoveSpecs.git'
+<code class="language-swift" translate="No">source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
 use_frameworks!
 
@@ -162,7 +162,7 @@ end</code></pre>
 
 	<aside class="bcls-aside bcls-aside--tip">Notes:
 	<ul>
-		<li>The <code class="notranslate">target</code> property is used for CocoaPods version 1.0 and newer.</li>
+		<li>The <code translate="No">target</code> property is used for CocoaPods version 1.0 and newer.</li>
 		<li>You need to target the Brightcove Native SDK core v6.3+ for support of the UI controls.</li>
 	</ul>
 	</aside>
@@ -179,12 +179,12 @@ end</code></pre>
 	<p>In the Terminal session, type the command</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">pod install</code></pre>
+<code class="language-swift" translate="No">pod install</code></pre>
 
 	<p>and press <strong>Return</strong> to run the it. You should see a series of messages in the terminal indicating that the Brightcove Player SDK has been added to your project.</p>
 	</li>
 	<li>
-	<p><strong>Notice the last line</strong>, which is important — from this point on, you must open the <em>Simple-Video-Playback.xcworkspace</em> file in Xcode, <strong>not</strong> the <em>Simple-Video-Playback.xcodeproj</em> file. The <code class="notranslate">pod install</code> command creates this <code class="notranslate">.xcworkspace</code> file for your project.</p>
+	<p><strong>Notice the last line</strong>, which is important — from this point on, you must open the <em>Simple-Video-Playback.xcworkspace</em> file in Xcode, <strong>not</strong> the <em>Simple-Video-Playback.xcodeproj</em> file. The <code translate="No">pod install</code> command creates this <code translate="No">.xcworkspace</code> file for your project.</p>
 	</li>
 </ol>
 
@@ -209,10 +209,10 @@ end</code></pre>
 	<p>In your project, open the App Delegate file (<strong>AppDelegate.swift</strong>).</p>
 	</li>
 	<li>
-	<p>In the <code class="notranslate">didFinishLaunchingWithOptions</code> function, add code to set the audio session category. Make sure you import the <code class="notranslate">AVFoundation</code> framework.</p>
+	<p>In the <code translate="No">didFinishLaunchingWithOptions</code> function, add code to set the audio session category. Make sure you import the <code translate="No">AVFoundation</code> framework.</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">//
+<code class="language-swift" translate="No">//
 //  AppDelegate.swift
 //  Simple-Video-Playback
 //
@@ -291,10 +291,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Below the existing <code class="notranslate">import</code> directive, add the following to import the Brightcove Native Player SDK:</p>
+	<p>Below the existing <code translate="No">import</code> directive, add the following to import the Brightcove Native Player SDK:</p>
 
 	<pre class="line-numbers" data-start="9">
-<code class="notranslate language-swift">import BrightcovePlayerSDK</code></pre>
+<code class="language-swift" translate="No">import BrightcovePlayerSDK</code></pre>
 	</li>
 </ol>
 
@@ -304,7 +304,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Below the <code class="notranslate">import</code> directives, add your own values for the following:</p>
+	<p>Below the <code translate="No">import</code> directives, add your own values for the following:</p>
 
 	<ul>
 		<li>
@@ -317,7 +317,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	</ul>
 
 	<pre class="line-numbers" data-start="11">
-<code class="notranslate language-swift">fileprivate struct playbackConfig {
+<code class="language-swift" translate="No">fileprivate struct playbackConfig {
   static let policyKey = "<span class="bcls-input">your policy key</span>"
   static let accountID = "<span class="bcls-input">your account id</span>"
   static let videoID = "<span class="bcls-input">your video id</span>"
@@ -329,10 +329,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>In the <code class="notranslate">ViewController</code> class, add a variable for the view.</p>
+	<p>In the <code translate="No">ViewController</code> class, add a variable for the view.</p>
 
 	<pre class="line-numbers" data-start="17">
-<code class="notranslate language-swift">class ViewController: UIViewController {
+<code class="language-swift" translate="No">class ViewController: UIViewController {
   @IBOutlet weak var videoContainerView: UIView!</code></pre>
 	</li>
 </ol>
@@ -346,7 +346,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	<p>If you are new to swift, review the guide about <a href="https://docs.swift.org/swift-book/LanguageGuide/Properties.html">Lazy Stored Properties</a>.</p>
 
 	<pre class="line-numbers" data-start="20">
-<code class="notranslate language-swift">lazy var playbackService: BCOVPlaybackService = {
+<code class="language-swift" translate="No">lazy var playbackService: BCOVPlaybackService = {
   return BCOVPlaybackService(accountId: playbackConfig.accountID, policyKey: playbackConfig.policyKey)
 }()</code></pre>
 	</li>
@@ -365,7 +365,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	</ul>
 
 	<pre class="line-numbers" data-start="24">
-<code class="notranslate language-swift">lazy var playbackController: BCOVPlaybackController? = {
+<code class="language-swift" translate="No">lazy var playbackController: BCOVPlaybackController? = {
   guard let _playbackController = BCOVPlayerSDKManager.shared().createPlaybackController() else {
     return nil
   }
@@ -382,7 +382,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Create a function named <code class="notranslate">createTVPlayerView</code> as follows:</p>
+	<p>Create a function named <code translate="No">createTVPlayerView</code> as follows:</p>
 
 	<ul>
 		<li>Lines 38-39: Define the player view so that the tab bar panels can present other view controllers.</li>
@@ -396,7 +396,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	</ul>
 
 	<pre class="line-numbers" data-start="35">
-<code class="notranslate language-swift">lazy var playerView: BCOVTVPlayerView? = {
+<code class="language-swift" translate="No">lazy var playerView: BCOVTVPlayerView? = {
   // Set yourself as the presenting view controller
   // so that tab bar panels can present other view controllers
   let options = BCOVTVPlayerViewOptions()
@@ -428,19 +428,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 <h4>Create an init function</h4>
 
 <ol class="bcls-tasklist">
-	<li>Create an <code class="notranslate">init</code>function as follows:
+	<li>Create an <code translate="No">init</code>function as follows:
 
 	<ul>
 		<li>Line 64: Calls the super class implementation of the init() function.</li>
 		<li>
-		<p>Line 65: <strong>Optional:</strong> Sends your Video Cloud Account ID to analytics. This is only needed if you override the <code class="notranslate">BCOVVideo</code> class or do not use the Brightcove Playback service or catalog.</p>
+		<p>Line 65: <strong>Optional:</strong> Sends your Video Cloud Account ID to analytics. This is only needed if you override the <code translate="No">BCOVVideo</code> class or do not use the Brightcove Playback service or catalog.</p>
 
 		<aside class="bcls-aside bcls-aside--tip">For details about sending data to Video Cloud Analytics, see the <a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a> guide.</aside>
 		</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="62">
-<code class="notranslate language-swift">required init?(coder aDecoder: NSCoder)
+<code class="language-swift" translate="No">required init?(coder aDecoder: NSCoder)
 {
   super.init(coder: aDecoder)
   playbackController?.analytics.account = playbackConfig.accountID;
@@ -452,16 +452,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>In the <code class="notranslate">viewDidLoad</code> method add the following:</p>
+	<p>In the <code translate="No">viewDidLoad</code> method add the following:</p>
 
 	<ul>
 		<li>
-		<p>Line 72: Calls the <code class="notranslate">requestContentFromPlaybackService</code> function, which we will define in the next step.</p>
+		<p>Line 72: Calls the <code translate="No">requestContentFromPlaybackService</code> function, which we will define in the next step.</p>
 		</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="68">
-<code class="notranslate language-swift">override func viewDidLoad() {
+<code class="language-swift" translate="No">override func viewDidLoad() {
   super.viewDidLoad()
   // Do any additional setup after loading the view, typically from a nib.
 
@@ -476,7 +476,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Create a function named <code class="notranslate">requestContentFromPlaybackService</code> as follows:</p>
+	<p>Create a function named <code translate="No">requestContentFromPlaybackService</code> as follows:</p>
 
 	<ul>
 		<li>Lines 75-76: return a video object from the Playback API based on the given video id.</li>
@@ -485,7 +485,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	</ul>
 
 	<pre class="line-numbers" data-start="75">
-<code class="notranslate language-swift">private func requestContentFromPlaybackService() {
+<code class="language-swift" translate="No">private func requestContentFromPlaybackService() {
   playbackService.findVideo(withVideoID: playbackConfig.videoID, parameters: nil) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
     if let _video = video {
@@ -508,7 +508,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	<p>Extend the view controller to include the Brightcove playback controller delegate, and listen for playback events. If you are new to swift, review the guide about <a href="https://docs.swift.org/swift-book/LanguageGuide/Extensions.html">Extensions</a>.</p>
 
 	<pre class="line-numbers" data-start="88">
-<code class="notranslate language-swift">// MARK: - BCOVPlaybackControllerDelegate
+<code class="language-swift" translate="No">// MARK: - BCOVPlaybackControllerDelegate
 extension ViewController: BCOVPlaybackControllerDelegate {
 
   func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
@@ -529,7 +529,7 @@ extension ViewController: BCOVPlaybackControllerDelegate {
 	<p>Create functions to handle focus overrides for older versions of tvOS.</p>
 
 	<pre class="line-numbers" data-start="100">
-<code class="notranslate language-swift">// MARK: - UIFocusEnvironment overrides
+<code class="language-swift" translate="No">// MARK: - UIFocusEnvironment overrides
 extension ViewController {
 
   // Focus Environment override for tvOS 9
@@ -550,7 +550,7 @@ extension ViewController {
 <p>The View Controller is now complete. Here is the full code:</p>
 
 <pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">//
+<code class="language-swift" translate="No">//
 //  ViewController.swift
 //  Simple-Video-Playback
 //
@@ -672,10 +672,10 @@ extension ViewController {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Below the existing <code class="notranslate">import</code> directive, add the following to import the Brightcove Native Player SDK:</p>
+	<p>Below the existing <code translate="No">import</code> directive, add the following to import the Brightcove Native Player SDK:</p>
 
 	<pre class="line-numbers" data-start="9">
-<code class="notranslate language-swift">import BrightcovePlayerSDK</code></pre>
+<code class="language-swift" translate="No">import BrightcovePlayerSDK</code></pre>
 	</li>
 </ol>
 
@@ -684,7 +684,7 @@ extension ViewController {
 <p>Add the value for your Video Cloud Account ID.</p>
 
 <pre class="line-numbers" data-start="11">
-<code class="notranslate language-swift">fileprivate struct playbackConfig {
+<code class="language-swift" translate="No">fileprivate struct playbackConfig {
     static let accountID = "<span class="bcls-input">your account id</span>"
 }</code></pre>
 
@@ -695,10 +695,10 @@ extension ViewController {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>In the <code class="notranslate">ViewController</code> class, add a variable for the view.</p>
+	<p>In the <code translate="No">ViewController</code> class, add a variable for the view.</p>
 
 	<pre class="line-numbers" data-start="15">
-<code class="notranslate language-swift">class ViewController: UIViewController {
+<code class="language-swift" translate="No">class ViewController: UIViewController {
   @IBOutlet weak var videoContainerView: UIView!</code></pre>
 	</li>
 </ol>
@@ -716,7 +716,7 @@ extension ViewController {
 	</ul>
 
 	<pre class="line-numbers" data-start="18">
-<code class="notranslate language-swift">lazy var playbackController: BCOVPlaybackController? = {
+<code class="language-swift" translate="No">lazy var playbackController: BCOVPlaybackController? = {
   guard let _playbackController = BCOVPlayerSDKManager.shared().createPlaybackController() else {
     return nil
   }
@@ -733,7 +733,7 @@ extension ViewController {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Create the <code class="notranslate">playerView</code> as follows:</p>
+	<p>Create the <code translate="No">playerView</code> as follows:</p>
 
 	<ul>
 		<li>Lines 32-33: Define the player view so that the tab bar panels can present other view controllers.</li>
@@ -747,7 +747,7 @@ extension ViewController {
 	</ul>
 
 	<pre class="line-numbers" data-start="29">
-<code class="notranslate language-swift">lazy var playerView: BCOVTVPlayerView? = {
+<code class="language-swift" translate="No">lazy var playerView: BCOVTVPlayerView? = {
   // Set yourself as the presenting view controller
   // so that tab bar panels can present other view controllers
   let options = BCOVTVPlayerViewOptions()
@@ -779,7 +779,7 @@ extension ViewController {
 <h4>Create an init function</h4>
 
 <ol class="bcls-tasklist">
-	<li>Create an <code class="notranslate">init</code>function as follows:
+	<li>Create an <code translate="No">init</code>function as follows:
 
 	<ul>
 		<li>Line 58: Calls the super class implementation of the init() function.</li>
@@ -791,7 +791,7 @@ extension ViewController {
 	</ul>
 
 	<pre class="line-numbers" data-start="56">
-<code class="notranslate language-swift">required init?(coder aDecoder: NSCoder)
+<code class="language-swift" translate="No">required init?(coder aDecoder: NSCoder)
 {
   super.init(coder: aDecoder)
   playbackController?.analytics.account = playbackConfig.accountID;
@@ -803,7 +803,7 @@ extension ViewController {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>In the <code class="notranslate">viewDidLoad</code> method add the following:</p>
+	<p>In the <code translate="No">viewDidLoad</code> method add the following:</p>
 
 	<ul>
 		<li>Lines 67-69: Create an array of video sources using url paths.</li>
@@ -813,7 +813,7 @@ extension ViewController {
 	</ul>
 
 	<pre class="line-numbers" data-start="62">
-<code class="notranslate language-swift">override func viewDidLoad() {
+<code class="language-swift" translate="No">override func viewDidLoad() {
   super.viewDidLoad()
   // Do any additional setup after loading the view, typically from a nib.
 
@@ -831,10 +831,10 @@ extension ViewController {
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Create a function that sets the delivery method for <code class="notranslate">BCOVSources</code> that belong to a video.</p>
+	<p>Create a function that sets the delivery method for <code translate="No">BCOVSources</code> that belong to a video.</p>
 
 	<pre class="line-numbers" data-start="74">
-<code class="notranslate language-swift">func videoWithURL(url: NSURL) -&gt; BCOVVideo {
+<code class="language-swift" translate="No">func videoWithURL(url: NSURL) -&gt; BCOVVideo {
     // set the delivery method for BCOVSources that belong to a video
     let source:BCOVSource = BCOVSource(url: url as URL?, deliveryMethod: kBCOVSourceDeliveryHLS, properties: nil)
     let video = BCOVVideo.init(source: source, cuePoints: BCOVCuePointCollection.init(array: []), properties: [NSObject:AnyObject]())
@@ -852,7 +852,7 @@ extension ViewController {
 	<p>Extend the view controller to include the Brightcove playback controller delegate, and listen for playback events. If you are new to swift, review the guide about <a href="https://docs.swift.org/swift-book/LanguageGuide/Extensions.html">Extensions</a>.</p>
 
 	<pre class="line-numbers" data-start="82">
-<code class="notranslate language-swift">// MARK: - BCOVPlaybackControllerDelegate
+<code class="language-swift" translate="No">// MARK: - BCOVPlaybackControllerDelegate
 extension ViewController: BCOVPlaybackControllerDelegate {
 
   func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
@@ -873,7 +873,7 @@ extension ViewController: BCOVPlaybackControllerDelegate {
 	<p>Create functions to handle focus overrides for older versions of tvOS.</p>
 
 	<pre class="line-numbers" data-start="94">
-<code class="notranslate language-swift">// MARK: - UIFocusEnvironment overrides
+<code class="language-swift" translate="No">// MARK: - UIFocusEnvironment overrides
 extension ViewController {
 
   // Focus Environment override for tvOS 9
@@ -894,7 +894,7 @@ extension ViewController {
 <p>The View Controller is now complete. Here is the full code:</p>
 
 <pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">//
+<code class="language-swift" translate="No">//
 //  ViewController.swift
 //  Simple-Video-Playback
 //
@@ -1007,11 +1007,11 @@ extension ViewController {
 <section class="bcls-section" id="&gt;Connect_the_storyboard_view">
 <h2>Connect the storyboard view</h2>
 
-<p>Connect the <code class="notranslate">Main.storyboard</code> view with the <code class="notranslate">videoContainer</code> property.</p>
+<p>Connect the <code translate="No">Main.storyboard</code> view with the <code translate="No">videoContainer</code> property.</p>
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>In the Xcode, open the <code class="notranslate">Main.storyboard</code> file.</p>
+	<p>In the Xcode, open the <code translate="No">Main.storyboard</code> file.</p>
 	</li>
 	<li>
 	<p>In the companion view, expand the <strong>View Controller Scene</strong> and then the <strong>View Controller</strong> menu to expose the <strong>View</strong> object.</p>
@@ -1021,14 +1021,14 @@ extension ViewController {
 	</figure>
 	</li>
 	<li>
-	<p>Show the Assistant Editor, and open the <code class="notranslate">ViewController.swift</code> file.</p>
+	<p>Show the Assistant Editor, and open the <code translate="No">ViewController.swift</code> file.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image" alt="Assistant editor" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/tvos/getting-started/quick-start-swift/assistant-editor.png" />
 	<figcaption class="bcls-caption--image">Assistant editor</figcaption>
 	</figure>
 	</li>
 	<li>
-	<p>Select the open circle next to the <code class="notranslate">@IBOutlet</code> for the <code class="notranslate">videoContainerView</code>, and drag it to the <strong>View</strong> object to connect these components.</p>
+	<p>Select the open circle next to the <code translate="No">@IBOutlet</code> for the <code translate="No">videoContainerView</code>, and drag it to the <strong>View</strong> object to connect these components.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image" alt="Connect the view" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/tvos/getting-started/quick-start-swift/connect-view.png" />
 	<figcaption class="bcls-caption--image">Connect the view</figcaption>
@@ -1057,7 +1057,7 @@ extension ViewController {
 		<p>If you are using HTTP sources or have other HTTP calls in your app, you may encounter the following error message:</p>
 
 		<pre class="line-numbers" data-start="1">
-<code class="notranslate language-swift">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
+<code class="language-swift" translate="No">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
 Temporary exceptions can be configured via your app's Info.plist file.</code></pre>
 
 		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>

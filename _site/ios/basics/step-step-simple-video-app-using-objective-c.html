@@ -1005,7 +1005,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</ul>
 
 	<pre class="line-numbers">
-<code class="language-swift">source 'https://github.com/brightcove/BrightcoveSpecs.git'
+<code class="language-swift" translate="No">source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
 use_frameworks!
 
@@ -1026,7 +1026,7 @@ end</code></pre>
 	<p>In the Terminal session, type the following command:</p>
 
 	<pre class="line-numbers">
-<code class="language-swift">pod install</code></pre>
+<code class="language-swift" translate="No">pod install</code></pre>
 
 	<p>and press <strong>Return</strong> to run the it. You should see a series of messages in the terminal indicating that the Brightcove Player SDK has been added to your project.</p>
 	</li>
@@ -1073,7 +1073,7 @@ end</code></pre>
 	</ul>
 
 	<pre class="line-numbers">
-<code class="language-objectivec">//  AppDelegate.m
+<code class="language-objectivec" translate="No">//  AppDelegate.m
 //  Simple-Video-Playback
 //
 //  Copyright © 2018 Brightcove. All rights reserved.
@@ -1146,7 +1146,7 @@ return YES;
 	<p>Add the following import statement for the Brightcove Player SDK:</p>
 
 	<pre class="line-numbers" data-start="8">
-<code class="language-objectivec">@import BrightcovePlayerSDK;</code></pre>
+<code class="language-objectivec" translate="No">@import BrightcovePlayerSDK;</code></pre>
 	</li>
 </ol>
 
@@ -1155,7 +1155,7 @@ return YES;
 <p>The View Controller header is now complete. Here is the full code:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec">//  ViewController.h
+<code class="language-objectivec" translate="No">//  ViewController.h
 //  Simple-Video-Playback
 //
 //  Copyright © 2018 Brightcove. All rights reserved.
@@ -1197,7 +1197,7 @@ return YES;
 	</ul>
 
 	<pre class="line-numbers" data-start="11">
-<code class="language-objectivec">// ** Customize these values with your own account information **
+<code class="language-objectivec" translate="No">// ** Customize these values with your own account information **
 static NSString * const kViewControllerPlaybackServicePolicyKey = @"<span class="bcls-input">your policy key</span>";
 static NSString * const kViewControllerAccountID = @"<span class="bcls-input">your account id</span>";
 static NSString * const kViewControllerVideoID = @"<span class="bcls-input">your video id</span>";</code></pre>
@@ -1219,7 +1219,7 @@ static NSString * const kViewControllerVideoID = @"<span class="bcls-input">your
 	</ul>
 
 	<pre class="line-numbers" data-start="16">
-<code class="language-objectivec">@interface ViewController () &lt;BCOVPlaybackControllerDelegate&gt;
+<code class="language-objectivec" translate="No">@interface ViewController () &lt;BCOVPlaybackControllerDelegate&gt;
 
 @property (nonatomic, strong) BCOVPlaybackService *playbackService;
 @property (nonatomic, strong) id&lt;BCOVPlaybackController&gt; playbackController;
@@ -1237,7 +1237,7 @@ static NSString * const kViewControllerVideoID = @"<span class="bcls-input">your
 	<p>In the ViewController implementation section, define an <code translate="No">init</code> function which calls a <code translate="No">setup</code> function which you will define in the next step.</p>
 
 	<pre class="line-numbers" data-start="25">
-<code class="language-objectivec">@implementation ViewController
+<code class="language-objectivec" translate="No">@implementation ViewController
 #pragma mark Setup Methods
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -1272,7 +1272,7 @@ return self;
 	</ul>
 
 	<pre class="line-numbers" data-start="38">
-<code class="language-objectivec">- (void)setup
+<code class="language-objectivec" translate="No">- (void)setup
 {
 _playbackController = [BCOVPlayerSDKManager.sharedManager createPlaybackController];
 
@@ -1306,7 +1306,7 @@ _playbackService = [[BCOVPlaybackService alloc] initWithAccountId:kViewControlle
 	</ul>
 
 	<pre class="line-numbers" data-start="51">
-<code class="language-objectivec">- (void)viewDidLoad {
+<code class="language-objectivec" translate="No">- (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
 
@@ -1340,7 +1340,7 @@ _playbackService = [[BCOVPlaybackService alloc] initWithAccountId:kViewControlle
 	<p>Below the <code translate="No">viewDidLoad</code> function, create a function named <code translate="No">requestContentFromPlaybackService</code> as follows:</p>
 
 	<pre class="line-numbers" data-start="70">
-<code class="language-objectivec">- (void)requestContentFromPlaybackService
+<code class="language-objectivec" translate="No">- (void)requestContentFromPlaybackService
 {
 [self.playbackService findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
 
@@ -1363,7 +1363,7 @@ _playbackService = [[BCOVPlaybackService alloc] initWithAccountId:kViewControlle
 <p>The View Controller implementation is now complete. Here is the full code:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec">//
+<code class="language-objectivec" translate="No">//
 //  ViewController.m
 //  Simple-Video-Playback
 //
@@ -1465,7 +1465,7 @@ _playerView.playbackController = _playbackController;
 	<p>Below the <code translate="No">#import</code> directives, add your own value for your Brightcove Account Id. This will be used to register your app with Brightcove.</p>
 
 	<pre class="line-numbers" data-start="11">
-<code class="language-objectivec">// ** Customize these values with your own account information **
+<code class="language-objectivec" translate="No">// ** Customize these values with your own account information **
 static NSString * const kViewControllerAccountID = @"<span class="bcls-input">your account id</span>";</code></pre>
 	</li>
 </ol>
@@ -1486,7 +1486,7 @@ static NSString * const kViewControllerAccountID = @"<span class="bcls-input">yo
 	</ul>
 
 	<pre class="line-numbers" data-start="14">
-<code class="language-objectivec">@interface ViewController () &lt;BCOVPlaybackControllerDelegate&gt;
+<code class="language-objectivec" translate="No">@interface ViewController () &lt;BCOVPlaybackControllerDelegate&gt;
 
 @property (nonatomic, strong) id&lt;BCOVPlaybackController&gt; playbackController;
 @property (nonatomic) BCOVPUIPlayerView *playerView;
@@ -1503,7 +1503,7 @@ static NSString * const kViewControllerAccountID = @"<span class="bcls-input">yo
 	<p>In the ViewController implementation section, define an <code translate="No">init</code> function which calls a <code translate="No">setup</code> function which you will define in the next step.</p>
 
 	<pre class="line-numbers" data-start="22">
-<code class="language-objectivec">@implementation ViewController
+<code class="language-objectivec" translate="No">@implementation ViewController
 #pragma mark Setup Methods
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -1532,7 +1532,7 @@ return self;
 	</ul>
 
 	<pre class="line-numbers" data-start="35">
-<code class="language-objectivec">- (void)setup
+<code class="language-objectivec" translate="No">- (void)setup
 {
 _playbackController = [BCOVPlayerSDKManager.sharedManager createPlaybackController];
 
@@ -1565,7 +1565,7 @@ _playbackController.autoPlay = YES;
 	</ul>
 
 	<pre class="line-numbers" data-start="46">
-<code class="language-objectivec">- (void)viewDidLoad {
+<code class="language-objectivec" translate="No">- (void)viewDidLoad {
 [super viewDidLoad];
 
 // create an array of videos
@@ -1605,7 +1605,7 @@ _playerView.playbackController = _playbackController;
 	<p>Below the <code translate="No">viewDidLoad</code> function, create a function that sets the delivery method for <code translate="No">BCOVSources</code> that belong to a video.</p>
 
 	<pre class="line-numbers" data-start="74">
-<code class="language-objectivec">- (BCOVVideo *)videoWithURL:(NSURL *)url
+<code class="language-objectivec" translate="No">- (BCOVVideo *)videoWithURL:(NSURL *)url
 {
 // set the delivery method for BCOVSources that belong to a video
 BCOVSource *source = [[BCOVSource alloc] initWithURL:url deliveryMethod:kBCOVSourceDeliveryHLS properties:nil];
@@ -1619,7 +1619,7 @@ return [[BCOVVideo alloc] initWithSource:source cuePoints:[BCOVCuePointCollectio
 <p>The View Controller implementation is now complete. Here is the full code:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec">//
+<code class="language-objectivec" translate="No">//
 //  ViewController.m
 //  Simple-Video-Playback
 //
@@ -1774,7 +1774,7 @@ return [[BCOVVideo alloc] initWithSource:source cuePoints:[BCOVCuePointCollectio
 		<p>If you are using HTTP sources or have other HTTP calls in your app, you may encounter the following error message:</p>
 
 		<pre class="line-numbers" data-start="1">
-<code class="language-swift">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
+<code class="language-swift" translate="No">App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure.
 Temporary exceptions can be configured via your app's Info.plist file.</code></pre>
 
 		<p>This means that ATS is enabled, but your system is not configured to meet the ATS requirements. To fix this situation, see the <a href="/ios/framework/working-app-transport-security-ats.html">Working with App Transport Security (ATS)</a> document.</p>

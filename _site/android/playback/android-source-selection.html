@@ -854,7 +854,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h1>Android: Source Selection</h1>
 <article class="bcls-article">
   <summary>In this topic, you will learn how the Brightcove Native Player SDK for Android uses a default source selection process when playing a video.</summary>
-  
+
 <section class="bcls-section">
 <h2 id="Introduction">Introduction</h2>
 
@@ -872,13 +872,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>
 	<p>With the Brightcove Native SDK for Android 6.4+, HTTPS delivery for all source types is selected if available.</p>
 
-	<p>Both the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/controller/DefaultSourceSelectionController.html">DefaultSourceSelectionController</a> and <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/controller/ExoPlayerSourceSelectionController.html">ExoPlayerSourceSelectionController</a> attempt to select the HTTPS version of the <code class="notranslate">deliveryType</code> selected. If no HTTPS source exists, the selection controller will select the first available.</p>
+	<p>Both the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/controller/DefaultSourceSelectionController.html">DefaultSourceSelectionController</a> and <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/controller/ExoPlayerSourceSelectionController.html">ExoPlayerSourceSelectionController</a> attempt to select the HTTPS version of the <code translate="No">deliveryType</code> selected. If no HTTPS source exists, the selection controller will select the first available.</p>
 
 	<aside class="bcls-aside bcls-aside--information">If your video has both HTTP and HTTPS sources for WebVTT captions/subtitles, then the Native SDK for Android may not return the HTTPS version. Brightcove is aware of this situation and will have a fix in a future release.</aside>
 	</li>
-	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> looks for the first source that has a <code class="notranslate">deliveryType</code> of <strong>MPEG-DASH</strong>, and a profile that is neither <strong>urn:hbbtv</strong> nor <strong>urn:dvb</strong>. The SDK does not support playback with either of these DASH profiles, and so they will be filtered out of the sources.</li>
-	<li>If the above is not found, source selection falls back to the first source with a <code class="notranslate">deliveryType</code> of <strong>HLS</strong>.</li>
-	<li>If no such source is found, it falls back to the source with a <code class="notranslate">deliveryType</code> of <strong>MP4</strong> and a bitrate closest to 256 kBps.</li>
+	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a> looks for the first source that has a <code translate="No">deliveryType</code> of <strong>MPEG-DASH</strong>, and a profile that is neither <strong>urn:hbbtv</strong> nor <strong>urn:dvb</strong>. The SDK does not support playback with either of these DASH profiles, and so they will be filtered out of the sources.</li>
+	<li>If the above is not found, source selection falls back to the first source with a <code translate="No">deliveryType</code> of <strong>HLS</strong>.</li>
+	<li>If no such source is found, it falls back to the source with a <code translate="No">deliveryType</code> of <strong>MP4</strong> and a bitrate closest to 256 kBps.</li>
 </ol>
 
 <p>Once a source is found, the implementation continues as follows:</p>
@@ -901,7 +901,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>This example uses only HLS sources:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-java">catalog.findVideoByReferenceID(videoReferenceId, new com.brightcove.player.edge.VideoListener() {
+<code class="language-java" translate="No">catalog.findVideoByReferenceID(videoReferenceId, new com.brightcove.player.edge.VideoListener() {
 	@Override
 	public void onVideo(Video video) {
 	 sourceSelectionFilter(DeliveryType.HLS, video);
@@ -910,10 +910,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	}
 });</code></pre>
 
-<p>And the <code class="notranslate">sourceSelectionFilter()</code> method would look like this:</p>
+<p>And the <code translate="No">sourceSelectionFilter()</code> method would look like this:</p>
 
 <pre class="line-numbers">
-<code class="notranslate language-java">public static void sourceSelectionFilter(@NonNull DeliveryType deliveryTypeFilter, @NonNull Video video) {
+<code class="language-java" translate="No">public static void sourceSelectionFilter(@NonNull DeliveryType deliveryTypeFilter, @NonNull Video video) {
  if (video.getSourceCollections().containsKey(deliveryTypeFilter)) {
    // Only remove the other delivery types if the desired type is in our Source collections
    for (DeliveryType deliveryType : DeliveryType.values()) {
