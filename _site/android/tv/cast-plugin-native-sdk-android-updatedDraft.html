@@ -903,10 +903,25 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>The Cast plugin has been redesigned to minimize your effort when integrating with Video Cloud. When using Video Cloud, the <code>BrightcoveCastMediaManager</code> class gathers information from the Video Cloud response, such as the Brightcove <code>Video</code> and <code>Source</code> objects, every time the <code>EventType.SET_SOURCE</code> event is emitted. This information is cached and ready to use when the user selects play to queue the video.</p>
 
-<h3 id="Plugin_integration">Plugin integration</h3>
+<h3 id="Integration">Integration</h3>
 <p>For any integration with the Native SDK for Android Cast plugin, you need to add this dependency to your app project:</p>
 <pre>
 <code class="language-java" translate="No">implementation "com.brightcove.player:android-cast-plugin:6.16.0"</code></pre>
+
+<p>There are two use cases for integrating your app:</p>
+<ul>
+  <li><a href="#Integrating_with_the_Brightcove_Cast_Receiver_v2">Integrating with the Brightcove Cast Receiver v2.0</a></li>
+  <li><a href="#Integrating_with_the_Google_Cast_Demo_Receiver">Integrating with the Google Cast Demo Receiver</a></li>
+</ul>
+
+<h4 id="Integrating_with_the_Brightcove_Cast_Receiver_v2">Integrating with the Brightcove Cast Receiver v2.0</h4>
+<p>This integration is intended for those Brightcove customers who use Brightcove APIs to deliver their content.</p>
+<p>For a complete code sample, see the <a href="">BasicCastBrightcoveReceiverSampleApp</a>.</p>
+
+<h4 id="Integrating_with_the_Google_Cast_Demo_Receiver">Integrating with the Google Cast Demo Receiver</h4>
+<p>This integration is intended for those Brightcove customers who are new to casting.</p>
+<p>For a complete code sample, see the <a href="">BasicCastGoogleReceiverSampleApp</a>.</p>
+<aside class="bcls-aside bcls-aside--tip">This sample app was formerly known as <strong>BasicCastSampleApp</strong></aside>
 
 </section>
 
