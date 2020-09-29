@@ -30,31 +30,42 @@ layout: staging
 
 	<ol class="bcls-tasklist">
 		<li>Start with <a href="https://github.com/googlecast/CastReceiver">Google's Sample Cast Receiver</a></li>
-		<li>Review <a href="https://developers.google.com/cast/v2/receiver_apps#default">Google's Default Media Receiver</a> documentation</li>
+		<li>Review <a href="https://developers.google.com/cast/docs/sample-apps#castreceiver">Google Cast Apps</a> documentation</li>
 	</ol>
 
-	<p>For production, you must create your own receiver app, because Google does not support the use of their demo receiver app in a production environment. For details, see Google's <a href="https://developers.google.com/cast/docs/receiver_apps">Cast Receiver Applications</a> documentation.</p>
+	<p>For production use, this document will illustrate how to use the Brightcove Receiver v2.0.0.</p>
 	</li>
 </ul>
 
-<aside class="bcls-aside bcls-aside--information">The Cast plugin for the Brightcove Player SDK for Android provides sender app functionality, but you must implement your own receiver app.</aside>
+<aside class="bcls-aside bcls-aside--information">
+  <p>Notes:</p>
+  <ol>
+    <li>Google does not support the use of their demo receiver app in a production environment.</li>
+    <li>The Cast plugin for the Brightcove Native SDK for Android does not provide receiver app functionality.</li>
+  </ol>
+  </aside>
 </section>
 
+<section class="bcls-section">
+<h2 id="Supported_SDK_version">Supported SDK version</h2>
+<p>To use the Cast plugin with the new Brightcove Receiver v2.0, you must use the Brightcove Native SDK for Android version 6.16.0 and above.</p>
+</section>
 
+<section class="bcls-section">
+<h2 id="The_Cast_plugin">The Cast plugin</h2>
+<p>The Cast plugin is built on top of the <a href="https://medium.com/google-exoplayer/new-cast-extension-and-demo-app-55816a50012">new ExoPlayer Cast Extension</a> and the Google Play Services Cast Framework. After adding the cast plugin dependency, gradle will pull the Play Services Cast Framework dependency, ExoPlayer Cast Extension dependency along with other needed dependencies.</p>
 
+<p>The Cast plugin has been redesigned to minimize your effort when integrating with Video Cloud. When using Video Cloud, the <code>BrightcoveCastMediaManager</code> class gathers information from the Video Cloud response, such as the Brightcove <code>Video</code> and <code>Source</code> objects, every time the <code>EventType.SET_SOURCE</code> event is emitted. This information is cached and ready to use when the user selects play to queue the video.</p>
+
+<h3 id="Plugin_integration">Plugin integration</h3>
+<p>For any integration with the Native SDK for Android Cast plugin, you need to add this dependency to your app project:</p>
+<pre>
+<code class="language-java" translate="No">implementation "com.brightcove.player:android-cast-plugin:6.16.0"</code></pre>
+
+</section>
 
 
 ----------------
-
-<section class="bcls-section">
-<h2 id="Cast_plugin">Cast plugin</h2>
-
-<p>The Cast plugin is built on top of the <a href="https://medium.com/google-exoplayer/new-cast-extension-and-demo-app-55816a50012">new ExoPlayer Cast Extension</a> and the Google Play Services Cast Framework. After adding the cast plugin dependency, gradle will pull the Play Services Cast Framework dependency, ExoPlayer Cast Extension dependency along with other needed dependencies. To learn more about the dependencies used, see the <a href="">Cast Plugin dependencies</a> section.</p>
-
-<h3 id="Supported_SDK_version">Supported SDK version</h3>
-
-<p>For the Cast plugin, you must use the Brightcove Native SDK for Android version 6.3.0+.</p>
-</section>
 
 <section class="bcls-section">
 <h2 id="Getting_started">Getting started</h2>
