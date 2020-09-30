@@ -901,7 +901,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h2 id="The_Cast_plugin">The Cast plugin</h2>
 <p>The Cast plugin is built on top of the <a href="https://medium.com/google-exoplayer/new-cast-extension-and-demo-app-55816a50012">new ExoPlayer Cast Extension</a> and the Google Play Services Cast Framework. After adding the cast plugin dependency, gradle will pull the Play Services Cast Framework dependency, ExoPlayer Cast Extension dependency along with other needed dependencies.</p>
 
-<p>The Cast plugin has been redesigned to minimize your effort when integrating with Video Cloud. When using Video Cloud, the <code>BrightcoveCastMediaManager</code> class gathers information from the Video Cloud response, such as the Brightcove <code>Video</code> and <code>Source</code> objects, every time the <code>EventType.SET_SOURCE</code> event is emitted. This information is cached and ready to use when the user selects play to queue the video.</p>
+<p>The Cast plugin has been redesigned to minimize your effort when integrating with Video Cloud. When using Video Cloud, the <code translate="No">BrightcoveCastMediaManager</code> class gathers information from the Video Cloud response, such as the Brightcove <code translate="No">Video</code> and <code translate="No">Source</code> objects, every time the <code translate="No">EventType.SET_SOURCE</code> event is emitted. This information is cached and ready to use when the user selects play to queue the video.</p>
 
 <h3 id="Integration">Integration</h3>
 <p>For any integration with the Native SDK for Android Cast plugin, you need to add this dependency to your app project:</p>
@@ -933,21 +933,21 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="The_Brightcove_GoogleCastComponent">The Brightcove GoogleCastComponent</h2>
 
-<p>The <code>GoogleCastComponent</code> class is the main class of the Brightcove Cast plugin. It instantiates the ExoPlayer CastPlayer and sets its listeners. It exposes some essential methods to load a video or to add it to the queue. The <code>GoogleCastComponent</code> class also adds several Brightcove Event listeners to handle Activity and Fragment lifecycle events, as well as other event listeners that you can use to emit Media Info to load a Video to your Chromecast device.</p>
+<p>The <code translate="No">GoogleCastComponent</code> class is the main class of the Brightcove Cast plugin. It instantiates the ExoPlayer CastPlayer and sets its listeners. It exposes some essential methods to load a video or to add it to the queue. The <code translate="No">GoogleCastComponent</code> class also adds several Brightcove Event listeners to handle Activity and Fragment lifecycle events, as well as other event listeners that you can use to emit Media Info to load a Video to your Chromecast device.</p>
 
-<p>The <code>GoogleCastComponent</code> now uses a Builder pattern. In the Native SDK for Android versions before v6.16.0, you needed to instantiate the component and pass the <code>Context</code> and <code>EventEmitter</code> to the <code>GoogleCastComponent</code> constructor. Then, you would set the component’s options in a series of separate method calls.</p>
-<p>Starting with the Native SDK for Android v6.16.0, use the Builder pattern to create an instance of the <code>GoogleCastComponent</code> and set its options, all within a single chain of Builder method calls.</p>
+<p>The <code translate="No">GoogleCastComponent</code> now uses a Builder pattern. In the Native SDK for Android versions before v6.16.0, you needed to instantiate the component and pass the <code translate="No">Context</code> and <code translate="No">EventEmitter</code> to the <code translate="No">GoogleCastComponent</code> constructor. Then, you would set the component’s options in a series of separate method calls.</p>
+<p>Starting with the Native SDK for Android v6.16.0, use the Builder pattern to create an instance of the <code translate="No">GoogleCastComponent</code> and set its options, all within a single chain of Builder method calls.</p>
 </section>
 
 <section class="bcls-section">
 <h2 id="CustomData">CustomData</h2>
-<p>As with the <code>GoogleCastComponent</code>, the <code>CustomData</code> class uses a Builder pattern to instantiate the object and add properties to it. While the Brightcove Receiver can use <code>CustomData</code> to retrieve videos from your Brightcove Catalog, it is not required to send a complete <code>CustomData</code> object, such as for casting a remote asset. It is also important to note that when using the Google Demo Receiver, the use of <code>CustomData</code> is not supported. For the purposes of this discussion, we will focus on <code>CustomData</code> sent to the receiver used to retrieve the Video data from the Brightcove Catalog.</p>
+<p>As with the <code translate="No">GoogleCastComponent</code>, the <code translate="No">CustomData</code> class uses a Builder pattern to instantiate the object and add properties to it. While the Brightcove Receiver can use <code translate="No">CustomData</code> to retrieve videos from your Brightcove Catalog, it is not required to send a complete <code translate="No">CustomData</code> object, such as for casting a remote asset. It is also important to note that when using the Google Demo Receiver, the use of <code translate="No">CustomData</code> is not supported. For the purposes of this discussion, we will focus on <code translate="No">CustomData</code> sent to the receiver used to retrieve the Video data from the Brightcove Catalog.</p>
 
 <h3>What is CustomData?</h3>
-<p><code>CustomData</code> is a JSON object contained in the <code>MediaInfo</code> object. Its intended use is with the Brightcove Cast Receiver App v2.0.</p>
+<p><code translate="No">CustomData</code> is a JSON object contained in the <code translate="No">MediaInfo</code> object. Its intended use is with the Brightcove Cast Receiver App v2.0.</p>
 
 <h3>CustomData with the Brightcove Receiver and Catalog Data</h3>
-<p>When integrating with the Brightcove Receiver, the <code>CustomData</code> JSON object will take this form:</p>
+<p>When integrating with the Brightcove Receiver, the <code translate="No">CustomData</code> JSON object will take this form:</p>
 <pre>
 <code class="language-java" translate="No">&quot;customData&quot;: {
 	&quot;accountId&quot;: &quot;1234567890&quot;,
@@ -965,18 +965,18 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 }
 </code></pre>
 
-<p>The <code>CustomData</code> object example above contains all of the data elements necessary to cast a video from the Brightcove Receiver. This data is the same regardless of encryption, that is, there is no additional structure necessary for the license URL in the case of DRM videos.</p>
-<p>You can also find an example of the <code>CustomData</code> object in the <strong>BrightcoveCastBrightcoveReceiverSampleApp</strong>.</p>
+<p>The <code translate="No">CustomData</code> object example above contains all of the data elements necessary to cast a video from the Brightcove Receiver. This data is the same regardless of encryption, that is, there is no additional structure necessary for the license URL in the case of DRM videos.</p>
+<p>You can also find an example of the <code translate="No">CustomData</code> object in the <strong>BrightcoveCastBrightcoveReceiverSampleApp</strong>.</p>
 
 <h3>CustomData with the Google Demo Receiver</h3>
-<p>As stated above, <code>CustomData</code> is not supported with the Google Demo Receiver.</p>
+<p>As stated above, <code translate="No">CustomData</code> is not supported with the Google Demo Receiver.</p>
 
 </section>
 
 <section class="bcls-section">
 <h2 id="BrightcoveCastMediaManager">BrightcoveCastMediaManager</h2>
 
-<p>It is possible to extend the <code>BrightcoveCastMediaManager</code>, as shown above, to override its methods or to implement your own. For examples of extending the BrightcoveCastMediaManager class, see the following:</p>
+<p>It is possible to extend the <code translate="No">BrightcoveCastMediaManager</code>, as shown above, to override its methods or to implement your own. For examples of extending the BrightcoveCastMediaManager class, see the following:</p>
 <ul>
   <li>Extend the BrightcoveCastMediaManager section</li>
   <li>BasicCastCustomRemoteVideoSampleApp</li>
@@ -987,11 +987,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <h2 id="OptionsProvider">OptionsProvider</h2>
 
 <p>Next, you need to specify the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/OptionsProvider">OptionsProvider</a> implementation for the Google Cast framework. The <code translate="No">OptionsProvider</code> interface helps to set up several options needed to initialize the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastContext">CastContext</a> class. This is where you will set the Cast Receiver App ID. To learn more about integrating the <code translate="No">OptionsProvider</code>, see Google’s <a href="https://developers.google.com/cast/docs/android_sender_integrate#initialize_the_cast_context">Initialize the Cast Context</a> document.</p>
-<p>The Brightcove Cast plugin includes a <code>DefaultOptionsProvider</code> class, where the Cast Receiver App ID is set through a string key set in the <strong>strings.xml</strong> resource file. For more details and to learn how to override it in your app, see the <a href="#Using_your_own_Cast_Receiver_App_Id">Using Your Own Cast Receiver App ID</a> section above.</p>
-<p>Whether you use the <code>DefaultOptionsProvider</code> class or your own <code>OptionsProvider</code> implementation, you need to set the <code>OptionsProvider</code> implementation class name in your app’s <strong>AndroidManifest.xml</strong> file as a key-value pair metadata, as shown here:</p>
+<p>The Brightcove Cast plugin includes a <code translate="No">DefaultOptionsProvider</code> class, where the Cast Receiver App ID is set through a string key set in the <strong>strings.xml</strong> resource file. For more details and to learn how to override it in your app, see the <a href="#Using_your_own_Cast_Receiver_App_Id">Using Your Own Cast Receiver App ID</a> section above.</p>
+<p>Whether you use the <code translate="No">DefaultOptionsProvider</code> class or your own <code translate="No">OptionsProvider</code> implementation, you need to set the <code translate="No">OptionsProvider</code> implementation class name in your app’s <strong>AndroidManifest.xml</strong> file as a key-value pair metadata, as shown here:</p>
 <pre>
 <code class="language-java" translate="No">&lt;meta-data android:name=&quot;com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME&quot; android:value=&quot;com.brightcove.cast.DefaultOptionsProvider&quot; /&gt;</code></pre>
-<p>If you use the <code>DefaultOptionsProvider</code> class, you can set the <code>ExpandedControllerActivity</code> to turn on/off the Cast Notification by setting similar metadata information in your <strong>AndroidManifest</strong>.</p>
+<p>If you use the <code translate="No">DefaultOptionsProvider</code> class, you can set the <code translate="No">ExpandedControllerActivity</code> to turn on/off the Cast Notification by setting similar metadata information in your <strong>AndroidManifest</strong>.</p>
 </section>
 
 <section class="bcls-section">
@@ -1151,7 +1151,7 @@ eventEmitter.on(GoogleCastEventType.CAST_SESSION_ENDED, new EventListener() {
 	</tbody>
 </table>
 <br/>
-<p>Alternatively, you can use the following <code>GoogleCastComponent</code> methods:</p>
+<p>Alternatively, you can use the following <code translate="No">GoogleCastComponent</code> methods:</p>
 
 <ul>
 	<li>
