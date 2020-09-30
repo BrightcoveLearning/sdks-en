@@ -77,7 +77,7 @@ layout: staging
 <p>For a complete code sample, see the <a href="">BasicCastGoogleReceiverSampleApp</a>.</p>
 <aside class="bcls-aside bcls-aside--tip">The <strong>BasicCastGoogleReceiverSampleApp</strong> sample app was formerly known as the <strong>BasicCastSampleApp</strong></aside>
 
-<h3>Using your own Cast Receiver App Id</h3>
+<h3 id="Using_your_own_Cast_Receiver_App_Id">Using your own Cast Receiver App Id</h3>
 <p>The <strong>BasicCastGoogleReceiverSampleApp</strong> sets a Google Demo Receiver App ID, which can be helpful for getting started and testing, but not for production.</p>
 <p>To override this value with your Cast Receiver Application, define the following string value in the sample app’s <strong>strings.xml</strong> file:</p>
 <pre>
@@ -127,41 +127,25 @@ layout: staging
 
 </section>
 
-
-----------------
-
 <section class="bcls-section">
-<h2 id="Getting_started">Getting started</h2>
+<h2 id="BrightcoveCastMediaManager">BrightcoveCastMediaManager</h2>
 
-<p>To start using the Cast plugin, follow these steps:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>In your <strong>build.gradle</strong> file, add the following dependency to include the Cast plugin:
-
-	<pre>
-<code class="language-swift" translate="No">implementation "com.brightcove.player:android-cast-plugin:6.3.0"</code></pre>
-	</li>
-</ol>
+<p>It is possible to extend the <code>BrightcoveCastMediaManager</code>, as shown above, to override its methods or to implement your own. For examples of extending the BrightcoveCastMediaManager class, see the following:</p>
+<ul>
+  <li>Extend the BrightcoveCastMediaManager section</li>
+  <li>BasicCastCustomRemoteVideoSampleApp</li>
+</ul>
 </section>
 
 <section class="bcls-section">
-<h2 id="Options_Provider">Options Provider</h2>
+<h2 id="OptionsProvider">OptionsProvider</h2>
 
-<p>Next, you need to specify the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/OptionsProvider">OptionsProvider</a> implementation for the Google Cast framework. The <code translate="No">OptionsProvider</code> interface helps to set up several options needed to initialize the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastContext">CastContext</a> class. This is where you will set the Cast Receiver App ID. To learn more about integrating the <code translate="No">OptionsProvider</code>, see Google’s document: <a href="https://developers.google.com/cast/docs/android_sender_integrate#initialize_the_cast_context">Initialize the Cast Context</a>.</p>
-
-<p>The Brightcove Cast plugin includes a <code translate="No">DefaultOptionsProvider</code> class, where a default Google Demo Cast Receiver App ID is set through a string key set in the <strong>strings.xml</strong> file. For more details and to learn how to overwrite it, see the <a href="">Cast Receiver App ID</a> section.</p>
-
-<ol class="bcls-tasklist">
-	<li>Whether you use the <code translate="No">DefaultOptionsProvider</code> class or your own <code translate="No">OptionsProvider</code> implementation, you need to set the <code translate="No">OptionsProvider</code> implementation class name in your app’s <strong>AndroidManifest.xml</strong> file as a key-value pair metadata, as shown here:
-
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">&lt;meta-data
-android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-android:value="com.brightcove.cast.DefaultOptionsProvider" /&gt;</code></pre>
-	</li>
-</ol>
-
-<p>If you use the <code translate="No">DefaultOptionsProvider</code> class, you will be able to set the <code translate="No">ExpandedControllerActivity</code> and turn on on/off the Cast Notification by setting similar metadata information in your AndroidManifest.</p>
+<p>Next, you need to specify the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/OptionsProvider">OptionsProvider</a> implementation for the Google Cast framework. The <code translate="No">OptionsProvider</code> interface helps to set up several options needed to initialize the <a href="https://developers.google.com/android/reference/com/google/android/gms/cast/framework/CastContext">CastContext</a> class. This is where you will set the Cast Receiver App ID. To learn more about integrating the <code translate="No">OptionsProvider</code>, see Google’s <a href="https://developers.google.com/cast/docs/android_sender_integrate#initialize_the_cast_context">Initialize the Cast Context</a> document.</p>
+<p>The Brightcove Cast plugin includes a <code>DefaultOptionsProvider</code> class, where the Cast Receiver App ID is set through a string key set in the <strong>strings.xml</strong> resource file. For more details and to learn how to override it in your app, see the <a href="#Using_your_own_Cast_Receiver_App_Id">Using Your Own Cast Receiver App ID</a> section above.</p>
+<p>Whether you use the <code>DefaultOptionsProvider</code> class or your own <code>OptionsProvider</code> implementation, you need to set the <code>OptionsProvider</code> implementation class name in your app’s <strong>AndroidManifest.xml</strong> file as a key-value pair metadata, as shown here:</p>
+<pre>
+<code class="language-java" translate="No">&lt;meta-data android:name=&quot;com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME&quot; android:value=&quot;com.brightcove.cast.DefaultOptionsProvider&quot; /&gt;</code></pre>
+<p>If you use the <code>DefaultOptionsProvider</code> class, you can set the <code>ExpandedControllerActivity</code> to turn on/off the Cast Notification by setting similar metadata information in your <strong>AndroidManifest</strong>.</p>
 </section>
 
 <section class="bcls-section">
@@ -184,44 +168,57 @@ android:value="com.brightcove.cast.DefaultOptionsProvider" /&gt;</code></pre>
 <ul>
 	<li>The Progress Drawable:
 	<pre>
-<code class="language-swift" translate="No">R.drawable.default_scrubber_progress_horizontal</code></pre>
+<code class="language-java" translate="No">R.drawable.default_scrubber_progress_horizontal</code></pre>
 	</li>
 	<li>The Thumb Drawable:
 	<pre>
-<code class="language-swift" translate="No">R.drawable.default_scrubber_thumb</code></pre>
+<code class="language-java" translate="No">R.drawable.default_scrubber_thumb</code></pre>
 	</li>
 </ul>
 
 <p>To learn how to customize the Seek Bar, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls/SeekBarColorsSampleApp/src/main">SeekBarColorsSampleApp</a>.</p>
 
-<ol class="bcls-tasklist">
-	<li>In order to set the <code translate="No">DefaultExpandedControllerActivity</code> or your own <code translate="No">ExpandedControllerActivity</code>, set the following metadata in your <strong>AndroidManifest.xml</strong> file:
-
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">&lt;meta-data  android:name="com.brightcove.cast.DefaultOptionsProvider.EXPANDED_CONTROLLER_ACTIVITY_CLASS_NAME"
+<p>In order to set the <code translate="No">DefaultExpandedControllerActivity</code> or your own <code translate="No">ExpandedControllerActivity</code>, set the following metadata in your <strong>AndroidManifest.xml</strong> file:</p>
+<pre class="line-numbers">
+<code class="language-java" translate="No">&lt;meta-data  android:name="com.brightcove.cast.DefaultOptionsProvider.EXPANDED_CONTROLLER_ACTIVITY_CLASS_NAME"
 android:value="com.brightcove.cast.DefaultExpandedControllerActivity" /&gt;</code></pre>
-	</li>
-</ol>
 </section>
 
 <section class="bcls-section">
 <h2 id="Cast_Notification">Cast Notification</h2>
 
 <p>When the Cast Notification is enabled, the notification will appear when you cast a video and put your app in the background; for example, after pressing the home key.</p>
-
-<ol class="bcls-tasklist">
-	<li>To enable Cast Notification, set the following metadata in your <strong>AndroidManifest.xml</strong> file and provide the name of the Activity to launch when the notification is clicked:
-
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">&lt;meta-data android:name="com.brightcove.cast.DefaultOptionsProvider.NOTIFICATION_TARGET_ACTIVITY_CLASS_NAME"
+<pTo enable Cast Notification, set the following metadata in your <strong>AndroidManifest.xml</strong> file and provide the name of the Activity to launch when the notification is clicked:</p>
+<pre class="line-numbers">
+<code class="language-java" translate="No">&lt;meta-data android:name="com.brightcove.cast.DefaultOptionsProvider.NOTIFICATION_TARGET_ACTIVITY_CLASS_NAME"
 android:value="com.brightcove.cast.BrightcoveControllerActivity" /&gt;</code></pre>
-	</li>
-</ol>
 
 <p>If you do not provide com.brightcove.cast.DefaultOptionsProvider.NOTIFICATION_TARGET_ACTIVITY_CLASS_NAME or if the value has an invalid Activity name, the Cast Notification will be turned off.</p>
 
 <aside class="bcls-aside bcls-aside--information">While removing the <code translate="No">meta-data</code> tag from the <strong>AndroidManifest.xml</strong> file will disable notifications from the sender app, it will still be possible to view a notification on the sender device that indicates that a device is casting on your Wi-Fi network. This is not a notification from the sender app, but instead is a notification from the sender device, independent of any app configuration.</aside>
 </section>
+
+
+----------------
+
+<section class="bcls-section">
+<h2 id="Getting_started">Getting started</h2>
+
+<p>To start using the Cast plugin, follow these steps:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>In your <strong>build.gradle</strong> file, add the following dependency to include the Cast plugin:
+
+	<pre>
+<code class="language-java" translate="No">implementation "com.brightcove.player:android-cast-plugin:6.3.0"</code></pre>
+	</li>
+</ol>
+</section>
+
+
+
+
+
 
 <section class="bcls-section">
 <h2 id="The_Cast_Button">The Cast Button</h2>
@@ -231,7 +228,7 @@ android:value="com.brightcove.cast.BrightcoveControllerActivity" /&gt;</code></p
 <ol class="bcls-tasklist">
 	<li>The Brightcove Cast plugin provides a utility method to easily setup the Cast button. This is useful when you just want to add the Cast button to the Activity/Fragment menu. See the following code for details:
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">//Activity
+<code class="language-java" translate="No">//Activity
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
    super.onCreateOptionsMenu(menu);
@@ -250,7 +247,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 <ol class="bcls-tasklist">
 	<li>To enable the Mini Controller, add the following code to your Activity’s layout.
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">&lt;fragment
+<code class="language-java" translate="No">&lt;fragment
    android:id="@+id/castMiniController"
    android:layout_width="match_parent"
    android:layout_height="wrap_content"
@@ -271,7 +268,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 <p>If you want your app to react when the Cast connection starts or ends, you can add the <code translate="No">GoogleCastEventType.CAST_SESSION_STARTED</code> or <code translate="No">GoogleCastEventType.CAST_SESSION_ENDED</code> event listeners as shown here:</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No">eventEmitter.on(GoogleCastEventType.CAST_SESSION_STARTED, new EventListener() {
+<code class="language-java" translate="No">eventEmitter.on(GoogleCastEventType.CAST_SESSION_STARTED, new EventListener() {
    @Override
    public void processEvent(Event event) {
        // Session Started
@@ -345,19 +342,19 @@ eventEmitter.on(GoogleCastEventType.CAST_SESSION_ENDED, new EventListener() {
 <ul>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">public void loadMediaInfo(MediaInfo mediaInfo, long positionMs)</code></pre>
+<code class="language-java" translate="No">public void loadMediaInfo(MediaInfo mediaInfo, long positionMs)</code></pre>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">public void loadMediaInfo(MediaInfo mediaInfo)</code></pre>
+<code class="language-java" translate="No">public void loadMediaInfo(MediaInfo mediaInfo)</code></pre>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">public PendingResult&lt;RemoteMediaClient.MediaChannelResult&gt; loadItem(MediaQueueItem mediaQueue, int playheadPosition)</code></pre>
+<code class="language-java" translate="No">public PendingResult&lt;RemoteMediaClient.MediaChannelResult&gt; loadItem(MediaQueueItem mediaQueue, int playheadPosition)</code></pre>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">public PendingResult&lt;RemoteMediaClient.MediaChannelResult&gt; addItems(MediaQueueItem... mediaQueue )</code></pre>
+<code class="language-java" translate="No">public PendingResult&lt;RemoteMediaClient.MediaChannelResult&gt; addItems(MediaQueueItem... mediaQueue )</code></pre>
 	</li>
 </ul>
 </section>
@@ -388,25 +385,25 @@ eventEmitter.on(GoogleCastEventType.CAST_SESSION_ENDED, new EventListener() {
 <ul>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">public void updateBrightcoveMediaController(boolean isRemote)</code></pre>
+<code class="language-java" translate="No">public void updateBrightcoveMediaController(boolean isRemote)</code></pre>
 
 	<p>This method is called by the <code translate="No">GoogleCastComponent</code> when the session changes; that is, when the session has started or has ended. When the session has started, the <code translate="No">isRemote</code> parameter will be <code translate="No">true</code> and the <code translate="No">setupRemoteController</code> method is called. Otherwise, the <code translate="No">isRemote</code> will be <code translate="No">false</code> and the <code translate="No">resetToLocalController</code> is called.</p>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">protected void setupRemoteController()</code></pre>
+<code class="language-java" translate="No">protected void setupRemoteController()</code></pre>
 
 	<p>This method emits the event <code translate="No">EventType.SET_MEDIA_CONTROLLER_CONFIG</code> with the <code translate="No">MediaControllerConfig</code> object. We will talk more about <code translate="No">MediaControllerConfig</code> later in this section. This method also listens to the <code translate="No">BrightcoveMediaController.CONTROL_BAR_CREATED</code> event and reacts by calling the <code translate="No">setupBrightcoveControlBar</code> method.</p>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">protected void resetToLocalController()</code></pre>
+<code class="language-java" translate="No">protected void resetToLocalController()</code></pre>
 
 	<p>This method is responsible for resetting the <code translate="No">BrightcoveMediaController</code> to the original controller layout by emitting the <code translate="No">EventType.RESTORE_DEFAULT_MEDIA_CONTROLLER</code>.</p>
 	</li>
 	<li>
 	<pre>
-<code class="language-swift" translate="No">protected void setupBrightcoveControlBar(BrightcoveControlBar controlBar)</code></pre>
+<code class="language-java" translate="No">protected void setupBrightcoveControlBar(BrightcoveControlBar controlBar)</code></pre>
 
 	<p>Once the <code translate="No">BrightcoveMediaController</code> has been recreated with the layout provided in the <code translate="No">MediaControllerConfig</code>, you will get access to the <code translate="No">BrightcoveControlBar</code> view. From here, you can access your UI views, like Buttons, where you can add <code translate="No">OnClickListener</code>'s to them.</p>
 	</li>
@@ -417,7 +414,7 @@ eventEmitter.on(GoogleCastEventType.CAST_SESSION_ENDED, new EventListener() {
 <p>The <code translate="No">MediaControllerConfig</code> is a configuration class that you can use to change the default control layout of the <code translate="No">BrightcoveMediaController</code> class. In this class, you can set the layout and the <code translate="No">OnTouchListener</code>. Once created and configured, you can emit this object as shown below:</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();
+<code class="language-java" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();
 properties.put(Event.MEDIA_CONTROLLER_CONFIG, myMediaControllerConfig);
 eventEmitter.emit(EventType.SET_MEDIA_CONTROLLER_CONFIG,properties);</code></pre>
 
@@ -435,7 +432,7 @@ eventEmitter.emit(EventType.SET_MEDIA_CONTROLLER_CONFIG,properties);</code></pre
 <p>When your media controller layout is set by emitting the <code translate="No">MediaControllerConfig</code>, the <code translate="No">BrightcoveControlBar</code> view will be created and the <code translate="No">BrightcoveCastMediaManager.setupBrightcoveControlBar()</code> method will be called. It’s here where you can get your UI components by Id and add the appropriate listeners.</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No">@Override
+<code class="language-java" translate="No">@Override
 protected void setupBrightcoveControlBar(BrightcoveControlBar controlBar) {
    Button playButton = controlBar.findViewById(R.id.cast_play);
    if (playButton != null) {
@@ -450,7 +447,7 @@ protected void setupBrightcoveControlBar(BrightcoveControlBar controlBar) {
 <p>The Cast plugin depends on the ExoPlayer Cast Extension:</p>
 
 <pre>
-<code class="language-swift" translate="No">compile 'com.google.android.exoplayer:extension-cast:2.7.0'</code></pre>
+<code class="language-java" translate="No">compile 'com.google.android.exoplayer:extension-cast:2.7.0'</code></pre>
 
 <p>The extension have several dependencies which are listed in the table below:</p>
 
