@@ -60,7 +60,7 @@ layout: staging
 <h3 id="Integration">Integration</h3>
 <p>For any integration with the Native SDK for Android Cast plugin, you need to add this dependency to your app project:</p>
 <pre>
-<code class="language-java" translate="No">implementation "com.brightcove.player:android-cast-plugin:6.16.0"</code></pre>
+<code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-cast-plugin:6.16.0&quot;</code></pre>
 
 <p>There are two use cases for integrating your app:</p>
 <ul>
@@ -75,7 +75,55 @@ layout: staging
 <h4 id="Integrating_with_the_Google_Cast_Demo_Receiver">Integrating with the Google Cast Demo Receiver</h4>
 <p>This integration is intended for those Brightcove customers who are new to casting.</p>
 <p>For a complete code sample, see the <a href="">BasicCastGoogleReceiverSampleApp</a>.</p>
-<aside class="bcls-aside bcls-aside--tip">This sample app was formerly known as <strong>BasicCastSampleApp</strong></aside>
+<aside class="bcls-aside bcls-aside--tip">The <strong>BasicCastGoogleReceiverSampleApp</strong> sample app was formerly known as the <strong>BasicCastSampleApp</strong></aside>
+
+<h3>Using your own Cast Receiver App Id</h3>
+<p>The <strong>BasicCastGoogleReceiverSampleApp</strong> sets a Google Demo Receiver App ID, which can be helpful for getting started and testing, but not for production.</p>
+<p>To override this value with your Cast Receiver Application, define the following string value in the sample app’s <strong>strings.xml</strong> file:</p>
+<pre>
+<code class="language-java" translate="No">&lt;string name=&quot;cast_receiver_app_id&quot;&gt;4F8B3483&lt;/string&gt;</code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="The_Brightcove_GoogleCastComponent">The Brightcove GoogleCastComponent</h2>
+
+<p>The <code>GoogleCastComponent</code> class is the main class of the Brightcove Cast plugin. It instantiates the ExoPlayer CastPlayer and sets its listeners. It exposes some essential methods to load a video or to add it to the queue. The <code>GoogleCastComponent</code> class also adds several Brightcove Event listeners to handle Activity and Fragment lifecycle events, as well as other event listeners that you can use to emit Media Info to load a Video to your Chromecast device.</p>
+
+<p>The <code>GoogleCastComponent</code> now uses a Builder pattern. In the Native SDK for Android versions before v6.16.0, you needed to instantiate the component and pass the <code>Context</code> and <code>EventEmitter</code> to the <code>GoogleCastComponent</code> constructor. Then, you would set the component’s options in a series of separate method calls.</p>
+<p>Starting with the Native SDK for Android v6.16.0, use the Builder pattern to create an instance of the <code>GoogleCastComponent</code> and set its options, all within a single chain of Builder method calls.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="CustomData">CustomData</h2>
+<p>As with the <code>GoogleCastComponent</code>, the <code>CustomData</code> class uses a Builder pattern to instantiate the object and add properties to it. While the Brightcove Receiver can use <code>CustomData</code> to retrieve videos from your Brightcove Catalog, it is not required to send a complete <code>CustomData</code> object, such as for casting a remote asset. It is also important to note that when using the Google Demo Receiver, the use of <code>CustomData</code> is not supported. For the purposes of this discussion, we will focus on <code>CustomData</code> sent to the receiver used to retrieve the Video data from the Brightcove Catalog.</p>
+
+<h3>What is CustomData?</h3>
+<p><code>CustomData</code> is a JSON object contained in the <code>MediaInfo</code> object. Its intended use is with the Brightcove Cast Receiver App v2.0.</p>
+
+<h3>CustomData with the Brightcove Receiver and Catalog Data</h3>
+<p>When integrating with the Brightcove Receiver, the <code>CustomData</code> JSON object will take this form:</p>
+<pre>
+<code class="language-java" translate="No">&quot;customData&quot;: {
+	&quot;accountId&quot;: &quot;1234567890&quot;,
+	&quot;analyticsParams&quot;: {
+		&quot;application&quot;: &quot;com.brightcove.player.test&quot;,
+		&quot;user&quot;: &quot;abcde1c44b951234&quot;
+	},
+	&quot;catalogParams&quot;: {
+		&quot;adConfigId&quot;: null,
+		&quot;type&quot;: &quot;video&quot;,
+		&quot;bcovAuthToken&quot;: null,
+		&quot;id&quot;: &quot;2345678901&quot;,
+		&quot;policyKey&quot;: &quot;BCpkPolicyKeyObject&quot;
+	}
+}
+</code></pre>
+
+<p>The <code>CustomData</code> object example above contains all of the data elements necessary to cast a video from the Brightcove Receiver. This data is the same regardless of encryption, that is, there is no additional structure necessary for the license URL in the case of DRM videos.</p>
+<p>You can also find an example of the <code>CustomData</code> object in the <strong>BrightcoveCastBrightcoveReceiverSampleApp</strong>.</p>
+
+<h3>CustomData with the Google Demo Receiver</h3>
+<p>As stated above, <code>CustomData</code> is not supported with the Google Demo Receiver.</p>
 
 </section>
 
@@ -176,20 +224,6 @@ android:value="com.brightcove.cast.BrightcoveControllerActivity" /&gt;</code></p
 </section>
 
 <section class="bcls-section">
-<h2 id="Cast_Receiver_App_Id">Cast Receiver App Id</h2>
-
-<p>Next, set your Google Cast Receiver App Id in your project. The Cast Receiver Application is a web player responsible for playing your videos in the Chromecast device. To learn more about receiver applications, visit <a href="https://developers.google.com/cast/docs/receiver_apps">Google’s official guide</a>. Your Receiver application will have a unique hexadecimal ID. This is the ID you will set in your the Android App.</p>
-
-<ol class="bcls-tasklist">
-	<li>By default, the Brightcove Cast Plugin sets a Google Demo Receiver App ID, which is helpful for getting started and testing, but not for production. To overwrite this value with your Cast Receiver Application, define the following string value in your <strong>strings.xml</strong> file:
-
-	<pre>
-<code class="language-swift" translate="No">&lt;string name="cast_receiver_app_id"&gt;4F8B3483&lt;/string&gt;</code></pre>
-	</li>
-</ol>
-</section>
-
-<section class="bcls-section">
 <h2 id="The_Cast_Button">The Cast Button</h2>
 
 <p>The cast button allows you to select a Chromecast device in the same network as your device, and enables you to connect and create a session. To add the Cast Button to your application, follow Google’s document <a href="https://developers.google.com/cast/docs/android_sender_integrate#add_a_cast_button">Integrate Cast: Add a Cast Button</a>.</p>
@@ -229,30 +263,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 <p>To learn best practices with the Mini Controller, see the <a href="https://developers.google.com/cast/docs/design_checklist/sender#sender-mini-controller">Design Checklist: Sender Mini Controller</a> document. For implementation details, see the <a href="https://developers.google.com/cast/docs/android_sender_integrate#add_mini_controller">Integrate Cast: Add Mini Controller</a> document.</p>
 </section>
 
-<section class="bcls-section">
-<h2 id="The_Brightcove_GoogleCastComponent">The Brightcove GoogleCastComponent</h2>
 
-<p>The <code translate="No">GoogleCastComponent</code>GoogleCastComponent class is the main class of the Brightcove Cast plugin. It instantiates the ExoPlayer CastPlayer and sets its listeners. It exposes some essential methods to load a video or to add it to the queue. The <code translate="No">GoogleCastComponent</code> class also adds several Brightcove Event listeners to handle Activity and Fragment lifecycle events, as well as other event listeners that you can use to emit Media Info to load a Video to your Chromecast device.</p>
-
-<p>The Cast plugin was designed to require minimal effort with Video Cloud. When using Video Cloud, the <code translate="No">BrightcoveCastMediaManager</code> class gathers information from the Video Cloud response, such as the Brightcove Video and Source objects, every time the <code translate="No">EventType.SET_SOURCE</code> event is emitted. This information is cached and ready to use when the user selects play to queue the video.</p>
-
-<ol class="bcls-tasklist">
-	<li>In order to create the <code translate="No">GoogleCastComponent</code> class, you need to pass the <code translate="No">Context</code> and <code translate="No">EventEmitter</code>:
-
-	<pre>
-<code class="language-swift" translate="No">GoogleCastComponent googleCastComponent = new GoogleCastComponent(eventEmitter, context);</code></pre>
-
-	<p>Or you can subclass <code translate="No">BrightcoveCastMediaManager</code> to overwrite some of its behavior and pass it to the <code translate="No">GoogleCastComponent</code>:</p>
-
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">MyBrightcoveCastMediaManager myBrightcoveCastMediaManager = new MyBrightcoveCastMediaManager(context, eventEmitter);
-
-GoogleCastComponent googleCastComponent = new GoogleCastComponent(eventEmitter, context, myBrightcoveCastMediaManager);</code></pre>
-	</li>
-</ol>
-
-<p>This is all you need to start casting videos to your Chromecast device.</p>
-</section>
 
 <section class="bcls-section">
 <h2 id="Listening_for_Cast_session">Listening for Cast session</h2>
