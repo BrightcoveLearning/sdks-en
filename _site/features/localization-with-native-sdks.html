@@ -946,7 +946,12 @@ googleIMAComponent = new GoogleIMAComponent(
 
 <h3 id="Working_with_IMA_Ads">Working with IMA Ads</h3>
 
-<p>The Native SDK for iOS currently does not support Arabic with IMA advertising.</p>
+<p>If you are working with IMA advertising, be aware that the language will not be set by the Brightcove SDK. Therefore, you must set it manually. </p>
+<p>Here is an example:</p>
+ <pre>
+<code class="language-objectivec" translate="No">IMASettings *imaSettings = [[IMASettings alloc] init];
+imaSettings.language = [NSLocale currentLocale].localeIdentifier;</code></pre>
+
 </section>
 
 </article>
@@ -967,7 +972,7 @@ googleIMAComponent = new GoogleIMAComponent(
 
 <hr>
 <div class="last-updated">
-  Page last updated on 28 Sep 2020
+  Page last updated on 16 Nov 2020
 </div>
 
 
