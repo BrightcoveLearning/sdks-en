@@ -1,0 +1,139 @@
+---
+title: Using Dynamic Delivery Rules
+description: 'In this topic, you will learn how to use Dynamic Delivery Rules with the Native SDKs.'
+parent: Features
+grandparent: Home
+---
+
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <br/>
+  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of Delivery Rules.</aside>
+
+  <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+
+    <p>Brightcove's Dynamic Delivery Rules allows you to leverage the just-in-time manifest generation capability to use custom rules to control how your content is delivered to the viewer.</p>
+    <p>
+      If you are not familiar with this feature, see the <a href="https://docs.brightcove.com/en/staging/rules/using-rules-with-sdks.html">Overview: Dynamic Delivery Rules</a> document.
+    </p>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Android_implementation">Android implementation</h2>
+    <p>To use Delivery Rules with the Native SDK for Android, follow these steps:</p>
+    <ol class="bcls-tasklist__restart">
+      <li>
+        Define the parameter for your Delivery Rules ID.
+      </li>
+      <li>
+        Create the <code translate="No">HttpRequestConfig</code> with the delivery rule that you want applied. Pass a String value for your <code translate="No">config_id</code>, using the <code translate="No">HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID</code> parameter.
+      </li>
+      <li>
+        <p>
+          Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API. You can use either the <code translate="No">findVideoByID</code> or <code translate="No">findPlaylistByID</code> methods. Here is the code:
+        </p>
+        <pre>
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
+
+    private final String TAG = this.getClass().getSimpleName();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Assign the brightcoveVideoView before entering the superclass.
+        // This allows for video player lifecycle management.
+        setContentView(R.layout.activity_main);
+        brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+        super.onCreate(savedInstanceState);
+
+        // Get the event emitter from the SDK for notifications and logging
+        EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+
+        // Create a catalog request to retrieve a video from your Video Cloud library
+        Catalog catalog = new Catalog(eventEmitter,
+                getString(R.string.account),
+                getString(R.string.policy));
+
+        // Create HttpRequestConfig with the delivery rule you want to be applied.
+        // Use the HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID with a String value for config_id
+        <span class="bcls-highlight">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+                .addQueryParameter(HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID, &quot;<span class="bcls-input">your rules id</span>&quot;)
+                .build();</span>
+
+        // Add the HttpRequestConfig to the catalog request.
+        <span class="bcls-highlight">catalog.findVideoByID(getString(R.string.videoId), httpRequestConfig, new VideoListener() {</span>
+
+            // Add the video found to the queue with add().
+            // Start playback of the video with start().
+            @Override
+            public void onVideo(Video video) {
+                Log.v(TAG, &quot;onVideo: video = &quot; + video);
+                brightcoveVideoView.add(video);
+                brightcoveVideoView.start();
+            }
+        });
+    }
+}</code></pre>
+      </li>
+    </ol>
+
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="iOS_implementation">iOS implementation</h2>
+    <p>To use Delivery Rules with the Native SDK for iOS, follow these steps:</p>
+    <ol class="bcls-tasklist__restart">
+      <li>
+        Define the parameter for your Delivery Rules ID.
+      </li>
+      <li>
+        <p>
+          Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API. You can use either the <code translate="No">findVideoWithVideoID</code> or <code translate="No">findPlaylistWithPlaylistID</code> methods. Here is the code:
+        </p>
+        <pre>
+<code class="language-objectivec" translate="No">- (void)requestContentFromPlaybackService
+{
+    <span class="bcls-highlight">NSDictionary *playbackAPIParameters = @{@&quot;config_id&quot;:@&quot;<span class="bcls-input">your rules id</span>&quot;};</span>
+    [self.playbackService findVideoWithVideoID:kViewControllerVideoID
+        <span class="bcls-highlight">parameters:playbackAPIParameters</span>
+        completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+
+        if (video)
+        {
+            [self.playbackController setVideos:@[ video ]];
+        }
+        else
+        {
+            NSLog(@&quot;ViewController Debug - Error retrieving video playlist: `%@`&quot;, error);
+        }
+    }];
+}</code></pre>
+      </li>
+    </ol>
+
+<br>
+    <!-- <aside class="bcls-aside bcls-aside--information">This will override any Delivery Rules set in the player configuration.</aside> -->
+  </section>
+
+
+  <section class="bcls-section">
+  <h2 id="Related_topics">Related topics</h2>
+
+  <ul>
+  <li>
+    <a href="https://docs.brightcove.com/en/staging/rules/overview-delivery-rules.html">Overview: Dynamic Delivery Rules</a>
+  </li>
+  <li>
+    <a href="https://docs.brightcove.com/en/staging/rules/implementing-delivery-rules.html">Implementing Dynamic Delivery Rules</a>
+  </li>
+  <li>
+    <a href="http://docs.brightcove.com/en/staging/rules/using-rules-with-bcp.html">Using Dynamic Delivery Rules with Brightcove Player</a>
+  </li>
+</ul>
+
+  </section>
+
+</article>
