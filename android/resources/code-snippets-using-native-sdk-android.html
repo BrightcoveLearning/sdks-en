@@ -64,6 +64,7 @@ grandparent: Android Development
 <details style="padding:0;">
     <summary>Playback</summary>
     <ul>
+      <li><a href="#Detecting_Network_Bandwidth">Detecting Network Bandwidth</a></li>
       <li><a href="#Getting_the_ExoPlayer_instance">Getting the ExoPlayer instance</a></li>
       <li><a href="#Offline_playback_with_DRM">Offline playback with DRM</a></li>
       <li><a href="#Paging_with_the_Playback_API">Paging with the Playback API</a></li>
@@ -199,6 +200,28 @@ android:layout_gravity="bottom"
   int duration = (int) event.properties.get(Event.MAX_POSITION);
   }
 });</a></code></pre>
+</section>
+
+<section class="bcls-section">
+<h2 id="Detecting_Network_Bandwidth">Detecting Network Bandwidth</h2>
+<p>Even though the Native SDKs check the network bandwidth at the viewer connection and deliver the best video rendition, you may have a need to detect the bandwidth within your app.</p>
+
+<p>To detect bandwidth, the Native SDK for Android uses the <code translate="No">BandwidthMeter</code> class provided by ExoPlayer. Our <code translate="No">PlayerBandwidthMeter</code> class uses the <code translate="No">BandwidthMeter</code> class and provides the <code translate="No">getBitrateEstimate</code> method returning the estimated bitrate.</p>
+
+<p>For details, see the following:</p>
+<ul>
+  <li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/network/PlayerBandwidthMeter.html">Brightcove PlayerBandwidthMeter class</a></li>
+  <li><a href="https://medium.com/google-exoplayer/https-medium-com-google-exoplayer-simplified-bandwidth-meter-usage-17d8189f978b">Post: Simplified bandwidth meter usage</a></li>
+  <li><a href="https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/upstream/BandwidthMeter.html">ExoPlayer BandwidthMeter interface</a></li>
+  <li><a href="https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/upstream/BandwidthMeter.EventListener.html">ExoPlayer BandwidthMeter.EventListener interface</a></li>
+</ul>
+
+<p>Here's an example:</p>
+<pre class="line-numbers">
+<code class="language-java" translate="No">ExoPlayerVideoDisplayComponent exoPlayer = (ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay();
+exoPlayer.getBandwidthMeter().addEventListener(myHandler, new BandwidthMeter.EventListener() {@
+	Override public void onBandwidthSample(int elapsedMs, long bytesTransferred, long bitrateEstimate) {}
+});</code></pre>
 </section>
 
 <section class="bcls-section">
