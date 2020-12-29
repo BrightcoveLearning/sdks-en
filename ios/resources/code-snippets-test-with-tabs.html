@@ -4,83 +4,6 @@ description: In this topic, you will find a collection of code snippets which yo
 parent: Resources
 grandparent: iOS Development
 ---
-<!-- CSS for tabs -->
-<!-- <style>
-  * {
-  box-sizing: border-box;
-}
-.wrapper {
-  max-width: 50rem;
-  width: 100%;
-  margin: 0 auto;
-}
-.tabs {
-  position: relative;
-  margin: 3rem 0;
-  background: #1abc9c;
-  height: 14.75rem;
-}
-.tabs::before,
-.tabs::after {
-  content: "";
-  display: table;
-}
-.tabs::after {
-  clear: both;
-}
-.tab {
-  float: left;
-}
-.tab-switch {
-  display: none;
-}
-.tab-label {
-  position: relative;
-  display: block;
-  line-height: 2.75em;
-  height: 3em;
-  padding: 0 1.618em;
-  background: #1abc9c;
-  border-right: 0.125rem solid #16a085;
-  color: #fff;
-  cursor: pointer;
-  top: 0;
-  transition: all 0.25s;
-}
-.tab-label:hover {
-  top: -0.25rem;
-  transition: top 0.25s;
-}
-.tab-content {
-  height: 12rem;
-  position: absolute;
-  z-index: 1;
-  top: 2.75em;
-  left: 0;
-  padding: 1.618rem;
-  background: #fff;
-  color: #2c3e50;
-  border-bottom: 0.25rem solid #bdc3c7;
-  opacity: 0;
-  transition: all 0.35s;
-}
-.tab-switch:checked + .tab-label {
-  background: #fff;
-  color: #2c3e50;
-  border-bottom: 0;
-  border-right: 0.125rem solid #fff;
-  transition: all 0.35s;
-  z-index: 1;
-  top: -0.0625rem;
-}
-.tab-switch:checked + label + .tab-content {
-  z-index: 2;
-  opacity: 1;
-  transition: all 0.35s;
-}   
-</style> -->
-<!-- end CSS for tabs -->
-
 
 <h1>{{ page.title }}</h1>
 <article class="bcls-article">
@@ -207,33 +130,32 @@ grandparent: iOS Development
 	</li>
 	<li>
 	<p>Set up the player view with a standard VOD layout:</p>
-  <div class="wrapper">
-  <div class="tabs">
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-      <label for="tab-1" class="tab-label">Tab One</label>
-      <div class="tab-content">
-        <pre class="line-numbers">
+  <!-- tabs inline -->
+  <div class = "tabinator">
+    <input type = "radio" id = "tab1" name = "tabs" checked>
+    <label for = "tab1">Obj-C</label>
+    <input type = "radio" id = "tab2" name = "tabs">
+    <label for = "tab2">Swift</label>
+  <div id = "content1">
+    <pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
 BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
 [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
-      </div>
-    </div>
-    <div class="tab">
-      <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-      <label for="tab-2" class="tab-label">Tab Two</label>
-      <div class="tab-content">
-        Test content
-      </div>
-    </div>
   </div>
-  <p>Example line outside of tab box</p>
+  <div id = "content2">
+    <pre class="line-numbers">
+<code class="language-objectivec" translate="No">// Customize the CC button.
+BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
+ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
+ccButton.primaryTitle = @"CC";
+[ccButton showPrimaryTitle:YES];</code></pre>
+  </div>
 </div>
 
-	<pre class="line-numbers">
+	<!-- <pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
 BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
-[BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
+[BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre> -->
 	</li>
 	<li>
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
