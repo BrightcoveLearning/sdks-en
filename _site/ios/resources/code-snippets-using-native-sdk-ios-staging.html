@@ -993,6 +993,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">playbackController.allowsExternalPlayback = true</a></code></pre>
     </div>
   </div>
+  <!-- end tabs -->
 
 	</li>
 	<li>
@@ -1017,11 +1018,32 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</li>
 	<li>
 	<p>Set up the player view with a standard VOD layout:</p>
-
-	<pre class="line-numbers">
+  <!-- tabs -->
+  <div class = "tabinator">
+    <input type = "radio" id = "tab3" name = "tabs" checked>
+    <label for = "tab3">Obj-C</label>
+    <input type = "radio" id = "tab4" name = "tabs">
+    <label for = "tab4">Swift</label>
+    <div id = "content3">
+      <pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
-BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
+BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] 
+initWithPlaybackController:self.playbackController options:nil controlsView:
 [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
+    </div>
+    <div id = "content4">
+      <pre>
+<code class="language-swift" translate="No">// Set up our player view. Create with a standard VOD layout.
+guard let playerView = BCOVPUIPlayerView(playbackController: 
+self.playbackController, options: options, controlsView: 
+BCOVPUIBasicControlView.withVODLayout()) else {    
+  return
+}</code></pre>
+    </div>
+  </div>
+  <!-- end tabs -->
+
+	
 	</li>
 	<li>
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>

@@ -1027,6 +1027,28 @@ ccButton.primaryTitle = @"CC";
   </div>
 </div>
 
+<!-- tabs inline 2-->
+  <div class = "tabinator">
+    <input type = "radio" id = "tab3" name = "tabs" checked>
+    <label for = "tab3">Obj-C</label>
+    <input type = "radio" id = "tab4" name = "tabs">
+    <label for = "tab4">Swift</label>
+  <div id = "content3">
+    <pre class="line-numbers">
+<code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
+BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
+[BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
+  </div>
+  <div id = "content4">
+    <pre class="line-numbers">
+<code class="language-objectivec" translate="No">// Customize the CC button.
+BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
+ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
+ccButton.primaryTitle = @"CC";
+[ccButton showPrimaryTitle:YES];</code></pre>
+  </div>
+</div>
+
 	<!-- <pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
 BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
@@ -1034,7 +1056,7 @@ BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackContr
 	</li>
 	<li>
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
-  <!-- tabs -->
+  <!-- tabs test 1 -->
   <!-- don't delete these breaks! -->
   <!-- <br />
 &nbsp; -->
@@ -1056,9 +1078,7 @@ ccButton.primaryTitle = @"CC";
   <div id="tab2" class="tab">
     <pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Customize the CC button.
-BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @"CC";
+BCOVPUIButton *ccButton = test content 2;
 [ccButton showPrimaryTitle:YES];</code></pre>
   </div>
 </div>
@@ -1072,6 +1092,32 @@ ccButton.primaryTitle = @"CC";
 [ccButton showPrimaryTitle:YES];</code></pre> -->
 	</li>
 </ol>
+
+<!-- tabs test 2-->
+  <!-- don't delete these breaks! -->
+  <!-- <br />
+&nbsp; -->
+<div class="tabs">
+<ul class="tab-links">
+	<li class="active"><a href="#tab5">Obj-C</a></li>
+	<li><a href="#tab6">Swift</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="tab5" class="tab active">
+    <pre class="line-numbers">
+<code class="language-objectivec" translate="No">// Customize the CC button.
+BCOVPUIButton *ccButton = test content 3;
+[ccButton showPrimaryTitle:YES];</code></pre>
+  </div>
+  <div id="tab6" class="tab">
+    <pre class="line-numbers">
+<code class="language-objectivec" translate="No">// Customize the CC button.
+BCOVPUIButton *ccButton = test content 4;
+[ccButton showPrimaryTitle:YES];</code></pre>
+  </div>
+</div>
+</div>
 </section>
 
 <section class="bcls-section">
