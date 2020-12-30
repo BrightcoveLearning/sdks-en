@@ -978,16 +978,28 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li>
 	<p>Use the playback controller’s <code translate="No">allowsExternalPlayback </code> property to set the AVPlayer’s <code translate="No">allowsExternalPlayback </code> property:</p>
 
-	<pre>
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
+  <!-- tabs -->
+  <div class = "tabinator">
+    <input type = "radio" id = "tab1" name = "tabs" checked>
+    <label for = "tab1">Obj-C</label>
+    <input type = "radio" id = "tab2" name = "tabs">
+    <label for = "tab2">Swift</label>
+    <div id = "content1">
+      <pre>
+<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
+    </div>
+    <div id = "content2">
+      <pre>
+<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">playbackController.allowsExternalPlayback = true</a></code></pre>
+    </div>
+  </div>
+
 	</li>
 	<li>
 	<p>Set up an AirPlay router control and handle its selection. For details, see <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AirPlayGuide/Introduction/Introduction.html">Apple's AirPlay Overview</a> document.</p>
 	</li>
 </ol>
 </section>
-
-
 
 <section class="bcls-section">
 <h2 id="Customizing_the_closed_captions_button">Customizing the closed captions button</h2>
@@ -1005,71 +1017,21 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</li>
 	<li>
 	<p>Set up the player view with a standard VOD layout:</p>
-  <!-- tabs inline -->
-  <div class = "tabinator">
-    <input type = "radio" id = "tab1" name = "tabs" checked>
-    <label for = "tab1">Obj-C</label>
-    <input type = "radio" id = "tab2" name = "tabs">
-    <label for = "tab2">Swift</label>
-  <div id = "content1">
-    <pre class="line-numbers">
+
+	<pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
 BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
 [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
-  </div>
-  <div id = "content2">
-    <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Customize the CC button.
-BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @"CC";
-[ccButton showPrimaryTitle:YES];</code></pre>
-  </div>
-</div>
-
-	<!-- <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
-BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:
-[BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre> -->
 	</li>
 	<li>
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
-  <!-- tabs -->
-  <!-- don't delete these breaks! -->
-  <!-- <br />
-&nbsp; -->
-<div class="tabs">
-<ul class="tab-links">
-	<li class="active"><a href="#tab1">Obj-C</a></li>
-	<li><a href="#tab2">Swift</a></li>
-</ul>
 
-<div class="tab-content">
-  <div id="tab1" class="tab active">
-    <pre class="line-numbers">
+	<pre class="line-numbers">
 <code class="language-objectivec" translate="No">// Customize the CC button.
 BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
 ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
 ccButton.primaryTitle = @"CC";
 [ccButton showPrimaryTitle:YES];</code></pre>
-  </div>
-  <div id="tab2" class="tab">
-    <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Customize the CC button.
-BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @"CC";
-[ccButton showPrimaryTitle:YES];</code></pre>
-  </div>
-</div>
-</div>
-
-	<!-- <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Customize the CC button.
-BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @"CC";
-[ccButton showPrimaryTitle:YES];</code></pre> -->
 	</li>
 </ol>
 </section>
@@ -1518,7 +1480,7 @@ session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
 
 <hr>
 <div class="last-updated">
-  Page last updated on 29 Dec 2020
+  Page last updated on 30 Dec 2020
 </div>
 
 
