@@ -41,8 +41,46 @@ h4 i.far {
   margin-left: -1.5em;
 }
 
+/* CSS for code tabs */
+.tabs {
+  background: #fff;
+  padding: 0px;
+}
+.tab-content  {
+  display: block;
+  box-shadow: 0 0 10px #939393;
+}
+.tab-links a {
+  padding: 10px 25px;
+  position: relative;
+  color: #999;
+  background: #fff;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  bottom:-17px;
+}
+.tab-links li {
+  margin: 0;
+  float: left;
+  list-style: none;
+  padding-right: 5px;
+}
+.tabs .tab-links li.active a {
+  color: #000;
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #fff;
+  border-radius: 5px 5px 0 0;
+  background: #fff;
+  height: 50px;
+  bottom:-17px;
+  z-index:10;
+  box-shadow: 0 -10px 10px -10px#939393, 10px 0 10px -10px #939393, -10px 0 10px -10px #939393;
+}
+/* end CSS for code tabs */
+
 
 /* CSS for code tabs */
+/* Temporary code block - delete after testing */
 .tabinator {
   background: #fff;
   padding: 20px;
@@ -104,25 +142,4 @@ h4 i.far {
   display: block;
   box-shadow: 0 0 15px #939393;
 }
-/* end CSS for code tabs */
-
-/* CSS for code tabs */
-.tabs {
-  background: #fff;
-  padding: 20px;
-  font-family: Open Sans;
-}
-.tab-content  {
-  display: block;
-  box-shadow: 0 0 15px #939393;
-}
-/* .active {
-  box-sizing: border-box;
-  display: inline-block;
-  padding: 10px 25px;
-  color: #999;
-  margin-bottom: -1px;
-  margin-left: -1px;
-} */
-
 /* end CSS for code tabs */
