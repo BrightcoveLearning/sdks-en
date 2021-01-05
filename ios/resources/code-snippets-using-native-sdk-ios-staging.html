@@ -113,11 +113,11 @@ grandparent: iOS Development
     <div class="tab-content">
       <div id="tab1" class="tab active">
         <pre>
-    <code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
+    <code class="language-objectivec" translate="No">_playbackController.allowsExternalPlayback = YES;</code></pre>
       </div>
       <div id="tab2" class="tab">
         <pre>
-    <code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">playbackController.allowsExternalPlayback = true</a></code></pre>
+    <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true</code></pre>
       </div>
     </div>
   </div>
@@ -128,6 +128,8 @@ grandparent: iOS Development
 	<p>Set up an AirPlay router control and handle its selection. For details, see <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AirPlayGuide/Introduction/Introduction.html">Apple's AirPlay Overview</a> document.</p>
 	</li>
 </ol>
+<h4>Reference</h4>
+  <p>For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">BCOVPlaybackController</a> documentation.</p>
 </section>
 
 <section class="bcls-section">
@@ -192,14 +194,14 @@ BCOVPUIBasicControlView.withVODLayout()) else {
 <code class="language-objectivec" translate="No">// Customize the CC button.
 BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
 ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @"CC";
+ccButton.primaryTitle = @&quot;CC&quot;;
 [ccButton showPrimaryTitle:YES];</code></pre>
       </div>
       <div id="tab6" class="tab">
         <pre>
 <code class="language-swift" translate="No">if let ccButton = playerView.controlsView.closedCaptionButton {    
   ccButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)    
-  ccButton.primaryTitle = "CC"    
+  ccButton.primaryTitle = &quot;CC&quot;    
   ccButton.showPrimaryTitle(true)}
 }</code></pre>
       </div>
@@ -218,9 +220,32 @@ ccButton.primaryTitle = @"CC";
 
 <p>To display FairPlay-protected videos, set the AVPlayer properties exposed through the Brightcove Playback Controller to allow FairPlay video to play on an external display. The video plays in full screen mode. Here is an example of setting these properties:</p>
 
-<pre>
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">playbackController.allowsExternalPlayback = YES;
-playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</a></code></pre>
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab7">Obj-C</a></li>
+      <li><a href="#tab8">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab7" class="tab active">
+       <pre class="line-numbers">
+<code class="language-objectivec" translate="No">playbackController.allowsExternalPlayback = YES;
+playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</code></pre>
+      </div>
+      <div id="tab8" class="tab">
+        <pre>
+<code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true
+playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code></pre>
+      </div>
+    </div>
+  </div>
+  <!-- end tabs -->
+
+  <h4>Reference</h4>
+  <p>For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">BCOVPlaybackController</a> documentation.</p>
+
+
 </section>
 
 <section class="bcls-section">
