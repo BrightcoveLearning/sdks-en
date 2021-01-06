@@ -468,41 +468,86 @@ func playbackController(_ controller: BCOVPlaybackController!, playbackSession s
 	<li>
 	<p>Retrieve a playlist from your account.</p>
 
-	<pre class="line-numbers">
+  <!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab15">Obj-C</a></li>
+      <li><a href="#tab16">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab15" class="tab active">
+        <pre>
 <code class="language-objectivec" translate="No">- (void)retrievePlaylist
 {
-[self.refreshControl beginRefreshing];
+	[self.refreshControl beginRefreshing];
 
-// Retrieve a playlist through the BCOVPlaybackService
-BCOVPlaybackServiceRequestFactory *playbackServiceRequestFactory = [[BCOVPlaybackServiceRequestFactory alloc]         initWithAccountId:kDynamicDeliveryAccountID
-		policyKey:kDynamicDeliveryPolicyKey];
-BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequestFactory:playbackServiceRequestFactory];
+	// Retrieve a playlist through the BCOVPlaybackService
+	BCOVPlaybackServiceRequestFactory *playbackServiceRequestFactory = [[BCOVPlaybackServiceRequestFactory alloc]         
+  initWithAccountId:kDynamicDeliveryAccountID
+	policyKey:kDynamicDeliveryPolicyKey];
+	BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequestFactory:playbackServiceRequestFactory];
 
-[playbackService findPlaylistWithReferenceID:kDynamicDeliveryPlaylistRefID
-		parameters:nil
-		completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
-{
-	 [self.refreshControl endRefreshing];
+	[playbackService findPlaylistWithReferenceID:kDynamicDeliveryPlaylistRefID parameters:nil 
+  completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error) 
+	{
+		[self.refreshControl endRefreshing];
 
-	 NSLog(@"JSON Response:\n%@", jsonResponse);
+		NSLog(@&quot;JSON Response:\n%@&quot;, jsonResponse);
 
-	 if (playlist)
-	 {
-      self.currentVideos = playlist.videos.mutableCopy;
-      self.currentPlaylistTitle = playlist.properties[@"name"];
-      self.currentPlaylistDescription = playlist.properties[@"description"];
+		if (playlist)
+		{
+			self.currentVideos = playlist.videos.mutableCopy;
+			self.currentPlaylistTitle = playlist.properties[@&quot;name&quot;];
+			self.currentPlaylistDescription = playlist.properties[@&quot;description&quot;];
 
-      NSLog(@"Retrieved playlist containing %d videos", (int)self.currentVideos.count);
+			NSLog(@&quot;Retrieved playlist containing %d videos&quot;, (int)self.currentVideos.count);
 
-      [self usePlaylist:self.currentVideos];
-	 }
-	 else
-	 {
-      NSLog(@"No playlist for ID %@ was found.", kDynamicDeliveryPlaylistRefID);
-	 }
+			[self usePlaylist:self.currentVideos];
+		}
+		else
+		{
+			NSLog(@&quot;No playlist for ID %@ was found.&quot;, kDynamicDeliveryPlaylistRefID);
+		}
 
-}];
+	}];
 }</code></pre>
+      </div>
+      <div id="tab16" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func retrievePlaylist() {
+    refreshControl.beginRefreshing()
+    
+    let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
+    let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
+    
+    playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+        
+        guard let strongSelf = self else {
+            return
+        }
+        
+        strongSelf.refreshControl.endRefreshing()
+        
+        if let playlist = playlist {
+            strongSelf.currentVideos = playlist.videos
+            strongSelf.currentPlaylistTitle = playlist.properties[&quot;name&quot;] as? String ?? &quot;&quot;
+            strongSelf.currentPlaylistDescription = playlist.properties[&quot;description&quot;] as? String ?? &quot;&quot;
+            
+            print(&quot;Retrieved playlist containing \(playlist.videos.count) videos&quot;)
+            
+            strongSelf.usePlaylist(playlist)
+        } else {
+            print(&quot;No playlist for ID \(kDynamicDeliveryPlaylistRefID) was found.&quot;);
+        }
+        
+    })
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
 	</li>
 	<li>
 	<p>Re-initialize the containers that store information related to the videos in the current playlist.</p>
@@ -510,18 +555,46 @@ BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequ
 	<li>
 	<p>When the table view is selected, the row's index is used to create a new <code translate="No">videoDictionary</code>. Next, ask the dictionary for the video. If the video is not null, then load the video in the <code translate="No">playbackController</code>.</p>
 
-	<pre class="line-numbers">
+  <!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab17">Obj-C</a></li>
+      <li><a href="#tab18">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab17" class="tab active">
+        <pre>
 <code class="language-objectivec" translate="No">// Play the video in this row when selected
 - (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
-BCOVVideo *video = videoDictionary[@"video"];
+	NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
+	BCOVVideo *video = videoDictionary[@&quot;video&quot;];
 
-  if (video != nil)
-  {
-  	[self.playbackController setVideos:@[ video ]];
-  }
+	if (video != nil)
+	{
+		[self.playbackController setVideos:@[ video ]];
+	}
 }</code></pre>
+      </div>
+      <div id="tab18" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    guard let videosTableViewData = videosTableViewData, 
+    let videoDictionary = videosTableViewData[indexPath.row] as? 
+    [AnyHashable:Any], let video = videoDictionary[&quot;video&quot;] as? BCOVVideo else {
+        return
+    }
+    
+    playbackController.setVideos([video] as NSFastEnumeration)
+    
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
 	</li>
 </ol>
 
@@ -537,13 +610,44 @@ BCOVVideo *video = videoDictionary[@"video"];
 
 <p>If these values are not important to you or interfere with your own progress tracking, they can be easily ignored with a conditional statement like this:</p>
 
-<pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab19">Obj-C</a></li>
+      <li><a href="#tab20">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab19" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
 {
-if (progress &lt; 0.0 || progress &gt;= INFINITY)
-return;
-// Your code here
-}</a></code></pre>
+	if (progress &lt; 0.0 || progress &gt;= INFINITY)
+	{
+		return;
+	}
+
+	// Your code here
+}</code></pre>
+      </div>
+      <div id="tab20" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didProgressTo progress: TimeInterval) {
+        
+    if (progress &lt; 0.0 || progress &gt;= Double.infinity) {
+        return;
+    }
+    
+    // Your code here
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
+<h4>Reference</h4>
+  <p>For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">BCOVPlaybackController</a> documentation.</p>
+
 </section>
 
 <section class="bcls-section">
@@ -560,16 +664,41 @@ return;
 
 <p>This example returns 6 videos starting with the 10th video in the playlist:</p>
 
-<pre class="line-numbers">
-<code class="language-objectivec" translate="No">NSDictionary *params =
-@{
-@"limit": @6,
-@"offset": @9
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab21">Obj-C</a></li>
+      <li><a href="#tab22">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab21" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">NSDictionary *params = @{
+	@&quot;limit&quot;: @6,
+	@&quot;offset&quot;: @9
 };
-[playbackService findPlaylistWithReferenceID:playlistRefID
-parameters:params
-completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
-{ ...</code></pre>
+
+[playbackService findPlaylistWithReferenceID:playlistRefID parameters:params completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
+{ 
+    // Your code here
+}];</code></pre>
+      </div>
+      <div id="tab22" class="tab">
+        <pre>
+<code class="language-swift" translate="No">let params = [
+    &quot;limit&quot;: 6,
+    &quot;offset&quot;: 9
+]
+
+playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+    // Your code here
+})</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
 </section>
 
 <section class="bcls-section">
