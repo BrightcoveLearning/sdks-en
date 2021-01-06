@@ -1139,49 +1139,116 @@ playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code>
 	<li>
 	<p>Here is one way you could use Google Analytics to track video playback using Google's Firebase SDK:</p>
 
-	<pre class="line-numbers" data-start="1">
-<code class="language-swift" translate="No">// This snippet shows one way to track video playback
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab9">Obj-C</a></li>
+      <li><a href="#tab10">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab9" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">// This snippet shows one way to track video playback
 // using the Firebase SDK from Google Analytics with
 // the lifecycle event playback controller delegate method.
 - (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
 {
-// Common parameters
-NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
-NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
+	// Common parameters
+	NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
+	NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
 
-// Session is ready to play
-if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
-{
-	[FIRAnalytics logEventWithName:@"bcov_video_ready"
-    parameters:@{
-        @"bcov_video_name": video_name,
-        @"bcov_video_id": video_ID
-    }];
-}
+	// Session is ready to play
+	if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+	{
+		[FIRAnalytics logEventWithName:@&quot;bcov_video_ready&quot;
+	    parameters:@{
+	        @&quot;bcov_video_name&quot;: video_name,
+	        @&quot;bcov_video_id&quot;: video_ID
+	    }];
+	}
 
-// Session encountered an error
-if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
-{
-	NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
-	int error_code = error.code;
-	[FIRAnalytics logEventWithName:@"bcov_video_playback_error"
-    parameters:@{
-        @"bcov_video_name": video_name,
-        @"bcov_video_id": video_ID,
-        @"bcov_video_error_code": @(error_code)
-    }];
-}
+	// Session encountered an error
+	if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
+	{
+		NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
+		int error_code = error.code;
+		[FIRAnalytics logEventWithName:@&quot;bcov_video_playback_error&quot;
+	    parameters:@{
+	        @&quot;bcov_video_name&quot;: video_name,
+	        @&quot;bcov_video_id&quot;: video_ID,
+	        @&quot;bcov_video_error_code&quot;: @(error_code)
+	    }];
+	}
 
-// Session has completed
-if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
-{
-	[FIRAnalytics logEventWithName:@"bcov_video_terminate"
-    parameters:@{
-        @"bcov_video_name": video_name,
-        @"bcov_video_id": video_ID
-     }];
-}
+	// Session has completed
+	if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
+	{
+		[FIRAnalytics logEventWithName:@&quot;bcov_video_terminate&quot;
+	    parameters:@{
+	        @&quot;bcov_video_name&quot;: video_name,
+	        @&quot;bcov_video_id&quot;: video_ID
+	     }];
+	}
 }</code></pre>
+      </div>
+      <div id="tab10" class="tab">
+        <pre>
+<code class="language-swift" translate="No">// This snippet shows one way to track video playback
+// using the Firebase SDK from Google Analytics with
+// the lifecycle event playback controller delegate method.
+func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+        
+    // Common parameters
+    let video_name = session.video.properties[kBCOVVideoPropertyKeyName]
+    let video_id = session.video.properties[kBCOVVideoPropertyKeyId]
+    
+    // Session is ready to play
+    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
+        
+        if let video_name = video_name as? String, let video_id = video_id as? String {
+            Analytics.logEvent(&quot;bcov_video_ready&quot;, parameters: [
+                &quot;bcov_video_name&quot; : video_name,
+                &quot;bcov_video_id&quot; : video_id
+            ])
+        }
+        
+    }
+    
+    // Session encountered an error
+    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventError) {
+     
+        if let error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError] as? NSError {
+            let error_code = error.code
+            
+            if let video_name = video_name as? String, let video_id = video_id as? String {
+                Analytics.logEvent(&quot;bcov_video_playback_error&quot;, parameters: [
+                    &quot;bcov_video_name&quot; : video_name,
+                    &quot;bcov_video_id&quot; : video_id,
+                    &quot;bcov_video_error_code&quot; : error_code
+                ])
+            }
+        }
+        
+    }
+    
+    // Session has completed
+    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventTerminate) {
+        
+        if let video_name = video_name as? String, let video_id = video_id as? String {
+            Analytics.logEvent(&quot;bcov_video_terminate&quot;, parameters: [
+                &quot;bcov_video_name&quot; : video_name,
+                &quot;bcov_video_id&quot; : video_id
+            ])
+        }
+        
+    }
+
+}</code></pre>
+      </div>
+    </div>
+  </div>
+  <!-- end tabs -->
 	</li>
 </ol>
 
@@ -1197,11 +1264,26 @@ if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.
 
 <p>Use one of the following declarations:</p>
 
-<pre class="line-numbers">
-<code class="language-swift" translate="No">// Swift
-var preferredPeakBitRate: Double
-// Obj-C
-@property(nonatomic) double preferredPeakBitRate</code></pre>
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab11">Obj-C</a></li>
+      <li><a href="#tab12">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab11" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">[self.playbackController setPreferredPeakBitRate:1000];</code></pre>
+      </div>
+      <div id="tab12" class="tab">
+        <pre>
+<code class="language-swift" translate="No">playbackController.setPreferredPeakBitRate(1000)</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
 </section>
 
 <section class="bcls-section">
@@ -1211,19 +1293,47 @@ var preferredPeakBitRate: Double
 
 <p>This code assumes that you have set the delegate of the playbackController to the object with this method:</p>
 
-<pre class="line-numbers">
-<code class="language-swift" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab13">Obj-C</a></li>
+      <li><a href="#tab14">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab13" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
 {
-  if ([kBCOVPlaybackSessionLifecycleEventEnd isEqualToString:lifecycleEvent.eventType])
-  {
-    [controller seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
-    if (finished)
-    	{
-        [controller play];
-    	}
-    }];
-  }
+	if ([kBCOVPlaybackSessionLifecycleEventEnd isEqualToString:lifecycleEvent.eventType])
+	{
+		[controller seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
+			if (finished)
+			{
+				[controller play];
+			}
+		}];
+	}
 }</code></pre>
+      </div>
+      <div id="tab14" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+        
+    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventEnd) {
+        controller.seek(to: CMTime.zero) { (finished: Bool) in
+            if (finished) {
+                controller.play()
+            }
+        }
+    }
+    
+}</code></pre>
+      </div>
+    </div>
+  </div>
+  <!-- end tabs -->
+
 </section>
 
 <section class="bcls-section">
