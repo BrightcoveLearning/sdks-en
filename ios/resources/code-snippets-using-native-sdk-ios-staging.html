@@ -21,7 +21,7 @@ grandparent: iOS Development
    <ul>
       <li><a href="#Media_progress_values">Media progress values</a></li>
     </ul>
-</details>
+</details> 
 <br/>
 
 <details style="padding:0;">
@@ -708,57 +708,161 @@ playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params,
 
 <p>You can also add cue points to your video programmatically. The code below adds quarterly interval cue points to the video returned from the Playback API:</p>
 
-<pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">// programmatically add cue points to a video
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab23">Obj-C</a></li>
+      <li><a href="#tab24">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab23" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">// programmatically add cue points to a video
 - (void)requestContentFromPlaybackService
 {
-[self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
-if (video)
-{
-<span class="bcls-highlight">// Get the video duration from the properties dictionary
-NSNumber *durationNumber = video.properties[@"duration"]; // milliseconds
-float duration = durationNumber.floatValue / 1000.0; // convert to seconds
-video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
-{
-// Add quarterly interval cue points of your own type
-BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@"<span class="bcls-input">your cue point type</span>" position:CMTimeMake(duration * 250, 1000)];
-BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@"<span class="bcls-input">your cue point type</span>" position:CMTimeMake(duration * 500, 1000)];
-BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@"<span class="bcls-input">your cue point type</span>" position:CMTimeMake(duration * 750, 1000)];
-BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@"<span class="bcls-input">your cue point type</span>" position:CMTimeMake(duration * 1000, 1000)];
-// Create new cue point collection using existing cue points and new cue points
-NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
-[newCuePoints addObject:cp1];
-[newCuePoints addObject:cp2];
-[newCuePoints addObject:cp3];
-[newCuePoints addObject:cp4];
-mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
-}];</span>
-[self.playbackController setVideos:@[ video ]];
-}
-else
-{
-NSLog(@"ViewController Debug - Error retrieving video: `%@`", error);
-}
-}];
-}</a></code></pre>
+    [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+        if (video)
+        {
+            // Get the video duration from the properties dictionary
+            NSNumber *durationNumber = video.properties[@&quot;duration&quot;]; // milliseconds
+            float duration = durationNumber.floatValue / 1000.0; // convert to seconds
+            video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
+            {
+                // Add quarterly interval cue points of your own type
+                BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 250, 1000)];
+                BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 500, 1000)];
+                BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 750, 1000)];
+                BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 1000, 1000)];
+                // Create new cue point collection using existing cue points and new cue points
+                NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
+                [newCuePoints addObject:cp1];
+                [newCuePoints addObject:cp2];
+                [newCuePoints addObject:cp3];
+                [newCuePoints addObject:cp4];
+                mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
+            }];
+                
+            [self.playbackController setVideos:@[ video ]];
+        }
+        else
+        {
+            NSLog(@&quot;ViewController Debug - Error retrieving video: `%@`&quot;, error);
+        }
+    }];
+}</code></pre>
+      </div>
+      <div id="tab24" class="tab">
+        <pre>
+<code class="language-swift" translate="No">// programmatically add cue points to a video
+func requestContentFromPlaybackService() {
+    playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) 
+    { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
+        if let error = error {
+            print(&quot;ViewController Debug - Error retrieving video: `\(error.localizedDescription)`&quot;)
+        }
+        
+        if let video = video {
+            
+            // Get the video duration from the properties dictionary
+            guard let durationNumber = video.properties[&quot;duration&quot;] as? NSNumber else {
+                return
+            }
+            
+            let duration = durationNumber.floatValue / 1000.0; // convert to seconds
+            
+            let updatedVideo = video.update({ (mutableVideo: BCOVMutableVideo?) in
+                
+                guard let mutableVideo = mutableVideo else {
+                    return
+                }
+                
+                // Add quarterly interval cue points of your own type
+                let cp1Position = CMTimeMake(value: Int64(duration * 250), timescale: 1000)
+                let cp1 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp1Position)!
+                let cp2Position = CMTimeMake(value: Int64(duration * 500), timescale: 1000)
+                let cp2 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp2Position)!
+                let cp3Position = CMTimeMake(value: Int64(duration * 750), timescale: 1000)
+                let cp3 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp3Position)!
+                let cp4Position = CMTimeMake(value: Int64(duration * 1000), timescale: 1000)
+                let cp4 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp4Position)!
+                
+                // Create new cue point collection using existing cue points and new cue points
+                var newCuePoints = [BCOVCuePoint]()
+                newCuePoints.append(cp1)
+                newCuePoints.append(cp2)
+                newCuePoints.append(cp3)
+                newCuePoints.append(cp4)
+                
+                mutableVideo.cuePoints = BCOVCuePointCollection(array: newCuePoints)
+            })
+            
+            self?.playbackController.setVideos([updatedVideo] as NSFastEnumeration)
+        }
+        
+    }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
+<p>&nbsp;</p>
 <p>Note that the value of <code translate="No">your cue point type </code> can be any string value that you want, as long as you are not using any of the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Integrations">iOS plugins</a>. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html#//api/name/type">BCOVCuePoint Protocol Reference</a> document.</p>
 
 <p>If you are using cue points with the IMA plugin, learn more about it in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#vast-and-vmapserver-side-ad-rules">VAST and VMAP/Server Side Ad Rules</a> section of the IMA Plugin for the Native SDK for iOS notes. The <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/06bb6f8dff6075340737017a966ad19b20bf6adb/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L39-L42">IMA sample app</a> shows you the value required for IMA ad cue points.</p>
 
 <p>The code below listens for your cue points and displays a message:</p>
 
-<pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html">// listen for cue points and display them
--(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo {
-BCOVCuePointCollection *cpc = cuePointInfo[@"kBCOVPlaybackSessionEventKeyCuePoints"];
-for (BCOVCuePoint *cp in cpc) {
-  if ([cp.type isEqualToString:@"<span class="bcls-input">your cue point type</span>"])
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab25">Obj-C</a></li>
+      <li><a href="#tab26">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab25" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">// listen for cue points and display them
+-(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo
+{
+    BCOVCuePointCollection *cpc = cuePointInfo[@&quot;kBCOVPlaybackSessionEventKeyCuePoints&quot;];
+    for (BCOVCuePoint *cp in cpc.array)
     {
-    NSLog(@"Found your cue point at %f", CMTimeGetSeconds(cp.position));
+        if ([cp.type isEqualToString:@&quot;<span class="bcls-input">your cue point type</span>&quot;])
+        {
+            NSLog(@&quot;Found your cue point at %f&quot;, CMTimeGetSeconds(cp.position));
+        }
     }
-  }
-}</a></code></pre>
+}</code></pre>
+      </div>
+      <div id="tab26" class="tab">
+        <pre>
+<code class="language-swift" translate="No">// listen for cue points and display them
+func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didPassCuePoints cuePointInfo: [AnyHashable : Any]!) {
+    if let cpc = cuePointInfo[kBCOVPlaybackSessionEventKeyCuePoints] as? BCOVCuePointCollection {
+        for cp in cpc.array() {
+            if let cp = cp as? BCOVCuePoint {
+                if (cp.type == &quot;<span class="bcls-input">your cue point type</span>&quot;) {
+                    print(&quot;Found your cue point at \(CMTimeGetSeconds(cp.position))&quot;)
+                }
+            }
+        }
+    }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
+<h4>References</h4>
+  <p>For details, see the following:</p>
+  <ul>
+    <li><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">BCOVVideo</a> documentation</li>
+     <li><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html">BCOVCuePoint</a> documentation</li>
+  </ul>
 </section>
 <!-- <section class="bcls-section" id="Setting_the_buffer_size">
 		<h2>Setting the buffer size</h2>
@@ -778,10 +882,30 @@ for (BCOVCuePoint *cp in cpc) {
   Here is a code example:
 </p>
 
-<pre>
-<code class="language-objectivec" translate="No">playerView?.removeFromSuperview()
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab27">Obj-C</a></li>
+      <li><a href="#tab28">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab27" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">[self.playerView removeFromSuperview];
+self.playerView = nil;
+self.playbackController = nil;</code></pre>
+      </div>
+      <div id="tab28" class="tab">
+        <pre>
+<code class="language-swift" translate="No">playerView?.removeFromSuperview()
 playerView = nil
 playbackController = nil</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
 </section>
 
 <section class="bcls-section">
@@ -819,18 +943,47 @@ playbackController = nil</code></pre>
 
 <p>For a <code translate="No">BCOVPlaybackSession </code>, your code would look similar to this:</p>
 
-<pre class="line-numbers">
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab29">Obj-C</a></li>
+      <li><a href="#tab30">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab29" class="tab active">
+        <pre>
 <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
-  playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent {
-
-  if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] ) {
-    NSLog(@"%@ at time %f", kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
-    AVPlayerItem * avPlayerItem = [session.player currentItem];
-    avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
-    session.player.rate = 1.7;
-  }
+  playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+{
+    if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] )
+    {
+        NSLog(@&quot;%@ at time %f&quot;, kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
+        AVPlayerItem *avPlayerItem = [session.player currentItem];
+        avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
+        session.player.rate = 1.7;
+    }
 }</code></pre>
+      </div>
+      <div id="tab30" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+    
+    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
+        let seconds = CMTimeGetSeconds(session.player.currentTime())
+        print(&quot;kBCOVPlaybackSessionLifecycleEventReady at time \(seconds)&quot;)
+        let avPlayerItem = session.player.currentItem
+        avPlayerItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.varispeed
+        session.player.rate = 1.7
+    }
+    
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
 
+<p>&nbsp;</p>
 <aside class="bcls-aside bcls-aside--information">
   The Native SDK for iOS does not support negative values for the playback rate (ie. we do not support playing videos in reverse).
 <!-- <p>Notes</p>
@@ -847,14 +1000,37 @@ playbackController = nil</code></pre>
 
 <p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code translate="No">BCOVPlaybackController </code> protocol's <code translate="No">viewProjection </code> property as follows:</p>
 
-<pre class="line-numbers">
-<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
-{
-BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
-[viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
-[self.playbackController setViewProjection:viewProjection];
-}</a></code></pre>
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab31">Obj-C</a></li>
+      <li><a href="#tab32">Swift</a></li>
+    </ul>
 
+    <div class="tab-content">
+      <div id="tab31" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+{
+    BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
+    [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
+    [self.playbackController setViewProjection:viewProjection];
+}</code></pre>
+      </div>
+      <div id="tab32" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+    if let viewProjection: BCOVVideo360ViewProjection = controller.viewProjection.copy() as? BCOVVideo360ViewProjection {
+        viewProjection.projectionStyle = BCOVVideo360ProjectionStyle.vrGoggles
+        playbackController.viewProjection = viewProjection
+    }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
+<p>&nbsp;</p>
 <aside class="bcls-aside bcls-aside--information">Note that you need to set the controller's projection style in the <code translate="No">didAdvanceToPlaybackSession </code> delegate method.</aside>
 </section>
 <!-- <section class="bcls-section">
@@ -890,12 +1066,32 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 
 <p>You can change the player layer background with the following code:</p>
 
-<pre class="line-numbers">
-<code class="language-objectivec" translate="No">(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
-{
-session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
-}</code></pre>
+<!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab33">Obj-C</a></li>
+      <li><a href="#tab34">Swift</a></li>
+    </ul>
 
+    <div class="tab-content">
+      <div id="tab33" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+{
+    session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
+}</code></pre>
+      </div>
+      <div id="tab34" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+    session.playerLayer.backgroundColor = UIColor.white.cgColor
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
+<p>&nbsp;</p>
 <p>Setting the background color to white should look like this:</p>
 
 <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Background color" src="//learning-services-media.brightcove.com/doc-assets/device-sdks/ios/snippets/ios-bkgd-color.png" />
