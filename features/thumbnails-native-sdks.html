@@ -1,6 +1,6 @@
 ---
-title: Thumbnail Scrubbing with the Native SDKs
-description: In this topic, you will learn about thumbnail scrubbing with the Brightcove Native SDKs.
+title: Thumbnail Seeking with the Native SDKs
+description: In this topic, you will learn about thumbnail seeking with the Brightcove Native SDKs.
 parent: Features
 grandparent: Home
 ---
@@ -12,11 +12,11 @@ grandparent: Home
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p>Thumbnail scrubbing allows users to drag the playhead along the timeline and view thumbnails as a preview of the associated content. This gives users the ability to quickly navigate a video file and find the content that they are interested in.</p>
+<p>Thumbnail seeking allows users to drag the playhead along the timeline and view thumbnails as a preview of the associated content. This gives users the ability to quickly navigate a video file and find the content that they are interested in.</p>
 <figure class="bcls-figure">
   <img
     class="bcls-image--no-border"
-    alt="Thumbnail scrubbing"
+    alt="Thumbnail seeking"
     src="/assets/images/features/thumbnail-scrubbing.png"
   />
 </figure>
@@ -25,7 +25,7 @@ grandparent: Home
 <section class="bcls-section">
 <h2 id="Requirements">Requirements</h2>
 
-<p>The following requirements are needed for thumbnail scrubbing with the Brightcove Native SDKs:</p>
+<p>The following requirements are needed for thumbnail seeking with the Brightcove Native SDKs:</p>
 <p>This feature requires using the Playback API v2.</p>
 <h3>Device OS version</h3>
 <ul>
@@ -60,7 +60,7 @@ grandparent: Home
 <section class="bcls-section">
 <h2 id="Android_Implementation">Android Implementation</h2>
 
-<p>To use thumbnail scrubbing with the Native SDK for Android, follow these steps:</p>
+<p>To use thumbnail seeking with the Native SDK for Android, follow these steps:</p>
 <ol class="bcls-tasklist">
   <li>
     <p>
@@ -133,16 +133,16 @@ grandparent: Home
 
 <section class="bcls-section">
 <h2 id="iOS_Implementation">iOS Implementation</h2>
-<p>To use thumbnail scrubbing with the Native SDK for iOS, follow these steps</p>
+<p>To use thumbnail seeking with the Native SDK for iOS, follow these steps</p>
 <ol class="bcls-tasklist-restart">
   <li>
-    <p>There is a new <code translate="No">BCOVPlaybackController</code> property that enables or disables thumbnail scrubbing for the playback controller. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/thumbnailScrubbingEnabled">Native SDK for iOS reference</a>.
+    <p>There is a new <code translate="No">BCOVPlaybackController</code> property that enables or disables thumbnail seeking for the playback controller. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/thumbnailScrubbingEnabled">Native SDK for iOS reference</a>.
   </li>
   <li>
     <p>
-      The default value is <code translate="No">YES</code>. To disable thumbnail scrubbing, set the value to <code translate="No">NO</code>.</p>
+      The default value is <code translate="No">YES</code>. To disable thumbnail seeking, set the value to <code translate="No">NO</code>.</p>
 <pre class="line-numbers"><code class="language-objectivec" translate="No">/**
- * Enables or disables thumbnail scrubbing for this playback controller.
+ * Enables or disables thumbnail seeking for this playback controller.
  *
  * Default value is YES
  */
@@ -160,10 +160,10 @@ grandparent: Home
 <section class="bcls-section">
 <h2 id="Notes">Notes</h2>
 
-<p>The following notes apply to thumbnail scrubbing with the Native SDKs:.</p>
+<p>The following notes apply to thumbnail seeking with the Native SDKs:.</p>
 <ul>
   <li>
-    Thumbnail scrubbing is not supported with offline playback
+    Thumbnail seeking is not supported with offline playback
   </li>
 </ul>
 </section>
