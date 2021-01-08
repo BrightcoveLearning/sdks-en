@@ -884,6 +884,73 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
+<style>
+  /* CSS for code tabs */
+/* Temporary code block - delete after testing */
+.tabinator {
+  background: #fff;
+  padding: 20px;
+  font-family: Open Sans;
+}
+.tabinator input {
+  display: none;
+}
+.tabinator label {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 25px;
+  color: #999;
+  margin-bottom: -1px;
+  margin-left: -1px;
+}
+.tabinator label:before {
+  content:'';
+  display:block;
+  width:100%;
+  height:15px;
+  background-color:#fff;
+  position:absolute;
+  bottom:-11px;
+  left:0;
+  z-index:10;  
+}
+.tabinator label:hover {
+  color: #666;
+  cursor: pointer;
+}
+.tabinator input:checked + label {
+  position: relative;
+  color: #000;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #fff;
+  border-radius: 5px 5px 0 0;
+}
+.tabinator input:checked + label:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  box-shadow: 0 0 15px #939393;
+}
+.tabinator #content1, #content2, #content3, #content4 {
+  display: none;
+  border-top: 1px solid #bbb;
+  padding: 20px;
+}
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2 {
+  display: block;
+  box-shadow: 0 0 15px #939393;
+}
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+  box-shadow: 0 0 15px #939393;
+}
+/* end CSS for code tabs */
+</style>
+
 <h1>Code Snippets using the Native SDK for iOS</h1>
 <article class="bcls-article">
   <summary>In this topic, you will find a collection of code snippets which you may find useful as a reference while developing with the SDK. For more detailed solutions, see the <a href="https://github.com/BrightcoveOS/ios-player-samples">iOS player samples</a>.</summary>
