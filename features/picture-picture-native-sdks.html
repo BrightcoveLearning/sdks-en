@@ -60,10 +60,10 @@ grandparent: Home
 <ul>
 	<li><a href="#Using_BrightcovePlayer">Using BrightcovePlayer</a></li>
 	<li><a href="#Using_a_regular_Activity">Using a regular Activity</a></li>
-	<li><a href="#Customizing_Picture in picture">Customizing picture in picture</a></li>
+	<li><a href="#Customizing_picture_in_picture">Customizing picture in picture</a></li>
 </ul>
 
-<p>For more details, see Android's <a href="https://developer.android.com/guide/topics/ui/picture in picture.html">Picture in picture support guide</a>.</p>
+<p>For more details, see Android's <a href="https://developer.android.com/guide/topics/ui/picture-in-picture.html">Picture in picture support guide</a>.</p>
 
 <h3 id="Using_BrightcovePlayer">Using BrightcovePlayer</h3>
 
@@ -73,24 +73,24 @@ grandparent: Home
 	<li>In your <strong>styles.xml</strong> file, enable the picture in picture button by adding the following code:
 
 	<pre class="line-numbers">
-  <code class="language-xml" translate="No">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
-         &lt;item name="brightcove_picture_in_picture"&gt;true&lt;/item&gt;
-      &lt;/style&gt;</code></pre>
+<code class="language-xml" translate="No">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
+    &lt;item name="brightcove_picture_in_picture"&gt;true&lt;/item&gt;
+&lt;/style&gt;</code></pre>
 	</li>
-	<li>In your <strong>AndroidManifest.xml</strong> file, <a href="https://developer.android.com/guide/topics/ui/picture in picture.html#declaring">declare picture in picture support</a> for the activity by adding the following:
+	<li>In your <strong>AndroidManifest.xml</strong> file, <a href="https://developer.android.com/guide/topics/ui/picture-in-picture.html#declaring">declare picture in picture support</a> for the activity by adding the following:
 	<pre class="line-numbers">
-  <code class="language-xml" translate="No">&lt;activity android:name="VideoActivity"
-        android:resizeableActivity="true"
-      <span class="bcls-highlight">  android:supportsPictureInPicture="true"
-        android:configChanges=
-            "screenSize|smallestScreenSize|screenLayout|orientation"</span>
-        ...
-      </code></pre>
+<code class="language-xml" translate="No">&lt;activity android:name="VideoActivity"
+  android:resizeableActivity="true"
+<span class="bcls-highlight">  android:supportsPictureInPicture="true"
+  android:configChanges=
+      "screenSize|smallestScreenSize|screenLayout|orientation"</span>
+  ...
+</code></pre>
 
 	<p>This is an important step. If you do not declare it, when a user presses the picture in picture button in the Brightcove Media Controller, an <code translate="No">IllegalStateException</code> will be thrown:</p>
 
 	<pre>
-  <code class="language-java" translate="No">java.lang.IllegalStateException: enterPictureInPictureMode: Current activity does not support picture in picture</code></pre>
+<code class="language-java" translate="No">java.lang.IllegalStateException: enterPictureInPictureMode: Current activity does not support picture in picture</code></pre>
 	</li>
 </ol>
 
@@ -99,9 +99,9 @@ grandparent: Home
 <p>If you do not want picture in picture in your app, you can disable the picture in picture button by adding the following code in your <strong>styles.xml</strong> file:</p>
 
 <pre class="line-numbers">
-  <code class="language-xml" translate="No">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
-     &lt;item name="brightcove_picture_in_picture"&gt;false&lt;/item&gt;
-  &lt;/style&gt;</code></pre>
+<code class="language-xml" translate="No">&lt;style name="BrightcoveControlBar" parent="BrightcoveControlBarDefault"&gt;
+    &lt;item name="brightcove_picture_in_picture"&gt;false&lt;/item&gt;
+&lt;/style&gt;</code></pre>
 
 <h3 id="Using_a_regular_Activity">Using a regular Activity</h3>
 
@@ -111,15 +111,15 @@ grandparent: Home
 	<li>Open the <strong>MainActivity.java</strong> file.</li>
 	<li>In the <code translate="No">onCreate</code> method of the activity, register the Activity with the Brightcove <code translate="No">PictureInPictureManager</code>:
 	<pre>
-  <code class="language-java" translate="No">PictureInPictureManager.getInstance().registerActivity(Activity, BrightcoveVideoView)</code></pre>
+<code class="language-java" translate="No">PictureInPictureManager.getInstance().registerActivity(Activity, BrightcoveVideoView)</code></pre>
 	</li>
 	<li>In the <code translate="No">onDestroy</code> method, unregister the Activity:
 	<pre>
-  <code class="language-java" translate="No">PictureInPictureManager.getInstance().unregisterActivity(Activity)</code></pre>
+<code class="language-java" translate="No">PictureInPictureManager.getInstance().unregisterActivity(Activity)</code></pre>
 	</li>
 	<li>Override the <code translate="No">onPictureInPictureModeChanged</code> Activity method, and call <code translate="No">onPictureInPictureModeChanged()</code> method as shown below:
 	<pre class="line-numbers">
-  <code class="language-java" translate="No">@Override
+<code class="language-java" translate="No">@Override
   public void onPictureInPictureModeChanged (boolean isInPictureInPictureMode, Configuration newConfig) {
      super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
      PictureInPictureManager.getInstance().onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
@@ -127,7 +127,7 @@ grandparent: Home
 	</li>
 	<li>Finally, override the <code translate="No">onUserLeaveHint()</code> Activity method, and call <code translate="No">onUserLeaveHint()</code> as shown below:
 	<pre class="line-numbers">
-  <code class="language-java" translate="No">@Override
+<code class="language-java" translate="No">@Override
   public void onUserLeaveHint () {
      super.onUserLeaveHint();
      PictureInPictureManager.getInstance().onUserLeaveHint();
@@ -138,11 +138,11 @@ grandparent: Home
 <p>After following these steps, the picture in picture button will appear in the Brightcove Media Controller automatically. You can also trigger picture in picture programmatically as follows:</p>
 
 <pre>
-  <code class="language-java" translate="No">PictureInPictureManager.getInstance().enterPictureInPictureMode()</code></pre>
+<code class="language-java" translate="No">PictureInPictureManager.getInstance().enterPictureInPictureMode()</code></pre>
 
 <aside class="bcls-aside bcls-aside--information">Note that calling this method will throw a <code translate="No">PictureInPictureManagerException</code> if an Activity has not been registered.</aside>
 
-<h3 id="Customizing_picture in picture">Customizing picture in picture</h3>
+<h3 id="Customizing_picture_in_picture">Customizing picture in picture</h3>
 
 <p>You can customize the behavior and appearance of the picture in picture window through the <code translate="No">PictureInPictureManager</code>. For example, you can change the aspect ratio of the window or enable/disable captions for your videos.</p>
 
@@ -152,15 +152,15 @@ grandparent: Home
 	<li><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setAspectRatio(android.util.Rational)">aspect ratio</a>
 
 	<pre>
-  <code class="language-java" translate="No">setAspectRatio(Rational)</code></pre>
+<code class="language-java" translate="No">setAspectRatio(Rational)</code></pre>
 	</li>
 	<li><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setSourceRectHint(android.graphics.Rect)">source bounds hint</a>
 	<pre>
-  <code class="language-java" translate="No">setSourceRectHint(Rect)</code></pre>
+<code class="language-java" translate="No">setSourceRectHint(Rect)</code></pre>
 	</li>
 	<li><a href="https://developer.android.com/reference/android/app/PictureInPictureParams.Builder.html#setActions(java.util.List%3Candroid.app.RemoteAction%3E)">list of remote actions</a>
 	<pre>
-  <code class="language-java" translate="No">setUserActions(List&lt;RemoteAction&gt;)</code></pre>
+<code class="language-java" translate="No">setUserActions(List&lt;RemoteAction&gt;)</code></pre>
 	</li>
 </ul>
 
@@ -169,36 +169,36 @@ grandparent: Home
 <p>Brightcove adds a <code translate="No">RemoteAction</code> by default, which handles the <code translate="No">Play/Pause</code> video events and sets their respective icons. This means that the default <code translate="No">RemoteAction</code> will be added to the list of remote actions you set with the following:</p>
 
 <pre>
-  <code class="language-java" translate="No">setUserActions</code></pre>
+<code class="language-java" translate="No">setUserActions</code></pre>
 
 <p>Keep in mind that you can only set a limited number of actions. To get the <a href="https://developer.android.com/reference/android/app/Activity.html#getMaxNumPictureInPictureActions()">maximum number of actions</a>, call the following:</p>
 
 <pre>
-  <code class="language-java" translate="No">Activity.getMaxNumPictureInPictureActions()</code></pre>
+<code class="language-java" translate="No">Activity.getMaxNumPictureInPictureActions()</code></pre>
 
 <h4>Closed captions</h4>
 
 <p>You can enable/disable Closed Captions when playing a video in Picture in picture mode by calling the following in the <code translate="No">inPictureInPictureManager</code>.</p>
 
 <pre>
-  <code class="language-java" translate="No">setClosedCaptionsEnabled(boolean)</code></pre>
+<code class="language-java" translate="No">setClosedCaptionsEnabled(boolean)</code></pre>
 
 <p>Closed Captions are disabled by default in phones but enabled in tablets. To reduce the size of the Closed Captions while playing in Picture in picture mode, call the following to set a value between <code translate="No">0</code> and <code translate="No">1.0f</code>.</p>
 
 <pre>
-  <code class="language-java" translate="No">setClosedCaptionsReductionScaleFactor(float)</code></pre>
+<code class="language-java" translate="No">setClosedCaptionsReductionScaleFactor(float)</code></pre>
 
 <p>By default, the Closed Captions size in picture in picture mode is <code translate="No">0.5f</code> or 50% the original size. Lastly, to enter picture in picture mode when the Activity <code translate="No">onUserLeaveHint()</code> is called, set the following to <code translate="No">true</code>:</p>
 
 <pre>
-  <code class="language-java" translate="No">setOnUserLeaveEnable(boolean)</code></pre>
+<code class="language-java" translate="No">setOnUserLeaveEnable(boolean)</code></pre>
 
 <h4>Parameters</h4>
 
 <p>In order to retrieve the current picture in picture parameters, you can call the following:</p>
 
 <pre>
-  <code class="language-java" translate="No">PictureInPicture.getBrightcovePictureInPictureParams()</code></pre>
+<code class="language-java" translate="No">PictureInPicture.getBrightcovePictureInPictureParams()</code></pre>
 
 <p>This call returns the <code translate="No">BrightcovePictureInPictureParams</code> object, which has the getters for all the parameters previously discussed.</p>
 </section>
