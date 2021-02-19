@@ -892,10 +892,10 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p>The following image shows that the Brightcove Native Player SDKs provide functionality that you would otherwise have to build yourself.</p>
+<p>The following image shows that the Brightcove Native SDKs provide functionality that you would otherwise have to build yourself.</p>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="fundamentals of Brightcove Native Player SDK" src="//img.brightcove.com/node15054-fundamentals.png" />
-<figcaption class="bcls-caption--image">fundamentals of Brightcove Native Player SDK</figcaption>
+<figure class="bcls-figure"><img class="bcls-image--no-border" alt="fundamentals of Brightcove Native SDK" src="//img.brightcove.com/node15054-fundamentals.png" />
+<figcaption class="bcls-caption--image">fundamentals of Brightcove Native SDK</figcaption>
 </figure>
 
 <h3 class="BCL_conceptTitle">Video playback implementations</h3>
@@ -904,7 +904,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <ul>
 	<li><a href="#Using_a_WebView">Using a WebView</a></li>
 	<li><a href="#Using_the_Native_Player">Using the Native Player</a></li>
-	<li><a href="#Using_the_Brightcove_Native_Player_SDKs">Using the Brightcove Native Player SDKs</a></li>
+	<li><a href="#Using_the_Brightcove_Native_SDKs">Using the Brightcove Native SDKs</a></li>
 </ul>
 </section>
 <!--break-->
@@ -912,7 +912,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Using_a_WebView">Using a WebView</h2>
 
-<p>One option for implementing video playback in your app it to use a <code translate="No">webView</code>. This creates a view that treats your content like a browser would, enabling the usage of HTML and JavaScript. Some app developers use the HTML5 video player or the Brightcove web player in a <code translate="No">webView</code>, however this is not the same as using the Brightcove Native Player SDKs for iOS and Android.</p>
+<p>One option for implementing video playback in your app it to use a <code translate="No">webView</code>. This creates a view that treats your content like a browser would, enabling the usage of HTML and JavaScript. Some app developers use the HTML5 video player or the Brightcove web player in a <code translate="No">webView</code>, however this is not the same as using the Brightcove Native SDKs for iOS and Android.</p>
 <p>While a <code translate="No">webView </code> simplifies the implementation process, there are a number of issues that make this approach undesirable:</p>
 <ul>
 	<li>The <code translate="No">webView </code> incurs a heavy toll on the processor, consuming far more memory than the native player.</li>
@@ -923,7 +923,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <!-- <p>One of the most popular options for implementing a video player in an application is the usage of a <code translate="No">webView </code>, a <a href="https://developer.apple.com/documentation/webkit/wkwebview">WKWebView for iOS</a> or a <a href="//developer.android.com/reference/android/webkit/WebView.html"> WebView for Android</a>. </p> -->
 
-<p>A better solution is to use the <a href="#Brightcove_Native_Player_SDKs">Brightcove Native Player SDKs</a>.</p>
+<p>A better solution is to use <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
 </section>
 
 <section class="bcls-section">
@@ -933,18 +933,18 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>Even though the native players have an abundance of online documentation, you may find that software updates do not occur on a regular basis. This means that issues you encounter may remain unaddressed for some time. When updates are released, more noticeably with the Android OS, the fragmentation of devices used in the market may result in these fixes not being universally applied. To learn more about native device players, you can start with the <a href="//developer.android.com/reference/android/media/MediaPlayer.html">Android Native Player</a>, and the <a href="https://developer.apple.com/documentation/avfoundation/media_assets_playback_and_editing/creating_a_basic_video_player_ios_and_tvos">iOS Native Player</a> options.</p>
 
-<p>A better solution is to use the <a href="#Brightcove_Native_Player_SDKs">Brightcove Native Player SDKs</a>.</p>
+<p>A better solution is to use <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Using_the_Brightcove_Native_Player_SDKs">Using the Brightcove Native Player SDKs</h2>
+<h2 id="Using_the_Brightcove_Native_SDKs">Using the Brightcove Native SDKs</h2>
 
-<p>The Brightcove Native Player SDKs are built on top of native player frameworks. This allows you to take advantage of the speed, performance, and flexibility of the native OS, and extend it into a complete video experience that is easy to integrate. In addition, the Brightcove Native SDKs follow established conventions for naming standards, memory management and design patterns in order to make getting started as simple as possible.</p>
+<p>The Brightcove Native SDKs are built on top of native player frameworks. This allows you to take advantage of the speed, performance, and flexibility of the native OS, and extend it into a complete video experience that is easy to integrate. In addition, the Brightcove Native SDKs follow established conventions for naming standards, memory management and design patterns in order to make getting started as simple as possible.</p>
 
-<p>The Brightcove Native Player SDKs work seamlessly across different versions of each platform. This ensures that you will reach the vast majority of the market and gives you the confidence that the Brightcove SDKs work on all supported versions.</p>
+<p>The Brightcove Native SDKs work seamlessly across different versions of each platform. This ensures that you will reach the vast majority of the market and gives you the confidence that the Brightcove SDKs work on all supported versions.</p>
 
-<p>As with the Brightcove web player, the Brightcove Native Player SDKs also derive tremendous value from integrations with our partners. As experts in the video field, we strive to fill the gaps in the native player experience by offering integrations with <a href="/features/advertising-sdks.html">advertising</a>, <a href="/features/analytics-sdks.html">analytics</a> and <a href="/features/content-security-drm-native-player-sdks.html">digital rights management</a> strategies. This allows you to create the custom video experiences that fit your needs.</p>
-<p>Ready to learn more? Start with an overview of the <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
+<p>As with the Brightcove web player, the Brightcove Native SDKs also derive tremendous value from integrations with our partners. As experts in the video field, we strive to fill the gaps in the native player experience by offering integrations with <a href="/features/advertising-sdks.html">advertising</a>, <a href="/features/analytics-sdks.html">analytics</a> and <a href="/features/content-security-drm-native-player-sdks.html">digital rights management</a> strategies. This allows you to create the custom video experiences that fit your needs.</p>
+<p>Ready to learn more? Start with an overview of <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
 </section>
 </article>
 <!-- End of Drupal content -->
