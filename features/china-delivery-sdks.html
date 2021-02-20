@@ -1,0 +1,142 @@
+---
+title: China Delivery with the Native SDKs
+description: In this topic, you will learn how to use the Brightcove Native SDKs to deliver video to China from outside the country.
+parent: Features
+grandparent: Home
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <br/>
+  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of China Delivery.</aside>
+
+<section class="bcls-section">
+<h2 id="Introduction">Introduction</h2>
+
+<p>Delivering video to China from outside the country is challenging due to regulations and controls, restricting the free flow of data across its national borders.</p>
+<p>Historically, Brightcove has provided a solution that allowed its services to distribute video content through a global delivery network. However, essential communications, including Playback API requests and responses, and Analytics beacons, could be  unreliable, and at times non-functional, when delivering content into areas with stricter controls on information flow.</p>
+<p>Brightcove’s China Delivery solution addresses the problems listed above and comprises two parts:</p>
+<ul>
+  <li>A proxy server hosted within China</li>
+  <li>A connected China-specific CDN</li>
+</ul>
+
+<p>The proxy routes non-video traffic (Playback API requests, Analytics beacons, and the web player itself) to and from viewers in China to Brightcove infrastructure located outside.</p>
+<p>The CDN is connected to the proxy and handles the video and image content.</p>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Requirements">Requirements</h2>
+
+<p>The following requirements are needed for China Delivery with the Brightcove Native SDKs:</p>
+<h3>Device OS version</h3>
+<ul>
+  <li>
+    <p>Android 6.0 and newer</p>
+     <aside class="bcls-aside bcls-aside--warning">Android 8.x may have issues with offline rental licenses.</aside>
+  </li>
+  <li>
+    iOS 11.0 and newer
+  </li>
+</ul>
+
+<h3>Brightcove SDK version</h3>
+<ul>
+  <li>
+    Native SDK for Android (coming soon)
+  </li>
+  <li>
+    Native SDK for iOS 6.5.0 and newer
+  </li>
+</ul>
+
+<h3>Platform</h3>
+<ul>
+  <li>A Brightcove Enterprise account - for details, contact your account manager</li>
+  <li>A Video Cloud account enabled for China Delivery
+    <ul>
+      <li>This account can deliver inside and outside of China; a separate account is optional, but not required</li>
+    </ul>
+  </li>
+  <li>A valid <a href="https://en.wikipedia.org/wiki/ICP_license">Internet Content Provider (ICP) license</a></li>
+  <li>An approved domain or subdomain name listed on the ICP license</li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Enable_China_Delivery">Enable China Delivery</h2>
+
+<p>China Delivery is a paid add-on for your account. Contact your account manager to enable this feature.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Android_Implementation">Android Implementation</h2>
+
+<p>To use China Delivery with the Native SDK for Android, follow these steps:</p>
+<ol class="bcls-tasklist">
+  <li>
+    <p>
+      In the <strong>build.gradle</strong> file, add the following Gradle dependency:
+    </p>
+    <pre><code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-thumbnail-plugin:6.13.0&quot;</code></pre>
+  </li>
+  <li>
+    <p>
+      In the <strong>MainActivity.java</strong> file, create an instance of the <code translate="No">ThumbnailComponent</code>.
+    </p>
+    <pre><code class="language-java" translate="No">ThumbnailComponent thumbnailComponent = new ThumbnailComponent(brightcoveVideoView);</code></pre>
+  </li>
+  <li>
+    <p>
+      Setup the preview media controller.
+    </p>
+    <pre><code class="language-java" translate="No">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
+  </li>
+  <li>
+    For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleApp</a>
+  </li>
+</ol>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="iOS_Implementation">iOS Implementation</h2>
+<p>To use China Delivery with the Native SDK for iOS, follow these steps</p>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>The <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">BCOVGlobalConfiguration</a> class allows you to set custom configurations for the Native SDK for iOS.
+  </li>
+  <li>
+    <p>
+      Within this class, set the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">chinaProxyDomain</a> property to a custom, fully qualified domain name (FQDN) for the Playback API, metrics and analytics collection services.</p>
+<pre><code class="language-objectivec" translate="No">@property (nonatomic, nullable) NSString *chinaProxyDomain</code></pre>
+    </p>
+  </li>
+ 
+</ol>
+
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Notes">Notes</h2>
+
+<p>The following features are <strong>NOT</strong> supported when using China Delivery with the Native SDKs:</p>
+<ul>
+  <li>Live streaming</li>
+  <li>Dynamic Delivery Rules</li>
+  <li>Static URLs for Dynamic Delivery</li>
+  <li>Integrations requiring 3rd-party server access are not supported, including:
+    <ul>
+      <li>DRM</li>
+      <li>Advertising (CSAI + SSAI)</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+</article>
