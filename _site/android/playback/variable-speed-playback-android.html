@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.">
   
-  <title>Setting Playback Speed on Android Devices</title>
+  <title>Variable Speed Playback on Android Devices</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -132,7 +132,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       <li class="breadcrumb-item"><a href="/android/playback/">Playback</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Setting Playback Speed on Android Devices</li>
+      <li class="breadcrumb-item active" aria-current="page">Variable Speed Playback on Android Devices</li>
     </ol>
   </nav>
 </header>
@@ -876,7 +876,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
-<h1>Setting Playback Speed on Android Devices</h1>
+<h1>Variable Speed Playback on Android Devices</h1>
 <article class="bcls-article">
   <summary>In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.</summary>
 
@@ -923,84 +923,97 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 &lt;/LinearLayout&gt;</code></pre>
   </li>
   <li>
-    
+    <p>Add the playback speed control to your player <code translate="No">Activity</code>:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">playbackSpeed = (TextView) findViewById(R.id.playbackSpeed);
+playbackSpeed.setVisibility(View.VISIBLE);</code></pre>
   </li>
- 
+  <li>
+    <p>Set an <code translate="No">onClick</code> listener on the <code translate="No">TextView</code>:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">playbackSpeed.setOnClickListener(new View.OnClickListener() {
+   @Override
+   public void onClick(View v) {
+       showPlayerSpeedDialog();
+   }
+});
+</code></pre>
+  </li>
+  <li>
+    <p>Add a method to show the player speed dialog:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">private void showPlayerSpeedDialog() {
+   String[] playerSpeedArrayLabels = {&quot;1.0x&quot;, &quot;0.8x&quot;, &quot;1.2x&quot;, &quot;1.5x&quot;, &quot;1.8x&quot;, &quot;2.0x&quot;};
+
+   PopupMenu popupMenu = new PopupMenu(MainActivity.this, playbackSpeed);
+   for (int i = 0; i &lt; playerSpeedArrayLabels.length; i++) {
+       popupMenu.getMenu().add(i, i, i, playerSpeedArrayLabels[i]);
+   }
+   popupMenu.setOnMenuItemClickListener(item -&gt; {
+       int id = item.getItemId();
+       CharSequence itemTitle = item.getTitle();
+       float playbackSpeed = Float.parseFloat(itemTitle.subSequence(0, 3).toString());
+       changePlayerSpeed(playbackSpeed, itemTitle.subSequence(0, 3).toString());
+       return false;
+   });
+   popupMenu.show();
+}
+</code></pre>
+  </li>
+  <li>
+    <p>Add a method to change the player speed to the value selected from the menu. Additionally, the method can set the selected value into the label for the <code translate="No">TextView</code>:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">private void changePlayerSpeed(float speed, String speedLabel) {
+   // Set playback speed
+   ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
+   // Set playback speed label
+   playbackSpeed.setText(&quot;Speed: &quot; + speedLabel + &quot;x&quot;);
+}
+</code></pre>
+  </li>
 </ol>
-
 </section>
 
 <section class="bcls-section">
-<h2 id="Enable_China_Delivery">Enable China Delivery</h2>
+<h2 id="Handling_playback_problems">Handling playback problems</h2>
+<p>If you encounter problems with setting higher or lower playback speeds, consider restricting whether to show the playback speed control, or restricting the speeds available, based on:</p>
 
-<p>China Delivery is a paid add-on for your account. Contact your account manager to enable this feature.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Android_Implementation">Android Implementation</h2>
-
-<p>Contact your account manager to get a pre-release of the Native SDK for Android that supports China Delivery.</p>
-
-<!-- <p>To use China Delivery with the Native SDK for Android, follow these steps:</p>
-<ol class="bcls-tasklist">
-  <li>
-    <p>
-      In the <strong>build.gradle</strong> file, add the following Gradle dependency:
-    </p>
-    <pre><code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-thumbnail-plugin:6.13.0&quot;</code></pre>
-  </li>
-  <li>
-    <p>
-      In the <strong>MainActivity.java</strong> file, create an instance of the <code translate="No">ThumbnailComponent</code>.
-    </p>
-    <pre><code class="language-java" translate="No">ThumbnailComponent thumbnailComponent = new ThumbnailComponent(brightcoveVideoView);</code></pre>
-  </li>
-  <li>
-    <p>
-      Setup the preview media controller.
-    </p>
-    <pre><code class="language-java" translate="No">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
-  </li>
-  <li>
-    For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleApp</a>
-  </li>
-</ol> -->
-
-</section>
-
-<section class="bcls-section">
-<h2 id="iOS_Implementation">iOS Implementation</h2>
-<p>To use China Delivery with the Native SDK for iOS, follow these steps</p>
-<ol class="bcls-tasklist-restart">
-  <li>
-    <p>The <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">BCOVGlobalConfiguration</a> class allows you to set custom configurations for the Native SDK for iOS.
-  </li>
-  <li>
-    <p>
-      Within this class, set the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">chinaProxyDomain</a> property to a custom, fully qualified domain name (FQDN) for the Playback API, metrics and analytics collection services.</p>
-<pre><code class="language-objectivec" translate="No">@property (nonatomic, nullable) NSString *chinaProxyDomain</code></pre>
-    </p>
-  </li>
- 
-</ol>
-
-
-</section>
-
-<section class="bcls-section">
-<h2 id="Notes">Notes</h2>
-
-<p>The following features are <strong>NOT</strong> supported when using China Delivery with the Native SDKs:</p>
 <ul>
-  <li>Live streaming</li>
-  <li>Dynamic Delivery Rules</li>
-  <li>Static URLs for Dynamic Delivery</li>
-  <li>Integrations requiring 3rd-party server access are not supported, including:
+  <li>
+    <p>OS level using:</p>
+    <pre><code class="language-java" translate="No">Build.VERSION_CODES.&lt;API_LEVEL&gt;</code></pre>
+  </li>
+  <li>
+    <p>Manufacturer using: (reliability is not guaranteed)</p>
+    <pre><code class="language-java" translate="No">Build.MANUFACTURER
+or
+Build.BRAND
+</code></pre>
+  </li>
+  <li>
+    <p>Hardware profile (TV or phone/mobile) by checking the boolean value of:</p>
+    <pre><code class="language-java" translate="No">BrightcoveMediaController.checkTvMode(Context context)</code></pre>
+  </li>
+</ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Limitations">Limitations</h2>
+<p>It is important to note that while it is possible to set playback speed with the ExoPlayer and the Brightcove Native SDK for Android, it does not guarantee that setting a given playback speed will provide a seamless viewing and listening experience.</p>
+<p>Testing has revealed that it is possible to set a playback speed that will be too high for older OS versions and lower-spec devices to handle without an unacceptable degradation in audio and video quality.</p>
+
+<p>if you want to implement playback speed control, it is recommended that you consider the following:</p>
+<ul>
+  <li>What is the oldest Android OS level that my application is intended for?
     <ul>
-      <li>DRM</li>
-      <li>Advertising (CSAI + SSAI)</li>
+      <li>Older OSes may not have the proper codec support for higher or lower playback speeds than normal</li>
+      <li>Older OSes may have older chip sets that can not process the video and audio data in a performant manner</li>
     </ul>
   </li>
+  <li>Is my content DRM-protected? 
+    <ul>
+      <li>Testing has not revealed any DRM-related issues with playback speed, but we also do not want to rule out the possibility of decryption issues when playing at higher or lower speeds than normal</li>
+    </ul></li>
+  <li>Does my content use closed captions or multiple audio tracks? 
+    <ul>
+      <li>Enabling or disabling captions, or switching between captions, especially on older devices or OS levels, is a circumstance to be considered.</li>
+    </ul></li>
 </ul>
 </section>
 
