@@ -1,0 +1,137 @@
+---
+title: Setting Playback Speed on Android Devices
+description: In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.
+parent: Playback
+grandparent: Android Development
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Introduction">Introduction</h2>
+
+<p>For some of your apps, you may want to provide the ability for the user to change the playback speed while they are watching videos (ie, eLearning environments). You can add this functionality with the Native SDK for Android.</p>
+<p>In your player Activity class, you can create a dialog menu to select from a desired list of playback speeds.</p>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Implementation">Implementation</h2>
+
+<p>To add variable speed playback to your Android app, follow these steps:</p>
+<ol class="bcls-tasklist">
+  <li>
+    <p>To create the player controls, start by creating a <code translate="No">TextView</code>:</p>
+    <pre><code class="language-java" translate="No">private TextView playbackSpeed;</code></pre>
+    <p>Then, add the <code translate="No">TextView</code> to your <code translate="No">Activity</code> layout:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
+   android:id=&quot;@+id/brightcove_video_view&quot;
+   android:layout_width=&quot;match_parent&quot;
+   android:layout_height=&quot;280dp&quot;
+   android:layout_gravity=&quot;center_horizontal|top&quot;/&gt;
+
+&lt;LinearLayout
+   android:layout_width=&quot;match_parent&quot;
+   android:layout_height=&quot;wrap_content&quot;
+   android:orientation=&quot;horizontal&quot;
+   android:layout_gravity=&quot;center_vertical&quot;
+   android:layout_below=&quot;@id/brightcove_video_view&quot;
+   android:padding=&quot;20dp&quot;&gt;
+
+   &lt;TextView
+       android:id=&quot;@+id/playbackSpeed&quot;
+       android:layout_width=&quot;match_parent&quot;
+       android:layout_height=&quot;wrap_content&quot;
+       android:gravity=&quot;end&quot;
+       android:padding=&quot;20dp&quot;
+       android:text=&quot;Change Speed&quot;
+       android:textAlignment=&quot;textEnd&quot; /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+  </li>
+  <li>
+    
+  </li>
+ 
+</ol>
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Enable_China_Delivery">Enable China Delivery</h2>
+
+<p>China Delivery is a paid add-on for your account. Contact your account manager to enable this feature.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Android_Implementation">Android Implementation</h2>
+
+<p>Contact your account manager to get a pre-release of the Native SDK for Android that supports China Delivery.</p>
+
+<!-- <p>To use China Delivery with the Native SDK for Android, follow these steps:</p>
+<ol class="bcls-tasklist">
+  <li>
+    <p>
+      In the <strong>build.gradle</strong> file, add the following Gradle dependency:
+    </p>
+    <pre><code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-thumbnail-plugin:6.13.0&quot;</code></pre>
+  </li>
+  <li>
+    <p>
+      In the <strong>MainActivity.java</strong> file, create an instance of the <code translate="No">ThumbnailComponent</code>.
+    </p>
+    <pre><code class="language-java" translate="No">ThumbnailComponent thumbnailComponent = new ThumbnailComponent(brightcoveVideoView);</code></pre>
+  </li>
+  <li>
+    <p>
+      Setup the preview media controller.
+    </p>
+    <pre><code class="language-java" translate="No">thumbnailComponent.setupPreviewThumbnailController();</code></pre>
+  </li>
+  <li>
+    For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleApp</a>
+  </li>
+</ol> -->
+
+</section>
+
+<section class="bcls-section">
+<h2 id="iOS_Implementation">iOS Implementation</h2>
+<p>To use China Delivery with the Native SDK for iOS, follow these steps</p>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>The <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">BCOVGlobalConfiguration</a> class allows you to set custom configurations for the Native SDK for iOS.
+  </li>
+  <li>
+    <p>
+      Within this class, set the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">chinaProxyDomain</a> property to a custom, fully qualified domain name (FQDN) for the Playback API, metrics and analytics collection services.</p>
+<pre><code class="language-objectivec" translate="No">@property (nonatomic, nullable) NSString *chinaProxyDomain</code></pre>
+    </p>
+  </li>
+ 
+</ol>
+
+
+</section>
+
+<section class="bcls-section">
+<h2 id="Notes">Notes</h2>
+
+<p>The following features are <strong>NOT</strong> supported when using China Delivery with the Native SDKs:</p>
+<ul>
+  <li>Live streaming</li>
+  <li>Dynamic Delivery Rules</li>
+  <li>Static URLs for Dynamic Delivery</li>
+  <li>Integrations requiring 3rd-party server access are not supported, including:
+    <ul>
+      <li>DRM</li>
+      <li>Advertising (CSAI + SSAI)</li>
+    </ul>
+  </li>
+</ul>
+</section>
+
+</article>
