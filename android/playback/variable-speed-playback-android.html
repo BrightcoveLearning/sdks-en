@@ -1,5 +1,5 @@
 ---
-title: Variable Speed Playback on Android Devices
+title: Setting Playback Speed on Android Devices
 description: In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.
 parent: Playback
 grandparent: Android Development
@@ -24,7 +24,7 @@ layout: staging
 <p>To add variable speed playback to your Android app, follow these steps:</p>
 <ol class="bcls-tasklist">
   <li>
-    <p>To create the player controls, start by creating a <code translate="No">TextView</code>:</p>
+    <p>First, create the menu where you can select a speed. Here we will use a <code translate="No">TextView</code> which, when tapped, will open the menu that contains the speed values. Other menu options include Spinners.</p>
     <pre><code class="language-java" translate="No">private TextView playbackSpeed;</code></pre>
     <p>Then, add the <code translate="No">TextView</code> to your <code translate="No">Activity</code> layout:</p>
     <pre class="line-numbers"><code class="language-java" translate="No">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
@@ -138,7 +138,7 @@ Build.BRAND
   </li>
   <li>Is my content DRM-protected? 
     <ul>
-      <li>Testing has not revealed any DRM-related issues with playback speed, but we also do not want to rule out the possibility of decryption issues when playing at higher or lower speeds than normal</li>
+      <li>Since testing has revealed some DRM-related issues with playback speed, we do not want to rule out the possibility of decryption issues when playing at higher or lower speeds than normal</li>
     </ul></li>
   <li>Does my content use closed captions or multiple audio tracks? 
     <ul>
