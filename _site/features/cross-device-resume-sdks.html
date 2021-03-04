@@ -892,23 +892,16 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 
-<p>Cross-Device Resume lets you start watching a video on one device, and at a later time, continue watching the video where you left off on a different device.</p>
+<p>Cross-Device Resume allows viewers to start watching a video on one device, and at a later time, continue watching the video where they left off on a different device.</p>
 <p>
   If you are not familiar with this feature, see the <a href="https://apis.support.brightcove.com/xdr/getting-started/xdr-overview.html">Overview: Cross-Device Resume</a> document.
 </p>
-<!-- <figure class="bcls-figure">
-  <img
-    class="bcls-image--no-border"
-    alt="Thumbnail scrubbing"
-    src="/assets/images/features/thumbnail-scrubbing.png"
-  />
-</figure> -->
 </section>
 
 <section class="bcls-section">
 <h2 id="Requirements">Requirements</h2>
 
-<p>The following requirements are needed for cross-device resume with the Brightcove Native SDKs:</p>
+<p>The following requirements are needed for Cross-Device Resume with the Brightcove Native SDKs:</p>
 
 <h3>Brightcove Native SDK version</h3>
 <ul>
@@ -940,7 +933,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </p>
   <ul>
     <li>
-      Contact your account manager to enable your account for cross-device resume
+      Contact your account manager to enable your account for Cross-Device Resume
     </li>
     <li>
       Make sure the videos you are using are ingested for Dynamic Delivery
@@ -949,9 +942,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </section>
 
 <section class="bcls-section">
-<h2 id="Implementing_cross_device_resume">Implementing cross-device resume</h2>
+<h2 id="Implementing_Cross_Device_Resume">Implementing Cross-Device Resume</h2>
 
-  <p>To implement cross-device resume, you will follow these steps:</p>
+  <p>To implement Cross-Device Resume, follow these steps:</p>
  <ol class="bcls-tasklist">
     <li>
       <p>
@@ -961,12 +954,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
         Even though viewer data is sent to Brightcove analytics automatically, you need to set the user identifier.
       </p>
       <p>
-        You can use an authentication gateway or some identity management solution to keep track of viewers. Use this viewer id as the user identifier to pass to Brightcove analytics.
+        You can use an authentication gateway or some identity management solution to keep track of viewers. Use this viewer ID as the user identifier to pass to Brightcove analytics.
       </p>
     </li>
     <li>
       <p>
-        Get the user playback position from the Cross-Device Resume (XDR) API
+        Get the viewer playback position from the Cross-Device Resume (XDR) API
       </p>
     </li>
     <li>
@@ -985,7 +978,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       Set the user identifier for Brightcove analytics.
     </p>
     <pre><code class="language-java" translate="No">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
-baseParams.put(Analytics.Fields.USER, &quot;<span class="bcls-input">user id</span>&quot;);
+baseParams.put(Analytics.Fields.USER, &quot;<span class="bcls-input">viewer id</span>&quot;);
 baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;<span class="bcls-input">application id</span>&quot;);
 
 HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
@@ -995,7 +988,7 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
   </li>
   <li>
     <p>
-        Get the user playback position from the Cross-Device Resume (XDR) API. 
+        Get the viewer playback position from the Cross-Device Resume (XDR) API. 
     </p>
     <p>
        For details, see the following:
@@ -1014,14 +1007,14 @@ eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);
       Resume playback.
     </p>
     <p>
-      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code translate="No">brightcoveVideoView.seekTo()</code> method.
+      Once you get the viewer playback position from the XDR API, you can resume playback from that point. Set the playhead position using the <code translate="No">brightcoveVideoView.seekTo()</code> method.
     </p>
     <pre><code class="language-java" translate="No">final VideoPlaybackController playbackController = brightcoveVideoView.getPlaybackController();
 eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, new EventListener() {
   @Override
   public void processEvent(final Event event) {
     playbackController.setAdsDisabled(true);
-    brightcoveVideoView.seekTo(&lt;<span class="bcls-input">user playhead position</span>&gt;);
+    brightcoveVideoView.seekTo(&lt;<span class="bcls-input">viewer playhead position</span>&gt;);
   }
 });
 
@@ -1047,7 +1040,7 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
     <pre><code class="language-objectivec" translate="No">@try
   {
     [BCOVGlobalConfiguration.sharedConfig setValue:@{
-      @&quot;privateUser&quot;: self.<span class="bcls-input">user id</span>,
+      @&quot;privateUser&quot;: self.<span class="bcls-input">viewer id</span>,
       @&quot;privateApplication&quot;: @&quot;<span class="bcls-input">application id</span>&quot;
     }
     forKey:@&quot;privateSessionAnalytics&quot;];
@@ -1060,7 +1053,7 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
   </li>
   <li>
     <p>
-        Get the user playback position from the Cross-Device Resume (XDR) API. 
+        Get the viewer playback position from the Cross-Device Resume (XDR) API. 
     </p>
     <p>
       For details, see the following:
@@ -1079,12 +1072,12 @@ eventEmitter.on(EventType.DID_SEEK_TO, new EventListener() {
       Resume playback.
     </p>
     <p>
-      Once you get the user playback position from the XDR API, you can resume playback from that point. Set the playhead position using the following method:
+      Once you get the viewer playback position from the XDR API, you can resume playback from that point. Set the playhead position using the following method:
     </p>
     <pre><code class="language-objectivec" translate="No">-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]
 </code></pre>
     <p>
-      This allows you to resume playback at a specific time without forcing the user to watch ads scheduled before <code translate="No">seekToTime</code>.
+      This allows you to resume playback at a specific time without forcing the viewer to watch ads scheduled before <code translate="No">seekToTime</code>.
     </p>
     <p>
       In preparation for <code translate="No">seekWithoutAds:completionHandler:</code>, disable <code translate="No">autoPlay</code> when setting up the <code translate="No">BCOVPlaybackController</code>.
