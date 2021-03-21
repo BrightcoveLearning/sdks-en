@@ -131,10 +131,9 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <aside class="bcls-aside bcls-aside--information">The Native SDK for Android only supports in-manifest captions with SSAI. Sidecar (or remote) captions may not synchronize with the content and ad breaks.</aside>
 
 <h3>Events</h3>
-<p>Events associated with Server-side ad insertion include the following:</p>
+<p>For details about events associated with Server-side ad insertion, see the following:</p>
 <ul>
-	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html?com/brightcove/ssai/event/package-summary.html">Lifecycle events that are specific to SSAI</a></li>
-	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html">Lifecycle events associated with ads</a></li>
+	<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/ssai/event/SSAIEventType.html">SSAI event types</a></li>
 </ul>
 
 <h3>Seek without ads</h3>
@@ -146,12 +145,12 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Player using the Native SDK for Android</a></li>
 </ul>
 
-<h3>Related topics</h3>
+<!-- <h3>Related topics</h3>
 <p>For more details, see the following:</p>
 <ul>
 	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">The SSAI Plugin for the Native SDK for Android</a></li>
 	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html#Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUX plugin</a></li>
-</ul>
+</ul> -->
 </section>
 
 <section class="bcls-section">
@@ -210,10 +209,10 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 </ol>
 
 <h3>Events</h3>
-<p>Events associated with Server-side ad insertion include the following:</p>
+<p>For details about events associated with Server-side ad insertion, see the following:</p>
 <ul>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">Lifecycle events that are specific to SSAI</a></li>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Lifecycle events associated with ads</a></li>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">SSAI events</a></li>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Advertising events</a></li>
 </ul>
 
 <h3>Seek without ads</h3>
@@ -229,7 +228,7 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <p>For more details, see the following:</p>
 <ul>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">The SSAI Plugin for the Native SDK for iOS</a></li>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li>
+	<!-- <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li> -->
 </ul>
 </section>
 
@@ -239,11 +238,11 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <p>The code to implement SSAI with the Native SDK for tvOS is similar to the <a href="#iOS_implementation">iOS implementation</a> above.</p>
 
 <h3>Events</h3>
-<p>Events associated with Server-side ad insertion include the following:</p>
+<p>For details about events associated with Server-side ad insertion, see the following:</p>
 
 <ul>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">Lifecycle events that are specific to SSAI</a></li>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Lifecycle events associated with ads</a></li>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">SSAI events</a></li>
+	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Advertising events</a></li>
 </ul>
 
 <h3>Code sample</h3>
@@ -253,7 +252,7 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 </ul>
 </section>
 
-<section class="bcls-section">
+<!-- <section class="bcls-section">
 <h2 id="Additional_notes">Additional notes</h2>
 
 <p>There are a few technical notes to be aware of when using SSAI with the Native SDKs.</p>
@@ -263,5 +262,5 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 <ul>
 	<li><strong>Post-rolls:</strong> The OnceUX plugin translates the <code translate="No">timeOffset</code> value of <code translate="No">end</code> on the final ad break (post-roll) to a <code translate="No">CMTime</code> value of <code translate="No">+INFINITY</code>, for speed and efficiency. This translation is done AFTER the VMAP document is received (which occurs after the Playback API response is received) and BEFORE playback begins.</li>
 </ul>
-</section>
+</section> -->
 </article>
