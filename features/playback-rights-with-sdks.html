@@ -1,8 +1,8 @@
 ---
-title: "Using Playback Rights with the Native SDKs"
-description: "In this topic, you will learn how to use Brightcove's Playback Rights with the Brightcove Native SDKs."
-parent: Guides
-grandparent: Playback Rights
+title: "Playback Rights with the Native SDKs"
+description: "In this topic, you will learn how to use Brightcove Playback Rights with the Brightcove Native SDKs."
+parent: Features
+grandparent: Home
 layout: staging
 ---
 
@@ -11,14 +11,15 @@ layout: staging
   <summary>{{ page.description }}</summary>
   
   <br/>
-  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of the Playback Rights Management Service.</aside>
+  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of Brightcove Playback Restrictions.</aside>
 
   <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
     <p>
       By default, the Native SDKs talk to the Brightcove Playback API to retrieve your video and playlist content. A new system to manage playback rights and restrictions sits in front of the Playback API and provides playback authorization using DRM licenses.
     </p>
-    <p>If you are not familiar with this feature, see the <a href="/playback-rights/getting-started/overview-epa.html">Overview: Playback Rights Management Service</a> document.</p>
+    <p>If you are not familiar with this feature, see the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html">Overview: Brightcove Playback Restrictions</a> document.</p>
+    
     <p>
       Make requests using Playback Rights:
     </p>
@@ -34,32 +35,34 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Android_implementation">Android implementation</h2>
-    <aside class="bcls-aside bcls-aside--information language-editable">Note: with this implementation, any content restriction configured with policy keys will be ignored.</aside>
+    <aside class="bcls-aside bcls-aside--information language-editable">Notes:
+      <ul>
+        <li>This implementation requires Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</li>
+        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
+        <li>On the Android platform, only DRM DASH is currently supported</li>
+      </ul>
+    </aside>
     <p>
       To make Playback API requests which check for Playback rights and restrictions, follow these steps:
     </p>
-    <ol class="bcls-tasklist__restart">
+    <ol class="bcls-tasklist-restart">
       <li>
         <p>
           Start with the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">Basic Sample App</a>.
         </p>
-        <aside class="bcls-aside bcls-aside--information language-editable">Notes:
-          <li>This implementation requires Brightcove Native SDK for Android version <strong>6.11.0</strong> or greater.</li>
-          <li>On the Android platform, only DRM DASH is currently supported.</li>
-        </aside>
       </li>
       <li>
         <p>
           By default, the Native SDK for Android makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
         </p>
         <p>
-          Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code>, without supplying a policy key. Here is an example:
+          Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code> without supplying a policy key. Here is an example:
         </p>
         <pre>
 <code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, accountId).build();</code></pre>
         <br />
         <p>
-          If you are following the Brightcove sample app, it gets the account id as shown here:
+          If you are following the Brightcove sample app, it gets the account ID as shown here:
         </p>
         <pre>
 <code class="language-java" translate="No">getString(R.string.account)</code></pre>
@@ -67,13 +70,13 @@ layout: staging
       </li>
       <li>
         <p>
-          For user-level restrictions, you need to create a JWT token and pass it with the catalog request.
+          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
         </p>
         <p>
-          To create your JWT token, follow the steps in the <a href="/playback-rights/getting-started/implementing-epa.html#Define_user_level_restrictions">Define user-level restrictions</a> section of the Implementing Playback Rights Management Service document.
+          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
         </p>
         <p>
-          To pass your token with the catalog request, follow the steps in the <a href="/playback-authorization/guides/using-pas-with-sdks.html#Android_Implementation">Android Implementation</a> section of the Using Playback Authorization DRM with the Native SDKs document.
+          To pass your token with the catalog request, follow the steps in the <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html#Android_Implementation">Android Implementation</a> section of the Key/License Protection with the Native SDKs document.
         </p>
       </li>
     </ol>
