@@ -36,6 +36,7 @@ grandparent: iOS Development
     <summary>Captions</summary>
     <ul>
       <li><a href="#Customizing_the_closed_captions_button">Customizing the closed captions button</a></li>
+      <li><a href="#Modifying_captions_programmatically">Modifying captions programmatically</a></li>
     </ul>
 </details>
 <br/>
@@ -649,6 +650,42 @@ func playbackController(_ controller: BCOVPlaybackController!, playbackSession s
   <p>For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">BCOVPlaybackController</a> documentation.</p>
 
 </section>
+
+<section class="bcls-section">
+  <h2 id="Modifying_captions_programmatically">Modifying captions programmatically</h2>
+  <p>You can set the captions anytime during playback, after the <code translate="No">Ready</code> event has been received. To do this, use the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerDelegate.html">BCOVPlaybackControllerDelegate</a>.</p>
+  
+  <p>Here's an example:</p>
+  
+    <!-- tabs -->
+    <div class="tabs">
+      <ul class="tab-links">
+        <li class="active"><a href="#tab35">Obj-C</a></li>
+        <li><a href="#tab36">Swift</a></li>
+      </ul>
+  
+      <div class="tab-content">
+        <div id="tab35" class="tab active">
+         <pre class="line-numbers">
+  <code class="language-objectivec" translate="No"></code></pre>
+        </div>
+        <div id="tab36" class="tab">
+          <pre>
+<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController?, playbackSession session: BCOVPlaybackSession?, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent?) {
+    if kBCOVPlaybackSessionLifecycleEventReady == lifecycleEvent?.eventType {
+        if let legibleMediaSelectionGroup = session?.legibleMediaSelectionGroup.options {
+            let locale = NSLocale(localeIdentifier: &quot;es&quot;) as Locale
+            let mediaSelectionOptions = AVMediaSelectionGroup.mediaSelectionOptions(from: legibleMediaSelectionGroup, with: locale)
+            let mediaSelectionOption = mediaSelectionOptions.first
+            session?.selectedLegibleMediaOption = mediaSelectionOption
+        }
+    }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+    <!-- end tabs -->
+  </section>
 
 <section class="bcls-section">
 <h2 id="Paging_with_the_Playback_API">Paging with the Playback API</h2>
