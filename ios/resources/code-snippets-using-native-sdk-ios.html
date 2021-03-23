@@ -653,9 +653,9 @@ func playbackController(_ controller: BCOVPlaybackController!, playbackSession s
 
 <section class="bcls-section">
   <h2 id="Modifying_captions_programmatically">Modifying captions programmatically</h2>
-  <p>You can set the captions anytime during playback, after the <code translate="No">Ready</code> event has been received. To do this, use the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerDelegate.html">BCOVPlaybackControllerDelegate</a>.</p>
+  <p>You can set the captions anytime during playback, after the <code translate="No">Ready</code> event has been received. To do this, you can use the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerDelegate.html">BCOVPlaybackControllerDelegate</a>.</p>
   
-  <p>Here's an example:</p>
+  <p>Here's an example of setting the captions language to Spanish:</p>
   
     <!-- tabs -->
     <div class="tabs">
@@ -667,7 +667,16 @@ func playbackController(_ controller: BCOVPlaybackController!, playbackSession s
       <div class="tab-content">
         <div id="tab35" class="tab active">
          <pre class="line-numbers">
-  <code class="language-objectivec" translate="No"></code></pre>
+<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+  {
+      if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+      {
+          AVMediaSelectionGroup *legibleMediaSelectionGroup = session.legibleMediaSelectionGroup;
+          NSArray&lt;AVMediaSelectionOption *&gt; *options = [AVMediaSelectionGroup mediaSelectionOptionsFromArray:legibleMediaSelectionGroup.options withLocale:[NSLocale localeWithLocaleIdentifier:@&quot;es&quot;]];
+          AVMediaSelectionOption *option = options.firstObject;
+          session.selectedLegibleMediaOption = option;
+      }
+  }</code></pre>
         </div>
         <div id="tab36" class="tab">
           <pre>
