@@ -31,7 +31,7 @@ layout: staging
   <section class="bcls-section">
     <h2 id="Requirements">Requirements</h2>
     <p>Here are the requirements needed to use Playback Restrictions.</p>
-    <h3>Playback Rights</h3>
+    <!-- <h3>Playback Rights</h3> -->
     <h4>Android</h4>
     <ul>
       <li>You must use Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</li>
@@ -50,7 +50,7 @@ layout: staging
   </section>
 
   <section class="bcls-section">
-    <h2 id="Android_Using_Playback_Rights">Android: Using Playback Rights</h2>
+    <h2 id="Using_Playback_Rights_Android">Using Playback Rights: Android</h2>
     <aside class="bcls-aside bcls-aside--information language-editable">Notes:
       <ul>
         <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
@@ -91,14 +91,14 @@ layout: staging
           To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
         </p>
         <p>
-          To pass your token with the catalog request, follow the steps in the <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html#Android_Implementation">Android Implementation</a> section of the Key/License Protection with the Native SDKs document.
+          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_Android">Using_License_Keys_Protection_Android</a> section.
         </p>
       </li>
     </ol>
   </section>
 
   <section class="bcls-section">
-    <h2 id="iOS: Using_Playback_Rights">iOS: Using Playback Rights</h2>
+    <h2 id="Using_Playback_Rights_iOS">Using Playback Rights: iOS</h2>
     <aside class="bcls-aside bcls-aside--information language-editable">Notes:
       <ul>
         <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
@@ -132,14 +132,14 @@ layout: staging
           To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
         </p>
         <p>
-          To pass your token with the catalog request, follow the steps in the <a href="https://sdks.support.brightcove.com/features/license-protection-with-sdks.html#iOS_Implementation">iOS Implementation</a> section of the Key/License Protection with the Native SDKs document.
+          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</a> section.
         </p>
       </li>
     </ol>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Android_Using_License_Keys_Protection">Android: Using License Keys Protection</h2>
+    <h2 id="Using_License_Keys_Protection_Android">Using License Keys Protection: Android</h2>
 
     <p>The Native SDK for Android currently supports Key/license protection for HLSe and Widevine DASH sources. You will provide your authorization token as part of the Brightcove catalog request for a single video or a playlist.</p>
 
@@ -255,7 +255,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
   </section>
 
   <section class="bcls-section">
-    <h2 id="iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</h2>
+    <h2 id="Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</h2>
 
     <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your authorization token. This is done using the <code translate="No">authToken</code> parameter.</p>
 
