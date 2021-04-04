@@ -1,7 +1,7 @@
-var appID = "00c26be3-4421-41e6-bb00-1dee68740f67";
+var appID = "";
 // token for anonymous profile
 var token =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODI4MDQzNDF9.RYf2x65FXvdDURzM h00i76KfUrYlsDLsw6mVuEv6zmE';
+'';
 // -----
   Talla.config = Talla.init(
     appID,
@@ -10,7 +10,7 @@ var token =
     Talla.OptionAnonymous(true),
     Talla.OptionThemeColor('rgb(239, 108, 42)'),
     Talla.OptionDisplayName('Search Brightcove Native SDKs Docs'),
-    Talla.OptionKnowledgeGroups(['2e0c3170-2cea-414c-b872-4ba9af6b6642']),
+    Talla.OptionKnowledgeGroups(['']),
     Talla.OptionWideBeacon(true),
     Talla.OptionBeaconCTA("Have a question?"),
     Talla.OptionOpenIcon('https://support.brightcove.com/site-assets/images/site/search.png'),
