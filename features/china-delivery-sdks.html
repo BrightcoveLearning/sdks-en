@@ -16,9 +16,7 @@ layout: staging
 <section class="bcls-section">
 <h2 id="Introduction">Introduction</h2>
 
-<p>Delivering video to China from outside the country is challenging due to regulations and controls, restricting the free flow of data across its national borders.</p>
-<p>Historically, Brightcove has provided a solution that allowed its services to distribute video content through a global delivery network. However, essential communications, including Playback API requests and responses, and Analytics beacons, could be  unreliable, and at times non-functional, when delivering content into areas with stricter controls on information flow.</p>
-<p>Brightcove’s China Delivery solution addresses the problems listed above and comprises two parts:</p>
+<p>Brightcove provides a solution for delivering video to China from outside the country. The solution is comprised of two parts:</p>
 <ul>
   <li>A proxy server hosted within China</li>
   <li>A connected China-specific CDN</li>
@@ -26,13 +24,19 @@ layout: staging
 
 <p>The proxy routes non-video traffic (Playback API requests, Analytics beacons, and the web player itself) to and from viewers in China to Brightcove infrastructure located outside.</p>
 <p>The CDN is connected to the proxy and handles the video and image content.</p>
-
 </section>
 
 <section class="bcls-section">
 <h2 id="Requirements">Requirements</h2>
-
 <p>The following requirements are needed for China Delivery with the Brightcove Native SDKs:</p>
+
+<h3>Setup</h3>
+<ul>
+  <li>
+    There are setup requirements in addition to configuring your player
+    <p>For details, see <a href="https://player.support.brightcove.com/playback/china-delivery-overview.html">Overview: China Delivery</a></p>
+  </li>
+</ul>
 <h3>Device OS version</h3>
 <ul>
   <li>
@@ -53,24 +57,6 @@ layout: staging
     Native SDK for iOS 6.5.0 and newer
   </li>
 </ul>
-
-<h3>Platform</h3>
-<ul>
-  <li>A Brightcove Enterprise account - for details, contact your account manager</li>
-  <li>A Video Cloud account enabled for China Delivery
-    <ul>
-      <li>This account can deliver inside and outside of China; a separate account is optional, but not required</li>
-    </ul>
-  </li>
-  <li>A valid <a href="https://en.wikipedia.org/wiki/ICP_license">Internet Content Provider (ICP) license</a></li>
-  <li>An approved domain or subdomain name listed on the ICP license</li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Enable_China_Delivery">Enable China Delivery</h2>
-
-<p>China Delivery is a paid add-on for your account. Contact your account manager to enable this feature.</p>
 </section>
 
 <section class="bcls-section">
