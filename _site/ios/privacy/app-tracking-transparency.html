@@ -893,18 +893,23 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <summary>In this topic, you will learn how to manage user privacy and data use with the Brightcove Native SDK for iOS.</summary>
 
 <section class="bcls-section">
-<h2 id="Overview">Overview</h2>
+<h2 id="Introduction">Introduction</h2>
+<p>With iOS 14.5, there is a new privacy feature called App Tracking Transparency. You can use this feature in your apps to request tracking permission from your users. When users say no to tracking, the app will not be able to use Apple's ID for Advertisers (IDFA) or other identifiers, like hashed email addresses, to share data about your activity for ad-targeting.</p>
+<p>If your app collects end-user data and shares it with other companies for tracking purposes across apps and web site, then you must use the <code translate="No">AppTrackingTransparency</code> framework.</p>
+<p>For details, see the following:</p>
+<ul>
+  <li><a href="https://developer.apple.com/app-store/user-privacy-and-data-use/">App Store: User Privacy and Data Use</a></li>
+  <li><a href="https://developer.apple.com/documentation/apptrackingtransparency">App Tracking Transparency</a></li>
+</ul>
 
-<p>Error codes have the term <code translate="No">ErrorCode</code> in the name. For example:</p>
-
-<pre>
-<code class="language-objectivec" translate="No">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
-
-<p>Events have the word <code translate="No">Event</code> in the name. For example:</p>
-
-<pre>
-<code class="language-objectivec" translate="No">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
 </section>
+
+<section class="bcls-section">
+  <h2 id="Implementation">Implementation</h2>
+  <p>With iOS</p>
+  
+  
+  </section>
 
 <section class="bcls-section">
 <h2 id="Playback_errors">Playback errors</h2>
