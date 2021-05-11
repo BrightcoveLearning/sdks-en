@@ -27,6 +27,7 @@ layout: staging
   <p>To implement App Tracking Transparency, follow these steps:</p>
   <ol class="bcls-tasklist">
     <li>Review the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA/BasicIMAPlayer">BasicIMAPlayer</a> sample. This shows how to display the App Tracking Transparency alert to determine if we can use the IDFA or not.</li>
+    <li>Open the <code translate="No">BaseViewController</code>, and locate the <code translate="No">viewDidLoad</code> method.</li>
     <li>For iOS 14, the SDK checks the value of <code translate="No">ATTrackingManager.trackingAuthorizationStatus</code>. If the value is <code translate="No">ATTrackingManagerAuthorizationStatusAuthorized</code>, then the SDK uses the IDFA.</li>
     <li>For older iOS versions, the SDK uses the value of <code translate="No">ASIdentifierManager.sharedManager.isAdvertisingTrackingEnabled</code> to determine if the IDFA should be used.</li>
   </ol>
