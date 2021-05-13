@@ -65,6 +65,15 @@ This program will be captioned</code></pre>
     <li>You may experience some video drift after rotating the device. The problem is related to how the device gyroscope is calibrated, and this can affect performance. It is not associated with specific device makes and models, but instead on the motion sensor hardware installed on the device. The newer Android OS's have more sophisticated filter algorithms to correct the problem. A simple fix is to turn off the device and turn it on while it is lying on a flat, stable surface.</li>
   </ul>
 
+  <h3>Content</h3>
+
+  <ul>
+    <li>
+      <p>Video and Playlist objects are not fully Parcelable.</p>
+      Objects must be fully Parcelable in order to be transmitted through the Android Binder. One common example of this is to add an Object to an Intent to send it to another Activity or Service, or to save it to the savedInstanceState Bundle. Currently the Video and Playlist objects in the Android SDK are not fully Parcelable.
+    </li>
+  </ul>
+
   <h3>DRM</h3>
 
   <ul>
