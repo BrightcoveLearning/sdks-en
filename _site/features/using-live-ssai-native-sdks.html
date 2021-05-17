@@ -997,26 +997,35 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ol class="bcls-tasklist-restart">
 	<li>In Video Cloud Studio, return to the <strong>Live</strong> module.</li>
-	<li>In the left side navigation, select <strong>Player Configuration</strong>.</li>
-	<li>
+	<li>In the left side navigation, select <strong>Publish and Embed</strong>.</li>
+	<!-- <li>
 	<p><strong>Optional</strong>: To use your own CDN, include this additional step. In the <strong>Live Player Options</strong> section, expand the <strong>Select Content Delivery Network (CDN)</strong> dropdown menu and select your preferred CDN.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select your CDN" src="//learning-services-media.brightcove.com/doc-assets/node/18943-live-ssai-sdks/select-cdn.png" />
 	<figcaption class="bcls-caption--image">Select your CDN</figcaption>
 	</figure>
+	</li> -->
+	<li>
+    <p>In the <strong>Live Player Options</strong> section, expand the <strong>Select Ad Configuration</strong> dropdown menu and select your live ad configuration that you created in a previous step.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Select Ad Configuration" src="/assets/images/features/live-ssai/select-ad-config.png" />
+    <figcaption class="bcls-caption--image">Select Ad Configuration</figcaption>
+    </figure>
+	</li>
+  <li>
+    <p>Copy the <a href="">Standard Embed Code</a> to your clipboard.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Embed code" src="/assets/images/features/live-ssai/embed-code.png" />
+    <figcaption class="bcls-caption--image">Embed code</figcaption>
+    </figure>
 	</li>
 	<li>
-	<p>Copy the <a href="">Standard Embed Code</a> to your clipboard.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Embed code" src="//learning-services-media.brightcove.com/doc-assets/node/18943-live-ssai-sdks/embed-code.png" />
-	<figcaption class="bcls-caption--image">Embed code</figcaption>
-	</figure>
-	</li>
-	<li>
-	<p>From the embed code, copy the <code translate="No">VideoId</code> and the <code translate="No">adConfigId</code> parameter value. You will use these values in a later step. The <code translate="No">adConfigId</code> value is the playback token passed when requesting content from your Video Cloud library. It should look similar to this:</p>
-
+	  <p>From the embed code, copy the <code translate="No">VideoId</code> parameter value. You will use this value in a later step. It should look similar to this:</p>
 	<pre>
-<code class="language-html" translate="No">live.abcdefghijkl_-Bn1234567890abcde</code></pre>
+<code class="language-html" translate="No">1700044540369289748</code></pre>
+	</li>
+  <li>
+	  <p>From the embed code, copy the <code translate="No">adConfigId</code> parameter value. You will use this values in a later step. The <code translate="No">adConfigId</code> value is the playback token passed when requesting content from your Video Cloud library. It should look similar to this:</p>
+	<pre>
+<code class="language-html" translate="No">live.t0vbpNIjTPW6IZ29QsyuWrmgjvQjEWe3u_wPmaMqnhAmE05DCF7aAa-6fDIkvryJctH1rADJnfXYANy7tDg4agQFx23WIvsXMmAjz1BiNl-S3rFZ9tRdzRWdo1E4FTLkET6XcNuNZ2acTnzmow</code></pre>
 	</li>
 	<li>You will also need the Account Id and Policy Key for your account.</li>
 </ol>
@@ -1042,7 +1051,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>In the <strong>MainActivity.java</strong> file, replace the <code translate="No">ad_config_id</code> value with your playback token (live URL) that you you copied from the Live module in the previous section.</p>
 
 	<pre>
-<code class="language-java" translate="No">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
+<code class="language-java" translate="No">private final String AD_CONFIG_ID_QUERY_PARAM_VALUE = "live.t0vbpNIjTPW6IZ29QsyuWrmgjvQjEWe3u_wPmaMqnhAmE05DCF7aAa-6fDIkvryJctH1rADJnfXYANy7tDg4agQFx23WIvsXMmAjz1BiNl-S3rFZ9tRdzRWdo1E4FTLkET6XcNuNZ2acTnzmow";</code></pre>
 	</li>
 	<li>
 	<p>The <code translate="No">ad_config_id</code> with your playback token value is added to the HTTP request as a query parameter.</p>
@@ -1093,7 +1102,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>In the <strong>ViewController.swift</strong> file, replace the <code translate="No">AdConfigId</code> value with your playback token (live URL) that you you copied from the Live module in the previous section.</p>
 
 	<pre>
-<code class="language-swift" translate="No">static let AdConfigId = "live.abcdefghijkl_-Bn1234567890abcde";</code></pre>
+<code class="language-swift" translate="No">static let AdConfigId = "live.t0vbpNIjTPW6IZ29QsyuWrmgjvQjEWe3u_wPmaMqnhAmE05DCF7aAa-6fDIkvryJctH1rADJnfXYANy7tDg4agQFx23WIvsXMmAjz1BiNl-S3rFZ9tRdzRWdo1E4FTLkET6XcNuNZ2acTnzmow";</code></pre>
 	</li>
 	<li>
 	<p>The <code translate="No">AdConfigId</code> with your playback token value is added to the HTTP request as a query parameter.</p>
@@ -1137,7 +1146,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 28 Sep 2020
+  Page last updated on 17 May 2021
 </div>
 
 
