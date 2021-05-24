@@ -1165,11 +1165,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <p>With the Native SDK for iOS, the <code translate="No">BCOVSessionProviders </code> from each plugin are created and chained together. This chain is then used to create the <code translate="No">BCOVPlaybackController </code>. For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios#combining-plugins">Combining Plugins section</a> of the SDK Reference.</p>
 
-<h3>Advertising</h3>
-
-<p>Here is additional information you may find helpful when working with the Advertising plugins.</p>
-
-<h4>IMA plugin</h4>
+<h3>Advertising with the IMA plugin</h3>
 
 <p>The placement of VAST ads is typically specified by a VMAP document. VAST describes an ad while VMAP describes the placement of ads in a video. For code details, see the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA">BasicIMAPlayer iOS</a> sample.</p>
 
@@ -1180,6 +1176,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li><a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">Digital Video Multiple Ad Playlist (VMAP) guide</a></li>
 	<li><a href="https://groups.google.com/forum/#!forum/ima-sdk">Google IMA Technical Forum</a></li>
 </ul>
+
+<h3>Mirroring your screen with Airplay</h3>
+<p>AirPlay functionality works out-of-the-box with the Native SDK for iOS, allowing users to stream video to high-definition displays with Apple TV.</p>
+<p>You can use the Brightcove controls, or use your own custom controls for AirPlay. For details, see the <a href="/ios/resources/code-snippets-using-native-sdk-ios.html#Custom_controls_for_AirPlay">Custom controls for AirPlay</a> code snippet.</p>
+<aside class="bcls-aside bcls-aside--information">Using AirPlay with older (gen 3) devices can cause unexpected behavior. The target device may not know which text tracks were selected on the sender device.</aside>
 </section>
 
 <section class="bcls-section">
