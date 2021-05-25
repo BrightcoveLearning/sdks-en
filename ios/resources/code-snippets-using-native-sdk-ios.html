@@ -966,6 +966,9 @@ playbackController = nil</code></pre>
   </ul>
   <h3>Basic sample</h3>
   <p>For our basic sample, we use <code translate="No">AVAudioSessionCategoryPlayback</code>. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. To keep it simple, we put the code for this in the App Delegate.</p>
+  <h3>Mix with other audio</h3>
+  <p>You may want to allow audio from other apps to be heard when the audio in your app is muted. To do this, you can configure the <code translate="No">AVAudioSession</code> in the view controller that has access to your current <code translate="No">AVPlayer</code>.</p>
+  <p>For details, see the <a href="https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions/1616611-mixwithothers">mixWithOthers</a> category option.</p>
  
   
   </section>
