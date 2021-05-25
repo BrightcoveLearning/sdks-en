@@ -980,6 +980,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       <!-- <li><a href="#Setting_the_buffer_size">Setting the buffer size</a></li> -->
       <li><a href="#Paging_with_the_Playback_API">Paging with the Playback API</a></li>
       <li><a href="#Removing_the_player">Removing the player</a></li>
+      <li><a href="#Setting_audio_behavior">Setting audio behavior</a></li>
       <li><a href="#Setting_the_playback_rate">Setting the playback rate</a></li>
       <li><a href="#Setting_VR_Goggles_mode_for_360_videos">Setting VR Goggles mode for 360° videos</a></li>
     </ul>
@@ -1866,6 +1867,21 @@ playbackController = nil</code></pre>
 <!-- end tabs -->
 
 </section>
+
+<section class="bcls-section">
+  <h2 id="Setting_audio_behavior">Setting audio behavior</h2>
+  
+  <p>The audio session handles audio behavior at the app level. You can choose from several audio session categories and settings to customize your app's audio behavior.</p>
+  <p>Choose the best audio session category for your app. For details, review Apple's documentation:</p>
+  <ul>
+    <li><a href="https://developer.apple.com/documentation/avfaudio/avaudiosession">AVAudioSession class</a></li>
+    <li><a href="https://developer.apple.com/documentation/avfaudio/avaudiosessioncategory">AVAudioSessionCategory</a></li>
+  </ul>
+  <h3>Basic sample</h3>
+  <p>For our basic sample, we use <code translate="No">AVAudioSessionCategoryPlayback</code>. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. To keep it simple, we put the code for this in the App Delegate.</p>
+ 
+  
+  </section>
 
 <section class="bcls-section">
 <h2 id="Setting_the_playback_rate">Setting the playback rate</h2>
