@@ -9,6 +9,8 @@ grandparent: iOS Development
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
 
+  <!-- The next tab set will be 41 and 42 -->
+
 <section class="bcls-section" id="top">
 <h3>Table of contents</h3>
 <!-- <h5 class="bcls-question">Accessibility</h5>
@@ -966,10 +968,108 @@ playbackController = nil</code></pre>
   </ul>
   <h3>Basic sample</h3>
   <p>For our basic sample, we use <code translate="No">AVAudioSessionCategoryPlayback</code>. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. To keep it simple, we put the code for this in the App Delegate.</p>
+  <!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab37">Obj-C</a></li>
+      <li><a href="#tab38">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab37" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">NSError *categoryError = nil;
+  BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
+  if (!success)
+  {
+      // Handle error
+  }</code></pre>
+      </div>
+      <div id="tab38" class="tab">
+        <pre>
+<code class="language-swift" translate="No">var categoryError :NSError?
+  var success: Bool
+  do {
+      try AVAudioSession.sharedInstance().setCategory(.playback)
+      success = true
+  } catch let error as NSError {
+      categoryError = error
+      success = false
+  }
+  if !success {
+      // Handle error
+  }</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
+
   <h3>Mix with other audio</h3>
   <p>You may want to allow audio from other apps to be heard when the audio in your app is muted. To do this, you can configure the <code translate="No">AVAudioSession</code> in the view controller that has access to your current <code translate="No">AVPlayer</code>.</p>
   <p>For details, see the <a href="https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions/1616611-mixwithothers">mixWithOthers</a> category option.</p>
- 
+  <!-- tabs -->
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active"><a href="#tab39">Obj-C</a></li>
+      <li><a href="#tab40">Swift</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab39" class="tab active">
+        <pre>
+<code class="language-objectivec" translate="No">- (void)setUpAudioSession
+  {
+      NSError *categoryError = nil;
+      BOOL success;
+      
+      // If the player is muted, then allow mixing.
+      // Ensure other apps can have their background audio active when this app is in foreground
+      if (self.currentPlayer.isMuted)
+      {
+          success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&amp;categoryError];
+      }
+      else
+      {
+          success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&amp;categoryError];
+      }
+      
+      if (!success)
+      {
+          NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
+      }
+  }</code></pre>
+      </div>
+      <div id="tab40" class="tab">
+        <pre>
+<code class="language-swift" translate="No">func setUpAudioSession() {
+  var categoryError :NSError?
+  var success: Bool
+  do {
+      if let currentPlayer = currentPlayer {
+          // If the player is muted, then allow mixing.
+          // Ensure other apps can have their background audio active when this app is in foreground
+          if currentPlayer.isMuted {
+              try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
+          } else {
+              try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
+          }
+      } else {
+          try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
+      }
+      
+      success = true
+  } catch let error as NSError {
+      categoryError = error
+      success = false
+  }
+  if !success {
+      print(&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. \(categoryError!)&quot;)
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+<!-- end tabs -->
   
   </section>
 
