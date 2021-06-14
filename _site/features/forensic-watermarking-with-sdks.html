@@ -1184,273 +1184,129 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
     <p>
-      By default, the Native SDKs talk to the Brightcove Playback API to retrieve your video and playlist content. A new system to manage playback rights and restrictions sits in front of the Playback API and provides playback authorization using DRM licenses.
+      With Forensic Watermarking, you can protect your premium content from piracy and unauthorized content sharing. This feature adds an invisible watermark to your videos, allowing you to track any content leaks.
     </p>
-    <p>You can use Playback Rights with or without DRM, but if you choose to use runtime restrictions, then you will need to use a JSON Web Token (JWT).</p>
-    <p>License Keys Protection offers an extra level of security when using Dynamic Delivery with DRM-protected or HTTP Live Streaming Encryption (HLSe) content. License requests can be authenticated using a signed <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">JSON Web Token (JWT)</a>. </p>
-
-    <p>The token is used when requesting the video license, once the video has been loaded to the player and the source has been selected.</p>
-
-    <aside class="bcls-aside bcls-aside--information">With HLSe content, when the player changes rendition, due to improved connectivity or after the first segment is loaded, a new license request is made.</aside>
-
-    <p>If you are not familiar with this feature, see the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html">Overview: Brightcove Playback Restrictions</a> document.</p>
+    <p>For more information, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
   </section>
 
   <section class="bcls-section">
     <h2 id="Requirements">Requirements</h2>
-    <p>Here are the requirements needed to use Playback Restrictions.</p>
-    <!-- <h3>Playback Rights</h3> -->
-    <h4>Android</h4>
+    <p>The following requirements are needed to support this feature:</p>
+    <h3>Setup</h3>
+    <p>There are setup requirements in addition to configuring your player. For details, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
+
+    <h3>Device OS version</h3>
     <ul>
-      <li>You must use Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</li>
-    </ul>
-    <h4>iOS</h4>
-    <ul><li>You must use Brightcove Native SDK for iOS version <strong>6.7.0</strong> or later</li>
+      <li>Android 6.0 and newer</li>
+      <li>iOS 11.0 and newer</li>
     </ul>
 
-    <!-- <h3>License Keys Protection</h3>
-    <p>To use License Keys Protection, you need the following:</p>
+    <h3>Brightcove SDK version</h3>
     <ul>
-      <li>Player version <strong>6.33.0</strong> or later</li>
-      <li>If using DRM, you will need the <a href="https://support.brightcove.com/configuring-brightcove-player-drm#Changelog">DRM plugin</a> version <strong>5.5.0</strong> or later</li>
-    </ul> -->
-
+      <li>Native SDK for Android 6.17 and newer</li>
+      <li>Native SDK for iOS 6.8.8 and newer</li>
+    </ul>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Using_Playback_Rights_Android">Using Playback Rights: Android</h2>
-    <aside class="bcls-aside bcls-aside--information language-editable">Notes:
-      <ul>
-        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
-        <li>On the Android platform, only DRM DASH is currently supported</li>
-      </ul>
-    </aside>
-    <p>
-      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
-    </p>
+    <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
+    <p>To configure a player to use Forensic Watermarking, follow these steps:</p>
+    
     <ol class="bcls-tasklist-restart">
       <li>
         <p>
-          Start with the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">Basic Sample App</a>.
+          As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key.
         </p>
-      </li>
-      <li>
-        <p>
-          By default, the Native SDK for Android makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
-        </p>
-        <p>
-          Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code> without supplying a policy key. Here is an example:
-        </p>
-        <pre>
-<code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, accountId).build();</code></pre>
-        <br />
-        <p>
-          If you are following the Brightcove sample app, it gets the account ID as shown here:
-        </p>
-        <pre>
-<code class="language-java" translate="No">getString(R.string.account)</code></pre>
-        </br />
-      </li>
-      <li>
-        <p>
-          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
-        </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_Android">Using License Keys Protection: Android</a> section.
-        </p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="bcls-section">
-    <h2 id="Using_Playback_Rights_iOS">Using Playback Rights: iOS</h2>
-    <aside class="bcls-aside bcls-aside--information language-editable">Notes:
-      <ul>
-        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
-      </ul>
-    </aside>
-
-    <p>
-      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
-    </p>
-    <ol class="bcls-tasklist-restart">
-      <li>
-        <p>
-          Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">Basic Sample App</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          By default, the Native SDK for iOS makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
-        </p>
-        <p>
-          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the policy key to <code translate="No">nil</code>. Here is an example:
-        </p>
-        <pre>
-<code class="language-java" translate="No">let playbackService = BCOVPlaybackService(accountId: kViewControllerAccountID, policyKey: nil)</code></pre>
-      </li>
-      <li>
-        <p>
-          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
-        </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</a> section.
-        </p>
-      </li>
-    </ol>
-  </section> 
-
-  <section class="bcls-section">
-    <h2 id="Using_License_Keys_Protection_Android">Using License Keys Protection: Android</h2>
-
-    <p>The Native SDK for Android currently supports Key/license protection for HLSe and Widevine DASH sources. You will provide your authorization token as part of the Brightcove catalog request for a single video or a playlist.</p>
-
-    <p>
-      To make a Brightcove catalog request, follow these steps:
-    </p>
-    <ol class="bcls-tasklist-restart">
-      <li>
-        <p>
-          Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Authorization token as shown here:
-        </p>
+        <p>Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Watermark token as shown here:</p>
         <pre class="line-numbers"><code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-  .setBrightcoveAuthorizationToken("<span class="bcls-input">your jwt token</span>")
-  .build();
-</code></pre>
-        <p>
-          The value of the Authorization token will be the value of your JSON Web Token.
-        </p>
+    .setBrightcoveWatermarkingToken("your watermark token")
+    .build();        
+  </code></pre>
       </li>
       <li>
-        <p>
-          Once you have created the <code translate="No">HttpRequestConfig</code> object, pass it to one of the following Catalog methods:
-        </p>
-        <p>
-          For a video request, use one of the following:
-        </p>
-        <pre class="line-numbers"><code class="language-java" translate="No">findVideoByID(String, HttpRequestConfig, VideoListener)
-</code></pre>
-        <pre class="line-numbers"><code class="language-java" translate="No">findVideoByReferenceID(String, HttpRequestConfig, VideoListener)
-</code></pre>
-        <p>
-          For a playlist request, use one of the following:
-        </p>
-        <pre class="line-numbers"><code class="language-java" translate="No">findPlaylistByID(String, HttpRequestConfig, PlaylistListener)
-</code></pre>
-        <pre class="line-numbers"><code class="language-java" translate="No">findPlaylistByReferenceID(String, HttpRequestConfig, PlaylistListener)
-</code></pre>
-        <p>
-          The details of token usage for HLSe and Widevine license acquisition are handled by the SDK.
-        </p>
-        <aside class="bcls-aside bcls-aside--information">For playlist requests, all videos in the playlist must use the same token. In a future release, you will be able to assign a different token to each video in the playlist. You will be responsible for maintaining the mapping between Video ID and token. The <code translate="No">conid</code> as defined in the <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Create_a_JSON_Web_Token">JWT token claims</a> is the Video ID value associated with a token.</aside>
+        <p>Once you have created the <code translate="No">HttpRequestConfig</code> object, pass it to one of the following Catalog methods:</p>
+        <p>For a video request, use one of the following:</p>
+        <pre><code class="language-java" translate="No">findVideoByID(String, HttpRequestConfig, VideoListener)</code></pre>
+        <pre><code class="language-java" translate="No">findVideoByReferenceID(String, HttpRequestConfig, VideoListener)</code></pre>
+        <p>For a playlist request, use one of the following:</p>
+        <pre><code class="language-java" translate="No">findPlaylistByID(String, HttpRequestConfig, PlaylistListener)</code></pre>
+        <pre><code class="language-java" translate="No">findPlaylistByReferenceID(String, HttpRequestConfig, PlaylistListener)</code></pre>
       </li>
     </ol>
-
-    <h3>Code example</h3>
-    <p>
-      Here is an example that shows how to pass your authorization token when making a Catalog request:
-    </p>
-    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;...&quot;;
-HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-  .setBrightcoveAuthorizationToken(myToken)
-  .build();
-&hellip;
-
-Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
-catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});
-</code></pre>
+    <h3>Example</h3>
+    <p>Here is an example that shows how to pass your watermarking token when making a Catalog request:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;your watermark token&quot;;
+  HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+    .setBrightcoveWatermarkingToken(myToken)
+    .build();
+  &hellip;
+  
+  Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
+  catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});              
+    </code></pre>
 
     <h3>Offline Playback</h3>
     <p>
       The OfflineCatalog <code translate="No">findVideo</code>, <code translate="No">requestPurchaseLicense</code> and <code translate="No">requestRentalLicense</code> methods all take an <code translate="No">HttpRequestConfig</code> as an argument.
     </p>
-    <aside class="bcls-aside bcls-aside--tip">Key/license protection with Offline Playback is supported with the Native SDK for Android v6.8.1 or later.</aside>
+   
     <p>Here's an example:</p>
     <pre class="line-numbers"><code class="language-java" translate="No">private HttpRequestConfig httpRequestConfig;
-private String pasToken = &quot;<span class="bcls-input">your jwt token</span>&quot;;
-...
-HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
-httpRequestConfigBuilder.setBrightcoveAuthorizationToken(pasToken);
-httpRequestConfig = httpRequestConfigBuilder.build();
-playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
-    @Override
-    public void onPlaylist(Playlist playlist) {
-        videoListAdapter.setVideoList(playlist.getVideos());
-        onVideoListUpdated(false);
-        brightcoveVideoView.addAll(playlist.getVideos());
-    }
-
-    @Override
-    public void onError(String error) {
-        String message = showToast(&quot;Failed to find playlist[%s]: %s&quot;, playlist.displayName, error);
-        Log.w(TAG, message);
-        onVideoListUpdated(true);
-    }
-});</code></pre>
+  private String watermarkingToken = &quot;your watermark token&quot;;
+  ...
+  HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
+  httpRequestConfigBuilder.setBrightcoveWatermarkingToken(watermarkingToken);
+  httpRequestConfig = httpRequestConfigBuilder.build();
+  playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
+      @Override
+      public void onPlaylist(Playlist playlist) {
+          videoListAdapter.setVideoList(playlist.getVideos());
+          onVideoListUpdated(false);
+          brightcoveVideoView.addAll(playlist.getVideos());
+      }
+  
+      @Override
+      public void onError(String error) {
+          String message = showToast(&quot;Failed to find playlist[%s]: %s&quot;, playlist.displayName, error);
+          Log.w(TAG, message);
+          onVideoListUpdated(true);
+      }
+  });
+  </code></pre>
 
     <p>
       For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
     </p>
 
-    <h3>Responses</h3>
-    <p>
-      The following responses are associated with PAS:
-    </p>
-    <ul>
-      <li>
-        200 - License is allowed to continue
-      </li>
-      <li>
-        401 - The License delivery must not be allowed to continue
-      </li>
-    </ul>
-
-    <h3>Limitations</h3>
-    <p>
-      There is a limitation with the current release:
-    </p>
-    <ul>
-      <li>
-        Chromecast is not supported with key/license protection.
-      </li>
-    </ul>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</h2>
-
-    <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your authorization token. This is done using the <code translate="No">authToken</code> parameter.</p>
-
+    <h2 id="iOS_Implementation">iOS Implementation</h2>
     <p>
-      For a video request, use one of the following:
+      o configure a player to use Forensic Watermarking, follow these steps:
     </p>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key. This is done using the <code translate="No">watermarkingToken</code> parameter.
+        </p>
+        <p>
+          For a video request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-
-    <p>
-      For a playlist request, use one of the following:
-    </p>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+        <p>
+          For a playlist request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-
-    <p>
-      The details of token usage for HLSe and FairPlay license acquisition are handled by the SDK.
-    </p>
-    <aside class="bcls-aside bcls-aside--information">For playlist requests, all videos in the playlist must use the same token. In a future release, you will be able to assign a different token to each video in the playlist. You will be responsible for maintaining the mapping between Video ID and token. The <code translate="No">conid</code> as defined in the <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Create_a_JSON_Web_Token">JWT token claims</a> is the Video ID value associated with a token.</aside>
-
-    <p>
-      For details, see the <a href="https://docs.brightcove.com/ios-sdk/index.html#PlaybackAuthorizationService">Playback Authorization Service</a> section of the Native SDK for iOS reference.
-    </p>
+        <p>For details, see the Forensic Watermarking section of the Native SDK for iOS reference.</p>
+      </li>
+    </ol>
 
     <h3>Offline Playback</h3>
     <p>
@@ -1474,39 +1330,12 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     <p>
       For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#renewing-a-fairplay-license">Renewing a FairPlay License</a> section of the Native SDK for iOS reference.
     </p>
+  </section> 
 
-    <h3>Responses</h3>
-    <p>
-      The following responses are associated with PAS:
-    </p>
-    <ul>
-      <li>
-        200 - License is allowed to continue
-      </li>
-      <li>
-        401 - The License delivery must not be allowed to continue
-      </li>
-    </ul>
-
+  <section class="bcls-section">
+    <h2 id="Limitations">Limitations</h2>
+    <p>For details about the limitations for this feature, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
   </section>
-
-  <!-- <section class="bcls-section">
-    <h2 id="Related_topics">Related topics</h2>
-    <ul>
-      <li>
-        <a href="/playback-rights/getting-started/overview-epa.html">Overview: Playback Rights Management Service</a>
-      </li>
-      <li>
-        <a href="/playback-rights/getting-started/implementing-epa.html">Implementing Playback Rights Management Service</a>
-      </li>
-      <li>
-        <a href="/playback-rights/guides/using-epa-with-bcp.html">Using Playback Rights with Brightcove Player</a>
-      </li>
-      <li>
-        <a href="/playback-authorization/guides/stream-concurrency.html">Implementing Stream Concurrency</a>
-      </li>
-    </ul>
-  </section> -->
 
 </article>
 
