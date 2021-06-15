@@ -3,16 +3,15 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Understanding the various approaches of implementing video in your application will lay the foundation for your success. This document aims to outline the most common video player implementations at a high level with useful links to outside resources that can be used for additional research.">
+  <meta name="description" content="In this topic, you will learn how to use the Brightcove Native SDKs to deliver videos protected with Forensic Watermarking.">
   
-  <title>Native Video Playback</title>
+  <title>Forensic Watermarking with the Native SDKs</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">  
-<link rel="preconnect" href="https://fonts.gstatic.com"> 
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/prism.css">
   <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/styles.css">
@@ -32,8 +31,9 @@
   gtag('config', 'UA-2728311-17');
 </script>
   <script src="/assets/js/sajari-head.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+	<script src="https://unpkg.com/feather-icons"></script>
 </head>
+
 
 <body class="body">
 
@@ -62,9 +62,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       
       
-      <li class="breadcrumb-item"><a href="/getting-started/">Getting Started</a></li>
+      <li class="breadcrumb-item"><a href="/features/">Features</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Native Video Playback</li>
+      <li class="breadcrumb-item active" aria-current="page">Forensic Watermarking with the Native SDKs</li>
     </ol>
   </nav>
 </header>
@@ -1174,69 +1174,171 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
-<h1>Native Video Playback</h1>
+<h1>Forensic Watermarking with the Native SDKs</h1>
 <article class="bcls-article">
-  <summary>Understanding the various approaches of implementing video in your application will lay the foundation for your success. This document aims to outline the most common video player implementations at a high level with useful links to outside resources that can be used for additional research.</summary>
+  <summary>In this topic, you will learn how to use the Brightcove Native SDKs to deliver videos protected with Forensic Watermarking.</summary>
+  
+  <br/>
+  <aside class="bcls-aside bcls-aside--tip">This feature is available for a specific set of customers with access to the Limited Availability phase of Forensic Watermarking.</aside>
 
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
+  <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+    <p>
+      With Forensic Watermarking, you can protect your premium content from piracy and unauthorized content sharing. This feature adds an invisible watermark to your videos, allowing you to track any content leaks.
+    </p>
+    <p>For more information, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
+  </section>
 
-<p>The following image shows that the Brightcove Native SDKs provide functionality that you would otherwise have to build yourself.</p>
+  <section class="bcls-section">
+    <h2 id="Requirements">Requirements</h2>
+    <p>The following requirements are needed to support this feature:</p>
+    <h3>Setup</h3>
+    <p>There are setup requirements in addition to configuring your player. For details, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
 
-<figure class="bcls-figure"><img class="bcls-image--no-border" alt="fundamentals of Brightcove Native SDK" src="//img.brightcove.com/node15054-fundamentals.png" />
-<figcaption class="bcls-caption--image">fundamentals of Brightcove Native SDK</figcaption>
-</figure>
+    <h3>Device OS version</h3>
+    <ul>
+      <li>Android 6.0 and newer</li>
+      <li>iOS 11.0 and newer</li>
+    </ul>
 
-<h3 class="BCL_conceptTitle">Video playback implementations</h3>
-<p>There are a few ways you can add a video player to your app:</p>
+    <h3>Brightcove SDK version</h3>
+    <ul>
+      <li>Native SDK for Android 6.17 and newer</li>
+      <li>Native SDK for iOS 6.8.8 and newer</li>
+    </ul>
+  </section>
 
-<ul>
-	<li><a href="#Using_a_WebView">Using a WebView</a></li>
-	<li><a href="#Using_the_Native_Player">Using the Native Player</a></li>
-	<li><a href="#Using_the_Brightcove_Native_SDKs">Using the Brightcove Native SDKs</a></li>
-</ul>
-</section>
-<!--break-->
+  <section class="bcls-section">
+    <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
+    <p>To configure a player to use Forensic Watermarking, follow these steps:</p>
+    
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key.
+        </p>
+        <p>Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Watermark token as shown here:</p>
+        <pre class="line-numbers"><code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+    .setBrightcoveWatermarkingToken("your watermark token")
+    .build();        
+  </code></pre>
+      </li>
+      <li>
+        <p>Once you have created the <code translate="No">HttpRequestConfig</code> object, pass it to one of the following Catalog methods:</p>
+        <p>For a video request, use one of the following:</p>
+        <pre><code class="language-java" translate="No">findVideoByID(String, HttpRequestConfig, VideoListener)</code></pre>
+        <pre><code class="language-java" translate="No">findVideoByReferenceID(String, HttpRequestConfig, VideoListener)</code></pre>
+        <p>For a playlist request, use one of the following:</p>
+        <pre><code class="language-java" translate="No">findPlaylistByID(String, HttpRequestConfig, PlaylistListener)</code></pre>
+        <pre><code class="language-java" translate="No">findPlaylistByReferenceID(String, HttpRequestConfig, PlaylistListener)</code></pre>
+      </li>
+    </ol>
+    <h3>Example</h3>
+    <p>Here is an example that shows how to pass your watermarking token when making a Catalog request:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;your watermark token&quot;;
+  HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+    .setBrightcoveWatermarkingToken(myToken)
+    .build();
+  &hellip;
+  
+  Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
+  catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});              
+    </code></pre>
 
-<section class="bcls-section">
-<h2 id="Using_a_WebView">Using a WebView</h2>
+    <h3>Offline Playback</h3>
+    <p>
+      The OfflineCatalog <code translate="No">findVideo</code>, <code translate="No">requestPurchaseLicense</code> and <code translate="No">requestRentalLicense</code> methods all take an <code translate="No">HttpRequestConfig</code> as an argument.
+    </p>
+   
+    <p>Here's an example:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">private HttpRequestConfig httpRequestConfig;
+  private String watermarkingToken = &quot;your watermark token&quot;;
+  ...
+  HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
+  httpRequestConfigBuilder.setBrightcoveWatermarkingToken(watermarkingToken);
+  httpRequestConfig = httpRequestConfigBuilder.build();
+  playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
+      @Override
+      public void onPlaylist(Playlist playlist) {
+          videoListAdapter.setVideoList(playlist.getVideos());
+          onVideoListUpdated(false);
+          brightcoveVideoView.addAll(playlist.getVideos());
+      }
+  
+      @Override
+      public void onError(String error) {
+          String message = showToast(&quot;Failed to find playlist[%s]: %s&quot;, playlist.displayName, error);
+          Log.w(TAG, message);
+          onVideoListUpdated(true);
+      }
+  });
+  </code></pre>
 
-<p>One option for implementing video playback in your app it to use a <code translate="No">webView</code>. This creates a view that treats your content like a browser would, enabling the usage of HTML and JavaScript. Some app developers use the HTML5 video player or the Brightcove web player in a <code translate="No">webView</code>, however this is not the same as using the Brightcove Native SDKs for iOS and Android.</p>
-<p>While a <code translate="No">webView </code> simplifies the implementation process, there are a number of issues that make this approach undesirable:</p>
-<ul>
-	<li>The <code translate="No">webView </code> incurs a heavy toll on the processor, consuming far more memory than the native player.</li>
-	<li>Playback in a <code translate="No">webView </code> has the same issues as playback in a browser on mobile devices. The implementation forces you to give up control of many UI and playback related features on full-screen-only devices. This means sacrificing some functionality, such as with overlays. Users will not be able to click-through on overlay advertisements. You will also lose the ability to prevent users from skipping ads.</li>
-	<li>Many of our partners explicitly note that they do not work in a <code translate="No">webView </code> and instead provide an iOS or Android SDK to implement.</li>
-</ul>
-<p>For these reasons, Brightcove does not recommend using a <code translate="No">webView</code>, and we do not actively test on this platform.</p>
+    <p>
+      For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
+    </p>
 
-<!-- <p>One of the most popular options for implementing a video player in an application is the usage of a <code translate="No">webView </code>, a <a href="https://developer.apple.com/documentation/webkit/wkwebview">WKWebView for iOS</a> or a <a href="//developer.android.com/reference/android/webkit/WebView.html"> WebView for Android</a>. </p> -->
+  </section>
 
-<p>A better solution is to use <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
-</section>
+  <section class="bcls-section">
+    <h2 id="iOS_Implementation">iOS Implementation</h2>
+    <p>
+      o configure a player to use Forensic Watermarking, follow these steps:
+    </p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key. This is done using the <code translate="No">watermarkingToken</code> parameter.
+        </p>
+        <p>
+          For a video request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+        <p>
+          For a playlist request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+        <p>For details, see the Forensic Watermarking section of the Native SDK for iOS reference.</p>
+      </li>
+    </ol>
 
-<section class="bcls-section">
-<h2 id="Using_the_Native_Player">Using the Native Player</h2>
+    <h3>Offline Playback</h3>
+    <p>
+      If you are using the Playback Authorization Service with Offline Playback, there is a new method for renewing a FairPlay license which accepts an authorization token:
+    </p>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">// Request license renewal
+    [BCOVOfflineVideoManager.sharedManager renewFairPlayLicense:offlineVideoToken
+        video:video // recent video from Playback API or Playback Service class
+        authToken: authToken
+        Parameters: parameters
+        completion:^(BCOVOfflineVideoToken offlineVideoToken, NSError *error)
+    {
+        // handle errors
+    }];
+</code></pre>
 
-<p>Both iOS and Android provide their own native players which you can implement to provide a base platform for your video content. In both cases, however, this is just a basic player without any of the structure to easily support features such as analytics, advertising or DRM.</p>
+    <p>
+      When license renewal is finshed, the completion block will be called with the same offline video token that was passed in. An <code translate="No">NSError</code> will indicate any problem that occurred (or nil if no error).
+    </p>
 
-<p>Even though the native players have an abundance of online documentation, you may find that software updates do not occur on a regular basis. This means that issues you encounter may remain unaddressed for some time. When updates are released, more noticeably with the Android OS, the fragmentation of devices used in the market may result in these fixes not being universally applied. To learn more about native device players, you can start with the <a href="//developer.android.com/reference/android/media/MediaPlayer.html">Android Native Player</a>, and the <a href="https://developer.apple.com/documentation/avfoundation/media_assets_playback_and_editing/creating_a_basic_video_player_ios_and_tvos">iOS Native Player</a> options.</p>
+    <p>
+      For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#renewing-a-fairplay-license">Renewing a FairPlay License</a> section of the Native SDK for iOS reference.
+    </p>
+  </section> 
 
-<p>A better solution is to use <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
-</section>
+  <section class="bcls-section">
+    <h2 id="Limitations">Limitations</h2>
+    <p>For details about the limitations for this feature, see the <a href="">Overview: Forensic Watermarking</a> document.</p>
+  </section>
 
-<section class="bcls-section">
-<h2 id="Using_the_Brightcove_Native_SDKs">Using the Brightcove Native SDKs</h2>
-
-<p>The Brightcove Native SDKs are built on top of native player frameworks. This allows you to take advantage of the speed, performance, and flexibility of the native OS, and extend it into a complete video experience that is easy to integrate. In addition, the Brightcove Native SDKs follow established conventions for naming standards, memory management and design patterns in order to make getting started as simple as possible.</p>
-
-<p>The Brightcove Native SDKs work seamlessly across different versions of each platform. This ensures that you will reach the vast majority of the market and gives you the confidence that the Brightcove SDKs work on all supported versions.</p>
-
-<p>As with the Brightcove web player, the Brightcove Native SDKs also derive tremendous value from integrations with our partners. As experts in the video field, we strive to fill the gaps in the native player experience by offering integrations with <a href="/features/advertising-sdks.html">advertising</a>, <a href="/features/analytics-sdks.html">analytics</a> and <a href="/features/content-security-drm-native-player-sdks.html">digital rights management</a> strategies. This allows you to create the custom video experiences that fit your needs.</p>
-<p>Ready to learn more? Start with an overview of <a href="/getting-started/brightcove-native-player-sdks.html">The Brightcove Native SDKs</a>.</p>
-</section>
 </article>
-<!-- End of Drupal content -->
+
 
 <!-- complete bootstrap layout -->
     </div>
@@ -1253,7 +1355,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 19 Feb 2021
+  Page last updated on 14 Jun 2021
 </div>
 
 
