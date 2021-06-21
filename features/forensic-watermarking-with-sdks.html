@@ -49,7 +49,7 @@ layout: staging
         <p>
           <p>In the player Activity’s <code translate="No">onCreate</code> method, add this call, before any Catalog calls to retrieve your video or playlist:</p>
           <pre><code class="language-java" translate="No">VideoUtil.setWatermarkingToken(yourWatermarkingToken);
-  </code></pre>
+</code></pre>
         </p>
       </li>
       <li>
@@ -70,32 +70,8 @@ layout: staging
 
     <h3>Offline Playback</h3>
     <p>
-      The OfflineCatalog <code translate="No">findVideo</code>, <code translate="No">requestPurchaseLicense</code> and <code translate="No">requestRentalLicense</code> methods all take an <code translate="No">HttpRequestConfig</code> as an argument.
+      Offline playback should work as usual once the video is downloaded.
     </p>
-   
-    <p>Here's an example:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">private HttpRequestConfig httpRequestConfig;
-  private String watermarkingToken = &quot;your watermark token&quot;;
-  ...
-  HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
-  httpRequestConfigBuilder.setBrightcoveWatermarkingToken(watermarkingToken);
-  httpRequestConfig = httpRequestConfigBuilder.build();
-  playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
-      @Override
-      public void onPlaylist(Playlist playlist) {
-          videoListAdapter.setVideoList(playlist.getVideos());
-          onVideoListUpdated(false);
-          brightcoveVideoView.addAll(playlist.getVideos());
-      }
-  
-      @Override
-      public void onError(String error) {
-          String message = showToast(&quot;Failed to find playlist[%s]: %s&quot;, playlist.displayName, error);
-          Log.w(TAG, message);
-          onVideoListUpdated(true);
-      }
-  });
-  </code></pre>
 
     <p>
       For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
@@ -106,49 +82,59 @@ layout: staging
   <section class="bcls-section">
     <h2 id="iOS_Implementation">iOS Implementation</h2>
     <p>
-      o configure a player to use Forensic Watermarking, follow these steps:
+      To configure a player to use Forensic Watermarking, follow these steps:
     </p>
     <ol class="bcls-tasklist-restart">
       <li>
         <p>
-          As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key. This is done using the <code translate="No">watermarkingToken</code> parameter.
+          Set the user identifier for Brightcove analytics. Here, you'll provide values for user ID and application ID.
         </p>
-        <p>
-          For a video request, use one of the following:
-        </p>
-        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+        <pre class="line-numbers"><code class="language-objectivec" translate="No">@try
+  {
+    [BCOVGlobalConfiguration.sharedConfig setValue:@{
+      @&quot;privateUser&quot;: @&quot;your user id&quot;,
+      @&quot;privateApplication&quot;: @&quot;your application id&quot;
+    }
+    forKey:@&quot;privateSessionAnalytics&quot;];
+  }
+  @catch (NSException *e)
+  {
+    NSLog(@&quot;%@&quot;, e.description);
+  }       
 </code></pre>
-        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+      </li>
+      <li>
+        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key. This is done using the watermarkingToken parameter.</p>
+        <p>Add your watermarking token to the request parameters.</p>
+        <pre class="line-numbers"><code class="language-objectivec" translate="No">/**
+* The watermarking token for use with Forensic Watermarking
+*/
+@property (nonatomic, copy) NSString *watermarkingToken;
+...
+NSDictionary *parameters =
+    @{
+        @&quot;watermarkingToken&quot;: @watermarkingToken
+    };      
 </code></pre>
-        <p>
-          For a playlist request, use one of the following:
-        </p>
-        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+      </li>
+      <li>
+        <p>Make your request to the Brightcove catalog for a single video or a playlist, using the updated parameters.</p>
+        <p>For a video request:</p>
+<pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID parameters:
+  (NSDictionary *)parameters completion:(void (^)
+  (BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-        <pre class="line-numbers"><code class="language-java" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID watermarkingToken:(NSString *)watermarkingToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
-</code></pre>
-        <p>For details, see the Forensic Watermarking section of the Native SDK for iOS reference.</p>
+        <p>For a video request:</p>
+<pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID parameters:
+  (NSDictionary *)parameters completion:(void (^)
+  (BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>   
       </li>
     </ol>
+    <p>For details, see the Forensic Watermarking section of the Native SDK for iOS reference.</p>
 
     <h3>Offline Playback</h3>
-    <p>
-      If you are using the Playback Authorization Service with Offline Playback, there is a new method for renewing a FairPlay license which accepts an authorization token:
-    </p>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">// Request license renewal
-    [BCOVOfflineVideoManager.sharedManager renewFairPlayLicense:offlineVideoToken
-        video:video // recent video from Playback API or Playback Service class
-        authToken: authToken
-        Parameters: parameters
-        completion:^(BCOVOfflineVideoToken offlineVideoToken, NSError *error)
-    {
-        // handle errors
-    }];
-</code></pre>
-
-    <p>
-      When license renewal is finshed, the completion block will be called with the same offline video token that was passed in. An <code translate="No">NSError</code> will indicate any problem that occurred (or nil if no error).
-    </p>
+    <p>Offline playback should work as usual once the video is downloaded.</p>
 
     <p>
       For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#renewing-a-fairplay-license">Renewing a FairPlay License</a> section of the Native SDK for iOS reference.
