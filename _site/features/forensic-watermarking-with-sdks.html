@@ -1212,7 +1212,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <h3>Brightcove SDK version</h3>
     <ul>
       <li>Native SDK for Android 6.16.3 and newer</li>
-      <li>Native SDK for iOS 6.8.8 and newer</li>
+      <li>Native SDK for iOS 6.9.0 and newer</li>
     </ul>
   </section>
 
@@ -1221,6 +1221,18 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>Configuration for Forensic Watermarking is performed at the Video level.</p>
     
     <ol class="bcls-tasklist-restart">
+      <li>
+        <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
+        <p>For example:</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
+  baseParams.put(Analytics.Fields.USER, &quot;viewer id&quot;);
+  baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;application id&quot;);
+  
+  HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
+  eventParams.put(Analytics.Fields.BASE_PARAMS, baseParams);
+  eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);          
+</code></pre>
+      </li>
       <li>
         <p>
           <p>In the player Activity’s <code translate="No">onCreate</code> method, add this call, before any Catalog calls to retrieve your video or playlist:</p>
@@ -1262,9 +1274,8 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     </p>
     <ol class="bcls-tasklist-restart">
       <li>
-        <p>
-          Set the user identifier for Brightcove analytics. Here, you'll provide values for user ID and application ID.
-        </p>
+        <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
+        <p>Here, you'll provide values for user ID and application ID:</p>
         <pre class="line-numbers"><code class="language-objectivec" translate="No">@try
   {
     [BCOVGlobalConfiguration.sharedConfig setValue:@{
@@ -1280,7 +1291,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </code></pre>
       </li>
       <li>
-        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark key. This is done using the watermarkingToken parameter.</p>
+        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark token. This is done using the <code translate="No">watermarkingToken</code>  parameter.</p>
         <p>Add your watermarking token to the request parameters.</p>
         <pre class="line-numbers"><code class="language-objectivec" translate="No">/**
 * The watermarking token for use with Forensic Watermarking
@@ -1300,7 +1311,7 @@ NSDictionary *parameters =
   (NSDictionary *)parameters completion:(void (^)
   (BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
-        <p>For a video request:</p>
+        <p>For a playlist request:</p>
 <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID parameters:
   (NSDictionary *)parameters completion:(void (^)
   (BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
