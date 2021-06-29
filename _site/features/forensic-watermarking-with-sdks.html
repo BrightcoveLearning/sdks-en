@@ -1234,14 +1234,31 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </code></pre>
       </li>
       <li>
+        <p>In the <code translate="No">Catalog.findVideo</code> or <code translate="No">Catalog.findPlaylist</code> method calls, add the <code translate="No">VideoUtil</code> method to add your watermarking token.</p>
+        <h3>In the onVideo callback</h3>
+        <pre><code class="language-java" translate="No">public void onVideo(Video video) {
+    VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
+    brightcoveVideoView.add(video);
+} 
+</code></pre>
+        <h3>In the onPlaylist callback</h3>
+        <pre><code class="language-java" translate="No">public void onPlaylist(Playlist playlist) {
+  for (Video video : testPlaylist.getVideos()) {
+      VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
+  }
+  brightcoveVideoView.addAll(testPlaylist.getVideos());
+}
+</code></pre>
+      </li>
+      <!-- <li>
         <p>
           <p>In the player Activity’s <code translate="No">onCreate</code> method, add this call, before any Catalog calls to retrieve your video or playlist:</p>
           <pre><code class="language-java" translate="No">VideoUtil.setWatermarkingToken(yourWatermarkingToken);
 </code></pre>
         </p>
-      </li>
+      </li> -->
       <li>
-        <p>With this call in place, when the Catalog retrieves the Video metadata from the Playback API, the <code translate="No">VideoUtil</code> class will replace the watermarking token placeholder <code translate="No">{WMT}</code> with the token value, wherever it may occur in the Video’s source URLs.</p>
+        <p>With this call in place, when the Catalog retrieves the Video or Playlist metadata from the Playback API, the <code translate="No">VideoUtil</code> class will replace the watermarking token placeholder <code translate="No">{WMT}</code> with the token value, wherever it may occur in the Video’s source URLs. This token can be replaced for each video in a playlist that may be watermarked.</p>
       </li>
     </ol>
     <!-- <h3>Example</h3>
