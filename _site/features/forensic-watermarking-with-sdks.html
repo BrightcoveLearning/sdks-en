@@ -1235,13 +1235,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       </li>
       <li>
         <p>In the <code translate="No">Catalog.findVideo</code> or <code translate="No">Catalog.findPlaylist</code> method calls, add the <code translate="No">VideoUtil</code> method to add your watermarking token.</p>
-        <h3>In the onVideo callback</h3>
+
+        <p><strong>In the onVideo callback</strong></p>
         <pre><code class="language-java" translate="No">public void onVideo(Video video) {
     VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
     brightcoveVideoView.add(video);
 } 
 </code></pre>
-        <h3>In the onPlaylist callback</h3>
+        <p><strong>In the onPlaylist callback</strong></p>
         <pre><code class="language-java" translate="No">public void onPlaylist(Playlist playlist) {
   for (Video video : testPlaylist.getVideos()) {
       VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
@@ -1272,6 +1273,39 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
   catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});              
     </code></pre> -->
+
+    <h3>Chromecast</h3>
+    <p>To cast a watermarked video, you need to supply your application ID, watermarking token, and user ID when building your <code translate="No">BrightcoveCastCustomData</code> object with the Cast plugin.</p>
+      <p>In your code to set up the <code translate="No">BrightcoveCastCustomData</code> object, add this line:</p>
+      <pre><code class="language-java" translate="No">public static void setupGoogleCast() {
+  BrightcoveCastCustomData.Builder customDataBuilder = new BrightcoveCastCustomData.Builder(context)
+      .setApplicationId(yourApplicationId)
+      .setWatermarkingToken(yourWatermarkingToken);
+      .setUserId(yourUserId);
+      // Add the custom data elements to the castPluginBuilder
+      
+  castPluginBuilder
+      .setEnableCustomData(true)
+      .setCustomData(customDataBuilder.build());
+}    
+</code></pre>
+
+    <p>When you open a cast connection with a watermarked video, you should see a <code translate="No">customData</code> object formatted like this:</p>
+    <pre><code class="language-json" translate="No">{
+      &quot;accountId&quot;: &quot;yourAccountId&quot;,
+      &quot;analyticsParams&quot;: {
+          &quot;application&quot;: &quot;yourApplicationId&quot;,
+          &quot;user&quot;: &quot;yourUserId&quot;
+      },
+      &quot;catalogParams&quot;: {
+          &quot;type&quot;: &quot;video&quot;,
+          &quot;id&quot;: &quot;videoId&quot;,
+          &quot;policyKey&quot;: &quot;yourPolicyKey&quot;,
+          &quot;watermarkingToken&quot;: &quot;yourWatermarkingToken&quot;
+      }
+  }  
+</code></pre>
+
 
     <h3>Offline Playback</h3>
     <p>
@@ -1368,7 +1402,7 @@ NSDictionary *parameters =
 
 <hr>
 <div class="last-updated">
-  Page last updated on 22 Jun 2021
+  Page last updated on 29 Jun 2021
 </div>
 
 
