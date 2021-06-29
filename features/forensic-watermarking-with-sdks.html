@@ -86,17 +86,6 @@ layout: staging
         <p>With this call in place, when the Catalog retrieves the Video or Playlist metadata from the Playback API, the <code translate="No">VideoUtil</code> class will replace the watermarking token placeholder <code translate="No">{WMT}</code> with the token value, wherever it may occur in the Video’s source URLs. This token can be replaced for each video in a playlist that may be watermarked.</p>
       </li>
     </ol>
-    <!-- <h3>Example</h3>
-    <p>Here is an example that shows how to pass your watermarking token when making a Catalog request:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;your watermark token&quot;;
-  HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-    .setBrightcoveWatermarkingToken(myToken)
-    .build();
-  &hellip;
-  
-  Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
-  catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});              
-    </code></pre> -->
 
     <h3>Chromecast</h3>
     <p>To cast a watermarked video, you need to supply your application ID, watermarking token, and user ID when building your <code translate="No">BrightcoveCastCustomData</code> object with the Cast plugin.</p>
@@ -132,10 +121,9 @@ layout: staging
 
 
     <h3>Offline Playback</h3>
-    <p>
-      Offline playback should work as usual once the video is downloaded.
+    <p>The process for downloading a video can involve more than one Catalog call to retrieve the current Video metadata. Brightcove recommends adding the <code translate="No">onVideo</code> callback code above to your callbacks that may be present when acquiring purchase or rental licenses and when downloading the video.
     </p>
-
+    <p>Once the video has been downloaded, offline playback should work as usual.</p>
     <p>
       For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
     </p>
