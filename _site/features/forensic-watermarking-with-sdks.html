@@ -1333,21 +1333,18 @@ GoogleCastComponent.Builder castPluginBuilder = new GoogleCastComponent.Builder(
 </code></pre>
       </li>
       <li>
-        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your Nagra watermark token. This is done using the <code translate="No">watermarkingToken</code>  parameter.</p>
-        <p>Add your watermarking token to the request parameters.</p>
+        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your NAGRA watermark token. This is done using the <code translate="No">watermarkingToken</code> property.</p>
+        <p>Add your watermarking token to the playback service.</p>
         <pre class="line-numbers"><code class="language-objectivec" translate="No">/**
 * The watermarking token for use with Forensic Watermarking
 */
 @property (nonatomic, copy) NSString *watermarkingToken;
 ...
-NSDictionary *parameters =
-    @{
-        @&quot;watermarkingToken&quot;: @watermarkingToken
-    };      
+playbackService.watermarkingToken = self.watermarkingToken;     
 </code></pre>
       </li>
       <li>
-        <p>Make your request to the Brightcove catalog for a single video or a playlist, using the updated parameters.</p>
+        <p>Make your request to the Brightcove catalog for a single video or a playlist.</p>
         <p>For a video request:</p>
 <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID parameters:
   (NSDictionary *)parameters completion:(void (^)
