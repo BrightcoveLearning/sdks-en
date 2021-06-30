@@ -1238,14 +1238,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
         <p><strong>In the onVideo callback</strong></p>
         <pre><code class="language-java" translate="No">public void onVideo(Video video) {
-    VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
+    VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
     brightcoveVideoView.add(video);
 } 
 </code></pre>
         <p><strong>In the onPlaylist callback</strong></p>
         <pre><code class="language-java" translate="No">public void onPlaylist(Playlist playlist) {
   for (Video video : testPlaylist.getVideos()) {
-      VideoUtil.maybeAddWatermarkingToken(video, yourWatermarkingToken);
+      VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
   }
   brightcoveVideoView.addAll(testPlaylist.getVideos());
 }
@@ -1267,16 +1267,20 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>To cast a watermarked video, you need to supply your application ID, watermarking token, and user ID when building your <code translate="No">BrightcoveCastCustomData</code> object with the Cast plugin.</p>
       <p>In your code to set up the <code translate="No">BrightcoveCastCustomData</code> object, add this line:</p>
       <pre><code class="language-java" translate="No">public static void setupGoogleCast() {
-  BrightcoveCastCustomData.Builder customDataBuilder = new BrightcoveCastCustomData.Builder(context)
-      .setApplicationId(yourApplicationId)
-      .setWatermarkingToken(yourWatermarkingToken);
-      .setUserId(yourUserId);
-      // Add the custom data elements to the castPluginBuilder
-      
-  castPluginBuilder
-      .setEnableCustomData(true)
-      .setCustomData(customDataBuilder.build());
-}    
+GoogleCastComponent.Builder castPluginBuilder = new GoogleCastComponent.Builder(eventEmitter, context)
+        .setAutoPlay(isAutoPlayEnabled)
+        .setQueuingSupported(isQueuingSupported);
+
+    BrightcoveCastCustomData.Builder customDataBuilder = new BrightcoveCastCustomData.Builder(context)
+        .setApplicationId(yourApplicationId)
+        .setWatermarkingToken(yourWatermarkingToken);
+        .setUserId(yourUserId);
+        // Add the custom data elements to the castPluginBuilder
+        
+    castPluginBuilder
+        .setEnableCustomData(true)
+        .setCustomData(customDataBuilder.build());
+}            
 </code></pre>
 
     <p>When you open a cast connection with a watermarked video, you should see a <code translate="No">customData</code> object formatted like this:</p>
