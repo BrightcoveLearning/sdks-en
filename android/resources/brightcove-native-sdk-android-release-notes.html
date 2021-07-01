@@ -14,6 +14,49 @@ grandparent: Android Development
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.16.3</h3>
+
+<h4>1 July 2021</h4>
+
+<p>SDK Changes:</p>
+<ul>
+  <li>Added support for setting a label property in the <code translate="no">BrightcoveCaptionFormat</code> class to support sending selected caption and audio
+    track information to a Cast receiver</li>
+  <li>Updated the <code translate="no">VideoUtils</code> class to add a utility method to remove the sidecar caption sources from the Video object</li>
+  <li>Fixed an issue where the <code translate="no">video_duration</code> URL parameter was not included in requests to Brightcove’s Analytics back-end for reporting</li>
+</ul>
+
+<p>Cast Plugin Changes:</p>
+<ul>
+  <li>Added support for setting a URL to a custom player for the Cast receiver app. Please refer to the Android SDK Support Documentation for
+    more information</li>
+    <li>
+      <p>Added support for sending selected caption and audio track information to a Cast receiver</p>
+      <aside class="bcls-aside bcls-aside--information">
+        <p>A known, non-regression issue will be addressed in an upcoming release, where in-manifest caption selections are not automatically displayed on the sender if the Cast session is closed during playback.</p>
+        <p>A workaround for this problem is that the selection made before opening the Cast session can be re-selected and displayed when the session is reopened on the Sender device.</p>
+      </aside>
+    </li>
+</ul>
+
+<p>Offline Playback Changes:</p>
+<ul>
+  <li>
+    <p>Added support for setting properties in the <code translate="no">AbstractOfflineCatalog</code> class. Offline Catalog properties can be set in two ways:</p>
+    <ul>
+      <li>As a <code translate="no">Map&lt;String, String&gt;</code> of key/value pairs using the <code translate="no">setProperties(Map&lt;String, String&gt;)</code> method</li>
+      <li>Through the <code translate="no">getProperties().put(key, value)</code> method</li>
+    </ul>
+  </li>
+  <li>Added support for creating custom <code translate="no">NotificationChannels</code> in the <code translate="no">DownloadManager</code> class. Please refer to the Android SDK Support Documentation for more information</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.16.2</h3>
 
 <h4>10 May 2021</h4>
@@ -52,12 +95,6 @@ grandparent: Android Development
     </aside>
   </li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.16.1</h3>
 
