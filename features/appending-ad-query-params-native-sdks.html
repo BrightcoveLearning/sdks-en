@@ -242,7 +242,7 @@ private String configureVmapUrlWithCustomParams(String vmapUrl, Map&lt;String, S
 <ol class="bcls-tasklist-restart">
 	<li>With an SSAI ad configuration id, retrieve a video object from the Brightcove catalog (Playback API). For details, see the <a href="/features/implementing-server-side-ads-native-player-sdks.html#iOS_implementation">iOS implementation</a> section of the Implementing Server-Side Ads with the Native Player SDKs document.</li>
 	<li>
-	<p>From the video object, select and extract the appropriate manifest or VMAP URL. From the playback service response, the jsonResponse (NSDictionary) contains the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVVideo.html">BCOVVideo</a> object, which includes the sources which hold the URL to the VMAP document. Your code may look similar to this:</p>
+	<p>From the video object, select and extract the appropriate manifest or VMAP URL. From the playback service response, the jsonResponse (NSDictionary) contains the <a href="/ios/reference/sdk/Classes/BCOVVideo.html">BCOVVideo</a> object, which includes the sources which hold the URL to the VMAP document. Your code may look similar to this:</p>
 
 	<pre>
 <code class="language-swift" translate="No">// Create a mutable version of the jsonResponse NSDictionary object

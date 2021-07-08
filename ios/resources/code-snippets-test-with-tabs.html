@@ -158,7 +158,7 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Custom_controls_for_AirPlay">Custom controls for AirPlay</h2>
 
-<p>If you use the <a href="https://docs.brightcove.com/ios-sdk/index.html#PlayerUI">Brightcove PlayerUI controls</a>, you are all set. AirPlay functionality works out-of-the-box, allowing users to stream video to high-definition displays with Apple TV.</p>
+<p>If you use the <a href="/ios/reference/sdk/index.html#PlayerUI">Brightcove PlayerUI controls</a>, you are all set. AirPlay functionality works out-of-the-box, allowing users to stream video to high-definition displays with Apple TV.</p>
 
 <p>If you are using custom controls, you can follow these steps:</p>
 
@@ -170,7 +170,7 @@ grandparent: iOS Development
 	<p>Use the playback controller’s <code translate="No">allowsExternalPlayback </code> property to set the AVPlayer’s <code translate="No">allowsExternalPlayback </code> property:</p>
 
 	<pre>
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
+<code class="language-swift" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVPlaybackController.html#//api/name/allowsExternalPlayback">_playbackController.allowsExternalPlayback = YES;</a></code></pre>
 	</li>
 	<li>
 	<p>Set up an AirPlay router control and handle its selection. For details, see <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AirPlayGuide/Introduction/Introduction.html">Apple's AirPlay Overview</a> document.</p>
@@ -183,7 +183,7 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Customizing_the_closed_captions_button">Customizing the closed captions button</h2>
 
-<p>The <a href="https://docs.brightcove.com/ios-sdk/index.html#PlayerUI">BCOVPlayerUI sample code</a> shows you how to customize the Brightcove player when using the Native SDK for iOS. For more details, see the <a href="https://docs.brightcove.com/ios-sdk/index.html#PlayerUI">Customizing PlayerUI controls</a> section of the Native SDK reference document.</p>
+<p>The <a href="/ios/reference/sdk/index.html#PlayerUI">BCOVPlayerUI sample code</a> shows you how to customize the Brightcove player when using the Native SDK for iOS. For more details, see the <a href="/ios/reference/sdk/index.html#PlayerUI">Customizing PlayerUI controls</a> section of the Native SDK reference document.</p>
 
 <p>To customize the closed captions button using the PlayerUI, follow these steps:</p>
 
@@ -320,7 +320,7 @@ BCOVPUIButton *ccButton = test content 4;
 <p>To display FairPlay-protected videos, set the AVPlayer properties exposed through the Brightcove Playback Controller to allow FairPlay video to play on an external display. The video plays in full screen mode. Here is an example of setting these properties:</p>
 
 <pre>
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">playbackController.allowsExternalPlayback = YES;
+<code class="language-swift" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVPlaybackController.html#//api/name/usesExternalPlaybackWhileExternalScreenIsActive">playbackController.allowsExternalPlayback = YES;
 playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</a></code></pre>
 </section>
 
@@ -504,7 +504,7 @@ BCOVVideo *video = videoDictionary[@"video"];
 <p>If these values are not important to you or interfere with your own progress tracking, they can be easily ignored with a conditional statement like this:</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
+<code class="language-swift" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVPlaybackControllerBasicDelegate.html#//api/name/playbackController:playbackSession:didProgressTo:">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
 {
 if (progress &lt; 0.0 || progress &gt;= INFINITY)
 return;
@@ -546,7 +546,7 @@ completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
 <p>You can also add cue points to your video programmatically. The code below adds quarterly interval cue points to the video returned from the Playback API:</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVVideo.html">// programmatically add cue points to a video
+<code class="language-swift" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVVideo.html">// programmatically add cue points to a video
 - (void)requestContentFromPlaybackService
 {
 [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
@@ -579,14 +579,14 @@ NSLog(@"ViewController Debug - Error retrieving video: `%@`", error);
 }];
 }</a></code></pre>
 
-<p>Note that the value of <code translate="No">your cue point type </code> can be any string value that you want, as long as you are not using any of the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Integrations">iOS plugins</a>. For details, see the <a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html#//api/name/type">BCOVCuePoint Protocol Reference</a> document.</p>
+<p>Note that the value of <code translate="No">your cue point type </code> can be any string value that you want, as long as you are not using any of the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Integrations">iOS plugins</a>. For details, see the <a href="/ios/reference/sdk/Protocols/BCOVCuePoint.html#//api/name/type">BCOVCuePoint Protocol Reference</a> document.</p>
 
 <p>If you are using cue points with the IMA plugin, learn more about it in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#vast-and-vmapserver-side-ad-rules">VAST and VMAP/Server Side Ad Rules</a> section of the IMA Plugin for the Native SDK for iOS notes. The <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/06bb6f8dff6075340737017a966ad19b20bf6adb/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L39-L42">IMA sample app</a> shows you the value required for IMA ad cue points.</p>
 
 <p>The code below listens for your cue points and displays a message:</p>
 
 <pre class="line-numbers">
-<code class="language-swift" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVCuePoint.html">// listen for cue points and display them
+<code class="language-swift" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVCuePoint.html">// listen for cue points and display them
 -(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo {
 BCOVCuePointCollection *cpc = cuePointInfo[@"kBCOVPlaybackSessionEventKeyCuePoints"];
 for (BCOVCuePoint *cp in cpc) {
@@ -685,7 +685,7 @@ playbackController = nil</code></pre>
 <p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code translate="No">BCOVPlaybackController </code> protocol's <code translate="No">viewProjection </code> property as follows:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+<code class="language-objectivec" translate="No"><a href="/ios/reference/sdk/Protocols/BCOVPlaybackController.html">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
 {
 BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
 [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
@@ -702,14 +702,14 @@ BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjec
 <p>The built-in playback controls for Brightcove Native SDK for iOS come with accessibility labels which have no default text values. If you want to take advantage of VoiceOver, you can add your own custom text values. The UIControl objects can be found in the following:</p>
 
 <ul>
-	<li>All the normal playback controls are found in the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">BCOVPUIBasicControlView *controlsView</a> property of the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html">BCOVPUIPlayerView</a>.</li>
-	<li>All of the ad controls are found in the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html#//api/name/adControlsView">BCOVPUIAdControlView *adControlsView</a> property of the <a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html">BCOVPUIPlayerView</a>.</li>
+	<li>All the normal playback controls are found in the <a href="/ios/reference/sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">BCOVPUIBasicControlView *controlsView</a> property of the <a href="/ios/reference/sdk/Classes/BCOVPUIPlayerView.html">BCOVPUIPlayerView</a>.</li>
+	<li>All of the ad controls are found in the <a href="/ios/reference/sdk/Classes/BCOVPUIPlayerView.html#//api/name/adControlsView">BCOVPUIAdControlView *adControlsView</a> property of the <a href="/ios/reference/sdk/Classes/BCOVPUIPlayerView.html">BCOVPUIPlayerView</a>.</li>
 </ul>
 
 <p>This example shows how to customize the accessibility values for the play button:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec" translate="No"><a href="https://docs.brightcove.com/ios-sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">// After creating the BCOVPUIPlayerView, store it in a playerView property
+<code class="language-objectivec" translate="No"><a href="/ios/reference/sdk/Classes/BCOVPUIPlayerView.html#//api/name/controlsView">// After creating the BCOVPUIPlayerView, store it in a playerView property
 // Then set the accessibilityLabel and accessibilityHint properties
 self.playerView.controlsView.playbackButton.accessibilityLabel = @"Playback Button";
 self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause the video";</a>
