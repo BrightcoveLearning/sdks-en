@@ -177,13 +177,13 @@ android:layout_gravity="bottom"
 	<p>Here is the code to set fullscreen mode:</p>
 
 	<pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ENTER_FULL_SCREEN">brightcoveVideoView.getEventEmitter().emit(EventType.ENTER_FULL_SCREEN);</a></code></pre>
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#ENTER_FULL_SCREEN">brightcoveVideoView.getEventEmitter().emit(EventType.ENTER_FULL_SCREEN);</a></code></pre>
 	</li>
 	<li>
 	<p>Here is the code to exit fullscreen mode:</p>
 
 	<pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#EXIT_FULL_SCREEN">brightcoveVideoView.getEventEmitter().emit(EventType.EXIT_FULL_SCREEN);</a></code></pre>
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#EXIT_FULL_SCREEN">brightcoveVideoView.getEventEmitter().emit(EventType.EXIT_FULL_SCREEN);</a></code></pre>
 	</li>
 </ul>
 </section>
@@ -191,10 +191,10 @@ android:layout_gravity="bottom"
 <section class="bcls-section">
 <h2 id="Getting_duration_for_live_streams">Getting duration for live streams</h2>
 
-<p>To get the duration for a live stream, you can use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/Event.html#MAX_POSITION"><code translate="No">MAX_POSITION</code></a>. This gives you the largest seekable position for a live stream (ie., the furthest you can drag the scrollbar). Your code should look similar to this:</p>
+<p>To get the duration for a live stream, you can use the <a href="/android/reference/javadoc/com/brightcove/player/event/Event.html#MAX_POSITION"><code translate="No">MAX_POSITION</code></a>. This gives you the largest seekable position for a live stream (ie., the furthest you can drag the scrollbar). Your code should look similar to this:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/Event.html#MAX_POSITION">brightcoveVideoView.getEventEmitter().on(EventType.PROGRESS, new EventListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/Event.html#MAX_POSITION">brightcoveVideoView.getEventEmitter().on(EventType.PROGRESS, new EventListener() {
   @Override
   public void processEvent(Event event) {
   int duration = (int) event.properties.get(Event.MAX_POSITION);
@@ -210,7 +210,7 @@ android:layout_gravity="bottom"
 
 <p>For details, see the following:</p>
 <ul>
-  <li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/network/PlayerBandwidthMeter.html">Brightcove PlayerBandwidthMeter class</a></li>
+  <li><a href="/android/reference/javadoc/com/brightcove/player/network/PlayerBandwidthMeter.html">Brightcove PlayerBandwidthMeter class</a></li>
   <li><a href="https://medium.com/google-exoplayer/https-medium-com-google-exoplayer-simplified-bandwidth-meter-usage-17d8189f978b">Post: Simplified bandwidth meter usage</a></li>
   <li><a href="https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/upstream/BandwidthMeter.html">ExoPlayer BandwidthMeter interface</a></li>
   <li><a href="https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/upstream/BandwidthMeter.EventListener.html">ExoPlayer BandwidthMeter.EventListener interface</a></li>
@@ -260,12 +260,12 @@ eventEmitter.on(EventType.DID_SET_VIDEO, new EventListener() {
 <p>For Video Cloud customers using the Edge Catalog (com.brightcove.player.edge.Catalog), you can get the thumbnail URL like this:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/MetadataObject.html#getProperties()">String thumbnailUrl = video.getProperties().get("thumbnail").toString();</a></code></pre>
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/model/MetadataObject.html#getProperties()">String thumbnailUrl = video.getProperties().get("thumbnail").toString();</a></code></pre>
 
 <p>If you find that the thumbnail image is too small, you can get the video still image instead:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/MetadataObject.html#getProperties()">String videoStillUrl = video.getProperties().get("stillImageUri").toString();</a></code></pre>
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/model/MetadataObject.html#getProperties()">String videoStillUrl = video.getProperties().get("stillImageUri").toString();</a></code></pre>
 </section>
 
 <section class="bcls-section">
@@ -362,7 +362,7 @@ brightcoveVideoView.start();</code></pre>
 <p>As a Brightcove Player customer, you may want to use DRM protected content from your own server. You can manually load DRM content as follows:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/drm/WidevineMediaDrmCallback.html">import com.brightcove.player.display.WidevineMediaDrmCallback;
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/drm/WidevineMediaDrmCallback.html">import com.brightcove.player.display.WidevineMediaDrmCallback;
 
 Video video = Video.createVideo("https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears.mpd");
 video.getProperties().put(WidevineMediaDrmCallback.DEFAULT_URL, "https://proxy.uat.widevine.com/proxy?video_id=&amp;provider=widevine_test");
@@ -378,8 +378,8 @@ brightcoveVideoView.start();</a></code></pre>
 <p>Here are some of the asynchronous methods found in the Native Player SDK for Android:</p>
 
 <ul>
-	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#start()"><code translate="No">start()</code></a>, <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SEEK_TO"><code translate="No">seekTo()</code></a> and <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#stopPlayback()"><code translate="No">stopPlayback()</code></a> methods are asynchronous, because they emit an event for other components in the system to handle.</li>
-	<li>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method is synchronous with respect to updating the list, but it's asynchronous with respect to unloading the current video.</li>
+	<li>The <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#start()"><code translate="No">start()</code></a>, <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#SEEK_TO"><code translate="No">seekTo()</code></a> and <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#stopPlayback()"><code translate="No">stopPlayback()</code></a> methods are asynchronous, because they emit an event for other components in the system to handle.</li>
+	<li>The <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method is synchronous with respect to updating the list, but it's asynchronous with respect to unloading the current video.</li>
 </ul>
 </section>
 
@@ -392,10 +392,10 @@ brightcoveVideoView.start();</a></code></pre>
 
 <h3 id="BrightcoveExoPlayerVideoView">BrightcoveExoPlayerVideoView</h3>
 
-<p>When using the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a>, you can programmatically mute or unmute the player by doing the following:</p>
+<p>When using the <a href="/android/reference/javadoc/com/brightcove/player/view/BrightcoveExoPlayerVideoView.html">BrightcoveExoPlayerVideoView</a>, you can programmatically mute or unmute the player by doing the following:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SET_VOLUME">float volume = 100F;
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#SET_VOLUME">float volume = 100F;
 ...
 brightcoveVideoView.getEventEmitter().on(EventType.DID_SET_VIDEO, new EventListener() {
   @Override
@@ -416,10 +416,10 @@ private void setMute(boolean mute) {
 
 <aside class="bcls-aside bcls-aside--warning">Brightcove recommends using the BrightcoveExoPlayerVideoView.</aside>
 
-<p>If you need to use the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a>, which uses Android's <a href="https://developer.android.com/reference/android/media/MediaPlayer.html">MediaPlayer</a>, you can programmatically mute or unmute the player with the following code:</p>
+<p>If you need to use the <a href="/android/reference/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">BrightcoveVideoView</a>, which uses Android's <a href="https://developer.android.com/reference/android/media/MediaPlayer.html">MediaPlayer</a>, you can programmatically mute or unmute the player with the following code:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SET_VOLUME">float volume = 1F;
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#SET_VOLUME">float volume = 1F;
 ...
 brightcoveVideoView.getEventEmitter().on(EventType.DID_SET_VIDEO, new EventListener() {
   @Override
@@ -509,7 +509,7 @@ private void setMute(boolean mute) {
 <p>The query parameters will be passed to the Catalog method as a <code translate="No">Map</code> object, as key-value pairs. This example returns 6 videos starting with the 10th video in the playlist:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/Catalog.html">Map&lt;String, String&gt; queryParameters = new HashMap&lt;&gt;();
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/edge/Catalog.html">Map&lt;String, String&gt; queryParameters = new HashMap&lt;&gt;();
 queryParameters.put("limit", "6");
 queryParameters.put("offset", "9");
 
@@ -523,7 +523,7 @@ catalog.findPlaylistByID("myPlaylistId", null, queryParameters, myListener);</a>
 <p>If you want to play MP4 videos that are stored locally, then you should save them in the application asset folder.</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/Video.html">Uri video = Uri.parse("file:///android_asset/path/to/video.mp4");
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/model/Video.html">Uri video = Uri.parse("file:///android_asset/path/to/video.mp4");
 brightcoveVideoView.add(Video.createVideo(video.toString()));
 brightcoveVideoView.start();</a></code></pre>
 
@@ -713,13 +713,13 @@ dc.setLoadControlConfig(loadControlConfig);</code></pre>
 </ol>
 <!-- <p>That being said, if you are using the ExoPlayer 1 implementation, you can control the following:</p>
 
-<aside class="bcls-aside bcls-aside--warning">The following methods are only available with the ExoPlayer 1 implementation. These methods are deprecated with the ExoPlayer 2 implementation. For details, see the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html">ExoPlayerVideoDisplayComponent class</a> reference.</aside>
+<aside class="bcls-aside bcls-aside--warning">The following methods are only available with the ExoPlayer 1 implementation. These methods are deprecated with the ExoPlayer 2 implementation. For details, see the <a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html">ExoPlayerVideoDisplayComponent class</a> reference.</aside>
 
 <ul>
-<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minBufferDurationToSwitchUp</code></a></li>
-<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">maxBufferDurationToSwitchDown</code></a></li>
-<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minBufferMs</code></a></li>
-<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minRebufferMs</code></a></li>
+<li><a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minBufferDurationToSwitchUp</code></a></li>
+<li><a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">maxBufferDurationToSwitchDown</code></a></li>
+<li><a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minBufferMs</code></a></li>
+<li><a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html"><code translate="No">minRebufferMs</code></a></li>
 </ul>
 
 <p>For example, if you want to set the buffer length to 120 seconds, you could set <code translate="No">minBufferMs</code> to <code translate="No">120 * 1000</code>.</p> --></section>
@@ -727,10 +727,10 @@ dc.setLoadControlConfig(loadControlConfig);</code></pre>
 <section class="bcls-section">
 <h2 id="Setting_captions_and_themes">Setting captions and themes</h2>
 
-<p>Currently, the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> is set in the Brightcove Player SDK’s manifest file, so developers don’t need to specify it in their applications:</p>
+<p>Currently, the <a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> is set in the Brightcove Player SDK’s manifest file, so developers don’t need to specify it in their applications:</p>
 
 <pre class="line-numbers">
-<code class="language-xml" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<code class="language-xml" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;manifest
 xmlns:android="http://schemas.android.com/apk/res/android"
 package="com.brightcove.player"
@@ -744,14 +744,14 @@ android:versionName="1.0"&gt;
 &lt;/application&gt;
 &lt;/manifest&gt;</a></code></pre>
 
-<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> will inherit the platform default theme, as long as you set themes for your app at the <code translate="No">&lt;activity&gt;</code> level in your app’s manifest.</p>
+<p>The <a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> will inherit the platform default theme, as long as you set themes for your app at the <code translate="No">&lt;activity&gt;</code> level in your app’s manifest.</p>
 
-<p>If you set a single app theme at the <code translate="No">&lt;application&gt;</code> level, then the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> will inherit the properties of this application-level theme. For some themes, this can cause the activity to look oddly styled or even illegible.</p>
+<p>If you set a single app theme at the <code translate="No">&lt;application&gt;</code> level, then the <a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> will inherit the properties of this application-level theme. For some themes, this can cause the activity to look oddly styled or even illegible.</p>
 
-<p>In those cases, you should specify the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> in your own manifest and apply a theme there, like so:</p>
+<p>In those cases, you should specify the <a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html"><code translate="No">BrightcoveCaptionPropertiesActivity</code></a> in your own manifest and apply a theme there, like so:</p>
 
 <pre class="line-numbers">
-<code class="language-xml" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html">&lt;activity
+<code class="language-xml" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/captioning/BrightcoveCaptionPropertiesActivity.html">&lt;activity
 <span class="bcls-highlight">android:name="com.brightcove.player.captioning.BrightcoveCaptionPropertiesActivity"</span>
 android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 </section>
@@ -762,7 +762,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 <p>If your video uses multiple language captions, you can programmatically set a default language when playback starts. Your code should look similar to this:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#setSubtitleLocale(java.lang.String)">brightcoveVideoView.getEventEmitter().once(EventType.CAPTIONS_LANGUAGES, new EventListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#setSubtitleLocale(java.lang.String)">brightcoveVideoView.getEventEmitter().once(EventType.CAPTIONS_LANGUAGES, new EventListener() {
   @Override
   public void processEvent(Event event) {
     brightcoveVideoView.setClosedCaptioningEnabled(true);
@@ -777,7 +777,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 <p>To help you implement a bitrate selector in your player, you can use the following code to set the peak bitrate:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html#setPeakBitrate-int-">((ExoPlayerVideoDisplayComponent) videoView.getVideoDisplay()).setPeakBitrate(bitRate);</a></code></pre>
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/display/ExoPlayerVideoDisplayComponent.html#setPeakBitrate-int-">((ExoPlayerVideoDisplayComponent) videoView.getVideoDisplay()).setPeakBitrate(bitRate);</a></code></pre>
 </section>
 
 <section class="bcls-section">
@@ -812,7 +812,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 <p>If you are using a custom activity, then you will need to add the following:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/Event.html#REQUESTED_ORIENTATION">brightcoveVideoView.getEventEmitter().on(EventType.CHANGE_ORIENTATION, new EventListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/Event.html#REQUESTED_ORIENTATION">brightcoveVideoView.getEventEmitter().on(EventType.CHANGE_ORIENTATION, new EventListener() {
   @Override
   public void processEvent(Event event) {
     int orientation = event.getIntegerProperty(Event.REQUESTED_ORIENTATION);
@@ -830,15 +830,15 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 
 <h3>Showing the video still image</h3>
 
-<p>You can show the video still at any time by emitting a <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#SET_VIDEO_STILL"><code translate="No">SET_VIDEO_STILL</code></a> event with a <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/Event.html#VIDEO_STILL"><code translate="No">VIDEO_STILL</code></a> property set to the URI of the video still.</p>
-<!-- <p>Hiding should happen automatically whenever a <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#CUE_POINT"><code translate="No">CUE_POINT</code></a>, <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#DID_PLAY"><code translate="No">DID_PLAY</code></a>, <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#DID_SEEK_TO"><code translate="No">DID_SEEK_TO</code></a>, <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#WILL_INTERRUPT_CONTENT"><code translate="No">WILL_INTERRUPT_CONTENT</code></a>, <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#ACTIVITY_STOPPED"><code translate="No">ACTIVITY_STOPPED</code></a>, or <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#FRAGMENT_STOPPED"><code translate="No">FRAGMENT_STOPPED</code></a> event occurs.</p> --><!-- <p>In general, we try to promote doing things via events, rather than direct method calls.</p>  -->
+<p>You can show the video still at any time by emitting a <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#SET_VIDEO_STILL"><code translate="No">SET_VIDEO_STILL</code></a> event with a <a href="/android/reference/javadoc/com/brightcove/player/event/Event.html#VIDEO_STILL"><code translate="No">VIDEO_STILL</code></a> property set to the URI of the video still.</p>
+<!-- <p>Hiding should happen automatically whenever a <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#CUE_POINT"><code translate="No">CUE_POINT</code></a>, <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#DID_PLAY"><code translate="No">DID_PLAY</code></a>, <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#DID_SEEK_TO"><code translate="No">DID_SEEK_TO</code></a>, <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#WILL_INTERRUPT_CONTENT"><code translate="No">WILL_INTERRUPT_CONTENT</code></a>, <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#ACTIVITY_STOPPED"><code translate="No">ACTIVITY_STOPPED</code></a>, or <a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#FRAGMENT_STOPPED"><code translate="No">FRAGMENT_STOPPED</code></a> event occurs.</p> --><!-- <p>In general, we try to promote doing things via events, rather than direct method calls.</p>  -->
 
 <h3>Hiding the video still image</h3>
 
 <p>If you are autoplaying the video, you may want to hide the video still image. To do this, you can listen for the <code translate="No">SET_VIDEO_STILL</code> event and prevent the default behavior as follows:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">brightcoveVideoView.getEventEmitter().on(EventType.SET_VIDEO_STILL, new EventListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">brightcoveVideoView.getEventEmitter().on(EventType.SET_VIDEO_STILL, new EventListener() {
   @Override
   public void processEvent(Event event) {
     event.preventDefault();
@@ -855,7 +855,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 <p>If you want player controls to remain showing until the user taps on the video, you can disable the automatic hiding function as follows: (the code needed is highlighted)</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/mediacontroller/BrightcoveMediaController.html">public class MainActivity extends BrightcovePlayer {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/mediacontroller/BrightcoveMediaController.html">public class MainActivity extends BrightcovePlayer {
   <span class="bcls-highlight">private BrightcoveMediaController controller;</span>
 
   @Override
@@ -872,10 +872,10 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 <section class="bcls-section">
 <h2 id="Starting_playback_in_the_middle_of_a_video">Starting playback in the middle of a video</h2>
 
-<p>Sometimes, you may need to start playback from somewhere in the middle of the video. To do this, you can call <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)"><code translate="No">BrightCoveVideoView.seekTo()</code></a> before starting playback.</p>
+<p>Sometimes, you may need to start playback from somewhere in the middle of the video. To do this, you can call <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)"><code translate="No">BrightCoveVideoView.seekTo()</code></a> before starting playback.</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
   @Override
   public void onVideo(Video video) {
     Log.v(TAG, "onVideo: video = " + video);
@@ -901,7 +901,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 															<li></li>
 													</ul>
 
-													<p><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#setSubtitleLocale(java.lang.String)"><code data-gist-id="ac85a1305f851b406dde" data-gist-hide-footer="true" data-gist-line="115-121"></code></a></p>
+													<p><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#setSubtitleLocale(java.lang.String)"><code data-gist-id="ac85a1305f851b406dde" data-gist-hide-footer="true" data-gist-line="115-121"></code></a></p>
 											</div>
 					-->
 
@@ -912,14 +912,14 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 
 <h3>Using single videos</h3>
 
-<p>Since the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method is asynchronous when unloading the current video, you need to wait before adding a new video to the player. Here are two options.</p>
+<p>Since the <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method is asynchronous when unloading the current video, you need to wait before adding a new video to the player. Here are two options.</p>
 
 <ul>
 	<li>
 	<p>Since the time to fetch a video from Video Cloud should dwarf the time to update the playlist, you can try something like this:</p>
 
 	<pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">brightcoveVideoView.clear();
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">brightcoveVideoView.clear();
 
 catalog.findVideoByID("123456789", new VideoListener() {
   @Override
@@ -934,7 +934,7 @@ catalog.findVideoByID("123456789", new VideoListener() {
 	<p>Another approach is to wait for an event:</p>
 
 	<pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/event/EventType.html#DID_CHANGE_LIST">catalog.findVideoByID("", new VideoListener() {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/event/EventType.html#DID_CHANGE_LIST">catalog.findVideoByID("", new VideoListener() {
 @Override
   public void onVideo(final Video video) {
     eventEmitter.once(EventType.DID_CHANGE_LIST, new EventListener() {
@@ -950,12 +950,12 @@ catalog.findVideoByID("123456789", new VideoListener() {
 
 <h3>Using a playlist</h3>
 
-<p>If you are working with a playlist, keep in mind that calling the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method removes all the elements of the playlist. So, you may get an <code translate="No">IndexOutOfBounds</code> exception when trying to jump to the first video in the playlist.</p>
+<p>If you are working with a playlist, keep in mind that calling the <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method removes all the elements of the playlist. So, you may get an <code translate="No">IndexOutOfBounds</code> exception when trying to jump to the first video in the playlist.</p>
 
 <p>Instead, you can try something like this:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">brightcoveVideoView.pause();
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BrightcoveVideoView.html">brightcoveVideoView.pause();
 brightcoveVideoView.stopPlayback();
 brightcoveVideoView.setCurrentIndex(0);</a></code></pre>
 </section>
@@ -966,7 +966,7 @@ brightcoveVideoView.setCurrentIndex(0);</a></code></pre>
 <p>If you are using a playlist, you can use the following code to switch between videos in the playlist:</p>
 
 <pre class="line-numbers">
-<code class="language-java" translate="No"><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/Playlist.html">private void setupControls(List&lt;Video&gt; videos) {
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/model/Playlist.html">private void setupControls(List&lt;Video&gt; videos) {
   previousVideoButton = (Button) findViewById(R.id.previous_video_button);
   nextVideoButton = (Button) findViewById(R.id.next_video_button);
 

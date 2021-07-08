@@ -563,7 +563,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                           
                         
                           
-                            <li><a href="https://docs.brightcove.com/android-sdk/javadoc/index.html">Native SDK for Android Reference</a></li>
+                            <li><a href="/android/reference/javadoc/index.html">Native SDK for Android Reference</a></li>
                           
                         
                           
@@ -1193,7 +1193,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <ol class="bcls-tasklist">
 	<li>
-	<p>Get a reference to the Video Cloud <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/OfflineCatalog.html">OfflineCatalog</a> client.</p>
+	<p>Get a reference to the Video Cloud <a href="/android/reference/javadoc/com/brightcove/player/edge/OfflineCatalog.html">OfflineCatalog</a> client.</p>
 
 	<pre>
 <code class="language-java" translate="No">private OfflineCatalog catalog;
@@ -1202,7 +1202,7 @@ catalog = new OfflineCatalog(this, eventEmitter, ACCOUNT_ID, POLICY_KEY);
 ...</code></pre>
 	</li>
 	<li>
-	<p>Call the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/AbstractOfflineCatalog.html#getMediaFormatTracksAvailable-com.brightcove.player.model.Video-com.brightcove.player.offline.MediaDownloadable.MediaFormatListener-">getMediaFormatTracksAvailable</a> method, passing in the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/model/Video.html">Video</a> object for which you want to get information about, and the <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.MediaFormatListener.html">MediaFormatListener</a> to listen for the returned data.</p>
+	<p>Call the <a href="/android/reference/javadoc/com/brightcove/player/edge/AbstractOfflineCatalog.html#getMediaFormatTracksAvailable-com.brightcove.player.model.Video-com.brightcove.player.offline.MediaDownloadable.MediaFormatListener-">getMediaFormatTracksAvailable</a> method, passing in the <a href="/android/reference/javadoc/com/brightcove/player/model/Video.html">Video</a> object for which you want to get information about, and the <a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.MediaFormatListener.html">MediaFormatListener</a> to listen for the returned data.</p>
 
 	<pre>
 <code class="language-java" translate="No">OfflineCatalog.getMediaFormatTracksAvailable(
@@ -1215,15 +1215,15 @@ catalog = new OfflineCatalog(this, eventEmitter, ACCOUNT_ID, POLICY_KEY);
 	<pre>
 <code class="language-java" translate="No">void onResult(MediaDownloadable mediaDownloadable, Bundle mediaFormatBundle);</code></pre>
 
-	<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.html">MediaDownloadable</a> object contains information, including video renditions, audio languages and captions. The <code translate="No">mediaDownloadable</code> object is cached, and used when you call <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/edge/AbstractOfflineCatalog.html#downloadVideo-com.brightcove.player.model.Video-">OfflineCatalog.downloadVideo(Video)</a>.</p>
+	<p>The <a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.html">MediaDownloadable</a> object contains information, including video renditions, audio languages and captions. The <code translate="No">mediaDownloadable</code> object is cached, and used when you call <a href="/android/reference/javadoc/com/brightcove/player/edge/AbstractOfflineCatalog.html#downloadVideo-com.brightcove.player.model.Video-">OfflineCatalog.downloadVideo(Video)</a>.</p>
 
-	<p>The <a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.MediaFormatListener.html">Bundle</a> object contains information about the available Media Format tracks, and has the following properties:</p>
+	<p>The <a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.MediaFormatListener.html">Bundle</a> object contains information about the available Media Format tracks, and has the following properties:</p>
 
 	<ul>
-		<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.html#VIDEO_RENDITIONS">MediaDownloadable.VIDEO_RENDITIONS</a> - Contains an array list of <code translate="No">MediaFormat</code> objects</li>
-		<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.html#AUDIO_LANGUAGES">MediaDownloadable.AUDIO_LANGUAGES</a> - Contains an array list of <code translate="No">MediaFormat</code> objects.</li>
-		<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.html#AUDIO_LANGUAGE_ROLES">MediaDownloadable.AUDIO_LANGUAGE_ROLES</a> - Contains an array list of strings. This list provides additional information with respect to the <code translate="No">MediaDownloadable.AUDIO_LANGUAGES</code>. The indices match the audio languages list. Example of audio roles can be main and alternative.</li>
-		<li><a href="https://docs.brightcove.com/android-sdk/javadoc/com/brightcove/player/offline/MediaDownloadable.html#CAPTIONS">MediaDownloadable.CAPTIONS</a> - Contains an array list of <code translate="No">MediaFormat</code> objects</li>
+		<li><a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.html#VIDEO_RENDITIONS">MediaDownloadable.VIDEO_RENDITIONS</a> - Contains an array list of <code translate="No">MediaFormat</code> objects</li>
+		<li><a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.html#AUDIO_LANGUAGES">MediaDownloadable.AUDIO_LANGUAGES</a> - Contains an array list of <code translate="No">MediaFormat</code> objects.</li>
+		<li><a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.html#AUDIO_LANGUAGE_ROLES">MediaDownloadable.AUDIO_LANGUAGE_ROLES</a> - Contains an array list of strings. This list provides additional information with respect to the <code translate="No">MediaDownloadable.AUDIO_LANGUAGES</code>. The indices match the audio languages list. Example of audio roles can be main and alternative.</li>
+		<li><a href="/android/reference/javadoc/com/brightcove/player/offline/MediaDownloadable.html#CAPTIONS">MediaDownloadable.CAPTIONS</a> - Contains an array list of <code translate="No">MediaFormat</code> objects</li>
 	</ul>
 	</li>
 	<li>
