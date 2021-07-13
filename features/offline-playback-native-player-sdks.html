@@ -367,44 +367,6 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 </section>
 
 <section class="bcls-section">
-<h2 id="Notes">Notes</h2>
-
-<p>The following notes apply to the offline playback feature supported by the Native SDKs:</p>
-
-<h3>All</h3>
-<h4>Advertising</h4>
-<p>Neither client-side nor server-side advertising is supported with offline playback.</p>
-
-<h4>HLSe</h4>
-<p>Currently, HLSe content is not supported with offline playback using the Brightcove Native SDK for Android, iOS or tvOS.</p>
-
-<h4>Low power mode</h4>
-<p>Low power mode on devices may affect certain features, including downloading. For more information, see the following:</p>
-<ul>
-	<li><a href="https://developer.android.com/about/versions/pie/power">Power management Android 9 (API level 28)</a></li>
-	<li><a href="https://support.apple.com/en-us/HT205234">Low power mode on your iPhone</a></li>
-	<li><a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html">React to Low Power Mode on iPhones</a></li>
-</ul>
-
-<h4>Shared videos</h4>
-<p>Shared videos can be downloaded for offline viewing only if the original video can be. The property is inherited from the original video and cannot be changed for shared video only.</p>
-
-<h4>Audio-only</h4>
-<p>The Native SDKs support audio-only content with Offline Playback. You control what viewers see, whether it is a poster image or a custom screen.</p>
-<p>
-	The Native SDK for Android requires a <code translate="No">VideoView</code>, and the Native SDK for iOS requires a <code translate="No">UIView</code>. Because of this, background audio is not supported. This means that audio will not keep playing when a user sends the app to the background.
-</p>
-
-<h3>Android</h3>
-<h4>App deletion</h4>
-<p>When the app is deleted, all downloaded content is removed. This is true as long as the default storage location is not overridden.</p>
-
-<h3>iOS</h3>
-<h4>AirPlay</h4>
-<p>As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code translate="No">AVFoundation</code> limitation.</p>
-</section>
-
-<section class="bcls-section">
 <h2 id="FAQ">FAQ</h2>
 
 <p>Below you will find answers to some general questions.</p>
@@ -504,4 +466,39 @@ OfflinePlayer[523:355259] AVMediaSelection option 1 | audible display name: Engl
 
 <p>For a list of known issues for the Android and iOS operating systems that affect Offline Playback with the Native SDKs, see the <a href="/developer-support/questions/known-issues-brightcove-native-player-sdks.html">Known Issues</a> support document.</p>
 </section>
+
+<section class="bcls-section">
+  <h2 id="Notes_and_limitations">Notes and limitations</h2>
+  
+  <p>The following notes apply to the offline playback feature supported by the Native SDKs:</p>
+  
+  <h3>Advertising</h3>
+  <p>Neither client-side nor server-side advertising is supported with offline playback.</p>
+  
+  <h3>HLSe</h3>
+  <p>HLSe content is not supported with offline playback using the Brightcove Native SDK for Android, iOS or tvOS.</p>
+  
+  <h3>Low power mode</h3>
+  <p>Low power mode on devices may affect certain features, including downloading. For more information, see the following:</p>
+  <ul>
+    <li><a href="https://developer.android.com/about/versions/pie/power">Power management Android 9 (API level 28)</a></li>
+    <li><a href="https://support.apple.com/en-us/HT205234">Low power mode on your iPhone</a></li>
+    <li><a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html">React to Low Power Mode on iPhones</a></li>
+  </ul>
+  
+  <h3>Shared videos</h3>
+  <p>Shared videos can be downloaded for offline viewing only if the original video can be. The property is inherited from the original video and cannot be changed for shared video only.</p>
+  
+  <h3>Audio-only</h3>
+  <p>The Native SDKs support audio-only content with Offline Playback. You control what viewers see, whether it is a poster image or a custom screen.</p>
+  <p>
+    The Native SDK for Android requires a <code translate="No">VideoView</code>, and the Native SDK for iOS requires a <code translate="No">UIView</code>. Because of this, background audio is not supported. This means that audio will not keep playing when a user sends the app to the background.
+  </p>
+  
+  <h3>Android: App deletion</h3>
+  <p>When the app is deleted, all downloaded content is removed. This is true as long as the default storage location is not overridden.</p>
+  
+  <h3>iOS: AirPlay</h3>
+  <p>As a security feature, you cannot stream an offline HLS video to an AirPlay device for playback. This is confirmed by Apple to be an <code translate="No">AVFoundation</code> limitation.</p>
+  </section>
 </article>
