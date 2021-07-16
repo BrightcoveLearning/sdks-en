@@ -1232,7 +1232,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </section>
 
   <section class="bcls-section">
-    <h2 id="Using_Playback_Rights_Android">Using Playback Rights: Android</h2>
+    <h2 id="Android_Using_Playback_Rights">Android: Using Playback Rights</h2>
     <aside class="bcls-aside bcls-aside--information">Notes:
       <ul>
         <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
@@ -1280,48 +1280,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </section>
 
   <section class="bcls-section">
-    <h2 id="Using_Playback_Rights_iOS">Using Playback Rights: iOS</h2>
-    <aside class="bcls-aside bcls-aside--information">Notes:
-      <ul>
-        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
-      </ul>
-    </aside>
-
-    <p>
-      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
-    </p>
-    <ol class="bcls-tasklist-restart">
-      <li>
-        <p>
-          Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">Basic Sample App</a>.
-        </p>
-      </li>
-      <li>
-        <p>
-          By default, the Native SDK for iOS makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
-        </p>
-        <p>
-          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the policy key to <code translate="No">nil</code>. Here is an example:
-        </p>
-        <pre>
-<code class="language-java" translate="No">let playbackService = BCOVPlaybackService(accountId: kViewControllerAccountID, policyKey: nil)</code></pre>
-      </li>
-      <li>
-        <p>
-          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
-        </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</a> section.
-        </p>
-      </li>
-    </ol>
-  </section> 
-
-  <section class="bcls-section">
-    <h2 id="Using_License_Keys_Protection_Android">Using License Keys Protection: Android</h2>
+    <h2 id="Android_Using_License_Keys_Protection">Android: Using License Keys Protection</h2>
 
     <p>The Native SDK for Android currently supports Key/license protection for HLSe and Widevine DASH sources. You will provide your authorization token as part of the Brightcove catalog request for a single video or a playlist.</p>
 
@@ -1425,7 +1384,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
       </li>
     </ul>
 
-    <h3>Limitations</h3>
+    <!-- <h3>Limitations</h3>
     <p>
       There is a limitation with the current release:
     </p>
@@ -1433,11 +1392,52 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
       <li>
         Chromecast is not supported with key/license protection.
       </li>
-    </ul>
+    </ul> -->
   </section>
 
   <section class="bcls-section">
-    <h2 id="Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</h2>
+    <h2 id="iOS_Using_Playback_Rights">iOS: Using Playback Rights</h2>
+    <aside class="bcls-aside bcls-aside--information">Notes:
+      <ul>
+        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
+      </ul>
+    </aside>
+
+    <p>
+      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
+    </p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">Basic Sample App</a>.
+        </p>
+      </li>
+      <li>
+        <p>
+          By default, the Native SDK for iOS makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
+        </p>
+        <p>
+          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the policy key to <code translate="No">nil</code>. Here is an example:
+        </p>
+        <pre>
+<code class="language-java" translate="No">let playbackService = BCOVPlaybackService(accountId: kViewControllerAccountID, policyKey: nil)</code></pre>
+      </li>
+      <li>
+        <p>
+          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
+        </p>
+        <p>
+          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
+        </p>
+        <p>
+          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</a> section.
+        </p>
+      </li>
+    </ol>
+  </section> 
+
+  <section class="bcls-section">
+    <h2 id="iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</h2>
 
     <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your authorization token. This is done using the <code translate="No">authToken</code> parameter.</p>
 
