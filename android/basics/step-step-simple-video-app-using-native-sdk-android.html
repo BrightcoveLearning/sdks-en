@@ -300,7 +300,7 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 	<p>Create a video object from your video hosted on a remote server. Set the <code translate="No">DeliveryType</code> to match the type of video you have.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">Video video = Video.createVideo("https://learning-services-media.brightcove.com/videos/hls/greatblueheron/greatblueheron.m3u8",
+<code class="language-java" translate="No">Video video = Video.createVideo("http://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8",
   DeliveryType.HLS);</code></pre>
 	</li>
 	<li>
@@ -308,7 +308,7 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 
 	<pre class="line-numbers" data-start="29">
 <code class="language-java" translate="No">try {
-  java.net.URI myposterImage = new java.net.URI("https://solutions.brightcove.com/bcls/assets/images/Great-Blue-Heron.png");
+  java.net.URI myposterImage = new java.net.URI("https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png");
   video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
 } catch (URISyntaxException e) {
   e.printStackTrace();
@@ -336,11 +336,11 @@ brightcoveVideoView.start();</code></pre>
     analytics.setAccount("<span class="bcls-input">your account Id</span>");
 
     // Define a video from a remote server
-    Video video = Video.createVideo("https://learning-services-media.brightcove.com/videos/hls/greatblueheron/greatblueheron.m3u8", DeliveryType.HLS);
+    Video video = Video.createVideo("http://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8", DeliveryType.HLS);
 
     // Load a remote poster image
     try {
-        java.net.URI myposterImage = new java.net.URI("https://solutions.brightcove.com/bcls/assets/images/Great-Blue-Heron.png");
+        java.net.URI myposterImage = new java.net.URI("https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png");
         video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
     } catch (URISyntaxException e) {
         e.printStackTrace();
