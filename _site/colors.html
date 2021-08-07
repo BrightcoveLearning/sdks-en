@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.">
+  <meta name="description" content="Official Bluesteel colors.">
   
-  <title>Setting Playback Speed on Android Devices</title>
+  <title>Brightcove Colors</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -61,15 +61,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <li class="breadcrumb-item first-item"><a href="/">Home</a></li>
     
       
-        <li class="breadcrumb-item"><a href="/android/">Android</a></li>
-      
-    
-      
-        <li class="breadcrumb-item"><a href="/android/playback/">Playback</a></li>
-      
-    
-      
-        <li class="breadcrumb-item active" aria-current="page">Setting Playback Speed on Android Devices</li>
+        <li class="breadcrumb-item active" aria-current="page">Brightcove Colors</li>
       
     
   </nav>
@@ -1188,148 +1180,140 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
-<h1>Setting Playback Speed on Android Devices</h1>
+<h1>Brightcove Colors</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn how to add variable speed playback functionality to apps using the Brightcove Native SDK for Android.</summary>
-
-<section class="bcls-section">
-<h2 id="Introduction">Introduction</h2>
-
-<p>For some of your apps, you may want to provide the ability for the user to change the playback speed while they are watching videos (ie, eLearning environments). You can add this functionality with the Native SDK for Android.</p>
-<p>In your player Activity class, you can create a dialog menu to select from a desired list of playback speeds.</p>
-
-</section>
-
-<section class="bcls-section">
-<h2 id="Implementation">Implementation</h2>
-
-<p>To add variable speed playback to your Android app, follow these steps:</p>
-<ol class="bcls-tasklist">
-  <li>
-    <p>First, create the menu where you can select a speed. Here we will use a <code translate="No">TextView</code> which, when tapped, will open the menu that contains the speed values. Other menu options include Spinners.</p>
-    <pre><code class="language-java" translate="No">private TextView playbackSpeed;</code></pre>
-    <p>Then, add the <code translate="No">TextView</code> to your <code translate="No">Activity</code> layout:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
-   android:id=&quot;@+id/brightcove_video_view&quot;
-   android:layout_width=&quot;match_parent&quot;
-   android:layout_height=&quot;280dp&quot;
-   android:layout_gravity=&quot;center_horizontal|top&quot;/&gt;
-
-&lt;LinearLayout
-   android:layout_width=&quot;match_parent&quot;
-   android:layout_height=&quot;wrap_content&quot;
-   android:orientation=&quot;horizontal&quot;
-   android:layout_gravity=&quot;center_vertical&quot;
-   android:layout_below=&quot;@id/brightcove_video_view&quot;
-   android:padding=&quot;20dp&quot;&gt;
-
-   &lt;TextView
-       android:id=&quot;@+id/playbackSpeed&quot;
-       android:layout_width=&quot;match_parent&quot;
-       android:layout_height=&quot;wrap_content&quot;
-       android:gravity=&quot;end&quot;
-       android:padding=&quot;20dp&quot;
-       android:text=&quot;Change Speed&quot;
-       android:textAlignment=&quot;textEnd&quot; /&gt;
-
-&lt;/LinearLayout&gt;</code></pre>
-  </li>
-  <li>
-    <p>Add the playback speed control to your player <code translate="No">Activity</code>:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">playbackSpeed = (TextView) findViewById(R.id.playbackSpeed);
-playbackSpeed.setVisibility(View.VISIBLE);</code></pre>
-  </li>
-  <li>
-    <p>Set an <code translate="No">onClick</code> listener on the <code translate="No">TextView</code>:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">playbackSpeed.setOnClickListener(new View.OnClickListener() {
-   @Override
-   public void onClick(View v) {
-       showPlayerSpeedDialog();
-   }
-});
-</code></pre>
-  </li>
-  <li>
-    <p>Add a method to show the player speed dialog:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">private void showPlayerSpeedDialog() {
-   String[] playerSpeedArrayLabels = {&quot;0.8x&quot;, &quot;1.0x&quot;, &quot;1.2x&quot;, &quot;1.5x&quot;, &quot;1.8x&quot;, &quot;2.0x&quot;};
-
-   PopupMenu popupMenu = new PopupMenu(MainActivity.this, playbackSpeed);
-   for (int i = 0; i &lt; playerSpeedArrayLabels.length; i++) {
-       popupMenu.getMenu().add(i, i, i, playerSpeedArrayLabels[i]);
-   }
-   popupMenu.setOnMenuItemClickListener(item -&gt; {
-       int id = item.getItemId();
-       CharSequence itemTitle = item.getTitle();
-       float playbackSpeed = Float.parseFloat(itemTitle.subSequence(0, 3).toString());
-       changePlayerSpeed(playbackSpeed, itemTitle.subSequence(0, 3).toString());
-       return false;
-   });
-   popupMenu.show();
-}
-</code></pre>
-  </li>
-  <li>
-    <p>Add a method to change the player speed to the value selected from the menu. Additionally, the method can set the selected value into the label for the <code translate="No">TextView</code>:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">private void changePlayerSpeed(float speed, String speedLabel) {
-   // Set playback speed
-   ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
-   // Set playback speed label
-   playbackSpeed.setText(&quot;Speed: &quot; + speedLabel + &quot;x&quot;);
-}
-</code></pre>
-  </li>
-</ol>
-</section>
-
-<section class="bcls-section">
-<h2 id="Handling_playback_problems">Handling playback problems</h2>
-<p>If you encounter problems with setting higher or lower playback speeds, consider restricting whether to show the playback speed control, or restricting the speeds available, based on:</p>
-
-<ul>
-  <li>
-    <p>OS level using:</p>
-    <pre><code class="language-java" translate="No">Build.VERSION_CODES.&lt;API_LEVEL&gt;</code></pre>
-  </li>
-  <li>
-    <p>Manufacturer using: (reliability is not guaranteed)</p>
-    <pre><code class="language-java" translate="No">Build.MANUFACTURER
-or
-Build.BRAND
-</code></pre>
-  </li>
-  <li>
-    <p>Hardware profile (TV or phone/mobile) by checking the boolean value of:</p>
-    <pre><code class="language-java" translate="No">BrightcoveMediaController.checkTvMode(Context context)</code></pre>
-  </li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Limitations">Limitations</h2>
-<p>It is important to note that while it is possible to set playback speed with the ExoPlayer and the Brightcove Native SDK for Android, it does not guarantee that setting a given playback speed will provide a seamless viewing and listening experience.</p>
-<p>Testing has revealed that it is possible to set a playback speed that will be too high for older OS versions and lower-spec devices to handle without an unacceptable degradation in audio and video quality.</p>
-
-<p>if you want to implement playback speed control, it is recommended that you consider the following:</p>
-<ul>
-  <li>What is the oldest Android OS level that my application is intended for?
-    <ul>
-      <li>Older OSes may not have the proper codec support for higher or lower playback speeds than normal</li>
-      <li>Older OSes may have older chip sets that can not process the video and audio data in a performant manner</li>
-    </ul>
-  </li>
-  <li>Is my content DRM-protected? 
-    <ul>
-      <li>Since testing has revealed some DRM-related issues with playback speed, we do not want to rule out the possibility of decryption issues when playing at higher or lower speeds than normal</li>
-    </ul></li>
-  <li>Does my content use closed captions or multiple audio tracks? 
-    <ul>
-      <li>Enabling or disabling captions, or switching between captions, especially on older devices or OS levels, is a circumstance to be considered.</li>
-    </ul></li>
-</ul>
-</section>
-
+  <summary>Official Bluesteel colors.</summary>
+  <section class="bcls-section">
+    <table class="bcls-table">
+			<caption class="bcls-caption--table">Colors</caption>
+			<thead class="bcls-table__head">
+					<tr>
+							<th>Color</th>
+							<th>Hex code</th>
+							<th>RGB code</th>
+							<th>Sample</th>
+					</tr>
+			</thead>
+			<tbody class="bcls-table__body">
+					<tr>
+							<td>Navy Dark</td>
+							<td>#030D28</td>
+							<td>rgb(3, 13, 40)</td>
+							<td style="background-color: #030D28;color: #fff;">Sample</td>
+					</tr>
+					<tr>
+							<td>Navy</td>
+							<td>#08088C</td>
+							<td>rgb(8, 8, 140)</td>
+							<td style="background-color: #08088C;color: #fff;">Sample</td>
+					</tr>
+					<tr>
+							<td>Navy Light</td>
+							<td>#092DBD</td>
+							<td>rgb(9, 45, 189)</td>
+							<td style="background-color: #092DBD;color: #fff;">Sample</td>
+					</tr>
+					<tr>
+							<td>Navy Gray</td>
+							<td>#F2F4F9</td>
+							<td>rgb(242, 244, 249)</td>
+							<td style="background-color: #F2F4F9;color: #01050E;">Sample</td>
+					</tr>
+					<tr>
+							<td>Black</td>
+							<td>#01050E</td>
+							<td>rgb(1, 5, 14)</td>
+							<td style="background-color: #01050E;color: #fff">Sample</td>
+					</tr>
+					<tr>
+							<td>Gray 40</td>
+							<td>#4D5056</td>
+							<td>rgb(77, 80, 86)</td>
+							<td style="background-color: #4D5056;color: #fff">Sample</td>
+					</tr>
+					<tr>
+							<td>Gray 35</td>
+							<td>#8E9093</td>
+							<td>rgb(142, 144, 147)</td>
+							<td style="background-color: #8E9093;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Gray 30</td>
+							<td>#E5E6E6</td>
+							<td>rgb(229, 230, 230)</td>
+							<td style="background-color: #E5E6E6;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Gray 20</td>
+							<td>#F2F2F3</td>
+							<td>rgb(242, 242, 243)</td>
+							<td style="background-color: #F2F2F3;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Gray 10</td>
+							<td>#F9F9F9</td>
+							<td>rgb(249, 249, 249)</td>
+							<td style="background-color:  #F9F9F9;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>White</td>
+							<td>#FFFFFF</td>
+							<td>rgb(255, 255, 255)</td>
+							<td style="background-color:  #FFFFFF;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Cyan</td>
+							<td>#00EAE4</td>
+							<td>rgb(0, 234, 228)</td>
+							<td style="background-color:  #00EAE4;color: #FFFFFF">Sample</td>
+					</tr>
+					<tr>
+							<td>Cyan Muted</td>
+							<td>#2AC1FF</td>
+							<td>rgb(42, 193, 255)</td>
+							<td style="background-color:  #2AC1FF;color: #FFFFFF">Sample</td>
+					</tr>
+					<tr>
+							<td>Green</td>
+							<td>#009E4F</td>
+							<td>rgb(0, 158, 79)</td>
+							<td style="background-color:  #009E4F;color: #FFFFFF">Sample</td>
+					</tr>
+					<tr>
+							<td>Green 10</td>
+							<td>#D7F6E6</td>
+							<td>rgb(215, 246, 230)</td>
+							<td style="background-color:  #D7F6E6;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Yellow</td>
+							<td>#FFBA00</td>
+							<td>rgb(255, 186, 0)</td>
+							<td style="background-color:  #FFBA00;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Yellow 5</td>
+							<td>#FFFBF2</td>
+							<td>rgb(255, 251, 242)</td>
+							<td style="background-color:  #FFFBF2;color: #01050E">Sample</td>
+					</tr>
+					<tr>
+							<td>Red</td>
+							<td>#D33D00</td>
+							<td>rgb(211, 61, 0)</td>
+							<td style="background-color:  #D33D00;color: #FFFFFF">Sample</td>
+					</tr>
+					<tr>
+							<td>Red 5</td>
+							<td>#FDF6F3</td>
+							<td>#FDF6F3</td>
+							<td style="background-color:  #FDF6F3;color: #01050E">Sample</td>
+					</tr>
+			</tbody>
+	</table>
+  </section>
 </article>
+
 <!-- complete bootstrap layout -->
     </div>
     <div class="col-sm-2 right-side-bar">
@@ -1345,7 +1329,7 @@ Build.BRAND
 
 <hr>
 <div class="last-updated">
-  Page last updated on 04 Mar 2021
+  Page last updated on 07 Mar 2021
 </div>
 
 
