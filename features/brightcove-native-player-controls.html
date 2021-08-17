@@ -13,13 +13,13 @@ grandparent: Home
   <h2 id="Introduction">Introduction</h2>
   <p>Fusing the Brightcove Web Player aesthetics with iOS and Android platform standards, the Brightcove Native Player Controls provide a stylish look on top of a solid set of functionalities right out of the box.</p>
 
-<p>Features with the Brightcove Native Player Controls:</p>
-
+<!-- <p>Features with the Brightcove Native Player Controls:</p>
 <ul>
 	<li><a href="#Dynamic_UI">Dynamic UI</a></li>
 	<li><a href="#Customization">Customization</a></li>
+  <li><a href="#Jump_forward_back_buttons">Jump forward/back buttons</a></li>
 	<li><a href="#Accessibility">Accessibility</a></li>
-</ul>
+</ul> -->
 </section>
 
 <section class="bcls-section">
@@ -176,6 +176,32 @@ grandparent: Home
 </section>
 
 <section class="bcls-section">
+  <h2 id="Jump_forward_and_rewind_buttons">Fast forward and rewind buttons</h2>
+  
+  <p>The Brightcove Native SDKs allow you to add fast forward and rewind buttons to the player controls.</p>
+  <h3>Android</h3>
+  <p>To create your own customized media controller, there are pre-defined IDs that you can use.</p>
+  <p>For implementation details, see the following:</p>
+  <ul>
+    <li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls/CustomizedControlsSampleApp">Customized Controls Sample App</a></li>
+    <li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls">Samples: Player Controls for Android</a></li>
+    <li><a href="/android/playback/android-managing-player-controls.html">Managing Player Controls</a></li>
+  </ul>
+
+  <h3>iOS</h3>
+  <p>The SDK includes a jump back button in the default layout. You can also add your own jump forward button by creating your own layout.</p>
+  <p>For a custom button, you can perform a seek on the playback controller. To determine where you want to seek, get the current time, add/subtract 10 seconds (for example), and then use that value.</p>
+  <p>For implementation details, see the following:</p>
+  <ul>
+    <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios#custom-layouts">Custom Layouts</a></li>
+    <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios#built-in-playerui-controls-">Setting up PlayerUI Controls</a></li>
+    <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/PlayerUI/PlayerUICustomization">Player UI customization sample</a></li>
+  </ul>
+  
+ 
+  </section>
+
+<section class="bcls-section">
 <h2 id="Accessibility">Accessibility</h2>
 
 <p>Accessibility features come out of the box as a standard part of our UI, with no additional setup required.</p>
@@ -188,29 +214,13 @@ grandparent: Home
 <!-- <span style="text-decoration:underline">iOS</span>:<br />
 The Brightcove Player Controls utilize <a href="https://www.apple.com/accessibility/iphone/vision/">VoiceOver</a>, the native iOS gesture-based screen reader. This allows users to interact with interface elements and hear through audio cues what element is present. The built-in playback controls for Brightcove Native SDK for iOS come with accessibility labels which have no default text values. If you want to take advantage of VoiceOver, you can add your own custom text values. For details, see the <a href="/ios/resources/code-snippets-using-native-sdk-ios.html#VoiceOver_support">VoiceOver support</a> code snippet.</> -->
 
-<h4>iOS</h4>
-
-<p>Coming Soon!</p>
-
 <h4>Android</h4>
 
 <p>Coming Soon!</p>
-<br>
-
-<aside class="bcls-aside bcls-aside--tip">
-<p>Looking for more details? Check out:</p>
 
 <h4>iOS</h4>
-<ul>
-	<li><a href="/ios/reference/sdk/index.html#PlayerUI">Built-in player UI controls</a></li>
-	<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/PlayerUI/PlayerUICustomization">Player UI customization sample</a></li>
-</ul>
-<h4>Android</h4>
-<ul>
-	<li><a href="https://sdks.support.brightcove.com/android/playback/android-managing-player-controls.html">Managing Player Controls</a></li>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls">Native Player Controls for Android</a></li>
-</ul>
-</aside>
+
+<p>Coming Soon!</p>
 </section>
 
 
