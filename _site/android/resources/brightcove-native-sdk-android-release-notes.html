@@ -1232,6 +1232,32 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.16.5</h3>
+
+<h4>23 Aug 2021</h4>
+
+<p>SDK Changes:</p>
+<ul>
+  <li>Improved support for 608/708 captions that have a language attribute</li>
+  <li>Emit a <code translate="No">DID_SET_VIDEO_STILL_ERROR</code> event when a video's poster image can not be loaded</li>
+</ul>
+
+<p>ExoPlayer Changes:</p>
+<ul>
+<li>Emit an <code translate="No">AD_ERROR</code> error event if ad loading is interrupted, or if the ExoAdPlayer or its context are null</li>
+</ul>
+
+<p>Offline Playback Plugin Changes:</p>
+<ul>
+<li> Fixed a problem where backgrounding or exiting the app could cause offline content to fail to play</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.16.4</h3>
 
 <h4>4 Aug 2021</h4>
@@ -1241,11 +1267,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <li>Fixed an issue where some image files would not download successfully</li>
 </ul>
 
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.16.3</h3>
 
