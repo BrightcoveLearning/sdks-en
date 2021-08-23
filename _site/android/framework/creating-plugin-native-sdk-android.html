@@ -1241,10 +1241,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <div class="BCL-concept">
 <p>A plugin should register with the SDK when they are instantiated. To register a plugin should emit a <code translate="No">REGISTER_PLUGIN</code> event with a <code translate="No">PLUGIN_NAME</code> property. For example:</p>
 
-<pre class="line-numbers">
-  <code class="language-java" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
-  properties.put(Event.PLUGIN_NAME, "my custom plugin");
-  eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
+<pre class="line-numbers"><code class="language-java" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
+properties.put(Event.PLUGIN_NAME, "my custom plugin");
+eventEmitter.emit(EventType.REGISTER_PLUGIN, properties);</code></pre>
 
 <p>Video playback typically goes through a standard life cycle event flow:</p>
 
@@ -1260,7 +1259,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <div class="BCL-concept">
 <p>A plugin can listen for events, which initiate some action, in order to change the default behavior of the player. These events include:</p>
 
-<ol>
+<ul>
 	<li><code translate="No">WILL_CHANGE_VIDEO</code></li>
 	<li><code translate="No">SET_VIDEO</code></li>
 	<li><code translate="No">SET_SOURCE</code></li>
@@ -1268,13 +1267,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li><code translate="No">PAUSE</code></li>
 	<li><code translate="No">SEEK_TO</code></li>
 	<li><code translate="No">STOP</code></li>
-</ol>
+</ul>
 
 <p>The default behavior can be changed by preventing the default listeners from receiving the event and/or by stopping propagation of the event to non-default listeners. Preventing the default listeners from receiving the event is accomplished by calling the <code translate="No">preventDefault()</code> method. Event propagation can be stopped by calling the <code translate="No">stopPropagation()</code> method. If only <code translate="No">preventDefault()</code> is called, the rest of the non-default listeners will be notified. If only <code translate="No">stopPropagation()</code> is called, the default listeners will still be notified, but the rest of the non-default listeners will be skipped. A plugin can also use these methods to pause the normal event flow and insert additional behavior, like initializing the plugin. A plugin can resume the event flow by emitting the original event again.</p>
 
 <p>A plugin can also listen for events, which signal the completion of an action. These events are typically used by analytics plugins. The events include:</p>
 
-<ol>
+<ul>
 	<li><code translate="No">DID_CHANGE_LIST</code></li>
 	<li><code translate="No">DID_SELECT_SOURCE</code></li>
 	<li><code translate="No">DID_PAUSE</code></li>
@@ -1284,7 +1283,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<li><code translate="No">DID_STOP</code></li>
 	<li><code translate="No">PROGRESS</code></li>
 	<li><code translate="No">COMPLETED</code></li>
-</ol>
+</ul>
 </div>
 </section>
 
@@ -1323,7 +1322,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <div class="BCL-concept">
 <p>The steps to writing a plugin include:</p>
 
-<ol>
+<ol class="bcls-tasklist-restart">
 	<li>Copy the sample plugin to a new repository.</li>
 	<li>Change the package and class names.</li>
 	<li>Update the <code translate="No">TAG</code> initializer.</li>
