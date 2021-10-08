@@ -14,6 +14,48 @@ grandparent: Android Development
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.17.0</h3>
+
+<h4>8 Oct 2021</h4>
+
+<p>SDK Changes:</p>
+<ul>
+  <li>The Brightcove Native Player SDK for Android now supports Android 11</li>
+</ul>
+
+<p>ExoPlayer Changes:</p>
+<ul>
+<li>
+  <p>The Brightcove Native Player SDK for Android now supports ExoPlayer 2.14.2. Please note the following changes:</p>
+  <ul>
+    <li>
+      <p>In the <code translate="No">ExoPlayerVideoDisplayComponent</code> class the <code translate="No">getBrightcoveDrmSession() : BrightcoveDrmSession</code> method has been deprecated. Instead please use <code translate="No">ExoPlayerDrmSessionManager<FrameworkMediaCrypto></code>. See <code translate="No">ExoPlayerVideoDisplayComponent:getExoPlayerDrmSessionManager(): ExoPlayerDrmSessionManage</code></p>
+    </li>
+      <li>
+        <p>In the <code translate="No">ExoPlayerVideoDisplayComponent</code> class, in the <code translate="No">InfoListener</code> subclass, the method <code translate="No">onDecoderInitialized(AnalyticsListener.EventTime eventTime, int trackType, String decoderName,long initializationDurationMs)</code> has been deprecated. Instead, please use <code translate="No">onAudioDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void</code> and/or <code translate="No">onVideoDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void</code></p>
+      </li>
+      <li>
+        <p>The constructor for the <code translate="No">ExoPlayerDrmSessionManager</code> class has been deprecated. Instead, use the <code translate="No">ExoPlayerDrmSessionManager.Builder</code></p>
+      </li>
+      <li>
+        <p>The constructor for the <code translate="No">OfflineLicenseManager</code> class has been deprecated. The <code translate="No">OfflineLicenseManager</code> now uses the Builder pattern. See <code translate="No">OfflineLicenseManager.Builder</code></p>
+      </li>
+      <li>
+        <p>In the class <code translate="No">TrackSelectoParameterFactory</code>, the method <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(int maxVideoBitrate)</code> has been deprecated. Instead, please use <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(Context context, int maxVideoBitrate)</code></p>
+      </li>
+      <li>In the class BrightcoveSegmentTemplate, the method getSegmentCount(long periodDurationUs) has been deprecated. Instead please use getSegmentCountLong(long periodDurationUs)</li>
+      <li>This ExoPlayer version requires that any instance of the ExoPlayer must be created and accessed in the main thread, so any access to the ExoPlayerVideoDisplayComponent.getExoPlayer method or direct access to any ExoPlayer method must be on the main thread as well. Version 6.16.6</li>
+  </ul>
+</li>
+
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.16.6</h3>
 
 <h4>4 Oct 2021</h4>
@@ -27,12 +69,6 @@ grandparent: Android Development
 <ul>
 <li>Fixes an issue where a device could go to sleep during ad playback</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.16.5</h3>
 
