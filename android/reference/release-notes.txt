@@ -1,6 +1,38 @@
 Brightcove Native Player for Android Release Notes:
 
-Version 6.16.6
+Version 6.17.0
+
+  ExoPlayer Changes:
+
+    The Brightcove Native Player SDK for Android now supports ExoPlayer 2.14.2. Please note the following changes:
+
+      * In the ExoPlayerVideoDisplayComponent class the getBrightcoveDrmSession() : BrightcoveDrmSession method has been deprecated.
+      Instead please use ExoPlayerDrmSessionManager<FrameworkMediaCrypto>. See  ExoPlayerVideoDisplayComponent:getExoPlayerDrmSessionManager() : 
+      ExoPlayerDrmSessionManager
+
+      * In the ExoPlayerVideoDisplayComponent class, in the InfoListener subclass the method onDecoderInitialized(AnalyticsListener.EventTime eventTime, int 
+      trackType, String decoderName,long initializationDurationMs) has been deprecated.
+      Instead please use onAudioDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void and/or 
+      onVideoDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void.
+
+      * The constructor for the ExoPlayerDrmSessionManager class has been deprecated, instead use the ExoPlayerDrmSessionManager.Builder.
+
+      * The constructor for the OfflineLicenseManager class has been deprecated. The OfflineLicenseManager now uses the Builder pattern.
+      See OfflineLicenseManager.Builder.
+
+      * In the class TrackSelectoParameterFactory, the method DefaultTrackSelector.Parameters createWithMaxVideoBitrate(int maxVideoBitrate) has been 
+      deprecated.
+      Instead please use DefaultTrackSelector.Parameters createWithMaxVideoBitrate(Context context, int maxVideoBitrate).
+
+      * In the class BrightcoveSegmentTemplate, the method getSegmentCount(long periodDurationUs) has been deprecated.
+      Instead please use getSegmentCountLong(long periodDurationUs)
+
+      * This ExoPlayer version requires that any instance of the ExoPlayer must be created and accessed in the main thread, so any access to the 
+      ExoPlayerVideoDisplayComponent.getExoPlayer method or direct access to any ExoPlayer method must be on the main thread as well.Version 6.16.6
+      
+    The Brightcove Native Player SDK for Android now supports Android 11.
+
+Version 6.16.6:
 
   SDK Changes:
 
