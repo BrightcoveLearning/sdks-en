@@ -1,0 +1,55 @@
+---
+title: 'Playhead Position and Video Duration with the Native SDK for Android'
+description: In this topic, you will learn about changes when using the playhead position and video duration with the Brightcove Native SDK for Android.
+parent: Framework
+grandparent: Android Development
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+<p>In earlier versions of the Brightcove Native SDK for Android, <code translate="No">int</code> and <code translate="No">Integer</code> data types were used to handle values for playhead position (including seek position) and video duration.</p>
+<p>With the Native SDK for Android version 6.18.0, we have aligned with the ExoPlayer library for handling these values. The Native SDK has migrated from using <code translate="No">int</code> and <code translate="No">Integer</code> data types to <code translate="No">long</code> and <code translate="No">Long</code> data types.</p>
+<h3>Process</h3>
+<p>This migration involves two processes:</p>
+<ul>
+  <li>Deprecation of all <code translate="No">int</code> and <code translate="No">Integer</code> playhead position and duration value references, in class members and methods</li>
+  <li>Creation of new class members and methods with a <code translate="No">Long</code> postfix on their names</li>
+</ul>
+<h3>Example</h3>
+<p>An example of this deprecation and replacement:</p>
+<ul>
+  <li>Deprecated: <code translate="No">video.getDuration()</code></li>
+  <li>New: <code translate="No">video.getDuraionLong()</code></li>
+</ul>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Requirements">Requirements</h2>
+  <p>The following requirements are needed for this feature:</p> 
+  <ul>
+    <li>
+      Brightcove Native SDK for Android 6.18.0 or higher
+    </li>
+  </ul>
+  </section>
+
+<section class="bcls-section">
+<h2 id="Using_the_new_data_types">Using the new data types</h2>
+
+<p>Transport Layer Security (TLS) is a protocol for providing secure communications over a computer network. TLS is implemented on top of HTTP, allowing for encrypted communication over HTTPS.</p>
+
+</section>
+
+<section class="bcls-section">
+  <h2 id="Deprecated_classes">Deprecated classes</h2>
+  
+  <p>Transport Layer Security (TLS) is a protocol for providing secure communications over a computer network. TLS is implemented on top of HTTP, allowing for encrypted communication over HTTPS.</p>
+  
+  </section>
+
+</article>
