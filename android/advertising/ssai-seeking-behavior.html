@@ -35,37 +35,23 @@ layout: staging
   </section>
 
 <section class="bcls-section">
-<h2 id="Using_the_new_data_types">Using the new data types</h2>
+<h2 id="Behavioral_Changes">Behavioral Changes</h2>
+<p>The following classes have new behavior:</p>
+<h3><code translate="No">SSAIComponent</code> class</h3>
+<p>This class now passes the <code translate="No">BaseVideoView</code> object to the <code translate="No">TimelineManager</code> class when a reference to this is created.</p>
+<p>It removed passing the references for the video playback controller and the ticker to the <code translate="No">SeekManager</code> when this is created and, instead it passes the event emitter. It also sets the seek listener from the timeline manager object to this new <code translate="No">SeekManager</code> reference.</p>
+<p>It also removed the <code translate="No">SeekManager</code> object from being passed as an observer to the <code translate="No">Ticker</code> class.</p>
+<h3><code translate="No">LastAdSeekStrategy</code> class</h3>
+<p>This class is now public.</p>
+<h3><code translate="No">NoAdSeekStrategy</code> class</h3>
+<p>This class is now public.</p>
+<h3><code translate="No">SeekManager</code> class</h3>
+<p>This class no longer triggers the playback of ads. That functionality was moved to the <code translate="No">TimelineManager</code> where it makes more sense.</p>
+<p>This class previously caught the <code translate="No">SEEK_TO</code> events and notified all the listeners subscribed to this class. With that action, it passed the new absolute time position and also emitted a new <code translate="No">SEEK_TO</code> event including the absolute position and the relative position. Now, <code translate="No">SeekManager</code> does not trigger a new seek event but still notifies all the listeners about the first seek event.</p>
+<p>This class no longer implements the <code translate="No">TickerObserver</code> and <code translate="No">SeekTask.Seekable</code> classes and does not handle the events that those classes generate.</p>
+<p>This class no longer handles <code translate="No">Skip Ad</code> events.</p>
+<p>The constructor has changed from expecting <code translate="No">VideoPlaybackController</code>, <code translate="No">Timeline</code>, and <code translate="No">Ticker</code> references to expecting <code translate="No">EventEmitter</code> and <code translate="No">Timeline</code> references only.</p>
 
-<p>Even though the Brightcove Native SDK for Android still supports the use of integer types, the replacement of these marks a breaking point for new releases. Therefore, we recommend implementing these replacements on your projects going forward.</p>
-<h3>Examples</h3>
-<p>Here are some examples of the new members and methods:</p>
-<h4>Listen for playhead position and video duration</h4>
-<pre class="line-numbers">
-<code class="language-java" translate="No">Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();
-    properties.put(Event.PLAYHEAD_POSITION_LONG, exoPlayer.getCurrentPosition());
-    properties.put(Event.VIDEO, getCurrentVideo());
-    eventEmitter.emit(EventType.DID_STOP, properties);
-</code></pre>
-
-<h4>Get current playhead position</h4>
-<pre>
-<code class="language-java" translate="No">long position = event.getLongProperty(Event.PLAYHEAD_POSITION_LONG);
-</code></pre>
-<p>Or</p>
-<pre>
-<code class="language-java" translate="No">long position = brightcoveVideoView.getVideoDisplay().getPlayerCurrentPosition();
-</code></pre>
-<aside class="bcls-aside bcls-aside--tip">Note that <code translate="No">getPlayerCurrentPosition</code> has always returned a long value. </aside>
-
-<h4>Get video duration</h4>
-<pre>
-<code class="language-java" translate="No">long duration = videoView.getVideoDisplay().getCurrentVideo().getDurationLong();
-</code></pre>
-<p>Or</p>
-<pre>
-<code class="language-java" translate="No">long duration = event.getLongProperty(Event.VIDEO_DURATION_LONG);
-</code></pre>
 </section>
 
 <section class="bcls-section">
