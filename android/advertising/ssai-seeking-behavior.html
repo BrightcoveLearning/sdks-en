@@ -63,10 +63,24 @@ layout: staging
 <p>The <code translate="No">TimelineManager</code> resumes playback in the previous position when a skip ad event is detected.</p>
 <p>The TimelineManager class now extends AbstractComponent.</p>
 <p>In order to create a <code translate="No">TimelineManager</code> object, you need to pass a <code translate="No">BaseVideoView</code> instance along with a <code translate="No">Timeline</code> instance.</p>
-
-
-
 </section>
 
-
+<section class="bcls-section">
+  <h2 id="API_Changes">API Changes</h2>
+  <p>The following classes have API changes:</p>
+  
+  <h3><code translate="No">SeekTask</code> class</h3>
+  <p>This class was deleted because its main functionality was integrated into the <code translate="No">TimelineManager</code> class where it makes more sense. </p>
+  
+  <h3><code translate="No">SeekManager</code> class</h3>
+  <p>The constructor <code translate="No">SeekManager(VideoPlaybackController videoPlaybackController, Timeline timeline, Ticker ticker)</code> was deleted since it no longer needs the <code translate="No">VideoPlaybackController</code> and the <code translate="No">Ticker</code>. Instead, it now receives the <code translate="No">EventEmitter</code> and the <code translate="No">Timeline</code> as follows:</p>
+  <pre><code class="language-java" translate="No">SeekManager(EventEmitter eventEmitter, Timeline timeline)
+</code></pre>
+  
+  <h3><code translate="No">TimelineManager</code> class</h3>
+  <p>The constructor <code translate="No">TimelineManager(@NonNull Timeline mTimeline)</code> was changed to the following:</p>
+  <pre><code class="language-java" translate="No">TimelineManager(@NonNull BaseVideoView mBaseVideoView, @NonNull Timeline mTimeline)
+  </code></pre>
+  </section>
+  
 </article>
