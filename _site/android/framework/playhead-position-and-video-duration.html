@@ -1270,20 +1270,23 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </code></pre>
 
 <h4>Get current playhead position</h4>
-<pre class="line-numbers">
+<pre>
 <code class="language-java" translate="No">long position = event.getLongProperty(Event.PLAYHEAD_POSITION_LONG);
 </code></pre>
+<p>Or</p>
+<pre>
+<code class="language-java" translate="No">long position = brightcoveVideoView.getVideoDisplay().getPlayerCurrentPosition();
+</code></pre>
+<aside class="bcls-aside bcls-aside--tip">Note that <code translate="No">getPlayerCurrentPosition</code> has always returned a long value. </aside>
 
 <h4>Get video duration</h4>
-<pre class="line-numbers">
-<code class="language-java" translate="No">long duration = videoView.getVideoDisplay().getLiveEdgeLong();
+<pre>
+<code class="language-java" translate="No">long duration = videoView.getVideoDisplay().getCurrentVideo().getDurationLong();
 </code></pre>
-
-<h4>Get playhead position</h4>
-<pre class="line-numbers">
-<code class="language-java" translate="No">long position = brightcoveVideoView.getCurrentPositionLong()
+<p>Or</p>
+<pre>
+<code class="language-java" translate="No">long duration = event.getLongProperty(Event.VIDEO_DURATION_LONG);
 </code></pre>
-
 </section>
 
 <section class="bcls-section">
