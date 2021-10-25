@@ -37,14 +37,18 @@ layout: staging
 <section class="bcls-section">
 <h2 id="Behavioral_Changes">Behavioral Changes</h2>
 <p>The following classes have new behavior:</p>
+
 <h3><code translate="No">SSAIComponent</code> class</h3>
 <p>This class now passes the <code translate="No">BaseVideoView</code> object to the <code translate="No">TimelineManager</code> class when a reference to this is created.</p>
 <p>It removed passing the references for the video playback controller and the ticker to the <code translate="No">SeekManager</code> when this is created and, instead it passes the event emitter. It also sets the seek listener from the timeline manager object to this new <code translate="No">SeekManager</code> reference.</p>
 <p>It also removed the <code translate="No">SeekManager</code> object from being passed as an observer to the <code translate="No">Ticker</code> class.</p>
+
 <h3><code translate="No">LastAdSeekStrategy</code> class</h3>
 <p>This class is now public.</p>
+
 <h3><code translate="No">NoAdSeekStrategy</code> class</h3>
 <p>This class is now public.</p>
+
 <h3><code translate="No">SeekManager</code> class</h3>
 <p>This class no longer triggers the playback of ads. That functionality was moved to the <code translate="No">TimelineManager</code> where it makes more sense.</p>
 <p>This class previously caught the <code translate="No">SEEK_TO</code> events and notified all the listeners subscribed to this class. With that action, it passed the new absolute time position and also emitted a new <code translate="No">SEEK_TO</code> event including the absolute position and the relative position. Now, <code translate="No">SeekManager</code> does not trigger a new seek event but still notifies all the listeners about the first seek event.</p>
@@ -52,146 +56,17 @@ layout: staging
 <p>This class no longer handles <code translate="No">Skip Ad</code> events.</p>
 <p>The constructor has changed from expecting <code translate="No">VideoPlaybackController</code>, <code translate="No">Timeline</code>, and <code translate="No">Ticker</code> references to expecting <code translate="No">EventEmitter</code> and <code translate="No">Timeline</code> references only.</p>
 
+<h3><code translate="No">TimelineManager</code> class</h3>
+<p>This class now handles the playback and skip action of ads. It is subscribed to the <code translate="No">SeekManager</code> class to listen for seek events. Once a seek event is detected, this class checks if an ad was crossed. If so, it plays the ad. If not, it repositions the playhead in the video content and updates the absolute and relative positions.</p>
+<p>The ads are played once the video is playing. If the video is paused, it will not play any ad crossed by seek events. This provides the availability to support many seek events. If the video is playing and an ad is crossed, the ad is played immediately.</p>
+<p>When an ad is crossed while the video is paused, the <code translate="No">TimelineManager</code> will resume the playhead position at the position before the ad was played.</p>
+<p>The <code translate="No">TimelineManager</code> resumes playback in the previous position when a skip ad event is detected.</p>
+<p>The TimelineManager class now extends AbstractComponent.</p>
+<p>In order to create a <code translate="No">TimelineManager</code> object, you need to pass a <code translate="No">BaseVideoView</code> instance along with a <code translate="No">Timeline</code> instance.</p>
+
+
+
 </section>
 
-<section class="bcls-section">
-  <h2 id="Deprecated_classes">Deprecated classes and methods</h2>
-  <p>The following class members and methods are now deprecated:</p>
-  <h3><code translate="No">AbstractEvent</code> class</h3>
-  <ul>
-    <li><code translate="No">PLAYHEAD_POSITION</code></li>
-    <li><code translate="No">PROGRESS_BAR_PLAYHEAD_POSITION</code></li>
-    <li><code translate="No">ORIGINAL_PLAYHEAD_POSITION</code></li>
-    <li><code translate="No">VIDEO_DURATION</code></li>
-    <li><code translate="No">SEEK_DEFAULT</code></li>
-    <li><code translate="No">SEEK_POSITION</code></li>
-    <li><code translate="No">SEEK_PROGRESS</code></li>
-    <li><code translate="No">FROM_SEEK_POSITION</code></li>
-    <li><code translate="No">RESTORE_SEEK_POSITION</code></li>
-    <li><code translate="No">ORIGINAL_SEEK_POSITION</code></li>
-    <li><code translate="No">MIN_POSITION</code></li>
-    <li><code translate="No">MAX_POSITION</code></li>
-    <li><code translate="No">START_TIME</code></li>
-    <li><code translate="No">END_TIME</code></li>
-  </ul>
-
-  <h3><code translate="No">BaseVideoView</code> class</h3>
-  <ul>
-    <li><code translate="No">duration</code></li>
-    <li><code translate="No">playheadPosition</code></li>
-    <li><code translate="No">getDuration()</code></li>
-    <li><code translate="No">getCurrentPosition()</code></li>
-    <li><code translate="No">seekTo(int position)</code></li>
-  </ul>
-
-  <h3><code translate="No">VideoDisplayComponent</code> class</h3>
-  <ul>
-    <li><code translate="No">playheadPosition</code></li>
-    <li><code translate="No">getLiveEdge()</code></li>
-  </ul>
-
-  <h3><code translate="No">ExoPlayerVideoDisplayComponent</code> class</h3>
-  <ul>
-    <li><code translate="No">getLiveEdge()</code></li>
-  </ul>
-
-  <h3><code translate="No">GooglecastComponent</code> class</h3>
-  <ul>
-    <li><code translate="No">CAST_MEDIA_PLAY_POSITION</code></li>
-  </ul>
-
-  <h3><code translate="No">GoogleIMAComponent</code> class</h3>
-  <ul>
-    <li><code translate="No">setAdPosition(int position)</code></li>
-    <li><code translate="No">getContentPosition()</code></li>
-    <li><code translate="No">setContentPosition(int position)</code></li>
-  </ul>
-
-  <h3><code translate="No">OmnitureComponent</code> class</h3>
-  <ul>
-    <li><code translate="No">play(Integer position)</code></li>
-    <li><code translate="No">play(Integer position, boolean shouldIgnoreState)</code></li>
-    <li><code translate="No">stopPlayback(Integer position)</code></li>
-    <li><code translate="No">stopPlayback(Integer position, boolean shouldIgnoreState)</code></li>
-  </ul>
-
-  <h3><code translate="No">BrightcoveClosedCaption</code> class</h3>
-  <ul>
-    <li><code translate="No">Brightcove(int beginTime, int endTime, List&lt;List&lt;Span&gt;&gt; testLines)</code></li>
-    <li><code translate="No">Brightcove(int beginTime, int endTime, String caption)</code></li>
-    <li><code translate="No">getTimeRange()</code></li>
-  </ul>
-
-  <h3><code translate="No">TTMLParser</code> class</h3>
-  <ul>
-    <li><code translate="No">parseTimeValue(String value)</code></li>
-  </ul>
-
-  <h3><code translate="No">BrightcoveMediaController</code> class</h3>
-  <ul>
-    <li><code translate="No">getSeekBarOffset()</code></li>
-  </ul>
-
-  <h3><code translate="No">BrightcoveSeekBarController</code> class</h3>
-  <ul>
-    <li><code translate="No">getSeekBarOffset()</code></li>
-    <li><code translate="No">setSeekBarOffset(int offset)</code></li>
-  </ul>
-
-  <h3><code translate="No">MediaControllerConfig</code> class</h3>
-  <ul>
-    <li><code translate="No">setInitialDuration(int initialDuration)</code></li>
-    <li><code translate="No">setInitialPlayheadPosition(int initialPlayheadPosition)</code></li>
-    <li><code translate="No">getInitialDuration()</code></li>
-    <li><code translate="No">getInitialPlayheadPosition()</code></li>
-  </ul>
-
-  <h3><code translate="No">SeekButtonController</code> class</h3>
-  <ul>
-    <li><code translate="No">seekDefault</code></li>
-    <li><code translate="No">seekStartPosition</code></li>
-    <li><code translate="No">seekTargetPosition</code></li>
-    <li><code translate="No">getSeekDefault()</code></li>
-    <li><code translate="No">setSeekDefault()</code></li>
-    <li><code translate="No">computeTargetSeekPosition()</code></li>
-  </ul>
-
-  <h3><code translate="No">Block</code> class</h3>
-  <ul>
-    <li><code translate="No">beginTime</code></li>
-    <li><code translate="No">endTime</code></li>
-    <li><code translate="No">getBeginTime()</code></li>
-    <li><code translate="No">setBeginTime(Integer beginTime)</code></li>
-    <li><code translate="No">getEndTime()</code></li>
-    <li><code translate="No">setEndTime(Integer endTime)</code></li>
-  </ul>
-
-  <h3><code translate="No">CuePoint</code> class</h3>
-  <ul>
-    <li><code translate="No">CuePointType(int position, String type, Map&lt;String, Object&gt; properties)</code></li>
-    <li><code translate="No">CuePointType(int position, CuePointType type, Map&lt;String, Object&gt;)</code></li>
-    <li><code translate="No">getPosition()</code></li>
-  </ul>
-
-  <h3><code translate="No">Video</code> class</h3>
-  <ul>
-    <li><code translate="No">getDuration()</code></li>
-  </ul>
-
-  <h3><code translate="No">Video.Field</code> class</h3>
-  <ul>
-    <li><code translate="No">duration</code></li>
-  </ul>
-
-  <h3><code translate="No">BrightcoveClosedCaptioningView</code> class</h3>
-  <ul>
-    <li><code translate="No">TreeMap&lt;Integer, ArrayList&lt;TimeMapEntry&gt;&gt; captionsPerSecondMap</code></li>
-    <li><code translate="No">SparseArray&lt;StringBuilder&gt; currentCaptionBlockArray</code></li>
-    <li><code translate="No">int lastProgressTime</code></li>
-    <li><code translate="No">findCaptionsForPosition(int position)</code></li>
-    <li><code translate="No">refreshCaptions(int seekToTime)</code></li>
-  </ul>
-  
-  </section>
 
 </article>
