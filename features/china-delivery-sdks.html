@@ -89,18 +89,48 @@ grandparent: Home
 
 <section class="bcls-section">
 <h2 id="iOS_Implementation">iOS Implementation</h2>
-<p>To use China Delivery with the Native SDK for iOS, follow these steps</p>
+<p>The <a href="/ios/reference/sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">BCOVGlobalConfiguration</a> class allows you to set custom configurations for the Native SDK for iOS.</p>
+<p>Within this class, set the <a href="/ios/reference/sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">chinaProxyDomain</a> property to a custom, fully qualified domain name (FQDN) for the Playback API, metrics and analytics collection services.</p>
+<pre><code class="language-objectivec" translate="No">@property (nonatomic, nullable) NSString *chinaProxyDomain</code></pre>
+
+<p>To use China Delivery, follow these steps</p>
+<h3>Swift</h3>
 <ol class="bcls-tasklist-restart">
   <li>
-    <p>The <a href="/ios/reference/sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">BCOVGlobalConfiguration</a> class allows you to set custom configurations for the Native SDK for iOS.
+    <p>
+      Review the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer/swift/VideoCloudBasicPlayer">VideoCloudBasicPlayer</a> sample.</p>
   </li>
   <li>
     <p>
-      Within this class, set the <a href="/ios/reference/sdk/Classes/BCOVGlobalConfiguration.html#//api/name/chinaProxyDomain">chinaProxyDomain</a> property to a custom, fully qualified domain name (FQDN) for the Playback API, metrics and analytics collection services.</p>
-<pre><code class="language-objectivec" translate="No">@property (nonatomic, nullable) NSString *chinaProxyDomain</code></pre>
-    </p>
+      In the <code translate="No">ViewController.swift</code> file, before you create the <code translate="No">sharedSDKManager</code>, add a variable for <code translate="No">chinaProxyDomain</code> as follows:</p>
+      <pre class="line-numbers">
+<code class="language-swift" translate="No">class ViewController: UIViewController {
+    
+  <span class="bcls-highlight">let setChinaProxyDomain: () = BCOVGlobalConfiguration.sharedConfig().chinaProxyDomain = &quot;<span class="bcls-input">your host domain</span>&quot;</span>
+  let sharedSDKManager = BCOVPlayerSDKManager.shared()</code></pre>
   </li>
- 
+</ol>
+<h3>Objective-C</h3>
+<ol class="bcls-tasklist-restart">
+  <li>
+    <p>
+      Review the <a href="https://github.com/BrightcoveOS/ios-player-samples/blob/master/Player/VideoCloudBasicPlayer/objc/VideoCloudBasicPlayer">VideoCloudBasicPlayer</a> sample.</p>
+  </li>
+  <li>
+    <p>
+      In the <code translate="No">ViewController.m</code> file, add a variable for <code translate="No">chinaProxyDomain</code> as follows:</p>
+  <pre class="line-numbers">
+<code class="language-swift" translate="No">- (instancetype)initWithCoder:(NSCoder *)coder
+  {
+    <span class="bcls-highlight">BCOVGlobalConfiguration.sharedConfig.chinaProxyDomain = @&quot;<span class="bcls-input">your host domain</span>&quot;;</span>
+      self = [super initWithCoder:coder];
+      if (self)
+      {
+          [self setup];
+      }
+      return self;
+  }</code></pre>
+  </li>
 </ol>
 </section>
 
