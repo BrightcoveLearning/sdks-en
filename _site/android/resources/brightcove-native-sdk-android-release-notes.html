@@ -1233,12 +1233,24 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
-<h3>Version 6.17.1</h3>
+<h3>Version 6.17.2</h3>
 
-<h4>14 Oct 2021</h4>
-<p>ExoPlayer Changes:</p>
+<h4>19 Oct 2021</h4>
+<p>SDK Changes:</p>
 <ul>
-<li>Fixed an issue with overly verbose logging from the <code translate="No">ExoPlayerVideoDisplayComponent</code></li>
+<li>This version adds support for Generic Stream Concurrency (GSC). Please refer to the Brightcove Support Pages for more information.</li>
+<li>
+  Limitations
+  <ul>
+    <li>Chromecast is not supported in this version. Support for Chromecast will be included in a future release of the SDK.</li>
+  </ul>
+</li>
+<li>
+  Known Issues
+  <ul>
+    <li>When sending requests to the GSC heartbeat service, the second request will follow the first request 30 seconds later, instead of at the frequency set for the account. This issue only occurs on the second heartbeat request, does not affect playback, and will be addressed in a future release of the SDK.</li>
+  </ul>
+</li>
 </ul>
 
 </section>
@@ -1246,6 +1258,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <section class="section">
 <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
+<h3>Version 6.17.1</h3>
+
+<h4>14 Oct 2021</h4>
+<p>ExoPlayer Changes:</p>
+<ul>
+<li>Fixed an issue with overly verbose logging from the <code translate="No">ExoPlayerVideoDisplayComponent</code></li>
+</ul>
 
 <h3>Version 6.17.0</h3>
 
