@@ -1,5 +1,15 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 6.17.2
+
+  SDK Changes:
+
+    * This version adds support for Generic Stream Concurrency (GSC). Please refer to the Brightcove Support Pages for more information.
+      Limitations:
+      * Chromecast is not supported in this version. Support for Chromecast will be included in a future release of the SDK.
+      Known Issues:
+      * When sending requests to the GSC heartbeat service, the second request will follow the first request 30 seconds later, instead of at the frequency set for the account. This issue only occurs on the second heartbeat request, does not affect playback, and will be addressed in a future release of the SDK.
+
 Version 6.17.1
 
   ExoPlayer Changes:
