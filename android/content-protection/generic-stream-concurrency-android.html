@@ -39,7 +39,7 @@ grandparent: Android Development
         <p>
           In your <strong translate="no">build.gradle</strong> file (or wherever you set your repositories block), add the following:
         </p>
-        <pre>
+        <pre class="line-numbers">
 <code class="language-java" translate="No">maven {
   url 'http://repo.brightcove.com/snapshots'
  }</code></pre>
@@ -53,39 +53,52 @@ grandparent: Android Development
         <p>
           In your player Activity’s <strong translate="no">onCreate</strong> method, add this line:
         </p>
-        <pre>
+        <pre class="line-numbers">
 <code class="language-java" translate="No">brightcoveVideoView.setStreamConcurrencyEnabled(true);</code></pre>
       </li>
       <li>
         <p>
-          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
+          <strong>Optional</strong>: If you want to retrieve the list of active heartbeat sessions for your viewer ID (<code translate="no">uid</code>), add this optional line below the line above:
         </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_Android">Using License Keys Protection: Android</a> section.
-        </p>
+        <pre class="line-numbers">
+<code class="language-java" translate="No">brightcoveVideoView.setStreamConcurrencySessionsListener(sessionsList -&gt;
+  Log.v(TAG, &quot;Stream Concurrency. Get Active Sessions: &quot; + sessionsList.toString()));</code></pre>
       </li>
+      <li>
+        <p>
+          In the <strong translate="no">onCreate</strong> method, add an event listener for the <code translate="no">DID_SET_VIDEO</code> event, to set heartbeat headers:
+        </p>
+        <pre class="line-numbers">
+<code class="language-java" translate="No">Map&lt;String, String&gt; requestHeaders = new HashMap&lt;&gt;();
+  requestHeaders.put(ConcurrencyClient.HEARTBEAT_VIDEO_HEADER_KEY, video.getId());
+  requestHeaders.put(ConcurrencyClient.HEARTBEAT_ACCOUNTID_HEADER_KEY, accountId);
+  requestHeaders.put(BrightcoveTokenAuthorizer.BRIGHTCOVE_AUTHORIZATION_HEADER_KEY, jwtToken);
+  brightcoveVideoView.setStreamConcurrencyRequestHeaders(requestHeaders);</code></pre>
+  <aside class="bcls-aside bcls-aside--information">Note that the same JWT used to retrieve the video is used here, and should include a <code translate="no">uid</code> claim (and optionally, a <code translate="no">sid</code> claim).</aside>
+      </li>
+
     </ol>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Related_topics">Related topics</h2>
-    <ul>
-      <li>
-        <a href="/playback-rights/getting-started/overview-epa.html">Overview: Playback Rights Management Service</a>
-      </li>
-      <li>
-        <a href="/playback-rights/getting-started/implementing-epa.html">Implementing Playback Rights Management Service</a>
-      </li>
-      <li>
-        <a href="/playback-rights/guides/using-epa-with-bcp.html">Using Playback Rights with Brightcove Player</a>
-      </li>
-      <li>
-        <a href="/playback-authorization/guides/stream-concurrency.html">Implementing Stream Concurrency</a>
-      </li>
-    </ul>
+    <h2 id="Limitations_and_Known_Issues">Limitations and Known Issues</h2>
+    <p>Please note that this feature is currently in pre-release testing, and is subject to change as we develop and enhance it. As of the release of this document, these limitations and known issues have been seen in testing:</p>
+    <h3>Chromecast</h3>
+    <p>Brightcove is currently working on Chromecast support for this feature. As this feature becomes available, we will test the Brightcove Native SDK for Android Chromecast support for GSC, which may result in a follow-on release of the SDK.</p>
+    <h3>Concurrency Limiting with DRM</h3>
+    <p>Testing has shown that when using GSC with DRM-protected videos, if the account is enabled for DRM stream concurrency, the <code translate="no">climit</code> claim will be enforced on the license acquisition request, and an error message like this will be returned:</p>
+    <pre>
+<code class="language-java" translate="No">{
+	&quot;error&quot;: &quot;Denied by stream limiting (create)&quot;
+}</code></pre>
+  <h3>Heartbeat Frequency</h3>
+  <p>The Heartbeat frequency of second request is 30 seconds.</p>
+  <p>Testing has shown for the second heartbeat request ONLY, that the frequency of this request is 30 seconds. We are investigating this.</p>
+  <h3>Device With Blocked Session</h3>
+  <p>A device with a blocked session can attempt to stop its session.</p>
+  <p>Testing has shown that if a device attempts to stream a video that is already being playing on another device, a second device is blocked from playing the stream, as expected. However, the second device may then attempt to “stop” the session that it was attempting to create, which will result in a <code>404</code> response code from the GSC heartbeat service. Testing has also shown that this does not affect the first device’s ability to continue streaming the content.</p>
+
+    
   </section>
 
 </article>
