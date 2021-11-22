@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="In this topic, you will find the latest information on changes and enhancements to the Brightcove Native SDK for Android.">
+  <meta name="description" content="In this topic, you will learn how to set up and test Generic Stream Concurrency (GSC) with the Brightcove Native SDK for Android.">
   
-  <title>Brightcove Native SDK for Android Release Notes</title>
+  <title>Generic Stream Concurrency (GSC) with the Native SDK for Android</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -66,11 +66,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
     
       
-        <li class="breadcrumb-item"><a href="/android/resources/">Resources</a></li>
+        <li class="breadcrumb-item"><a href="/android/content-protection/">Content protection</a></li>
       
     
       
-        <li class="breadcrumb-item active" aria-current="page">Brightcove Native SDK for Android Release Notes</li>
+        <li class="breadcrumb-item active" aria-current="page">Generic Stream Concurrency (GSC) with the Native SDK for Android</li>
       
     
   </nav>
@@ -1224,1511 +1224,339 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
-<h1>Brightcove Native SDK for Android Release Notes</h1>
+<h1>Generic Stream Concurrency (GSC) with the Native SDK for Android</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will find the latest information on changes and enhancements to the Brightcove Native SDK for Android.</summary>
-  <br/>
-  <p>To join the mailing list and receive release announcements for the Native SDKs, <a href="https://groups.google.com/g/brightcove-native-player-sdks">sign up here</a>.</p>
+  <summary>In this topic, you will learn how to set up and test Generic Stream Concurrency (GSC) with the Brightcove Native SDK for Android.</summary>
 
-<section id="Current_release" class="section">
-  <h2 id="Current_release"><strong>Current release</strong></h2>
+  <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+    <p>
+      By default, the Native SDKs talk to the Brightcove Playback API to retrieve your video and playlist content. A new system to manage playback rights and restrictions sits in front of the Playback API and provides playback authorization using DRM licenses.
+    </p>
+    <p>You can use Playback Rights with or without DRM, but if you choose to use runtime restrictions, then you will need to use a JSON Web Token (JWT).</p>
+    <p>License Keys Protection offers an extra level of security when using Dynamic Delivery with DRM-protected or HTTP Live Streaming Encryption (HLSe) content. License requests can be authenticated using a signed <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">JSON Web Token (JWT)</a>. </p>
 
-<h3>Version 6.17.2</h3>
+    <p>The token is used when requesting the video license, once the video has been loaded to the player and the source has been selected.</p>
 
-<h4>19 Nov 2021</h4>
-<p>SDK Changes:</p>
-<ul>
-<li>This version adds support for Generic Stream Concurrency (GSC). Please refer to the Brightcove Support Pages for more information.</li>
-<li>
-  Limitations
-  <ul>
-    <li>Chromecast is not supported in this version. Support for Chromecast will be included in a future release of the SDK.</li>
-  </ul>
-</li>
-<li>
-  Known Issues
-  <ul>
-    <li>When sending requests to the GSC heartbeat service, the second request will follow the first request 30 seconds later, instead of at the frequency set for the account. This issue only occurs on the second heartbeat request, does not affect playback, and will be addressed in a future release of the SDK.</li>
-  </ul>
-</li>
-</ul>
+    <aside class="bcls-aside bcls-aside--information">With HLSe content, when the player changes rendition, due to improved connectivity or after the first segment is loaded, a new license request is made.</aside>
 
-</section>
+    <p>If you are not familiar with this feature, see the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html">Overview: Brightcove Playback Restrictions</a> document.</p>
+  </section>
 
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
-
-<h3>Version 6.17.1</h3>
-
-<h4>14 Oct 2021</h4>
-<p>ExoPlayer Changes:</p>
-<ul>
-<li>Fixed an issue with overly verbose logging from the <code translate="No">ExoPlayerVideoDisplayComponent</code></li>
-</ul>
-
-<h3>Version 6.17.0</h3>
-
-<h4>8 Oct 2021</h4>
-
-<p>SDK Changes:</p>
-<ul>
-  <li>The Brightcove Native Player SDK for Android now supports Android 11</li>
-</ul>
-
-<p>ExoPlayer Changes:</p>
-<ul>
-<li>
-  <p>The Brightcove Native Player SDK for Android now supports ExoPlayer 2.14.2. Please note the following changes:</p>
-  <ul>
-    <li>
-      <p>In the <code translate="No">ExoPlayerVideoDisplayComponent</code> class the <code translate="No">getBrightcoveDrmSession() : BrightcoveDrmSession</code> method has been deprecated. Instead please use <code translate="No">ExoPlayerDrmSessionManager<FrameworkMediaCrypto></code>. See <code translate="No">ExoPlayerVideoDisplayComponent:getExoPlayerDrmSessionManager(): ExoPlayerDrmSessionManage</code></p>
-    </li>
-      <li>
-        <p>In the <code translate="No">ExoPlayerVideoDisplayComponent</code> class, in the <code translate="No">InfoListener</code> subclass, the method <code translate="No">onDecoderInitialized(AnalyticsListener.EventTime eventTime, int trackType, String decoderName,long initializationDurationMs)</code> has been deprecated. Instead, please use <code translate="No">onAudioDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void</code> and/or <code translate="No">onVideoDecoderInitialized(AnalyticsListener.EventTime eventTime, String decoderName, long initializationDurationMs) : void</code></p>
-      </li>
-      <li>
-        <p>The constructor for the <code translate="No">ExoPlayerDrmSessionManager</code> class has been deprecated. Instead, use the <code translate="No">ExoPlayerDrmSessionManager.Builder</code></p>
-      </li>
-      <li>
-        <p>The constructor for the <code translate="No">OfflineLicenseManager</code> class has been deprecated. The <code translate="No">OfflineLicenseManager</code> now uses the Builder pattern. See <code translate="No">OfflineLicenseManager.Builder</code></p>
-      </li>
-      <li>
-        <p>In the class <code translate="No">TrackSelectoParameterFactory</code>, the method <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(int maxVideoBitrate)</code> has been deprecated. Instead, please use <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(Context context, int maxVideoBitrate)</code></p>
-      </li>
-      <li>
-        <p>In the class <code translate="No">BrightcoveSegmentTemplate</code>, the method <code translate="No">getSegmentCount(long periodDurationUs)</code> has been deprecated. Instead, please use <code translate="No">getSegmentCountLong(long periodDurationUs)</code></p>
-      </li>
-      <li>This ExoPlayer version requires that any instance of the ExoPlayer must be created and accessed in the main thread, so any access to the <code translate="No">ExoPlayerVideoDisplayComponent.getExoPlayer</code> method or direct access to any ExoPlayer method must be on the main thread as well. Version 6.16.6</li>
-  </ul>
-</li>
-</ul>
-
-<h3>Version 6.16.6</h3>
-
-<h4>4 Oct 2021</h4>
-
-<p>SDK Changes:</p>
-<ul>
-  <li>Improves the <code translate="No">video_seconds_viewed</code> measurement in <code translate="No">video_engagement</code> events sent to the Brightcove Analytics back-end</li>
-</ul>
-
-<p>ExoPlayer Changes:</p>
-<ul>
-<li>Fixes an issue where a device could go to sleep during ad playback</li>
-</ul>
-
-<h3>Version 6.16.5</h3>
-
-<h4>23 Aug 2021</h4>
-
-<p>SDK Changes:</p>
-<ul>
-  <li>Improved support for 608/708 captions that have a language attribute</li>
-  <li>Emit a <code translate="No">DID_SET_VIDEO_STILL_ERROR</code> event when a video's poster image can not be loaded</li>
-</ul>
-
-<p>ExoPlayer Changes:</p>
-<ul>
-<li>Emit an <code translate="No">AD_ERROR</code> error event if ad loading is interrupted, or if the ExoAdPlayer or its context are null</li>
-</ul>
-
-<p>Offline Playback Plugin Changes:</p>
-<ul>
-<li> Fixed a problem where backgrounding or exiting the app could cause offline content to fail to play</li>
-</ul>
-
-<h3>Version 6.16.4</h3>
-
-<h4>4 Aug 2021</h4>
-
-<p>Offline Playback Changes:</p>
-<ul>
-  <li>Fixed an issue where some image files would not download successfully</li>
-</ul>
-
-
-<h3>Version 6.16.3</h3>
-
-<h4>1 July 2021</h4>
-
-<p>SDK Changes:</p>
-<ul>
-  <!-- <li>Added support for setting a label property in the <code translate="no">BrightcoveCaptionFormat</code> class to support sending selected caption and audio
-    track information to a Cast receiver</li> -->
-    <li>Adds support for Forensic Watermarking. For details, see the <a href="/features/forensic-watermarking-with-sdks.html">Forensic Watermarking with Native SDKs</a> document.</li>
-  <li>Updated the <code translate="no">VideoUtils</code> class to add a utility method to remove the sidecar caption sources from the Video object</li>
-  <li>Fixed an issue where the <code translate="no">video_duration</code> URL parameter was not included in requests to Brightcove’s Analytics back-end for reporting</li>
-</ul>
-
-<p>Cast Plugin Changes:</p>
-<ul>
-  <li>Added support for setting a URL to a custom player for the Cast receiver app. Please refer to the Android SDK Support Documentation for
-    more information</li>
-    <li>
-      <p>Added support for sending selected caption and audio track information to a Cast receiver</p>
-      <aside class="bcls-aside bcls-aside--information">
-        <p>A known, non-regression issue will be addressed in an upcoming release, where in-manifest caption selections are not automatically displayed on the sender if the Cast session is closed during playback.</p>
-        <p>A workaround for this problem is that the selection made before opening the Cast session can be re-selected and displayed when the session is reopened on the Sender device.</p>
-      </aside>
-    </li>
-</ul>
-
-<p>Offline Playback Changes:</p>
-<ul>
-  <li>
-    <p>Added support for setting properties in the <code translate="no">AbstractOfflineCatalog</code> class. Offline Catalog properties can be set in two ways:</p>
+  <section class="bcls-section">
+    <h2 id="Requirements">Requirements</h2>
+    <p>Here are the requirements needed to use Playback Restrictions.</p>
+    <!-- <h3>Playback Rights</h3> -->
+    <h4>Android</h4>
     <ul>
-      <li>As a <code translate="no">Map&lt;String, String&gt;</code> of key/value pairs using the <code translate="no">setProperties(Map&lt;String, String&gt;)</code> method</li>
-      <li>Through the <code translate="no">getProperties().put(key, value)</code> method</li>
+      <li>You must use Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</li>
     </ul>
-  </li>
-  <li>Added support for creating custom <code translate="no">NotificationChannels</code> in the <code translate="no">DownloadManager</code> class. Please refer to the Android SDK Support Documentation for more information</li>
-</ul>
+    <h4>iOS</h4>
+    <ul><li>You must use Brightcove Native SDK for iOS version <strong>6.7.0</strong> or later</li>
+    </ul>
 
-<h3>Version 6.16.2</h3>
+    <!-- <h3>License Keys Protection</h3>
+    <p>To use License Keys Protection, you need the following:</p>
+    <ul>
+      <li>Player version <strong>6.33.0</strong> or later</li>
+      <li>If using DRM, you will need the <a href="https://support.brightcove.com/configuring-brightcove-player-drm#Changelog">DRM plugin</a> version <strong>5.5.0</strong> or later</li>
+    </ul> -->
 
-<h4>10 May 2021</h4>
+  </section>
 
-<p>SDK Changes:</p>
-<ul>
-  <li>Fixed an issue where text tracks with the kind <code translate="no">subtitles</code> were not being parsed or displayed</li>
-  <li>Fixed an issue where text tracks that have the <code translate="no">position</code> attribute
-    with the additional <code translate="no">line-left</code> or <code translate="no">line-right</code> attribute were not being
-    parsed or displayed</li>
-</ul>
-
-<p>ExoPlayer 2 Changes:</p>
-<ul>
-  <li>Fixed an issue where an incorrect index could be used to get the current selected audio language</li>
-</ul>
-
-<p>Omniture Plugin Changes:</p>
-<ul>
-  <li>Fixed an issue where the heartbeat would continue after the player was destroyed</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-<ul>
-  <li>
-    <p>Added parsing support for nested VAST and VMAP Extension elements</p>
-    <aside class="bcls-aside bcls-aside--information">Extension elements, regardless of nesting depth, are not executed by the SSAI plugin, and so this support only ensures that parsing VAST and VMAP with nested Extension elements of any depth does not fail.</aside>
-  </li>
-  <li>
-    <p>Added parsing support for VAST <code translate="no">AdVerification</code> elements</p>
-    <aside class="bcls-aside bcls-aside--information">
-      <p><code translate="no">AdVerification</code> elements are not executed by the SSAI plugin, and so
-        this support only ensures that parsing VAST with <code translate="no">AdVerification</code> elements
-        does not fail.</p>
-      <p>In addition, <code translate="no">AdVerification</code> elements are a VAST 4.0 feature, and the Brightcove Android SDK does not yet fully support VAST 4.x. This parsing support should not be considered as support for VAST 4.x in general in the Brightcove Native SDK for Android.</p>
+  <section class="bcls-section">
+    <h2 id="Android_Using_Playback_Rights">Android: Using Playback Rights</h2>
+    <aside class="bcls-aside bcls-aside--information">Notes:
+      <ul>
+        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
+        <li>On the Android platform, only DRM DASH is currently supported</li>
+      </ul>
     </aside>
-  </li>
-</ul>
-
-<h3>Version 6.16.1</h3>
-
-<h4>12 Jan 2021</h4>
-
-<p>SDK Changes:</p>
-<ul>
-  <li>Improved Video Engagement reporting for SSAI VOD videos.</li>
-  <li>The <code translate="no">DashWidevineAuthorizer</code> class is deprecated. Please use the
-<code translate="no">WidevineAuthorizer</code> class instead.</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-<ul>
-	<li>
-		The Google IMA SDK has been updated to version 3.21.1.
-	</li>
-  <li>
-		Improved support for skippable ads, and fixed an issue where skippable
-ads might not exit cleanly, and ad audio might be heard after resuming
-content playback.
-	</li>
-  <li>
-		Fixed an issue with setting mime types for ads, where user-supplied
-mime types were not being set by the plugin's Builder.
-	</li>
-  <li>
-		Added plugin Builder convenience methods for:
-    <ul>
-      <li>Setting ad mime types in the <code translate="no">AdsRenderingSettings</code> object - see
-<code translate="no">Builder.setMimeTypes(List<String>) : void</code></li>
-      <li>Setting the ad video load timeout in the <code translate="no">AdsRenderingSettings</code>
-object - see <code translate="no">Builder.setLoadVideoTimeout(int) : void</code></li>
-      <li>Setting debug mode in the <code translate="no">ImaSdkSettings</code> object - see
-<code translate="no">Builder.setDebugMode(boolean) : void</code></li>
-    </ul>
-	</li>
-  <li>Please note:
-    <p>These convenience methods are member methods in the
-<code translate="no">AdsRenderingSettings</code> and <code translate="no">ImaSdkSettings</code> Google IMA SDK objects.
-When called through the Builder directly, these methods will configure the
-<code translate="no">AdsRenderingSettings</code> and <code translate="no">ImaSdkSettings</code> objects that are created by default in the Builder.</p>
-    <p>If you decide to create custom <code translate="no">AdsRenderingSettings</code> and <code translate="no">ImaSdkSettings</code> Google IMA SDK objects for use in the IMA plugin, you can call those objects' methods directly:</p>
-    <ul>
-      <li><code translate="no">AdsRenderingSettings.setMimeTypes(List<String>) : void</code></li>
-      <li><code translate="no">AdsRenderingSettings.setLoadVideoTimeout(int) : void</code></li>
-      <li><code translate="no">ImaSdkSettings.setDebugMode(boolean) : void</code></li>
-    </ul>
-  </li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-<ul>
-  <li>Added support for Live SSAI streams that are created as remote Video objects.</li>
-</ul>
-
-<h3>Version 6.16.0</h3>
-
-<h4>14 Oct 2020</h4>
-
-<p>Cast Plugin Changes:</p>
-<ul>
-	<li>
-		The Cast plugin has been redesigned and now supports the Brightcove
-Cast Receiver v2.0.
-	</li>
-  <li>
-		<p>Please refer to the Brightcove Android Native SDK documentation, and
-the Brightcove Android Native SDK sample apps, for more information and
-code samples.</p>
-	</li>
-</ul>
-
-<h3>Version 6.15.1</h3>
-
-<h4>22 Sep 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-		<p>The Brightcove Native SDK for Android now supports Arabic (RTL)
-language in player controls and UI labels.</p>
-	</li>
-  <li>
-		<p>Please note: While the Arabic language (RTL) text is supported, only left-to-right (LTR) player control layouts
-are currently supported.</p>
-	</li>
-  <li>
-		<p>Fixed an issue where certain <code translate="No">video_view</code> and <code translate="No">video_engagement</code> Analytics
-event parameters could include non-Western Arabic numerals for the
-following parameters:</p>
-    <ul>
-      <li><code translate="No">video_view</code>:</li>
-      <ul>
-        <li><code translate="No">start_time_ms</code></li>
-        <li><code translate="No">load_time_ms</code></li>
-      </ul>
-      <li><code translate="No">video_engagement</code>:</li>
-      <ul>
-        <li><code translate="No">range</code></li>
-        <li><code translate="No">video_seconds_viewed</code></li>
-      </ul>
-    </ul>
-	</li>
-</ul>
-
-<p>Cast Plugin Changes:</p>
-<ul>
-	<li>
-		The Cast plugin now supports Arabic (RTL) text in cast controls and UI
-labels.
-	</li>
-  <li>
-		<p>Please note that Arabic language support does not extend to the
-displays (video elapsed time and duration) in the Cast expanded controller.</p>
-	</li>
-  <li>
-		<p>Displaying these components is controlled by the Google Cast API.</p>
-	</li>
-</ul>
-
-<p>Offline Playback Plugin Changes:</p>
-
-<ul>
-	<li>
-		<p>The Offline Playback plugin now supports Arabic (RTL) text in UI labels.</p>
-	</li>
-</ul>
-
-<p>Pulse Plugin Changes:</p>
-<ul>
-	<li>
-		The Pulse plugin now supports Arabic (RTL) text in Ad controls and UI
-labels.
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-<ul>
-	<li>
-		The SSAI plugin now supports Arabic (RTL) text in Ad controls and UI
-labels.
-	</li>
-</ul>
-
-<h3>Version 6.15.0</h3>
-
-<h4>25 Aug 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-		<p>Implemented additional null checking for caption URIs</p>
-	</li>
-</ul>
-
-<p>ExoPlayer Changes:</p>
-<ul>
-	<li>
-		Fixed a regression in the <code translate="No">ExoPlayerVideoDisplayComponent setPeakBitrate()</code> method where the specified bitrate would be ignored, and the highest bitrate selected instead.
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-		<p>The Google IMA SDK has been updated to version 3.19.4. Some of the changes include:</p>
-    <ul>
+    <p>
+      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
+    </p>
+    <ol class="bcls-tasklist-restart">
       <li>
-        <code translate="No">SdkFactory.createAdDisplayContainer()</code> is deprecated
-      </li>
-      <li>
-        <code translate="No">AdDisplayContainer.setPlayer(VideoAdPlayer)</code> is deprecated
-      </li>
-      <li>
-        <code translate="No">AdDisplayContainer.setAdContainer(ViewGroup)</code> is deprecated
+        <p>
+          Start with the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">Basic Sample App</a>.
+        </p>
       </li>
       <li>
         <p>
-          <code translate="No">AdsRequest.setAdDisplayContainer(AdDisplayContainer)</code> is removed
+          By default, the Native SDK for Android makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
         </p>
-        <p>For the full list of changes, please refer to the Google IMA Android SDK release history.</p>
-      </li>
-    </ul>
-	</li>
-  <li>
-    The <code translate="No">GoogleIMAComponent</code> now uses a Builder for its construction.
-  </li>
-  <li>
-    <p>
-      The IMA plugin automatically creates the <code translate="No">AdDisplayContainer</code> using the <code translate="No">BrightcoveVideoView</code> by default.
-    </p>
-    <p>
-      You may provide an <code translate="No">AdDisplayContainerFactory</code> to the <code translate="No">GoogleIMAComponent.Builder</code> to provide your own <code translate="No">AdDisplayContainer</code>.
-    </p>
-  </li>
-  <li>
-    The following methods were deprecated in the <code translate="No">GoogleIMAVideoAdPlayer</code> class:
-    <ul>
-      <li>
-        <code translate="No">playAd(). Use playAd(AdMediaInfo)</code> instead
-      </li>
-      <li>
-        <code translate="No">loadAd(String). Use loadAd(AdMediaInfo, AdPodInfo)</code> instead
-      </li>
-      <li>
-        <code translate="No">stopAd(). Use stopAd(AdMediaInfo)</code> instead
-      </li>
-      <li>
-        <code translate="No">resumeAd(). Use playAd(AdMediaInfo)</code> instead
+        <p>
+          Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code> without supplying a policy key. Here is an example:
+        </p>
+        <pre>
+<code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, accountId).build();</code></pre>
+        <br />
+        <p>
+          If you are following the Brightcove sample app, it gets the account ID as shown here:
+        </p>
+        <pre>
+<code class="language-java" translate="No">getString(R.string.account)</code></pre>
+        </br />
       </li>
       <li>
         <p>
-          <code translate="No">pauseAd(). Use pauseAd(AdMediaInfo)</code> instead
+          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
+        </p>
+        <p>
+          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
+        </p>
+        <p>
+          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_Android">Using License Keys Protection: Android</a> section.
         </p>
       </li>
+    </ol>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Android_Using_License_Keys_Protection">Android: Using License Keys Protection</h2>
+
+    <p>The Native SDK for Android currently supports Key/license protection for HLSe and Widevine DASH sources. You will provide your authorization token as part of the Brightcove catalog request for a single video or a playlist.</p>
+
+    <p>
+      To make a Brightcove catalog request, follow these steps:
+    </p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Authorization token as shown here:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+  .setBrightcoveAuthorizationToken("<span class="bcls-input">your jwt token</span>")
+  .build();
+</code></pre>
+        <p>
+          The value of the Authorization token will be the value of your JSON Web Token.
+        </p>
+      </li>
+      <li>
+        <p>
+          Once you have created the <code translate="No">HttpRequestConfig</code> object, pass it to one of the following Catalog methods:
+        </p>
+        <p>
+          For a video request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">findVideoByID(String, HttpRequestConfig, VideoListener)
+</code></pre>
+        <pre class="line-numbers"><code class="language-java" translate="No">findVideoByReferenceID(String, HttpRequestConfig, VideoListener)
+</code></pre>
+        <p>
+          For a playlist request, use one of the following:
+        </p>
+        <pre class="line-numbers"><code class="language-java" translate="No">findPlaylistByID(String, HttpRequestConfig, PlaylistListener)
+</code></pre>
+        <pre class="line-numbers"><code class="language-java" translate="No">findPlaylistByReferenceID(String, HttpRequestConfig, PlaylistListener)
+</code></pre>
+        <p>
+          The details of token usage for HLSe and Widevine license acquisition are handled by the SDK.
+        </p>
+        <aside class="bcls-aside bcls-aside--information">For playlist requests, all videos in the playlist must use the same token. In a future release, you will be able to assign a different token to each video in the playlist. You will be responsible for maintaining the mapping between Video ID and token. The <code translate="No">conid</code> as defined in the <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Create_a_JSON_Web_Token">JWT token claims</a> is the Video ID value associated with a token.</aside>
+      </li>
+    </ol>
+
+    <h3>Code example</h3>
+    <p>
+      Here is an example that shows how to pass your authorization token when making a Catalog request:
+    </p>
+    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;...&quot;;
+HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+  .setBrightcoveAuthorizationToken(myToken)
+  .build();
+&hellip;
+
+Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
+catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});
+</code></pre>
+
+    <h3>Offline Playback</h3>
+    <p>
+      The OfflineCatalog <code translate="No">findVideo</code>, <code translate="No">requestPurchaseLicense</code> and <code translate="No">requestRentalLicense</code> methods all take an <code translate="No">HttpRequestConfig</code> as an argument.
+    </p>
+    <aside class="bcls-aside bcls-aside--tip">Key/license protection with Offline Playback is supported with the Native SDK for Android v6.8.1 or later.</aside>
+    <p>Here's an example:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">private HttpRequestConfig httpRequestConfig;
+private String pasToken = &quot;<span class="bcls-input">your jwt token</span>&quot;;
+...
+HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
+httpRequestConfigBuilder.setBrightcoveAuthorizationToken(pasToken);
+httpRequestConfig = httpRequestConfigBuilder.build();
+playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
+    @Override
+    public void onPlaylist(Playlist playlist) {
+        videoListAdapter.setVideoList(playlist.getVideos());
+        onVideoListUpdated(false);
+        brightcoveVideoView.addAll(playlist.getVideos());
+    }
+
+    @Override
+    public void onError(String error) {
+        String message = showToast(&quot;Failed to find playlist[%s]: %s&quot;, playlist.displayName, error);
+        Log.w(TAG, message);
+        onVideoListUpdated(true);
+    }
+});</code></pre>
+
+    <p>
+      For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
+    </p>
+
+    <h3>Responses</h3>
+    <p>
+      The following responses are associated with PAS:
+    </p>
+    <ul>
+      <li>
+        200 - License is allowed to continue
+      </li>
+      <li>
+        401 - The License delivery must not be allowed to continue
+      </li>
     </ul>
-  </li>
-  <li>
+
+    <!-- <h3>Limitations</h3>
     <p>
-      Fixed an issue where the IMA plugin was not emitting the <code translate="No">AD_PAUSED/AD_RESUME</code> events when calling <code translate="No">GoogleIMAVideoAdPlayer.pauseAd</code> and <code translate="No">GoogleIMAVideoAdPlayer.resumeAd</code>, respectively.
+      There is a limitation with the current release:
     </p>
-    <p>For more information, please visit the Brightcove Android SDK Overview in the Brightcove Support site.</p>
-  </li>
-</ul>
+    <ul>
+      <li>
+        Chromecast is not supported with key/license protection.
+      </li>
+    </ul> -->
+  </section>
 
-<p>VMAP Plugin changes:</p>
-<ul>
-	<li>
-		The deprecated VMAP plugin has been removed from the Brightcove Native SDK for Android. For VMAP ad delivery, please continue to use the IMA plugin.
-	</li>
-</ul>
+  <section class="bcls-section">
+    <h2 id="iOS_Using_Playback_Rights">iOS: Using Playback Rights</h2>
+    <aside class="bcls-aside bcls-aside--information">Notes:
+      <ul>
+        <li>With this implementation, any content restriction configured with policy keys will be ignored</li>
+      </ul>
+    </aside>
 
-<p>OnceUx Plugin Changes:</p>
-<ul>
-	<li>
-		The deprecated OnceUx plugin has been removed from the Brightcove Native SDK for Android. Please use the SSAI plugin instead.
-	</li>
-</ul>
-
-<h3>Version 6.14.1</h3>
-
-<h4>7 Aug 2020</h4>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-		<p>Fixes an issue where the <code translate="No">CustomClick</code> element would fail to parse.</p>
-	</li>
-  <li>
-		<p>Fixes an issue in parsing the VAST Extension element.</p>
-	</li>
-</ul>
-
-<h3>Version 6.14.0</h3>
-
-<h4>8 Jul 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-		<p>Improved integration with Android TalkBack (and Samsung Voice
-Assistant).</p>
-	</li>
-  <li>
-		<p>The <code translate="No">VideoParser</code> will now ignore any DRM source that does not contain
-Widevine key systems.</p>
-	</li>
-  <li>
-		<p>Fixed an issue where the <code translate="No">VideoParser</code> would fail to parse a Thumbnail
-VTT Source that does not contain the bandwidth property.</p>
-	</li>
-  <li>
-		<p>Fixed an issue on Android TV platforms where the Player Options button
-would fail to display after Server-Side Ad Insertion ad breaks completed.</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-		<p>ExoPlayer is now used for Ad playback instead of MediaPlayer.</p>
-	</li>
-</ul>
-
-<h3>Version 6.13.3</h3>
-
-<h4>21 May 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-		<p>Improved rendering of ruby text in sidecar closed captions. A similar
-improvement for in-manifest captions is forthcoming.</p>
-	</li>
-</ul>
-
-<p>Cast Plugin Changes:</p>
-
-<ul>
-	<li>
-		<p>Fixed a problem where the the activity was not released as expected
-when the Chromecast plugin is used.</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for Audience Segment (Ad) Targeting, whereby key/value
-pairs are added to the ad tag URL's cust_params parameter.</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for Audience Segment (Ad) Targeting, whereby key/value
-pairs are added to the VMAP Source URL.</p>
-	</li>
-  <li>
     <p>
-      Fixed a problem where an empty or malformed URL in a VAST Tracking
-    element can cause an app crash
+      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
     </p>
-  </li>
-</ul>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>
+          Start with the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">Basic Sample App</a>.
+        </p>
+      </li>
+      <li>
+        <p>
+          By default, the Native SDK for iOS makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
+        </p>
+        <p>
+          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the policy key to <code translate="No">nil</code>. Here is an example:
+        </p>
+        <pre>
+<code class="language-java" translate="No">let playbackService = BCOVPlaybackService(accountId: kViewControllerAccountID, policyKey: nil)</code></pre>
+      </li>
+      <li>
+        <p>
+          <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
+        </p>
+        <p>
+          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
+        </p>
+        <p>
+          To pass your token with the catalog request, see the <a href="#Using_License_Keys_Protection_iOS">Using License Keys Protection: iOS</a> section.
+        </p>
+      </li>
+    </ol>
+  </section> 
+
+  <section class="bcls-section">
+    <h2 id="iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</h2>
+
+    <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your authorization token. This is done using the <code translate="No">authToken</code> parameter.</p>
+
+    <p>
+      For a video request, use one of the following:
+    </p>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+
+    <p>
+      For a playlist request, use one of the following:
+    </p>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+
+    <p>
+      The details of token usage for HLSe and FairPlay license acquisition are handled by the SDK.
+    </p>
+    <aside class="bcls-aside bcls-aside--information">For playlist requests, all videos in the playlist must use the same token. In a future release, you will be able to assign a different token to each video in the playlist. You will be responsible for maintaining the mapping between Video ID and token. The <code translate="No">conid</code> as defined in the <a href="https://general.support.brightcove.com/developer/create-json-web-token.html#Create_a_JSON_Web_Token">JWT token claims</a> is the Video ID value associated with a token.</aside>
+
+    <p>
+      For details, see the <a href="/ios/reference/sdk/index.html#PlaybackAuthorizationService">Playback Authorization Service</a> section of the Native SDK for iOS reference.
+    </p>
+
+    <h3>Offline Playback</h3>
+    <p>
+      If you are using the Playback Authorization Service with Offline Playback, there is a new method for renewing a FairPlay license which accepts an authorization token:
+    </p>
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">// Request license renewal
+    [BCOVOfflineVideoManager.sharedManager renewFairPlayLicense:offlineVideoToken
+        video:video // recent video from Playback API or Playback Service class
+        authToken: authToken
+        Parameters: parameters
+        completion:^(BCOVOfflineVideoToken offlineVideoToken, NSError *error)
+    {
+        // handle errors
+    }];
+</code></pre>
+
+    <p>
+      When license renewal is finshed, the completion block will be called with the same offline video token that was passed in. An <code translate="No">NSError</code> will indicate any problem that occurred (or nil if no error).
+    </p>
+
+    <p>
+      For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#renewing-a-fairplay-license">Renewing a FairPlay License</a> section of the Native SDK for iOS reference.
+    </p>
+
+    <h3>Responses</h3>
+    <p>
+      The following responses are associated with PAS:
+    </p>
+    <ul>
+      <li>
+        200 - License is allowed to continue
+      </li>
+      <li>
+        401 - The License delivery must not be allowed to continue
+      </li>
+    </ul>
+
+  </section>
+
+  <!-- <section class="bcls-section">
+    <h2 id="Related_topics">Related topics</h2>
+    <ul>
+      <li>
+        <a href="/playback-rights/getting-started/overview-epa.html">Overview: Playback Rights Management Service</a>
+      </li>
+      <li>
+        <a href="/playback-rights/getting-started/implementing-epa.html">Implementing Playback Rights Management Service</a>
+      </li>
+      <li>
+        <a href="/playback-rights/guides/using-epa-with-bcp.html">Using Playback Rights with Brightcove Player</a>
+      </li>
+      <li>
+        <a href="/playback-authorization/guides/stream-concurrency.html">Implementing Stream Concurrency</a>
+      </li>
+    </ul>
+  </section> -->
 
-<h3>Version 6.13.2</h3>
-
-<h4>24 Apr 2020</h4>
-
-<p>Offline Playback Changes:</p>
-
-<ul>
-	<li>
-		<p>Upgraded the FileDownloader dependency to v1.7.7</p>
-		<p>
-		This upgrade fixes an issue where downloading while the app is in the background could pause unexpectedly.
-		</p>
-	</li>
-</ul>
-
-<p>Thumbnail Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an alignment issue between the scrubber and the thumbnail preview on Android TV</p>
-	</li>
-</ul>
-
-<h3>Version 6.13.1</h3>
-
-<h4>16 Apr 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for HEVC videos.</p>
-
-	<p>On devices that support HEVC (with API level 21 and higher), playback of HEVC is now automatically available. See documentation for technical details.</p>
-	</li>
-</ul>
-
-<p>Pulse Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Added seek without ads support when setting <code translate="No">adsDisabled</code> on <code translate="No">VideoPlaybackController</code></p>
-	</li>
-	<li>
-	<p>Added support to play Pulse passback ads</p>
-	</li>
-	<li>
-	<p>Added a message to indicate when the user is in a Pause Ad</p>
-	</li>
-</ul>
-
-<p>Thumbnail Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Increased size of the thumbnail image shown in tablets</p>
-	</li>
-	<li>
-	<p>Increased speed of thumbnail dragging on Android TV</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the Closed Captions might be out of sync with the Video</p>
-	</li>
-</ul>
-
-<h3>Version 6.12.0</h3>
-
-<h4>5 Mar 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Deprecated <code translate="No">BrightcoveSurfaceView.isVideo360Supported()</code>. Based on current supported versions, it always returns true.</p>
-	</li>
-</ul>
-
-<p>Pulse Plugin:</p>
-
-<ul>
-	<li>
-	<p>With this release, the Brightcove Native SDK for Android implements the Pulse Advertising Plugin.</p>
-	<aside class="bcls-aside bcls-aside--information">Please note that this new feature is in Limited Availability. Contact your Account Manager for more information.</aside>
-	</li>
-</ul>
-
-<h3>Version 6.11.0</h3>
-
-<h4>7 Feb 2020</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for the Brightcove Playback Rights Management Service.</p>
-
-	<aside class="bcls-aside bcls-aside--information">Please note that this new feature is in Limited Availability.</aside>
-	</li>
-	<li>
-	<p><strong>Breaking Change</strong>: The Playlist object is now immutable.</p>
-	</li>
-	<li>
-	<p>The Playlist object can now contain a mix of videos with status <code translate="No">Status.OK</code> and <code translate="No">Status.ERROR</code></p>
-	</li>
-	<li>
-	<p><code translate="No">Playlist.getErrorVideos()</code>: This new method will return only videos with status of <code translate="No">Status.ERROR</code></p>
-	</li>
-	<li>
-	<p><code translate="No">Playlist.getAllVideosAndErrors()</code>: This new method will return all videos with both status, <code translate="No">Status.OK</code> and <code translate="No">Status.ERROR</code>, following the same order as returned from the Playback Rights Management Service response</p>
-	</li>
-	<li>
-	<p>Note: <code translate="No">Playlist.getVideos()</code> and <code translate="No">Playlist.getCount()</code> behave the same way as previous versions, that is, they consider only the videos with status <code translate="No">Status.OK</code></p>
-	</li>
-	<li>
-	<p>Added <code translate="No">ErrorListener.onError(List<catalogerror>)</catalogerror></code> callback.</p>
-	</li>
-	<li>
-	<p>Deprecated <code translate="No">ErrorListener.onError(String)</code> callback.</p>
-	</li>
-	<li>
-	<p>The Video object now has a status code, which can be either <code translate="No">Status.OK</code> or <code translate="No">Status.ERROR</code>. You may retrieve the status through <code translate="No">Video.getStatus():Status</code>.</p>
-	</li>
-	<li>
-	<p><code translate="No">Status.OK</code>: The Video has all the expected properties and does not have <code translate="No">Video.Fields.ERRORS</code> in it.</p>
-	</li>
-	<li>
-	<p><code translate="No">Status.ERROR</code>: The video has <code translate="No">Video.Fields.ERRORS</code> in its properties in the form of <code translate="No">List&lt;CatalogError&gt;</code>.</p>
-	</li>
-</ul>
-
-<p>VMAP Plugin:</p>
-
-<ul>
-	<li>
-	<p>The VMAP plugin has been deprecated. For client-side advertising with VMAP and VAST documents, please use the IMA plugin.</p>
-	</li>
-</ul>
-
-<h3>Version 6.10.1</h3>
-
-<h4>17 Jan 2020</h4>
-
-<p>ExoPlayer Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed a crash when attempting to play an HLS Live stream.</p>
-	</li>
-</ul>
-
-<p>Offline Playback Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where some VTT closed captions files would not download successfully.</p>
-	</li>
-</ul>
-
-<p>Cast Plugin:</p>
-
-<ul>
-	<li>
-	<p>Added new <code translate="No">CastMediaUtil.toMediaInfo</code> methods without the unnecessary Android Context parameter.</p>
-	</li>
-	<li>
-	<p>Deprecated <code translate="No">CastMediaUtil.toMediaInfo</code> methods with the unnecessary Android Context parameter.</p>
-	</li>
-</ul>
-
-<h3>Version 6.10.0</h3>
-
-<h4>19 Dec 2019</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p><strong>Breaking Change</strong>: The Brightcove Android Native SDK is now built using AndroidX (JetPack) libraries. Please refer to the Android SDK Support pages for more information on this change, and required steps to migrate your application code.</p>
-	</li>
-	<li>
-	<p>Fixed an issue with the <code translate="No">backgroundOpacity</code> method in <code translate="No">BrightcoveCaptionStyle</code> where this method was not setting background opacity on captions as expected.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where fullscreen functionality was not working as expected in the <code translate="No">BrightcovePlayerFragment</code>.</p>
-	</li>
-</ul>
-
-<p>ExoPlayer Changes:</p>
-
-<ul>
-	<li>
-	<p>ExoPlayer support in the Brightcove Android Native SDK has been upgraded to 2.10.8.</p>
-	</li>
-	<li>
-	<p>Fixed an issue in audio track selection where higher-bitrate renditions could not be selected after switching languages.</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Adds support for live content with pre-roll client-side ads.</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the Captions button would not consistently display during content playback. Please note that this issue is currently fixed for mobile devices only; a solution for Android TV devices will follow in an upcoming release.</p>
-	</li>
-</ul>
-
-<h3>Version 6.9.0</h3>
-
-<h4>22 Oct 2019</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>The Android SDK now targets and supports Android 10 (targetSdkVersion 29).</p>
-	</li>
-	<li>
-	<p>Fixes a RunTimeException: "Canvas: trying to use a recycled bitmap", when attempting to display the Poster Image.</p>
-	</li>
-	<li>
-	<p>Added the following convenience constants as HttpRequestConfig query parameters key:</p>
-
-	<ul>
-		<li><code translate="No">HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID</code> Used to add a Delivery Rules Config ID</li>
-		<li><code translate="No">HttpRequestConfig.KEY_AD_CONFIG_ID</code> Used to add an SSAI Ad Config ID</li>
-	</ul>
-	</li>
-</ul>
-
-<p>ExoPlayer v1 Changes:</p>
-
-<ul>
-	<li>
-	<p>All support for ExoPlayer 1.x has been removed from The Brightcove Native SDK for Android. Please make sure to use ExoPlayer v2. For details, see the <a href="/android/framework/migrating-exoplayer-2-framework.html">Migrating to ExoPlayer 2 Framework</a> document.</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Live and Live DVR streams with Server Side Ad Insertion (Live SSAI) are now supported.</p>
-	</li>
-	<li>
-	<p><strong>Breaking Change</strong>: The <code translate="No">Event.PLAYHEAD_POSITION</code> property in both events, <code translate="No">EventType.PROGRESS</code> and <code translate="No">EventType.AD_PROGRESS</code>, now contains the absolute playhead position, which is the same playhead position given by the underlying player.<br />
-	Please use <code translate="No">Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> instead to get the relative playhead position.</p>
-	</li>
-	<li>
-	<p>The <code translate="No">Event.PROGRESS_BAR_PLAYHEAD_POSITION</code> property was introduced for both <code translate="No">EventType.PROGRESS</code> and <code translate="No">EventType.AD_PROGRESS</code> events which contains the relative playhead position (as <code translate="No">Event.PLAYHEAD_POSITION</code> did in older versions).</p>
-	</li>
-	<li>
-	<p>Added Ad controls for Android TV.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where the rewind button will not rewind properly after consecutive clicks.</p>
-	</li>
-</ul>
-
-<h3>Version 6.8.1</h3>
-
-<h4>31 May 2019</h4>
-
-<p>ExoPlayer2 Changes:</p>
-
-<ul>
-	<li>
-	<p>ExoPlayer2 has been downgraded to version 2.9.3 due to an issue with HLS Multiple Audio Tracks in version 2.9.6.</p>
-	</li>
-</ul>
-
-<p>Offline Playback Changes:</p>
-
-<ul>
-	<li>
-	<p>Add Playback Authentication Service (PAS) support.</p>
-	</li>
-	<li>
-	<p>The following methods are added to the <code translate="No">com.brightcove.player.edge.AbstractOfflineCatalog</code>:</p>
-
-	<ul>
-		<li><code translate="No">findOfflineVideoById(String, @NonNull HttpRequestConfig): Video</code></li>
-		<li><code translate="No">findOfflineVideoById(String, @NonNull HttpRequestConfig, @NonNull OfflineCallback&lt;Video&gt;): void</code></li>
-		<li><code translate="No">requestPurchaseLicense(@NonNull Video, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
-		<li><code translate="No">requestRentalLicense(@NonNull Video, @NonNull Date, long, @NonNull EventListener, @NonNull HttpRequestConfig): void</code></li>
-	</ul>
-	</li>
-	<li>
-	<p>The following method is removed from the <code translate="No">com.brightcove.player.edge.AbstractOfflineCatalog</code></p>
-
-	<ul>
-		<li><code translate="No">renewLicense(@NonNull Video, @NonNull EventListener): void</code></li>
-	</ul>
-	</li>
-	<li>
-	<p>Fixes an issue loading poster images for downloaded videos. When available, a local image will be loaded.</p>
-	</li>
-</ul>
-
-<p>FreeWheel Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Adds support for live content with pre-roll client-side ads</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixes an issue where a content source could be loaded directly from the <code translate="No">src</code> attribute in the Playback API response, instead of from the <code translate="No">contenturi</code> attribute in the VMAP.</p>
-	</li>
-</ul>
-
-<h3>Version 6.8.0</h3>
-
-<h4>1 May 2019</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is now 19.</p>
-	</li>
-	<li>
-	<p>The Brightcove Native SDK for Android is now Java 8 compliant. Please note that Android apps developed using this version of the Android SDK may require the following directive added to the build.gradle file to ensure bytecode compatibility:</p>
-
-	<pre class="line-numbers">
-<code class="language-java" translate="No">compileOptions{
-targetCompatibility JavaVersion.VERSION_1_8
-sourceCompatibility JavaVersion.VERSION_1_8
-}</code></pre>
-	</li>
-</ul>
-
-<p>ExoPlayer2 Changes:</p>
-
-<ul>
-	<li>
-	<p>ExoPlayer2 has been upgraded to version 2.9.6</p>
-	</li>
-	<li>
-	<p>Please note that this upgrade has the following API changes:</p>
-	</li>
-	<li>
-	<p><strong>Breaking Change</strong> Removed:<code translate="No">constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull MappingTrackSelector trackSelector)</code></p>
-
-	<p>Use <code translate="No">constructor TrackSelectorHelper(@NonNull ExoPlayer player, @NonNull DefaultTrackSelector trackSelector)</code></p>
-	</li>
-	<li>
-	<p><strong>Breaking Change</strong> Removed: <code translate="No">setTrackSelector(@NonNull MappingTrackSelector trackSelector)</code></p>
-
-	<p>Use <code translate="No">setTrackSelector(@NonNull DefaultTrackSelector trackSelector)</code></p>
-	</li>
-	<li>
-	<p>Removed <code translate="No">getTrackSelector(): MappingTrackSelector</code></p>
-
-	<p>Use <code translate="No">getTrackSelector(): DefaultTrackSelector</code></p>
-	</li>
-</ul>
-
-<p>FreeWheel Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>The FreeWheel plugin has been updated to support FreeWheel AdManager version 6.28.0.</p>
-	</li>
-	<li>
-	<p>Please note that FreeWheel now packages the AdManager library as an Android Archive (AAR).</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>The IMA Plugin has been updated to support Google IMA SDK version 3.11.2.</p>
-	</li>
-	<li>
-	<p>This version of the Google IMA SDK supports Open Measurement standards.</p>
-	</li>
-	<li>
-	<p>Please refer to the <a href="/features/ima-open-measurement-native-sdks.html">Brightcove Android SDK documentation</a> for more information.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where midroll ads called after long periods of content playback would not play.</p>
-	</li>
-</ul>
-
-<p>SSAI Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>The SSAI Plugin now supports content delivery through the Brightcove Playback Authorization Service (PAS).</p>
-	<!-- <p>
-  Please refer to the Brightcove
-  Android SDK documentation at https://support.brightcove.com for more
-  information on using PAS with the SSAI Plugin.
-  </p> --></li>
-	<li>
-	<p>Please note that PAS works only with the SSAI Plugin. PAS with the deprecated OnceUx Plugin is not supported.</p>
-	</li>
-</ul>
-
-<h3>Version 6.7.0</h3>
-
-<h4>5 Apr 2019</h4>
-
-<p>SSAI Plugin:</p>
-
-<ul>
-	<li>
-	<p>With this release, the Brightcove Native SDK for Android implements the SSAI Plugin. For more information on this new plugin, please visit the Brightcove Android SDK Overview in the Brightcove Support site.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>With this release, the OnceUx Plugin is deprecated. Please use the new SSAI Plugin instead. For more information, please visit the Brightcove Android SDK Overview in the Brightcove Support site.</p>
-	</li>
-</ul>
-
-<h3>Version 6.6.0</h3>
-
-<h4>29 Mar 2019</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>A new class, HttpRequestConfig has been added. This class supports the addition of request URL parameters and/or request headers that may be required by Brightcove services (e.g. the Brightcove Edge API, or the Brightcove Playback Authorization Service (PAS)). Please refer to Brightcove Support documentation for more information on usage of this class.</p>
-	</li>
-	<li>
-	<p>Along with the HttpRequestConfig class, the following methods are added to the com.brightcove.player.edge.Catalog class: findPlaylistByID(String, HttpRequestConfig, PlaylistListener): void findPlaylistByReferenceID(String, HttpRequestConfig, PlaylistListener): void findVideoByID(String, HttpRequestConfig, VideoListener): void findVideoByReferenceID(String, HttpRequestConfig, VideoListener): void</p>
-	</li>
-	<li>
-	<p>The following findPlaylist methods are deprecated in com.brightcove.player.edge.Catalog: findPlaylistByID(String, Map&lt;String, String&gt;, PlaylistListener): void findPlaylistByID(String, Map&lt;String, String&gt;, Map&lt;String, String&gt;, PlaylistListener): void findPlaylistByReferenceID(String, Map&lt;String, String&gt;, PlaylistListener): void findPlaylistByReferenceID(String, Map&lt;String, String&gt;, Map&lt;String, String&gt;, PlaylistListener): void</p>
-	</li>
-	<li>
-	<p>The following findVideo methods are deprecated in com.brightcove.player.edge.Catalog: findVideoByID(String videoID, Map&lt;String, String&gt;, VideoListener): void findVideoByID(String videoID, Map&lt;String, String&gt;, Map&lt;String, String&gt;, VideoListener): void findVideoByReferenceID(String, Map&lt;String, String&gt;, VideoListener): void findVideoByReferenceID(String, Map&lt;String, String&gt;, Map&lt;String, String&gt;, VideoListener): void</p>
-	</li>
-</ul>
-
-<p>Brightcove Native SDK for Android support for the Brightcove Playback Authorization Service (PAS)</p>
-
-<ul>
-	<li>
-	<p>In the Limited Availability release of the Brightcove Playback Authorization Service (PAS), the following features are supported by the Brightcove Native SDK for Android:</p>
-
-	<ul>
-		<li>
-		<p>Online streaming of DRM content with PAS</p>
-		</li>
-		<li>
-		<p>Online streaming of HLSe content with PAS</p>
-		</li>
-	</ul>
-	</li>
-	<li>
-	<p>In the Limited Availability release of the Brightcove Playback Authorization Service (PAS), the following features are not currently supported by the Brightcove Native SDK for Android, and will be implemented in an upcoming release:</p>
-
-	<ul>
-		<li>
-		<p>Server-side Ad Insertion with the OnceUx plugin with PAS</p>
-		</li>
-		<li>
-		<p>Offline Playback with PAS</p>
-		</li>
-		<li>
-		<p>Chromecast with PAS</p>
-		</li>
-	</ul>
-	</li>
-	<li>
-	<p>Important Note About ExoPlayer 1:</p>
-
-	<ul>
-		<li>
-		<p>ExoPlayer 1 is deprecated, and will be End Of Life by the end of Q3 2019, at which point it will no longer be available in the Brightcove Native SDK for Android.</p>
-		</li>
-	</ul>
-	</li>
-</ul>
-
-<h3>Version 6.5.1</h3>
-
-<h4>12 Feb 2019</h4>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the IFrameResource element was being incorrectly parsed from VMAP sources.</p>
-	</li>
-</ul>
-
-<h3>Version 6.5.0</h3>
-
-<h4>6 Dec 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Removed unnecessary dependencies in the Brightcove Android SDK.</p>
-	</li>
-	<li>
-	<p>Added asynchronous versions of the following methods to the OfflineCatalog class: getVideoDownloadStatus findAllQueuedVideoDownload findAllVideoDownload findOfflineVideoByID downloadVideo cancelVideoDownload pauseVideoDownload resumeVideoDownload deleteVideo getMediaFormatTracksAvailable</p>
-	</li>
-	<li>
-	<p>Fixed an issue where the estimateSize method in the OfflineCatalog class was returning an unexpected value.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where an offline video built using VideoParser.buildVideoFromJSON() would not play as expected.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where duplicate caption menu items would appear.</p>
-	</li>
-</ul>
-
-<p>Cast Plugin: Release note update: While the Cast plugin has no changes in this release, it is important to note these clarifications in the currently supported features of this plugin.</p>
-
-<ul>
-	<li>
-	<p>Android 9 - Testing has shown that the following permission is required to use Chromecast with Android 9, in particular when the app is backgrounded and brought back to the foreground, and in order to use notifications to control a casting session. This uses-permission tag should be added to an app's AndroidManifest.xml: &lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE"/&gt;</p>
-	</li>
-	<li>
-	<p>Captions - Testing has shown that in-manifest captions only with Dynamic Delivery DASH display as expected.</p>
-	</li>
-	<li>
-	<p>Captions - In-manifest captions with HLS are not currently supported.</p>
-	</li>
-	<li>
-	<p>Captions - Sidecar captions in any video configuration are not currently supported. This clarification is also present in the Cast plugin release note for the Brightcove Android SDK v6.3.0 release.</p>
-	</li>
-</ul>
-
-<h3>Version 6.4.0</h3>
-
-<h4>17 Oct 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>The Brightcove Native SDK for Android now supports Android 9.0 (Pie). Please note that with the Android Pie release you must be aware of some important changes, such as Network TLS enabled by default, Apache HTTP client deprecation and the deprecation of Android ConnectivityManager constants. You might need to make additional changes in your application. For more information, please visit https://support.brightcove.com/android-pie-support-native-sdk-android.</p>
-	</li>
-	<li>
-	<p>The DefaultSourceSelectionController and ExoPlayerSourceSelectionController will now prefer HTTPS sources in its selection if available, otherwise the selection controller will select the first source available.</p>
-	</li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Older_releases"><strong>Older releases</strong></h2>
-
-<h3>Version 6.3.2</h3>
-
-<h4>24 Sep 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the Settings button in Android TV was not working as expected.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where getRefereiceId() and getDescription() in the Video class were not working as expected.</p>
-	</li>
-	<li>
-	<p>Added a method, getLongDescription(), to the Video class.</p>
-	</li>
-	<li>
-	<p>Fixed an issue in the OfflineCatalog class where calling setDownloadPath with a null argument caused a NullPointerException.</p>
-	</li>
-	<li>
-	<p>Fixed an issue in the OfflineCatalog class where calling the estimateSize method could return an unexpectedly large value.</p>
-	</li>
-	<li>
-	<p>Fixed an issue where an Activity that was not enabled for Picture-In-Picture would throw a non-fatal IllegalStateException. The error is now logged as a warning.</p>
-	</li>
-	<li>
-	<p>Deprecated support for the BrightcoveClosedCaptioningSurfaceView class.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for the VAST Icon element.</p>
-	</li>
-</ul>
-
-<h3>Version 6.3.1</h3>
-
-<h4>09 Aug 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where Android Studio will throw an exception in the Layout Editor when rendering the BrightcoveVideView.</p>
-	</li>
-</ul>
-
-<p>ExoPlayer v2 Changes:</p>
-
-<ul>
-	<li>
-	<p>Added LoadControlConfig and AllocatorConfig classes. The values set in these classes will be used to create the ExoPlayer DefaultLoadControl object, which is used when creating the ExoPlayer instance. The AllocatorConfig may be set when creating the LoadControlConfig. The LoadControlConfig may be set to the ExoPlayerVideoDisplayComponent instance.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the default poster image shown in the BrightcoveVideoView will not disappear after the preroll starts playing.</p>
-	</li>
-</ul>
-
-<h3>Version 6.3.0</h3>
-
-<h4>27 July 2018</h4>
-
-<p>Cast Plugin Changes: The Cast Plugin has been updated with a dependency on the ExoPlayer Cast Extension v2.7.0. Please note that certain VideoCloud features have limited support, or are not yet supported when using Cast plugin with the Google sample receiver app.</p>
-
-<ul>
-	<li>
-	<p>Android 9 - Testing has shown that the following permission is required to use Chromecast with Android 9, in particular when the app is backgrounded and brought back to the foreground, and in order to use notifications to control a casting session. This uses-permission tag should be added to an app's AndroidManifest.xml: &lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE"/&gt;</p>
-	</li>
-	<li>
-	<p>Captions - Testing has shown that in-manifest captions only with Dynamic Delivery DASH display as expected.</p>
-	</li>
-	<li>
-	<p>Captions - In-manifest captions with HLS are not currently supported.</p>
-	</li>
-	<li>
-	<p>Captions - Sidecar captions in any video configuration are not currently supported.</p>
-	</li>
-	<li>
-	<p>Widevine Modular DRM is not supported when using the Cast plugin with the Google sample receiver app.</p>
-	</li>
-	<li>
-	<p>Multiple Audio Tracks are not supported when using the Cast plugin with the Google sample receiver app.</p>
-	</li>
-	<li>
-	<p>Client-side and Server-side Advertising is not supported when using the Cast plugin with the Google sample receiver app.</p>
-	</li>
-	<li>
-	<p>Live and Live DVR streams are not supported when using the Cast plugin with the Google sample receiver app.</p>
-	</li>
-</ul>
-
-<p>FreeWheel Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>The FreeWheel plugin has been updated to support FreeWheel AdManager v6.23.0. Please note that this is a breaking change, and that this version of the Brightcove Native SDK for Android will not work with previous versions of FreeWheel AdManager. Please refer to the release notes in FreeWheel AdManager v6.23.0 for more information on the changes in that version.</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>The IMA Plugin now supports v3.9.0 of the Google IMA SDK for Android.</p>
-	</li>
-</ul>
-
-<h3>Version 6.2.3</h3>
-
-<h4>16 July 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Offline Playback: Upgraded the FileDownloader library version to 1.7.4.</p>
-	</li>
-	<li>
-	<p>Offline Playback: Fixed an issue where backgrounding the app and changing network status could throw an IllegalArgumentException.</p>
-	</li>
-</ul>
-
-<h3>Version 6.2.2</h3>
-
-<h4>9 July 2018</h4>
-
-<p>ExoPlayer v2 Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where values in the HEADERS field of the Video object were not being added as expected.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where seeking without ads during the video could result in ad events still being fired.</p>
-	</li>
-</ul>
-
-<h3>Version 6.2.1</h3>
-
-<h4>5 June 2018</h4>
-
-<p>ExoPlayer v2 Changes:</p>
-
-<ul>
-	<li>
-	<p>The Brightcove ExoPlayer has been reverted to v2.7.0, to work around a regression in backward seek behavior in live streams, and an unexpected change in how the Live Window Range value is calculated.</p>
-	</li>
-	<li>
-	<p>Fixed an issue with the calculation for BrightcoveSegmentTemplate.getSegmentCount when the DASH manifest has the startNumber parameter different than 0.</p>
-	</li>
-	<li>
-	<p>Added a validation for a potential NullPointerException in ExoPlayerVideoDisplayComponent.reportPlayerState</p>
-	</li>
-</ul>
-
-<h3>Version 6.2.0</h3>
-
-<h4>18 May 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Added a VideoParser class with methods to build a Video and a Playlist from a JSON object, following the Brightcove Playback API response format.</p>
-	</li>
-	<li>
-	<p>Overloaded the requestPurchaseLicense() and requestRentalLicense() methods in the OfflineCatalog class in order to set the OutputProtection through the CustomerRightsTokenConfig object.</p>
-	</li>
-	<li>
-	<p>Updated the FileDownloader library to 1.7.3 for Offline Playback.</p>
-	</li>
-	<li>
-	<p>Fixed a race condition for Offline Playback when deleting multiple videos while being downloaded.</p>
-	</li>
-</ul>
-
-<p>ExoPlayer v2 Changes:</p>
-
-<ul>
-	<li>
-	<p>The Brightcove ExoPlayer has been updated to 2.7.3.</p>
-	</li>
-	<li>
-	<p>The following methods were deprecated from BrightcoveDrmSession interface:</p>
-
-	<ul>
-		<li>
-		<p>DrmException getDrmError()</p>
-		</li>
-		<li>
-		<p>Map&lt;String, String&gt; queryKeyStatus()</p>
-		</li>
-		<li>
-		<p>byte[] getOfflineLicenseKeySetId()</p>
-		</li>
-	</ul>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support to parse and read all Ad Creative IDs from SSAI VMAP.</p>
-	</li>
-	<li>
-	<p>Removed requirement for id attribute in Ad tag.</p>
-	</li>
-</ul>
-
-<h3>Version 6.1.2</h3>
-
-<h4>24 Apr 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where the download would not resume in slow networks (down to 256kbps) after killing and restarting the app.</p>
-	</li>
-</ul>
-
-<p>OnceUx Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where all ads will be played after seeking over multiple ad pods.</p>
-	</li>
-</ul>
-
-<h3>Version 6.1.1</h3>
-
-<h4>6 Apr 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an Offline Analytics dependency that was unexpectedly increasing app sizes.</p>
-	</li>
-	<li>
-	<p>Fixed an issue with Offline Playback where some downloads were hanging at 99%.</p>
-	</li>
-</ul>
-
-<h3>Version 6.1.0</h3>
-
-<h4>29 Mar 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for Picture-in-Picture on Android Oreo.</p>
-	</li>
-	<li>
-	<p>Fixed a UI performance issue for Offline Playback when downloading a video by making all Download Manager callbacks on a background thread.</p>
-	</li>
-	<li>
-	<p>Improvement in download speeds for Offline Playback.</p>
-	</li>
-	<li>
-	<p>Fixed an Offline Playback issue where the download_id parameter was missing from video_download_request and video_download_cancellation events for clear downloads.</p>
-	</li>
-	<li>
-	<p>Fixed an issue with WebVTT captions where using the "line:" attribute without a percentage (%) character was preventing the captions from displaying.</p>
-	</li>
-	<li>
-	<p>AbstractOfflineCatalog.renewLicense method is deprecated and is now non-functional. To renew an offline license, please use either AbstractOfflineCatalog.requestRentalLicense(Video, Date, long, EventListener) or AbstractOfflineCatalog.requestPurchaseLicense(Video, EventListener)</p>
-	</li>
-</ul>
-
-<p>ExoPlayer2 changes:</p>
-
-<ul>
-	<li>
-	<p>ExoPlayer2 now reports the cumulative number of bytes downloaded through the current video engagement event and sends it to the Analytics server as media_bytes_transferred.</p>
-	</li>
-	<li>
-	<p>Added a convenience method to set the peak bitrate before preparing the player for a new video, or any time ExoPlayerVideoDisplayComponent.setPeakBitrate(int peakBitrate) is called.</p>
-	</li>
-</ul>
-
-<h3>Version 6.0.2</h3>
-
-<h4>30 Jan 2018</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>Added support for offline playback analytics.</p>
-	</li>
-	<li>
-	<p>The deprecated Widevine Classic plugin has been removed.</p>
-	</li>
-</ul>
-
-<p>IMA Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where viewable_impression beacons were not being fired as expected.</p>
-	</li>
-</ul>
-
-<p>OnceUX Plugin Changes:</p>
-
-<ul>
-	<li>
-	<p>Fixed an issue where ad markers were not being displayed in their expected locations.</p>
-	</li>
-	<li>
-	<p>Fixed issues involving seeking past advertisements, and resuming playback from the intended seek position.</p>
-	</li>
-	<li>
-	<p>Fixed issues where player controls would appear in SSAI ads on orientation changes.</p>
-	</li>
-</ul>
-
-<h3>Version 6.0.1</h3>
-
-<h4>18 Dec 2017</h4>
-
-<p>SDK Changes:</p>
-
-<ul>
-	<li>
-	<p>The deprecated legacy Media API classes, those in the com.brightcove.player.media package, were removed from the Brightcove Native SDK for Android.</p>
-	</li>
-	<li>
-	<p>The following classes were moved from com.brightcove.player.media to com.brightcove.player.model. Please note this is a breaking change:</p>
-
-	<ul>
-		<li>
-		<p>DeliveryType</p>
-		</li>
-		<li>
-		<p>CaptionType</p>
-		</li>
-		<li>
-		<p>ErrorFields</p>
-		</li>
-		<li>
-		<p>VideoFields</p>
-		</li>
-	</ul>
-	</li>
-</ul>
-
-<p>ExoPlayer v2 Changes:</p>
-
-<ul>
-	<li>
-	<p>The Brightcove Native SDK for Android using ExoPlayer 2 (v2.5.3) is in General Availability.</p>
-	</li>
-	<li>
-	<p>Added support for the Omniture plugin when using ExoPlayer 2.</p>
-	</li>
-	<li>
-	<p>Several bug fixes.</p>
-	</li>
-</ul>
-
-<p>ExoPlayer v1 Changes:</p>
-
-<ul>
-	<li>
-	<p>The Brightcove Native SDK for Android using ExoPlayer 1 has been deprecated. For more information about the migration process, please visit https://support.brightcove.com/migrating-exoplayer-2-framework</p>
-	</li>
-</ul>
-</section>
-
-<section class="bcls-section">
-<h2 id="Complete_release_notes"><strong>Complete release notes</strong></h2>
-
-<p>For a complete list of release notes, see the <a href="/android/reference/release-notes.txt">Brightcove Native SDK for Android Release Notes</a>.</p>
-</section>
 </article>
+
 
 <!-- complete bootstrap layout -->
     </div>
