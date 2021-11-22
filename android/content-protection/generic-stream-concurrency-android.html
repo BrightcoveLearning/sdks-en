@@ -81,24 +81,63 @@ grandparent: Android Development
   </section>
 
   <section class="bcls-section">
-    <h2 id="Limitations_and_Known_Issues">Limitations and Known Issues</h2>
+    <h2 id="Limitations_and_known_issues">Limitations and known issues</h2>
     <p>Please note that this feature is currently in pre-release testing, and is subject to change as we develop and enhance it. As of the release of this document, these limitations and known issues have been seen in testing:</p>
     <h3>Chromecast</h3>
     <p>Brightcove is currently working on Chromecast support for this feature. As this feature becomes available, we will test the Brightcove Native SDK for Android Chromecast support for GSC, which may result in a follow-on release of the SDK.</p>
-    <h3>Concurrency Limiting with DRM</h3>
+    <h3>Concurrency limiting with DRM</h3>
     <p>Testing has shown that when using GSC with DRM-protected videos, if the account is enabled for DRM stream concurrency, the <code translate="no">climit</code> claim will be enforced on the license acquisition request, and an error message like this will be returned:</p>
     <pre>
 <code class="language-java" translate="No">{
 	&quot;error&quot;: &quot;Denied by stream limiting (create)&quot;
 }</code></pre>
-  <h3>Heartbeat Frequency</h3>
+  <h3>Heartbeat frequency</h3>
   <p>The Heartbeat frequency of second request is 30 seconds.</p>
   <p>Testing has shown for the second heartbeat request ONLY, that the frequency of this request is 30 seconds. We are investigating this.</p>
-  <h3>Device With Blocked Session</h3>
+  <h3>Device with blocked session</h3>
   <p>A device with a blocked session can attempt to stop its session.</p>
   <p>Testing has shown that if a device attempts to stream a video that is already being playing on another device, a second device is blocked from playing the stream, as expected. However, the second device may then attempt to “stop” the session that it was attempting to create, which will result in a <code>404</code> response code from the GSC heartbeat service. Testing has also shown that this does not affect the first device’s ability to continue streaming the content.</p>
+  </section>
 
-    
+  <section class="bcls-section">
+    <h2 id="What_has_been_tested?">What has been tested?</h2>
+    <p>SDK testing is being done manually with:</p>
+    <ul>
+      <li>The Brightcove Android SDK internal manual test app, PlaybackTest. This app allows selection from multiple test assets, and supports build variants so that comparison can be made with the same app, built from different Git branches, run on the same device.</li>
+      <li>The Brightcove Android SDK sample apps repo, in particular:
+        <ul>
+          <li>BasicSampleApp: This app was used in testing because it exercises the basic use case of retrieval and playback of a video asset.</li>
+          <li>BasicSsaiSampleApp: This app was used in testing because it exercises the SSAI use case.</li>
+        </ul>
+      </li>
+    </ul>
+    <p>Automated testing is currently in the design phase.</p>
+
+    <h3>Videos tested</h3>
+    <ul>
+      <li>VideoCloud Clear, DRM and HLSe VOD assets, with and without SSAI, and requested through the Edge Playback Authorization (EPA) service.</li>
+      <li>VideoCloud Live DRM assets, without ads (Live DRM does not currently support server-side advertising)</li>
+    </ul>
+
+    <h3>Test procedure</h3>
+    <ul>
+      <li>Use case: Ensure that a climit claim of 1 is enforced.
+        <ul>
+          <li>Load and play the test asset on a device (“Device1”). Device1 uses a JWT with uid and sid payloads.</li>
+          <li>Load the asset on a second device (“Device2”). Device2 uses a JWT with the same uid but a different sid value.</li>
+          <li>Expect: Device2 will be blocked from playback of the asset.</li>
+        </ul>
+      </li>
+      <li>Use case: Ensure that the heartbeat requests resume after backgrounding and foregrounding the device.
+        <ul>
+          <li>Load and play the test asset on a device (“Device1”). Device1 uses a JWT with uid and sid payloads. Only a single device is required for this test.</li>
+          <li>After starting playback, background the player Activity. This can be done using the device’s Home button (or a comparable mechanism, such as swiping on a Google Pixel phone or tapping the Learn More button in an Ad UI).</li>
+          <li>After a few minutes, foreground the player Activity.</li>
+          <li>Expect: Device1 resumes heartbeat requests after foregrounding, on the same frequency as when the device was backgrounded.</li>
+        </ul>
+      </li>
+    </ul>
+   
   </section>
 
 </article>
