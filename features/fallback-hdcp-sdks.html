@@ -1,0 +1,223 @@
+---
+title: "Fallback HDCP with the Native SDKs"
+description: "In this topic, you will learn about using HDCP-protected content to block streaming on unauthorized devices, with a standard definition fallback for devices that do not support HDCP. This feature is available with the Brightcove Native SDKs."
+parent: Features
+grandparent: Home
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+    <p>
+      High-bandwidth Digital Content Protection (HDCP) is a form of digital copy protection used to protect high definition (HD) video and audio signals from being copied on unauthorized devices. The transmitting device first checks if the receiver is authorized to receive data. If yes, then the transmitter sends encrypted data to prevent eavesdropping.
+    </p>
+    <p>The receiving setup must be HDCP compliant, including devices, cables, adaptors, and software drivers. If the receiver is not HDCP compliant, then video will play in standard definition (SD) only. In general, newer HDTVs and HDMI or DVI cables should be HDCP compliant.</p>
+    <p>For more information, see the <a href="https://apis.support.brightcove.com/playback-restrictions/guides/fallback-hdcp.html">Fallback HDCP</a> document.</p>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Requirements">Requirements</h2>
+    <p>The following requirements are needed to support this feature:</p>
+
+    <!-- <h3>Device OS version</h3>
+    <ul>
+      <li>Android 6.0 and newer</li>
+      <li>iOS 11.0 and newer</li>
+    </ul> -->
+
+    <h3>Brightcove SDK version</h3>
+    <ul>
+      <li>Native SDK for Android 6.17.1 and newer</li>
+      <li>Native SDK for iOS 6.10.1 and newer</li>
+    </ul>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
+    <p>Configuration for Forensic Watermarking is performed at the Video level.</p>
+    
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
+        <p>For example:</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
+  baseParams.put(Analytics.Fields.USER, &quot;viewer id&quot;);
+  baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;application id&quot;);
+  
+  HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
+  eventParams.put(Analytics.Fields.BASE_PARAMS, baseParams);
+  eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);          
+</code></pre>
+      </li>
+      <li>
+        <p>In the <code translate="No">Catalog.findVideo</code> or <code translate="No">Catalog.findPlaylist</code> method calls, add the <code translate="No">VideoUtil</code> method to add your watermarking token.</p>
+
+        <p><strong>In the onVideo callback</strong></p>
+        <pre><code class="language-java" translate="No">public void onVideo(Video video) {
+    VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
+    brightcoveVideoView.add(video);
+} 
+</code></pre>
+        <p><strong>In the onPlaylist callback</strong></p>
+        <pre><code class="language-java" translate="No">public void onPlaylist(Playlist playlist) {
+  for (Video video : testPlaylist.getVideos()) {
+      VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
+  }
+  brightcoveVideoView.addAll(testPlaylist.getVideos());
+}
+</code></pre>
+      </li>
+      <!-- <li>
+        <p>
+          <p>In the player Activity’s <code translate="No">onCreate</code> method, add this call, before any Catalog calls to retrieve your video or playlist:</p>
+          <pre><code class="language-java" translate="No">VideoUtil.setWatermarkingToken(yourWatermarkingToken);
+</code></pre>
+        </p>
+      </li> -->
+      <li>
+        <p>With this call in place, when the Catalog retrieves the Video or Playlist metadata from the Playback API, the <code translate="No">VideoUtil</code> class will replace the watermarking token placeholder <code translate="No">{WMT}</code> with the token value, wherever it may occur in the Video’s source URLs. This token can be replaced for each video in a playlist that may be watermarked.</p>
+      </li>
+    </ol>
+
+    <h3>Chromecast</h3>
+    <p>To cast a watermarked video, you need to supply your application ID, watermarking token, and user ID when building your <code translate="No">BrightcoveCastCustomData</code> object with the Cast plugin.</p>
+      <p>In your code to set up the <code translate="No">BrightcoveCastCustomData</code> object, add this line:</p>
+      <pre><code class="language-java" translate="No">public static void setupGoogleCast() {
+GoogleCastComponent.Builder castPluginBuilder = new GoogleCastComponent.Builder(eventEmitter, context)
+        .setAutoPlay(isAutoPlayEnabled)
+        .setQueuingSupported(isQueuingSupported);
+
+    BrightcoveCastCustomData.Builder customDataBuilder = new BrightcoveCastCustomData.Builder(context)
+        .setApplicationId(yourApplicationId)
+        .setWatermarkingToken(yourWatermarkingToken);
+        .setUserId(yourUserId);
+        // Add the custom data elements to the castPluginBuilder
+        
+    castPluginBuilder
+        .setEnableCustomData(true)
+        .setCustomData(customDataBuilder.build());
+}            
+</code></pre>
+
+    <p>When you open a cast connection with a watermarked video, you should see a <code translate="No">customData</code> object formatted like this:</p>
+    <pre><code class="language-json" translate="No">{
+      &quot;accountId&quot;: &quot;yourAccountId&quot;,
+      &quot;analyticsParams&quot;: {
+          &quot;application&quot;: &quot;yourApplicationId&quot;,
+          &quot;user&quot;: &quot;yourUserId&quot;
+      },
+      &quot;catalogParams&quot;: {
+          &quot;type&quot;: &quot;video&quot;,
+          &quot;id&quot;: &quot;videoId&quot;,
+          &quot;policyKey&quot;: &quot;yourPolicyKey&quot;,
+          &quot;watermarkingToken&quot;: &quot;yourWatermarkingToken&quot;
+      }
+  }  
+</code></pre>
+
+    <h3>Offline Playback</h3>
+    <p>The process for downloading a video can involve more than one Catalog call to retrieve the current Video metadata. Brightcove recommends adding the <code translate="No">onVideo</code> callback code above to your callbacks that may be present when acquiring purchase or rental licenses and when downloading the video.
+    </p>
+    <p>Once the video has been downloaded, offline playback should work as usual.</p>
+    <p>
+      For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
+    </p>
+
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="iOS_Implementation">iOS Implementation</h2>
+    <p>
+      To configure a player to use Forensic Watermarking, follow these steps:
+    </p>
+    <ol class="bcls-tasklist-restart">
+      <li>
+        <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
+        <p>Here, you'll provide values for user ID and application ID:</p>
+        <pre class="line-numbers"><code class="language-objectivec" translate="No">@try
+  {
+    [BCOVGlobalConfiguration.sharedConfig setValue:@{
+      @&quot;privateUser&quot;: @&quot;your user id&quot;,
+      @&quot;privateApplication&quot;: @&quot;your application id&quot;
+    }
+    forKey:@&quot;privateSessionAnalytics&quot;];
+  }
+  @catch (NSException *e)
+  {
+    NSLog(@&quot;%@&quot;, e.description);
+  }       
+</code></pre>
+      </li>
+      <li>
+        <p>As part of the Brightcove catalog request for a single video or a playlist, you will provide your NAGRA watermark token. This is done using the <code translate="No">watermarkingToken</code> property.</p>
+        <p>Add your watermarking token to the playback service.</p>
+        <pre class="line-numbers"><code class="language-objectivec" translate="No">/**
+* The watermarking token for use with Forensic Watermarking
+*/
+@property (nonatomic, copy) NSString *watermarkingToken;
+...
+playbackService.watermarkingToken = self.watermarkingToken;     
+</code></pre>
+      </li>
+      <li>
+        <p>Make your request to the Brightcove catalog for a single video or a playlist.</p>
+        <p>For a video request:</p>
+<pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID parameters:
+  (NSDictionary *)parameters completion:(void (^)
+  (BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>
+        <p>For a playlist request:</p>
+<pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID parameters:
+  (NSDictionary *)parameters completion:(void (^)
+  (BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+</code></pre>   
+      </li>
+    </ol>
+    <p>For details, see the Forensic Watermarking section of the Native SDK for iOS reference.</p>
+
+    <h3>Chromecast</h3>
+    <p>For casting you’ll need to provide the watermarking token and the userId fields.</p>
+      <p>In your code to set up the <code translate="No">BrightcoveCastCustomData</code> object, add this line:</p>
+      <pre><code class="language-objectivec" translate="No">BCOVReceiverAppConfig *appConfig = [BCOVReceiverAppConfig new];
+...
+appConfig.userId = @&quot;ios-client@brightcove.com&quot;;
+appConfig.watermarkingToken = watermarkingToken;
+...                 
+</code></pre>
+
+    <p>In the debugging console you can see the configuration values that will be used for your Chromecast session.</p>
+    <pre><code class="language-json" translate="No">Google Cast Custom Data: {
+  accountId = &lt;your_account_id&gt;;
+  analyticsParams =     {
+      application = &quot;&quot;;
+      user = &quot;ios-client@brightcove.com&quot;;
+  };
+  catalogParams =     {
+      adConfigId = &quot;&quot;;
+      bcovAuthToken = &quot;&quot;;
+      id = &lt;your_video_id&gt;;
+      policyKey = &quot;&lt;your_policy_key&quot;;
+      type = video;
+      watermarkingToken = &quot;&lt;your_watermark_token&quot;;
+  };    
+</code></pre>
+
+    <h3>Offline Playback</h3>
+    <p>Offline playback should work as usual once the video is downloaded.</p>
+
+    <p>
+      To get started with this feature, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md">iOS App Developer's Guide to Offline Playback</a> reference.
+    </p>
+  </section> 
+
+  <section class="bcls-section">
+    <h2 id="Limitations">Limitations</h2>
+    <p>For details about the limitations for this feature, see the <a href="https://apis.support.brightcove.com/general/overview-forensic-watermarking.html#Limitations">Overview: Forensic Watermarking</a> document.</p>
+  </section>
+
+</article>
+
