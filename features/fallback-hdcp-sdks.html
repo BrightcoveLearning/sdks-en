@@ -48,7 +48,7 @@ layout: staging
         <details>
           <summary><h3 id="Development_sequence">Error message</></summary> 
          
-<pre class="line-numbers"><code class="language-java" translate="No">2021-11-01 19:01:36.943 30131-30131/com.brightcove.player.samples.exoplayer.basic E/VideoDisplayComponent: onPlayerError
+<pre><code class="language-java" translate="No">2021-11-01 19:01:36.943 30131-30131/com.brightcove.player.samples.exoplayer.basic E/VideoDisplayComponent: onPlayerError
   com.google.android.exoplayer2.ExoPlaybackException: MediaCodecVideoRenderer error, index=0, format=Format(bf310894-59b5-4f1b-9a37-e110a3d6121d, null, null, video/avc, avc1.4D401F, 1712000, null, [1280, 720, 30.0], [-1, -1]), format_supported=YES
       at com.google.android.exoplayer2.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:555)
       at android.os.Handler.dispatchMessage(Handler.java:98)
@@ -122,6 +122,16 @@ layout: staging
       Fallback HDCP is supported with the Native SDK for iOS/tvOS, but is only enforced for content protected using FairPlay. 
     </p>
     <p>You can detect the non-compliance of the device, by using <code translate="No">KVC</code> to detect changes to the value <code translate="No">isOutputObscuredDueToInsufficientExternalProtection</code> on the AVPlayer.</p>
+   
+    <pre><code class="language-swift" translate="No">AVPlayer.isOutputObscuredDueToInsufficientExternalProtection == true
+</code></pre>
+    <p>The above property's value changes to <code translate="No">true</code> for the following reasons:</p>
+    <ul>
+      <li>The current item requires external protection</li>
+      <li>The device does not meet the protection level</li>
+      <li>The user observes video loss</li>
+    </ul>
+    <p>Since not all users have an HDCP compatable setup, Apple recommends including a variant (rendition) in the video manifest which does not require HDCP protection.</p>
     <!-- <ol class="bcls-tasklist-restart">
       <li>
         <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
