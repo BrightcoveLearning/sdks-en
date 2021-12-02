@@ -38,43 +38,81 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
-    <p>Configuration for Forensic Watermarking is performed at the Video level.</p>
-    
-    <ol class="bcls-tasklist-restart">
+    <p>When playing a video with a mix of SD and HD renditions, you may want to do the following:</p>
+    <ul>
       <li>
-        <p>The player must be integrated with your registration system so that a Viewer ID is passed on the analytics web beacon (in the <code translate="No">user</code> field).</p>
-        <p>For example:</p>
-  <pre class="line-numbers"><code class="language-java" translate="No">HashMap&lt;String, String&gt; baseParams = new HashMap&lt;&gt;();
-  baseParams.put(Analytics.Fields.USER, &quot;viewer id&quot;);
-  baseParams.put(Analytics.Fields.APPLICATION_ID, &quot;application id&quot;);
-  
-  HashMap&lt;String, Object&gt; eventParams = new HashMap&lt;&gt;();
-  eventParams.put(Analytics.Fields.BASE_PARAMS, baseParams);
-  eventEmitter.emit(EventType.ADD_ANALYTICS_BASE_PARAMS, eventParams);          
-</code></pre>
+        <p>On devices that can support both HD and SD playback, you want to ensure that the player can switch to an appropriate rendition when needed, for example when network bandwidth changes. This rendition switch may require the player to select an SD rendition, where before it was playing HD.</p>
       </li>
       <li>
-        <p>In the <code translate="No">Catalog.findVideo</code> or <code translate="No">Catalog.findPlaylist</code> method calls, add the <code translate="No">VideoUtil</code> method to add your watermarking token.</p>
+        <p>On those devices without HDCP support, for example older Android mobile devices with older OS levels, we want to ensure appropriate rendition switching within SD renditions, as well as guarding that the player will not attempt to load an HDCP-protected rendition, at which point the license request will fail, with an error message like this:</p>
+        <details>
+          <summary><h3 id="Development_sequence">Error message</></summary> 
+         
+<pre class="line-numbers"><code class="language-java" translate="No">2021-11-01 19:01:36.943 30131-30131/com.brightcove.player.samples.exoplayer.basic E/VideoDisplayComponent: onPlayerError
+  com.google.android.exoplayer2.ExoPlaybackException: MediaCodecVideoRenderer error, index=0, format=Format(bf310894-59b5-4f1b-9a37-e110a3d6121d, null, null, video/avc, avc1.4D401F, 1712000, null, [1280, 720, 30.0], [-1, -1]), format_supported=YES
+      at com.google.android.exoplayer2.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:555)
+      at android.os.Handler.dispatchMessage(Handler.java:98)
+      at android.os.Looper.loop(Looper.java:148)
+      at android.os.HandlerThread.run(HandlerThread.java:61)
+    Caused by: android.media.MediaCodec$CryptoException: Unknown Error
+      at android.media.MediaCodec.native_queueSecureInputBuffer(Native Method)
+      at android.media.MediaCodec.queueSecureInputBuffer(MediaCodec.java:2292)
+      at com.google.android.exoplayer2.mediacodec.SynchronousMediaCodecAdapter.queueSecureInputBuffer(SynchronousMediaCodecAdapter.java:143)
+      at com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.feedInputBuffer(MediaCodecRenderer.java:1380)
+      at com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.render(MediaCodecRenderer.java:845)
+      at com.google.android.exoplayer2.ExoPlayerImplInternal.doSomeWork(ExoPlayerImplInternal.java:945)
+      at com.google.android.exoplayer2.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:478)
+      at android.os.Handler.dispatchMessage(Handler.java:98) 
+      at android.os.Looper.loop(Looper.java:148) 
+      at android.os.HandlerThread.run(HandlerThread.java:61) 
+</code></pre>
+        </details>
+      </li>
+    </ul>
+    <p>A solution to this problem involves adding code to allow rendition switching across <code translate="No">AdaptationSets</code> in DASH, and to filter out renditions that are not expected to play on the current device.</p>
+    <p>In the following example, HD renditions are being protected by stricter HDCP requirements which the current device doesn't support. To achieve this, you can use an <code translate="No">EventListener</code> on the <code translate="No">SET_SOURCE</code> event, as you need to add these supports before creating the <code translate="No">ExoPlayer</code> instance.</p>
+    <p>An example like this would be added to your player’s <code translate="No">Activity</code> class, in the <code translate="No">onCreate</code> method:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">eventEmitter.on(EventType.SET_SOURCE, event -&gt; {
+  try {
+      // Get an instance of the MediaDrm from the device
+      MediaDrm mediaDrm = new MediaDrm(Constants.WIDEVINE_UUID);
 
-        <p><strong>In the onVideo callback</strong></p>
-        <pre><code class="language-java" translate="No">public void onVideo(Video video) {
-    VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
-    brightcoveVideoView.add(video);
-} 
-</code></pre>
-        <p><strong>In the onPlaylist callback</strong></p>
-        <pre><code class="language-java" translate="No">public void onPlaylist(Playlist playlist) {
-  for (Video video : testPlaylist.getVideos()) {
-      VideoUtil.addWatermarkingToken(video, yourWatermarkingToken);
+      // Create a new DefaultTrackSelector.ParamsBuilder object
+      DefaultTrackSelector.ParametersBuilder builder = new DefaultTrackSelector.ParametersBuilder(this);
+
+  // Call this method to enable rendition switching across DASH AdaptationSets
+      builder.setAllowMultipleAdaptiveSelections(true);
+
+      // Get the values for hdcpLevel and maxHdcpLevel
+      String connectedHdcpLevel = mediaDrm.getPropertyString(&quot;hdcpLevel&quot;);
+      String maxHdcpLevel = mediaDrm.getPropertyString(&quot;maxHdcpLevel&quot;);
+      Log.v(TAG, &quot;HDCP Level: &quot; + connectedHdcpLevel + &quot; Max HDCP Level: &quot; + maxHdcpLevel);
+
+      // If either level is null or an empty String or reads &quot;Unprotected&quot;
+      if ((TextUtils.isEmpty(connectedHdcpLevel) || TextUtils.isEmpty(maxHdcpLevel)) ||
+              (&quot;Unprotected&quot;.equals(connectedHdcpLevel) || &quot;Unprotected&quot;.equals(maxHdcpLevel))) {
+          Log.v(TAG, &quot;Restricting rendition selection to SD&quot;);
+
+          // Set the max video size to SD
+          builder.setMaxVideoSizeSd();
+      }
+
+  // Create a new DefaultTrackSelector object, and set the Parameters object created above
+      DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(this);
+      defaultTrackSelector.setParameters(builder.build());
+      // Set this DefaultTrackSelector object on the ExoPlayerVideoDisplayComponent
+      videoDisplayComponent.setTrackSelector(defaultTrackSelector);
   }
-  brightcoveVideoView.addAll(testPlaylist.getVideos());
-}
-</code></pre>
-      </li>
-      <li>
-        <p>With this call in place, when the Catalog retrieves the Video or Playlist metadata from the Playback API, the <code translate="No">VideoUtil</code> class will replace the watermarking token placeholder <code translate="No">{WMT}</code> with the token value, wherever it may occur in the Video’s source URLs. This token can be replaced for each video in a playlist that may be watermarked.</p>
-      </li>
-    </ol>
+  catch (Exception exception) {
+      if (exception instanceof UnsupportedSchemeException) {
+          Log.e(TAG, &quot;UnsupportedSchemeException: &quot; + exception.getLocalizedMessage());
+      }
+      else {
+          Log.e(TAG, &quot;An unexpected error occurred: &quot; + exception.getLocalizedMessage());
+      }
+  }
+});             
+    </code></pre>
 
   </section>
 
