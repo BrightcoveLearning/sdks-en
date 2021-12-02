@@ -38,13 +38,13 @@ layout: staging
 
   <section class="bcls-section">
     <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
-    <p>When playing a video with a mix of SD and HD renditions, you may want to do the following:</p>
+    <p>When playing a video with a mix of SD and HD renditions, you will want to do the following:</p>
     <ul>
       <li>
         <p>On devices that can support both HD and SD playback, you want to ensure that the player can switch to an appropriate rendition when needed, for example when network bandwidth changes. This rendition switch may require the player to select an SD rendition, where before it was playing HD.</p>
       </li>
       <li>
-        <p>On those devices without HDCP support, for example older Android mobile devices with older OS levels, we want to ensure appropriate rendition switching within SD renditions, as well as guarding that the player will not attempt to load an HDCP-protected rendition, at which point the license request will fail, with an error message like this:</p>
+        <p>On devices without HDCP support, for example older Android mobile devices with older OS levels, you want to ensure appropriate rendition switching within SD renditions, as well as guarding that the player will not attempt to load an HDCP-protected rendition, at which point the license request will fail, with an error message like this:</p>
         <details>
           <summary><h3 id="Development_sequence">Error message</></summary> 
          
