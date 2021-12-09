@@ -17,7 +17,7 @@ grandparent: Home
     <p>You can use Playback Rights with or without DRM, but if you choose to use runtime restrictions, then you will need to use a JSON Web Token (JWT).</p>
     <p>License Keys Protection offers an extra level of security when using Dynamic Delivery with DRM-protected or HTTP Live Streaming Encryption (HLSe) content. License requests can be authenticated using a signed <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">JSON Web Token (JWT)</a>. </p>
 
-    <p>The token is used when requesting the video license, once the video has been loaded to the player and the source has been selected.</p>
+    <p>The JWT is used when requesting the video license, once the video has been loaded to the player and the source has been selected.</p>
 
     <aside class="bcls-aside bcls-aside--information">With HLSe content, when the player changes rendition, due to improved connectivity or after the first segment is loaded, a new license request is made.</aside>
 
@@ -31,21 +31,23 @@ grandparent: Home
   <section class="bcls-section">
     <h2 id="Requirements">Requirements</h2>
     <p>Here are the requirements needed to use Playback Restrictions.</p>
-    <!-- <h3>Playback Rights</h3> -->
-    <h4>Android</h4>
-    <ul>
-      <li>You must use Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</li>
-    </ul>
-    <h4>iOS</h4>
-    <ul><li>You must use Brightcove Native SDK for iOS version <strong>6.7.0</strong> or later</li>
-    </ul>
+      <p><strong>Android</strong>: Brightcove Native SDK for Android version <strong>6.11.0</strong> or later</p>
+      <p><strong>iOS</strong>: Brightcove Native SDK for iOS version <strong>6.7.0</strong> or later</p>
+  </section>
 
-    <!-- <h3>License Keys Protection</h3>
-    <p>To use License Keys Protection, you need the following:</p>
+  <section class="bcls-section">
+    <h2 id="How_does_it_work">How does it work?</h2>
+    <p>Playback Restrictions refer to the whole solution, which includes:</p>
     <ul>
-      <li>Player version <strong>6.33.0</strong> or later</li>
-      <li>If using DRM, you will need the <a href="https://support.brightcove.com/configuring-brightcove-player-drm#Changelog">DRM plugin</a> version <strong>5.5.0</strong> or later</li>
-    </ul> -->
+      <li>Playback Rights</li>
+      <li>License Keys Protection</li>
+    </ul>
+    <h3>Playback Rights</h3>
+    <p>By default, the Native SDKs make a request to the Playback API if it has a policy key. The SDK sends the request to the <code translate="No">edge.api.brightcove.com</code> endpoint, and retrieves your content.</p>
+    <p>To check Playback Rights with your Playback API request, you will not include the Policy Key. When there is no Policy Key, the SDK sends the request to the <code translate="No">edge-auth.api.brightcove.com</code> endpoint. If all of the checks associated with Playback Rights pass, then your content is returned.</p>
+    <p>You do not need a JWT with asset-level restrictions.</p>
+    <p>You do need a JWT with runtime restrictions.</p>
+    <!-- <h3>License Keys Protection</h3> -->
 
   </section>
 
@@ -57,8 +59,9 @@ grandparent: Home
         <li>On the Android platform, only DRM DASH is currently supported</li>
       </ul>
     </aside>
+    
     <p>
-      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
+      To make Playback API requests which check for Playback rights, follow these steps:
     </p>
     <ol class="bcls-tasklist-restart">
       <li>
@@ -68,31 +71,24 @@ grandparent: Home
       </li>
       <li>
         <p>
-          By default, the Native SDK for Android makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
-        </p>
-        <p>
-          Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code> without supplying a policy key. Here is an example:
+          Use the catalog Builder pattern without the Policy Key.
         </p>
         <pre>
-<code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, accountId).build();</code></pre>
-        <br />
+<code class="language-java" translate="No">Catalog catalog = new Catalog.Builder(eventEmitter, account).build();</code></pre>
         <p>
           If you are following the Brightcove sample app, it gets the account ID as shown here:
         </p>
         <pre>
-<code class="language-java" translate="No">getString(R.string.account)</code></pre>
-        </br />
+<code class="language-java" translate="No">String account = getString(R.string.account);</code></pre>
       </li>
       <li>
         <p>
           <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
         </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#Android_Using_License_Keys_Protection">Android: Using License Keys Protection</a> section.
-        </p>
+        <ol>
+          <li>Create your JWT token. For details, see the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Overview: Brightcove Playback Restrictions</a> document.</li>
+          <li>Pass your JWT with the catalog request by setting the JWT in the <code translate="No">HttpRequestConfig</code>. For details, see the <a href="#Android_Using_License_Keys_Protection">Android: Using License Keys Protection</a> section.</li>
+        </ol>
       </li>
     </ol>
   </section>
