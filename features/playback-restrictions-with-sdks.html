@@ -47,7 +47,9 @@ grandparent: Home
     <p>To check Playback Rights with your Playback API request, you will not include the Policy Key. When there is no Policy Key, the SDK sends the request to the <code translate="No">edge-auth.api.brightcove.com</code> endpoint. If all of the checks associated with Playback Rights pass, then your content is returned.</p>
     <p>You do not need a JWT with asset-level restrictions.</p>
     <p>You do need a JWT with runtime restrictions.</p>
-    <!-- <h3>License Keys Protection</h3> -->
+    <h3>License Keys Protection</h3>
+    <p>DRM or HLSe content protection uses license/key requests, which can protect every stream request, with the use of a JSON Web Token (JWT).</p>
+    <p>Your requests to the Playback API will include the Policy Key, and the SDKs will send the request to the <code translate="No">edge.api.brightcove.com</code> endpoint.</p>
 
   </section>
 
@@ -61,7 +63,7 @@ grandparent: Home
     </aside>
     
     <p>
-      To make Playback API requests which check for Playback rights, follow these steps:
+      To make Playback API requests which check for Playback Rights, follow these steps:
     </p>
     <ol class="bcls-tasklist-restart">
       <li>
@@ -104,19 +106,16 @@ grandparent: Home
     <ol class="bcls-tasklist-restart">
       <li>
         <p>
-          Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Authorization token as shown here:
+          Create an <code translate="No">HttpRequestConfig</code> object and set the Brightcove Authorization Token to the value of your JSON Web Token.
         </p>
         <pre class="line-numbers"><code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
   .setBrightcoveAuthorizationToken("<span class="bcls-input">your jwt token</span>")
   .build();
 </code></pre>
-        <p>
-          The value of the Authorization token will be the value of your JSON Web Token.
-        </p>
       </li>
       <li>
         <p>
-          Once you have created the <code translate="No">HttpRequestConfig</code> object, pass it to one of the following Catalog methods:
+          Use one of the following Catalog methods with your <code translate="No">HttpRequestConfig</code> object:
         </p>
         <p>
           For a video request, use one of the following:
@@ -143,13 +142,15 @@ grandparent: Home
     <p>
       Here is an example that shows how to pass your authorization token when making a Catalog request:
     </p>
-    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;...&quot;;
+    <pre class="line-numbers"><code class="language-java" translate="No">String myToken = &quot;<span class="bcls-input">your jwt token</span>&quot;;
 HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
   .setBrightcoveAuthorizationToken(myToken)
   .build();
 &hellip;
 
-Catalog catalog = new Catalog(eventEmitter, accountId, policyKey, playbackApiBaseUrl);
+Catalog catalog = new Catalog.Builder(eventEmitter, account)
+  .setPolicy(getString(R.string.policy))
+  .build();
 catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoListener(){...});
 </code></pre>
 
@@ -160,10 +161,10 @@ catalog.findVideoByReferenceID(videoReferenceId, httpRequestConfig, new VideoLis
     <aside class="bcls-aside bcls-aside--tip">Key/license protection with Offline Playback is supported with the Native SDK for Android v6.8.1 or later.</aside>
     <p>Here's an example:</p>
     <pre class="line-numbers"><code class="language-java" translate="No">private HttpRequestConfig httpRequestConfig;
-private String pasToken = &quot;<span class="bcls-input">your jwt token</span>&quot;;
+private String myToken = &quot;<span class="bcls-input">your jwt token</span>&quot;;
 ...
 HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
-httpRequestConfigBuilder.setBrightcoveAuthorizationToken(pasToken);
+httpRequestConfigBuilder.setBrightcoveAuthorizationToken(myToken);
 httpRequestConfig = httpRequestConfigBuilder.build();
 playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     @Override
@@ -215,7 +216,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     </aside>
 
     <p>
-      To make Playback API requests which check for Playback rights and restrictions, follow these steps:
+      To make Playback API requests which check for Playback rights, follow these steps:
     </p>
     <ol class="bcls-tasklist-restart">
       <li>
@@ -225,10 +226,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
       </li>
       <li>
         <p>
-          By default, the Native SDK for iOS makes a request to the Playback API if it has a policy key. To utilize Playback rights, do not send the policy key with your request.
-        </p>
-        <p>
-          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the policy key to <code translate="No">nil</code>. Here is an example:
+          Create an instance of <code translate="No">BCOVPlaybackService</code>, setting the Policy Key to <code translate="No">nil</code>.
         </p>
         <pre>
 <code class="language-java" translate="No">let playbackService = BCOVPlaybackService(accountId: kViewControllerAccountID, policyKey: nil)</code></pre>
@@ -237,12 +235,10 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
         <p>
           <strong>Optional</strong>: If you want to use runtime restrictions, you need to create a JWT token and pass it with the catalog request.
         </p>
-        <p>
-          To create your JWT token, follow the steps in the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Runtime restrictions</a> section of the Overview: Brightcove Playback Restrictions document.
-        </p>
-        <p>
-          To pass your token with the catalog request, see the <a href="#iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</a> section.
-        </p>
+        <ol>
+          <li>Create your JWT token. For details, see the <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html#Runtime_restrictions">Overview: Brightcove Playback Restrictions</a> document.</li>
+          <li>Pass your JWT with the catalog request. For details, see the <a href="#iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</a> section.</li>
+        </ol>
       </li>
     </ol>
   </section> 
@@ -250,7 +246,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
   <section class="bcls-section">
     <h2 id="iOS_Using_License_Keys_Protection">iOS: Using License Keys Protection</h2>
 
-    <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your authorization token. This is done using the <code translate="No">authToken</code> parameter.</p>
+    <p>When using key/license protection, you will need to use the playback service methods that allow you to pass in your JSON Web Token (JWT). This is done using the <code translate="No">authToken</code> parameter.</p>
 
     <p>
       For a video request, use one of the following:
