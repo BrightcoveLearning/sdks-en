@@ -11,7 +11,7 @@ grandparent: Android Development
 
   <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
-    <aside class="bcls-aside bcls-aside--warning">It is important to note that the 6.17.2 build of the Brightcove Native SDK for Android includes a PRE-RELEASE version of the GSC feature. This release is intended for verification purposes, and not to be used in a production application.</aside>
+    <aside class="bcls-aside bcls-aside--warning">It is important to note that the 6.17.3 build of the Brightcove Native SDK for Android includes a PRE-RELEASE version of the GSC feature. This release is intended for verification purposes, and not to be used in a production application.</aside>
     <p>
       Generic Stream Concurrency lets you define the number of video streams that a specific user can watch concurrently. Limiting stream concurrency helps you prevent content being stolen or illegally watched through the theft or inappropriate sharing of credentials.
     </p>
@@ -24,7 +24,7 @@ grandparent: Android Development
     <h2 id="Requirements">Requirements</h2>
     <p>Here are the requirements for this feature:</p>
     <ul>
-      <li>You must use Brightcove Native SDK for Android version <strong>6.17.2</strong> or later</li>
+      <li>Brightcove Native SDK for Android version <strong>6.17.3</strong> or later</li>
     </ul>
 
   </section>
@@ -46,7 +46,7 @@ grandparent: Android Development
       </li>
       <li>
         <p>
-          In your <strong translate="no">gradle.properties</strong> (or wherever you set your dependency version for the Brightcove Native SDK for Android), set the version value to <code translate="no">6.17.2-SNAPSHOT</code>. This will allow the pre-release snapshot build to be downloaded into Android Studio.
+          In your <strong translate="no">gradle.properties</strong> (or wherever you set your dependency version for the Brightcove Native SDK for Android), set the version value to <code translate="no">6.17.3-SNAPSHOT</code>. This will allow the pre-release snapshot build to be downloaded into Android Studio.
         </p>
       </li>
       <li>
@@ -91,9 +91,9 @@ grandparent: Android Development
 <code class="language-java" translate="No">{
 	&quot;error&quot;: &quot;Denied by stream limiting (create)&quot;
 }</code></pre>
-  <h3>Heartbeat frequency</h3>
+  <!-- <h3>Heartbeat frequency</h3>
   <p>The Heartbeat frequency of second request is 30 seconds.</p>
-  <p>Testing has shown for the second heartbeat request ONLY, that the frequency of this request is 30 seconds. We are investigating this.</p>
+  <p>Testing has shown for the second heartbeat request ONLY, that the frequency of this request is 30 seconds. We are investigating this.</p> -->
   <h3>Device with blocked session</h3>
   <p>A device with a blocked session can attempt to stop its session.</p>
   <p>Testing has shown that if a device attempts to stream a video that is already being playing on another device, a second device is blocked from playing the stream, as expected. However, the second device may then attempt to “stop” the session that it was attempting to create, which will result in a <code>404</code> response code from the GSC heartbeat service. Testing has also shown that this does not affect the first device’s ability to continue streaming the content.</p>
