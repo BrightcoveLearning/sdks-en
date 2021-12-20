@@ -13,7 +13,7 @@ layout: staging
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
 <p>In earlier versions of the Brightcove Native SDK for Android, <code translate="No">int</code> and <code translate="No">Integer</code> data types were used to handle values for playhead position (including seek position) and video duration.</p>
-<p>With the Native SDK for Android version 6.18.0, we have aligned with the ExoPlayer library for handling these values. The Native SDK has migrated from using <code translate="No">int</code> and <code translate="No">Integer</code> data types to <code translate="No">long</code> and <code translate="No">Long</code> data types.</p>
+<p>With the Native SDK for Android version 6.18.0, we have aligned with the <code translate="No">ExoPlayer</code> library for handling these values. The Native SDK has migrated from using <code translate="No">int</code> and <code translate="No">Integer</code> data types to <code translate="No">long</code> and <code translate="No">Long</code> data types.</p>
 <h3>Deprecation and replacement</h3>
 <p>This migration involves two processes:</p>
 <ul>
@@ -54,6 +54,9 @@ layout: staging
 <h2 id="Using_the_new_data_types">Using the new data types</h2>
 
 <p>Even though the Brightcove Native SDK for Android still supports the use of integer types, the replacement of these marks a breaking point for new releases. Therefore, we recommend implementing these replacements on your projects going forward.</p>
+<aside class="bcls-aside bcls-aside--information">If you are still using the native <code translate="No">MediaPlayer</code>, note that it still uses integer types. Brightcove strongly recommends <a href="https://sdks.support.brightcove.com/android/framework/migrating-exoplayer-2-framework.html">migrating to <code translate="No">ExoPlayer</code></a>.  
+  </aside>
+
 <h3>Examples</h3>
 <p>Here are some examples of the new members and methods:</p>
 <h4>Listen for playhead position and video duration</h4>
@@ -101,6 +104,7 @@ layout: staging
     <li><code translate="No">ORIGINAL_SEEK_POSITION</code></li>
     <li><code translate="No">MIN_POSITION</code></li>
     <li><code translate="No">MAX_POSITION</code></li>
+    <li><code translate="No">LIVE_WINDOW_DURATION</code></li>
     <li><code translate="No">START_TIME</code></li>
     <li><code translate="No">END_TIME</code></li>
   </ul>
