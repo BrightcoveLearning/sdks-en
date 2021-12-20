@@ -59,17 +59,22 @@ layout: staging
 
 <h3><code translate="No">SeekManager</code> class</h3>
 <p>This class no longer triggers the playback of ads. That functionality was moved to the <code translate="No">TimelineManager</code> where it makes more sense.</p>
-<p>This class previously caught the <code translate="No">SEEK_TO</code> events and notified all the listeners subscribed to this class. With that action, it passed the new absolute time position and also emitted a new <code translate="No">SEEK_TO</code> event including the absolute position and the relative position. Now, <code translate="No">SeekManager</code> does not trigger a new seek event but still notifies all the listeners about the first seek event.</p>
+<p>This class previously listened for <code translate="No">SEEK_TO</code> events and notified all the listeners subscribed to this class. With that action, it passed the new absolute time position and also emitted a new <code translate="No">SEEK_TO</code> event including the absolute position and the relative position. Now, <code translate="No">SeekManager</code> no longer emits a new seek event but still notifies all the listeners about the first seek event.</p>
 <p>This class no longer implements the <code translate="No">TickerObserver</code> and <code translate="No">SeekTask.Seekable</code> classes and does not handle the events that those classes generate.</p>
 <p>This class no longer handles <code translate="No">Skip Ad</code> events.</p>
-<p>The constructor has changed from expecting <code translate="No">VideoPlaybackController</code>, <code translate="No">Timeline</code>, and <code translate="No">Ticker</code> references to expecting <code translate="No">EventEmitter</code> and <code translate="No">Timeline</code> references only.</p>
+<p>The constructor signature has changed from</p>
+<pre><code class="language-java" translate="No">public SeekManager(VideoPlaybackController, Timeline, Ticker)
+</code></pre>
+<p>to</p>
+<pre><code class="language-java" translate="No">public SeekManager(EventEmitter, Timeline)
+</code></pre>
 
 <h3><code translate="No">TimelineManager</code> class</h3>
 <p>This class now handles the playback and skip action of ads. It is subscribed to the <code translate="No">SeekManager</code> class to listen for seek events. Once a seek event is detected, this class checks if an ad was crossed. If so, it plays the ad. If not, it repositions the playhead in the video content and updates the absolute and relative positions.</p>
 <p>The ads are played once the video is playing. If the video is paused, it will not play any ad crossed by seek events. This provides the availability to support many seek events. If the video is playing and an ad is crossed, the ad is played immediately.</p>
 <p>When an ad is crossed while the video is paused, the <code translate="No">TimelineManager</code> will resume the playhead position at the position before the ad was played.</p>
 <p>The <code translate="No">TimelineManager</code> resumes playback in the previous position when a skip ad event is detected.</p>
-<p>The TimelineManager class now extends AbstractComponent.</p>
+<p>The TimelineManager class now extends <code translate="No">AbstractComponent</code>.</p>
 <p>In order to create a <code translate="No">TimelineManager</code> object, you need to pass a <code translate="No">BaseVideoView</code> instance along with a <code translate="No">Timeline</code> instance.</p>
 </section>
 
