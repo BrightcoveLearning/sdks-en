@@ -1257,8 +1257,20 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <li>Deprecation of all <code translate="No">int</code> and <code translate="No">Integer</code> playhead position and duration value references, in class members and methods</li>
   <li>Creation of new class members and methods with a <code translate="No">Long</code> postfix on their names</li>
 </ul>
+<aside class="bcls-aside bcls-aside--information">Where existing methods already return a long data type, no deprecation and replacement has occurred. For example, in the <code translate="No">VideoDisplayComponent</code> class:
+  <code translate="No">videoDisplayComponent.getPlayerCurrentPosition()</code>
+  </aside>
 
-<p>Here is an example of this deprecation and replacement:</p>
+<h3>Examples</h3>
+<p>Here are some examples of this deprecation and replacement:</p>
+
+<p>In the <code translate="No">ExoPlayerVideoDisplayComponent</code>:</p>
+<ul>
+  <li>Deprecated: <code translate="No">videoDisplayComponent.getLiveEdge()</code></li>
+  <li>New: <code translate="No">videoDisplayComponent.getLiveEdgeLong()</code></li>
+</ul>
+
+<p>In the <code translate="No">Video</code> class:</p>
 <ul>
   <li>Deprecated: <code translate="No">video.getDuration()</code></li>
   <li>New: <code translate="No">video.getDurationLong()</code></li>
@@ -1297,7 +1309,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <pre>
 <code class="language-java" translate="No">long position = brightcoveVideoView.getVideoDisplay().getPlayerCurrentPosition();
 </code></pre>
-<aside class="bcls-aside bcls-aside--tip">Note that <code translate="No">getPlayerCurrentPosition</code> has always returned a long value. </aside>
+<aside class="bcls-aside bcls-aside--tip">The <code translate="No">getPlayerCurrentPosition</code> has always returned a long value. </aside>
 
 <h4>Get video duration</h4>
 <pre>
