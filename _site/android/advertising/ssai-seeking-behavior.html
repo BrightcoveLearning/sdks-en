@@ -1252,16 +1252,21 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <p>With the release of the Native SDK for Android version 6.18.0, there are some important changes to the SSAI Plugin that improve playback and seeking behavior, particularly in paused players.</p>
 <p>Previously, when a user would seek forward and crossed an ad, the ad controls replaced the video controls immediately. This did not allow the user to keep seeking. The player would also keep the video content instead of replacing it with the ad content.</p>
 <p>Now, users can seek forward and backward without the ads being played until the video is playing and the user has crossed an ad with the last seek.</p>
-<h3>Use case</h3>
-<p>Consider the following use case:</p>
-<ol class="bcls-tasklist">
-  <li>The user loads the player and starts video playback.</li>
-  <li>Before the mid-roll ad, the user pauses playback.</li>
-  <li>While paused, the user seeks across the mid-roll ad.</li>
-  <li>The player controls are available to the user. When the user presses Play, the mid-roll ad plays.</li>
-  <li>While the ad plays, the ad controls are displayed.</li>
-  <li>After the midroll ad, the content resumes at the seek target, with the player controls.</li>
-</ol>
+
+<details>
+  <summary><h3 id="Use_case">Use case</h3></summary> 
+    <p>Consider the following use case:</p>
+    <ol class="bcls-tasklist">
+      <li>The user loads a video with one or more mid-roll ads into the player and starts video playback.</li>
+      <li>Before a mid-roll ad, the user pauses playback.</li>
+      <li>While the player is paused, the user seeks across the mid-roll ad marker.</li>
+      <li>While the player is still paused, the user seeks back across the mid-roll ad marker, back into the content just watched.</li>
+      <li>After the seek, the player controls are available to the user. When the user presses <strong>Play</strong>, the content plays as expected.</li>
+      <li>When playback reaches the midroll ad marker, the ad will play, with the ad controls displayed.</li>
+      <li>After the midroll ad completes, the player completes the seek action to the seek target, where the content resumes playback, with the player controls.</li>
+    </ol>
+</details>
+
 </section>
 
 <section class="bcls-section">
@@ -1275,7 +1280,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </section>
 
 <section class="bcls-section">
-<h2 id="Behavioral_Changes">Behavioral Changes</h2>
+<h2 id="Plugin_Behavioral_Changes">Plugin Behavioral Changes</h2>
 <p>The following classes have new behavior:</p>
 
 <h3><code translate="No">SSAIComponent</code> class</h3>
@@ -1340,7 +1345,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 <hr>
 <div class="last-updated">
-  Page last updated on 26 Oct 2021
+  Page last updated on 20 Dec 2021
 </div>
 
 
