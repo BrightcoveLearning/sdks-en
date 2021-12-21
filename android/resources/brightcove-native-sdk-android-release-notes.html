@@ -14,6 +14,33 @@ grandparent: Android Development
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.18.0</h3>
+
+<h4>21 Dec 2021</h4>
+<p>SDK Changes:</p>
+<ul>
+  <li><strong>IMPORTANT</strong>: Support for integer data types in player, content and event properties is deprecated in the following areas of content and ad playback:
+    <ul>
+      <li>Playhead position, for VOD and Live playback</li>
+      <li><p>Video duration</p></li>
+    </ul>
+    For a complete list of fields and methods that are migrated, see the <a href="https://sdks.support.brightcove.com/android/playback/playhead-position-and-video-duration.html">Android: Playhead Position and Video Duration</a> support document.
+  </li>
+  </ul>
+
+<p>SSAI Plugin Changes:</p>
+<ul>
+  <li>With this release, the SSAI plugin has been refactored to better support playback and seeking use cases.</li>
+  <li><p>Fixes an issue where seeking in a paused player over ads could load the wrong player controls.</p></li>
+  For a complete description of the behavioral and API-level changes to this plugin, see the <a href="https://sdks.support.brightcove.com/android/advertising/ssai-seeking-behavior.html">SSAI Plugin Changes with Android SDK v6.18.0</a> support document.
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.17.3</h3>
 
 <h4>10 Dec 2021</h4>
@@ -22,12 +49,6 @@ grandparent: Android Development
   <li>Fixes a Generic Stream Concurrency (GSC) issue where the second heartbeat request would follow the first request 30 seconds later, instead of the account-configured frequency.</li>
   <li>Improvements to GSC heartbeat request functionality during Player Activity, Player Fragment and Picture-In-Picture lifecycle events, as well as retries on heartbeat request failures.</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.17.2</h3>
 
