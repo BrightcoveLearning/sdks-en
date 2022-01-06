@@ -48,7 +48,7 @@ grandparent: Home
     <p>To check Playback Rights with your Playback API request, you will not include the Policy Key. When there is no Policy Key, the SDK sends the request to this endpoint:</p>
     <pre><code class="language-java" translate="No">edge-auth.api.brightcove.com</code></pre>
     <p>If all of the checks associated with Playback Rights pass, then your content is returned.</p>
-    <aside class="bcls-aside bcls-aside--tip">Notes:
+    <aside class="bcls-aside bcls-aside--tip">Tips:
       <ul>
         <li>You do not need a JWT with asset-level restrictions</li>
         <li>You do need a JWT with runtime restrictions</li>
@@ -195,9 +195,24 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
       For details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/OfflinePlaybackSampleApp/src/main/java/com/brightcove/player/samples/offlineplayback/MainActivity.java">Offline Playback sample app</a>.
     </p>
 
+    <h3>License Keys Protection with Delivery Rules</h3>
+    <p>
+      To combine License Keys Protection with Delivery Rules, you would set the <code translate="No">HttpRequestConfig.Builder</code> to do the following:
+    </p>
+    <ul>
+      <li>Set the Brightcove Authorization Token (JWT)</li>
+      <li>Set the Delivery Rule Config ID</li>
+    </ul>
+    <p>The resulting Builder configuration would look like this:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
+      .addQueryParameter(HttpRequestConfig.KEY_DELIVERY_RULE_CONFIG_ID, &quot;<span class="bcls-input">your Delivery Rule Config Id</span>&quot;)
+      .setBrightcoveAuthorizationToken(&quot;<span class="bcls-input">your JWT</span>&quot;)
+      .build();
+</code></pre>
+
     <h3>Responses</h3>
     <p>
-      The following responses are associated with PAS:
+      The following responses are associated with License Keys Protection:
     </p>
     <ul>
       <li>
@@ -307,7 +322,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
 
     <h3>Responses</h3>
     <p>
-      The following responses are associated with PAS:
+      The following responses are associated with License Keys Protection:
     </p>
     <ul>
       <li>
