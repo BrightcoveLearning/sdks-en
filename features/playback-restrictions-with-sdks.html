@@ -43,13 +43,22 @@ grandparent: Home
       <li>License Keys Protection</li>
     </ul>
     <h3>Playback Rights</h3>
-    <p>By default, the Native SDKs make a request to the Playback API if it has a policy key. The SDK sends the request to the <code translate="No">edge.api.brightcove.com</code> endpoint, and retrieves your content.</p>
-    <p>To check Playback Rights with your Playback API request, you will not include the Policy Key. When there is no Policy Key, the SDK sends the request to the <code translate="No">edge-auth.api.brightcove.com</code> endpoint. If all of the checks associated with Playback Rights pass, then your content is returned.</p>
-    <p>You do not need a JWT with asset-level restrictions.</p>
-    <p>You do need a JWT with runtime restrictions.</p>
+    <p>By default, the Native SDKs make a request to the Playback API if it has a policy key. The SDK sends the request to the following endpoint, and retrieves your content:</p>
+    <pre><code class="language-java" translate="No">edge.api.brightcove.com</code></pre>
+    <p>To check Playback Rights with your Playback API request, you will not include the Policy Key. When there is no Policy Key, the SDK sends the request to this endpoint:</p>
+    <pre><code class="language-java" translate="No">edge-auth.api.brightcove.com</code></pre>
+    <p>If all of the checks associated with Playback Rights pass, then your content is returned.</p>
+    <aside class="bcls-aside bcls-aside--tip">Notes:
+      <ul>
+        <li>You do not need a JWT with asset-level restrictions</li>
+        <li>You do need a JWT with runtime restrictions</li>
+      </ul>
+    </aside>
+   
     <h3>License Keys Protection</h3>
     <p>DRM or HLSe content protection uses license/key requests, which can protect every stream request, with the use of a JSON Web Token (JWT).</p>
-    <p>Your requests to the Playback API will include the Policy Key, and the SDKs will send the request to the <code translate="No">edge.api.brightcove.com</code> endpoint.</p>
+    <p>Your requests to the Playback API will include the Policy Key, and the SDKs will send the request to the following endpoint:</p>
+    <pre><code class="language-java" translate="No">edge.api.brightcove.com</code></pre>
 
   </section>
 
