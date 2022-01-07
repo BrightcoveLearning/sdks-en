@@ -1563,6 +1563,37 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
       For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#renewing-a-fairplay-license">Renewing a FairPlay License</a> section of the Native SDK for iOS reference.
     </p>
 
+    <h3>License Keys Protection with Delivery Rules</h3>
+    <p>
+      To combine License Keys Protection with Delivery Rules, do the following:
+    </p>
+    <ul>
+      <li>Define the parameter for your Delivery Rules ID</li>
+      <li>Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API</li>
+      <li>Pass your JSON Web Token (JWT) using the <code translate="No">authToken</code> parameter</li>
+    </ul>
+    <p>Here is a code example:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">- (void)requestContentFromPlaybackService
+  {
+    <span class="bcls-highlight">NSDictionary *playbackAPIParameters = @{@&quot;config_id&quot;:@&quot;<span class="bcls-input">your rules id</span>&quot;};</span>
+
+    [self.playbackService findVideoWithVideoID:kViewControllerVideoID
+      <span class="bcls-highlight">authToken:(NSString *)authToken</span>
+      <span class="bcls-highlight">parameters:playbackAPIParameters</span>
+      completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+
+      if (video)
+      {
+        [self.playbackController setVideos:@[ video ]];
+      }
+      else
+      {
+        NSLog(@&quot;ViewController Debug - Error retrieving video playlist: `%@`&quot;, error);
+      }
+    }];
+  }
+</code></pre>
+
     <h3>Responses</h3>
     <p>
       The following responses are associated with License Keys Protection:
