@@ -1701,32 +1701,27 @@ brightcoveVideoView.start();</code></pre>
 
   &lt;/resources&gt;</code></pre>
 	</li>
+  <li>
+    Return to the <code translate="No">MainActivity.java</code> file and get the event emitter from the SDK.
+    <pre class="line-numbers" data-start="21">
+<code class="language-java" translate="No">// Get the event emitter from the SDK
+EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();</code></pre>
+  </li>
 	<li>
-	<p>Return to the <code translate="No">MainActivity.java</code> file and add the following code:</p>
-
-	<ul>
-		<li>Get the event emitter from the SDK</li>
-		<li>
-		<p>Create an instance of <code translate="No">com.brightcove.player.edge.Catalog</code>, using your defined values for Account ID and Policy Key from the previous step.</p>
-		</li>
-	</ul>
-
+	<p>Create a catalog request to fetch a video from the Brightcove Edge service, using your defined values for Account ID and Policy Key from the previous step.</p>
 	<pre class="line-numbers" data-start="21">
-<code class="language-java" translate="No">// Get the event emitter from the SDK and create a catalog request to fetch a video from the
-// Brightcove Edge service, given a video id, an account id and a policy key.
-<span class="bcls-highlight">EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));</span>
-  </code></pre>
+<code class="language-java" translate="No">// Create a catalog request to fetch a video
+String account = getString(R.string.account);
+Catalog catalog = new Catalog.Builder(eventEmitter, account)
+  .setBaseURL(Catalog.DEFAULT_EDGE_BASE_URL)
+  .setPolicy(getString(R.string.policy))
+  .build();</code></pre>
 	</li>
 	<li>
 	<p>Use the Catalog's <code translate="No">findVideoByID()</code> method with your video ID and a <code translate="No">VideoListener</code> for the callback.</p>
-	<!--				<p>For this example, select the  <code translate="No">VideoListener</code> associated with <code translate="No">com.brightcove.player.media</code>.</p>-->
-
 	<pre class="line-numbers" data-start="26">
 <code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
-  // Add the video found to the queue with add().
-  // Start playback of the video with start().
   @Override
     public void onVideo(Video video) {
     }
@@ -1745,7 +1740,9 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 <code class="language-java" translate="No">// Start playback of the video with start().
   @Override
     public void onVideo(Video video) {
+      // Add video to the view
       brightcoveVideoView.add(video);
+      // Start video playback
       brightcoveVideoView.start();
     }</code></pre>
 	</li>
@@ -1766,25 +1763,31 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    // Create the video view
     brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
 
+    super.onCreate(savedInstanceState);
+
+    // Get the event emitter from the SDK
     EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-    Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));
+
+    // Create a catalog request to fetch a video
+    String account = getString(R.string.account);
+    Catalog catalog = new Catalog.Builder(eventEmitter, account)
+      .setBaseURL(Catalog.DEFAULT_EDGE_BASE_URL)
+      .setPolicy(getString(R.string.policy))
+      .build();
+
+    // Get the video by ID
     catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
-      // Add the video found to the queue with add().
-      // Start playback of the video with start().
       @Override
       public void onVideo(Video video) {
+        // Add video to the view
         brightcoveVideoView.add(video);
+        // Start video playback
         brightcoveVideoView.start();
-      }
-
-      @Override
-      public void onError(String s) {
-        throw new RuntimeException(s);
       }
     });
   }
