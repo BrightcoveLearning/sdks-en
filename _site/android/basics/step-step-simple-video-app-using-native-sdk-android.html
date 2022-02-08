@@ -1439,33 +1439,30 @@ include ':app'</code></pre>
 
 <p>Even with the Empty Activity, you will get a simple <code translate="No">TextView</code> layout. Replace this with the <code translate="No">BrightcoveExoPlayerVideoView</code>, which defines the view for the player.</p>
 
-<ol class="bcls-tasklist-restart">
-	<li>Open the file <code translate="No">app/res/layout/activity_main.xml</code>.</li>
+<ol class="bcls-tasklist">
+	<li>Open the file <code translate="No">app/res/layout/activity_main.xml</code> and click <strong>Code</strong>.
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Layout XML file" src="/assets/images/android/step-by-step/studioqs-text-activity-main-xml.png" />
+      <figcaption class="bcls-caption--image">Layout XML file</figcaption>
+    </figure>
+  </li>
 	<li>
-	<p>Click <strong>Text</strong> at the bottom of the file's tab to see the raw XML.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Layout XML file" src="/assets/images/android/step-by-step/studioqs-text-activity-main-xml.png" />
-	<figcaption class="bcls-caption--image">Layout XML file</figcaption>
-	</figure>
-	</li>
-	<li>
-	<p>Remove the existing <code translate="No">TextView</code> element and add a <code translate="No">BrightcoveExoPlayerVideoView</code> section so the resulting XML appears as follows. Note for later use the <code translate="No">id</code> of the view is named <code translate="No">brightcove_video_view</code>.</p>
+	<p>Remove the existing <code translate="No">TextView</code> element and add a <code translate="No">BrightcoveExoPlayerVideoView</code> section so the resulting XML appears as follows. Note for later use that the <code translate="No">id</code> of the view is named <code translate="No">brightcove_video_view</code>.</p>
 
 	<pre class="line-numbers" data-start="1">
-<code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-    &lt;android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.brightcove.playvideos.MainActivity"&gt;
+<code class="language-java" translate="No">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
-    <span class="bcls-highlight">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
-        android:id="@+id/brightcove_video_view"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_gravity="center_horizontal|top"/&gt;</span>
-    &lt;/android.support.constraint.ConstraintLayout&gt;</code></pre>
+  <span class="bcls-highlight">&lt;com.brightcove.player.view.BrightcoveExoPlayerVideoView
+      android:id="@+id/brightcove_video_view"
+      android:layout_width="match_parent"
+      android:layout_height="280dp"
+      android:layout_gravity="center_horizontal|top"/&gt;</span>
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre>
 	</li>
 </ol>
 
@@ -1942,7 +1939,7 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 
 <hr>
 <div class="last-updated">
-  Page last updated on 07 Feb 2022
+  Page last updated on 08 Feb 2022
 </div>
 
 
