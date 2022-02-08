@@ -565,21 +565,17 @@ Catalog catalog = new Catalog.Builder(eventEmitter, account)
 	<p>Some code from the previous app is no longer needed. Remove the call to the Catalog's <code translate="No">findVideoByID()</code> method, and the associated <code translate="No">VideoListener</code> anonymous callback function.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+<code class="language-java" translate="No">// Get the video by ID
+catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
-    // Add the video found to the queue with add().
-    // Start playback of the video with start().
-    @Override
-      public void onVideo(Video video) {
-        brightcoveVideoView.add(video);
-        brightcoveVideoView.start();
-      }
-
-    @Override
-      public void onError(String s) {
-        throw new RuntimeException(s);
-      }
-  });</code></pre>
+  @Override
+  public void onVideo(Video video) {
+    // Add video to the view
+    brightcoveVideoView.add(video);
+    // Start video playback
+    brightcoveVideoView.start();
+  }
+});</code></pre>
 	</li>
 </ol>
 
@@ -590,19 +586,26 @@ Catalog catalog = new Catalog.Builder(eventEmitter, account)
 	<p>The existing catalog instance will work for retrieving a playlist, so <strong>no changes are necessary</strong> to these lines of code:</p>
 
 	<pre class="line-numbers" data-start="23">
-<code class="language-java" translate="No">EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));</code></pre>
+<code class="language-java" translate="No">// Get the event emitter from the SDK
+EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+
+// Create a catalog request to fetch a video
+String account = getString(R.string.account);
+Catalog catalog = new Catalog.Builder(eventEmitter, account)
+  .setBaseURL(Catalog.DEFAULT_EDGE_BASE_URL)
+  .setPolicy(getString(R.string.policy))
+  .build();</code></pre>
 	</li>
 	<li>In Video Cloud Studio's <strong>Media</strong> module, select a playlist and copy the <strong>Playlist ID</strong>.</li>
 	<li>
 	<p>Use the Catalog's <code translate="No">findPlaylistByID()</code> method using your playlist ID and a <code translate="No">PlaylistListener</code> for the callback.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">catalog.findPlaylistByID("<span class="bcls-input">your playlist id</span>", new PlaylistListener() {
+<code class="language-java" translate="No">String playlist = getString(R.string.playlistId);
+catalog.findPlaylistByID(playlist, new PlaylistListener() {
   @Override
   public void onPlaylist(Playlist playlist) {
   }
-
   @Override
   public void onError(String s) {
   }
@@ -637,19 +640,32 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    // Create the video view
     brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
 
+    super.onCreate(savedInstanceState);
+
+    // Get the event emitter from the SDK
     EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-    Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));
-    catalog.findPlaylistByID("<span class="bcls-input">your playlist id</span>", new PlaylistListener() {
+
+    // Create a catalog request to fetch a video
+    String account = getString(R.string.account);
+    Catalog catalog = new Catalog.Builder(eventEmitter, account)
+      .setBaseURL(Catalog.DEFAULT_EDGE_BASE_URL)
+      .setPolicy(getString(R.string.policy))
+      .build();
+
+    // Get the playlist by ID
+    String playlist = getString(R.string.playlistId);
+    catalog.findPlaylistByID(playlist, new PlaylistListener() {
       @Override
       public void onPlaylist(Playlist playlist) {
+        // Add playlist to the view
         brightcoveVideoView.addAll(playlist.getVideos());
+        // Start playback
         brightcoveVideoView.start();
       }
-
       @Override
       public void onError(String s) {
         throw new RuntimeException(s);
