@@ -1489,7 +1489,7 @@ include ':app'</code></pre>
   </li>
 	<li>
 	<p>For the <code translate="No">MainActivity</code> class, extend the <code translate="No">BrightcovePlayer</code> class. This provides default lifecycle management for your app.</p>
-	<pre class="line-numbers" data-start="13">
+	<pre class="line-numbers" data-start="12">
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {</code></pre>
 	</li>
   <li>As you start typing <code translate="No">BrightcovePlayer</code>, you should see options to select. Double clicking on the <code translate="No">BrightcovePlayer</code> option will add an <code translate="No">import</code> statement.
@@ -1523,7 +1523,7 @@ include ':app'</code></pre>
 		</li>
 	</ul>
 
-	<pre class="line-numbers" data-start="13">
+	<pre class="line-numbers" data-start="12">
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -1536,14 +1536,14 @@ include ':app'</code></pre>
 	<li class="player-only">
 	<p>Next, you need to send your Brightcove Player Account ID to Brightcove using the analytics <code translate="No">setAccount()</code> method.</p>
 
-	<pre class="line-numbers" data-start="22">
+	<pre class="line-numbers" data-start="23">
 <code class="language-java" translate="No">Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setAccount("<span class="bcls-input">your account Id</span>");</code></pre>
 	</li>
 	<li class="video-cloud-only">
 	<p><strong>Optional:</strong> If you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Video Cloud Publisher ID to Video Cloud Analytics. You can do this by using the analytics <code translate="No">setAccount()</code> method. This allows you to view data for this app in Video Cloud Analytics.</p>
 
-	<pre class="line-numbers" data-start="22">
+	<pre class="line-numbers" data-start="23">
 <code class="language-java" translate="No">Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setAccount("<span class="bcls-input">your account Id</span>");</code></pre>
 
@@ -1552,14 +1552,14 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 	<li>
 	<p>Create a video object from your video hosted on a remote server. Set the <code translate="No">DeliveryType</code> to match the type of video you have.</p>
 
-	<pre class="line-numbers" data-start="26">
+	<pre class="line-numbers" data-start="27">
 <code class="language-java" translate="No">Video video = Video.createVideo("https://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8",
   DeliveryType.HLS);</code></pre>
 	</li>
 	<li>
 	<p>Load a remote image to be used as the poster image before video playback starts.</p>
 
-	<pre class="line-numbers" data-start="29">
+	<pre class="line-numbers" data-start="31">
 <code class="language-java" translate="No">try {
   java.net.URI myposterImage = new java.net.URI("https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png");
   video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
@@ -1570,7 +1570,7 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 	<li>
 	<p>Add the video to the view and start video playback.</p>
 
-	<pre class="line-numbers" data-start="37">
+	<pre class="line-numbers" data-start="39">
 <code class="language-java" translate="No">brightcoveVideoView.add(video);
 brightcoveVideoView.start();</code></pre>
 	</li>
@@ -1672,7 +1672,7 @@ brightcoveVideoView.start();</code></pre>
 <h3>Retrieve a video from the Catalog</h3>
 
 <ol class="bcls-tasklist">
-	<li>From Video Cloud Studio, collect the following information:
+	<li>From your Video Cloud Studio account, collect the following information:
 	<ul>
 		<li>Account ID</li>
 		<li>Video ID</li>
@@ -1688,7 +1688,7 @@ brightcoveVideoView.start();</code></pre>
 	</aside>
 	</li>
 	<li>
-	<p>Define your custom values in your project. Open the <code translate="No">res/values/strings.xml</code> file and update it as follows:</p>
+	<p>Define your custom values in your project. Open the <code translate="No">res/values/strings.xml</code> file and update it with your values:</p>
 
 	<pre class="line-numbers">
 <code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -1849,7 +1849,7 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 	<p>Use the Catalog's <code translate="No">findPlaylistByID()</code> method using your playlist ID and a <code translate="No">PlaylistListener</code> for the callback.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">catalog.findPlaylistByID("2764931905001", new PlaylistListener() {
+<code class="language-java" translate="No">catalog.findPlaylistByID("<span class="bcls-input">your playlist id</span>", new PlaylistListener() {
   @Override
   public void onPlaylist(Playlist playlist) {
   }
@@ -1894,7 +1894,7 @@ Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getStri
 
     EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
     Catalog catalog = new Catalog(eventEmitter, getString(R.string.account), getString(R.string.policy));
-    catalog.findPlaylistByID("4845949311001", new PlaylistListener() {
+    catalog.findPlaylistByID("<span class="bcls-input">your playlist id</span>", new PlaylistListener() {
       @Override
       public void onPlaylist(Playlist playlist) {
         brightcoveVideoView.addAll(playlist.getVideos());
