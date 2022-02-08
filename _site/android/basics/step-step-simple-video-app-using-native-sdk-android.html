@@ -1719,42 +1719,23 @@ Catalog catalog = new Catalog.Builder(eventEmitter, account)
 	</li>
 	<li>
 	<p>Use the Catalog's <code translate="No">findVideoByID()</code> method with your video ID and a <code translate="No">VideoListener</code> for the callback.</p>
+  <aside class="bcls-aside bcls-aside--tip">The <code translate="No">VideoListener</code> identifies objects that expect to receive a Video object from an asynchronous operation. On a successful operation, an <code translate="No">onVideo()</code> method will be called.</aside>
+  <p>In the <code translate="No">onVideo()</code> method, add the video to <code translate="No">brightcoveVideoView</code>, then start the video.</p>
+
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+<code class="language-java" translate="No">// Get the video by ID
+catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
 
   @Override
-    public void onVideo(Video video) {
-    }
-
-  @Override
-    public void onError(String s) {
-    }
+  public void onVideo(Video video) {
+    // Add video to the view
+    brightcoveVideoView.add(video);
+    // Start video playback
+    brightcoveVideoView.start();
+  }
 });</code></pre>
-
-	<aside class="bcls-aside bcls-aside--information">The <code translate="No">VideoListener</code> identifies objects that expect to receive a Video object from an asynchronous operation. On a successful operation, an <code translate="No">onVideo()</code> method will be called. If there is an error in the operation, an <code translate="No">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
 	</li>
-	<li>
-	<p>In the <code translate="No">onVideo()</code> method, add the video to <code translate="No">brightcoveVideoView</code>, then start the video.</p>
 
-	<pre class="line-numbers" data-start="29">
-<code class="language-java" translate="No">// Start playback of the video with start().
-  @Override
-    public void onVideo(Video video) {
-      // Add video to the view
-      brightcoveVideoView.add(video);
-      // Start video playback
-      brightcoveVideoView.start();
-    }</code></pre>
-	</li>
-	<li>
-	<p>In the <code translate="No">onError()</code> method throw the error string.</p>
-
-	<pre class="line-numbers" data-start="36">
-<code class="language-java" translate="No">@Override
-    public void onError(String s) {
-      throw new RuntimeException(s);
-    }</code></pre>
-	</li>
 	<li>
 	<p>The complete code for your <code translate="No">MainActivity</code> class should be similar to this:</p>
 
@@ -1846,38 +1827,21 @@ Catalog catalog = new Catalog.Builder(eventEmitter, account)
 	<li>In Video Cloud Studio's <strong>Media</strong> module, select a playlist and copy the <strong>Playlist ID</strong>.</li>
 	<li>
 	<p>Use the Catalog's <code translate="No">findPlaylistByID()</code> method using your playlist ID and a <code translate="No">PlaylistListener</code> for the callback.</p>
+  <aside class="bcls-aside bcls-aside--tip">The <code translate="No">PlaylistListener</code> identifies objects that expect to receive a Playlist object from an asynchronous operation. On a successful operation, an <code translate="No">onPlaylist()</code> method will be called.</aside>
+  <p>In the <code translate="No">onPlaylist()</code> method, retrieve the videos from the playlist, add all of the videos to <code translate="No">brightcoveVideoView</code>, then start the first video.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">String playlist = getString(R.string.playlistId);
+<code class="language-java" translate="No">// Get the playlist by ID
+String playlist = getString(R.string.playlistId);
 catalog.findPlaylistByID(playlist, new PlaylistListener() {
   @Override
   public void onPlaylist(Playlist playlist) {
-  }
-  @Override
-  public void onError(String s) {
+    // Add playlist to the view
+    brightcoveVideoView.addAll(playlist.getVideos());
+    // Start playback
+    brightcoveVideoView.start();
   }
 });</code></pre>
-
-	<aside class="bcls-aside bcls-aside--tip">The <code translate="No">PlaylistListener</code> identifies objects that expect to receive a Playlist object from an asynchronous operation. On a successful operation, an <code translate="No">onPlaylist()</code> method will be called. If there is an error in the operation, an <code translate="No">onError()</code> method will be called. Android Studio inserted the signatures of the two needed methods.</aside>
-	</li>
-	<li>
-	<p>In the <code translate="No">onPlaylist()</code> method, retrieve the videos from the playlist, add all of the videos to <code translate="No">brightcoveVideoView</code>, then start the first video.</p>
-
-	<pre class="line-numbers" data-start="27">
-<code class="language-java" translate="No">@Override
-    public void onPlaylist(Playlist playlist) {
-  <span class="bcls-highlight">    brightcoveVideoView.addAll(playlist.getVideos());
-      brightcoveVideoView.start();</span>
-    }</code></pre>
-	</li>
-	<li>
-	<p>In the <code translate="No">onError()</code> method throw the error string.</p>
-
-	<pre class="line-numbers" data-start="31">
-<code class="language-java" translate="No"> @Override
-    public void onError(String s) {
-  <span class="bcls-highlight">    throw new RuntimeException(s);</span>
-    }</code></pre>
 	</li>
 	<li>
 	<p>The complete code for your <code translate="No">MainActivity</code> class should be similar to this:</p>
@@ -1912,10 +1876,6 @@ catalog.findPlaylistByID(playlist, new PlaylistListener() {
         brightcoveVideoView.addAll(playlist.getVideos());
         // Start playback
         brightcoveVideoView.start();
-      }
-      @Override
-      public void onError(String s) {
-        throw new RuntimeException(s);
       }
     });
   }
