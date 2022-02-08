@@ -235,13 +235,22 @@ include ':app'</code></pre>
 <h3>Create the View and play a video</h3>
 
 <ol class="bcls-tasklist">
+  <li>Return to the <code translate="No">MainActivity.java</code> file.
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="MainActivity file" src="/assets/images/android/step-by-step/main-activity.png" />
+      <figcaption class="bcls-caption--image">MainActivity file</figcaption>
+    </figure>
+  </li>
 	<li>
-	<p>Return to the <code translate="No">MainActivity.java</code> file. For the <code translate="No">MainActivity</code> class, extend the <code translate="No">BrightcovePlayer</code> class. This provides default lifecycle management for your app.</p>
-
+	<p>For the <code translate="No">MainActivity</code> class, extend the <code translate="No">BrightcovePlayer</code> class. This provides default lifecycle management for your app.</p>
 	<pre class="line-numbers" data-start="13">
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {</code></pre>
 	</li>
-	<li>
+  <li>As you start typing <code translate="No">BrightcovePlayer</code>, you should see options to select. Double clicking on the <code translate="No">BrightcovePlayer</code> option will add an <code translate="No">import</code> statement.
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="BrightcovePlayer class" src="/assets/images/android/step-by-step/add-brightcoveplayer.png" />
+      <figcaption class="bcls-caption--image">BrightcovePlayer class</figcaption>
+    </figure>
+  </li>
+	<!-- <li>
 	<p>The <code translate="No">BrightcovePlayer</code> class is not automatically imported into the project. Press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the class.</p>
 
 	<p>Before:</p>
@@ -257,7 +266,7 @@ include ':app'</code></pre>
 	</figure>
 
 	<p>You will do this for all new classes that you add to the project.</p>
-	</li>
+	</li> -->
 	<li>
 	<p>Locate the <code translate="No">onCreate()</code> function. Below any existing code in the function, add the following:</p>
 
@@ -275,7 +284,7 @@ include ':app'</code></pre>
     setContentView(R.layout.activity_main);
 <span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span></code></pre>
 
-	<p>Don't forget to import the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
+	<p>When you paste in the highlighted code above, press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
 	</li>
 	<li class="player-only">
 	<p>Next, you need to send your Brightcove Player Account ID to Brightcove using the analytics <code translate="No">setAccount()</code> method.</p>
@@ -297,7 +306,7 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 	<p>Create a video object from your video hosted on a remote server. Set the <code translate="No">DeliveryType</code> to match the type of video you have.</p>
 
 	<pre class="line-numbers" data-start="26">
-<code class="language-java" translate="No">Video video = Video.createVideo("http://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8",
+<code class="language-java" translate="No">Video video = Video.createVideo("https://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8",
   DeliveryType.HLS);</code></pre>
 	</li>
 	<li>
@@ -319,34 +328,51 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 brightcoveVideoView.start();</code></pre>
 	</li>
 	<li>
-	<p>Check to be sure your <code translate="No">onCreate()</code> method appears as follows:</p>
+	<p>Your code should look similar to this:</p>
 
-	<pre class="line-numbers" data-start="15">
-<code class="language-java" translate="No">@Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+	<pre class="line-numbers">
+<code class="language-java" translate="No">package com.brightcove.playvideos;
 
-    // Optional: For Brightcove Player customers to register their apps
-    Analytics analytics = brightcoveVideoView.getAnalytics();
-    analytics.setAccount("<span class="bcls-input">your account Id</span>");
+  import android.os.Bundle;
+  
+  import com.brightcove.player.model.DeliveryType;
+  import com.brightcove.player.model.Video;
+  import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
+  import com.brightcove.player.view.BrightcovePlayer;
+  
+  import java.net.URISyntaxException;
+  
+  public class MainActivity extends BrightcovePlayer {
+  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
 
-    // Define a video from a remote server
-    Video video = Video.createVideo("http://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8", DeliveryType.HLS);
+      // Create the video view
+      brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
 
-    // Load a remote poster image
-    try {
-        java.net.URI myposterImage = new java.net.URI("https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png");
+      // Optional: For Brightcove Player customers to register their apps
+      Analytics analytics = brightcoveVideoView.getAnalytics();
+      analytics.setAccount("<span class="bcls-input">your account Id</span>");
+
+      // Define a video from a remote server
+      Video video = Video.createVideo(&quot;https://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8&quot;,
+        DeliveryType.HLS);
+
+      // Load a remote poster image
+      try {
+        java.net.URI myposterImage = new java.net.URI(&quot;https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png&quot;);
         video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
-    } catch (URISyntaxException e) {
+      } catch (URISyntaxException e) {
         e.printStackTrace();
-    }
+      }
 
-    // Add video to the view
-    brightcoveVideoView.add(video);
-    // Start video playback
-    brightcoveVideoView.start();
+      // Add video to the view
+      brightcoveVideoView.add(video);
+      // Start video playback
+      brightcoveVideoView.start();
+    }
   }</code></pre>
 	</li>
 	<li>
