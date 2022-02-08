@@ -268,21 +268,22 @@ include ':app'</code></pre>
 	<p>You will do this for all new classes that you add to the project.</p>
 	</li> -->
 	<li>
-	<p>Locate the <code translate="No">onCreate()</code> function. Below any existing code in the function, add the following:</p>
+	<p>Locate the <code translate="No">onCreate()</code> function. Before entering the superclass, assign the <code translate="No">brightcoveVideoView</code> as follows:</p>
 
 	<ul><!-- <li>Set the content view.</li> -->
 		<li>
 		<p>Create an instance of <code translate="No">BrightcoveExoPlayerVideoView</code> and associate it with the layout. In most cases, you will use the exoplayer view. For details, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a Video View</a> document.</p>
 		</li>
+    <li>When extending the <code translate="No">BrightcovePlayer</code>, we must assign the <code translate="No">brightcoveVideoView</code> before entering the superclass. This allows for some stock video player lifecycle management.</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="12">
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-<span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span></code></pre>
+<span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span>
+    super.onCreate(savedInstanceState);</code></pre>
 
 	<p>When you paste in the highlighted code above, press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
 	</li>
@@ -344,35 +345,36 @@ brightcoveVideoView.start();</code></pre>
   
   public class MainActivity extends BrightcovePlayer {
   
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_main);
+        // Create the video view
+        brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
 
-      // Create the video view
-      brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+        super.onCreate(savedInstanceState);
 
-      // Optional: For Brightcove Player customers to register their apps
-      Analytics analytics = brightcoveVideoView.getAnalytics();
-      analytics.setAccount("<span class="bcls-input">your account Id</span>");
-
-      // Define a video from a remote server
-      Video video = Video.createVideo(&quot;https://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8&quot;,
-        DeliveryType.HLS);
-
-      // Load a remote poster image
-      try {
-        java.net.URI myposterImage = new java.net.URI(&quot;https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png&quot;);
-        video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
-      } catch (URISyntaxException e) {
-        e.printStackTrace();
+        // Optional: For Brightcove Player customers to register their apps
+        Analytics analytics = brightcoveVideoView.getAnalytics();
+        analytics.setAccount("<span class="bcls-input">your account Id</span>");
+  
+        // Define a video from a remote server
+        Video video = Video.createVideo(&quot;https://sdks.support.brightcove.com/assets/videos/hls/greatblueheron/greatblueheron.m3u8&quot;,
+          DeliveryType.HLS);
+  
+        // Load a remote poster image
+        try {
+          java.net.URI myposterImage = new java.net.URI(&quot;https://sdks.support.brightcove.com/assets/images/general/Great-Blue-Heron.png&quot;);
+          video.getProperties().put(Video.Fields.STILL_IMAGE_URI, myposterImage);
+        } catch (URISyntaxException e) {
+          e.printStackTrace();
+        }
+  
+        // Add video to the view
+        brightcoveVideoView.add(video);
+        // Start video playback
+        brightcoveVideoView.start();
+  
       }
-
-      // Add video to the view
-      brightcoveVideoView.add(video);
-      // Start video playback
-      brightcoveVideoView.start();
-    }
   }</code></pre>
 	</li>
 	<li>
@@ -381,19 +383,7 @@ brightcoveVideoView.start();</code></pre>
 	<aside class="bcls-aside bcls-aside--information">When running the app on a device, make sure it is connected to the internet via your cell data plan or wifi.</aside>
 	</li>
 </ol>
-<!--
-                      <h3>Add controls to the player</h3>
-                      <p>You should have seen the default Android player controls when you ran your app in the last section. Now, you will use the Brightcove player controls.</p>
-                      <ol start="31">
-                        <li>Add a blank line just after the instantiation of the <code translate="No">BrightcoveVideoView</code> and before adding the video.</li>
-                        <li><p>In this position add the following code to add controls to the player.</p>
-                        <p><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="59-60"></code></p></li>
-                        <li><p>Be sure your <code translate="No">onCreate()</code> method appears as follows:</p>
-                        <p class="video-cloud-only"><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="52-64"></code></p>
-                        <p class="player-only"><code data-gist-id="9b3845c46244588687f7" data-gist-hide-footer="true" data-gist-line="160-175"></code></p></li>
-                        <li>Run the application and you will see the video playing, now with the controls visible. If you don't see the controls, tap the screen and they will appear.</li>
-                      </ol>
-          --></section>
+</section>
 
 <section class="bcls-section video-cloud-only">
 <h2 id="Get_and_play_a_video">Get and play a video</h2>
@@ -405,7 +395,7 @@ brightcoveVideoView.start();</code></pre>
 <h3>Remove unneeded code</h3>
 
 <ol class="bcls-tasklist">
-	<li>Some code from the previous app is no longer needed. In the <code translate="No">onCreate()</code> method, remove all code after you instantiate the <code translate="No">brightcoveVideoView</code> .</li>
+	<li>Some code from the previous app is no longer needed. In the <code translate="No">onCreate()</code> method, remove all code after you enter the superclass.</li>
 	<li>
 	<p>Confirm your <code translate="No">onCreate()</code> method appears as follows:</p>
 
@@ -414,9 +404,12 @@ brightcoveVideoView.start();</code></pre>
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    // Create the video view
     brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+
+    super.onCreate(savedInstanceState);
+
   }
 }</code></pre>
 	</li>
