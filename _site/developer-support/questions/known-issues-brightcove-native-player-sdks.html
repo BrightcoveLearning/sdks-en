@@ -1372,6 +1372,15 @@ This program will be captioned</code></pre>
     <li>You will receive an exception error if you try to play MP4 videos stored in the application resource folder (/res/raw). The work-around is to move your MP4 videos to the application asset folder if you want to play local videos.</li>
   </ul>
 
+  <h3>Playlists with DRM and Clear Content</h3>
+
+  <ul>
+    <li>
+      <p>With the Native SDK for Android v6.17.0 and later, Brightcove has become aware of an issue with playlists containing both encrypted and clear content. When a user selects a clear video during or after playback of an encrypted video, the SDK will return an <code translate="No">IllegalStateException</code>. This is because the player can not use an encrypted codec for clear content.</p>
+      <p>For now, Brightcove suggests the following workaround: To avoid the error, you can put the player in an Activity that is separate from the playlist view. Selecting a new video, whether it is clear or encrypted, from the playlist involves destroying the existing player Activity and creating a new player Activity. This workflow creates a new ExoPlayer instance with new codec resources.</p>
+    </li>
+  </ul>
+
   <h3>Source selection</h3>
 
   <ul>
