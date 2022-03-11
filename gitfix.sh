@@ -7,5 +7,5 @@ cd ~/Library/Caches/com.github.GitHubClient
 rm *.*
 echo 'local caches cleaned'
 cd ~/Library/Application Support/GitHub Desktop/Cache/Cache_Data
-rm *.*
+rm *
 echo 'local app caches cleaned'
