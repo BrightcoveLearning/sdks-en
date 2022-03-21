@@ -25,6 +25,14 @@ grandparent: Home
 <p>Brightcove generates the images dynamically on request. Any video ingested with Dynamic Delivery will have images generated on the first request. This ensures that images are not created for unused videos. Once generated, images are cached locally and on the CDN for repeat viewing, just like any other image.</p>
 <h5>What is the image frequency for a video?</h5>
 <p>Images are generated every 5 seconds for content < 1 hour, and every 10 seconds for content > 1 hour.</p>
+
+<aside class="bcls-aside bcls-aside--information">
+    If you build custom implementations on top of the Brightcove Playback API (PAPI) responses, please note the following:
+    <ul>
+      <li>With Server-Side Ad Insertion (SSAI), the thumbnails manifest is located in the VMAP instead of the PAPI response.</li>
+      <li>With non-SSAI, the thumbnails manifest is included in the PAPI response.</li>
+    </ul> 
+</aside>
 </section>
 
 <section class="bcls-section">
