@@ -1,5 +1,18 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 6.18.2
+
+  SDK Changes:
+
+    *  Fixed an issue where video_engagement Analytics events for remote VOD videos could have a video_seconds_viewed parameter instead of the expected range parameter.
+    *  Fixed player button click listeners when using custom drawables.
+    *  Fixed an issue where a call to NumberUtil.safeLongToInt might crash when its input is too large. Now, when the input can not be safely converted, the method returns Integer.MIN_VALUE with an explanatory message.
+  
+  ExoPlayer Changes:
+
+    *  Fixed an issue where with mixed playlists with DRM and Clear content, playback failed if a Clear video is loaded after playing a DRM video.
+    *  Added support for setting the “multiSession” property (required for key rotation) when creating the DefaultDrmSessionManager in ExoPlayer.
+
 Version 6.18.1
 
   ExoPlayer Changes:
