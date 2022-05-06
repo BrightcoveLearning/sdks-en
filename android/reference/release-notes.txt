@@ -1,5 +1,20 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 6.18.3
+
+  SDK Changes:
+
+    * Fixes an Accessibility issue where when the seekbar has focus, the video progress percentage is constantly read by the TalkBack system.
+    * Fixes an Accessibility issue where double-tapping the video view would focus on the seekbar, and cause an unexpected seek into the video.
+
+  ExoPlayer Changes:
+
+    * Provides a getter method that returns the current instance of the WidevineMediaDrmCallback, or an empty instance if it needs to be created.
+
+Thumbnail Plugin Changes:
+
+    * Fixes an issue where Playlists with a mix of VideoCloud and remote videos would cause a thumbnail from the last-played VideoCloud video to be displayed when selecting a remote video.
+
 Version 6.18.2
 
   SDK Changes:
