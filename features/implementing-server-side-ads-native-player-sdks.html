@@ -15,20 +15,11 @@ grandparent: Home
 <p>Server-Side Ad Insertion (SSAI) allows you to embed ads into your videos so that they can't be blocked by ad blockers in the browser. Dynamic Delivery is the next generation ingest and delivery system which reduces your storage footprint and dynamically packages media. Learn more about using <a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">Dynamic Delivery</a> for your videos.</p>
 
 <p>SSAI works with both DRM and non-DRM content.</p>
-
-<aside class="bcls-aside bcls-aside--information">Notes:
-<ul>
-	<li>To use SSAI, your Video Cloud account needs to be configured for <a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">Dynamic Delivery</a> and enabled for SSAI. Contact your account manager to start using this feature.</li>
-	<li>SSAI works with Video-on-Demand (VOD) and supports Live playback.</li>
-	<li>For a list of limitations, see the <a href="https://ssai.support.brightcove.com/getting-started/video-cloud-ssai-overview.html#Limitations">SSAI Overview</a> document.</li>
-</ul>
-</aside>
+<p>Any video that you retrieve from Video Cloud that has been ingested with Dynamic Delivery, will include the ads specified in the VMAP file in your ad configuration.</p>
 
 <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Server-side ad" src="/assets/images/android/ssai/ssai-sdk.png" />
 <figcaption class="bcls-caption--image">Server-side ad</figcaption>
 </figure>
-
-<p>Any video that you retrieve from Video Cloud that has been ingested with Dynamic Delivery, will include the ads specified in the VMAP file in your ad configuration.</p>
 
 <p>To play server-side ads with your video content stored in Video Cloud, follow these steps:</p>
 
@@ -46,6 +37,24 @@ grandparent: Home
 	<li><a href="#Play_a_video_with_ads">Play a video with ads</a></li>
 	<!-- <li><a href="#Append_query_parameters">Append query parameters</a></li> -->
 </ol>
+
+<aside class="bcls-aside bcls-aside--information">Notes:
+  <ul>
+    <li>To use SSAI, your Video Cloud account needs to be configured for <a href="https://studio.support.brightcove.com/general/overview-dynamic-delivery.html">Dynamic Delivery</a> and enabled for SSAI. Contact your account manager to start using this feature.</li>
+    <li>SSAI works with Video-on-Demand (VOD) and supports Live playback.</li>
+    <li>For a list of limitations, see the <a href="https://ssai.support.brightcove.com/getting-started/video-cloud-ssai-overview.html#Limitations">SSAI Overview</a> document.</li>
+  </ul>
+  </aside>
+
+  <aside class="bcls-aside bcls-aside--information">
+    Because server-side ads (SSAI) are stitched into the stream, the treatment of SSAI midrolls differs from that of CSAI midrolls. 
+  For SSAI midrolls, here is the expected behavior:
+    <ul>
+      <li>When a user moves the playhead past an ad, the ad will play before the content resumes</li>
+      <li>When the user moves the playhead back before the ad, the ad will play again</li>
+    </ul>
+    In conclusion, every time a user crosses a midroll ad, it will play immediately, no matter how many times they cross it.
+  </aside>
 </section>
 
 <section class="bcls-section">
