@@ -7,10 +7,10 @@
   <meta name="description" content="In this topic, you will find the latest information on changes and enhancements to the Brightcove Native SDK for Android.">
   
   <title>Brightcove Native SDK for Android Release Notes</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/s-site-assets-favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/s-site-assets-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/s-site-assets-favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/s-site-assets-favicons/site.webmanifest">  
 <link rel="preconnect" href="https://fonts.gstatic.com"> 
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -298,7 +298,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                           
-                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.18.4: Native SDK for Android Overview</a></li>
+                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.18.5: Native SDK for Android Overview</a></li>
                           
                         
                           
@@ -1267,6 +1267,30 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.18.5</h3>
+
+<h4>27 May 2022</h4>
+<p>ExoPlayer Changes:</p>
+<ul>
+  <li>Adds support for Short Manifest TTLs.</li>
+  <li><strong>IMPORTANT</strong>: Using this SDK version requires the Catalog and
+    HttpRequestConfig objects to be created on the player’s main thread (in its
+    onCreate method). This is a requirement independent of the use of the Short
+    Manifest TTLs feature.</li>
+</ul>
+
+<p>SSAI Plugin Changes:</p>
+
+<ul>
+  <li>Adds support for Short Manifest TTLs.</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.18.4</h3>
 
 <h4>20 May 2022</h4>
@@ -1275,12 +1299,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <li>Fixes an issue where a crash could occur if an account not configured for Generic Stream Concurrency (GSC) were to attempt to play content in a player that is configured for GSC.</li>
   <li>Improves GSC error handling in cases where invalid or expired tokens might be used in attempting to play content.</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.18.3</h3>
 
