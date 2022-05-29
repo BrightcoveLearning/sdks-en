@@ -17,12 +17,12 @@ grandparent: Android Development
 <h3>Version 6.18.5</h3>
 
 <h4>27 May 2022</h4>
-<p>ExoPlayer Changes:</p>
+<p>SDK Changes:</p>
 <ul>
   <li>Adds support for Short Manifest TTLs.</li>
   <li><strong>IMPORTANT</strong>: Using this SDK version requires the Catalog and
-    HttpRequestConfig objects to be created on the player’s main thread (in its
-    onCreate method). This is a requirement independent of the use of the Short
+    HttpRequestConfig objects to be instantiated on the player’s main thread (in its
+    <code translate="No">onCreate</code> method). Note that these objects can be defined either globally (which is preferred) or in the <code translate="No">onCreate</code> method. Please refer to the BasicSsaiSampleApp for an example of a locally defined and instantiated objects, and the VideoViewListSampleApp for an example of globally defined and locally instantiated objects. Please also note that this is a requirement independent of the use of the Short
     Manifest TTLs feature.</li>
 </ul>
 
