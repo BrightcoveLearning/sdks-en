@@ -179,6 +179,12 @@ include ':app'</code></pre>
 	</ul>
 	</aside>
 	</li>
+  <li>In the <code translate="No">gradle.properties</code>, modify the <code translate="No">properties</code> with the below code. Sample code can be found in the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/gradle.properties">android-player-samples</a> repository.
+		<pre class="line-numbers" data-start="1">
+<code class="language-java" translate="No">android.enableJetifier=true
+android.useAndroidX=true
+anpVersion=6.18.3
+org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 	<li>Sync the project to pick up the Gradle file changes.</li>
 </ol>
 </section>
