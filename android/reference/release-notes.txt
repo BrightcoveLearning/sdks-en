@@ -1,5 +1,15 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 6.18.6
+
+  SDK Changes:
+    * Fixes a threading issue in the Catalog class, which resulted in a requirement in SDK version 6.18.5 that the Catalog must be defined and instantiated only from the Player’s main thread. From version 6.18.6 onwards, the Catalog must still be defined within the Player Activity class, but instantiation can be called from other threads. Please refer to the Brightcove Android SDK Sample Apps for examples in defining and instantiating the Catalog.
+    * Updates the GSON dependency version from 2.8.5 to 2.8.9 in response to a CVE report (CVE-2022-25647) about a possible vulnerability in some classes, none of which are used by the Brightcove SDK.
+    
+  ExoPlayer Changes:
+    * Fixes an issue where a seek in a paused player would cause the seekbar’s scrubber to fail to update its progress.
+    * Fixes an issue with Short Manifest TTLs where the Multi-Session DRM setting was not re-applied if the video was refreshed after its manifest timestamp expired.
+    
 Version 6.18.5
 
   SDK Changes:
