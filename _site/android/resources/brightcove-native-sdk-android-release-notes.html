@@ -302,7 +302,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                           
-                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.18.5: Native SDK for Android Overview</a></li>
+                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v6.18.6: Native SDK for Android Overview</a></li>
                           
                         
                           
@@ -1271,6 +1271,39 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section id="Current_release" class="section">
   <h2 id="Current_release"><strong>Current release</strong></h2>
 
+<h3>Version 6.18.6</h3>
+
+<h4>14 June 2022</h4>
+<p>SDK Changes:</p>
+<ul>
+  <li>Fixes a threading issue in the <code translate="No">Catalog</code> class, which resulted in a
+	requirement in SDK version 6.18.5 that the <code translate="No">Catalog</code> must be defined and
+	instantiated only from the Player's main thread. From version 6.18.6
+	onwards, the <code translate="No">Catalog</code> must still be defined within the <code translate="No">Player Activity</code>
+	class, but instantiation can be called from other threads. Please refer to
+	the Brightcove Android SDK Sample Apps for examples in defining and
+	instantiating the <code translate="No">Catalog</code>.</li>
+  <li>Updates the GSON dependency version from 2.8.5 to 2.8.9 in response to
+	a CVE report (CVE-2022-25647) about a possible vulnerability in some
+	classes, none of which are used by the Brightcove SDK.</li>
+</ul>
+
+<p>ExoPlayer Changes:</p>
+
+<ul>
+  <li>Fixes an issue where a seeking in a paused player would cause the
+	seekbar's scrubber to fail to update its progress when playback was resumed.</li>
+	<li>Fixes an issue with Short Manifest TTLs where the Multi-Session DRM
+		setting was not re-applied when the video was refreshed after its manifest
+		<code translate="No">timestamp</code> expired.</li>
+</ul>
+
+</section>
+
+
+<section class="section">
+<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
 <h3>Version 6.18.5</h3>
 
 <h4>27 May 2022</h4>
@@ -1285,12 +1318,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <ul>
   <li>Adds support for Short Manifest TTLs.</li>
 </ul>
-
-</section>
-
-
-<section class="section">
-<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 <h3>Version 6.18.4</h3>
 
