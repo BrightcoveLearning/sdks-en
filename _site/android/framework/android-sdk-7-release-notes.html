@@ -3,20 +3,18 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="In this topic, you will learn about the new functionality provided by the Brightcove Native SDK for Android version 7.0.0.">
   
-  <title>Release Documentation for the Native SDK for Android 7.0.0</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/s-site-assets-favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/s-site-assets-favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/s-site-assets-favicons/favicon-16x16.png">
-  <link rel="manifest" href="/assets/s-site-assets-favicons/site.webmanifest">  
-<link rel="preconnect" href="https://fonts.gstatic.com"> 
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>The Native SDK for Android Release 7.0.0</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/prism.css">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/styles.css">
-  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/learning-paths/learning-paths.css">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/landing-page.css">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/tabs.css">
   <link rel="stylesheet" href="/assets/css/local.css">
@@ -33,8 +31,9 @@
   gtag('config', 'UA-2728311-17');
 </script>
   <script src="/assets/js/sajari-head.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+	<script src="https://unpkg.com/feather-icons"></script>
 </head>
+
 
 <body class="body">
 
@@ -65,7 +64,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       
       <li class="breadcrumb-item"><a href="/android/framework/">Framework</a></li>
       
-      <li class="breadcrumb-item active" aria-current="page">Release Documentation for the Native SDK for Android 7.0.0</li>
+      <li class="breadcrumb-item active" aria-current="page">The Native SDK for Android Release 7.0.0</li>
     </ol>
   </nav>
 </header>
@@ -1262,14 +1261,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     
 
 
-<h1>Release Documentation for the Native SDK for Android 7.0.0</h1>
+<h1>The Native SDK for Android Release 7.0.0</h1>
 <article class="bcls-article">
   <summary>In this topic, you will learn about the new functionality provided by the Brightcove Native SDK for Android version 7.0.0.</summary>
 
 <section class="bcls-section">
   <h2 id="Overview">Overview</h2>
-
-  <p>The Brightcove Native SDK for Android ("Android SDK") is available in a new major version bringing important changes in how it is built. This version includes new functionality to support the following:</p>
+  <p>The Brightcove Native SDK for Android is available in a new major version bringing important changes in how it is built. This version includes new functionality to support the following:</p>
   <ul>
     <li>Low Latency for HLS live streaming</li>
     <li>Android 12 compatibility</li>
@@ -1278,55 +1276,52 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 </section>
 
 <section class="bcls-section">
-<h2 id="SDK_changes">SDK changes</h2>
+  <h2 id="SDK_changes">SDK changes</h2>
+  <p>With this release of the Native SDK for Android, the <code translate="No">MediaPlayer</code> class is no longer supported for content playback.</p>
 
-<p>With this release of the Brightcove Native SDK for Android, the <code translate="No">MediaPlayer</code> class is no longer supported for content playback.</p>
+  <h3>Android 12 compatibility</h3>
 
-<h3>Android 12 Compatibility</h3>
-
-<p>The Native SDK for Android now offers Android OS 12 compatibility, and all of the features in Android 12 should work as expected. Brightcove recommends that you review the changes in Android 12 and modify your application code as needed.</p>
-<p>For details, see the <a href="https://developer.android.com/about/versions/12/summary">Android 12 features and changes list</a> reference.</p>
-
+  <p>The Native SDK for Android now offers Android OS 12 compatibility, and all of the features in Android 12 should work as expected. Brightcove recommends that you review the changes in Android 12 and modify your application code as needed.</p>
+  <p>For details, see the <a href="https://developer.android.com/about/versions/12/summary">Android 12 features and changes list</a> reference.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Apache_HTTP_client_deprecation">Apache HTTP client deprecation</h2>
+  <h2 id="ExoPlayer_upgrade">ExoPlayer upgrade</h2>
+  <p>The Native SDK for Android 7 includes a new version of the ExoPlayer, upgrading from v2.14.2 to v2.16.1. Most of the ExoPlayer changes are handled internally by the Native SDK for Android, but there are some changes reflected in the public API:</p>
+  <ul>
+    <li>The <code translate="No">DrmSession&lt;T extends ExoMediaCrypto&gt;</code> interface no longer requires a parameter</li>
+    <li>The <code translate="No">ExoPlayerDrmSessionManager&lt;T extends ExoMediaCrypto&gt;</code> interface no longer requires a parameter</li>
+    <li>In the <code translate="No">TrackSelectorParametersFactory</code> class, the <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(int)</code> method is now deprecated; please use <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(Context, int)</code> instead</li>
+  </ul>
 
-<p>With Android Pie, Apache HTTP client support has been removed. This affects apps that target Android Pie or higher. It might also affect apps that target older versions of Android when using a non-standard <code translate="No">ClassLoader</code>. At runtime, if the <code translate="No">ClassLoader</code> attempts to load an Apache HTTP client class on Android Pie, it will throw a <code translate="No">NoClassDefFoundError</code>. For more information, see Google’s : <a href="https://developer.android.com/about/versions/pie/android-9.0-changes-all#apache-nonp">Apache HTTP client deprecation</a> document.</p>
-
-<p>If your app is using the Brightcove FreeWheel plugin, you will experience this problem and get an exception as shown here:</p>
-
-<pre>
-<code class="language-java" translate="No">java.lang.NoClassDefFoundError: tv.freewheel.utils.URLLoader
-Caused by: java.lang.NoClassDefFoundError: Failed resolution of: Lorg/apache/http/impl/client/BasicCookieStore;</code></pre>
-
-<p>In order to fix this problem, include the following line to your app’s manifest file:</p>
-
-<pre>
-<code class="language-java" translate="No">&lt;uses-library android:name="org.apache.http.legacy" android:required="false"/&gt;</code></pre>
+  <h3>Gradle and Java Upgrades</h3>
+  <p>Upgrading the ExoPlayer requires the following:</p>
+  <ul>
+    <li>Gradle 7.4</li>
+    <li>Java 11</li>
+  </ul>
+  <p>With the Native SDK for Android 7, you must upgrade both of these environmental dependencies.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Deprecated_constants">Deprecated constants</h2>
+  <h2 id="Plugin changes">Plugin changes</h2>
+  <p>With this release of the Native SDK for Android, there are changes with some of the associated plugins.</p>
 
-<p>There are several constants that were deprecated in the <a href="https://developer.android.com/reference/android/net/ConnectivityManager">ConnectivityManager</a> class. Some of these constants are currently used by the Brightcove SDK, specifically by the Offline Playback and the Offline Analytics features. Here is the list:</p>
+  <h3>Cast plugin</h3>
+  <p>In the <code translate="No">GoogleCastComponent</code> class, the following methods now return <code translate="No">void</code> instead of <code translate="No">PendingResult RemoteMediaClient.MediaChannelResult></code>.</p>
+  <ul>
+    <li><code translate="No">loadItems(MediaQueueItem, int)</code></li>
+    <li><code translate="No">addItems(MediaQueueItem)</code></li>
+  </ul>
 
-<ul>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_BLUETOOTH</code></li>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_ETHERNET</code></li>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_MOBILE</code></li>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_VPN</code></li>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_WIFI</code></li>
-	<li><code translate="No">android.net.ConnectivityManager.TYPE_WIMAX</code></li>
-</ul>
+  <h3>IMA plugin</h3>
+  <p>The Google IMA SDK dependency has been upgraded to 3.27.0. This upgrade includes support for Android 12.</p>
 
-<p>This doesn't affect any functionality on the mentioned features, but be aware that these constants might be removed in a future Android OS version. This also applies to the Brightcove Native SDK.</p>
+  <h3>SSAI plugin</h3>
+  <p>The <code translate="No">SSAIComponent</code> now supports use of a VMAP XML object as a source.</p>
 </section>
-<!-- <section class="bcls-section">
-<h2 id="Testing_limitations">Testing limitations</h2>
 
-<p>Due to resource constraints, we have been unable to test the Brightcove SDK targeting Android Pie on a device that has a "cut-out" in its display. We are working on acquiring such a device to test with as soon as possible.</p>
-</section> --></article>
+</article>
 
 <!-- complete bootstrap layout -->
     </div>
