@@ -1290,6 +1290,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <ul>
       <li><a href="#Setting_captions_and_themes">Setting captions and themes</a></li>
       <li><a href="#Setting_default_captions">Setting default captions</a></li>
+      <li><a href="#Using_in_manifest_captions">Using in-manifest captions</a></li>
     </ul>
 </details>
 <br/>
@@ -2027,6 +2028,18 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
   }
 });</a></code></pre>
 </section>
+
+<section class="bcls-section">
+  <h2 id="Using_in_manifest_captions">Using in-manifest captions</h2>
+  <p>By default, a player built with the Native SDK for Android will use sidecar captions. These captions are found in the <code translate="No">text_tracks</code> object of the Playback API response.</p>
+
+  <p>To configure the player to use in-manifest captions, the <code translate="No">CAPTION_SOURCES</code> property must be removed from the Video object:</p>
+  
+  
+  <pre class="line-numbers"><code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/model/Video.Fields.html#CAPTION_SOURCES">if (video.getProperties().get(Video.Fields.CAPTION_SOURCES) != null) {
+    video.getProperties().remove(Video.Fields.CAPTION_SOURCES);
+}</a></code></pre>
+  </section>
 
 <section class="bcls-section">
 <h2 id="Setting_the_peak_bitrate">Setting the peak bitrate</h2>
