@@ -1303,12 +1303,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
     <!-- <li>In the <code translate="No">TrackSelectorParametersFactory</code> class, the <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(int)</code> method is now deprecated; please use <code translate="No">DefaultTrackSelector.Parameters createWithMaxVideoBitrate(Context, int)</code> instead</li> -->
 
-    <li>In the <code translate="No">TrackSelectorHelper</code> class, the following method is deprecated:
+    <!-- <li>In the <code translate="No">TrackSelectorHelper</code> class, the following method is deprecated:
       <pre><code class="language-java" translate="No">applySelectionOverride(@ExoPlayerVideoDisplayComponent.TrackType int renderType,@NonNull SelectionOverrideCreator selectionOverrideCreator)</code></pre>
       and is replaced with
       <pre><code class="language-java" translate="No">applyTrackSelectionOverrides(@ExoPlayerVideoDisplayComponent.TrackType int renderType)</code></pre>
       <br/>
-    </li>
+    </li> -->
 
     <li>In the <code translate="No">TrackSelectorHelper</code> class, the following method is deprecated:
       <pre><code class="language-java" translate="No">updateTracksSelectionArray(@Nullable TrackSelectionArray trackSelections)</code></pre>
@@ -1325,6 +1325,25 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     </li>
 
     <li><p>In the <code translate="No">ExoAdPlayer</code> class,  The constructor requires a <code translate="No">StyledPlayerView</code> instead of a <code translate="No">PlayerView</code></p></li>
+
+    <li>The following class is deprecated:
+      <pre><code class="language-java" translate="No">DashAudioTrackSelector</code></pre>
+      and is replaced with
+      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
+      <br/>
+    </li>
+    <li>The following class is deprecated:
+      <pre><code class="language-java" translate="No">DashPeakBitRateTrackSelector</code></pre>
+      and is replaced with
+      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
+      <br/>
+    </li>
+    <li>The following class is deprecated:
+      <pre><code class="language-java" translate="No">HLSPeakBitrateTrackSelector</code></pre>
+      and is replaced with
+      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
+      <br/>
+    </li>
   </ul>
 
   <h3>Gradle and Java Upgrades</h3>
