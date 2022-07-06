@@ -1,5 +1,39 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 7.0.1
+
+  Please Note:
+  This major release of the Brightcove Native SDK for Android contains breaking changes, as detailed below.
+
+  SDK Changes:
+    * With this release of the Brightcove Native SDK for Android, MediaPlayer is no longer supported for content playback.
+    * The Brightcove Native SDK for Android is now compatible with Android 12.
+
+  ExoPlayer Changes:
+    * The Brightcove Native Player SDK for Android now supports ExoPlayer 2.17.1. Please note the following breaking changes:
+    * This version of ExoPlayer requires Java 11 and Gradle 7.4.
+    * The DrmSession<T extends ExoMediaCrypto> interface no longer requires a parameter.
+    * The ExoPlayerDrmSessionManager<T extends ExoMediaCrypto> interface no longer requires a parameter.
+    * In the TrackSelectorHelper class. The method updateTracksSelectionArray(@Nullable TrackSelectionArray trackSelections) is now deprecated and replaced with updateTracksGroupInfos(@Nullable ImmutableList<TracksInfo.TrackGroupInfo> trackGroupInfos)
+    * In the MediaSourceUtil class, the method findRenditionUrl(@NonNull HlsMasterPlaylist hlsMasterPlaylist, int trackType, @NonNull Format format) is now deprecated and is replaced with findRenditionUrl(@NonNull HlsMultivariantPlaylist hlsMasterPlaylist, int trackType, @NonNull Format format).
+    * In the ExoAdPlayer class, the constructor requires a StyledPlayerView instead of a PlayerView.
+    * The DashAudioTrackSelector class is now deprecated and replaced with ExoPlayerVideoDisplayComponent.setPeakBitrate(int).
+    * The DashPeakBitRateTrackSelector class is now deprecated and replaced with ExoPlayerVideoDisplayComponent.setPeakBitrate(int).
+    * The HLSPeakBitrateTrackSelector class is now deprecated and replaced with ExoPlayerVideoDisplayComponent.setPeakBitrate(int).
+
+  Cast Plugin Changes:
+    * In the GoogleCastComponent class, these methods:
+      loadItem(MediaQueueItem, int)
+      addItems(MediaQueueItem)
+      now return void instead of PendingResult<RemoteMediaClient.MediaChannelResult>.
+    * Fixes an issue when casting Remote DRM videos, where the Cast sender was sending an unexpected CustomData field to the Brightcove Cast Receiver app.
+
+  IMA Plugin:
+    * The Google IMA SDK dependency has been upgraded to 3.27.0. This upgrade includes support for Android 12.
+
+  SSAI Plugin Changes:
+    * The SSAIComponent now supports use of the Brightcove VideoCloud VMAP XML object itself as a source. To use a VideoCloud VMAP XML object as a source, call processVideo(String vmapXmlString) in the SSAIComponent class.
+
 Version 6.18.6
 
   SDK Changes:
