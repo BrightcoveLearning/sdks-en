@@ -105,9 +105,9 @@ layout: staging
   <p>With this release of the Native SDK for Android, there are changes with some of the associated plugins.</p>
 
   <h3>Cast plugin</h3>
-  <p>In the <code translate="No">GoogleCastComponent</code> class, the following methods now return <code translate="No">void</code> instead of <code translate="No">PendingResult RemoteMediaClient.MediaChannelResult></code>.</p>
+  <p>In the <code translate="No">GoogleCastComponent</code> class, the following methods now return <code translate="No">void</code> instead of <code translate="No">PendingResult &lt;RemoteMediaClient.MediaChannelResult&gt;</code>.</p>
   <ul>
-    <li><code translate="No">loadItems(MediaQueueItem, int)</code></li>
+    <li><code translate="No">loadItem(MediaQueueItem, int)</code></li>
     <li><code translate="No">addItems(MediaQueueItem)</code></li>
   </ul>
 
@@ -115,7 +115,7 @@ layout: staging
   <p>The Google IMA SDK dependency has been upgraded to 3.27.0. This upgrade includes support for Android 12.</p>
 
   <h3>SSAI plugin</h3>
-  <p>The <code translate="No">SSAIComponent</code> now supports use of a VMAP XML object as a source.</p>
+  <p>The <code translate="No">SSAIComponent</code> now supports the use of a Brightcove VideoCloud VMAP XML object as a source. To use a VideoCloud VMAP XML object as a source, call <code translate="No">SSAIComponent.processVideo(String vmapXmlString)</code>.</p>
 </section>
 
 </article>
