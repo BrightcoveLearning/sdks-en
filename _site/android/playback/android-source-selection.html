@@ -1336,7 +1336,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <section class="bcls-section">
 <h2 id="Setting_HLS_sources">Setting HLS sources</h2>
 
-<p>It is possible to customize source selection at the app level, to filter out any undesired delivery types before the SDK’s default source selection policy is invoked. To do this, you would modify the source collections that are set into the Video object from the Playback API’s JSON response.</p>
+<p>It is possible to customize source selection at the app level, to filter out any undesired delivery types before the SDK’s default source selection policy is invoked. To do this, you will modify the source collections that are set into the Video object from the Playback API's JSON response.</p>
 
 <p>This example uses only HLS sources:</p>
 
@@ -1344,25 +1344,24 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <code class="language-java" translate="No">catalog.findVideoByReferenceID(videoReferenceId, new com.brightcove.player.edge.VideoListener() {
 	@Override
 	public void onVideo(Video video) {
-	 sourceSelectionFilter(DeliveryType.HLS, video);
-	 brightcoveVideoView.add(video);
-	 brightcoveVideoView.start();
+      VideoUtil.filterSourcesOnDeliveryType(video, DeliveryType.HLS);
+      brightcoveVideoView.add(video);
+      brightcoveVideoView.start();
 	}
 });</code></pre>
 
-<p>And the <code translate="No">sourceSelectionFilter()</code> method would look like this:</p>
-
+<!-- <p>And the source filter method looks like this:</p>
 <pre class="line-numbers">
-<code class="language-java" translate="No">public static void sourceSelectionFilter(@NonNull DeliveryType deliveryTypeFilter, @NonNull Video video) {
- if (video.getSourceCollections().containsKey(deliveryTypeFilter)) {
-   // Only remove the other delivery types if the desired type is in our Source collections
-   for (DeliveryType deliveryType : DeliveryType.values()) {
-     if (!deliveryType.equals(deliveryTypeFilter)) {
-            video.getSourceCollections().remove(deliveryType);
+  <code class="language-java" translate="No">public static void sourceSelectionFilter(@NonNull DeliveryType deliveryTypeFilter, @NonNull Video video) {
+   if (video.getSourceCollections().containsKey(deliveryTypeFilter)) {
+     // Only remove the other delivery types if the desired type is in our Source collections
+     for (DeliveryType deliveryType : DeliveryType.values()) {
+       if (!deliveryType.equals(deliveryTypeFilter)) {
+              video.getSourceCollections().remove(deliveryType);
+       }
      }
    }
- }
-}</code></pre>
+  }</code></pre> -->
 </section>
 </article>
 
