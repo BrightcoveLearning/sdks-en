@@ -144,7 +144,85 @@ grandparent: iOS Development
 			<td>kBCOVFPSAuthProxyErrorCodeContentKeyGenerationFailed</td>
 			<td>Key request generation failed</td>
 		</tr>
-		
+		<tr>
+			<td rowspan="8" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackService.h<code></td>
+			<td>BCOVPlaybackServiceErrorNoError</td>
+			<td>No error.</td>
+		</tr>
+		<tr>
+			<td>BCOVPlaybackServiceErrorCodeConnectionError</td>
+			<td>Error Code that indicates there was an error connecting to the Playback API. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual connection error.</td>
+		</tr>
+		<tr>
+			<td>BCOVPlaybackServiceErrorCodeJSONDeserializationError</td>
+			<td> Error Code that indicates there was an error parsing the response as JSON. If the request returned any data, that raw NSData will be included in the userInfo by key <code>kBCOVPlaybackServiceErrorKeyRawResponseData</code>. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual JSON deserialization error.</td>
+		</tr>
+		<tr>
+			<td>BCOVPlaybackServiceErrorCodeAPIError</td>
+			<td>Error Code that indicates there was an error returned by the API. Check the error.userInfo key kBCOVPlaybackServiceErrorKeyAPIErrors for an NSArray of errors returned by the API and key <code>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</code> to find the status code returned.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackServiceErrorDomain</td>
+			<td>Error domain for <code>BCOVPlaybackService</code>.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackServiceErrorKeyRawResponseData</td>
+			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeJSONDeserializationError</code>. This is the raw response data. This may not exist in <code>error.userInfo</code>.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackServiceErrorKeyAPIErrors</td>
+			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is an NSArray of errors returned by the Playback API.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</td>
+			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is the HTTP status code returned by the API request.</td>
+		</tr>
+		<tr>
+			<td rowspan="10" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackSession.h<code></td>
+			<td>kBCOVPlaybackSessionEventKeyError</td>
+			<td>The video failed to load. The event properties will contain the underlying error.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackSessionLifecycleEventFailedToPlayToEndTime</td>
+			<td><p>The video failed during playback and was unable to recover, possibly due to a network error. The event properties will contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code></p> 
+		 <p>It may be possible to recover from this error once the network has recovered, by using the <code>[BCOVPlaybackController resumeVideoAtTime:withAutoPlay:]</code> method.</p></td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackSessionEventKeyError</td>
+			<td>A generic error has occurred. The event properties may contain the underlying</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackSessionLifecycleEventThumbnailAssetFailedToLoad</td>
+			<td>The thumbnail seeking asset failed to load. The event properties may contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code>.</td>
+		</tr>
+
+		<tr>
+			<td>kBCOVPlaybackSessionEventKeyError</td>
+			<td>The key for the error in the Event properties.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackSessionErrorDomain</td>
+			<td>Error domain for the SDK.</td>
+		</tr>
+		<tr>
+			<td>kBCOVPlaybackSessionErrorCodeLoadFailed</td>
+			<td>The video failed to load.</td>
+		</tr>
+
+		<tr>
+			<td>kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</td>
+			<td>The video failed during playback and was unable to recover, possibly due to a network error.</td>
+		</tr>
+
+		<tr>
+			<td>kBCOVPlaybackSessionErrorCodeNoPlayableSource</td>
+			<td>No playable Source was available for this Video.</td>
+		</tr>
+
+		<tr>
+			<td>kBCOVPlaybackSessionErrorCodeWifiUnavailable</td>
+			<td>No WiFi network is available and allowsCellularPlayback is disabled.</td>
+		</tr>
 	</tbody>
 </table>
 
