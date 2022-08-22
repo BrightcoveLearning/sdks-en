@@ -1,5 +1,23 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 7.1.0
+
+  SDK Changes:
+    * Adds support for an encryption Source property with HLSe Live streams.
+    * Improves response handling for Generic Stream Concurrency connections.
+    * Fixes an issue where a null or missing duration returned for a remote live video created in the VideoCloud Studio, would result in a VideoParserException.
+    * Adds a Generic Stream Concurrency (GSC) EventType, GSC_HEARTBEAT_STOPPED.
+
+  ExoPlayer Changes:
+    * Provides setter and getter methods in ExoPlayerVideoDisplayComponent for the DefaultRenderersFactory.
+    * In the TrackSelectorHelper class, applySelectionOverride(int, SelectionOverrideCreator) is deprecated. Please use applyTrackSelectionOverrides(int, TrackSelectionOverrideCreator) instead.
+    * Fixes the callbacks to retrieve metadata of the media during playback
+
+  SSAI Plugin Changes:
+    * This release of the Brightcove Native SDK for Android is the final release to use the Brightcove IAB Android Library as an external dependency. Future SDK releases will include the IAB Android Library as an integration in the SSAI plugin.
+    * Fixes a parsing issue with BrightcoveDebug elements that have self-closing tags.
+    * With this release, Live DRM with SSAI is supported.
+
 Version 7.0.1
 
   Please Note:
