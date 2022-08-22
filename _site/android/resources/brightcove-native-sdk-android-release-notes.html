@@ -1298,6 +1298,43 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
+			<h3>Version 7.1.0</h3>
+
+			<h4>22 August 2022</h4>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>Adds support for an encryption Source property with HLSe Live streams.</li>
+				<li>Improves response handling for Generic Stream Concurrency connections.</li>
+				<li>Fixes an issue where a null or missing duration returned for a remote
+					live video created in the VideoCloud Studio, would result in a
+					<code translate="no">VideoParserException</code>.</li>
+				<li>Adds a Generic Stream Concurrency (GSC) EventType,
+					<code translate="no">GSC_HEARTBEAT_STOPPED</code>.</li>
+			</ul>
+
+			<p>ExoPlayer Changes:</p>
+			<ul>
+				<li>Provides setter and getter methods in <code translate="no">ExoPlayerVideoDisplayComponent</code> for the <code translate="no">DefaultRenderersFactory</code>.</li>
+				<li>In the <code translate="no">TrackSelectorHelper</code> class, <code translate="no">applySelectionOverride(int,
+					SelectionOverrideCreator)</code> is deprecated. Please use <code translate="no">applyTrackSelectionOverrides(int, TrackSelectionOverrideCreator)</code> instead.</li>
+				<li>Fixes the callbacks to retrieve metadata of the media during playback.</li>
+			</ul>
+			<p>SSAI Plugin Changes:</p>
+			<ul>
+				<li>This release of the Brightcove Native SDK for Android is the final
+					release to use the Brightcove IAB Android Library as an external
+					dependency. Future SDK releases will include the IAB Android Library as an
+					integration in the SSAI plugin.</li>
+				<li>Fixes a parsing issue with <code translate="no">BrightcoveDebug</code> elements that have
+					self-closing tags.</li>
+				<li>With this release, Live DRM with SSAI is supported.</li>
+			</ul>
+
+		</section>
+
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 			<h3>Version 7.0.1</h3>
 
 			<h4>6 July 2022</h4>
@@ -1371,12 +1408,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 					XML object itself as a source. To use a VideoCloud VMAP XML object as a
 					source, call <code>processVideo(String vmapXmlString)</code> in the <code>SSAIComponent</code> class.</li>
 			</ul>
-
-		</section>
-
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
 			<h3>Version 6.18.6</h3>
 
