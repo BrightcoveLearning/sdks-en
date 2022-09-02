@@ -1,5 +1,13 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 7.1.1
+
+  SDK Changes:
+    * Fixes a performance issue that could occur when loading larger size closed captions
+
+  ExoPlayer Changes:
+    * Adds setter and getter methods for the allowChunklessPreparation property ExoPlayer’s HLSMediaSource.Factory. With Exoplayer 2.17.0, the default value of this property was changed from false to true, which had the unintended side effect of turning off display of 608/708 captions if they were present in HLS content. If your HLS content includes 608/708 captions, use the ExoPlayerVideoDisplayComponent’s setAllowHlsChunklessPreparation(false) to disable HLS chunkless preparation in ExoPlayer’s HLSMediaSource.Factory, which will restore display of 608/708 captions.
+
 Version 7.1.0
 
   SDK Changes:
