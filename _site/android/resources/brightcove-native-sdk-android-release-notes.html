@@ -303,11 +303,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                       <ul class="sidenav-subsubmenu" style="display:none;">
                         
                           
-                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v7.1.0: Native SDK for Android Overview</a></li>
+                            <li><a href="/android/basics/overview-brightcove-player-sdk-android.html">v7.1.1: Native SDK for Android Overview</a></li>
                           
                         
                           
-                            <li><a href="/android/framework/android-sdk-7-release.html">Native SDK for Android Release 7.1.0</a></li>
+                            <li><a href="/android/framework/android-sdk-7-release.html">Native SDK for Android Release 7.0.1</a></li>
                           
                         
                           
@@ -493,7 +493,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                           
                         
                           
-                            <li><a href="/android/framework/android-sdk-7-release.html">Native SDK for Android Release 7.1.0</a></li>
+                            <li><a href="/android/framework/android-sdk-7-release.html">Native SDK for Android Release 7.1.1</a></li>
                           
                         
                           
@@ -1298,7 +1298,28 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
-			<h3>Version 7.1.0</h3>
+			<h3>Version 7.1.1</h3>
+
+			<h4>1 September 2022</h4>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>Fixes a performance issue that could occur when loading larger size
+          closed captions.</li>
+			</ul>
+
+			<p>ExoPlayer Changes:</p>
+			<ul>
+				<li>Adds setter and getter methods for the <code translate="no">allowChunklessPreparation</code> property ExoPlayer's <code translate="no">HLSMediaSource.Factory</code>. With Exoplayer 2.17.0, the
+          default value of this property was changed from <code translate="no">false</code> to <code translate="no">true</code>, which had the unintended side effect of turning off display of 608/708 captions if they were present in HLS content. If your HLS content includes 608/708 captions, use the <code translate="no">ExoPlayerVideoDisplayComponent</code>'s
+          <code translate="no">setAllowHlsChunklessPreparation(false)</code> to disable HLS chunkless preparation in ExoPlayer's <code translate="no">HLSMediaSource.Factory</code>, which will restore display of 608/708 captions.</li>
+			</ul>
+
+		</section>
+
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+      <h3>Version 7.1.0</h3>
 
 			<h4>22 August 2022</h4>
 			<p>SDK Changes:</p>
@@ -1330,11 +1351,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 				<li>With this release, Live DRM with SSAI is supported.</li>
 			</ul>
 
-		</section>
-
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 			<h3>Version 7.0.1</h3>
 
 			<h4>6 July 2022</h4>
