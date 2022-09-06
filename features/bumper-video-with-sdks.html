@@ -1,0 +1,106 @@
+---
+title: "Bumper Video with the Native SDKs"
+description: "In this topic, you will learn how to add a bumper video to play before your content when using the Brightcove Native SDKs."
+parent: Features
+grandparent: Home
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+  <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+    <p>
+      A bumper is typically a very short video (10 secs or less) automatically inserted before any pre-roll ads and your content. A bumper is not used for monetization but instead relays information such as your company logo or branding. 
+    </p>
+    <p>Here is an example of a bumper video playing before the main content.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Bumper video" src="/assets/images/features/bumper/bc-bumper.png" />
+      <figcaption class="bcls-caption--image">Bumper videp</figcaption>
+    </figure>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Requirements">Requirements</h2>
+    <p>The following requirements are needed for this feature:</p>
+
+    <h3>Brightcove SDK version</h3>
+    <ul>
+      <li>Native SDK for Android (coming soon)</li>
+      <li>Native SDK for iOS 6.10.7 and newer</li>
+    </ul>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Functionality">Functionality</h2>
+    <p>
+      Here are some details about Bumper videos: 
+    </p>
+    <ul>
+      <li>Bumpers are compatible with both Client-Side Advertising (CSAI) and Server-Side Advertising (SSAI)</li>
+      <li>Bumpers play before any pre-roll ads and your content</li>
+      <li>The player is configurable during bumper video playback:
+        <ul>
+          <li>Show/hide the player controls</li>
+          <li>Prevent seeking during playback</li>
+          <li>Change the seekbar color to indicate a bumper</li>
+        </ul>
+      </li>
+      <li>Analytics data will be tracked the same as for any content video</li>
+    </ul>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Configuration">Configuration</h2>
+    <p>A bumper video can be set for the player or for an individual video.</p>
+    
+    <h3>Player-level bumper</h3>
+    <p>
+      By default, bumper videos are a player-level feature. This means that all videos in a player will have the same bumper. 
+    </p>
+    <p>A bumper consists of a single Video Cloud video, referenced by either:
+      <ul>
+        <li>Video ID</li>
+        <li>Reference ID</li>
+      </ul>
+    </p>
+    <h3>Video-level bumper</h3>
+    <p>To assign a bumper to a video, you can define a custom field in Video Cloud Studio. The custom field must have the following:</p>
+    <ul>
+      <li>Custom field name of <code translate="no">bumper_id</code></li>
+      <li>Custom field value must be a valid video ID</li>
+    </ul>
+    <aside class="bcls-aside bcls-aside--information">Bumper IDs passed using the  <code translate="no">bumper_id</code> custom field take precedence over any ID specified in the player.</aside>
+   
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
+    <p>The Native SDK for Android will support bumper videos in the near future.</p>
+
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="iOS_Implementation">iOS Implementation</h2>
+    <p>
+      The Native SDK for iOS supports bumper video playback.
+    </p>
+
+    <!-- <p>Audio-only playback is supported for both VOD and Live streams.</p> -->
+
+    <p>For details, see the following:</p>
+    <ul>
+      <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/README.md#audio-only-support-">Audio-Only Support reference</a></li>
+      <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/Player/VideoCloudBasicPlayer">VideoCloudBasicPlayer sample</a></li>
+    </ul>
+    
+  </section> 
+
+  <!-- <section class="bcls-section">
+    <h2 id="Limitations">Limitations</h2>
+    <p>For details about the limitations for this feature, see the <a href="https://apis.support.brightcove.com/general/overview-forensic-watermarking.html#Limitations">Overview: Forensic Watermarking</a> document.</p>
+  </section> -->
+
+</article>
+
