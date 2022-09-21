@@ -1807,7 +1807,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</figure>
 	</li>
 	<li>
-	<p>Choose <strong>Single View Application</strong> for the template and select <strong>Next</strong>.</p>
+	<p>Choose <strong>App</strong> for the template and click <strong>Next</strong>.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Choose project template" src="/assets/images/ios/basics/step-objc/quick-start-choose-project-template.png" />
 	<figcaption class="bcls-caption--image">Choose project template</figcaption>
@@ -1821,17 +1821,20 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 		<li><strong>Team:</strong> none
 		<p>The Team field is optional. If you want to distribute your app on the App Store, you will need to select a team that you belong to through the Apple Developer Program. The team name is required for code signing. In this example, we'll select none.</p>
 		</li>
-		<li><strong>Organization Name:</strong> your company name</li>
+		<!-- <li><strong>Organization Name:</strong> your company name</li> -->
 		<li><strong>Organization Identifier:</strong> com.example-company<br />
 		This makes the product name unique for the app store.</li>
+    <li><strong>Interface:</strong> Storyboard</li>
+    <li><strong>Language:</strong> Objective-C</li>
 	</ul>
+  <p>Click <strong>Next</strong>.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Add project information" src="/assets/images/ios/basics/step-objc/quick-start-project-info.png" />
 	<figcaption class="bcls-caption--image">Add project information</figcaption>
 	</figure>
 	</li>
 	<li>
-	<p>Choose the location where you want to save your project and create it.</p>
+	<p>Choose the location where you want to save your project and click <strong>Create</strong>.</p>
 
 	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Save project" src="/assets/images/ios/basics/step-objc/quick-start-save-project.png" />
 	<figcaption class="bcls-caption--image">Save project</figcaption>
@@ -1861,34 +1864,35 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	<p>Using a text editor, add the following lines of code to the Podfile and save it. This code does the following:</p>
 
 	<ul>
-		<li>Line 1: Points to the GitHub location for the Brightcove pod specs.</li>
-		<li>Line 3: Sets Pods to use frameworks instead of static libraries.</li>
-		<li>Line 5: Defines the iOS platform version.</li>
+		<li>Line 1: Points to the GitHub location for the CocoaPods pod specs</li>
+    <li>Line 2: Points to the GitHub location for the Brightcove pod specs</li>
+    <li>Line 4: Defines the iOS platform version</li>
+		<li>Line 6: Sets Pods to use frameworks instead of static libraries</li>
 		<li>
-		<p>Lines 7-9: Install the Brightcove Native Player SDK.</p>
+		<p>Lines 8-10: Install the Brightcove Native Player SDK</p>
 
-		<ol>
-			<li>Get the current Native SDK version from the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Download_the_SDK">Brightcove Native SDK for iOS Overview</a> document.</li>
-			<li>Replace the value <code translate="No"> '6.3.11'</code> with the current SDK version number.</li>
+		<ul>
+			<!-- <li>Get the current Native SDK version from the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Download_the_SDK">Brightcove Native SDK for iOS Overview</a> document.</li>
+			<li>Replace the value <code translate="No"> '6.3.11'</code> with the current SDK version number.</li> -->
 			<li>
-			<p>For more information about managing dependencies, see the <a href="https://cocoacasts.com/how-to-manage-dependencies-with-cocoapods/">How To Manage Dependencies With CocoaPods</a> article.</p>
+			  For more information about managing dependencies, see the <a href="https://cocoacasts.com/how-to-manage-dependencies-with-cocoapods/">How To Manage Dependencies With CocoaPods</a> article.
 			</li>
-		</ol>
-		&nbsp;
+		</ul>
 
 		<aside class="bcls-aside bcls-aside--information">The <code translate="No">target</code> property is used for CocoaPods version 1.0 and newer.</aside>
 		</li>
 	</ul>
 
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">source 'https://github.com/brightcove/BrightcoveSpecs.git'
+<code class="language-swift" translate="No">source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+platform :ios, '16.0'
 
 use_frameworks!
 
-platform :ios, '11.0' # (or whatever version you want)
-
 target 'Simple-Video-Playback' do
-  pod 'Brightcove-Player-Core', '6.3.11'
+  pod 'Brightcove-Player-Core/XCFramework'
 end</code></pre>
 	<!--							<p class="text-warning">ReactiveCocoa will be added to your project as a part of the Brightcove SDK.</p>--></li>
 	<li>
@@ -1949,57 +1953,44 @@ end</code></pre>
 	</ul>
 
 	<pre class="line-numbers">
-<code class="language-objectivec" translate="No">//  AppDelegate.m
+<code class="language-objectivec" translate="No">//
+//  AppDelegate.m
 //  Simple-Video-Playback
 //
-//  Copyright © 2018 Brightcove. All rights reserved.
-//
 
-#import "AppDelegate.h"
+#import &quot;AppDelegate.h&quot;
 <span class="bcls-highlight">#import &lt;AVFoundation/AVFoundation.h&gt;</span>
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-// Override point for customization after application launch.
+    // Override point for customization after application launch.
+    <span class="bcls-highlight">NSError *categoryError = nil;
+    BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
 
-<span class="bcls-highlight">NSError *categoryError = nil;
-BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
-
-if (!success)
-{
-		NSLog(@"AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`", categoryError);
-}</span>
-return YES;
+    if (!success)
+    {
+        NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
+    }</span>
+    return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+#pragma mark - UISceneSession lifecycle
+
+- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
+    // Called when a new scene session is being created.
+    // Use this method to select a configuration to create the new scene with.
+    return [[UISceneConfiguration alloc] initWithName:@&quot;Default Configuration&quot; sessionRole:connectingSceneSession.role];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet&lt;UISceneSession *&gt; *)sceneSessions {
+    // Called when the user discards a scene session.
+    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
+    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
 @end</code></pre>
 	</li>
 	<!-- <p><code data-gist-id="905d9c09734bd15d8810" data-gist-highlight-line="10,26-32"></code></p> -->
@@ -2021,7 +2012,7 @@ return YES;
 	<li>
 	<p>Add the following import statement for the Brightcove Player SDK:</p>
 
-	<pre class="line-numbers" data-start="8">
+	<pre>
 <code class="language-objectivec" translate="No">@import BrightcovePlayerSDK;</code></pre>
 	</li>
 </ol>
@@ -2031,14 +2022,13 @@ return YES;
 <p>The View Controller header is now complete. Here is the full code:</p>
 
 <pre class="line-numbers">
-<code class="language-objectivec" translate="No">//  ViewController.h
+<code class="language-objectivec" translate="No">//
+//  ViewController.h
 //  Simple-Video-Playback
-//
-//  Copyright © 2018 Brightcove. All rights reserved.
 //
 
 #import &lt;UIKit/UIKit.h&gt;
-@import BrightcovePlayerSDK;
+<span class="bcls-highlight">@import BrightcovePlayerSDK;</span>
 
 @interface ViewController : UIViewController
 
