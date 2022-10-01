@@ -1741,7 +1741,27 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
-			<h3>Version 7.1.1</h3>
+			<h3>Version 7.1.2</h3>
+
+			<h4>30 September 2022</h4>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>Added support for Dolby Atmos audio. Since not all Android devices
+          support playback with this format, it is recommended that content be
+          transcoded to produce stereo as well as Dolby Atmos audio variants. For details, see the <a href="https://apis.support.brightcove.com/ingest-profiles/guides/dolby-atmos-audio.html">Dolby Atmos Audio</a> document.</li>
+			</ul>
+
+			<p>ExoPlayer Changes:</p>
+			<ul>
+				<li>Added support for Dub and Description DASH role values.</li>
+			</ul>
+
+		</section>
+
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+      <h3>Version 7.1.1</h3>
 
 			<h4>1 September 2022</h4>
 			<p>SDK Changes:</p>
@@ -1757,11 +1777,6 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
           <code translate="no">setAllowHlsChunklessPreparation(false)</code> to disable HLS chunkless preparation in ExoPlayer's <code translate="no">HLSMediaSource.Factory</code>, which will restore display of 608/708 captions.</li>
 			</ul>
 
-		</section>
-
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
       <h3>Version 7.1.0</h3>
 
 			<h4>22 August 2022</h4>
