@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVSSAIAdComponentDelegate Protocol Reference</title>
+	<title>BCOVPlaybackSessionBumperConsumer Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -43,8 +43,6 @@
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
-	<option value="overview">Overview</option>
-	
 
 	
 	
@@ -60,15 +58,15 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/didCloseInAppBrowserWithAd:">- didCloseInAppBrowserWithAd:</option>
+		<option value="//api/name/playbackSession:bumper:didProgressTo:">- playbackSession:bumper:didProgressTo:</option>
 		
-		<option value="//api/name/didOpenInAppBrowserWithAd:">- didOpenInAppBrowserWithAd:</option>
+		<option value="//api/name/playbackSession:didEnterBumper:">- playbackSession:didEnterBumper:</option>
 		
-		<option value="//api/name/willCloseInAppBrowserWithAd:">- willCloseInAppBrowserWithAd:</option>
+		<option value="//api/name/playbackSession:didExitBumper:">- playbackSession:didExitBumper:</option>
 		
-		<option value="//api/name/willOpenExternalBrowserWithAd:">- willOpenExternalBrowserWithAd:</option>
+		<option value="//api/name/playbackSession:didPauseBumper:">- playbackSession:didPauseBumper:</option>
 		
-		<option value="//api/name/willOpenInAppBrowserWithAd:">- willOpenInAppBrowserWithAd:</option>
+		<option value="//api/name/playbackSession:didResumeBumper:">- playbackSession:didResumeBumper:</option>
 		
 	</optgroup>
 	
@@ -85,7 +83,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVSSAIAdComponentDelegate Protocol Reference</h1>
+					<h1 class="title">BCOVPlaybackSessionBumperConsumer Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -94,20 +92,12 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVSSAIAdComponentDisplayContainer.h</td>
+	<td>BCOVPlaybackController.h</td>
 </tr>
 						</tbody></table></div>
 					
 
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>A delegate for <a href="../Classes/BCOVSSAIAdComponentDisplayContainer.html">BCOVSSAIAdComponentDisplayContainer</a>.</p>
-					</div>
-					
-					
 
 					
 					
@@ -120,8 +110,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/willOpenInAppBrowserWithAd:" title="willOpenInAppBrowserWithAd:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/willOpenInAppBrowserWithAd:">&ndash;&nbsp;willOpenInAppBrowserWithAd:</a></code>
+	<a name="//api/name/playbackSession:didEnterBumper:" title="playbackSession:didEnterBumper:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playbackSession:didEnterBumper:">&ndash;&nbsp;playbackSession:didEnterBumper:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -131,14 +121,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>This delegate method will be called when the learn more button has
-been pressed and the clickthrough URL assosiated with the ad will be opened
-in the in-app browser.</p>
+				<p>Called when playback enters a bumper within a playback session.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)willOpenInAppBrowserWithAd:(BCOVAd *)<em>ad</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)<em>session</em> didEnterBumper:(BCOVVideo *)<em>video</em></code></div>
 
 		    
 			
@@ -147,8 +135,13 @@ in the in-app browser.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>ad</code></th>
-						<td><p>The ad whose clickthrough URL will open in the in-app browser.</p></td>
+						<th scope="row" class="argument-name"><code>session</code></th>
+						<td><p>The playback session within which the bumper transition occurred.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The bumper being entered.</p></td>
 					</tr>
 				
 				</table>
@@ -162,9 +155,7 @@ in the in-app browser.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>This delegate method will be called when the learn more button has
-been pressed and the clickthrough URL assosiated with the ad will be opened
-in the in-app browser.</p>
+				<p>Called when playback enters a bumper within a playback session.</p>
 			</div>
 			
 
@@ -175,15 +166,15 @@ in the in-app browser.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPlaybackController.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didOpenInAppBrowserWithAd:" title="didOpenInAppBrowserWithAd:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didOpenInAppBrowserWithAd:">&ndash;&nbsp;didOpenInAppBrowserWithAd:</a></code>
+	<a name="//api/name/playbackSession:didExitBumper:" title="playbackSession:didExitBumper:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playbackSession:didExitBumper:">&ndash;&nbsp;playbackSession:didExitBumper:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -193,14 +184,12 @@ in the in-app browser.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>This delegate method will be called when the learn more button has
-been pressed and the clickthrough URL assosiated with the ad opened
-in the in-app browser.</p>
+				<p>Called when playback exits a bumper within a playback session.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)didOpenInAppBrowserWithAd:(BCOVAd *)<em>ad</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)<em>session</em> didExitBumper:(BCOVVideo *)<em>video</em></code></div>
 
 		    
 			
@@ -209,8 +198,13 @@ in the in-app browser.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>ad</code></th>
-						<td><p>The ad whose clickthrough URL opened in the in-app browser.</p></td>
+						<th scope="row" class="argument-name"><code>session</code></th>
+						<td><p>The playback session within which the bumper transition occurred.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The bumper being exited.</p></td>
 					</tr>
 				
 				</table>
@@ -224,9 +218,7 @@ in the in-app browser.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>This delegate method will be called when the learn more button has
-been pressed and the clickthrough URL assosiated with the ad opened
-in the in-app browser.</p>
+				<p>Called when playback exits a bumper within a playback session.</p>
 			</div>
 			
 
@@ -237,15 +229,15 @@ in the in-app browser.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPlaybackController.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/willCloseInAppBrowserWithAd:" title="willCloseInAppBrowserWithAd:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/willCloseInAppBrowserWithAd:">&ndash;&nbsp;willCloseInAppBrowserWithAd:</a></code>
+	<a name="//api/name/playbackSession:bumper:didProgressTo:" title="playbackSession:bumper:didProgressTo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playbackSession:bumper:didProgressTo:">&ndash;&nbsp;playbackSession:bumper:didProgressTo:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -255,13 +247,12 @@ in the in-app browser.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>This delegate method will be called when the in-app browser
-will be closed.</p>
+				<p>Called with the playback session&rsquo;s bumper playback progress.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)willCloseInAppBrowserWithAd:(BCOVAd *)<em>ad</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)<em>session</em> bumper:(BCOVVideo *)<em>video</em> didProgressTo:(NSTimeInterval)<em>progress</em></code></div>
 
 		    
 			
@@ -270,8 +261,18 @@ will be closed.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>ad</code></th>
-						<td><p>The ad whose clickthrough URL will close in the in-app browser.</p></td>
+						<th scope="row" class="argument-name"><code>session</code></th>
+						<td><p>The playback session within which the bumper transition occurred.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The bumper that is progressing.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>The progress time of the bumper.</p></td>
 					</tr>
 				
 				</table>
@@ -285,8 +286,7 @@ will be closed.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>This delegate method will be called when the in-app browser
-will be closed.</p>
+				<p>Called with the playback session&rsquo;s bumper playback progress.</p>
 			</div>
 			
 
@@ -297,15 +297,15 @@ will be closed.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPlaybackController.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didCloseInAppBrowserWithAd:" title="didCloseInAppBrowserWithAd:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didCloseInAppBrowserWithAd:">&ndash;&nbsp;didCloseInAppBrowserWithAd:</a></code>
+	<a name="//api/name/playbackSession:didPauseBumper:" title="playbackSession:didPauseBumper:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playbackSession:didPauseBumper:">&ndash;&nbsp;playbackSession:didPauseBumper:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -315,13 +315,12 @@ will be closed.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>This delegate method will be called when the in-app browser
-has closed.</p>
+				<p>Called when a bumper paused.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)didCloseInAppBrowserWithAd:(BCOVAd *)<em>ad</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)<em>session</em> didPauseBumper:(BCOVVideo *)<em>video</em></code></div>
 
 		    
 			
@@ -330,8 +329,13 @@ has closed.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>ad</code></th>
-						<td><p>The ad whose clickthrough URL closed from the in-app browser.</p></td>
+						<th scope="row" class="argument-name"><code>session</code></th>
+						<td><p>The playback session within which the bumper transition occurred.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The bumper being paused.</p></td>
 					</tr>
 				
 				</table>
@@ -345,8 +349,7 @@ has closed.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>This delegate method will be called when the in-app browser
-has closed.</p>
+				<p>Called when a bumper paused.</p>
 			</div>
 			
 
@@ -357,15 +360,15 @@ has closed.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPlaybackController.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/willOpenExternalBrowserWithAd:" title="willOpenExternalBrowserWithAd:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/willOpenExternalBrowserWithAd:">&ndash;&nbsp;willOpenExternalBrowserWithAd:</a></code>
+	<a name="//api/name/playbackSession:didResumeBumper:" title="playbackSession:didResumeBumper:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playbackSession:didResumeBumper:">&ndash;&nbsp;playbackSession:didResumeBumper:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -375,13 +378,12 @@ has closed.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>This optional delegate method will be called when the the in-app browser
-will open the clickthrough url in the system browser.</p>
+				<p>Called when a bumper resumed.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)willOpenExternalBrowserWithAd:(BCOVAd *)<em>ad</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)<em>session</em> didResumeBumper:(BCOVVideo *)<em>video</em></code></div>
 
 		    
 			
@@ -390,8 +392,13 @@ will open the clickthrough url in the system browser.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>ad</code></th>
-						<td><p>The ad whose clickthrough URL will be opened in the system browser.</p></td>
+						<th scope="row" class="argument-name"><code>session</code></th>
+						<td><p>The playback session within which the bumper transition occurred.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The bumper being resumed.</p></td>
 					</tr>
 				
 				</table>
@@ -405,8 +412,7 @@ will open the clickthrough url in the system browser.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>This optional delegate method will be called when the the in-app browser
-will open the clickthrough url in the system browser.</p>
+				<p>Called when a bumper resumed.</p>
 			</div>
 			
 
@@ -417,7 +423,7 @@ will open the clickthrough url in the system browser.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPlaybackController.h</code></p>
 			</div>
 			
 			
