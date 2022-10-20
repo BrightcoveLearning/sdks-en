@@ -1735,221 +1735,222 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 <article class="bcls-article">
   <summary>In this topic, you will learn how the Brightcove Native SDK for iOS handles playback errors.</summary>
 
-<section class="bcls-section">
-<h2 id="Overview">Overview</h2>
+	<section class="bcls-section">
+	<h2 id="Overview">Overview</h2>
 
-<p>Error codes have the term <code translate="No">ErrorCode</code> in the name. For example:</p>
-
-<pre>
-<code class="language-objectivec" translate="No">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
-
-<p>Events have the word <code translate="No">Event</code> in the name. For example:</p>
-
-<pre>
-<code class="language-objectivec" translate="No">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
-</section>
-
-<section class="bcls-section">
-<h2 id="Playback_errors">Playback errors</h2>
-
-<p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code translate="No">BCOVPlaybackController</code>:</p>
-
-<pre>
-<code class="language-objectivec" translate="No">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
-  didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent</code></pre>
-
-<p>To get further information, do the following:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>
-	<p>If you get an error event like <code translate="No">kBCOVPlaybackSessionLifecycleEventFail</code> or <code translate="No">kBCOVPlaybackSessionLifecycleEventResumeFail</code>, check the event's <code translate="No">properties</code> dictionary for an <code translate="No">@"error"</code> key.</p>
-
-	<p>This will provide an <code translate="No">NSError</code> object with information about the problem.</p>
-	</li>
-	<li>
-	<p>Each <code translate="No">NSError</code> will have an error domain, like the following:</p>
-
-	<ul>
-		<li><code translate="No">NSCocoaErrorDomain</code></li>
-		<li><code translate="No">kBCOVPlaybackSessionErrorDomain</code></li>
-	</ul>
-	&nbsp;
-
-	<p>Each error domain will have an associated error code and error description, like the following:</p>
-
-	<ul>
-		<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
-		<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
-	</ul>
-	</li>
-	<li>
-	<p>Some errors will also have an underlying error that can be retrieved from the error object's <code translate="No">userInfo</code> dictionary with the <code translate="No">NSUnderlyingErrorKey</code> key. This will typically be a system <code translate="No">NSError</code> that can provide more information.</p>
-	</li>
-	<li>
-	<p>To find all the error domains in the SDK, search the headers for the following:</p>
+	<p>Error codes have the term <code translate="No">ErrorCode</code> in the name. For example:</p>
 
 	<pre>
-<code class="language-objectivec" translate="No">ErrorDomain</code></pre>
+	<code class="language-objectivec" translate="No">kBCOVPlaybackSession<span class="bcls-highlight">ErrorCode</span>LoadFailed</code></pre>
 
-	<p>Here is a list of headers that have <code translate="No">ErrorDomain</code> references:</p>
-
-	<ul>
-		<li><code translate="No">BCOVFPSAuthorizationProxy.h</code></li>
-		<li><code translate="No">BCOVFPSBrightcoveAuthProxy.h</code></li>
-		<li><code translate="No">BCOVOfflineVideoManager.h</code></li>
-		<li><code translate="No">BCOVPlaybackService.h</code></li>
-		<li><code translate="No">BCOVPlaybackSession.h</code></li>
-	</ul>
-	</li>
-	<li>
-	<p>To find all the error codes, search each <code translate="No">ErrorDomain</code> for the following:</p>
+	<p>Events have the word <code translate="No">Event</code> in the name. For example:</p>
 
 	<pre>
-<code class="language-objectivec" translate="No">ErrorCode</code></pre>
+	<code class="language-objectivec" translate="No">kBCOVPlaybackSessionLifecycle<span class="bcls-highlight">Event</span>Fail</code></pre>
+	</section>
 
-	<p>For example, in <code translate="No">BCOVPlaybackSession.h</code>, you'll see <code translate="No">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
+	<section class="bcls-section">
+	<h2 id="Playback_errors">Playback errors</h2>
 
-	<ul>
-		<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
-		<li><code translate="No">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
-		<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
-	</ul>
-	</li>
-	<li>
-	<p>Other domains may return errors differently. For example, the <code translate="No">BCOVPlaybackService</code> object will return errors in its completion blocks if there are network errors when requesting videos from the online catalog. It uses the error domain <code translate="No">kBCOVPlaybackServiceErrorDomain</code>.</p>
-	</li>
-</ol>
-</section>
+	<p>Playback errors are handled through events. Generally speaking you would receive playback errors using the lifecycle event delegate callback on the <code translate="No">BCOVPlaybackController</code>:</p>
 
-<section class="bcls-section">
-  <h2 id="Playback_errors_table">Playback errors table</h2>
-  
-  <p>Here is a list of possible playback errors from the Native SDK for iOS. Be aware that errors can also be passed through from the underlying framework. </p>
-  <aside class="bcls-aside bcls-aside--tip">For the most current error messages, it is best to find them in the header files as described in <a href="#Playback_errors">the section above</a>.</aside>
+	<pre>
+	<code class="language-objectivec" translate="No">- (void)playbackSession:(id&lt;BCOVPlaybackSession&gt;)session
+	didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent</code></pre>
 
-<table class="bcls-table">
-	<caption class="bcls-caption--table">iOS playback errors</caption>
-	<thead class="bcls-table__head">
-		<tr>
-			<th style="border-bottom:1px solid #707070;">Header</th>
-			<th style="border-bottom:1px solid #707070;width: 20%;">Error</th>
-			<th style="border-bottom:1px solid #707070;width: 20%;">Description</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"><code>BCOVFPSAuthorizationProxy.h</code></td>
-			<td>kBCOVFPSErrorDomain</td>
-			<td>Error domain for FairPlay related errors</td>
-		</tr>
-		<tr>
-			<td>kBCOVFPSErrorCodeStreamingContentKeyRequest</td>
-			<td>Error occured requesting content key</td>
-		</tr>
-		<tr>
-			<td>kBCOVFPSErrorCodeApplicationCertificateRequest</td>
-			<td>Error occured requesting application certificate</td>
-		</tr>
-		<tr>
-			<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVFPSBrightcoveAuthProxy.h<code></td>
-			<td>kBCOVFPSAuthProxyErrorDomain</td>
-			<td>Error domain for FairPlay Auth Proxy related errors.</td>
-		</tr>
-		<tr>
-			<td>kBCOVFPSAuthProxyErrorCodeApplicationCertificateRequestFailed</td>
-			<td>Request for Application Certificate failed</td>
-		</tr>
-		<tr>
-			<td>kBCOVFPSAuthProxyErrorCodeContentKeyRequestFailed</td>
-			<td>Request for Key failed</td>
-		</tr>
-		<tr>
-			<td>kBCOVFPSAuthProxyErrorCodeContentKeyGenerationFailed</td>
-			<td>Key request generation failed</td>
-		</tr>
-		<tr>
-			<td rowspan="8" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackService.h<code></td>
-			<td>BCOVPlaybackServiceErrorNoError</td>
-			<td>No error.</td>
-		</tr>
-		<tr>
-			<td>BCOVPlaybackServiceErrorCodeConnectionError</td>
-			<td>Error Code that indicates there was an error connecting to the Playback API. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual connection error.</td>
-		</tr>
-		<tr>
-			<td>BCOVPlaybackServiceErrorCodeJSONDeserializationError</td>
-			<td> Error Code that indicates there was an error parsing the response as JSON. If the request returned any data, that raw NSData will be included in the userInfo by key <code>kBCOVPlaybackServiceErrorKeyRawResponseData</code>. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual JSON deserialization error.</td>
-		</tr>
-		<tr>
-			<td>BCOVPlaybackServiceErrorCodeAPIError</td>
-			<td>Error Code that indicates there was an error returned by the API. Check the error.userInfo key kBCOVPlaybackServiceErrorKeyAPIErrors for an NSArray of errors returned by the API and key <code>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</code> to find the status code returned.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackServiceErrorDomain</td>
-			<td>Error domain for <code>BCOVPlaybackService</code>.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackServiceErrorKeyRawResponseData</td>
-			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeJSONDeserializationError</code>. This is the raw response data. This may not exist in <code>error.userInfo</code>.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackServiceErrorKeyAPIErrors</td>
-			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is an NSArray of errors returned by the Playback API.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</td>
-			<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is the HTTP status code returned by the API request.</td>
-		</tr>
-		<tr>
-			<td rowspan="10" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackSession.h<code></td>
-			<td>kBCOVPlaybackSessionEventKeyError</td>
-			<td>The video failed to load. The event properties will contain the underlying error.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackSessionLifecycleEventFailedToPlayToEndTime</td>
-			<td><p>The video failed during playback and was unable to recover, possibly due to a network error. The event properties will contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code></p> 
-		 <p>It may be possible to recover from this error once the network has recovered, by using the <code>[BCOVPlaybackController resumeVideoAtTime:withAutoPlay:]</code> method.</p></td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackSessionEventKeyError</td>
-			<td>A generic error has occurred. The event properties may contain the underlying</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackSessionLifecycleEventThumbnailAssetFailedToLoad</td>
-			<td>The thumbnail seeking asset failed to load. The event properties may contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code>.</td>
-		</tr>
+	<p>To get further information, do the following:</p>
 
-		<tr>
-			<td>kBCOVPlaybackSessionEventKeyError</td>
-			<td>The key for the error in the Event properties.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackSessionErrorDomain</td>
-			<td>Error domain for the SDK.</td>
-		</tr>
-		<tr>
-			<td>kBCOVPlaybackSessionErrorCodeLoadFailed</td>
-			<td>The video failed to load.</td>
-		</tr>
+	<ol class="bcls-tasklist-restart">
+		<li>
+		<p>If you get an error event like <code translate="No">kBCOVPlaybackSessionLifecycleEventFail</code> or <code translate="No">kBCOVPlaybackSessionLifecycleEventResumeFail</code>, check the event's <code translate="No">properties</code> dictionary for an <code translate="No">@"error"</code> key.</p>
 
-		<tr>
-			<td>kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</td>
-			<td>The video failed during playback and was unable to recover, possibly due to a network error.</td>
-		</tr>
+		<p>This will provide an <code translate="No">NSError</code> object with information about the problem.</p>
+		</li>
+		<li>
+		<p>Each <code translate="No">NSError</code> will have an error domain, like the following:</p>
 
-		<tr>
-			<td>kBCOVPlaybackSessionErrorCodeNoPlayableSource</td>
-			<td>No playable Source was available for this Video.</td>
-		</tr>
+		<ul>
+			<li><code translate="No">NSCocoaErrorDomain</code></li>
+			<li><code translate="No">kBCOVPlaybackSessionErrorDomain</code></li>
+		</ul>
+		&nbsp;
 
-		<tr>
-			<td>kBCOVPlaybackSessionErrorCodeWifiUnavailable</td>
-			<td>No WiFi network is available and allowsCellularPlayback is disabled.</td>
-		</tr>
-	</tbody>
-</table>
+		<p>Each error domain will have an associated error code and error description, like the following:</p>
 
-  </section>
+		<ul>
+			<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+			<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+		</ul>
+		</li>
+		<li>
+		<p>Some errors will also have an underlying error that can be retrieved from the error object's <code translate="No">userInfo</code> dictionary with the <code translate="No">NSUnderlyingErrorKey</code> key. This will typically be a system <code translate="No">NSError</code> that can provide more information.</p>
+		</li>
+		<li>
+		<p>To find all the error domains in the SDK, search the headers for the following:</p>
+
+		<pre>
+	<code class="language-objectivec" translate="No">ErrorDomain</code></pre>
+
+		<p>Here is a list of headers that have <code translate="No">ErrorDomain</code> references:</p>
+
+		<ul>
+			<li><code translate="No">BCOVFPSAuthorizationProxy.h</code></li>
+			<li><code translate="No">BCOVFPSBrightcoveAuthProxy.h</code></li>
+			<li><code translate="No">BCOVOfflineVideoManager.h</code></li>
+			<li><code translate="No">BCOVPlaybackService.h</code></li>
+			<li><code translate="No">BCOVPlaybackSession.h</code></li>
+		</ul>
+		</li>
+		<li>
+		<p>To find all the error codes, search each <code translate="No">ErrorDomain</code> for the following:</p>
+
+		<pre>
+	<code class="language-objectivec" translate="No">ErrorCode</code></pre>
+
+		<p>For example, in <code translate="No">BCOVPlaybackSession.h</code>, you'll see <code translate="No">kBCOVPlaybackSessionErrorDomain</code> with the following error codes:</p>
+
+		<ul>
+			<li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+			<li><code translate="No">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
+			<li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+		</ul>
+		</li>
+		<li>
+		<p>Other domains may return errors differently. For example, the <code translate="No">BCOVPlaybackService</code> object will return errors in its completion blocks if there are network errors when requesting videos from the online catalog. It uses the error domain <code translate="No">kBCOVPlaybackServiceErrorDomain</code>.</p>
+		</li>
+	</ol>
+	</section>
+
+	<section class="bcls-section">
+	<h2 id="Playback_errors_table">Playback errors table</h2>
+	
+	<p>Here is a list of possible playback errors from the Native SDK for iOS. Be aware that errors can also be passed through from the underlying framework. </p>
+	<aside class="bcls-aside bcls-aside--tip">For the most current error messages, it is best to find them in the header files as described in <a href="#Playback_errors">the section above</a>.</aside>
+	<div class="table-responsive">
+		<table class="bcls-table">
+			<caption class="bcls-caption--table">iOS playback errors</caption>
+			<thead class="bcls-table__head">
+				<tr>
+					<th style="border-bottom:1px solid #707070;">Header</th>
+					<th style="border-bottom:1px solid #707070;width: 20%;">Error</th>
+					<th style="border-bottom:1px solid #707070;width: 20%;">Description</th>
+				</tr>
+			</thead>
+			<tbody class="bcls-table__body">
+				<tr>
+					<td rowspan="3" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"><code>BCOVFPSAuthorizationProxy.h</code></td>
+					<td>kBCOVFPSErrorDomain</td>
+					<td>Error domain for FairPlay related errors</td>
+				</tr>
+				<tr>
+					<td>kBCOVFPSErrorCodeStreamingContentKeyRequest</td>
+					<td>Error occured requesting content key</td>
+				</tr>
+				<tr>
+					<td>kBCOVFPSErrorCodeApplicationCertificateRequest</td>
+					<td>Error occured requesting application certificate</td>
+				</tr>
+				<tr>
+					<td rowspan="4" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVFPSBrightcoveAuthProxy.h<code></td>
+					<td>kBCOVFPSAuthProxyErrorDomain</td>
+					<td>Error domain for FairPlay Auth Proxy related errors.</td>
+				</tr>
+				<tr>
+					<td>kBCOVFPSAuthProxyErrorCodeApplicationCertificateRequestFailed</td>
+					<td>Request for Application Certificate failed</td>
+				</tr>
+				<tr>
+					<td>kBCOVFPSAuthProxyErrorCodeContentKeyRequestFailed</td>
+					<td>Request for Key failed</td>
+				</tr>
+				<tr>
+					<td>kBCOVFPSAuthProxyErrorCodeContentKeyGenerationFailed</td>
+					<td>Key request generation failed</td>
+				</tr>
+				<tr>
+					<td rowspan="8" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackService.h<code></td>
+					<td>BCOVPlaybackServiceErrorNoError</td>
+					<td>No error.</td>
+				</tr>
+				<tr>
+					<td>BCOVPlaybackServiceErrorCodeConnectionError</td>
+					<td>Error Code that indicates there was an error connecting to the Playback API. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual connection error.</td>
+				</tr>
+				<tr>
+					<td>BCOVPlaybackServiceErrorCodeJSONDeserializationError</td>
+					<td> Error Code that indicates there was an error parsing the response as JSON. If the request returned any data, that raw NSData will be included in the userInfo by key <code>kBCOVPlaybackServiceErrorKeyRawResponseData</code>. Check the <code>error.userInfo</code> key <code>NSUnderlyingErrorKey</code> for the actual JSON deserialization error.</td>
+				</tr>
+				<tr>
+					<td>BCOVPlaybackServiceErrorCodeAPIError</td>
+					<td>Error Code that indicates there was an error returned by the API. Check the error.userInfo key kBCOVPlaybackServiceErrorKeyAPIErrors for an NSArray of errors returned by the API and key <code>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</code> to find the status code returned.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackServiceErrorDomain</td>
+					<td>Error domain for <code>BCOVPlaybackService</code>.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackServiceErrorKeyRawResponseData</td>
+					<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeJSONDeserializationError</code>. This is the raw response data. This may not exist in <code>error.userInfo</code>.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackServiceErrorKeyAPIErrors</td>
+					<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is an NSArray of errors returned by the Playback API.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackServiceErrorKeyAPIHTTPStatusCode</td>
+					<td>Key for <code>NSError.userInfo</code> for errors with domain <code>kBCOVPlaybackServiceErrorDomain</code> and errorCode <code>BCOVPlaybackServiceErrorCodeAPIError</code>. This is the HTTP status code returned by the API request.</td>
+				</tr>
+				<tr>
+					<td rowspan="10" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070"> <code>BCOVPlaybackSession.h<code></td>
+					<td>kBCOVPlaybackSessionEventKeyError</td>
+					<td>The video failed to load. The event properties will contain the underlying error.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackSessionLifecycleEventFailedToPlayToEndTime</td>
+					<td><p>The video failed during playback and was unable to recover, possibly due to a network error. The event properties will contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code></p> 
+				<p>It may be possible to recover from this error once the network has recovered, by using the <code>[BCOVPlaybackController resumeVideoAtTime:withAutoPlay:]</code> method.</p></td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackSessionEventKeyError</td>
+					<td>A generic error has occurred. The event properties may contain the underlying</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackSessionLifecycleEventThumbnailAssetFailedToLoad</td>
+					<td>The thumbnail seeking asset failed to load. The event properties may contain the underlying error keyed by <code>kBCOVPlaybackSessionEventKeyError</code>.</td>
+				</tr>
+
+				<tr>
+					<td>kBCOVPlaybackSessionEventKeyError</td>
+					<td>The key for the error in the Event properties.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackSessionErrorDomain</td>
+					<td>Error domain for the SDK.</td>
+				</tr>
+				<tr>
+					<td>kBCOVPlaybackSessionErrorCodeLoadFailed</td>
+					<td>The video failed to load.</td>
+				</tr>
+
+				<tr>
+					<td>kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</td>
+					<td>The video failed during playback and was unable to recover, possibly due to a network error.</td>
+				</tr>
+
+				<tr>
+					<td>kBCOVPlaybackSessionErrorCodeNoPlayableSource</td>
+					<td>No playable Source was available for this Video.</td>
+				</tr>
+
+				<tr>
+					<td>kBCOVPlaybackSessionErrorCodeWifiUnavailable</td>
+					<td>No WiFi network is available and allowsCellularPlayback is disabled.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	</section>
 </article>
 
 <!-- complete bootstrap layout -->
