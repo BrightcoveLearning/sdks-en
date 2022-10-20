@@ -80,8 +80,9 @@ This program will be captioned</code></pre>
     </li>
     <li>
       <p>In-manifest and 608/708 Captions do not automatically display after Activity lifecycle events.</p>
-      This can happen when a player is backgrounded and then brought back to the foreground. A workaround to display the captions is to select the caption again from the captions menu.
+      <p>This can happen when a player is backgrounded and then brought back to the foreground. A workaround to display the captions is to select the caption again from the captions menu.</p>
     </li>
+    <li>Certain live stream encoders (Elemental, for example) have a Timecode Burn-in feature, which will display the current stream time in the player display. This burn-in can have a 608 format, which can result in the Captions (CC) button being displayed when there are no captions in the stream. There is currently no workaround, but we will be investigating a solution for a future SDK release.</li>
   </ul>
   
   <h3>Content</h3>
