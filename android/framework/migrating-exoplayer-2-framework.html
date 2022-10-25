@@ -14,7 +14,7 @@ grandparent: Android Development
 <aside class="bcls-aside bcls-aside--information">
 <p>The Brightcove Native SDK for Android using ExoPlayer 1 has been deprecated.</p>
 
-<p>If you need to, you can view the <a href="/android/reference/exoplayer1/javadoc/index.html">the ExoPlayer 1 reference documentation</a>, but it is recommended that you migrate to the ExoPlayer 2 Framework.</p>
+<!-- <p>If you need to, you can view the <a href="/android/reference/exoplayer1/javadoc/index.html">the ExoPlayer 1 reference documentation</a>, but it is recommended that you migrate to the ExoPlayer 2 Framework.</p> -->
 </aside>
 
 <p><a href="https://google.github.io/ExoPlayer/">Google's ExoPlayer</a> is an open source, application-level media player for Android. Brightcove leverages the ExoPlayer to take advantage of the benefits it provides. For more information about the benefits of upgrading to the ExoPlayer, see the <a href="https://www.brightcove.com/en/blog/2018/01/brightcove-native-sdk-exoplayer-2">Brightcove Native SDK with ExoPlayer 2</a> blog post.</p>
@@ -43,7 +43,7 @@ grandparent: Android Development
   implementation "com.brightcove.player:exoplayer2:${anpVersion}"
 }</code></pre>
 	</li>
-	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_management.html">transitive dependencies</a> are off by default. So, you will need to add the following statement:
+	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_constraints.html#header">transitive dependencies</a> are off by default. So, you will need to add the following statement:
 	<pre class="line-numbers">
 <code class="language-java" translate="No">dependencies {
   implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
@@ -109,7 +109,7 @@ implementation 'com.android.support:support-vector-drawable:${SUPPORT_V4_VERSION
 
 	<p>The current value for the Brightcove SDK version (<code translate="No">anpVersion</code>) can be found in the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/gradle.properties">gradle.properties</a> file.</p>
 	</li>
-	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_management.html">transitive dependencies</a> are off by default. So, you will need to add the following:
+	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_constraints.html#header">transitive dependencies</a> are off by default. So, you will need to add the following:
 	<pre class="line-numbers">
 <code class="language-java" translate="No">dependencies {
 	implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
@@ -137,7 +137,7 @@ implementation 'com.android.support:support-vector-drawable:${SUPPORT_V4_VERSION
   implementation "com.brightcove.player:exoplayer2:${anpVersion}"
 }</code></pre>
 	</li>
-	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html">transitive dependencies</a> are off by default. So, you will need to add the following:
+	<li>Setting the <code translate="No">transitive</code> option to <code translate="No">true</code> tells gradle to automatically include other dependencies such as the offline-playback plugin. If you are using a gradle version less than 5, the <a href="https://docs.gradle.org/current/userguide/dependency_constraints.html#header">transitive dependencies</a> are off by default. So, you will need to add the following:
 	<pre class="line-numbers">
 <code class="language-java" translate="No">dependencies {
   implementation "com.brightcove.player:exoplayer2:${anpVersion}" <span class="bcls-highlight">{transitive = true}</span>
