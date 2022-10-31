@@ -73,7 +73,6 @@ This program will be captioned</code></pre>
   </ul>
 
   <h3>Captions</h3>
-
   <ul>
     <li>
       There is a known limitation with caption support where 608/708 captions are displayed in the player without the formatting that may be present in the segment data. This is planned to be addressed in a future update of the SDK.
@@ -85,8 +84,12 @@ This program will be captioned</code></pre>
     <li>Certain live stream encoders (Elemental, for example) have a Timecode Burn-in feature, which will display the current stream time in the player display. This burn-in can have a 608 format, which can result in the Captions (CC) button being displayed when there are no captions in the stream. There is currently no workaround, but we will be investigating a solution for a future SDK release.</li>
   </ul>
   
-  <h3>Content</h3>
+  <h3>Chromecast</h3>
+  <ul>
+    <li>The Native SDK does not support Chromecast queueing with the Brightcove Cast Receiver app.</li>
+  </ul>
 
+  <h3>Content</h3>
   <ul>
     <li>
       <p>Video and Playlist objects are not fully Parcelable.</p>
@@ -95,19 +98,16 @@ This program will be captioned</code></pre>
   </ul>
 
   <h3>DRM</h3>
-
   <ul>
     <li>The DRM layer on some platforms may not be able to decrypt the media content. Although not a definitive problem with that platform, testing has shown that this problem occurs more often with Nexus class devices. This issue is outside the scope of the Android SDK and the ExoPlayer, and cannot be fixed there.</li>
   </ul>
 
   <h3>Live streams</h3>
-
   <ul>
-    <li>The Native Player SDK does not support DASH Live streams, nor does it support ads with HLS Live streams.</li>
+    <li>The Native SDK does not support DASH Live streams, nor does it support ads with HLS Live streams.</li>
   </ul>
 
   <h3>Offline playback</h3>
-
   <ul>
     <li>To add support for downloading when the device is locked, either by going to sleep or with the power button, add the following permission to your <strong>AndroidManifest.xml</strong> file :
     <pre><code class="language-XXXX" translate="No">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</code></pre>
@@ -131,7 +131,6 @@ This program will be captioned</code></pre>
   </ul>
 
   <h3>Playing local videos</h3>
-
   <ul>
     <li>You will receive an exception error if you try to play MP4 videos stored in the application resource folder (/res/raw). The work-around is to move your MP4 videos to the application asset folder if you want to play local videos.</li>
   </ul>
@@ -146,13 +145,11 @@ This program will be captioned</code></pre>
   </ul>
 
   <h3>Source selection</h3>
-
   <ul>
     <li>If your video has both HTTP and HTTPS sources for WebVTT captions/subtitles, then the Native SDK for Android may not return the HTTPS version. Brightcove is aware of this situation and will have a fix in a future release.</li>
   </ul>
 
   <h3>Subtitles</h3>
-
   <ul>
     <li>
       <p>The CC button will not appear in the control bar and the player will not load text tracks if you assign text tracks to a video in Video Cloud Studio and set the <strong>KIND</strong> field value to <strong>Subtitles</strong>. The work-around is to set the <strong>KIND</strong> field value to <strong>Close Captions</strong> when you assign text tracks in Studio.</p>
@@ -179,14 +176,17 @@ This program will be captioned</code></pre>
   <h2 id="Native_SDK_for_iOS">Native SDK for iOS</h2>
   <!-- <p>No issues currently reported.</p> -->
 
-  <h3>Live streams</h3>
-
+  <h3>Chromecast</h3>
   <ul>
-    <li>The Native Player SDK does not support ads with HLS Live streams.</li>
+    <li>The Native SDK does not support Chromecast queueing with the Brightcove Cast Receiver app.</li>
+  </ul>
+  
+  <h3>Live streams</h3>
+  <ul>
+    <li>The Native SDK does not support ads with HLS Live streams.</li>
   </ul>
 
   <h3>Offline playback</h3>
-
   <ul>
     <li>With iOS 12, setting the <code translate="No">kBCOVOfflineVideoManagerDisplayNameKey</code> field value with multibyte characters may cause a download error. This is because multibyte characters are encoded as longer string values, and iOS restricts the string length to 255bytes. This problem has been reported to Apple.</li>
     <li>With iOS 12, the <code translate="No">didProgress</code> event may stop firing when your app is resumed from background to foreground while downloading. You will notice that the downloading status is no longer updated. This problem has been reported to Apple.</li>
