@@ -1877,39 +1877,36 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
 	</li>
 	<li>
 	<p>Using a text editor, add the following lines of code to the Podfile and save it. This code does the following:</p>
-
 	<ul>
-		<li>Line 1: Points to the GitHub location for the Brightcove pod specs.</li>
-		<li>Line 3: Sets Pods to use frameworks instead of static libraries.</li>
-		<li>Line 5: Defines the iOS platform version.</li>
+		<li>Line 1: Points to the GitHub location for the CocoaPods pod specs</li>
+    <li>Line 2: Points to the GitHub location for the Brightcove pod specs</li>
+    <li>Line 4: Defines the iOS platform version</li>
+		<li>Line 6: Sets Pods to use frameworks instead of static libraries</li>
 		<li>
-		<p>Lines 7-9: Install the Brightcove Native Player SDK.</p>
+		<p>Lines 8-10: Install the Brightcove Native Player SDK</p>
 
-		<ol>
-			<li>Get the current Native SDK version from the <a href="/ios/basics/overview-brightcove-player-sdk-ios.html#Download_the_SDK">Brightcove Native SDK for iOS Overview</a> document.</li>
-			<li>Replace the value <code translate="No"> '6.7.10'</code> with the current SDK version number.</li>
+		<ul>
 			<li>
-			<p>For more information about managing dependencies, see the <a href="https://cocoacasts.com/how-to-manage-dependencies-with-cocoapods/">How To Manage Dependencies With CocoaPods</a> article.</p>
+			  For more information about managing dependencies, see the <a href="https://cocoacasts.com/how-to-manage-dependencies-with-cocoapods/">How To Manage Dependencies With CocoaPods</a> article.
 			</li>
-		</ol>
-		&nbsp;
+		</ul>
 
-		<aside class="bcls-aside bcls-aside--information">The <code translate="No">target</code> property is used for CocoaPods version 1.0 and newer.</aside>
+		<!-- <aside class="bcls-aside bcls-aside--information">The <code translate="No">target</code> property is used for CocoaPods version 1.0 and newer.</aside> -->
 		</li>
 	</ul>
 
 	<pre class="line-numbers" data-start="1">
-<code class="language-swift" translate="No">source 'https://github.com/brightcove/BrightcoveSpecs.git'
+<code class="language-swift" translate="No">source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+platform :ios, '16.0'
 
 use_frameworks!
 
-platform :ios, '11.0' # (or whatever version you want)
-
 target 'Simple-Video-Playback' do
-	pod 'Brightcove-Player-Core', '6.7.10'
+  pod 'Brightcove-Player-Core/XCFramework'
 end</code></pre>
 
-	<aside class="bcls-aside bcls-aside--information">The <code translate="No">target</code> property is used for CocoaPods version 1.0 and newer.</aside>
 	</li>
 	<!--							<p class="text-warning">ReactiveCocoa will be added to your project as a part of the Brightcove SDK.</p>-->
 	<li>
@@ -1931,12 +1928,16 @@ end</code></pre>
 <code class="language-swift" translate="No">pod update</code></pre>
   <p>You should see a series of messages in the terminal indicating that the Brightcove Player SDK has been added to your project.</p>
 	</li>
-	<li>
-    <p>The <code translate="No">pod install</code> command creates a <code translate="No">.xcworkspace</code> file for your project.</p>
-	<p>From this point on, you must open the <strong>Simple-Video-Playback.xcworkspace</strong> file in Xcode, <strong>not</strong> the <em>Simple-Video-Playback.xcodeproj</em> file. </p>
+  <li>
+    <p>The <code translate="No">pod install</code> command creates the <code translate="No">.xcworkspace</code> file for your project.</p>
+	<p><strong>Notice the last line</strong>, which is important — from this point on, you must do the following:</p>
+  <ul>
+    <li>Open the <strong>Simple-Video-Playback.xcworkspace</strong> file in Xcode</li>
+    <li>Do <strong>not</strong> use the <em>Simple-Video-Playback.xcodeproj</em> file</li>
+  </ul>
   <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Workspace" src="/assets/images/ios/basics/step-swift/workspace.png" />
-	<figcaption class="bcls-caption--image">Workspace</figcaption>
-	</figure>
+    <figcaption class="bcls-caption--image">Workspace</figcaption>
+    </figure>
 	</li>
 </ol>
 
