@@ -1846,6 +1846,47 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     </ul>
   </section>
 
+  <section class="bcls-section">
+    <h2 id="Supported_Custom_Data">Supported Custom Data</h2>
+    <p>The <code translate="No">customData</code> interface provides a method by which senders can pass arbitrary data into a custom Chromecast receiver, such as Brightcove's receiver app.</p>
+    <p>For the Brightcove Player (web) sender, <code translate="No">customData</code> is handled entirely by the plugin. There is nothing for integrators to do.</p>
+    <p>For all other senders, such as the the Native SDK for Android or iOS, <code translate="No">customData</code> must be constructed by the sender.</p>
+
+    <h3>customData.accountId (required)</h3>
+    <p>Type: <code translate="No">string</code></p>
+    <p>When casting from a web player, this is automatic. All other senders (e.g. the Native SDKs) must explicitly set this.</p>
+
+    <h3>customData.analyticsParams</h3>
+    <p>Type: <code translate="No">object</code></p>
+    <p>This property should be an object, which can be used to pass parameters to the analytics implementation on the receiver for beacons sent to the Data Collection API. It supports the following properties:</p>
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+          <tr>
+              <th>Property</th>
+              <th>Type</th>   
+              <th>Description</th>                      
+          </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+          <tr>
+            <td><code translate="No">analyticsParams.application</code></td>
+            <td><code translate="No">string</code></td>     
+            <td>Allows setting a clear text application ID. This is useful for applications like Engage.</td>                  
+          </tr>
+          <tr>
+            <td><code translate="No">analyticsParams.user</code></td>
+            <td><code translate="No">string</code></td>     
+            <td>Allows setting a clear text user ID for beacons sent to the Data Collection API. This is useful for features like Cross Device Resume (XDR).</td>                  
+          </tr>            
+      </tbody>
+  </table>
+  <h3>customData.catalogParams</h3>
+    <p>Type: <code translate="No">object</code></p>
+    <p>This should be a Catalog Parameters Objects</p>
+    <p>All values passed to the Playback API on the receiver must come from this object.</p>
+    
+  </section>
+
 
 
 </article>
