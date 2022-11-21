@@ -3,28 +3,26 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex,nofollow"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="In this topic, you will learn how to cast videos to a Chromecast-connected TV from your apps built with the Brightcove Native SDKs.">
   
   <title>Chromecast with the Native SDKs</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">  
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/s-site-assets-favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/s-site-assets-favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/s-site-assets-favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/s-site-assets-favicons/site.webmanifest">  
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/prism.css">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/styles.css">
-  <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/landing-page.css">
+  <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/learning-paths/learning-paths.css">
   <link rel="stylesheet" href="/assets/s-site-assets-stylesheets/tabs.css">
   <link rel="stylesheet" href="/assets/css/local.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
-
-    <!-- font awesome -->
-    <script src="https://kit.fontawesome.com/d67c74a882.js" crossorigin="anonymous"></script>  
-
-  
+  <!-- font awesome -->
+  <script src="https://kit.fontawesome.com/d67c74a882.js" crossorigin="anonymous"></script>  
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBJC11HF8Z"></script>
 <script translate="no">
@@ -35,9 +33,8 @@
   gtag('config', 'G-XBJC11HF8Z');
 </script>
   <script src="/assets/s-site-assets-scripts/sajari-head.js"></script>
-	<script src="https://unpkg.com/feather-icons"></script>
+  <script src="/assets/s-site-assets-scripts/feather.min.js"></script>
 </head>
-
 
 <body class="body">
 
@@ -283,6 +280,12 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
                   
                     
                     <li><a href="/features/china-delivery-sdks.html">China Delivery</a></li>
+                    
+                  
+                
+                  
+                    
+                    <li><a href="/features/chromecast-with-sdks.html" aria-current="page">Chromecast</a></li>
                     
                   
                 
@@ -1749,9 +1752,9 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
     <p>
-      Google Chromecast is a device that you plug into your TV's HDMI port. Using your smartphone or computer as a remote control, you can use Chromecast to access video content. The Chromecast Plugin enables a Brightcove player to cast video from your 
+      Google Chromecast is a device that you plug into your TV's HDMI port. Using your smartphone or computer as a remote control, you can use Chromecast to access video content. The Chromecast Plugin enables a player to cast video from your 
       
-        Android or iOS device
+        mobile device app using the Brightcove Native SDKs
          
         to the Chromecast device.
     </p>
@@ -1779,7 +1782,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <ul>
       <li>
         <p>
-          <strong>Sender application</strong>: This is any application that can initiate a cast session and communicate with a receiver. The sender application can be thought of as the "client side" portion of the Chromecast ecosystem.
+          <strong>Sender app</strong>: This is any application that can initiate a cast session and communicate with a receiver. The sender application can be thought of as the "client side" portion of the Chromecast ecosystem.
         </p>
         <p>
           
@@ -1790,14 +1793,14 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
       </li>
       <li>
         <p>
-          <strong>Receiver application</strong>: This is a custom web application that is hosted on the public internet and runs on a Chromecast device. It handles communication between the sender app and the receiver device. It can be thought of as a single page HTML app with CSS and JavaScript assets.
+          <strong>Receiver app</strong>: This is a custom web application that is hosted on the public internet and runs on a Chromecast device. It handles communication between the sender app and the receiver device. It can be thought of as a single page HTML app with CSS and JavaScript assets.
         </p>
+        <p>By default, the Chromecast Plugin uses the Brightcove Cast Receiver app, which is hosted on our CDN. The receiver app is a web application that is loaded onto the Chromecast during a cast session.</p>
         <!-- <p>
  As a Brightcove Player customer, you do not need to work with the code and configuration of the receiver application. By default, this plugin uses the Brightcove receiver app.
  </p> -->
         <aside class="bcls-aside bcls-aside--information">Notes:
           <ul>
-            <li>By default, the Brightcove Chromecast Plugin uses the Brightcove Cast Receiver app, but you can use your own receiver app.</li>
             <li>The Brightcove Cast Receiver app does not support Chromecast queueing.</li>
             <li>For Chromecast to work with domain restricted players, you should whitelist the Chromecast receiver's domain, which is <code translate="No">players.brightcove.net</code>.</li>
           </ul> 
@@ -1912,20 +1915,20 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>When casting from a web player, by default it will mirror the player on the sender. This behavior can be overridden by passing <code translate="No">"playerUrl": "default"</code> in options (see above). This is useful for testing.</p>
     <p>When casting from native SDKs, it will fall back to the default player (which is available in the Players Prod account).</p>
 
-    <h3>Uncommon Custom Data</h3>
-    <p>Custom data fields below are usually not necessary to use, but they are documented for completeness. For web senders, these correspond to <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options</code></a> that are available above.</p>
+    <!-- <h3>Uncommon Custom Data</h3>
+    <p>Custom data fields below are usually not necessary to use, but they are documented for completeness. For web senders, these correspond to <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options</code></a> that are available for the web player.</p>
 
     <h4><code translate="No">customData.authRequest</code></h4>
     <p>Type: <code translate="No">string</code> or <code translate="No">object</code></p>
     <p>See <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options.authRequest</code></a></p>
 
-    <h4><code translate="No">customData.debug</code></h4>
-    <p>Type: <code translate="No">boolean</code></p>
-    <p>See <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options.debug</code></a></p>
-
     <h4><code translate="No">customData.withCredentials</code></h4>
     <p>Type: <code translate="No">boolean</code></p>
-    <p>See <code translate="No">withCredentials</code> under <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options.authRequest</code></a></p>
+    <p>See <code translate="No">withCredentials</code> under <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options.authRequest</code></a></p> -->
+
+     <!-- <h4><code translate="No">customData.debug</code></h4>
+    <p>Type: <code translate="No">boolean</code></p>
+    <p>See <a href="https://player.support.brightcove.com/plugins/chromecast-plugin-brightcove-player.html#Configuration_options"><code translate="No">options.debug</code></a></p> -->
 
   
     
