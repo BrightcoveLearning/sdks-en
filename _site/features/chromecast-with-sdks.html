@@ -1852,11 +1852,11 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
     <p>For the Brightcove Player (web) sender, <code translate="No">customData</code> is handled entirely by the plugin. There is nothing for integrators to do.</p>
     <p>For all other senders, such as the the Native SDK for Android or iOS, <code translate="No">customData</code> must be constructed by the sender.</p>
 
-    <h3>customData.accountId (required)</h3>
+    <h3><code translate="No">customData.accountId</code> (required)</h3>
     <p>Type: <code translate="No">string</code></p>
     <p>When casting from a web player, this is automatic. All other senders (e.g. the Native SDKs) must explicitly set this.</p>
 
-    <h3>customData.analyticsParams</h3>
+    <h3><code translate="No">customData.analyticsParams</code></h3>
     <p>Type: <code translate="No">object</code></p>
     <p>This property should be an object, which can be used to pass parameters to the analytics implementation on the receiver for beacons sent to the Data Collection API. It supports the following properties:</p>
     <table class="bcls-table">
@@ -1879,11 +1879,50 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
             <td>Allows setting a clear text user ID for beacons sent to the Data Collection API. This is useful for features like Cross Device Resume (XDR).</td>                  
           </tr>            
       </tbody>
-  </table>
-  <h3>customData.catalogParams</h3>
-    <p>Type: <code translate="No">object</code></p>
-    <p>This should be a Catalog Parameters Objects</p>
-    <p>All values passed to the Playback API on the receiver must come from this object.</p>
+    </table>
+    <h3><code translate="No">customData.catalogParams</code></h3>
+      <p>Type: <code translate="No">object</code></p>
+      <p>This should be a Catalog Parameters Objects</p>
+      <p>All values passed to the Playback API on the receiver must come from this object.</p>
+
+    <h3><code translate="No">customData.keySystems</code></h3>
+      <p>Type: <code translate="No">object</code></p>
+      <aside class="bcls-aside bcls-aside--information"> Notes:
+        <ul>
+          <li>This property is new in Brightcove Chromecast Receiver v2.0.0 and is only used for non-Video Cloud media</li>
+          <li>This is not needed when using <code translate="No">catalogParams</code></li>
+        </ul>
+      </aside>
+      <p>When providing media via a media info object, this can be used to provide DRM settings in a format identical to that returned by the Playback API:</p>
+      <pre class="line-numbers" data-start="1"><code class="json" translate="No">keySystems: {
+  &apos;com.widevine.alpha&apos;: {
+    url: &apos;https://url/to/widevine/license&apos;
+  }
+}</code></pre>
+    <aside class="bcls-aside bcls-aside--warning">Any other format for keySystems configuration is NOT supported.</aside>
+
+    <h3><code translate="No">customData.playerUrl</code></h3>
+    <p>Type: <code translate="No">string</code></p>
+    <p>This can be used to provide a custom player URL to load.</p>
+    <p>When casting from a web player, by default it will mirror the player on the sender. This behavior can be overridden by passing <code translate="No">"playerUrl": "default"</code> in options (see above). This is useful for testing.</p>
+    <p>When casting from native SDKs, it will fall back to the default player (which is available in the Players Prod account).</p>
+
+    <h3>Uncommon Custom Data</h3>
+    <p>Custom data fields below are usually not necessary to use, but they are documented for completeness. For web senders, these correspond to <code translate="No">options</code> that are available above.</p>
+
+    <h4><code translate="No">customData.authRequest</code></h4>
+    <p>Type: <code translate="No">string</code> or <code translate="No">object</code></p>
+    <p>See <code translate="No">options.authRequest</code></p>
+
+    <h4><code translate="No">customData.debug</code></h4>
+    <p>Type: <code translate="No">boolean</code></p>
+    <p>See <code translate="No">options.debug</code></p>
+
+    <h4><code translate="No">customData.withCredentials</code></h4>
+    <p>Type: <code translate="No">boolean</code></p>
+    <p>See <code translate="No">withCredentials</code> under <code translate="No">options.authRequest</code></p>
+
+  
     
   </section>
 
