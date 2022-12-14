@@ -1788,10 +1788,29 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <h2 id="Overview">Overview</h2>
   <p>The Brightcove Native SDK for Android version 8.0.0 includes some major changes, including:</p>
   <ul>
-    <li>Decoupling media playback</li>
-    <li>Utilizing additional ExoPlayer API's</li>
-    <li>Providing new feature support and customization</li>
+    <li>Support for audio-only content</li>
+    <li>Media-style notifications</li>
+
+
+    <li>Additional ExoPlayer API's</li>
+    <li>New feature support and customization</li>
   </ul>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Audio_only_content">Audio-only content</h2>
+  <p>The Brightcove Native SDK for Android supports audio-only playback and rich playback controls. Audio playback will continue to play even if the host application is in the background, giving the end-user more control of their listening experience. Support for audio playback has been integrated with the current API to ensure backward compatibility with all of Brightcove's features.</p>
+  <p>For implementation details, see the <a href="/features/audio-only-with-sdks.html">Audio Only with the Native SDKs</a> document.</p>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Media_style_notifications">Media-style notifications</h2>
+  <p>The Native SDK for Android supports notifications designed for media playback. The default player behavior when playing an audio asset is to start a new <a href="https://developer.android.com/guide/components/foreground-services">ForegroundService</a> with an ongoing playback notification with media controls. The media controls are displayed below the Quick Settings panel and on the lock screen:</p>
+  <p>The media controls are found on the lock screen and below the Quick Settings panel:</p>
+  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media controls" src="/assets/images/android/framework/sdk8migration/media-controls.webp" />
+    <figcaption class="bcls-caption--image">Media controls</figcaption>
+  </figure>
+  
 </section>
 
 <!-- <section class="bcls-section">
