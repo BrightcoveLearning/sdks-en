@@ -36,6 +36,90 @@ layout: staging
   <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media controls" src="/assets/images/android/framework/sdk8migration/media-controls.webp" />
     <figcaption class="bcls-caption--image">Media controls</figcaption>
   </figure>
+  <p>The notification lets users view and control playback when the host application is in the background. The Native SDK automatically handles:</p>
+  <ul>
+    <li>Loading album artwork and metadata</li>
+    <li>Action buttons (play/pause, next, previous, fast-forward, rewind, and stop)</li>
+    <li>Activity lifecycle events</li>
+  </ul>
+  <p>You can customize the notification style and media controls using the <code translate="No">PlaybackNotification.Config</code> class.</p>
+
+  <h3>Notification Action Buttons</h3>
+  <p>Users can interact with the player from the notification and lock screen using action buttons. By default, the notification includes play, pause, next, and previous action buttons.</p>
+  <p>You can customize the action buttons by retrieving the notification instance and setting a <code translate="No">config</code>.</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">BrightcoveExoPlayerVideoView player = findViewById(R.id.player_view);
+PlaybackNotification.Config config = new PlaybackNotification.Config(this)
+  .setUsePlayPauseActions(true)
+  .setUseNextAction(false)
+  .setUsePreviousAction(false)
+  .setUseFastForwardAction(true)
+  .setUseRewindAction(true);
+player.getPlayback().getNotification().setConfig(config);</code></pre>
+
+    <p>The following table shows the default values and descriptions of the action buttons:</p>
+    <div style="overflow-x:auto;">
+      <table class="bcls-table">
+        <thead class="bcls-table__head">
+          <tr>
+            <th>Method Name</th>  
+            <th>Default Value</th>     
+            <th>Description</th>                  
+          </tr>
+        </thead>
+        <tbody class="bcls-table__body">
+          <tr>
+            <td><code translate="No">usePlayPauseActions</code></td>   
+            <td><code translate="No">True</code></td>      
+            <td>Sets whether the play and pause actions are used</td>              
+          </tr> 
+          <tr>
+            <td><code translate="No">useRewindAction</code></td>   
+            <td><code translate="No">True</code></td>      
+            <td>Sets whether the rewind action is used</td>              
+          </tr>   
+          <tr>
+            <td><code translate="No">useRewindActionInCompatView</code></td>   
+            <td><code translate="No">False</code></td>      
+            <td>If <code translate="No">useRewindAction</code> is true, sets whether the rewind action is also used in compact view (including the lock screen notification); Else does nothing</td>              
+          </tr>  
+          <tr>
+            <td><code translate="No">useFastForwardAction</code></td>   
+            <td><code translate="No">True</code></td>      
+            <td>Sets whether the fast forward action is used</td>              
+          </tr> 
+          <tr>
+            <td><code translate="No">useFastForwardActionInCompactView</code></td>   
+            <td><code translate="No">False</code></td>      
+            <td>If <code translate="No">useFastForwardAction</code> is true, sets whether the fast forward action is also used in compact view (including the lock screen notification); Else does nothing</td>              
+          </tr> 
+          <tr>
+            <td><code translate="No">usePreviousAction</code></td>   
+            <td><code translate="No">True</code></td>      
+            <td>Whether the previous action is used</td>              
+          </tr>      
+          <tr>
+            <td><code translate="No">usePrevioiusActionInCompatMode</code></td>   
+            <td><code translate="No">False</code></td>      
+            <td>If <code translate="No">usePreviousAction</code> is true, sets whether the previous action is also used in compact view (including the lock screen notification); Else does nothing</td>              
+          </tr>  
+          <tr>
+            <td><code translate="No">useNextAction</code></td>   
+            <td><code translate="No">True</code></td>      
+            <td>Whether the next action is used</td>              
+          </tr>
+          <tr>
+            <td><code translate="No">useNextActionInCompactView</code></td>   
+            <td><code translate="No">False</code></td>      
+            <td>If <code translate="No">useNextAction</code> is true, sets whether the next action is also used in compact view (including the lock screen notification); Else does nothing</td>              
+          </tr>
+          <tr>
+            <td><code translate="No">useStopAction</code></td>   
+            <td><code translate="No">False</code></td>      
+            <td>Sets whether the stop action is used</td>              
+          </tr>
+        </tbody>
+      </table>
+    </div>
   
 </section>
 
