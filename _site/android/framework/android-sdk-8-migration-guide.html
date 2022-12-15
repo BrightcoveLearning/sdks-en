@@ -1790,16 +1790,13 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   <ul>
     <li>Support for audio-only content</li>
     <li>Media-style notifications</li>
-
-
-    <li>Additional ExoPlayer API's</li>
-    <li>New feature support and customization</li>
+    <li>Playback changes</li>
   </ul>
 </section>
 
 <section class="bcls-section">
   <h2 id="Audio_only_content">Audio-only content</h2>
-  <p>The Brightcove Native SDK for Android supports audio-only playback and rich playback controls. Audio playback will continue to play even if the host application is in the background, giving the end-user more control of their listening experience. Support for audio playback has been integrated with the current API to ensure backward compatibility with all of Brightcove's features.</p>
+  <p>The Brightcove Native SDK for Android supports audio-only playback and rich playback controls. Audio playback will continue to play even if the host application is in the background, giving the end-user more control of their listening experience. Support for audio playback has been integrated with the current Native SDK for Android APIs to ensure backward compatibility with all of Brightcove's features.</p>
   <p>For implementation details, see the <a href="/features/audio-only-with-sdks.html">Audio Only with the Native SDKs</a> document.</p>
 </section>
 
@@ -1818,7 +1815,7 @@ function doGTranslate(lang_pair) {if(lang_pair.value)lang_pair=lang_pair.value;i
   </ul>
   <p>You can customize the notification style and media controls using the <code translate="No">PlaybackNotification.Config</code> class.</p>
 
-  <h3>Notification Action Buttons</h3>
+  <h3>Notification action buttons</h3>
   <p>Users can interact with the player from the notification and lock screen using action buttons. By default, the notification includes play, pause, next, and previous action buttons.</p>
   <p>You can customize the action buttons by retrieving the notification instance and setting a <code translate="No">config</code>.</p>
   <pre class="line-numbers"><code class="language-java" translate="No">BrightcoveExoPlayerVideoView player = findViewById(R.id.player_view);
@@ -1894,79 +1891,63 @@ player.getPlayback().getNotification().setConfig(config);</code></pre>
         </tbody>
       </table>
     </div>
-  
-</section>
 
-<!-- <section class="bcls-section">
-  <h2 id="SDK_changes">SDK changes</h2>
-  <p>With this release of the Native SDK for Android, the <code translate="No">MediaPlayer</code> class is no longer supported for content playback.</p>
+    <h3>Notification metadata</h3>
+    <p>By default, the notification uses the asset's metadata and creates an implied <code translate="No">PendingIntent</code> to recreate your activity. If you need further control over metadata displayed in the notification, you may implement a <code translate="No">MediaDescriptionAdapter</code>:</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">new PlaybackNotification.Config(this)
+  .setAdapter(new PlaybackNotification.MediaDescriptionAdapter() {
+    @Override
+    public CharSequence getCurrentContentTitle(
+            MediaPlayback playback
+    ) {
+        // TODO: return the current content title
+    }
 
-  <h3>Android 12 compatibility</h3>
+    @Override
+    public Bitmap getCurrentLargeIcon(
+            MediaPlayback playback,
+            BitmapCallback callback
+    ) {
+        // TODO: return the bitmap for currently playing item
+    }
 
-  <p>The Native SDK for Android now offers Android OS 12 compatibility, and all of the features in Android 12 should work as expected. Brightcove recommends that you review the changes in Android 12 and modify your application code as needed.</p>
-  <p>For details, see the <a href="https://developer.android.com/about/versions/12/summary">Android 12 features and changes list</a> reference.</p>
+    @Nullable
+    @Override
+    public PendingIntent createCurrentContentIntent(
+            MediaPlayback&lt;?&gt; playback
+    ) {
+        // TODO: return your custom PendingIntent
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getCurrentContentText(
+            MediaPlayback&lt;?&gt; playback
+    ) {
+        // TODO: return the current content text
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getCurrentSubText(
+            MediaPlayback&lt;?&gt; playback
+    ) {
+        // TODO: return the current sub-text.
+    }
+  }
+);</code></pre>
 </section>
 
 <section class="bcls-section">
-  <h2 id="ExoPlayer_upgrade">ExoPlayer upgrade</h2>
-  <p>The Native SDK for Android 7 includes a new version of the ExoPlayer, upgrading from v2.14.2 to v2.17.1. Review all of the updates to the <a href="https://github.com/google/ExoPlayer/releases">ExoPlayer library releases</a>. </p>
-  <p>Most of the ExoPlayer changes are handled internally by the Native SDK for Android, but there are some changes reflected in the public API:</p>
-  <ul>
-    <li>The following interface no longer requires a parameter:
-      <pre><code class="language-java" translate="No">DrmSession&lt;T extends ExoMediaCrypto&gt;</code></pre>
-      <br/>
-    </li>
-    <li>The following interface no longer requires a parameter:
-      <pre><code class="language-java" translate="No">ExoPlayerDrmSessionManager&lt;T extends ExoMediaCrypto&gt;</code></pre>
-      <br/>
-    </li>
-
-    <li><p>The <code translate="No">ExoPlayerDrmSessionManager</code> class now exposes a <code translate="No">defaulDrmSessionManager</code> object that can be used in MediaSource objects to set a DRM session manager</p></li>
-
-    <li>In the <code translate="No">TrackSelectorHelper</code> class, the following method is deprecated:
-      <pre><code class="language-java" translate="No">updateTracksSelectionArray(@Nullable TrackSelectionArray trackSelections)</code></pre>
-      and is replaced with
-      <pre><code class="language-java" translate="No">updateTracksGroupInfos(@Nullable ImmutableList<TracksInfo.TrackGroupInfo> trackGroupInfos)</code></pre>
-      <br/>
-    </li>
-
-    <li>In the <code translate="No">MediaSourceUtil</code> class, the following method is deprecated:
-      <pre><code class="language-java" translate="No">findRenditionUrl(@NonNull HlsMasterPlaylist hlsMasterPlaylist, int trackType, @NonNull Format format)</code></pre>
-      and is replaced with
-      <pre><code class="language-java" translate="No">findRenditionUrl(@NonNull HlsMultivariantPlaylist hlsMasterPlaylist, int trackType, @NonNull Format format)</code></pre>
-      <br/>
-    </li>
-
-    <li><p>In the <code translate="No">ExoAdPlayer</code> class,  The constructor requires a <code translate="No">StyledPlayerView</code> instead of a <code translate="No">PlayerView</code></p></li>
-
-    <li>The following class is deprecated:
-      <pre><code class="language-java" translate="No">DashAudioTrackSelector</code></pre>
-      and is replaced with
-      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
-      <br/>
-    </li>
-    <li>The following class is deprecated:
-      <pre><code class="language-java" translate="No">DashPeakBitRateTrackSelector</code></pre>
-      and is replaced with
-      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
-      <br/>
-    </li>
-    <li>The following class is deprecated:
-      <pre><code class="language-java" translate="No">HLSPeakBitrateTrackSelector</code></pre>
-      and is replaced with
-      <pre><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent.setPeakBitrate(int)</code></pre>
-      <br/>
-    </li>
-  </ul>
-
-  <h3>Gradle and Java Upgrades</h3>
-  <p>Upgrading the ExoPlayer requires the following:</p>
-  <ul>
-    <li>Gradle 7.4</li>
-    <li>Java 11</li>
-  </ul>
-  <p>With the Native SDK for Android 7, you must upgrade both of these environmental dependencies.</p>
-</section> -->
+  <h2 id="Playback_changes">Playback changes</h2>
+  <p>With the changes in the Native SDK for Android version 8.0.0, Brightcove has decoupled playback business logic out of the <code translate="No">View</code> and <code translate="No">Activity</code>. This business logic now lives in the new <code translate="No">MediaPlayback</code> class, enabling media to persist beyond the <code translate="No">Activity</code> lifecycle using a <code translate="No">ForegroundService</code>. The playback status is shared across the notification and its corresponding View (when the app is in the foreground).</p>
+  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media playback" src="/assets/images/android/framework/sdk8migration/media-playback.webp" />
+    <figcaption class="bcls-caption--image">Media playback</figcaption>
+  </figure>
+  <p>Brightcove has made significant improvements in the utilization of ExoPlayer's internal playlist support. Previously, a new instance of ExoPlayer was created for each media item loaded into the SDK.</p>
+  <p>Now, media playback enhances pre-buffering the <code translate="No">MediaSource</code> for ExoPlayer.  This improves performance and employs ExoPlayer's <code translate="No">Player.Listener</code> to emit important playback states.</p>
+  
+</section>
 
 </article>
 
