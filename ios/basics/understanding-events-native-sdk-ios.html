@@ -38,11 +38,63 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Lifecycle_events">Lifecycle events</h2>
 
-<p>The default Lifecycle events are declared in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h">BCOVPlaybackSession.h</a> file. Below is a list of the default lifecycle events from the Brightcove Player SDK for iOS that you can listen for and act upon.</p>
-
-<p>Select any event below to see the associated engineering notes.</p>
+<p>You can listen for and act upon the lifecycle events from the Brightcove Player SDK for iOS. For the most current list of events along with their associated engineering notes, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h">BCOVPlaybackSession.h</a> file.</p>
 
 <ul>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventReady</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventFail</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlay</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPause</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlayRequest</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPauseRequest</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventFailedToPlayToEndTime</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventResumeBegin</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventResumeComplete</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventResumeFail</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventEnd</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlaybackStalled</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlaybackRecovered</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlaybackBufferEmpty</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPlaybackLikelyToKeepUp</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventTerminate</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventStartCastSession</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventEndCastSession</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventError</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperEnter</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperExit</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperPause</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperResume</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperProgress</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventBumperFailedToPlayToEndTime</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPropertiesKeyBumperVideo</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventPropertiesKeyBumperProgress</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdSequenceEnter</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdSequenceExit</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdEnter</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdExit</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdProgress</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdPause</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdResume</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventAdSkipped</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionLifecycleEventThumbnailAssetFailedToLoad</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionEventKeyError</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionEventKeyPreviousTime</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionEventKeyCurrentTime</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionEventKeyCuePoints</code></li>
+  <br/>
+  <li><code translate="No">kBCOVPlaybackSessionErrorDomain</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionErrorCodeLoadFailed</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionErrorCodeNoPlayableSource</code></li>
+  <li><code translate="No">kBCOVPlaybackSessionErrorCodeWifiUnavailable</code></li>
+</ul>
+
+<!-- <ul>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L17-L20">kBCOVPlaybackSessionLifecycleEventReady</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L22-L26">kBCOVPlaybackSessionLifecycleEventFail</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L28-L32">kBCOVPlaybackSessionLifecycleEventPlay</a></li>
@@ -66,13 +118,16 @@ grandparent: iOS Development
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L139-L142">kBCOVPlaybackSessionErrorCodeLoadFailed</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L144-L148">kBCOVPlaybackSessionErrorCodeFailedToPlayToEnd</a></li>
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVPlaybackSession.h#L150-L153">kBCOVPlaybackSessionErrorCodeNoPlayableSource</a></li>
-</ul>
+</ul> -->
 </section>
-&nbsp;
+<!-- &nbsp; -->
+<section class="bcls-section">
+  <h2 id="Related topics">Related topics</h2>
+  <p>You now have a basic understanding of the Brightcove Player SDK for iOS. Next, you can walk through the steps of building an app which uses the Player SDK.</p>
 
-<p>You now have a basic understanding of the Brightcove Player SDK for iOS. Next, you can walk through the steps of building an app which uses the Player SDK.</p>
+  <div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/ios/basics/ios-working-media-content.html';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/ios/basics/step-step-simple-video-app-using-objective-c.html';">Next &gt;</button></div>
+  </section>
 
-<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/ios/basics/ios-working-media-content.html';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/ios/basics/step-step-simple-video-app-using-objective-c.html';">Next &gt;</button></div>
 </article>
 <!-- Learning path right navigation -->
 <link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/learning-paths.css" /><script translate="no">
