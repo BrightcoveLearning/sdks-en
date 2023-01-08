@@ -1,8 +1,43 @@
 ---
 title: Video Cloud Native SDKs Documentation
 parent: null
+layout: landing_page
 ---
-<style translate="no">
+
+<!-- main content -->
+<div class="page-content">
+  <div class="container">
+    <div class="docs-overview py-5">
+      <div class="row justify-content-center">
+
+
+        {% for section in site.data.navigation offset:1 %}
+        <div class="col-12 col-lg-4 py-3">
+          <div class="card card-hover shadow-sm">
+
+            <div class="card-body">
+              <h5 class="card-title mb-3">
+                <span class="span-icon card-icon-holder icon-theme me-2">
+                  <i class="{{ section.icon }}"></i>
+                </span><!--//card-icon-holder-->
+                <span class="card-title-text">{{ section.name }}</span>
+              </h5>
+              <div class="card-text">
+                {{ section.description }}
+              </div>
+              <a class="card-link-mask" href="{{ section.url }}"></a>
+            </div><!--//card-body-->
+          </div><!--//card-->
+        </div><!--//col-->
+        {% endfor %}
+      </div><!--//row-->
+    </div><!--//container-->
+  </div><!--//container-->
+</div><!--//page-content-->
+
+
+
+<!-- <style translate="no">
   h1 {
     margin-bottom: 0;
 }
@@ -12,19 +47,19 @@ parent: null
   <section class="landing-page-header" id="landing_page_header">
     <h1>{{ site.title }}</h1>
 
-    <!-- <p>{{ site.description }}</p> -->
-    <table width="100%" border="0" padding="0" margin="0">
-	<tbody>
-		<tr>
-			<td width="30%">
-			<div data-experience="5be4439bb5cd1c00106dc3f5" data-video-ids="6126979334001">&nbsp;</div>
-			<script src="https://players.brightcove.net/20318290001/experience_5be4439bb5cd1c00106dc3f5/live.js"></script></td>
-			<!--<td width="35%"><img height="61" src="https://solutions.brightcove.com/bcls/prod/ssai-logo.png" /></td>-->
-			<td width="70%">
-			{{ site.description }} 
-			</td>
-		</tr>
-	</tbody>
+    <p>{{ site.description }}</p> -->
+    <!-- <table width="100%" border="0" padding="0" margin="0">
+  <tbody>
+    <tr>
+      <td width="30%">
+      <div data-experience="5be4439bb5cd1c00106dc3f5" data-video-ids="6126979334001">&nbsp;</div>
+      <script src="https://players.brightcove.net/20318290001/experience_5be4439bb5cd1c00106dc3f5/live.js"></script></td> -->
+      <!--<td width="35%"><img height="61" src="https://solutions.brightcove.com/bcls/prod/ssai-logo.png" /></td>-->
+      <!-- <td width="70%">
+      {{ site.description }} 
+      </td>
+    </tr>
+  </tbody>
 </table>
   </section>
   <section class="card-wrapper">
@@ -44,4 +79,4 @@ parent: null
     </section>
     {% endfor %}
   </section>
-</article>
+</article> -->
