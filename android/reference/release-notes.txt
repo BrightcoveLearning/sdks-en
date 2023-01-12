@@ -1,5 +1,19 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.0.0
+
+    Please Note:
+    This major release of the Brightcove Native SDK for Android contains significant behavioral changes. Please refer to Support documentation for more information on these changes.
+
+    A summary of key behavioral changes:
+      * SDK Changes:
+        * With this version of the Brightcove Native SDK for Android, foreground and background playback of audio-only content is supported.
+          * The MediaPlayback interface abstracts playback from the VideoView to support continuous playback of audio-only media. The MediaPlayback communicates playback state to the notification and the VideoView.
+          * Support for an ongoing foreground service for continuous playback.
+          * Improves loading playlists and pre-buffering media for a smoother end-user experience.
+      * ExoPlayer Changes:
+        * Added a media-style notification with customizable playback controls from the notification shade and lockscreen. This BrightcoveNotification class connects playback with a foreground service.
+
 Version 7.1.4
 
   Cast Plugin Changes:
