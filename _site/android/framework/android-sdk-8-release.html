@@ -1949,10 +1949,11 @@
   <h2 id="Overview">Overview</h2>
   <p>The Brightcove Native SDK for Android is available in a new major version bringing important architecture changes and playback enhancements, including:</p>
   <ul>
+    <li>Android 13 compatibility</li>
+    <li>Support for audio-only content</li>
     <li>Media-Style notification with customizable playback controls from the notification shade and lockscreen</li>
     <li>Support for an on-going foreground service for continuous playback</li>
     <li>Improved loading playlists and pre-buffering media for a smoother end-user experience</li>  
-    <li>Android 13 compatibility</li>
   </ul>
 </section>
 
@@ -1963,21 +1964,28 @@
 </section>
 
 <section class="bcls-section">
-  <h2 id="Media_style_notifications">Media-style notifications</h2>
-  <p>The Native SDK for Android supports notifications designed for media playback. The default player behavior when playing an audio asset is to start a new <a href="https://developer.android.com/guide/components/foreground-services">ForegroundService</a> with an ongoing playback notification with media controls. The media controls are displayed below the Quick Settings panel and on the lock screen:</p>
-  <p>The media controls are found on the lock screen and below the Quick Settings panel:</p>
-  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media controls" src="/assets/images/android/framework/sdk8migration/media-controls.webp" />
-    <figcaption class="bcls-caption--image">Media controls</figcaption>
-  </figure>
-  <p>The notification lets users view and control playback when the host application is in the background. The Native SDK automatically handles:</p>
+  <h2 id="SDK changes">SDK changes</h2>
+  <p>With this release of the Native SDK for Android, the following classes were added to support continuous integration with background playback, ExoPlayer, and media style notifications:</p>
   <ul>
-    <li>Loading album artwork and metadata</li>
-    <li>Action buttons (play/pause, next, previous, fast-forward, rewind, and stop)</li>
-    <li>Activity lifecycle events</li>
+    <li><code translate="No">MediaPlayback&lt;Player&gt;</code></li>
+    <li><code translate="No">BrightcoveNotification</code></li>
+    <li><code translate="No">MediaPlaybackService</code></li>
   </ul>
-  <p>You can customize the notification style and media controls using the <code translate="No">PlaybackNotification.Config</code> class.</p>
+</section>
 
-  <h3>Notification action buttons</h3>
+<section class="bcls-section">
+  <h2 id="MediaPlayback">MediaPlayback&lt;Player&gt;</h2>
+  <p>With the changes in the Native SDK for Android version 8.0.0, Brightcove has decoupled playback business logic out of the <code translate="No">View</code> and <code translate="No">Activity</code>. This business logic now lives in the new <code translate="No">MediaPlayback</code> class, enabling media to persist beyond the <code translate="No">Activity</code> lifecycle using a <code translate="No">ForegroundService</code>. The playback status is shared across the notification and its corresponding View (when the app is in the foreground).</p>
+  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media playback" src="/assets/images/android/framework/sdk8migration/media-playback.webp" />
+    <figcaption class="bcls-caption--image">Media playback</figcaption>
+  </figure>
+  <p>Brightcove has made significant improvements in the utilization of ExoPlayer's internal playlist support. Previously, a new instance of ExoPlayer was created for each media item loaded into the SDK.</p>
+  <p>Now, media playback enhances pre-buffering the <code translate="No">MediaSource</code> for ExoPlayer.  This improves performance and employs ExoPlayer's <code translate="No">Player.Listener</code> to emit important playback states.</p>
+  <p>Support for foreground and background playback will merge a <code translate="No">FOREGROUND_SERVICE</code> permission to your <strong>AndroidManifest</strong> file during your app build process. This permission is a requirement with SDK v8.0.0.</p>
+</section>
+
+<section class="bcls-section">
+  <h2 id="BrightcoveNotification">BrightcoveNotification</h2>
   <p>Users can interact with the player from the notification and lock screen using action buttons. By default, the notification includes play, pause, next, and previous action buttons.</p>
   <p>You can customize the action buttons by retrieving the notification instance and setting a <code translate="No">config</code>.</p>
   <pre class="line-numbers"><code class="language-java" translate="No">BrightcoveExoPlayerVideoView player = findViewById(R.id.player_view);
@@ -2098,17 +2106,23 @@ player.getPlayback().getNotification().setConfig(config);</code></pre>
     }
   }
 );</code></pre>
+  
 </section>
 
 <section class="bcls-section">
-  <h2 id="Playback_changes">Playback changes</h2>
-  <p>With the changes in the Native SDK for Android version 8.0.0, Brightcove has decoupled playback business logic out of the <code translate="No">View</code> and <code translate="No">Activity</code>. This business logic now lives in the new <code translate="No">MediaPlayback</code> class, enabling media to persist beyond the <code translate="No">Activity</code> lifecycle using a <code translate="No">ForegroundService</code>. The playback status is shared across the notification and its corresponding View (when the app is in the foreground).</p>
-  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media playback" src="/assets/images/android/framework/sdk8migration/media-playback.webp" />
-    <figcaption class="bcls-caption--image">Media playback</figcaption>
+  <h2 id="MediaPlaybackService">MediaPlaybackService</h2>
+  <p>The Native SDK for Android supports notifications designed for media playback. The default player behavior when playing an audio asset is to start a new <a href="https://developer.android.com/guide/components/foreground-services">ForegroundService</a> with an ongoing playback notification with media controls. The media controls are displayed below the Quick Settings panel and on the lock screen:</p>
+  <p>The media controls are found on the lock screen and below the Quick Settings panel:</p>
+  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media controls" src="/assets/images/android/framework/sdk8migration/media-controls.webp" />
+    <figcaption class="bcls-caption--image">Media controls</figcaption>
   </figure>
-  <p>Brightcove has made significant improvements in the utilization of ExoPlayer's internal playlist support. Previously, a new instance of ExoPlayer was created for each media item loaded into the SDK.</p>
-  <p>Now, media playback enhances pre-buffering the <code translate="No">MediaSource</code> for ExoPlayer.  This improves performance and employs ExoPlayer's <code translate="No">Player.Listener</code> to emit important playback states.</p>
-  <p>Support for foreground and background playback will merge a <code translate="No">FOREGROUND_SERVICE</code> permission to your <strong>AndroidManifest</strong> file during your app build process. This permission is a requirement with SDK v8.0.0.</p>
+  <p>The notification lets users view and control playback when the host application is in the background. The Native SDK automatically handles:</p>
+  <ul>
+    <li>Loading album artwork and metadata</li>
+    <li>Action buttons (play/pause, next, previous, fast-forward, rewind, and stop)</li>
+    <li>Activity lifecycle events</li>
+  </ul>
+  <p>You can customize the notification style and media controls using the <code translate="No">PlaybackNotification.Config</code> class.</p>
   
 </section>
 
