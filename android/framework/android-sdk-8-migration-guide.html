@@ -171,6 +171,7 @@ player.getPlayback().getNotification().setConfig(config);</code></pre>
   </figure>
   <p>Brightcove has made significant improvements in the utilization of ExoPlayer's internal playlist support. Previously, a new instance of ExoPlayer was created for each media item loaded into the SDK.</p>
   <p>Now, media playback enhances pre-buffering the <code translate="No">MediaSource</code> for ExoPlayer.  This improves performance and employs ExoPlayer's <code translate="No">Player.Listener</code> to emit important playback states.</p>
+  <p>Support for foreground and background playback will merge a <code translate="No">FOREGROUND_SERVICE</code> permission to your <strong>AndroidManifest</strong> file during your app build process. This permission is a requirement with SDK v8.0.0.</p>
   
 </section>
 
