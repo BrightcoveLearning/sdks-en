@@ -1954,17 +1954,36 @@
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
-			<h3>Version 7.1.4</h3>
+			<h3>Version 8.0.0</h3>
+
+			<h4>11 January 2022</h4>
+      <p>This major release of the Brightcove Native SDK for Android contains significant behavioral changes. Please refer to Support documentation for
+        more information on these changes.</p>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>With this version of the Brightcove Native SDK for Android,foreground and background playback of audio-only content is supported.</li>
+        <li>The <code translate="No">MediaPlayback</code> interface abstracts playback from the <code translate="No">VideoView</code> to support continuous playback of audio-only media. The <code translate="No">MediaPlayback</code> communicates playback state to the notification and the <code translate="No">VideoView</code>.</li>
+        <li>Support for an ongoing foreground service for continuous playback.</li>
+        <li>Improves loading playlists and pre-buffering media for a smoother end-user experience.</li>
+			</ul>	
+      <p>ExoPlayer Changes:</p>
+			<ul>
+				<li>Added a media-style notification with customizable playback controls from the notification shade and lockscreen. This
+          <code translate="No">BrightcoveNotification</code> class connects playback with a foreground service.</li>
+			</ul>	
+
+		</section>
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
+      <h3>Version 7.1.4</h3>
 
 			<h4>16 November 2022</h4>
 			<p>Cast Plugin Changes:</p>
 			<ul>
 				<li>Adds support for the Brightcove Cast Receiver emeHeaders <code translate="No">CustomData</code> object.</li>
 			</ul>	
-		</section>
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
       <h3>Version 7.1.3</h3>
 
