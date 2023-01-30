@@ -70,7 +70,7 @@
         <div id="nav-search-box" class="top-search-box d-none d-lg-flex" style="margin-right: 10px ;"></div>
 
         <select id="site_select" class="form-select select-focus" style="width:
-          20%; margin-right: 10px;">
+          20%; margin-right: 10px;" translate="no">
           <option value="">Other Brightcove Docs</option>
           
           
@@ -168,7 +168,7 @@
         </select>
 
         <select id="language_select" class="form-select select-focus" style="width: 10%;"
-          onchange="doGTranslate(this);">
+          onchange="doGTranslate(this);" translate="no">
           <!-- <option value="">Select Language</option> -->
           <option value="en|en" translate="No">English</option>
           <option value="en|zh-TW" translate="No">繁體中文</option>
@@ -1950,7 +1950,7 @@
 
 <section class="bcls-section">
 <h2 id="Overview">Overview</h2>
-<p>The Brightcove Native SDK for Android 8.0.0 or later supports the Google IMA SDK version 3.19.4. If you are using IMA advertising, there are a few things to be aware of to use this version of the IMA plugin. They include the following:</p>
+<p>The Brightcove Native SDK for Android 8.0.0 or later supports the Google IMA SDK version 3.27.1. If you are using IMA advertising, there are a few things to be aware of to use this version of the IMA plugin. They include the following:</p>
 <ul>
   <li>
     <a href="#Changes_in_the_Google_IMA_SDK">Changes in the Google IMA SDK</a>
@@ -1967,7 +1967,7 @@
 <section class="bcls-section">
 <h2 id="Changes_in_the_Google_IMA_SDK">Changes in the Google IMA SDK</h2>
 <p>
-  The Brightcove Native SDK updated the Google IMA SDK from version 3.11.2 to version 3.19.4. The most relevant changes include:
+  The Brightcove Native SDK updated the Google IMA SDK from version 3.11.2 to version 3.27.1. The most relevant changes include:
 </p>
 <ul>
   <li>
@@ -2107,11 +2107,11 @@
     All of the Brightcove SDK dependencies set to version 8.0.0
   </li>
   <li>
-    Use Google IMA SDK version 3.19.4
+    Use Google IMA SDK version 3.27.1
   </li>
-  <li>
+  <!-- <li>
     Use Google Play Services version 19.2.0
-  </li>
+  </li> -->
 </ul>
 <p>Here is an example of the <strong>build.gradle</strong> file:</p>
 <pre class="line-numbers"><code class="language-java" translate="No">//build.gradle
@@ -2122,10 +2122,7 @@ dependencies {
  implementation &quot;com.brightcove.player:android-ima-plugin:8.0.0&quot;
 
  //Google IMA SDK
- implementation &quot;com.google.ads.interactivemedia.v3:interactivemedia:3.19.4&quot;
-
- //Google Play Services
- implementation &quot;com.google.android.gms:play-services-ads:19.2.0&quot;
+ implementation &quot;com.google.ads.interactivemedia.v3:interactivemedia:3.27.1&quot;
  ...
 }
 </code></pre>
@@ -2182,7 +2179,7 @@ container.setAdContainer(brightcoveVideoView);
           <ul class="list-unstyled text-small">
             <li><a class="a-text" href="https://studio.support.brightcove.com/get-started/training/online-training-courses.html">Online courses</a></li>
             <li><a class="a-text" href="https://studio.support.brightcove.com/get-started/training/register-training.html">Register for a course</a></li>
-            <li><a class="a-text" href="https://university.brightcove.com/">Brightcove Academy</a></li>
+            <li><a class="a-text" href="https://academy.brightcove.com/">Brightcove Academy</a></li>
           </ul>
         </div>
       
