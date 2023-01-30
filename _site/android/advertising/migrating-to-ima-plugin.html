@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Advertising</title>
+        <title>Migrating to Brightcove's IMA Plugin 8.0.0</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Learn how to implement advertising with the Brightcove Native SDK for Android">
+        <meta name="description" content="In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 8.0.0.">
         
         <!-- Google Font -->
         <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet"> -->
@@ -506,7 +506,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/advertising/migrating-to-ima-plugin.html">Brightcove's IMA Plugin 8.0.0</a></li>
+                  <li class="nav-item section-doc"><a class="nav-link" href="/android/advertising/migrating-to-ima-plugin.html" aria-current="page">Brightcove's IMA Plugin 8.0.0</a></li>
                   
                   
                   
@@ -1918,7 +1918,11 @@
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Advertising</li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/android/advertising/">Advertising</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">Migrating to Brightcove's IMA Plugin 8.0.0</li>
             
             
           </ol>
@@ -1931,87 +1935,227 @@
   <div class="container">
     <div class="docs-overview py-5">
       
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br>
       
-<!-- Template for sub-section that has just pages -->
+      
+<h1>Migrating to Brightcove's IMA Plugin 8.0.0</h1>
+<article class="bcls-article">
+  <summary>In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 8.0.0.</summary>
 
-  
 
-  
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+<p>The Brightcove Native SDK for Android 8.0.0 or later supports the Google IMA SDK version 3.27.1. If you are using IMA advertising, there are a few things to be aware of to use this version of the IMA plugin. They include the following:</p>
+<ul>
+  <li>
+    <a href="#Changes_in_the_Google_IMA_SDK">Changes in the Google IMA SDK</a>
+  </li>
+  <li>
+     <a href="#Changes_in_the_Brightcove_IMA_plugin">Changes in the Brightcove IMA plugin</a>
+  </li>
+  <li>
+     <a href="#Migrating_to_the_IMA_Plugin">Migrating to the IMA Plugin 8.0.0</a
+  </li>
+</ul>
+</section>
 
-  
+<section class="bcls-section">
+<h2 id="Changes_in_the_Google_IMA_SDK">Changes in the Google IMA SDK</h2>
+<p>
+  The Brightcove Native SDK updated the Google IMA SDK from version 3.11.2 to version 3.27.1. The most relevant changes include:
+</p>
+<ul>
+  <li>
+    <code translate="No">SdkFactory.createAdDisplayContainer()</code> is deprecated
+  </li>
+  <li>
+    <code translate="No">AdDisplayContainer.setPlayer(VideoAdPlayer)</code> is deprecated
+  </li>
+  <li>
+    <code translate="No">AdDisplayContainer.setAdContainer(ViewGroup)</code> is deprecated
+  </li>
+  <li>
+    <code translate="No">AdsRequest.setAdDisplayContainer(AdDisplayContainer)</code> is removed
+  </li>
+</ul>
+<p>For the full release, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/history">Google IMA Android SDK release history</a> document.</p>
+</section>
 
-  
-    
-      
-    
-      
-      <h1><i class="fa-brands fa-android"></i> Advertising</h1>
-      <article class="bcls-article">
-        <summary>Learn how to implement advertising with the Brightcove Native SDK for Android</summary>
+<section class="bcls-section">
+<h2 id="Changes_in_the_Brightcove_IMA_plugin">Changes in the Brightcove IMA plugin</h2>
+<p>
+  The Brightcove IMA plugin made several changes to be fully compatible with the new Google IMA SDK version. They include:
+</p>
+<ul>
+  <li>
+    <a href="#Using_the_GoogleIMAComponent_Builder">Using the GoogleIMAComponent Builder</a>
+  </li>
+  <li>
+     <a href="#Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</a>
+  </li>
+  <li>
+     <a href="#Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</a>
+  </li>
+</ul>
 
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/android/index.html'">
-            <div class="card-body">
-              <section class="flex-container">
-                <div>
-                  <ul class="list-group list-group-flush">
-                    
-                    <li class="list-group-item"><a href="/android/advertising/android-ad-ui-customization-server-side-ad-insertion-ssai.html" style="text-decoration: none;">Ad UI Customization with SSAI</a></li>
-                    
-                    <li class="list-group-item"><a href="/features/appending-ad-query-params-native-sdks.html" style="text-decoration: none;">Appending Ad Query Params</a></li>
-                    
-                    <li class="list-group-item"><a href="/android/advertising/migrating-to-ima-plugin.html" style="text-decoration: none;">Brightcove's IMA Plugin 8.0.0</a></li>
-                    
-                    <li class="list-group-item"><a href="/android/advertising/ssai-seeking-behavior.html" style="text-decoration: none;">Brightcove's SSAI Plugin</a></li>
-                    
-                    <li class="list-group-item"><a href="/features/ima-open-measurement-native-sdks.html" style="text-decoration: none;">IMA Open Measurement</a></li>
-                    
-                    <li class="list-group-item"><a href="/features/implementing-client-side-ads-native-sdks.html" style="text-decoration: none;">Implementing Client-Side Ads (CSAI)</a></li>
-                    
-                    <li class="list-group-item"><a href="/features/implementing-server-side-ads-native-player-sdks.html" style="text-decoration: none;">Implementing Server-Side Ads (SSAI)</a></li>
-                    
-                    <li class="list-group-item"><a href="/android/advertising/using-pulse-plugin-native-sdk-android.html" style="text-decoration: none;">Invidi Pulse Plugin</a></li>
-                    
-                  </ul>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-      </article>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
+<h3 id="Using_the_GoogleIMAComponent_Builder">Using the GoogleIMAComponent Builder</h3>
+<p>We recommend using the Builder to create the <code translate="No">GoogleIMAComponent</code> instance. This makes it easier to configure the <code translate="No">GoogleIMAComponent</code>.</p>
+<pre class="line-numbers"><code class="language-java" translate="No">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setUseAdRules(true)
+  .setImaSdkSettings(customIMASDKSettings)
+  .setAdsRenderingSettings(customAdsRenderingSettings)
+  .setAdDisplayContainerFactory(customAdDisplayContainerFactory)
+  .build();
+}</code></pre>
 
-  
+<h3 id="Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</h3>
+<p>Because the Google IMA SDK removed <code translate="No">AdsRequest.setAdDisplayContainer(...)</code>, the Brightcove IMA plugin now creates this automatically, using the <code translate="No">GoogleIMAVideoAdPlayer</code> and the <code translate="No">BaseVideoView</code>.</p>
+<p>The plugin requires an <code translate="No">AdDisplayContainerFactory</code> to create the <code translate="No">AdDisplayContainer</code>.</p>
+<pre class="line-numbers"><code class="language-java" translate="No">public interface AdDisplayContainerFactory {
+  /**
+  * Creates the AdDisplayContainer with the provided GoogleIMAVideoAdPlayer
+  * and the ViewGroup retrieved with getViewContainer()
+  *
+  * @param googleIMAVideoAdPlayer the Brightcove Ad Player for Google IMA
+  */
+  AdDisplayContainer createAdDisplayContainer(GoogleIMAVideoAdPlayer googleIMAVideoAdPlayer);
 
-  
+  /**
+  * Returns the ViewGroup container used for both,
+  * the creation of the GoogleIMAVideoAdPlayer and the AdDisplayContainer
+  */
+  ViewGroup getViewContainer();
+}
+</code></pre>
+<p>Under the hood, the plugin uses the <code translate="No">DefaultAdDisplayContainerFactory</code>, an <code translate="No">AdDisplayContainerFactory</code>, to create the <code translate="No">AdDisplayContainer</code>. The <code translate="No">getViewContainer()</code> returns the <code translate="No">BaseVideoView</code> passed in its constructor, and the <code translate="No">createAdDisplayContainer</code> method returns:</p>
 
-  
+<pre><code class="language-java" translate="No">ImaSdkFactory.createAdDisplayContainer(getViewContainer(), googleIMAVideoAdPlayer);</code></pre>
 
-  
+<h4>Add your AdDisplayContainerFactory</h4>
+<p>If you need a different implementation, you must pass your own <code translate="No">AdDisplayContainerFactory</code>  to the <code translate="No">GoogleIMAComponent</code> Builder:</p>
+<pre class="line-numbers"><code class="language-java" translate="No">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setAdDisplayContainerFactory(customAdDisplayContainerFactory)
+  .build();
+</code></pre>
 
+<p>If you want to play the Ads in a different view other than the <code translate="No">BaseVideoView</code>, you can provide the <code translate="No">DefaultAdDisplayContainerFactory</code> with your <code translate="No">ViewGroup</code>.</p>
+<pre class="line-numbers"><code class="language-java" translate="No">googleIMAComponent = new GoogleIMAComponent.Builder(brightcoveVideoView, eventEmitter)
+  .setAdDisplayContainerFactory(new DefaultAdDisplayContainerFactory(myViewGroup))
+  .build();
+</code></pre>
+
+<h3 id="Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</h3>
+<p>The following methods are deprecated in the <code translate="No">GoogleIMAVideoAdPlayer</code> class:</p>
+<table class="bcls-table">
+  <thead class="bcls-table__head">
+    <tr>
+      <!-- <th style="width:10%">Deprecated</th> -->
+      <th>Deprecated method</th>
+      <th style="text-align:center";>Use instead</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code translate="No">playAd()</code></td>
+      <td><code translate="No">playAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code translate="No">loadAd(String)</code></td>
+      <td><code translate="No">loadAd(AdMediaInfo, AdPodInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code translate="No">stopAd()</code></td>
+      <td><code translate="No">stopAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code translate="No">resumeAd()</code></td>
+      <td><code translate="No">playAd(AdMediaInfo)</code></td>
+    </tr>
+    <tr>
+      <td><code translate="No">pauseAd()</code></td>
+      <td><code translate="No">pauseAd(AdMediaInfo)</code></td>
+    </tr>
+  </tbody>
+</table>
+<br/>
+<p>Notice that the replacement methods now require <code translate="No">AdMediaInfo</code>. You can retrieve the current <code translate="No">AdMediaInfo</code> object by calling <code translate="No">GoogleIMAVideoAdPlayer.getCurrentAdMediaInfo()</code>. This will return the loaded <code translate="No">AdMediaInfo</code>, or <code translate="No">Null</code>.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="Migrating_to_the_IMA_Plugin">Migrating to the IMA Plugin 8.0.0</h2>
+<p>
+  To migrate to the Brightcove IMA Plugin 8.0.0, follow steps:
+</p>
+<ul>
+  <li>
+    <a href="#Update_dependency_versions">Update dependency versions</a>
+  </li>
+  <li>
+    <a href="#Remove_deprecated_methods">Remove deprecated methods</a>
+  </li>
+</ul>
+
+<h3 id="Update_dependency_versions">Update dependency versions</h3>
+<p>Update your app to use the following dependency versions:</p>
+<ul>
+  <li>
+    All of the Brightcove SDK dependencies set to version 8.0.0
+  </li>
+  <li>
+    Use Google IMA SDK version 3.27.1
+  </li>
+  <!-- <li>
+    Use Google Play Services version 19.2.0
+  </li> -->
+</ul>
+<p>Here is an example of the <strong>build.gradle</strong> file:</p>
+<pre class="line-numbers"><code class="language-java" translate="No">//build.gradle
+dependencies {
+ //Brightcove SDK dependencies
+ implementation &quot;com.brightcove.player:android-sdk8.0.0:&quot;
+ implementation &quot;com.brightcove.player:exoplayer2:8.0.0&quot;
+ implementation &quot;com.brightcove.player:android-ima-plugin:8.0.0&quot;
+
+ //Google IMA SDK
+ implementation &quot;com.google.ads.interactivemedia.v3:interactivemedia:3.27.1&quot;
+ ...
+}
+</code></pre>
+
+<h3 id="Remove_deprecated_methods">Remove deprecated methods</h3>
+<p>Your current Google IMA setup might look similar to this:</p>
+<pre class="line-numbers"><code class="language-java" translate="No">AdDisplayContainer container = sdkFactory.createAdDisplayContainer();
+container.setPlayer(googleIMAComponent.getVideoAdPlayer());
+container.setAdContainer(brightcoveVideoView);
+</code></pre>
+<p>These three methods are deprecated and will go away.</p>
+<p>You must now call <code translate="No">googleIMAComponent.getAdDisplayContainer()</code> and it will return the <code translate="No">AdDisplayContainer</code> associated with the <code translate="No">GoogleIMAVideoAdPlayer</code>, or null if not available.</p>
+<p>For details about creating the <code translate="No">AdDisplayContainer</code>, see the <a href="#Creating_the_AdDisplayContainer">Creating the AdDisplayContainer</a> section.</p>
+<p>The following method has also been removed from the Google IMA SDK:</p>
+<pre><code class="language-java" translate="No">adsRequest.setAdDisplayContainer(container);
+</code></pre>
+<p>Instead, use the <code translate="No">AdDisplayContainer</code> to create an instance of the Google IMA <code translate="No">AdsLoader</code>.</p>
+<p>For details about deprecated methods and their replacements, see the <a href="#Deprecated_methods_in_GoogleIMAVideoAdPlayer">Deprecated methods in GoogleIMAVideoAdPlayer</a> section.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="More_information">More information</h2>
+<p>For more details about IMA changes, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/history">Google IMA Android SDK release history</a> documentation.</p>
+<!-- <p>For any related questions, feel free to reach out to the Brightcove SDK team through the <a href="https://groups.google.com/g/brightcove-native-player-sdks">Brightcove SDK forum</a>.</p> -->
+</section>
+
+</article>
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">Page Contents</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
   
 <!-- </div> -->
 </div>
