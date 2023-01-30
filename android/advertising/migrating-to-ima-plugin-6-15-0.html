@@ -3,7 +3,12 @@ title: Migrating to Brightcove's IMA Plugin 8.0.0
 description: In this topic, you will learn how to migrate your app to use Brightcove's IMA plugin for the Native SDK for Android 8.0.0.
 parent: Advertising
 grandparent: Android Development
+layout: staging
 ---
+
+<!-- The location of this document has changed. Please update your bookmark. You should be redirected to the new document location. 
+      DO NOT UPDATE THIS DOCUMENT. Instead, find the new location and update there. 
+      There is redirect code at the bottom of this document. -->
 
 <h1>{{ page.title }}</h1>
 <article class="bcls-article">
@@ -212,3 +217,23 @@ container.setAdContainer(brightcoveVideoView);
 </section>
 
 </article>
+
+<script>
+  var h1 = document.querySelector('h1'),
+      path = location.pathname,
+      new_location = 'https://sdks.support.brightcove.com/android/advertising/migrating-to-ima-plugin.html',
+      message = '<h3>This page has moved to <a href="' + new_location + '">' + new_location + '</a>. Please update your bookmark! You will be redirected in 5 seconds.<h3>';
+
+      console.log('new_location', new_location);
+
+      h1.insertAdjacentHTML('afterend', message);
+      redirect();
+
+      function redirect() {
+        var t = window.setTimeout(go_to_new_location, 5000);
+      }
+
+      function go_to_new_location() {
+        window.location.href = new_location;
+      }
+</script>
