@@ -109,21 +109,20 @@ grandparent: iOS Development
 	<p>Use the playback controller's <code translate="No">allowsExternalPlayback </code> property to set the AVPlayer's <code translate="No">allowsExternalPlayback </code> property:</p>
 
   <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab1">Obj-C</a></li>
-      <li><a href="#tab2">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab1" class="tab active">
-        <pre>
-    <code class="language-objectivec" translate="No">_playbackController.allowsExternalPlayback = YES;</code></pre>
-      </div>
-      <div id="tab2" class="tab">
-        <pre>
-    <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true</code></pre>
-      </div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-airplay-objc" data-bs-toggle="tab" data-bs-target="#nav-airplay-objc" type="button" role="tab" aria-controls="nav-airplay-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-airplay-swift" data-bs-toggle="tab" data-bs-target="#nav-airplay-swift" type="button" role="tab" aria-controls="nav-airplay-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-airplay-objc" role="tabpanel" aria-labelledby="tab-airplay-objc" tabindex="0">
+      <pre>
+        <code class="language-objectivec" translate="No">_playbackController.allowsExternalPlayback = YES;</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-airplay-swift" role="tabpanel" aria-labelledby="tab-airplay-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true</code></pre>
     </div>
   </div>
   <!-- end tabs -->
