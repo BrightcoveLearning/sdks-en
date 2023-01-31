@@ -152,30 +152,30 @@ grandparent: iOS Development
 	</li>
 	<li>
 	<p>Set up the player view with a standard VOD layout:</p>
-  <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab3">Obj-C</a></li>
-      <li><a href="#tab4">Swift</a></li>
-    </ul>
 
-    <div class="tab-content">
-      <div id="tab3" class="tab active">
-       <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
-BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] 
-initWithPlaybackController:self.playbackController options:nil controlsView:
-[BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
-      </div>
-      <div id="tab4" class="tab">
-        <pre>
-<code class="language-swift" translate="No">// Set up our player view. Create with a standard VOD layout.
-guard let playerView = BCOVPUIPlayerView(playbackController: 
-self.playbackController, options: options, controlsView: 
-BCOVPUIBasicControlView.withVODLayout()) else {    
-  return
-}</code></pre>
-      </div>
+  <!-- tabs -->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-captions1-objc" data-bs-toggle="tab" data-bs-target="#nav-captions1-objc" type="button" role="tab" aria-controls="nav-captions1-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-captions1-swift" data-bs-toggle="tab" data-bs-target="#nav-captions1-swift" type="button" role="tab" aria-controls="nav-captions1-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-captions1-objc" role="tabpanel" aria-labelledby="tab-captions1-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
+        BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] 
+        initWithPlaybackController:self.playbackController options:nil controlsView:
+        [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-captions1-swift" role="tabpanel" aria-labelledby="tab-captions1-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">// Set up our player view. Create with a standard VOD layout.
+        guard let playerView = BCOVPUIPlayerView(playbackController: 
+        self.playbackController, options: options, controlsView: 
+        BCOVPUIBasicControlView.withVODLayout()) else {    
+          return
+        }</code></pre>
     </div>
   </div>
   <!-- end tabs -->
@@ -186,29 +186,28 @@ BCOVPUIBasicControlView.withVODLayout()) else {
 	<p>The <code translate="No">closedCaptionButton</code> is declared as a <code translate="No">BCOVPUIButton</code>, which is a subclass of <code translate="No">UIButton</code> and adds three additional methods for customization. Whenever you customize BCOVPlayerUI controls, you should use the Native Player APIs wherever they are available. Your customized code should look similar to this:</p>
 
   <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab5">Obj-C</a></li>
-      <li><a href="#tab6">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab5" class="tab active">
-       <pre class="line-numbers">
-<code class="language-objectivec" translate="No">// Customize the CC button.
-BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-ccButton.primaryTitle = @&quot;CC&quot;;
-[ccButton showPrimaryTitle:YES];</code></pre>
-      </div>
-      <div id="tab6" class="tab">
-        <pre>
-<code class="language-swift" translate="No">if let ccButton = playerView.controlsView.closedCaptionButton {    
-  ccButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)    
-  ccButton.primaryTitle = &quot;CC&quot;    
-  ccButton.showPrimaryTitle(true)}
-}</code></pre>
-      </div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-captions2-objc" data-bs-toggle="tab" data-bs-target="#nav-captions2-objc" type="button" role="tab" aria-controls="nav-captions2-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-captions2-swift" data-bs-toggle="tab" data-bs-target="#nav-captions2-swift" type="button" role="tab" aria-controls="nav-captions2-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-captions2-objc" role="tabpanel" aria-labelledby="tab-captions2-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// Customize the CC button.
+        BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
+        ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
+        ccButton.primaryTitle = @&quot;CC&quot;;
+        [ccButton showPrimaryTitle:YES];</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-captions2-swift" role="tabpanel" aria-labelledby="tab-captions2-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">if let ccButton = playerView.controlsView.closedCaptionButton {    
+          ccButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)    
+          ccButton.primaryTitle = &quot;CC&quot;    
+          ccButton.showPrimaryTitle(true)}
+        }</code></pre>
     </div>
   </div>
   <!-- end tabs -->
@@ -224,24 +223,23 @@ ccButton.primaryTitle = @&quot;CC&quot;;
 
 <p>To display FairPlay-protected videos, set the AVPlayer properties exposed through the Brightcove Playback Controller to allow FairPlay video to play on an external display. The video plays in full screen mode. Here is an example of setting these properties:</p>
 
-<!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab7">Obj-C</a></li>
-      <li><a href="#tab8">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab7" class="tab active">
-       <pre class="line-numbers">
-<code class="language-objectivec" translate="No">playbackController.allowsExternalPlayback = YES;
-playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</code></pre>
-      </div>
-      <div id="tab8" class="tab">
-        <pre>
-<code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true
-playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code></pre>
-      </div>
+  <!-- tabs -->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-fairplay-objc" data-bs-toggle="tab" data-bs-target="#nav-fairplay-objc" type="button" role="tab" aria-controls="nav-fairplay-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-fairplay-swift" data-bs-toggle="tab" data-bs-target="#nav-fairplay-swift" type="button" role="tab" aria-controls="nav-fairplay-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-fairplay-objc" role="tabpanel" aria-labelledby="tab-fairplay-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">playbackController.allowsExternalPlayback = YES;
+        playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-fairplay-swift" role="tabpanel" aria-labelledby="tab-fairplay-swift" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true
+        playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code></pre>
     </div>
   </div>
   <!-- end tabs -->
@@ -264,113 +262,112 @@ playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code>
 	<li>
 	<p>Here is one way you could use Google Analytics to track video playback using Google's Firebase SDK:</p>
 
-<!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab9">Obj-C</a></li>
-      <li><a href="#tab10">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab9" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">// This snippet shows one way to track video playback
-// using the Firebase SDK from Google Analytics with
-// the lifecycle event playback controller delegate method.
-- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-{
-	// Common parameters
-	NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
-	NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
-
-	// Session is ready to play
-	if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
-	{
-		[FIRAnalytics logEventWithName:@&quot;bcov_video_ready&quot;
-	    parameters:@{
-	        @&quot;bcov_video_name&quot;: video_name,
-	        @&quot;bcov_video_id&quot;: video_ID
-	    }];
-	}
-
-	// Session encountered an error
-	if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
-	{
-		NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
-		int error_code = error.code;
-		[FIRAnalytics logEventWithName:@&quot;bcov_video_playback_error&quot;
-	    parameters:@{
-	        @&quot;bcov_video_name&quot;: video_name,
-	        @&quot;bcov_video_id&quot;: video_ID,
-	        @&quot;bcov_video_error_code&quot;: @(error_code)
-	    }];
-	}
-
-	// Session has completed
-	if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
-	{
-		[FIRAnalytics logEventWithName:@&quot;bcov_video_terminate&quot;
-	    parameters:@{
-	        @&quot;bcov_video_name&quot;: video_name,
-	        @&quot;bcov_video_id&quot;: video_ID
-	     }];
-	}
-}</code></pre>
-      </div>
-      <div id="tab10" class="tab">
-        <pre>
-<code class="language-swift" translate="No">// This snippet shows one way to track video playback
-// using the Firebase SDK from Google Analytics with
-// the lifecycle event playback controller delegate method.
-func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+  <!-- tabs -->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-ga-objc" data-bs-toggle="tab" data-bs-target="#nav-ga-objc" type="button" role="tab" aria-controls="nav-ga-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-ga-swift" data-bs-toggle="tab" data-bs-target="#nav-ga-swift" type="button" role="tab" aria-controls="nav-ga-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-ga-objc" role="tabpanel" aria-labelledby="tab-ga-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// This snippet shows one way to track video playback
+        // using the Firebase SDK from Google Analytics with
+        // the lifecycle event playback controller delegate method.
+        - (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+        {
+          // Common parameters
+          NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
+          NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
         
-    // Common parameters
-    let video_name = session.video.properties[kBCOVVideoPropertyKeyName]
-    let video_id = session.video.properties[kBCOVVideoPropertyKeyId]
-    
-    // Session is ready to play
-    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
+          // Session is ready to play
+          if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+          {
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_ready&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID
+              }];
+          }
         
-        if let video_name = video_name as? String, let video_id = video_id as? String {
-            Analytics.logEvent(&quot;bcov_video_ready&quot;, parameters: [
-                &quot;bcov_video_name&quot; : video_name,
-                &quot;bcov_video_id&quot; : video_id
-            ])
-        }
+          // Session encountered an error
+          if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
+          {
+            NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
+            int error_code = error.code;
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_playback_error&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID,
+                  @&quot;bcov_video_error_code&quot;: @(error_code)
+              }];
+          }
         
-    }
-    
-    // Session encountered an error
-    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventError) {
-     
-        if let error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError] as? NSError {
-            let error_code = error.code
+          // Session has completed
+          if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
+          {
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_terminate&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID
+               }];
+          }
+        }</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-ga-swift" role="tabpanel" aria-labelledby="tab-ga-swift" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-swift" translate="No">// This snippet shows one way to track video playback
+        // using the Firebase SDK from Google Analytics with
+        // the lifecycle event playback controller delegate method.
+        func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+                
+            // Common parameters
+            let video_name = session.video.properties[kBCOVVideoPropertyKeyName]
+            let video_id = session.video.properties[kBCOVVideoPropertyKeyId]
             
-            if let video_name = video_name as? String, let video_id = video_id as? String {
-                Analytics.logEvent(&quot;bcov_video_playback_error&quot;, parameters: [
-                    &quot;bcov_video_name&quot; : video_name,
-                    &quot;bcov_video_id&quot; : video_id,
-                    &quot;bcov_video_error_code&quot; : error_code
-                ])
+            // Session is ready to play
+            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
+                
+                if let video_name = video_name as? String, let video_id = video_id as? String {
+                    Analytics.logEvent(&quot;bcov_video_ready&quot;, parameters: [
+                        &quot;bcov_video_name&quot; : video_name,
+                        &quot;bcov_video_id&quot; : video_id
+                    ])
+                }
+                
             }
-        }
+            
+            // Session encountered an error
+            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventError) {
+             
+                if let error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError] as? NSError {
+                    let error_code = error.code
+                    
+                    if let video_name = video_name as? String, let video_id = video_id as? String {
+                        Analytics.logEvent(&quot;bcov_video_playback_error&quot;, parameters: [
+                            &quot;bcov_video_name&quot; : video_name,
+                            &quot;bcov_video_id&quot; : video_id,
+                            &quot;bcov_video_error_code&quot; : error_code
+                        ])
+                    }
+                }
+                
+            }
+            
+            // Session has completed
+            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventTerminate) {
+                
+                if let video_name = video_name as? String, let video_id = video_id as? String {
+                    Analytics.logEvent(&quot;bcov_video_terminate&quot;, parameters: [
+                        &quot;bcov_video_name&quot; : video_name,
+                        &quot;bcov_video_id&quot; : video_id
+                    ])
+                }
+                
+            }
         
-    }
-    
-    // Session has completed
-    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventTerminate) {
-        
-        if let video_name = video_name as? String, let video_id = video_id as? String {
-            Analytics.logEvent(&quot;bcov_video_terminate&quot;, parameters: [
-                &quot;bcov_video_name&quot; : video_name,
-                &quot;bcov_video_id&quot; : video_id
-            ])
-        }
-        
-    }
-
-}</code></pre>
-      </div>
+        }</code></pre>
     </div>
   </div>
   <!-- end tabs -->
