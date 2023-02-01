@@ -2683,103 +2683,102 @@
 <p>You can also add cue points to your video programmatically. The code below adds quarterly interval cue points to the video returned from the Playback API:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab23">Obj-C</a></li>
-      <li><a href="#tab24">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab23" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">// programmatically add cue points to a video
-- (void)requestContentFromPlaybackService
-{
-    [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
-        if (video)
-        {
-            // Get the video duration from the properties dictionary
-            NSNumber *durationNumber = video.properties[@&quot;duration&quot;]; // milliseconds
-            float duration = durationNumber.floatValue / 1000.0; // convert to seconds
-            video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
-            {
-                // Add quarterly interval cue points of your own type
-                BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 250, 1000)];
-                BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 500, 1000)];
-                BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 750, 1000)];
-                BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 1000, 1000)];
-                // Create new cue point collection using existing cue points and new cue points
-                NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
-                [newCuePoints addObject:cp1];
-                [newCuePoints addObject:cp2];
-                [newCuePoints addObject:cp3];
-                [newCuePoints addObject:cp4];
-                mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
-            }];
-                
-            [self.playbackController setVideos:@[ video ]];
-        }
-        else
-        {
-            NSLog(@&quot;ViewController Debug - Error retrieving video: `%@`&quot;, error);
-        }
-    }];
-}</code></pre>
-      </div>
-      <div id="tab24" class="tab">
-        <pre>
-<code class="language-swift" translate="No">// programmatically add cue points to a video
-func requestContentFromPlaybackService() {
-    playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) 
-    { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
-
-        if let error = error {
-            print(&quot;ViewController Debug - Error retrieving video: `\(error.localizedDescription)`&quot;)
-        }
-        
-        if let video = video {
-            
-            // Get the video duration from the properties dictionary
-            guard let durationNumber = video.properties[&quot;duration&quot;] as? NSNumber else {
-                return
-            }
-            
-            let duration = durationNumber.floatValue / 1000.0; // convert to seconds
-            
-            let updatedVideo = video.update({ (mutableVideo: BCOVMutableVideo?) in
-                
-                guard let mutableVideo = mutableVideo else {
-                    return
-                }
-                
-                // Add quarterly interval cue points of your own type
-                let cp1Position = CMTimeMake(value: Int64(duration * 250), timescale: 1000)
-                let cp1 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp1Position)!
-                let cp2Position = CMTimeMake(value: Int64(duration * 500), timescale: 1000)
-                let cp2 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp2Position)!
-                let cp3Position = CMTimeMake(value: Int64(duration * 750), timescale: 1000)
-                let cp3 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp3Position)!
-                let cp4Position = CMTimeMake(value: Int64(duration * 1000), timescale: 1000)
-                let cp4 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp4Position)!
-                
-                // Create new cue point collection using existing cue points and new cue points
-                var newCuePoints = [BCOVCuePoint]()
-                newCuePoints.append(cp1)
-                newCuePoints.append(cp2)
-                newCuePoints.append(cp3)
-                newCuePoints.append(cp4)
-                
-                mutableVideo.cuePoints = BCOVCuePointCollection(array: newCuePoints)
-            })
-            
-            self?.playbackController.setVideos([updatedVideo] as NSFastEnumeration)
-        }
-        
-    }
-}</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-cuepoints-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-objc" type="button" role="tab" aria-controls="nav-cuepoints-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-cuepoints-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-swift" type="button" role="tab" aria-controls="nav-cuepoints-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-cuepoints-objc" role="tabpanel" aria-labelledby="tab-cuepoints-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// programmatically add cue points to a video
+      - (void)requestContentFromPlaybackService
+      {
+          [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+              if (video)
+              {
+                  // Get the video duration from the properties dictionary
+                  NSNumber *durationNumber = video.properties[@&quot;duration&quot;]; // milliseconds
+                  float duration = durationNumber.floatValue / 1000.0; // convert to seconds
+                  video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
+                  {
+                      // Add quarterly interval cue points of your own type
+                      BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 250, 1000)];
+                      BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 500, 1000)];
+                      BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 750, 1000)];
+                      BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 1000, 1000)];
+                      // Create new cue point collection using existing cue points and new cue points
+                      NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
+                      [newCuePoints addObject:cp1];
+                      [newCuePoints addObject:cp2];
+                      [newCuePoints addObject:cp3];
+                      [newCuePoints addObject:cp4];
+                      mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
+                  }];
+                      
+                  [self.playbackController setVideos:@[ video ]];
+              }
+              else
+              {
+                  NSLog(@&quot;ViewController Debug - Error retrieving video: `%@`&quot;, error);
+              }
+          }];
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-cuepoints-swift" role="tabpanel" aria-labelledby="tab-cuepoints-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">// programmatically add cue points to a video
+      func requestContentFromPlaybackService() {
+          playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) 
+          { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+      
+              if let error = error {
+                  print(&quot;ViewController Debug - Error retrieving video: `\(error.localizedDescription)`&quot;)
+              }
+              
+              if let video = video {
+                  
+                  // Get the video duration from the properties dictionary
+                  guard let durationNumber = video.properties[&quot;duration&quot;] as? NSNumber else {
+                      return
+                  }
+                  
+                  let duration = durationNumber.floatValue / 1000.0; // convert to seconds
+                  
+                  let updatedVideo = video.update({ (mutableVideo: BCOVMutableVideo?) in
+                      
+                      guard let mutableVideo = mutableVideo else {
+                          return
+                      }
+                      
+                      // Add quarterly interval cue points of your own type
+                      let cp1Position = CMTimeMake(value: Int64(duration * 250), timescale: 1000)
+                      let cp1 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp1Position)!
+                      let cp2Position = CMTimeMake(value: Int64(duration * 500), timescale: 1000)
+                      let cp2 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp2Position)!
+                      let cp3Position = CMTimeMake(value: Int64(duration * 750), timescale: 1000)
+                      let cp3 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp3Position)!
+                      let cp4Position = CMTimeMake(value: Int64(duration * 1000), timescale: 1000)
+                      let cp4 = BCOVCuePoint(type: &quot;<span class="bcls-input">your cue point type</span>&quot;, position: cp4Position)!
+                      
+                      // Create new cue point collection using existing cue points and new cue points
+                      var newCuePoints = [BCOVCuePoint]()
+                      newCuePoints.append(cp1)
+                      newCuePoints.append(cp2)
+                      newCuePoints.append(cp3)
+                      newCuePoints.append(cp4)
+                      
+                      mutableVideo.cuePoints = BCOVCuePointCollection(array: newCuePoints)
+                  })
+                  
+                  self?.playbackController.setVideos([updatedVideo] as NSFastEnumeration)
+              }
+              
+          }
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 <p>&nbsp;</p>
@@ -2790,45 +2789,44 @@ func requestContentFromPlaybackService() {
 <p>The code below listens for your cue points and displays a message:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab25">Obj-C</a></li>
-      <li><a href="#tab26">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab25" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">// listen for cue points and display them
--(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo
-{
-    BCOVCuePointCollection *cpc = cuePointInfo[@&quot;kBCOVPlaybackSessionEventKeyCuePoints&quot;];
-    for (BCOVCuePoint *cp in cpc.array)
-    {
-        if ([cp.type isEqualToString:@&quot;<span class="bcls-input">your cue point type</span>&quot;])
-        {
-            NSLog(@&quot;Found your cue point at %f&quot;, CMTimeGetSeconds(cp.position));
-        }
-    }
-}</code></pre>
-      </div>
-      <div id="tab26" class="tab">
-        <pre>
-<code class="language-swift" translate="No">// listen for cue points and display them
-func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didPassCuePoints cuePointInfo: [AnyHashable : Any]!) {
-    if let cpc = cuePointInfo[kBCOVPlaybackSessionEventKeyCuePoints] as? BCOVCuePointCollection {
-        for cp in cpc.array() {
-            if let cp = cp as? BCOVCuePoint {
-                if (cp.type == &quot;<span class="bcls-input">your cue point type</span>&quot;) {
-                    print(&quot;Found your cue point at \(CMTimeGetSeconds(cp.position))&quot;)
-                }
-            }
-        }
-    }
-}</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-cuepoints2-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-objc" type="button" role="tab" aria-controls="nav-cuepoints2-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-cuepoints2-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-swift" type="button" role="tab" aria-controls="nav-cuepoints2-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-cuepoints2-objc" role="tabpanel" aria-labelledby="tab-cuepoints2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// listen for cue points and display them
+      -(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo
+      {
+          BCOVCuePointCollection *cpc = cuePointInfo[@&quot;kBCOVPlaybackSessionEventKeyCuePoints&quot;];
+          for (BCOVCuePoint *cp in cpc.array)
+          {
+              if ([cp.type isEqualToString:@&quot;<span class="bcls-input">your cue point type</span>&quot;])
+              {
+                  NSLog(@&quot;Found your cue point at %f&quot;, CMTimeGetSeconds(cp.position));
+              }
+          }
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-cuepoints2-swift" role="tabpanel" aria-labelledby="tab-cuepoints2-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">// listen for cue points and display them
+      func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didPassCuePoints cuePointInfo: [AnyHashable : Any]!) {
+          if let cpc = cuePointInfo[kBCOVPlaybackSessionEventKeyCuePoints] as? BCOVCuePointCollection {
+              for cp in cpc.array() {
+                  if let cp = cp as? BCOVCuePoint {
+                      if (cp.type == &quot;<span class="bcls-input">your cue point type</span>&quot;) {
+                          print(&quot;Found your cue point at \(CMTimeGetSeconds(cp.position))&quot;)
+                      }
+                  }
+              }
+          }
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 <h4>References</h4>
@@ -2857,27 +2855,26 @@ func playbackController(_ controller: BCOVPlaybackController!, playbackSession s
 </p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab27">Obj-C</a></li>
-      <li><a href="#tab28">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab27" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">[self.playerView removeFromSuperview];
-self.playerView = nil;
-self.playbackController = nil;</code></pre>
-      </div>
-      <div id="tab28" class="tab">
-        <pre>
-<code class="language-swift" translate="No">playerView?.removeFromSuperview()
-playerView = nil
-playbackController = nil</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-removeplayer-objc" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-objc" type="button" role="tab" aria-controls="nav-removeplayer-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-removeplayer-swift" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-swift" type="button" role="tab" aria-controls="nav-removeplayer-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-removeplayer-objc" role="tabpanel" aria-labelledby="tab-removeplayer-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">[self.playerView removeFromSuperview];
+      self.playerView = nil;
+      self.playbackController = nil;</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-removeplayer-swift" role="tabpanel" aria-labelledby="tab-removeplayer-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">playerView?.removeFromSuperview()
+      playerView = nil
+      playbackController = nil</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 </section>
@@ -2893,107 +2890,107 @@ playbackController = nil</code></pre>
   </ul>
   <h3>Basic sample</h3>
   <p>For our basic sample, we use <code translate="No">AVAudioSessionCategoryPlayback</code>. This plays audio even when the screen is locked and with the Ring/Silent switch set to silent. To keep it simple, we put the code for this in the App Delegate.</p>
-  <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab37">Obj-C</a></li>
-      <li><a href="#tab38">Swift</a></li>
-    </ul>
 
-    <div class="tab-content">
-      <div id="tab37" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">NSError *categoryError = nil;
-  BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
-  if (!success)
-  {
-      // Handle error
-  }</code></pre>
-      </div>
-      <div id="tab38" class="tab">
-        <pre>
-<code class="language-swift" translate="No">var categoryError :NSError?
-  var success: Bool
-  do {
-      try AVAudioSession.sharedInstance().setCategory(.playback)
-      success = true
-  } catch let error as NSError {
-      categoryError = error
-      success = false
-  }
-  if !success {
-      // Handle error
-  }</code></pre>
-      </div>
-    </div>
+<!-- tabs -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-audiobehavior-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-objc" type="button" role="tab" aria-controls="nav-audiobehavior-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-audiobehavior-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-swift" type="button" role="tab" aria-controls="nav-audiobehavior-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-audiobehavior-objc" role="tabpanel" aria-labelledby="tab-audiobehavior-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">NSError *categoryError = nil;
+        BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
+        if (!success)
+        {
+            // Handle error
+        }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-audiobehavior-swift" role="tabpanel" aria-labelledby="tab-audiobehavior-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">var categoryError :NSError?
+        var success: Bool
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            success = true
+        } catch let error as NSError {
+            categoryError = error
+            success = false
+        }
+        if !success {
+            // Handle error
+        }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
   <h3>Mix with other audio</h3>
   <p>You may want to allow audio from other apps to be heard when the audio in your app is muted. To do this, you can configure the <code translate="No">AVAudioSession</code> in the view controller that has access to your current <code translate="No">AVPlayer</code>.</p>
   <p>For details, see the <a href="https://developer.apple.com/documentation/avfaudio/avaudiosession/categoryoptions/1616611-mixwithothers">mixWithOthers</a> category option.</p>
-  <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab39">Obj-C</a></li>
-      <li><a href="#tab40">Swift</a></li>
-    </ul>
 
-    <div class="tab-content">
-      <div id="tab39" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)setUpAudioSession
-  {
-      NSError *categoryError = nil;
-      BOOL success;
-      
-      // If the player is muted, then allow mixing.
-      // Ensure other apps can have their background audio active when this app is in foreground
-      if (self.currentPlayer.isMuted)
-      {
-          success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&amp;categoryError];
-      }
-      else
-      {
-          success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&amp;categoryError];
-      }
-      
-      if (!success)
-      {
-          NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
-      }
-  }</code></pre>
-      </div>
-      <div id="tab40" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func setUpAudioSession() {
-  var categoryError :NSError?
-  var success: Bool
-  do {
-      if let currentPlayer = currentPlayer {
-          // If the player is muted, then allow mixing.
-          // Ensure other apps can have their background audio active when this app is in foreground
-          if currentPlayer.isMuted {
-              try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
-          } else {
-              try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
-          }
-      } else {
-          try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
-      }
-      
-      success = true
-  } catch let error as NSError {
-      categoryError = error
-      success = false
-  }
-  if !success {
-      print(&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. \(categoryError!)&quot;)
-  }
-}</code></pre>
-      </div>
-    </div>
+<!-- tabs -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-audiobehavior2-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-objc" type="button" role="tab" aria-controls="nav-audiobehavior2-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-audiobehavior2-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-swift" type="button" role="tab" aria-controls="nav-audiobehavior2-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-audiobehavior2-objc" role="tabpanel" aria-labelledby="tab-audiobehavior2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)setUpAudioSession
+        {
+            NSError *categoryError = nil;
+            BOOL success;
+            
+            // If the player is muted, then allow mixing.
+            // Ensure other apps can have their background audio active when this app is in foreground
+            if (self.currentPlayer.isMuted)
+            {
+                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&amp;categoryError];
+            }
+            else
+            {
+                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&amp;categoryError];
+            }
+            
+            if (!success)
+            {
+                NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
+            }
+        }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-audiobehavior2-swift" role="tabpanel" aria-labelledby="tab-audiobehavior2-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func setUpAudioSession() {
+        var categoryError :NSError?
+        var success: Bool
+        do {
+            if let currentPlayer = currentPlayer {
+                // If the player is muted, then allow mixing.
+                // Ensure other apps can have their background audio active when this app is in foreground
+                if currentPlayer.isMuted {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
+                } else {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
+                }
+            } else {
+                try AVAudioSession.sharedInstance().setCategory(.playback, options: AVAudioSession.CategoryOptions(rawValue: 0))
+            }
+            
+            success = true
+        } catch let error as NSError {
+            categoryError = error
+            success = false
+        }
+        if !success {
+            print(&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. \(categoryError!)&quot;)
+        }
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
   
   </section>
