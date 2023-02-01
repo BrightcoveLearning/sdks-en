@@ -1096,43 +1096,42 @@ grandparent: iOS Development
 <p>For a <code translate="No">BCOVPlaybackSession </code>, your code would look similar to this:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab29">Obj-C</a></li>
-      <li><a href="#tab30">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab29" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
-  playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-{
-    if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] )
-    {
-        NSLog(@&quot;%@ at time %f&quot;, kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
-        AVPlayerItem *avPlayerItem = [session.player currentItem];
-        avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
-        session.player.rate = 1.7;
-    }
-}</code></pre>
-      </div>
-      <div id="tab30" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
-    
-    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
-        let seconds = CMTimeGetSeconds(session.player.currentTime())
-        print(&quot;kBCOVPlaybackSessionLifecycleEventReady at time \(seconds)&quot;)
-        let avPlayerItem = session.player.currentItem
-        avPlayerItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.varispeed
-        session.player.rate = 1.7
-    }
-    
-}</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-playbackrate-objc" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-objc" type="button" role="tab" aria-controls="nav-playbackrate-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-playbackrate-swift" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-swift" type="button" role="tab" aria-controls="nav-playbackrate-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playbackrate-objc" role="tabpanel" aria-labelledby="tab-playbackrate-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
+        playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+      {
+          if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] )
+          {
+              NSLog(@&quot;%@ at time %f&quot;, kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
+              AVPlayerItem *avPlayerItem = [session.player currentItem];
+              avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
+              session.player.rate = 1.7;
+          }
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-playbackrate-swift" role="tabpanel" aria-labelledby="tab-playbackrate-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+          
+          if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventReady) {
+              let seconds = CMTimeGetSeconds(session.player.currentTime())
+              print(&quot;kBCOVPlaybackSessionLifecycleEventReady at time \(seconds)&quot;)
+              let avPlayerItem = session.player.currentItem
+              avPlayerItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.varispeed
+              session.player.rate = 1.7
+          }
+          
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 <p>&nbsp;</p>
@@ -1153,33 +1152,32 @@ grandparent: iOS Development
 <p>When playing a 360° video, users can select the Video 360 button on the control bar to switch to VR Goggles mode. You may also want to do this programmatically, before playback starts. You can do this by updating the <code translate="No">BCOVPlaybackController </code> protocol's <code translate="No">viewProjection </code> property as follows:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab31">Obj-C</a></li>
-      <li><a href="#tab32">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab31" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
-{
-    BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
-    [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
-    [self.playbackController setViewProjection:viewProjection];
-}</code></pre>
-      </div>
-      <div id="tab32" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
-    if let viewProjection: BCOVVideo360ViewProjection = controller.viewProjection.copy() as? BCOVVideo360ViewProjection {
-        viewProjection.projectionStyle = BCOVVideo360ProjectionStyle.vrGoggles
-        playbackController.viewProjection = viewProjection
-    }
-}</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-vrmode-objc" data-bs-toggle="tab" data-bs-target="#nav-vrmode-objc" type="button" role="tab" aria-controls="nav-vrmode-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-vrmode-swift" data-bs-toggle="tab" data-bs-target="#nav-vrmode-swift" type="button" role="tab" aria-controls="nav-vrmode-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-vrmode-objc" role="tabpanel" aria-labelledby="tab-vrmode-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+      {
+          BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
+          [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
+          [self.playbackController setViewProjection:viewProjection];
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-vrmode-swift" role="tabpanel" aria-labelledby="tab-vrmode-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+          if let viewProjection: BCOVVideo360ViewProjection = controller.viewProjection.copy() as? BCOVVideo360ViewProjection {
+              viewProjection.projectionStyle = BCOVVideo360ProjectionStyle.vrGoggles
+              playbackController.viewProjection = viewProjection
+          }
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 <p>&nbsp;</p>
@@ -1219,7 +1217,31 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 <p>You can change the player layer background with the following code:</p>
 
 <!-- tabs -->
-  <div class="tabs">
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-bkgdcolor-objc" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-objc" type="button" role="tab" aria-controls="nav-bkgdcolor-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-bkgdcolor-swift" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-swift" type="button" role="tab" aria-controls="nav-bkgdcolor-swift" aria-selected="false">Swift</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-bkgdcolor-objc" role="tabpanel" aria-labelledby="tab-bkgdcolor-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+      {
+          session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-bkgdcolor-swift" role="tabpanel" aria-labelledby="tab-bkgdcolor-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+          session.playerLayer.backgroundColor = UIColor.white.cgColor
+      }</code></pre>
+  </div>
+</div>
+<!-- end tabs -->
+
+<!-- tabs old style-->
+  <!-- <div class="tabs">
     <ul class="tab-links">
       <li class="active"><a href="#tab33">Obj-C</a></li>
       <li><a href="#tab34">Swift</a></li>
@@ -1240,7 +1262,7 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 }</code></pre>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- end tabs -->
 
 <p>&nbsp;</p>
