@@ -2322,23 +2322,22 @@
 <p>Use one of the following declarations:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab11">Obj-C</a></li>
-      <li><a href="#tab12">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab11" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">[self.playbackController setPreferredPeakBitRate:1000];</code></pre>
-      </div>
-      <div id="tab12" class="tab">
-        <pre>
-<code class="language-swift" translate="No">playbackController.setPreferredPeakBitRate(1000)</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-bitrate-objc" data-bs-toggle="tab" data-bs-target="#nav-bitrate-objc" type="button" role="tab" aria-controls="nav-bitrate-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-bitrate-swift" data-bs-toggle="tab" data-bs-target="#nav-bitrate-swift" type="button" role="tab" aria-controls="nav-bitrate-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-bitrate-objc" role="tabpanel" aria-labelledby="tab-bitrate-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">[self.playbackController setPreferredPeakBitRate:1000];</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-bitrate-swift" role="tabpanel" aria-labelledby="tab-bitrate-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">playbackController.setPreferredPeakBitRate(1000)</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 </section>
@@ -2350,43 +2349,42 @@
 
 <p>This code assumes that you have set the delegate of the playbackController to the object with this method:</p>
 
-<!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab13">Obj-C</a></li>
-      <li><a href="#tab14">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab13" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-{
-	if ([kBCOVPlaybackSessionLifecycleEventEnd isEqualToString:lifecycleEvent.eventType])
-	{
-		[controller seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
-			if (finished)
-			{
-				[controller play];
-			}
-		}];
-	}
-}</code></pre>
-      </div>
-      <div id="tab14" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
-        
-    if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventEnd) {
-        controller.seek(to: CMTime.zero) { (finished: Bool) in
-            if (finished) {
-                controller.play()
+  <!-- tabs -->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-loop-objc" data-bs-toggle="tab" data-bs-target="#nav-loop-objc" type="button" role="tab" aria-controls="nav-loop-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-loop-swift" data-bs-toggle="tab" data-bs-target="#nav-loop-swift" type="button" role="tab" aria-controls="nav-loop-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-loop-objc" role="tabpanel" aria-labelledby="tab-loop-objc" tabindex="0">
+      <pre>
+        <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+        {
+          if ([kBCOVPlaybackSessionLifecycleEventEnd isEqualToString:lifecycleEvent.eventType])
+          {
+            [controller seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
+              if (finished)
+              {
+                [controller play];
+              }
+            }];
+          }
+        }</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-loop-swift" role="tabpanel" aria-labelledby="tab-loop-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+                
+            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventEnd) {
+                controller.seek(to: CMTime.zero) { (finished: Bool) in
+                    if (finished) {
+                        controller.play()
+                    }
+                }
             }
-        }
-    }
-    
-}</code></pre>
-      </div>
+            
+        }</code></pre>
     </div>
   </div>
   <!-- end tabs -->
@@ -2404,84 +2402,83 @@
 	<li>
 	<p>Retrieve a playlist from your account.</p>
 
-  <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab15">Obj-C</a></li>
-      <li><a href="#tab16">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab15" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)retrievePlaylist
-{
-	[self.refreshControl beginRefreshing];
-
-	// Retrieve a playlist through the BCOVPlaybackService
-	BCOVPlaybackServiceRequestFactory *playbackServiceRequestFactory = [[BCOVPlaybackServiceRequestFactory alloc]         
-  initWithAccountId:kDynamicDeliveryAccountID
-	policyKey:kDynamicDeliveryPolicyKey];
-	BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequestFactory:playbackServiceRequestFactory];
-
-	[playbackService findPlaylistWithReferenceID:kDynamicDeliveryPlaylistRefID parameters:nil 
-  completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error) 
-	{
-		[self.refreshControl endRefreshing];
-
-		NSLog(@&quot;JSON Response:\n%@&quot;, jsonResponse);
-
-		if (playlist)
-		{
-			self.currentVideos = playlist.videos.mutableCopy;
-			self.currentPlaylistTitle = playlist.properties[@&quot;name&quot;];
-			self.currentPlaylistDescription = playlist.properties[@&quot;description&quot;];
-
-			NSLog(@&quot;Retrieved playlist containing %d videos&quot;, (int)self.currentVideos.count);
-
-			[self usePlaylist:self.currentVideos];
-		}
-		else
-		{
-			NSLog(@&quot;No playlist for ID %@ was found.&quot;, kDynamicDeliveryPlaylistRefID);
-		}
-
-	}];
-}</code></pre>
-      </div>
-      <div id="tab16" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func retrievePlaylist() {
-    refreshControl.beginRefreshing()
-    
-    let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
-    let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
-    
-    playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
-        
-        guard let strongSelf = self else {
-            return
-        }
-        
-        strongSelf.refreshControl.endRefreshing()
-        
-        if let playlist = playlist {
-            strongSelf.currentVideos = playlist.videos
-            strongSelf.currentPlaylistTitle = playlist.properties[&quot;name&quot;] as? String ?? &quot;&quot;
-            strongSelf.currentPlaylistDescription = playlist.properties[&quot;description&quot;] as? String ?? &quot;&quot;
-            
-            print(&quot;Retrieved playlist containing \(playlist.videos.count) videos&quot;)
-            
-            strongSelf.usePlaylist(playlist)
-        } else {
-            print(&quot;No playlist for ID \(kDynamicDeliveryPlaylistRefID) was found.&quot;);
-        }
-        
-    })
-}</code></pre>
-      </div>
-    </div>
+<!-- tabs -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-playlist-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist-objc" type="button" role="tab" aria-controls="nav-playlist-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-playlist-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist-swift" type="button" role="tab" aria-controls="nav-playlist-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playlist-objc" role="tabpanel" aria-labelledby="tab-playlist-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)retrievePlaylist
+      {
+        [self.refreshControl beginRefreshing];
+      
+        // Retrieve a playlist through the BCOVPlaybackService
+        BCOVPlaybackServiceRequestFactory *playbackServiceRequestFactory = [[BCOVPlaybackServiceRequestFactory alloc]         
+        initWithAccountId:kDynamicDeliveryAccountID
+        policyKey:kDynamicDeliveryPolicyKey];
+        BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequestFactory:playbackServiceRequestFactory];
+      
+        [playbackService findPlaylistWithReferenceID:kDynamicDeliveryPlaylistRefID parameters:nil 
+        completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error) 
+        {
+          [self.refreshControl endRefreshing];
+      
+          NSLog(@&quot;JSON Response:\n%@&quot;, jsonResponse);
+      
+          if (playlist)
+          {
+            self.currentVideos = playlist.videos.mutableCopy;
+            self.currentPlaylistTitle = playlist.properties[@&quot;name&quot;];
+            self.currentPlaylistDescription = playlist.properties[@&quot;description&quot;];
+      
+            NSLog(@&quot;Retrieved playlist containing %d videos&quot;, (int)self.currentVideos.count);
+      
+            [self usePlaylist:self.currentVideos];
+          }
+          else
+          {
+            NSLog(@&quot;No playlist for ID %@ was found.&quot;, kDynamicDeliveryPlaylistRefID);
+          }
+      
+        }];
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-playlist-swift" role="tabpanel" aria-labelledby="tab-playlist-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func retrievePlaylist() {
+          refreshControl.beginRefreshing()
+          
+          let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
+          let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
+          
+          playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+              
+              guard let strongSelf = self else {
+                  return
+              }
+              
+              strongSelf.refreshControl.endRefreshing()
+              
+              if let playlist = playlist {
+                  strongSelf.currentVideos = playlist.videos
+                  strongSelf.currentPlaylistTitle = playlist.properties[&quot;name&quot;] as? String ?? &quot;&quot;
+                  strongSelf.currentPlaylistDescription = playlist.properties[&quot;description&quot;] as? String ?? &quot;&quot;
+                  
+                  print(&quot;Retrieved playlist containing \(playlist.videos.count) videos&quot;)
+                  
+                  strongSelf.usePlaylist(playlist)
+              } else {
+                  print(&quot;No playlist for ID \(kDynamicDeliveryPlaylistRefID) was found.&quot;);
+              }
+              
+          })
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 	</li>
@@ -2491,44 +2488,43 @@
 	<li>
 	<p>When the table view is selected, the row's index is used to create a new <code translate="No">videoDictionary</code>. Next, ask the dictionary for the video. If the video is not null, then load the video in the <code translate="No">playbackController</code>.</p>
 
-  <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab17">Obj-C</a></li>
-      <li><a href="#tab18">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab17" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">// Play the video in this row when selected
-- (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-	NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
-	BCOVVideo *video = videoDictionary[@&quot;video&quot;];
-
-	if (video != nil)
-	{
-		[self.playbackController setVideos:@[ video ]];
-	}
-}</code></pre>
-      </div>
-      <div id="tab18" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    guard let videosTableViewData = videosTableViewData, 
-    let videoDictionary = videosTableViewData[indexPath.row] as? 
-    [AnyHashable:Any], let video = videoDictionary[&quot;video&quot;] as? BCOVVideo else {
-        return
-    }
-    
-    playbackController.setVideos([video] as NSFastEnumeration)
-    
-}</code></pre>
-      </div>
-    </div>
+<!-- tabs -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-playlist2-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist2-objc" type="button" role="tab" aria-controls="nav-playlist2-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-playlist2-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist2-swift" type="button" role="tab" aria-controls="nav-playlist2-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playlist2-objc" role="tabpanel" aria-labelledby="tab-playlist2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// Play the video in this row when selected
+      - (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+      {
+        NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
+        BCOVVideo *video = videoDictionary[@&quot;video&quot;];
+      
+        if (video != nil)
+        {
+          [self.playbackController setVideos:@[ video ]];
+        }
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-playlist2-swift" role="tabpanel" aria-labelledby="tab-playlist2-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+              
+          guard let videosTableViewData = videosTableViewData, 
+          let videoDictionary = videosTableViewData[indexPath.row] as? 
+          [AnyHashable:Any], let video = videoDictionary[&quot;video&quot;] as? BCOVVideo else {
+              return
+          }
+          
+          playbackController.setVideos([video] as NSFastEnumeration)
+          
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 	</li>
@@ -2547,38 +2543,37 @@
 <p>If these values are not important to you or interfere with your own progress tracking, they can be easily ignored with a conditional statement like this:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab19">Obj-C</a></li>
-      <li><a href="#tab20">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab19" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
-{
-	if (progress &lt; 0.0 || progress &gt;= INFINITY)
-	{
-		return;
-	}
-
-	// Your code here
-}</code></pre>
-      </div>
-      <div id="tab20" class="tab">
-        <pre>
-<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didProgressTo progress: TimeInterval) {
-        
-    if (progress &lt; 0.0 || progress &gt;= Double.infinity) {
-        return;
-    }
-    
-    // Your code here
-}</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-progress-objc" data-bs-toggle="tab" data-bs-target="#nav-progress-objc" type="button" role="tab" aria-controls="nav-progress-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-progress-swift" data-bs-toggle="tab" data-bs-target="#nav-progress-swift" type="button" role="tab" aria-controls="nav-progress-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-progress-objc" role="tabpanel" aria-labelledby="tab-progress-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
+      {
+        if (progress &lt; 0.0 || progress &gt;= INFINITY)
+        {
+          return;
+        }
+      
+        // Your code here
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-progress-swift" role="tabpanel" aria-labelledby="tab-progress-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didProgressTo progress: TimeInterval) {
+              
+          if (progress &lt; 0.0 || progress &gt;= Double.infinity) {
+              return;
+          }
+          
+          // Your code here
+      }</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 <h4>Reference</h4>
@@ -2591,44 +2586,43 @@
   <p>You can set the captions anytime during playback, after the <code translate="No">Ready</code> event has been received. To do this, you can use the <a href="/ios/reference/sdk/Protocols/BCOVPlaybackControllerDelegate.html">BCOVPlaybackControllerDelegate</a>.</p>
   
   <p>Here's an example of setting the captions language to Spanish:</p>
-  
+
     <!-- tabs -->
-    <div class="tabs">
-      <ul class="tab-links">
-        <li class="active"><a href="#tab35">Obj-C</a></li>
-        <li><a href="#tab36">Swift</a></li>
-      </ul>
-  
-      <div class="tab-content">
-        <div id="tab35" class="tab active">
-         <pre class="line-numbers">
-<code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-  {
-      if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
-      {
-          AVMediaSelectionGroup *legibleMediaSelectionGroup = session.legibleMediaSelectionGroup;
-          NSArray&lt;AVMediaSelectionOption *&gt; *options = [AVMediaSelectionGroup mediaSelectionOptionsFromArray:legibleMediaSelectionGroup.options withLocale:[NSLocale localeWithLocaleIdentifier:@&quot;es&quot;]];
-          AVMediaSelectionOption *option = options.firstObject;
-          session.selectedLegibleMediaOption = option;
-      }
-  }</code></pre>
-        </div>
-        <div id="tab36" class="tab">
-          <pre>
-<code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController?, playbackSession session: BCOVPlaybackSession?, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent?) {
-    if kBCOVPlaybackSessionLifecycleEventReady == lifecycleEvent?.eventType {
-        if let legibleMediaSelectionGroup = session?.legibleMediaSelectionGroup.options {
-            let locale = NSLocale(localeIdentifier: &quot;es&quot;) as Locale
-            let mediaSelectionOptions = AVMediaSelectionGroup.mediaSelectionOptions(from: legibleMediaSelectionGroup, with: locale)
-            let mediaSelectionOption = mediaSelectionOptions.first
-            session?.selectedLegibleMediaOption = mediaSelectionOption
-        }
-    }
-}</code></pre>
-        </div>
-      </div>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-captionspro-objc" data-bs-toggle="tab" data-bs-target="#nav-captionspro-objc" type="button" role="tab" aria-controls="nav-captionspro-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-captionspro-swift" data-bs-toggle="tab" data-bs-target="#nav-captionspro-swift" type="button" role="tab" aria-controls="nav-captionspro-swift" aria-selected="false">Swift</button>
     </div>
-    <!-- end tabs -->
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-captionspro-objc" role="tabpanel" aria-labelledby="tab-captionspro-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+          {
+              if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+              {
+                  AVMediaSelectionGroup *legibleMediaSelectionGroup = session.legibleMediaSelectionGroup;
+                  NSArray&lt;AVMediaSelectionOption *&gt; *options = [AVMediaSelectionGroup mediaSelectionOptionsFromArray:legibleMediaSelectionGroup.options withLocale:[NSLocale localeWithLocaleIdentifier:@&quot;es&quot;]];
+                  AVMediaSelectionOption *option = options.firstObject;
+                  session.selectedLegibleMediaOption = option;
+              }
+          }</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-captionspro-swift" role="tabpanel" aria-labelledby="tab-captionspro-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController?, playbackSession session: BCOVPlaybackSession?, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent?) {
+            if kBCOVPlaybackSessionLifecycleEventReady == lifecycleEvent?.eventType {
+                if let legibleMediaSelectionGroup = session?.legibleMediaSelectionGroup.options {
+                    let locale = NSLocale(localeIdentifier: &quot;es&quot;) as Locale
+                    let mediaSelectionOptions = AVMediaSelectionGroup.mediaSelectionOptions(from: legibleMediaSelectionGroup, with: locale)
+                    let mediaSelectionOption = mediaSelectionOptions.first
+                    session?.selectedLegibleMediaOption = mediaSelectionOption
+                }
+            }
+        }</code></pre>
+    </div>
+  </div>
+  <!-- end tabs -->
   </section>
 
 <section class="bcls-section">
@@ -2646,38 +2640,37 @@
 <p>This example returns 6 videos starting with the 10th video in the playlist:</p>
 
 <!-- tabs -->
-  <div class="tabs">
-    <ul class="tab-links">
-      <li class="active"><a href="#tab21">Obj-C</a></li>
-      <li><a href="#tab22">Swift</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="tab21" class="tab active">
-        <pre>
-<code class="language-objectivec" translate="No">NSDictionary *params = @{
-	@&quot;limit&quot;: @6,
-	@&quot;offset&quot;: @9
-};
-
-[playbackService findPlaylistWithReferenceID:playlistRefID parameters:params completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
-{ 
-    // Your code here
-}];</code></pre>
-      </div>
-      <div id="tab22" class="tab">
-        <pre>
-<code class="language-swift" translate="No">let params = [
-    &quot;limit&quot;: 6,
-    &quot;offset&quot;: 9
-]
-
-playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
-    // Your code here
-})</code></pre>
-      </div>
-    </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="tab-paging-objc" data-bs-toggle="tab" data-bs-target="#nav-paging-objc" type="button" role="tab" aria-controls="nav-paging-objc" aria-selected="true">Obj-C</button>
+    <button class="nav-link" id="tab-paging-swift" data-bs-toggle="tab" data-bs-target="#nav-paging-swift" type="button" role="tab" aria-controls="nav-paging-swift" aria-selected="false">Swift</button>
   </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-paging-objc" role="tabpanel" aria-labelledby="tab-paging-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">NSDictionary *params = @{
+        @&quot;limit&quot;: @6,
+        @&quot;offset&quot;: @9
+      };
+      
+      [playbackService findPlaylistWithReferenceID:playlistRefID parameters:params completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
+      { 
+          // Your code here
+      }];</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-paging-swift" role="tabpanel" aria-labelledby="tab-paging-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">let params = [
+          &quot;limit&quot;: 6,
+          &quot;offset&quot;: 9
+      ]
+      
+      playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+          // Your code here
+      })</code></pre>
+  </div>
+</div>
 <!-- end tabs -->
 
 </section>
