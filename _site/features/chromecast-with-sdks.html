@@ -1994,6 +1994,9 @@
         <aside class="bcls-aside bcls-aside--information">Notes:
           <ul>
             <li>The Brightcove Cast Receiver app does not support Chromecast queueing.</li>
+            
+            <li>When using the Brightcove Cast Receiver app with the Brightcove Native SDKs, you must send the <code translate="No">catalogParams</code> object via the <code translate="No">customData</code> interface. A static URL is not supported.</li>
+            
             <li>For Chromecast to work with domain restricted players, you should whitelist the Chromecast receiver's domain, which is <code translate="No">players.brightcove.net</code>.</li>
             <li>Using your own custom receiver app:
               <ul>
@@ -2057,6 +2060,9 @@
     <p>The <code translate="No">customData</code> interface provides a method by which senders can pass arbitrary data into a custom Chromecast receiver, such as Brightcove's receiver app.</p>
     <p>For the Brightcove Player (web) sender, <code translate="No">customData</code> is handled entirely by the plugin. There is nothing for integrators to do.</p>
     <p>For all other senders, such as the the Native SDK for Android or iOS, <code translate="No">customData</code> must be constructed by the sender.</p>
+    <aside class="bcls-aside bcls-aside--information">
+        <p>When using the Brightcove Cast Receiver app with the Brightcove Native SDKs, you must send the <code translate="No">catalogParams</code> object via the <code translate="No">customData</code> interface. A static URL is not supported.</p>
+    </aside>
 
     <h3><code translate="No">customData.accountId</code> (required)</h3>
     <p>Type: <code translate="No">string</code></p>
