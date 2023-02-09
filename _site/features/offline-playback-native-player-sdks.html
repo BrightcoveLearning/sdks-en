@@ -1981,12 +1981,26 @@
 
 <section class="bcls-section">
 <h2 id="Content_delivery">Content delivery</h2>
-
 <p>Streaming video takes advantage of Video Cloud's multi-bitrate streaming feature which detects bandwidth at the source and delivers the best quality for the device. The offline playback feature supports the following streaming types:</p>
 
 <ul>
 	<li><strong>Android</strong>: Dynamic Adaptive Streaming over HTTP (DASH)</li>
 	<li><strong>iOS</strong>: Apple HTTP Live Streaming (HLS)</li>
+</ul>
+
+<h3>Renditions downloaded</h3>
+<aside class="bcls-aside bcls-aside--information">Downloaded videos have only one rendition.</aside>
+<p>You may be wondering which rendition is downloaded and used for Offline Playback. Here is the answer:</p>
+<ul>
+  <li><p><strong>Android</strong> - The ExoPlayer sets the default rendition. To find the current rendition, listen to the <code translate="No">ExoPlayerVideoDisplayComponent.RENDITION_CHANGED</code> event.</p> 
+    <p>Internally, the Native SDK for Android uses the <a href="https://developer.android.com/reference/kotlin/androidx/media3/exoplayer/trackselection/DefaultTrackSelector">DefaultTrackSelector</a>. You can set the peak bitrate as follows:</p>
+   
+    <pre data-start="1"><code class="language-json" translate="No">VideoDisplayComponent: videoDisplayComponent.setPeakBitrate(yourPeakBitrate);</code></pre>
+    <br/>
+  </li>
+  <li><p><strong>iOS</strong> - If you do not specify a bitrate for your download, you will get the lowest rendition that has a video track.</p> 
+    <p>To pick a specific variant based on the bitrate or resolution, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/OfflinePlayback.md#specifying-a-variant-bitrate">Specifying a Variant Bitrate</a> section of the SDK reference.</p>
+  </li>
 </ul>
 </section>
 
