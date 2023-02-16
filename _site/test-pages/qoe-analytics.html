@@ -1951,6 +1951,13 @@
       <li><strong>Reporting</strong>: How is my service performing across key QoE metrics? Are there trends that I should be aware of and address?</li>
       <li><strong>Monitoring</strong>: Tracking near real-time metrics that show how viewers are impacted.</li>
     </ul>
+
+    <h3>Navigation</h3>
+    <ol class="bcls-tasklist">
+      <li>Open Video Cloud Studio.</li>
+      <li>In the primary navigation, click <strong>Analytics</strong>.</li>
+      <li>In the panel navigation, click <strong>QOE</strong>.</li>
+    </ol>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="QoE analytics" src="/assets/images/s-analytics-img/module/qoe/qoe-analytics.webp" />
       <figcaption class="bcls-caption--image">QoE analytics</figcaption> 
     </figure>
@@ -1959,25 +1966,6 @@
   <section class="bcls-section">
     <h2 id="Setup">Setup</h2>
     <p>Contact your Customer Success Manager to enable your account for QoE Analytics. This is a paid add-on feature to Video Cloud Studio.</p>
-  </section>
-
-  <section class="bcls-section">
-    <h2 id="Terms">Terms</h2>
-    <p>The following terms relate to QoE analytics metrics:</p>
-    <ul>
-      <li><strong>Average rendition switches</strong> - Average number of switches across all sessions</li>
-      <li><strong>Average upscale factor</strong> -  The ratio between player resolution and delivered video resolution when the player viewport is bigger than the delivered resolution</li>
-      <li><strong>Average upscale time</strong> - The average number of seconds per hour of viewing that is spent in an upscaled state</li>
-      <li><strong>Average video bitrate</strong> - the average bitrate played in the player weighted by the duration it was watched</li>
-      <li><strong>Error count</strong> - Number of the errors that prevent or interrupt playback or that could impact start/resume time</li>
-      <li><strong>Error rate</strong> - Number of errors that prevent or interrupt playback or that could impact start/resume time divided by the video views for the selected time interval</li>
-      <li><strong>Rebuffering time</strong> - Seconds spent rebuffering per hour of watched video</li>
-      <li><strong>Stalls</strong> - Alternative to rebuffering; total number of stalls divided by the sum of the watch time</li>
-
-      <li><strong>Video resolution</strong> (avg min per hour) - Average minutes watched per hour of viewing, by categories of video resolution (using the height of the video in pixels); weighted by the time watched at that resolution</li>
-      <li><strong>Video start time</strong> - Average time between the play request and the stream start per video view; this time does not include ad pre-roll time; <strong>start time</strong> looks to describe how much time the viewer had to wait before video started to play</li>
-      <li><strong>Video views</strong> - The number of times a video started playing, recorded when the stream is started (does not include rewind or replay); it is not a measure of individual viewers</li>
-    </ul>
   </section>
 
   <section class="bcls-section">
@@ -2008,7 +1996,7 @@
 
   <section class="bcls-section">
     <h2 id="Charts">Charts</h2>
-    <p>The following charts trend over time, at a daily or hourly interval (depending on time range).</p>
+    <p>The following charts trend over time, at a daily or hourly interval (depending on time range). When you select a dimension, it will be reflected in all of the charts.</p>
    
     <h3>Error rate</h3>
     <p>The error rate is the number of errors divided by the number of play requests. The error count includes all error types.</p>
@@ -2039,11 +2027,26 @@
 
   <section class="bcls-section">
     <h2 id="Summary table">Summary table</h2>
-    <p>The </p>
-    <h3>Summary by account</h3>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Summary by account" src="/assets/images/s-analytics-img/module/qoe/summary-by-account.webp" />
-      <figcaption class="bcls-caption--image">Summary by account</figcaption> 
+    <p>The date range and dimensions that you set for the page, also applies to the data in the summary table. For example, if you select the <strong>Device</strong> dimension, you will see a <strong>Summary by Device</strong>.</p>
+    <h3>Summary by Device</h3>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Summary by Device" src="/assets/images/s-analytics-img/module/qoe/summary-by-device.webp" />
+      <figcaption class="bcls-caption--image">Summary by Device</figcaption> 
     </figure>
+    <p>Each column is sortable. The default sort order is video views descending.</p>
+    <p>Column data:</p>
+    <ul>
+      <li><strong>Views</strong> - The number of times a video started playing, recorded when the stream is started (does not include rewind or replay); it is not a measure of individual viewers</li>
+      <li><strong>Error count</strong> - Number of the errors that prevent or interrupt playback or that could impact start/resume time </li>
+      <li><strong>Error rate</strong> - Number of errors that prevent or interrupt playback or that could impact start/resume time divided by the video views for the selected time interval</li>
+      <li><strong>Video start time</strong> - Average time between the play request and the stream start per video view; this time does not include ad pre-roll time; <strong>start time</strong> looks to describe how much time the viewer had to wait before video started to play</li>
+      <li><strong>Video resolution</strong> (avg min per hour) - Average minutes watched per hour of viewing, by categories of video resolution (using the height of the video in pixels); weighted by the time watched at that resolution</li>
+      <li><strong>Rebuffering time</strong> - Seconds spent rebuffering per hour of watched video</li>
+      <li><strong>Stall rate</strong> - Total number of stalls divided by the sum of the watch time</li>
+      <li><strong>Bitrate</strong> - the average bitrate played in the player weighted by the duration it was watched</li>
+      <li><strong>Rendition switches</strong> - Average number of switches across all sessions</li>
+      <li><strong>Upscale factor</strong> -  The ratio between player resolution and delivered video resolution when the player viewport is bigger than the delivered resolution</li>
+      <li><strong>Upscale time</strong> - The average number of seconds per hour of viewing that is spent in an upscaled state</li>
+    </ul>
  
   </section>
 
