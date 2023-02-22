@@ -202,8 +202,9 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 <p>Even with the Empty Activity, you will get a simple <code translate="No">TextView</code> layout. Replace this with the <code translate="No">BrightcoveExoPlayerVideoView</code>, which defines the view for the player.</p>
 
 <ol class="bcls-tasklist">
-	<li>Open the file <code translate="No">app/res/layout/activity_main.xml</code> and click <strong>Code</strong>.
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Layout XML file" src="/assets/images/android/step-by-step/studioqs-text-activity-main-xml.png" />
+	<li>
+    <p>Open the file <code translate="No">app/res/layout/activity_main.xml</code> and click <strong>Code</strong>.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Layout XML file" src="/assets/images/android/step-by-step/studioqs-text-activity-main-xml.webp" />
       <figcaption class="bcls-caption--image">Layout XML file</figcaption>
     </figure>
   </li>
@@ -212,7 +213,8 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 
 	<pre class="line-numbers" data-start="1">
 <code class="language-java" translate="No">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+&lt;androidx.constraintlayout.widget.ConstraintLayout 
+  xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;
     android:layout_width=&quot;match_parent&quot;
@@ -244,8 +246,9 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 <h3>Create the View and play a video</h3>
 
 <ol class="bcls-tasklist">
-  <li>Return to the <code translate="No">MainActivity.java</code> file.
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="MainActivity file" src="/assets/images/android/step-by-step/main-activity.png" />
+  <li>
+    <p>Return to the <code translate="No">MainActivity.java</code> file.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="MainActivity file" src="/assets/images/android/step-by-step/main-activity.webp" />
       <figcaption class="bcls-caption--image">MainActivity file</figcaption>
     </figure>
   </li>
@@ -254,8 +257,9 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 	<pre class="line-numbers" data-start="12">
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {</code></pre>
 	</li>
-  <li>As you start typing <code translate="No">BrightcovePlayer</code>, you should see options to select. Double clicking on the <code translate="No">BrightcovePlayer</code> option will add an <code translate="No">import</code> statement.
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="BrightcovePlayer class" src="/assets/images/android/step-by-step/add-brightcoveplayer.png" />
+  <li>
+    <p>As you start typing <code translate="No">BrightcovePlayer</code>, you should see options to select. Double clicking on the <code translate="No">BrightcovePlayer</code> option will add an <code translate="No">import</code> statement.</p> 
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="BrightcovePlayer class" src="/assets/images/android/step-by-step/add-brightcoveplayer.webp" />
       <figcaption class="bcls-caption--image">BrightcovePlayer class</figcaption>
     </figure>
   </li>
@@ -290,8 +294,8 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    setContentView(R.layout.activity_main);
 <span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span>
+    setContentView(R.layout.activity_main);
     super.onCreate(savedInstanceState);</code></pre>
 
 	<p>When you paste in the highlighted code above, press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
@@ -311,6 +315,7 @@ analytics.setAccount("<span class="bcls-input">your account Id</span>");</code><
 analytics.setAccount("<span class="bcls-input">your account Id</span>");</code></pre>
 
 	<aside class="bcls-aside bcls-aside--tip video-cloud-only">For details about sending data to Video Cloud Analytics, see the <a href="/features/viewing-brightcove-analytics-player-sdks.html">Using Brightcove Analytics</a> guide.</aside>
+  <br/>
 	</li>
 	<li>
 	<p>Create a video object from your video hosted on a remote server. Set the <code translate="No">DeliveryType</code> to match the type of video you have.</p>
