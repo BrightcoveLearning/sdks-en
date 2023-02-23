@@ -294,8 +294,8 @@ org.gradle.jvmargs=-XX\:MaxPermSize\=512m</code></pre>&nbsp;
 <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-<span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span>
     setContentView(R.layout.activity_main);
+<span class="bcls-highlight">    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</span>
     super.onCreate(savedInstanceState);</code></pre>
 
 	<p>When you paste in the highlighted code above, press the <strong>option + return</strong> keys to add the <code translate="No">import</code> statement for the <code translate="No">BrightcoveExoPlayerVideoView</code> class.</p>
@@ -592,6 +592,27 @@ Catalog catalog = new Catalog.Builder(eventEmitter, account)
   .build();</code></pre>
 	</li>
 	<li>In Video Cloud Studio's <strong>Media</strong> module, select a playlist and copy the <strong>Playlist ID</strong>.</li>
+  <li>
+    <p>Open the <code translate="No">res/values/strings.xml</code> file and add an entry for your playlist ID:</p>
+  
+    <pre class="line-numbers">
+  <code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+    &lt;resources&gt;
+  
+        &lt;!-- Application name --&gt;
+        &lt;string name="app_name"&gt;PlayVideos&lt;/string&gt;
+  
+        &lt;!-- A sample Brightcove Edge Account ID --&gt;
+        &lt;string name="account"&gt;<span class="bcls-input">your account id</span>&lt;/string&gt;
+  
+        &lt;!-- A sample Brightcove Edge Policy Key --&gt;
+        &lt;string name="policy"&gt;<span class="bcls-input">your policy key</span>&lt;/string&gt;
+  
+        <span class="bcls-highlight">&lt;!-- A sample Brightcove Playlist ID --&gt;
+        &lt;string name="playlistId"&gt;<span class="bcls-input">your playlist id</span>&lt;/string&gt;</span>
+  
+    &lt;/resources&gt;</code></pre>
+    </li>
 	<li>
 	<p>Use the Catalog's <code translate="No">findPlaylistByID()</code> method using your playlist ID and a <code translate="No">PlaylistListener</code> for the callback.</p>
   <aside class="bcls-aside bcls-aside--tip">The <code translate="No">PlaylistListener</code> identifies objects that expect to receive a Playlist object from an asynchronous operation. On a successful operation, an <code translate="No">onPlaylist()</code> method will be called.</aside>
