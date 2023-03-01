@@ -1941,21 +1941,41 @@
 <h1>Quality of Experience (QoE) Analytics</h1>
 <article class="bcls-article">
   <summary>In this topic, you will learn about Quality of Experience (QoE) analytics associated with Brightcove Player.</summary>
+  <aside class="bcls-aside bcls-aside--information">QoE Analytics are currently available to a limited number of customers.</aside>
 
   <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
     <p>Quality of Experience (QoE) analytics provide information to help understand the user's video streaming experience, including playback success, startup time, rebuffering, and visual quality. </p>
     <p>QoE Analytics provide Brightcove customers with a transparent, meaningful, and well-curated set of metrics focused on the following:</p>
     <ul>
-      <li><strong>Troubleshooting</strong>: What errors are viewers experiencing? Are errors related to the player, CDN, or encoding? Can I mitigate these errors?</li>
-      <li><strong>Reporting</strong>: How is my service performing across key QoE metrics? Are there trends that I should be aware of and address?</li>
-      <li><strong>Monitoring</strong>: Tracking near real-time metrics that show how viewers are impacted.</li>
+      <li>
+        <strong>Troubleshooting</strong>:   
+        <ul>
+          <li>What errors are viewers experiencing?</li>
+          <li>Are errors related to the player, CDN, or encoding?</li>
+          <li>Can I mitigate these errors?</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Reporting</strong>: 
+        <ul>
+          <li>How is my service performing across key QoE metrics?</li>
+          <li> Are there trends that I should be aware of and address?</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Monitoring</strong>:
+        <ul>
+          <li>Tracking near real-time metrics that show how viewers are impacted</li>
+        </ul>
+      </li>
     </ul>
     
   </section>
 
   <section class="bcls-section">
     <h2 id="Navigation">Navigation</h2>
+    <p>Once your account is enabled for QoE Analytics, you will find them in the Analytics module in Studio.</p>
     <ol class="bcls-tasklist">
       <li>Open Video Cloud Studio.</li>
       <li>In the primary navigation, click <strong>Analytics</strong>.</li>
@@ -1968,20 +1988,20 @@
 
   <section class="bcls-section">
     <h2 id="Setup">Setup</h2>
-    <p>Contact your Customer Success Manager to enable your account for QoE Analytics. This is a paid add-on feature to Video Cloud Studio.</p>
+    <p>QoE Analytics are available to Video Cloud customers at no extra charge. Contact your Customer Success Manager to enable your account.</p>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Time_range">Time range</h2>
-    <p>Click <strong>DATE</strong> to expand the dropdown menu. Select the time range for your reporting data.</p>
+    <h2 id="Data_measurement">Data measurement</h2>
+    <p>Use time range and dimension to filter the data displayed in the charts below.</p>
+    <h3 id="Time_range">Time range</h3>
+    <p>Click <strong>DATE</strong> to expand the dropdown menu. Select the time range for your reporting data. The charts below trend over time, based on the time range.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Time range" src="/assets/images/s-analytics-img/module/qoe/time-period.webp" />
       <figcaption class="bcls-caption--image">Time range</figcaption> 
     </figure>
-  </section>
 
-  <section class="bcls-section">
-    <h2 id="Dimension">Dimension</h2>
-    <p>Click <strong>DIMENSION</strong> to expand the dropdown menu. Select the measurement for your reporting data.</p>
+    <h3 id="Dimension">Dimension</h3>
+    <p>Click <strong>DIMENSION</strong> to expand the dropdown menu. Select the measurement for your reporting data. When you select a dimension, it will be reflected in all of the charts described below.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Dimension" src="/assets/images/s-analytics-img/module/qoe/dimension.webp" />
       <figcaption class="bcls-caption--image">Dimension</figcaption> 
     </figure>
@@ -1998,16 +2018,15 @@
   </section>
 
   <section class="bcls-section">
-    <h2 id="Charts">Charts</h2>
-    <p>The following charts trend over time, at a daily or hourly interval (depending on time range). When you select a dimension, it will be reflected in all of the charts.</p>
-   
-    <h3>Error rate</h3>
+    <h2 id="Error_rate">Error rate</h2>
     <p>The error rate is the number of errors divided by the number of play requests. The error count includes all error types.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Error rate" src="/assets/images/s-analytics-img/module/qoe/error-rate.webp" />
       <figcaption class="bcls-caption--image">Error rate</figcaption> 
     </figure>
+  </section>
 
-    <h3>Video start time</h3>
+  <section class="bcls-section">
+    <h2 id="Video_start_time">Video start time</h2>
     <p>The video start time is the average time betweenn play request and stream start.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video start time" src="/assets/images/s-analytics-img/module/qoe/video-start-time.webp" />
       <figcaption class="bcls-caption--image">EVideo start time</figcaption> 
@@ -2020,6 +2039,23 @@
     </figure>
 
     <h3>Upscale time</h3>
+    <p>The upscale time is the average number of seconds per hour of viewing that is spent in an upscaled state (seconds per hour).</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Upscale time" src="/assets/images/s-analytics-img/module/qoe/upscale-time.webp" />
+      <figcaption class="bcls-caption--image">Upscale time</figcaption> 
+    </figure>
+
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Stall_rate">Stall rate</h2>
+    <p>The stall rate is the total number of stalls divided by the total number of hours streamed.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stall rate" src="/assets/images/s-analytics-img/module/qoe/stall-rate.webp" />
+      <figcaption class="bcls-caption--image">Stall rate</figcaption> 
+    </figure>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Upscale_time">Upscale time</h2>
     <p>The upscale time is the average number of seconds per hour of viewing that is spent in an upscaled state (seconds per hour).</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Upscale time" src="/assets/images/s-analytics-img/module/qoe/upscale-time.webp" />
       <figcaption class="bcls-caption--image">Upscale time</figcaption> 
