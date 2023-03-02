@@ -2028,13 +2028,43 @@
     </figure>
     <p>Dimensions include:</p>
     <ul>
-      <li>Account (provides overall number)</li>
-      <li>Device</li>
+      <li>
+        <p><strong>Account</strong> (provides overall number)</p>
+        <p>The Account view provides an overall number for all streams in your account across all platforms.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Account" src="/assets/images/s-analytics-img/module/qoe/account-dimension.webp" />
+          <figcaption class="bcls-caption--image">Account</figcaption> 
+        </figure>
+      </li>
+      <li>
+        <p><strong>Device type</strong></p>
+        <p>The Device type view makes it easier to see device-specific issues and trends over time. The imaginary example below shows a spike in error rate for Android devices that could correlate to a recent app update.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device type" src="/assets/images/s-analytics-img/module/qoe/device-type.webp" />
+          <figcaption class="bcls-caption--image">Device type</figcaption> 
+        </figure>
+      </li>
       <!-- <li>Domain and subdomain</li> -->
-      <li>Stream type (VOD)</li>
-      <li>Player</li>
-      <li>Country</li>
-      <li>Day</li>
+      <li>
+        <p><strong>Stream type</strong> (VOD)</p>
+        <p>The Stream type view currently compares all content in your account and VOD metrics. Live QoE metrics will be coming soon, allowing you to isolate mode-specific issues or trends. In the fictional example below, there was a jump in upscaling around a live event, which resolved quickly.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/stream-type.webp" />
+          <figcaption class="bcls-caption--image">Stream type</figcaption> 
+        </figure>
+      </li>
+      <li>
+        <p><strong>Player</strong></p>
+        <p>The Player view shows specific players' performance and allows you to isolate and troubleshoot players where QoE is underperforming.</p>
+        <!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device type" src="/assets/images/s-analytics-img/module/qoe/device-type.webp" />
+          <figcaption class="bcls-caption--image">Device type</figcaption> 
+        </figure> -->
+      </li>
+      <li>
+        <p><strong>Country</strong></p>
+        <p>For international customers, viewing QoE metrics by country can assist in isolating regional issues. In the fictional example below, the customer adopted a new content delivery network (CDN) for their Asian consumers. The chart shows that the CDN underperformed when looking at the stall rate.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Country" src="/assets/images/s-analytics-img/module/qoe/country-dimension.webp" />
+          <figcaption class="bcls-caption--image">Country</figcaption> 
+        </figure>
+      </li>
+      <!-- <li>Day</li> -->
     </ul>
   </section>
 
@@ -2078,12 +2108,20 @@
 
   <section class="bcls-section">
     <h2 id="Summary table">Summary table</h2>
+    <p>The summary table makes it easy to explore and identify anomalies.</p>
     <p>The date range and dimensions that you set for the page, also applies to the data in the summary table. For example, if you select the <strong>Device</strong> dimension, you will see a <strong>Summary by Device</strong>.</p>
     <h3>Summary by Device</h3>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Summary by Device" src="/assets/images/s-analytics-img/module/qoe/summary-by-device.webp" />
       <figcaption class="bcls-caption--image">Summary by Device</figcaption> 
     </figure>
     <p>Each column is sortable. The default sort order is video views descending.</p>
+    <p>In addition to the key metrics, the summary table includes the following data:</p>
+    <ul>
+      <li>View count</li>
+      <li>Video resolution breakdown</li>
+      <li>Rebuffering time</li>
+      <li>Avg Bitrate</li>
+    </ul>
     <p>For details about the column data, see the <a href="#Glossary">Glossary</a></p>
  
   </section>
