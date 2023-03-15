@@ -19,7 +19,32 @@ grandparent: Android Development
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
-			<h3>Version 8.0.0</h3>
+			<h3>Version 8.0.1</h3>
+
+			<h4>15 March 2023</h4>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>Fixes an issue where transitions between videos in playlists could stretch the video display outside of the original bounds of the player
+          display.</li>
+        <li>Fixes an issue where transitioning to Player-In-Player (PiP) mode while the video was playing would load the PiP player in paused mode.</li>
+        <li>Fixes an issue that would cause the <code translate="No">ShutterViewController</code> to hide between video loading and ad playback.</li>
+        <li>Fixes an issue that would prevent the <code translate="No">ShutterViewController</code> from hiding on detection of an ad error.</li>
+			</ul>	
+      <p>ExoPlayer Changes:</p>
+			<ul>
+				<li>Fixes an issue in <code translate="No">ExoMediaPlayback</code> where transitions between videos in playlists could prevent pre-roll ads from playing on subsequent videos.</li>
+			</ul>
+      <p>SSAI Plugin Changes:</p>
+			<ul>
+				<li>Adds support for setting custom read and connect timeouts in the <code translate="No">SSAIComponent</code> and <code translate="No">SSAIVideoProcessor</code>.</li>
+			</ul>	
+
+		</section>
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
+      <h3>Version 8.0.0</h3>
 
 			<h4>11 January 2023</h4>
       <p>This major release of the Brightcove Native SDK for Android contains significant behavioral changes. For details, see the <a href="/android/framework/android-sdk-8-release.html">The Native SDK for Android Release 8.0.0</a> document.</p>
@@ -35,11 +60,6 @@ grandparent: Android Development
 				<li>Added a media-style notification with customizable playback controls from the notification shade and lockscreen. This
           <code translate="No">BrightcoveNotification</code> class connects playback with a foreground service.</li>
 			</ul>	
-
-		</section>
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
       <h3>Version 7.1.4</h3>
 
