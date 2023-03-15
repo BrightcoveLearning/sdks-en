@@ -1,5 +1,19 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.0.1
+
+  SDK Changes:
+    * Fixes an issue where transitions between videos in playlists could stretch the video display outside of the original bounds of the player display. 
+    * Fixes an issue where transitioning to Player-In-Player (PiP) mode while the video was playing would load the PiP player in paused mode.
+    * Fixes an issue that would cause the ShutterViewController to hide between video loading and ad playback.
+    * Fixes an issue that would prevent the ShutterViewController from hiding on detection of an ad error.
+
+  ExoPlayer Changes:
+    * Fixes an issue in ExoMediaPlayback where transitions between videos in playlists could prevent preroll ads from playing on subsequent videos.
+
+  SSAI Plugin Changes:
+    * Adds support for setting custom read and connect timeouts in the SSAIComponent and SSAIVideoProcessor
+
 Version 8.0.0
 
     Please Note:
