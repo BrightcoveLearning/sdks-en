@@ -14,16 +14,16 @@ echo 'Added changed files in parent repo'
 git pull --quiet
 git add . > /dev/null
 echo 'Committing files in parent repo'
-git commit -m $COMMITMESSAGE --quiet
+git commit -m '$COMMITMESSAGE' --quiet
 echo 'Pushing files in parent repo'
 git push --quiet
 echo 'Getting all submodules'
 git submodule --quiet foreach "git fetch origin main --quiet"
 echo 'Writing to submouldes'
-git submodule --quiet foreach "git checkout --quiet main  ; echo 'a' ; git pull --quiet; echo 'b' ;  git add . > /dev/null; echo 'c' ;  git commit -m '$COMMITMESSAGE' --quiet; echo 'd' ;  git push --quiet"
+git submodule --quiet foreach "git checkout --quiet main  ; echo 'a' ; git pull --quiet; echo 'b' ;  git add . > /dev/null; echo 'c' ; git commit  --quiet -m '$COMMITMESSAGE'; echo 'd' ;  git push --quiet" --quiet
 echo 'Syncing changed submodules with parent repo'
 git add . > /dev/null
-echo '23'
+echo 'Committing changes'
 git commit -m '$COMMITMESSAGE' --quiet
-echo 'Pushing parent repo'
+echo 'Pushing parent repo changes'
 git push --quiet
