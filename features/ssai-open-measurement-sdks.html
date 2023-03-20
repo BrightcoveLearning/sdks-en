@@ -1,0 +1,145 @@
+---
+title: 'SSAI Open Measurement with the Native SDKs'
+description: In this topic, you will learn how to take advantage of the IAB Open Measurement SDK with the SSAI plugins for the Brightcove Native SDKs.
+parent: Features
+grandparent: Home
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+  <h2 id="Overview">Overview</h2>
+
+  <p>Brightcove's server-side ad insertion (SSAI) plugin for the Native SDK for Android includes the <a href="https://iabtechlab.com/standards/open-measurement-sdk/">Open Measurement (OM) SDK</a> for Android. This integration allows third-party access to viewability and creative performance measurement data using a standardized API.   When integrated, the tracker does the following:</p>
+  <ul>
+    <li>Creates the ad session</li>
+    <li>Sends tracking events</li>
+    <li>Handles player state</li>
+    <li>Parses the VAST for verification scripts</li>
+  </ul>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Requirements">Requirements</h2>
+
+  <p>Open Measurement for SSAI requires the following:</p>
+  <ul>
+    <li>Active membership with the IAB Tech Lab for organization namespace registration</li>
+    <li>Brightcove Native SDK for Android v8.1.0 or newer</li>
+    <li>
+      Ads must be configured to traffic either:
+      <ul>
+        <li>For the VAST 4.1 spec, include<code translate="No">&lt;AdVerifications&gt;</code> in your VAST file</li>
+        <li>For newer versions of the VAST spec (4.1+), use <code translate="No">&lt;Extension type=&quot;AdVerifications&quot;&gt;</code> </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Android">Android</h2>
+
+<p>The Brightcove Native SDK for Android supports using the OM SDK. For more information about implementing third-party ad measurement, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/omsdk">Open Measurement in the IMA SDK for Android</a> document.</p>
+
+<h3>UI overlays</h3>
+
+<p>If you are using UI control elements which overlay the IMA ad view, then you'll want to register these with the OM SDK. To do this, your code would look something like this:</p>
+
+<pre class="line-numbers">
+<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
+ // ...
+ private AdDisplayContainer adDisplayContainer;
+ private View adOverlayView;
+ // ...
+
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+   // ...
+   adOverlayView = findViewById(R.id.ad_overlay);
+   setupGoogleIMA();
+   // ...
+ }
+
+ private void setupGoogleIMA() {
+   // Show adOverlayView
+   eventEmitter.on(EventType.AD_BREAK_STARTED, (event) -&gt;  {
+       adOverlayView.setVisibility(View.VISIBLE);
+   });
+
+   // Hide adOverlayView
+   eventEmitter.on(EventType.AD_BREAK_COMPLETED, (event) -&gt;  {
+       adOverlayView.setVisibility(View.GONE);
+   });
+
+   // Create ImaSdkFactory
+   final ImaSdkFactory sdkFactory = ImaSdkFactory.getInstance();
+   eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, new EventListener() {
+     @Override
+     public void processEvent(Event event) {
+       // Create a container object to register the friendly obstructions.
+       adDisplayContainer = sdkFactory.createAdDisplayContainer();
+       adDisplayContainer.registerVideoControlsOverlay(adOverlayView);
+       // ...
+     }
+   });
+
+   eventEmitter.on(EventType.COMPLETED, (event) -&gt; {
+     if (adDisplayContainer != null) {
+       // Unregister the friendly obstructions
+       adDisplayContainer.unregisterAllVideoControlsOverlays();
+     }
+   });
+ }
+}</code></pre>
+
+<h3>IMA settings</h3>
+
+<p>By default, the Brightcove Native SDK for iOS sets the <code translate="No">playerType</code> and <code translate="No">playerVersion</code> properties with the following values:</p>
+
+<pre class="line-numbers">
+<code class="language-java" translate="No">imaSdkSettings.setPlayerType("bcov/and-sdk-player");
+imaSdkSettings.setPlayerVersion("&lt;replaced with current sdk version&gt;");</code></pre>
+
+<p>You may want to override these values. One example would be to get advertising metrics reported directly from Google IMA. To use your own values, set the following on the <code translate="No">imaSdkSettings</code> object:</p>
+
+<pre class="line-numbers">
+<code class="language-java" translate="No">ImaSdkSettings imaSdkSettings = imaSdkFactory.createImaSdkSettings();
+imaSdkSettings.setPlayerType("<span class="bcls-input">your-player-type</span>");
+imaSdkSettings.setPlayerVersion("<span class="bcls-input">your-player-version</span>");
+GoogleIMAComponent googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter, imaSdkSettings);</code></pre>
+
+<aside class="bcls-aside bcls-aside--information">The maximum length for each property is 20 characters.</aside>
+
+<p>For code details about using IMA ads with the Native SDK for Android, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">AdRulesIMASampleApp sample</a>.</p>
+</section>
+
+<!-- <section class="bcls-section">
+  <h2 id="iOS">iOS</h2>
+  
+  <p>The Brightcove Native SDK for iOS supports using the OM SDK. For more information about implementing third-party ad measurement, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/ios/omsdk">Open Measurement in the IMA SDK for iOS</a> document.</p>
+  
+  <h3>UI overlays</h3>
+  
+  <p>If you are using UI control elements which overlay the IMA ad view, then you'll want to register these with the OM SDK. For details, see the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima#registering-ad-overlays">Registering Ad Overlays</a> section of the Native SDK for iOS reference.</p>
+  
+  <h3>IMA settings</h3>
+  
+  <p>By default, the Brightcove Native SDK for iOS sets the <code translate="No">playerType</code> and <code translate="No">playerVersion</code> properties with the following values:</p>
+  
+  <pre class="line-numbers">
+  <code class="language-objectivec" translate="No">imaSettings.playerType = @"bcov/ios-sdk-player";
+  imaSettings.playerVersion = [BCOVIMAComponent versionIdentifier];</code></pre>
+  
+  <p>You may want to override these values. One example would be to get advertising metrics reported directly from Google IMA. To use your own values, set the following on the <code translate="No">imaSettings</code> object:</p>
+  
+  <pre class="line-numbers">
+  <code class="language-objectivec" translate="No">imaSettings.playerType = @"<span class="bcls-input">your-player-type</span>";
+  imaSettings.playerVersion = @"<span class="bcls-input">your-player-version</span>"</code></pre>
+  
+  <aside class="bcls-aside bcls-aside--information">The maximum length for each property is 20 characters.</aside>
+  
+  <p>For code details about using IMA ads with the Native SDK for iOS, see the <a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/IMA/BasicIMAPlayer">BasicIMAPlayer sample</a>.</p>
+  </section> -->
+</article>
