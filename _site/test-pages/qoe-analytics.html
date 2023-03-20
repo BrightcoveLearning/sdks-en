@@ -2074,7 +2074,7 @@
   <section class="bcls-section">
     <h2 id="Stall_rate">Stall rate</h2>
     <p>The stall rate is the total number of stalls divided by the total number of hours streamed.</p>
-    <p>We focus on actual video stalls instead of all re-buffering events because the latter often has no impact on playback. Stalls affect the viewer experience, including single stalls of significant length or frequent stalls of varying lengths. Low stall rates provide smoother playback and a better viewer experience.</p>
+    <p>We focus on actual video stalls instead of all rebuffering events because rebuffering may or may not impact playback, depending on the platform. Stalls affect the viewer experience, including single stalls of significant length or frequent stalls of varying lengths. Low stall rates provide smoother playback and a better viewer experience.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stall rate" src="/assets/images/s-analytics-img/module/qoe/stall-rate.webp" />
       <figcaption class="bcls-caption--image">Stall rate</figcaption> 
     </figure>
@@ -2111,17 +2111,19 @@
   <section class="bcls-section">
     <h2 id="Glossary">Glossary</h2>
     <h4>B</h4>
-    <p><strong>Bitrate</strong> - the average bitrate played in the player weighted by the duration it was watched</p>
+    <p><strong>Bitrate</strong> - The average bitrate reported by the player accross all sessions in a given period</p>
     <h4>E</h4>
     <!-- <p><strong>Error count</strong> - Number of the errors that prevent or interrupt playback or that could impact start/resume time </p> -->
     <p><strong>Error rate</strong> - Number of errors that prevent or interrupt playback or that could impact start/resume time divided by the video views for the selected time interval</p>
+    <h4>P</h4>
+    <p><strong>Play request</strong> - A play request is counted every time the play button is clicked</p>
     <h4>R</h4>
     <p><strong>Rebuffering time</strong> - Seconds spent rebuffering per hour of watched video</p>
-    <p><strong>Rendition switches</strong> - Average number of switches across all sessions</p>
+    <!-- <p><strong>Rendition switches</strong> - Average number of switches across all sessions</p> -->
     <h4>S</h4>
     <p><strong>Stall rate</strong> - Total number of stalls divided by the sum of the watch time</p>
     <h4>U</h4>
-    <p><strong>Upscale factor</strong> -  The ratio between player resolution and delivered video resolution when the player viewport is bigger than the delivered resolution</p>
+    <!-- <p><strong>Upscale factor</strong> -  The ratio between player resolution and delivered video resolution when the player viewport is bigger than the delivered resolution</p> -->
     <p><strong>Upscale time</strong> - The average number of seconds per hour of viewing that is spent in an upscaled state; upscaling occurs when a video rendition is streamed in a lower resolution than the current player size</p>
     <h4>V</h4>
     <p><strong>Video resolution</strong> (avg min per hour) - Average minutes watched per hour of viewing, by categories of video resolution (using the height of the video in pixels); weighted by the time watched at that resolution</p>
