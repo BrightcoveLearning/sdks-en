@@ -66,29 +66,43 @@ layout: staging
     </li>
   </ol>
 
+  <h3>Advanced usage</h3>
 
+  <h4>Friendly Obstructions</h4>
+  <p>If you have a view that is part of playback and should be considered a friendly obstruction, you can register it with Open Measurement. To do so, add the view, its purpose, and a message describing the view to the <code translate="No">OpenMeasurementTracker</code>. For example:</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">omTracker.addFriendlyObstruction(
+    pauseButton,
+    FriendlyObstructionPurpose.VIDEO_CONTROLS,
+    &quot;A pause button for the video player&quot;
+);
+</code></pre>
 
+  <h4>Open Measurement Listener</h4>
+  <p>You can add an <code translate="No">OpenMeasurementTracker.Listener</code> to receive callbacks when ad events are triggered and when the tracker starts and stops for an ad session.</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">omTracker.addListener(new OpenMeasurementTracker.Listener() {
+  @Override
+  public void onEvent(AdEventType event) {
 
+  }
 
-<h3>IMA settings</h3>
+  @Override
+  public void onStartTracking() {
 
-<p>By default, the Brightcove Native SDK for iOS sets the <code translate="No">playerType</code> and <code translate="No">playerVersion</code> properties with the following values:</p>
+  }
 
-<pre class="line-numbers">
-<code class="language-java" translate="No">imaSdkSettings.setPlayerType("bcov/and-sdk-player");
-imaSdkSettings.setPlayerVersion("&lt;replaced with current sdk version&gt;");</code></pre>
+  @Override
+  public void onStoppedTracking() {
 
-<p>You may want to override these values. One example would be to get advertising metrics reported directly from Google IMA. To use your own values, set the following on the <code translate="No">imaSdkSettings</code> object:</p>
+  }
+}); 
+</code></pre>
 
-<pre class="line-numbers">
-<code class="language-java" translate="No">ImaSdkSettings imaSdkSettings = imaSdkFactory.createImaSdkSettings();
-imaSdkSettings.setPlayerType("<span class="bcls-input">your-player-type</span>");
-imaSdkSettings.setPlayerVersion("<span class="bcls-input">your-player-version</span>");
-GoogleIMAComponent googleIMAComponent = new GoogleIMAComponent(brightcoveVideoView, eventEmitter, imaSdkSettings);</code></pre>
+  <h3>Notes</h3>
+  <p>The following notes apply to the Open Measurement integration:</p>
+  <ul>
+    <li>The OM integration expects VAST data to contain <code translate="No">AdVerifications</code> elements. If these elements are not present for an inline ad, the ad will still play, but the OM session client will not record any ad events.</li>
+  </ul>
 
-<aside class="bcls-aside bcls-aside--information">The maximum length for each property is 20 characters.</aside>
-
-<p>For code details about using IMA ads with the Native SDK for Android, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">AdRulesIMASampleApp sample</a>.</p>
 </section>
 
 <!-- <section class="bcls-section">
