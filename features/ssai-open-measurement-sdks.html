@@ -3,6 +3,7 @@ title: 'SSAI Open Measurement with the Native SDKs'
 description: In this topic, you will learn how to take advantage of the IAB Open Measurement SDK with the SSAI plugins for the Brightcove Native SDKs.
 parent: Features
 grandparent: Home
+layout: staging
 ---
 
 <h1>{{ page.title }}</h1>
@@ -39,60 +40,35 @@ grandparent: Home
 </section>
 
 <section class="bcls-section">
-<h2 id="Android">Android</h2>
+  <h2 id="Android_implementation">Android implementation</h2>
 
-<p>The Brightcove Native SDK for Android supports using the OM SDK. For more information about implementing third-party ad measurement, see the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/android/omsdk">Open Measurement in the IMA SDK for Android</a> document.</p>
+  <p>The Brightcove Native SDK for Android supports using the OM SDK with server-side ad insertion (SSAI).</p>
+  <h3>Getting started</h3>
+  <p>Follow these steps to enable Open Measurement for Brightcove's SSAI plugin for Android:</p>
+  <ol class="bcls-tasklist">
+    <li>
+      <p>Create a new instance of <code translate="No">OpenMeasurementTracker</code> providing your organization namespace and the <code translate="No">BrightcoveVideoView</code> used for playback.</p>
+      <pre class="line-numbers"><code class="language-java" translate="No">OpenMeasurementTracker omTracker = new OpenMeasurementTracker.Factory(
+    <span class="bcls-input">your partner name</span>, <span class="bcls-input">your partner version</span>, getBaseVideoView()
+).create();
+</code></pre>
+      <aside class="bcls-aside bcls-aside--information">The partner name and version are name-spaced to an organization upon IAB partnership.</aside>
+    </li>
+    <li>
+      <p>Start the <code translate="No">OpenMeasurementTracker</code> before playback begins.</p>
+      <pre class="line-numbers"><code class="language-java" translate="No">omTracker.start();
+</code></pre>
+    </li>
+    <li>
+      <p>Stop the <code translate="No">OpenMeasurementTracker</code> when playback ends or when the activity is destroyed.</p>
+      <pre class="line-numbers"><code class="language-java" translate="No">omTracker.stop();
+</code></pre>
+    </li>
+  </ol>
 
-<h3>UI overlays</h3>
 
-<p>If you are using UI control elements which overlay the IMA ad view, then you'll want to register these with the OM SDK. To do this, your code would look something like this:</p>
 
-<pre class="line-numbers">
-<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
- // ...
- private AdDisplayContainer adDisplayContainer;
- private View adOverlayView;
- // ...
 
- @Override
- protected void onCreate(Bundle savedInstanceState) {
-   // ...
-   adOverlayView = findViewById(R.id.ad_overlay);
-   setupGoogleIMA();
-   // ...
- }
-
- private void setupGoogleIMA() {
-   // Show adOverlayView
-   eventEmitter.on(EventType.AD_BREAK_STARTED, (event) -&gt;  {
-       adOverlayView.setVisibility(View.VISIBLE);
-   });
-
-   // Hide adOverlayView
-   eventEmitter.on(EventType.AD_BREAK_COMPLETED, (event) -&gt;  {
-       adOverlayView.setVisibility(View.GONE);
-   });
-
-   // Create ImaSdkFactory
-   final ImaSdkFactory sdkFactory = ImaSdkFactory.getInstance();
-   eventEmitter.on(GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO, new EventListener() {
-     @Override
-     public void processEvent(Event event) {
-       // Create a container object to register the friendly obstructions.
-       adDisplayContainer = sdkFactory.createAdDisplayContainer();
-       adDisplayContainer.registerVideoControlsOverlay(adOverlayView);
-       // ...
-     }
-   });
-
-   eventEmitter.on(EventType.COMPLETED, (event) -&gt; {
-     if (adDisplayContainer != null) {
-       // Unregister the friendly obstructions
-       adDisplayContainer.unregisterAllVideoControlsOverlays();
-     }
-   });
- }
-}</code></pre>
 
 <h3>IMA settings</h3>
 
