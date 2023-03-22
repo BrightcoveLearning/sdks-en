@@ -1957,9 +1957,13 @@
 <section class="bcls-section">
 <h2 id="Customize_properties">Customize properties</h2>
 
-<p>As of version 4.2.7 of the Brightcove Mobile SDK for Android, you can send custom values to Brightcove Analytics from your app for Account Id, Destination URI and Source URI.</p>
+<p>As of version 8.0.0 of the Brightcove Mobile SDK for Android, you can send the following custom values from your app to Brightcove Analytics:</p>
+<ul>
+  <li>Destination URI</li>
+  <li>Source URI</li>
+</ul>
 
-<p>Your Account Id is required, but is automatically set when you use the Brightcove player and the <code translate="No">catalog</code>.</p>
+<!-- <p>Your Account Id is required, but is automatically set when you use the Brightcove player and the <code translate="No">catalog</code>.</p> -->
 
 <p>You can set the Destination and Source URIs if you choose. The default values are based on the application package name.</p>
 
@@ -1967,14 +1971,14 @@
 
 <pre class="line-numbers">
 <code class="language-java" translate="No">brightcoveVideoView = (SeamlessVideoView) findViewById(R.id.brightcove_video_view);
-
 Analytics analytics = brightcoveVideoView.getAnalytics();
-analytics.setAccount("<span class="bcls-input">your accountID</span>");
 analytics.setDestination("<span class="bcls-input">valid URI</span>");
 analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
+
+<!-- analytics.setAccount("<span class="bcls-input">your accountID</span>"); -->
 </section>
 
-<section class="bcls-section">
+<!-- <section class="bcls-section">
 <h3 id="Account">Account</h3>
 
 <p>Use the <code translate="No">account</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code translate="No">accountId</code> value in the video’s metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountId</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountId</code> property).</p>
@@ -1987,7 +1991,7 @@ analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
 <p>When you set the account property, the value of this property will be used for any of your videos which do not already have an <code translate="No">accountId</code> property. The most useful value for this property is your own Account Id. These videos will be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
 
 <p>For Video Cloud videos, setting this account override has no effect on reporting, since the video's <code translate="No">accountId</code> metadata value remains unchanged. That value can not be overridden by setting this account value.</p>
-</section>
+</section> -->
 
 <section class="bcls-section">
 <h3 id="Destination">Destination</h3>
