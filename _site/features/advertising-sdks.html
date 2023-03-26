@@ -1951,8 +1951,11 @@
 <p>Notes:</p>
 
 <ul>
-	<li>The Brightcove Native SDKs do NOT support VPAID ads.</li>
-	<li>For the Android <code translate="No">MediaPlayer</code>, there are known limitations with the use of mid-roll ads while playing HLS videos. Using Brightcove's Native Player SDK solves many of these issues. Learn more about <a href="/android/playback/hls-playback-native-sdk-android.html">HLS Playback with the Native SDK for Android</a>.</li>
+  <li>The Brightcove Native SDKs do NOT support VPAID ads.</li>
+  <li>For the Android <code translate="No">MediaPlayer</code>, there are known limitations with the use of mid-roll ads while playing HLS videos. Using Brightcove's Native Player SDK solves many of these issues. Learn more about <a href="/android/playback/hls-playback-native-sdk-android.html">HLS Playback with the Native SDK for Android</a>.</li>
+  <li>When the video's <code translate="No">economics</code> field is set to <code translate="No">FREE</code>, no ads will be played for that video. Ads will be played only when the field value is set to <code translate="No">AD_SUPPORTED</code>.
+
+  </li>
 </ul>
 </aside>
 
@@ -1961,8 +1964,8 @@
 <p>Advertising URLs can be defined with ad cue points or within a VMAP ad tag URL:</p>
 
 <ul>
-	<li>With ad cue points, each should be configured with a VAST ad tag URL.</li>
-	<li>Without ad cue points, you can use a VMAP ad tag URL to define when ads will be played.</li>
+  <li>With ad cue points, each should be configured with a VAST ad tag URL.</li>
+  <li>Without ad cue points, you can use a VMAP ad tag URL to define when ads will be played.</li>
 </ul>
 
 <aside class="bcls-aside bcls-aside--tip">The VMAP URL is a playlist of ads, where a VAST URL defines an individual ad. For general information, see the <a href="https://player.support.brightcove.com/getting-started/learning-guide-video-advertising.html">Learning Guide: Video Advertising</a> document.</aside>
@@ -1972,8 +1975,8 @@
 <h2 id="Brightcove_advertising_plugins">Brightcove advertising plugins</h2>
 
 <ul>
-	<li><a href="#Client_Side_plugins">Client-Side plugins</a></li>
-	<li><a href="#Server_Side_Ad_Insertion">Server-Side Ad Insertion (SSAI)</a></li>
+  <li><a href="#Client_Side_plugins">Client-Side plugins</a></li>
+  <li><a href="#Server_Side_Ad_Insertion">Server-Side Ad Insertion (SSAI)</a></li>
 </ul>
 </section>
 
@@ -1993,46 +1996,46 @@
 <p>Using Google's IMA SDK for both iOS and Android, we offer a simple-to-use integration for both platforms, which ensures that you will stay up-to-date with any Google updates.</p>
 
 <table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Feature</th>
-			<th style="text-align: center;">Android SDK</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">tvOS SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Pre-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Mid-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Post-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Skippable Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Companion Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Feature</th>
+      <th style="text-align: center;">Android SDK</th>
+      <th style="text-align: center;">iOS SDK</th>
+      <th style="text-align: center;">tvOS SDK</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td>Pre-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Mid-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Post-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Skippable Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Companion Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="no" width="20" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+  </tbody>
 </table>
 
 <h3 id="freewheel" class="BCL_subsectionTitle">Freewheel</h3>
@@ -2040,46 +2043,46 @@
 <p>A leading technology partner in advertising, Brightcove has been working closely with <a href="https://www.freewheel.com/">FreeWheel</a> for years to ensure joint customers are able to monetize their content across numerous platforms. We are excited to continue this partnership by offering integrations for both the Brightcove SDK for iOS and Android.</p>
 
 <table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Feature</th>
-			<th style="text-align: center;">Android SDK</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">tvOS SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Pre-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Mid-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Post-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Skippable Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Companion Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Feature</th>
+      <th style="text-align: center;">Android SDK</th>
+      <th style="text-align: center;">iOS SDK</th>
+      <th style="text-align: center;">tvOS SDK</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td>Pre-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Mid-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Post-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Skippable Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Companion Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+  </tbody>
 </table>
 </section>
 
@@ -2091,46 +2094,46 @@
 <p>Built on the <a href="//www.iab.net/">IAB ad standards</a>, the Brightcove Once UX integration leverages the benefits of community adopted VMAP with server-side ad stitching. This allows Once UX to deliver high quality streams to all platforms while still offering hot features such as skippable ads.</p> -->
 
 <table class="bcls-table">
-	<thead class="bcls-table__head">
-		<tr>
-			<th>Feature</th>
-			<th style="text-align: center;">Android SDK</th>
-			<th style="text-align: center;">iOS SDK</th>
-			<th style="text-align: center;">tvOS SDK</th>
-		</tr>
-	</thead>
-	<tbody class="bcls-table__body">
-		<tr>
-			<td>Pre-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Mid-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Post-rolls</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Skippable Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-		<tr>
-			<td>Companion Ads</td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-			<td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
-		</tr>
-	</tbody>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Feature</th>
+      <th style="text-align: center;">Android SDK</th>
+      <th style="text-align: center;">iOS SDK</th>
+      <th style="text-align: center;">tvOS SDK</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td>Pre-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Mid-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Post-rolls</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Skippable Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+    <tr>
+      <td>Companion Ads</td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+      <td style="text-align: center;"><img alt="yes" width="20/" height="20" src="/assets/images/getting-started/box-checked.png" /></td>
+    </tr>
+  </tbody>
 </table>
 &nbsp;
 
