@@ -1,5 +1,21 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.1.0
+
+  SDK Changes:
+    * Change the data type of the Analytics rebuffering_seconds parameter from an integer to a float
+    * With the rebuffering_seconds value changed to a float, the Analytics rebuffering_count will be incremented for rebuffering_seconds values of less than one second
+    * Fixes an issue where rebuffering at player startup time was reported to Analytics as a player stall
+    * Fixes an issue where a player would continue playing automatically after being paused when in a stalled state
+    * Adds support for tags in the Video object
+
+  IMA Plugin Changes:
+    * Adds support for SpringServe macros to the IMA Plugin for the Brightcove Native SDK for Android
+
+  SSAI Plugin Changes:
+    * Adds Open Measurement (OM) SDK support to the SSAI Plugin for Brightcove Native SDK for Android
+    * Fixes post-roll analytic events when the VMAP duration is greater than the video’s actual duration
+
 Version 8.0.1
 
   SDK Changes:
