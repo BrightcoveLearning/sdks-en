@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Brightcove Ad Analytics</title>
+        <title>Brightcove Ad Insights</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="In this topic, you will learn about analytics metrics associated with Brightcove's Server-side Advertising (SSAI).">
+        <meta name="description" content="In this topic, you will learn how advertising insights can help you optimize your ad monetization plans.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1917,7 +1917,7 @@
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Brightcove Ad Analytics</li>
+            <li class="breadcrumb-item active" aria-current="page">Brightcove Ad Insights</li>
             
             
           </ol>
@@ -1938,222 +1938,171 @@
       <br>
       
       
-<h1>Brightcove Ad Analytics</h1>
+<h1>Brightcove Ad Insights</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn about analytics metrics associated with Brightcove's Server-side Advertising (SSAI).</summary>
+  <summary>In this topic, you will learn how advertising insights can help you optimize your ad monetization plans.</summary>
+  <aside class="bcls-aside bcls-aside--information">Ad insights are currently available to a limited number of customers.</aside>
 
-  <section class="bcls-section"> 
+  <section class="bcls-section">
     <h2 id="Introduction">Introduction</h2>
-    <p>Brightcove Ad Analytics is a free-of-charge offering that provides Brightcove customers with a transparent, meaningful, and comprehensive set of advertising metrics. These metrics will focus on the following:</p>
+    <p>Quality of Experience (QoE) analytics provide information to help understand the user's video streaming experience, including playback success, startup time, rebuffering, and visual quality. </p>
+    <p>QoE focuses on metrics that provide a sense of the viewing experience from a user's perspective. It is Brightcove's goal to provide customers with a transparent, meaningful, and well-curated set of metrics focused on the following:</p>
     <ul>
-      <li> <strong>Troubleshooting:</strong> What ad configurations and partners are serving ads more efficiently? Where in the workflow are we loosing revenue?</li>
-      <li> <strong>Reporting/Impact:</strong> Tracking Ad Impressions, fill rate, and how the audience consumes the impressions. What are the impact of ad blockers and firewalls on your ad operation?</li>
+      <li>
+        <strong>Troubleshooting</strong>:   
+        <ul>
+          <!-- <li>What nuances are viewers experiencing?</li> -->
+          <li>Which devices and players have a lower quality of experience?</li>
+          <li>Are issues related to the player, device, or geographic region?</li>
+          <li>Can I mitigate these issues?</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Reporting</strong>: 
+        <ul>
+          <li>How is my service performing across key QoE metrics?</li>
+          <li>Are there trends that I should be aware of and address?</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Monitoring</strong>:
+        <ul>
+          <li>You can track video metrics that show how viewers are impacted.</li>
+        </ul>
+      </li>
     </ul>
+    <p>For a list of QoE terms and definitions, see the <a href="#Glossary">Glossary</a> section.</p>
 
-    <h3 id="Availability">Availability</h3>
-    <p>Ad Analytics is available free of charge to Brightcove customers monetizing their VODs with SSAI. You can find them on the following platforms:</p>
-    <ul>
-      <li>Video Cloud Studio</li>
-      <li>Beacon Studio</li>
-    </ul>
-
-    <p>Ad metrics are available for Video on Demand (VOD) content monetizing with SSAI.</p>
+    <h3 id="Setup">Setup</h3>
+    <p>QoE Analytics are available to Media Video Cloud customers at no extra charge. Contact your Customer Success Manager to enable your account.</p>
     
   </section>
 
   <section class="bcls-section">
     <h2 id="Navigation">Navigation</h2>
+    <p>Once your account is enabled for QoE Analytics, you will find them in the Analytics module in Studio.</p>
     <ol class="bcls-tasklist">
       <li>Open Video Cloud Studio.</li>
       <li>In the primary navigation, click <strong>Analytics</strong>.</li>
-      <li>In the panel navigation, click <strong>Ad analytics</strong>.</li>
+      <li>In the panel navigation, click <strong>QOE</strong>.</li>
     </ol>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Ad analytics" src="/assets/images/s-analytics-img/module/ad-analytics/ad-analytics.webp" />
-      <figcaption class="bcls-caption--image">Ad analytics</figcaption> 
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="QoE analytics" src="/assets/images/s-analytics-img/module/qoe/qoe-analytics.webp" />
+      <figcaption class="bcls-caption--image">QoE analytics</figcaption> 
     </figure>
   </section>
+
+  <section class="bcls-section">
+    <h2 id="Time_range_and_dimensions">Time range and dimensions</h2>
+    <p>Use time range and dimension to filter the data displayed in the charts below.</p>
+    <h3 id="Time_range">Time range</h3>
+    <p>Click <strong>DATE</strong> to expand the dropdown menu. Select the time range for your reporting data. The charts below trend over time, based on the time range.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Time range" src="/assets/images/s-analytics-img/module/qoe/time-period.webp" />
+      <figcaption class="bcls-caption--image">Time range</figcaption> 
+    </figure>
+
+    <h3 id="Dimension">Dimension</h3>
+    <p>Click <strong>DIMENSION</strong> to expand the dropdown menu. Select the measurement for your reporting data. When you select a dimension, it will be reflected in all of the charts described below.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Dimension" src="/assets/images/s-analytics-img/module/qoe/dimension.webp" />
+      <figcaption class="bcls-caption--image">Dimension</figcaption> 
+    </figure>
+    <p>Dimensions include:</p>
+     
+        <!-- <h4><strong>Account</strong></h4>
+        <p>The Account view provides an overall number for all streams in your account across all platforms.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Account" src="/assets/images/s-analytics-img/module/qoe/account-dimension.webp" />
+          <figcaption class="bcls-caption--image">Account</figcaption> 
+        </figure>
+     
+     
+        <h4><strong>Device type</strong></h4>
+        <p>The Device type view makes it easier to see device-specific issues and trends over time. The imaginary example below shows a spike in error rate for Android devices that could correlate to a recent app update.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device type" src="/assets/images/s-analytics-img/module/qoe/device-type.webp" />
+          <figcaption class="bcls-caption--image">Device type</figcaption> 
+        </figure> -->
+      
+      <!-- <li>Domain and subdomain</li> -->
+      
+        <!-- <h4><strong>Stream type</strong> (VOD)</h4>
+        <p>The Stream type view currently compares all content in your account and VOD metrics.</p> -->
+        <!-- <p>Live QoE metrics will be coming soon, allowing you to isolate mode-specific issues or trends.  In the fictional example below, there was a jump in upscaling around a live event, which resolved quickly.</p> -->
+        <!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/stream-type.webp" />
+          <figcaption class="bcls-caption--image">Stream type</figcaption> 
+        </figure> -->
+        <!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/stream-type-vod.webp" />
+          <figcaption class="bcls-caption--image">Stream type</figcaption> 
+        </figure> -->
+      
+      
+        <!-- <h4><strong>Player</strong></h4>
+        <p>The Player view shows specific players' performance and allows you to isolate and troubleshoot players where QoE is underperforming.</p>
+        <p>Modifications to chunk size and buffer size can be measured using this metric.</p> -->
+        <!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device type" src="/assets/images/s-analytics-img/module/qoe/device-type.webp" />
+          <figcaption class="bcls-caption--image">Device type</figcaption> 
+        </figure> -->
+      
+      
+        <!-- <h4><strong>Country</strong></h4>
+        <p>For international customers, viewing QoE metrics by country can assist in isolating regional issues. In the fictional example below, the customer adopted a new content delivery network (CDN) for their Asian consumers. The chart shows that the CDN underperformed when looking at the stall rate.</p>
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Country" src="/assets/images/s-analytics-img/module/qoe/country-dimension.webp" />
+          <figcaption class="bcls-caption--image">Country</figcaption> 
+        </figure> -->
+     
+      <!-- <li>Day</li> -->
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Error_rate">Error rate</h2>
+    <p>The error rate is the number of errors reported by the player divided by the number of play requests.</p>
+    <!-- <p>Brightcove Player reports errors that prevent video playback. These errors often happen before playback begins. Low error rates mean that viewers can watch their selected content.</p> -->
+    <p>Here we focus on the errors that prevent playback since some errors occur in the background without affecting the viewer experience. Brightcove Player reports errors that prevent video playback, but some of these errors happen before playback begins. Low error rates mean that viewers can watch their selected content.</p>
+    <aside class="bcls-aside bcls-aside--information">Error rate cannot be broken down by Stream type. The chart below shows account-level data.</aside>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Error rate" src="/assets/images/s-analytics-img/module/qoe/error-rate.webp" />
+      <figcaption class="bcls-caption--image">Error rate</figcaption> 
+    </figure>
+  </section>
+
 
   <!-- <section class="bcls-section">
-    <h2 id="VOD_Ad_Performance">VOD Ad Performance</h2>
-    <p>VOD Ad Performance metrics help users get information about the performance of their VOD ads.</p>
-    <h3>Charts</h3>
-    <p>The following charts trend over time, at a daily or hourly interval (depending on time range). Only one graph will display at a time, with totals for each metric displayed at top.</p> -->
-    <!-- <h3>Ad Slots</h3>
-    <h3>Ads Inserted</h3>
-    <h3>Ad Impressions</h3>
-    <h3>Impression Rate</h3>
-    <h3>Performance by dimension</h3> -->
-    <!-- <h3>Funnel by Ad Completion</h3>
-    <p>This chart illustrates the drop-off of viewing from initial impressions to ad completion. The funnel presentation will show the following step functions:</p>
-    <ul>
-      <li>Impressions</li>
-      <li>1st ad quartile</li>
-      <li>Ad midpoint</li>
-      <li>3rd ad quartile</li>
-      <li>Ad completion</li>
-    </ul> -->
-    <!-- <h3>Account Applicability</h3> -->
-
-  <!-- </section> -->
-
-  <section class="bcls-section">
-    <h2 id="SSAI_Performance">SSAI Performance</h2>
-    <p>The SSAI Performance metrics provides a summary of ad requests, both success and errors.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="SSAI Performance" src="/assets/images/s-analytics-img/module/ad-analytics/ssai-performance.webp" />
-      <figcaption class="bcls-caption--image">SSAI Performance</figcaption> 
+    <h2 id="Summary table">Summary table</h2>
+    <p>The summary table makes it easy to explore and identify anomalies.</p>
+    <p>The date range and dimensions that you set for the page, also applies to the data in the summary table. For example, if you select the <strong>Device</strong> dimension, you will see a <strong>Summary by Device</strong>.</p>
+    <h3>Summary by Device</h3>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Summary by Device" src="/assets/images/s-analytics-img/module/qoe/summary-by-device.webp" />
+      <figcaption class="bcls-caption--image">Summary by Device</figcaption> 
     </figure>
-    <h3>Dimensions</h3>
-    <p>SSAI Performance Metrics collects, aggregates, and filters the following metrics:</p>
+    <p>Each column is sortable. The default sort order is video views descending.</p>
+    <p>In addition to the key metrics, the summary table includes the following data:</p>
     <ul>
-      <li><strong>Time range:</strong> Time range to filter the data.</li>
-   </ul>
-    
-    <h3>Metrics</h3>
-    <p>SSAI Performance Metrics collects and reports on the following metrics:</p>
-    <ul>
-      <li><strong>SSAI request codes:</strong> All of the response codes from each request to your ad server, including success and error codesAll of the response codes from each request to your ad server, including success and error codes.</li>
-      <li><strong>Ad request errors by Ad provider:</strong> A list of request errors sorted by ad provider.</li>
-      <li><strong>Ad request errors by Ad configuration:</strong> A list of request errors sorted by ad configuration.</li>
-      <li><strong>Tracker errors by Ad provider:</strong> A list of tracker errors sorted by ad provider.</li>
-      <li><strong>Tracker errors by Ad configuration:</strong> A list of tracker errors sorted by ad configuration.</li>
-      <!-- <li><strong>Ads request call count:</strong> Number of Ad request HTTP calls.</li>
-      <li><strong>Ads tracking call count:</strong>  Number of Ad Tracking HTTP calls.</li>
-      <li><strong>Ad error call counts:</strong> Number of HTTP.</li>
-      <li><strong>Ad error code:</strong> HTTP Error Response code.</li> -->
+      <li>View count</li>
+      <li>Video resolution breakdown</li>
+      <li>Rebuffering time</li>
+      <li>Avg Bitrate</li>
     </ul>
-    
-    <!-- <h3>Granularity</h3>
-    <p>Here is the granularity for SSAI performances metrics: </p>
-    <ul>
-      <li><strong>Time aggregation:</strong> Hour, day, month.</li>
-      <li><strong>Ads:</strong> 1K, 1M. </li>
-    </ul> -->
-  </section>
-  
-  <section class="bcls-section">
-    <h2 id="SSAI_Errors">SSAI Errors</h2>
-    <p>SSAI Errors metrics help users track their Server-side Advertising (SSAI) errors information.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="QoE analytics" src="/assets/images/s-analytics-img/module/ad-analytics/SSAI-errors.webp" />
-      <figcaption class="bcls-caption--image">SSAI Errors</figcaption> 
-    </figure>
-    <h3>Dimensions</h3>
-    <p>SSAI errors metrics collects, aggregates, and filters the following metrics:</p>
-    <ul>
-      <li><strong>Time range:</strong> Time range to filter the data.</li>
-      <li><strong>Ad providers:</strong> The domain of the Ad server.</li>
-      <li><strong>Ad configurations:</strong> SSAI <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Ad Configuration</a> identifier.</li>
-       <li><strong>SSAI errors:</strong> SSAI errors tracker.</li>
-      <li><strong>Ad request errors:</strong> Requests errors tracker.</li>
-      <li><strong>Ad tracker impression errors:</strong> Impression errors tracker.</li>
-    </ul>
-    <h3>Metrics</h3>
-    <p>SSAI errors metrics collects and reports on the following metrics:</p>
-    <ul>
-      <li><strong>SSAI errors:</strong> Server-side ad insertion errors. </li>
-    </ul>
-
-    <h3>Data view</h3>
-    <ul>
-      <li><strong>Request code:</strong> The error code returned from the ad provider.</li>
-      <li><strong># of requests:</strong> The number of requests associated with the error code.</li>
-    </ul>
-  </section>
+    <p>For details about the column data, see the <a href="#Glossary">Glossary</a></p>
+  </section> -->
 
   <section class="bcls-section">
-    <h2 id="Ad_Provider_Performance">Ad Provider Performance</h2>
-    <p>Ad Provider Performance metrics shows the number of successful ad requests and the number of errors associated with each ad provider. This allows you to quickly see the percentage of ad errors for each provider.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="QoE analytics" src="/assets/images/s-analytics-img/module/ad-analytics/ad-provider-performance.webp" />
-      <figcaption class="bcls-caption--image">Ad Provider Performance</figcaption> 
-    </figure>
-    <h3>Dimensions</h3>
-    <p>Ad provider performance collects, aggregates, and filters the following metrics:</p>
-    <ul>
-      <li><strong>Time range:</strong> Time range to filter the data.</li>
-      <li><strong>Ad configurations:</strong> SSAI <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Ad Configuration</a> identifier.</li>
-      <li><strong>Calls:</strong> Number of calls from Brightcove SSAI to Ad Server.</li>
-      <li><strong>Tracker impressions:</strong> Impression tracker.</li>
-      <li><strong>Ad requests:</strong> Ad request tracker.</li>
-      
-    </ul>
-
-    <h3>Data view</h3>
-    <ul>
-      <li><strong>Ad provider:</strong> Your ad provider.</li>
-      <li><strong>Total calls:</strong> Total number of ad request calls.</li>
-      <li><strong>Errors:</strong> Number of ad request errors associated with the ad provider.</li>
-      <li><strong>Success:</strong> Number of successful ad request calls to the ad provider.</li>
-      <li><strong>Percent of total errors:</strong> The ratio of the total number of errors/total number of ad requests</li>
-    </ul>
-   
-   
+    <h2 id="Glossary">Glossary</h2>
+    <h4>B</h4>
+    <p><strong>Bitrate</strong> - The average bitrate reported by the player accross all sessions in a given period</p>
+    <h4>E</h4>
+    <!-- <p><strong>Error count</strong> - Number of the errors that prevent or interrupt playback or that could impact start/resume time </p> -->
+    <p><strong>Error rate</strong> - Number of errors that prevent or interrupt playback or that could impact start/resume time divided by the video views for the selected time interval</p>
+    <h4>P</h4>
+    <p><strong>Play request</strong> - A play request is counted every time the play button is clicked</p>
+    <h4>R</h4>
+    <p><strong>Rebuffering time</strong> - Seconds spent rebuffering per hour of watched video</p>
+    <!-- <p><strong>Rendition switches</strong> - Average number of switches across all sessions</p> -->
+    <h4>S</h4>
+    <p><strong>Stall rate</strong> - Total number of stalls divided by the sum of the watch time</p>
+    <h4>U</h4>
+    <!-- <p><strong>Upscale factor</strong> -  The ratio between player resolution and delivered video resolution when the player viewport is bigger than the delivered resolution</p> -->
+    <p><strong>Upscale time</strong> - The average number of seconds per hour of viewing that is spent in an upscaled state; upscaling occurs when a video rendition is streamed in a lower resolution than the current player size</p>
+    <h4>V</h4>
+    <p><strong>Video resolution</strong> (avg min per hour) - Average minutes watched per hour of viewing, by categories of video resolution (using the height of the video in pixels); weighted by the time watched at that resolution</p>
+    <p><strong>Video start time</strong> - Average time between the play request and the stream start per video view; this time does not include ad pre-roll time; start time looks to describe how much time the viewer had to wait before video started to play</p>
+    <p><strong>Views</strong> - The number of times a video started playing, recorded when the stream is started (does not include rewind or replay); it is not a measure of individual viewers</p>
   </section>
-
-  <section class="bcls-section">
-    <h2 id="Ad_Config_Performance">Ad Config Performance</h2>
-    <p>Ad Config Performance metrics shows the number of successful ad requests and the number of errors associated with each ad configuration. This allows you to quickly see the percentage of ad errors for each configuration.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="QoE analytics" src="/assets/images/s-analytics-img/module/ad-analytics/ad-config-performance.webp" />
-      <figcaption class="bcls-caption--image">Ad Config Performance</figcaption> 
-    </figure>
-    <h3>Dimensions</h3>
-    <p>Ad config performance metrics must be able to collect, aggregate and filter on the following metrics:</p>
-    <ul>
-      <li><strong>Time range:</strong> Time range to filter the data.</li>
-      <li><strong>Ad providers:</strong> The domain of the Ad server.</li>
-      <li><strong>Calls:</strong> Number of calls.</li>
-      <li><strong>Tracker impressions:</strong> Impression tracker.</li>
-      <li><strong>Ad requests:</strong> Ad request tracker.</li>
-    </ul>
-
-    <h3>Data view</h3>
-    <ul>
-      <li><strong>Ad configurations:</strong> A list of your ad configurations being used.</li>
-      <li><strong>Total calls:</strong> Total number of ad request calls.</li>
-      <li><strong>Errors:</strong> Number of ad request errors associated with the ad configuration.</li>
-      <li><strong>Success:</strong> Number of successful ad request calls associated with the ad configuration.</li>
-      <li><strong>Percent of total errors:</strong> The ratio of the total number of errors/total number of ad requests.</li>
-    </ul>
-
-  </section>
-
-  <section class="bcls-section">
-    <h2 id="Glossary_of_terms">Glossary of terms</h2>
-    <p>Here is the glossary of terms for Ad analytics metrics:</p>
-    <h3>Data availability</h3>
-    <p>Data availability for these metrics is as follows:</p>
-    <ul>
-      <li>The data will be retained and available for three years.</li>
-      <!-- <li>The data is available via queryable APIs in CSV or JSON format.</li> -->
-      <li>The data can be exported from the UI based on the filters and aggregations at an export time in CSV format.</li>
-    </ul>
-    <h3>Response time</h3>
-    <p>All the data must be two hours fresh.</p>
-    <h3>Metrics</h3>
-    <p>Ad analytics should be able to collect and report on the following metrics:
-    </p>
-    <ul>
-      <li><strong>Ads scheduled:</strong> Total number of scheduled ads across all the breaks.</li>
-      <li><strong>Ads inserted:</strong>  Number of creatives stitched into a VOD or Live Stream.</li>
-      <li><strong>Ad impressions:</strong> Number of creatives that were played.</li>
-      <li><strong>Ad completion:</strong> Number of creatives watched until completion.</li>
-      <li><strong>Ad impression rate:</strong> Ad Impressions/Ad Scheduled.</li>
-      <li><strong>Last ad view:</strong>  The time of the most recent ad impression.</li>
-    </ul>
-    <h3>Dimensions</h3>
-    <p>Ad Analytics collects, aggregates, and filters the following metrics:</p>
-    <ul>
-      <li><strong>Account:</strong> Account level metrics showing the total across all dimensions.</li>
-      <li><strong>Video:</strong>  Aggregation by video ID.</li>
-      <li><strong>Ad config:</strong> Ad config:</strong> SSAI <a href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Ad Configuration</a> identifier.</li>
-      <li><strong>Ad provider:</strong> The domain of the ad server.</li>
-    </ul>
-      <h3>Time range</h3>
-      <p>Click <strong>DATE</strong> to expand the dropdown menu. Select the time range for your reporting data.</p>
-      <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Time range" src="/assets/images/s-analytics-img/module/qoe/time-period.webp" />
-        <figcaption class="bcls-caption--image">Time range</figcaption> 
-      </figure>
-  </section>
-
-  
 
 </article>
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
