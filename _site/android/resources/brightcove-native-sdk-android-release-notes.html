@@ -1955,7 +1955,34 @@
 
 		<section id="Current_release" class="section">
 			<h2 id="Current_release"><strong>Current release</strong></h2>
-			<h3>Version 8.0.1</h3>
+			<h3>Version 8.1.0</h3>
+
+			<h4>28 March 2023</h4>
+			<p>SDK Changes:</p>
+			<ul>
+				<li>Change the data type of the Analytics <code translate="No">rebuffering_seconds</code> parameter from an integer to a float</li>
+        <li>With the <code translate="No">rebuffering_seconds</code> value changed to a float, the Analytics <code translate="No">rebuffering_count</code> will be incremented for <code translate="No">rebuffering_seconds</code> values of less than one second</li>
+        <li>Fixes an issue where rebuffering at player startup time was reported to Analytics as a player stall</li>
+        <li>Fixes an issue where a player would continue playing automatically after being paused when in a stalled state</li>
+        <li>Adds support for tags in the Video object</li>
+        
+			</ul>	
+      <p>IMA Plugin Changes:</p>
+			<ul>
+        <li>Adds support for SpringServe macros to the IMA Plugin for the Brightcove Native SDK for Android</li>
+			</ul>
+      <p>SSAI Plugin Changes:</p>
+			<ul>
+        <li>Adds Open Measurement (OM) SDK support to the SSAI Plugin for Brightcove Native SDK for Android</li>
+        <li>Fixes post-roll analytic events when the VMAP duration is greater than the video's actual duration</li>
+			</ul>	
+
+		</section>
+
+		<section class="section">
+			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
+      <h3>Version 8.0.1</h3>
 
 			<h4>15 March 2023</h4>
 			<p>SDK Changes:</p>
@@ -1974,11 +2001,6 @@
 			<ul>
 				<li>Adds support for setting custom read and connect timeouts in the <code translate="No">SSAIComponent</code> and <code translate="No">SSAIVideoProcessor</code>.</li>
 			</ul>	
-
-		</section>
-
-		<section class="section">
-			<h2 id="Previous_releases"><strong>Previous releases</strong></h2>
 
       <h3>Version 8.0.0</h3>
 
