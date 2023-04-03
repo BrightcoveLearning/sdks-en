@@ -19,12 +19,13 @@ layout: staging
     <li><a href="https://springserve.com/">SpringServe</a></li>
     <li><a href="https://springserve.atlassian.net/wiki/spaces/SSD/pages/1573158912/Macros">SpringServe macros</a></li>
   </ul>
+  <p>The Brightcove IMA plugin detects SpringServe URLs and attempts to replace/populate supported macros.</p>
 </section>
 
 <section class="bcls-section">
   <h2 id="Requirements">Requirements</h2>
 
-  <p>SpringServe macro support requires the following:</p>
+  <p>SpringServe ad macro support requires the following:</p>
   <ul>
     <li>Brightcove Native SDK for Android v8.1.0 or newer</li>
     <li>Brightcove Native SDK for iOS v6.12.1 or newer</li>
@@ -35,66 +36,33 @@ layout: staging
 <section class="bcls-section">
   <h2 id="Android_implementation">Android implementation</h2>
 
-  <p>The Brightcove Native SDK for Android supports using the OM SDK with server-side ad insertion (SSAI).</p>
-  <h3>Getting started</h3>
-  <p>Follow these steps to enable Open Measurement for Brightcove's SSAI plugin for Android:</p>
-  <ol class="bcls-tasklist">
-    <li>
-      <p>Create a new instance of <code translate="No">OpenMeasurementTracker</code> providing your organization namespace and the <code translate="No">BrightcoveVideoView</code> used for playback.</p>
-      <pre class="line-numbers"><code class="language-java" translate="No">OpenMeasurementTracker omTracker = new OpenMeasurementTracker.Factory(
-    <span class="bcls-input">your partner name</span>, <span class="bcls-input">your partner version</span>, getBaseVideoView()
-).create();
+  <p>The Brightcove Native SDK for Android supports SpringServe macro replacement.</p>
+  <p>The <code translate="No">GoogleIMAComponent</code> class has a new method to set up replaceable macros.</p>
+  <pre class="line-numbers"><code class="language-java" translate="No">setSpringServeMacrosMap(HashMap&lt;String, Object&gt; springServeMacros)
 </code></pre>
-      <aside class="bcls-aside bcls-aside--information">The partner name and version are name-spaced to an organization upon IAB partnership.</aside>
-    </li>
-    <li>
-      <p>Start the <code translate="No">OpenMeasurementTracker</code> before playback begins.</p>
-      <pre class="line-numbers"><code class="language-java" translate="No">omTracker.start();
-</code></pre>
-    </li>
-    <li>
-      <p>Stop the <code translate="No">OpenMeasurementTracker</code> when playback ends or when the activity is destroyed.</p>
-      <pre class="line-numbers"><code class="language-java" translate="No">omTracker.stop();
-</code></pre>
-    </li>
-  </ol>
+  <h3>Supported automatic replacement macro list</h3>
+  <div style="overflow-x:auto;">
+    <table class="bcls-table">
+            <caption class="bcls-caption--table">Supported ad macros</caption>
+            <thead class="bcls-table__head">
+                <tr>
+                    <th>SpringServe macro</th>   
+                    <th>URL parameter</th> 
+                    <th>Description</th>                     
+                </tr>
+            </thead>
+            <tbody class="bcls-table__body">
+                <tr>
+                  <td><code translate="No">{% raw %}{{WIDTH}}{% endraw %}</code></td>     
+                  <td><code translate="No">w=</code></td> 
+                  <td>Player width</td>                 
+                </tr>            
+            </tbody>
+        </table>
+    </div>
 
-  <h3>Advanced usage</h3>
 
-  <h4>Friendly Obstructions</h4>
-  <p>If you have a view that is part of playback and should be considered a friendly obstruction, you can register it with Open Measurement. To do so, add the view, its purpose, and a message describing the view to the <code translate="No">OpenMeasurementTracker</code>. For example:</p>
-  <pre class="line-numbers"><code class="language-java" translate="No">omTracker.addFriendlyObstruction(
-    pauseButton,
-    FriendlyObstructionPurpose.VIDEO_CONTROLS,
-    &quot;A pause button for the video player&quot;
-);
-</code></pre>
 
-  <h4>Open Measurement Listener</h4>
-  <p>You can add an <code translate="No">OpenMeasurementTracker.Listener</code> to receive callbacks when ad events are triggered and when the tracker starts and stops for an ad session.</p>
-  <pre class="line-numbers"><code class="language-java" translate="No">omTracker.addListener(new OpenMeasurementTracker.Listener() {
-  @Override
-  public void onEvent(AdEventType event) {
-
-  }
-
-  @Override
-  public void onStartTracking() {
-
-  }
-
-  @Override
-  public void onStoppedTracking() {
-
-  }
-}); 
-</code></pre>
-
-  <h3>Notes</h3>
-  <p>The following notes apply to the Open Measurement integration:</p>
-  <ul>
-    <li>The OM integration expects VAST data to contain <code translate="No">AdVerifications</code> elements. If these elements are not present for an inline ad, the ad will still play, but the OM session client will not record any ad events.</li>
-  </ul>
 
 </section>
 
