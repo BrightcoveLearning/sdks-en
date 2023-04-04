@@ -3,7 +3,6 @@ title: 'SpringServe Ad Macros with the Native SDKs'
 description: In this topic, you will learn how to take advantage of ad monetization when using client-side ad insertion (CSAI) with the Brightcove Native SDKs.
 parent: Features
 grandparent: Home
-layout: staging
 ---
 
 <h1>{{ page.title }}</h1>
@@ -36,7 +35,7 @@ layout: staging
 <section class="bcls-section">
   <h2 id="Android_implementation">Android implementation</h2>
 
-  <p>The Brightcove Native SDK for Android supports SpringServe macro replacement.</p>
+  <p>The Brightcove Native SDK for Android's IMA plugin supports SpringServe macro replacement.</p>
   <p>The <code translate="No">GoogleIMAComponent</code> class has a new method to set up replaceable macros.</p>
   <pre class="line-numbers"><code class="language-java" translate="No">setSpringServeMacrosMap(HashMap&lt;String, Object&gt; springServeMacros)
 </code></pre>
@@ -165,7 +164,7 @@ layout: staging
 
 <section class="bcls-section">
   <h2 id="iOS_implementation">iOS implementation</h2>
-  <p>The Brightcove Native SDK for iOS supports SpringServe macro replacement. The SDK provides a <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L206">new delegate method</a> to allow you to provide values that are not auto-filled, or to override an auto-filled value.</p>
+  <p>The Brightcove Native SDK for iOS's IMA plugin supports SpringServe macro replacement. The SDK provides a <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L206">new delegate method</a> to allow you to provide values that are not auto-filled, or to override an auto-filled value.</p>
   <pre class="line-numbers"><code class="language-objectivec" translate="No">- (NSDictionary *)valuesForSpringServeMacroReplacement;</code></pre>
 
   <p>The list of auto-filled macros are found in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVSpringServeKeys.h">BCOVSpringServeKeys.h</a> file.</p>
