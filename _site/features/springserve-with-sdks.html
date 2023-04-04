@@ -2099,10 +2099,44 @@
             </tbody>
         </table>
     </div>
+</section>
 
+<section class="bcls-section">
+  <h2 id="iOS_implementation">iOS implementation</h2>
+  <p>The Brightcove Native SDK for iOS supports SpringServe macro replacement. The SDK provides a <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVIMAComponent.h#L206">new delegate method</a> to allow you to provide values that are not auto-filled, or to override an auto-filled value.</p>
+  <pre class="line-numbers"><code class="language-objectivec" translate="No">- (NSDictionary *)valuesForSpringServeMacroReplacement;</code></pre>
 
+  <p>The list of auto-filled macros are found in the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ima/blob/master/ios/BrightcoveIMA.framework/Headers/BCOVSpringServeKeys.h">BCOVSpringServeKeys.h</a> file.</p>
+  <pre class="line-numbers"><code class="language-objectivec" translate="No">//
+// BCOVSpringServeKeys.h
+// BrightcoveIMA
+//
+// Copyright (c) 2023 Brightcove, Inc. All rights reserved.
+// License: https://accounts.brightcove.com/en/terms-and-conditions
+//
 
+#import &lt;Foundation/Foundation.h&gt;
 
+extern NSString * _Nonnull const kBCOVSpringServeMacroWidth;
+extern NSString * _Nonnull const kBCOVSpringServeMacroHeight;
+extern NSString * _Nonnull const kBCOVSpringServeMacroAppBundle;
+extern NSString * _Nonnull const kBCOVSpringServeMacroAppName;
+extern NSString * _Nonnull const kBCOVSpringServeMacroCacheBuster;
+extern NSString * _Nonnull const kBCOVSpringServeMacroDescription;
+extern NSString * _Nonnull const kBCOVSpringServeMacroDuration;
+extern NSString * _Nonnull const kBCOVSpringServeMacroAutoPlay;
+extern NSString * _Nonnull const kBCOVSpringServeMacroMute;
+extern NSString * _Nonnull const kBCOVSpringServeMacroKeywords;
+extern NSString * _Nonnull const kBCOVSpringServeMacroMediaID;
+extern NSString * _Nonnull const kBCOVSpringServeMacroEncodedVideoTitle;
+extern NSString * _Nonnull const kBCOVSpringServeMacroVideoID;
+extern NSString * _Nonnull const kBCOVSpringServeMacroContentID;
+extern NSString * _Nonnull const kBCOVSpringServeMacroContentTitle;
+extern NSString * _Nonnull const kBCOVSpringServeMacroContentLivestream;
+extern NSString * _Nonnull const kBCOVSpringServeMacroLanguage;</code></pre>
+  
+
+  
 </section>
 
 <!-- <section class="bcls-section">
