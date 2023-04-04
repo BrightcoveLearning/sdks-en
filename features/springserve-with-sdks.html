@@ -41,6 +41,7 @@ layout: staging
   <pre class="line-numbers"><code class="language-java" translate="No">setSpringServeMacrosMap(HashMap&lt;String, Object&gt; springServeMacros)
 </code></pre>
   <h3>Supported automatic replacement macro list</h3>
+  <p>The following ad macros will be automatically replaced with values as specified.</p>
   <div style="overflow-x:auto;">
     <table class="bcls-table">
             <caption class="bcls-caption--table">Supported ad macros</caption>
@@ -90,12 +91,25 @@ layout: staging
                 <tr>
                   <td><code translate="No">{% raw %}{{AUTOPLAY}}{% endraw %}</code></td>     
                   <td><code translate="No">ap=</code></td> 
-                  <td>1 if the player is set to autoplay, 0 if not. (Since this is managed at the app level, if this value isn't provided then it will be automatically set to 0)</td>                 
+                  <td>
+                    Values:
+                    <ul>
+                      <li><code translate="No">0</code></code> - If player is NOT set to autoplay</li>
+                      <li><code translate="No">1</code></code> - If player is set to autoplay</li>
+                    </ul>
+                    <p>Since this is managed at the app level, if this value isn't provided then it will be automatically set to 0</p>
+                  </td>                 
                 </tr>
                 <tr>
                   <td><code translate="No">{% raw %}{{MUTE}}{% endraw %}</code></td>     
-                  <td><code translate="No"mute=</code></td> 
-                  <td>1 if the player is muted, 0 if not</td>                 
+                  <td><code translate="No">mute=</code></td> 
+                  <td>
+                    Values:
+                    <ul>
+                      <li><code translate="No">0</code></code> - If player is NOT muted</li>
+                      <li><code translate="No">1</code></code> - If player is muted</li>
+                    </ul>
+                  </td>                 
                 </tr>
                 <tr>
                   <td><code translate="No">{% raw %}{{KEYWORDS}}{% endraw %}</code></td>     
@@ -130,7 +144,13 @@ layout: staging
                 <tr>
                   <td><code translate="No">{% raw %}{{CONTENT_LIVESTREAM}}{% endraw %}</code></td>     
                   <td><code translate="No">content_livestream=</code></td> 
-                  <td>1 if the content is a live stream, 0 if not</td>                 
+                  <td>
+                    Values:
+                    <ul>
+                      <li><code translate="No">0</code></code> - If content is NOT a live stream</li>
+                      <li><code translate="No">1</code></code> - If content is a live stream</li>
+                    </ul>
+                  </td>                 
                 </tr>
                 <tr>
                   <td><code translate="No">{% raw %}{{LANGUAGE}}{% endraw %}</code></td>     
