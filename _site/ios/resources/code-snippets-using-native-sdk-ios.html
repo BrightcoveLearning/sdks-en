@@ -2033,6 +2033,7 @@
       <li><a href="#Setting_audio_behavior">Setting audio behavior</a></li>
       <li><a href="#Setting_the_playback_rate">Setting the playback rate</a></li>
       <li><a href="#Setting_VR_Goggles_mode_for_360_videos">Setting VR Goggles mode for 360° videos</a></li>
+      <li><a href="#Start_playback_when_in_view">Start playback when in view</a></li>
     </ul>
 </details>
 <br/>
@@ -3144,6 +3145,57 @@
 <p>&nbsp;</p>
 <aside class="bcls-aside bcls-aside--information">Note that you need to set the controller's projection style in the <code translate="No">didAdvanceToPlaybackSession </code> delegate method.</aside>
 </section>
+
+<section class="bcls-section">
+  <h2 id="Start_playback_when_in_view">Start playback when in view</h2>
+  
+  <p>This example will help you to create code to start video playback when the player is in-view and stop playback when it's out-view.</p>
+  <p>The code below returns a float value for the percentage of the player view that is visible. You can decide when to take action. For example, continue playback when the view is 50% or more visible. Pause playback when the view is under 50% visible. Use an NSTimer or something similar to check the view's visibility over time.</p>
+  
+  <!-- tabs -->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-view-objc" data-bs-toggle="tab" data-bs-target="#nav-view-objc" type="button" role="tab" aria-controls="nav-view-objc" aria-selected="true">Obj-C</button>
+      <!-- <button class="nav-link" id="tab-view-swift" data-bs-toggle="tab" data-bs-target="#nav-view-swift" type="button" role="tab" aria-controls="nav-view-swift" aria-selected="false">Swift</button> -->
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-view-objc" role="tabpanel" aria-labelledby="tab-view-objc" tabindex="0">
+      <pre>
+        <code class="language-objectivec" translate="No">+ (CGFloat)visiblePercentageForView:(UIView *)view
+          {
+              if (!view.window)
+              {
+                  return 0.0;
+              }
+              CGRect frame = view.frame;
+              if (frame.origin.x == 0 &amp;&amp; frame.origin.y == 0 &amp;&amp; view.superview &amp;&amp; ![view.superview isKindOfClass:UIWindow.class])
+              {
+                  return [BCOVAdInsightsManager visiblePercentageForView:view.superview];
+              }
+              CGRect intersectionRect = CGRectIntersection(view.frame, view.window.bounds);
+              CGFloat visibleArea = CGRectGetWidth(intersectionRect) * CGRectGetHeight(intersectionRect);
+              CGFloat viewArea = CGRectGetWidth(view.frame) * CGRectGetHeight(view.frame);
+              CGFloat visibility = visibleArea / viewArea;
+              return visibility;
+          }</code></pre>
+    </div>
+    <!-- <div class="tab-pane fade" id="nav-view-swift" role="tabpanel" aria-labelledby="tab-view-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+            if let viewProjection: BCOVVideo360ViewProjection = controller.viewProjection.copy() as? BCOVVideo360ViewProjection {
+                viewProjection.projectionStyle = BCOVVideo360ProjectionStyle.vrGoggles
+                playbackController.viewProjection = viewProjection
+            }
+        }</code></pre>
+    </div> -->
+  </div>
+  <!-- end tabs -->
+  
+  <!-- <p>&nbsp;</p> -->
+  
+  </section>
+
 <!-- <section class="bcls-section">
 <h2 id="VoiceOver_support">VoiceOver support</h2>
 
