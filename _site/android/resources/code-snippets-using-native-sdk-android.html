@@ -2035,7 +2035,8 @@
       <li><a href="#Setting_the_peak_bitrate">Setting the peak bitrate</a></li>
       <li><a href="#Setting_the_playback_rate">Setting the playback rate</a></li>
       <li><a href="#Setting_VR_Goggles_mode_for_360_videos">Setting VR Goggles mode for 360° videos</a></li>
-      <li><a href="#Starting_playback_in_the_middle_of_a_video">Starting playback in the middle of a video</a></li>
+      <li><a href="#Start_playback_in_the_middle_of_a_video">Start playback in the middle of a video</a></li>
+      <li><a href="#Start_playback_when_in_view">Start playback when in view</a></li>
       <li><a href="#Swapping_videos">Swapping videos</a></li>
     </ul>
 </details>
@@ -2845,8 +2846,46 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 </section>
 
 <section class="bcls-section">
+<h2 id="Start_playback_in_the_middle_of_a_video">Start playback in the middle of a video</h2>
+
+<p>Sometimes, you may need to start playback from somewhere in the middle of the video. To do this, you can call <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)"><code translate="No">BrightCoveVideoView.seekTo()</code></a> before starting playback.</p>
+
+<pre class="line-numbers">
+<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+  @Override
+  public void onVideo(Video video) {
+    Log.v(TAG, "onVideo: video = " + video);
+
+    brightcoveVideoView.getEventEmitter().on(EventType.DID_SET_VIDEO, new EventListener() {
+    @Override
+      public void processEvent(Event event) {
+      brightcoveVideoView.seekTo(60000);
+      brightcoveVideoView.start();
+      }
+    });
+  brightcoveVideoView.add(video);
+  brightcoveVideoView.pause();
+  }
+});</a></code></pre>
+</section>
+
+<section class="bcls-section">
   <h2 id="Start_playback_when_in_view">Start playback when in view</h2>
-  
+  <p>This example will help you to create code to start video playback when the player is in-view and stop playback when it's out-view.</p>
+  <h3>Single videos</h3>
+  <p>The code below shows how to determine if the view is onScreen, offScreen, or partiallyVisible. For more details, see this <a href="https://devanshuchandra.medium.com/android-how-to-determine-if-a-view-is-onscreen-offscreen-or-partially-offscreen-partially-visible-642e2cca1dbd">Android blog post</a>.</p>
+
+  <pre class="line-numbers">
+    <code class="language-java" translate="No">Rect globalVisibilityRectangle = new Rect(); brightcoveVideoView.getGlobalVisibleRect(globalVisibilityRectangle);
+  int visibleHeight = globalVisibilityRectangle.right - globalVisibilityRectangle.left;
+  int visibleWidth = globalVisibilityRectangle.bottom - globalVisibilityRectangle.top;
+  int actualHeight = brightcoveVideoView.getMeasuredHeight();
+  int actualWidth = brightcoveVideoView.getMeasuredWidth();
+  //if video is on screen: visibleHeight == actualHeight
+  //if video is partially Visible: visibleHeight &lt; actualHeight &amp;&amp; visibleHeight &gt; 0
+  //if video is off screen: visibleHeight &lt; actualHeight &amp;&amp; visibleHeight &lt;= 0</code></pre>
+
+  <h3>Playlist</h3>
   <p>With a playlist of videos, you will have a player view for each video in the playlist. When a user scrolls a player some percentage into view, that player will start video playback. Players scrolled out of view will stop playing.</p>
   <p>For a code sample for managing the video views, see the <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-exoplayer/VideoListSampleApp/src/main/java/com/brightcove/recyclervideoview/AdapterView.java"> AdapterView in the Android SDK VideoListSampleApp</a>.</p>
 
@@ -2971,29 +3010,6 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
    
   </section>
 
-<section class="bcls-section">
-<h2 id="Starting_playback_in_the_middle_of_a_video">Starting playback in the middle of a video</h2>
-
-<p>Sometimes, you may need to start playback from somewhere in the middle of the video. To do this, you can call <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)"><code translate="No">BrightCoveVideoView.seekTo()</code></a> before starting playback.</p>
-
-<pre class="line-numbers">
-<code class="language-java" translate="No"><a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#seekTo(int)">catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
-  @Override
-  public void onVideo(Video video) {
-    Log.v(TAG, "onVideo: video = " + video);
-
-    brightcoveVideoView.getEventEmitter().on(EventType.DID_SET_VIDEO, new EventListener() {
-    @Override
-      public void processEvent(Event event) {
-      brightcoveVideoView.seekTo(60000);
-      brightcoveVideoView.start();
-      }
-    });
-  brightcoveVideoView.add(video);
-  brightcoveVideoView.pause();
-  }
-});</a></code></pre>
-</section>
 <!--
 											<div id="singleline" class="section">
 													<h2>Showing single line controls</h2>
@@ -3012,7 +3028,7 @@ android:theme="@style/MyCustomCaptionSettingsTheme"/&gt;</a></code></pre>
 
 <p>This example shows one approach for swapping videos in the player.</p>
 
-<h3>Using single videos</h3>
+<h3>Single videos</h3>
 
 <p>Since the <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method is asynchronous when unloading the current video, you need to wait before adding a new video to the player. Here are two options.</p>
 
@@ -3050,7 +3066,7 @@ catalog.findVideoByID("123456789", new VideoListener() {
 	</li>
 </ul>
 
-<h3>Using a playlist</h3>
+<h3>Playlist</h3>
 
 <p>If you are working with a playlist, keep in mind that calling the <a href="/android/reference/javadoc/com/brightcove/player/view/BaseVideoView.html#clear()"><code translate="No">clear()</code></a> method removes all the elements of the playlist. So, you may get an <code translate="No">IndexOutOfBounds</code> exception when trying to jump to the first video in the playlist.</p>
 
