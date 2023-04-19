@@ -1977,19 +1977,24 @@
     <li><a href="#Requirements">Requirements</a></li>
     <li><a href="#Supported_devices">Supported devices</a></li>
     <li><a href="#Supported_platforms">Supported platforms</a></li>
+    <li><a href="#Installation">Installation</a></li>
+    <li><a href="#Sample_apps">Sample apps</a></li>
+    <li><a href="#Quick_start">Quick start</a></li>
   </ol>
 
 </section>
 
 <section class="bcls-section">
   <h2 id="Requirements">Requirements</h2>
+  <p><a href="https://gradle.org/getting-started-android-build/">Gradle</a> is the foundation of the Android SDK build system, and is integrated with Android Studio.</p>
+  <p>The Native SDK for Android Maven artifacts (jar files) are available in the Brightcove Maven Repo - <a href="https://repo.brightcove.com/releases">https://repo.brightcove.com/releases</a></p>
   <p>Starting with version 6.10.0, Brightcove's Native SDK for Android uses the Jetpack (androidx.*) libraries instead of the original support libraries. This change is required for Exoplayer version 2.10.0 and above. To use Jetpack, your apps must meet the following requirements:</p>
 	<ul>
 		<li>Migrate to Jetpack (AndroidX) dependencies</li>
 		<li>Android Gradle Tools 3.2.0</li>
 		<li>Gradle version 4.6</li>
 	</ul>
-  <p>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is now 19.</p>
+  <p>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is 19.</p>
   <p>For ExoPlayer v2.17.1, you need to enable Java 11 support.
 </section>
 
@@ -2025,6 +2030,91 @@
 </section>
 
 <section class="bcls-section">
+  <h2 id="Installation">Installation</h2>
+  <p>There are two ways to use the Brightcove Native SDK for Android.</p>
+
+  <h3 id="Use_the_gradle_build_system">Use the gradle build system</h3>
+
+  <p>The easiest way to add the Brightcove SDK and its dependencies is to use the gradle build system in Android Studio.</p>
+
+  <p>Using a dynamic dependency version with the '+' character is discouraged in the Gradle community. Using dynamic versioning brings a significant risk to your build process, as newer APIs may become unexpectedly incompatible with your app's source code.</p>
+
+  <aside class="bcls-aside bcls-aside--information">
+  <p>Brightcove recommends always using the latest version with a specific version string. For example, review the <strong>build.gradle</strong> and <strong>gradle.properties</strong> files in the <a href="https://github.com/BrightcoveOS/android-player-samples">android-player-samples</a> project.</p>
+  </aside>
+
+  <h3 id="Manually_download_the_SDK">Manually download the SDK</h3>
+
+  <p>Another alternative is to manually download the Native SDK for Android.</p>
+
+  <ol class="bcls-tasklist__restart">
+    <li>Simply download the SDK and unzip it. You will find a number of folders.</li>
+    <li>Inside the <strong>sdk</strong> folder, you will find the core SDK with the name <strong>android-sdk-x.x.x.aar</strong>, where <strong>x.x.x</strong> is the latest SDK version number.</li>
+    <li>Add the <strong>android-sdk-x.x.x.aar</strong> file to your library, along with any plugin files that you may need.</li>
+  </ol>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Sample_apps">Sample apps</h2>
+  <p>Brightcove provides complete code samples as well as code snippets to help with your development.</p>
+  <ul>
+    <li><a href="https://github.com/BrightcoveOS/android-player-samples">Android player samples</a></li>
+    <li><a href="/android/resources/code-snippets-using-native-sdk-android.html">Code Snippets using the Native SDK for Android</a></li>
+  </ul>
+  <p>If you are new to the sample apps, see the <a href="/getting-started/running-sample-apps-native-sdk-android.html">Running Sample Apps for the Native SDK for Android</a> document.</p>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Quick_start">Quick start</h2>
+  <p>Retrieve a video from your Video Cloud library and play it in the Brightcove player. For complete steps, see the <a href="/android/basics/step-step-simple-video-app-using-native-sdk-android.html">Step-by-Step: Simple Video App using the Native SDK for Android</a> document.</p>
+  <p>Here's an example of the <code translate="No">MainActivity</code> class:</p>
+  <pre class="line-numbers" data-start="15">
+  <code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
+    
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    setContentView(R.layout.activity_main);
+    // Create the video view
+    brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
+
+    super.onCreate(savedInstanceState);
+
+    // Get the event emitter from the SDK
+    EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
+
+    // Create a catalog request to fetch a video
+    String account = getString(R.string.account);
+    Catalog catalog = new Catalog.Builder(eventEmitter, account)
+      .setBaseURL(Catalog.DEFAULT_EDGE_BASE_URL)
+      .setPolicy(getString(R.string.policy))
+      .build();
+
+    // Get the video by ID
+    catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+
+      @Override
+      public void onVideo(Video video) {
+        // Add video to the view
+        brightcoveVideoView.add(video);
+        // Start video playback
+        brightcoveVideoView.start();
+      }
+    });
+  }
+}</code></pre>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section class="bcls-section">
 <h2 id="Customizing_controls_for_Android_TV">Customizing controls for Android TV</h2>
 
 <p>You can add buttons to the control bar for either devices or Android TV. The steps below walk you through adding a fullscreen button to the control bar for Android TV:</p>
@@ -2078,7 +2168,7 @@ android:layout_gravity="bottom"
 	</figure>
 	</li>
 </ol>
-</section>
+</section> -->
 
 
 </article>
