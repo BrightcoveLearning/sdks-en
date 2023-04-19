@@ -1,0 +1,124 @@
+---
+title: 'Summary Reference: Native SDK for Android'
+description: This summary provides a quick view of the features supported by the Native SDK for Android.
+parent: Resources
+grandparent: Android Development
+layout: staging
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+  <h2 id="Table_of_contents">Table of contents</h2>
+  <p>For more details, see the <a href="/android/basics/overview-brightcove-player-sdk-android.html">Overview: Brightcove Native SDK for Android</a></p>
+  <ol>
+    <li><a href="#Requirements">Requirements</a></li>
+    <li><a href="#Supported_devices">Supported devices</a></li>
+    <li><a href="#Supported_platforms">Supported platforms</a></li>
+  </ol>
+
+</section>
+
+<section class="bcls-section">
+  <h2 id="Requirements">Requirements</h2>
+  <p>Starting with version 6.10.0, Brightcove's Native SDK for Android uses the Jetpack (androidx.*) libraries instead of the original support libraries. This change is required for Exoplayer version 2.10.0 and above. To use Jetpack, your apps must meet the following requirements:</p>
+	<ul>
+		<li>Migrate to Jetpack (AndroidX) dependencies</li>
+		<li>Android Gradle Tools 3.2.0</li>
+		<li>Gradle version 4.6</li>
+	</ul>
+  <p>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is now 19.</p>
+  <p>For ExoPlayer v2.17.1, you need to enable Java 11 support.
+</section>
+
+<section class="bcls-section">
+  <h2 id="Supported_devices">Supported devices</h2>
+  <p>The Native SDK for Android offers support for the following Android-based set top boxes:</p>
+  <ul>
+    <li>Android TV</li>
+    <li>Fire TV (FireOS 5.0+ devices)</li>
+  </ul>
+</section>
+
+<section class="bcls-section">
+  <h2 id="Supported_platforms">Supported platforms</h2>
+  <p>Brightcove provides active support for the latest Android SDK on the following Android versions:</p>
+
+  <ul>
+    <!-- <li>13.0</li> -->
+    <li>12.0</li>
+    <li>11.0</li>
+    <li>10.0</li>
+    <li>9.0</li>
+    <li>8.0, 8.1</li>
+    <li>7.0, 7.1</li>
+    <li>6.0</li>
+  </ul>
+
+  <p>Brightcove provides passive support for the following Android versions:</p>
+
+  <ul><!-- <li>Currently, there is no Android OS in passive support</li> -->
+    <li>5.0, 5.1</li>
+  </ul>
+</section>
+
+<section class="bcls-section">
+<h2 id="Customizing_controls_for_Android_TV">Customizing controls for Android TV</h2>
+
+<p>You can add buttons to the control bar for either devices or Android TV. The steps below walk you through adding a fullscreen button to the control bar for Android TV:</p>
+
+<ol class="bcls-tasklist-restart">
+	<li>Open the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-player-controls/CustomizedControlsSampleApp">Customized Controls</a> sample app. We'll use this as a starting point. Review the sample app's <a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-player-controls/CustomizedControlsSampleApp/README.md">README</a> file for details about customizing player controls.</li>
+	<li>Open the <strong>res/layout/land/my_media_controller.xml</strong> file in Android Studio.</li>
+	<li>Copy the <code translate="No">Button</code> element for the <code translate="No">full_screen</code> button. The code should look similar to this:
+	<pre class="line-numbers">
+<code class="language-java" translate="No"><a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-player-controls/CustomizedControlsSampleApp/src/main/res/layout-land/my_media_controller.xml">&lt;Button
+style="@style/BorderlessButton"
+android:id="@id/full_screen"
+android:padding="4dp"
+android:layout_gravity="center_vertical"
+android:layout_height="wrap_content"
+android:layout_width="wrap_content"
+android:visibility="visible"
+android:text="@string/brightcove_controls_enter_full_screen"/&gt;</a></code></pre>
+	</li>
+	<li>Open the <strong>res/layout/my_tv_media_controller.xml</strong> file in Android Studio.</li>
+	<li>Paste the copied <code translate="No">Button</code> element into this layout file. The position of the elements determines their position in the control bar.</li>
+	<li>Scroll to the top of the <strong>res/layout/my_tv_media_controller.xml</strong> file. Make sure the style property is set to <code translate="No">@style/BrightcoveControlBar.TV.Custom</code>. The code should look like this:
+	<pre class="line-numbers">
+<code class="language-java" translate="No">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;com.brightcove.player.mediacontroller.BrightcoveControlBar
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:bmc="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:ignore="Overdraw, InconsistentLayout"
+android:id="@+id/brightcove_control_bar"
+android:background="@color/bmc_background"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="8dp"
+
+android:orientation="horizontal"
+android:layout_gravity="bottom"
+<span class="bcls-highlight">    style="@style/BrightcoveControlBar.TV.Custom"&gt;</span></code></pre>
+	</li>
+	<li>Open the <strong>res/values/styles.xml</strong> file in Android Studio.</li>
+	<li>To the <code translate="No">style</code> element with a <code translate="No">name</code> value of <code translate="No">BrightcoveControlBar.TV.Custom</code>, add an <code translate="No">item</code> element for the fullscreen button and set it to <code translate="No">true</code> to display it.
+	<pre class="line-numbers">
+<code class="language-java" translate="No"><a href="https://github.com/BrightcoveOS/android-player-samples/blob/master/brightcove-player-controls/CustomizedControlsSampleApp/src/main/res/values/styles.xml">&lt;style name="BrightcoveControlBar.TV.Custom"&gt;
+&lt;item name="brightcove_vr_mode"&gt;false&lt;/item&gt;
+<span class="bcls-highlight">  &lt;item name="brightcove_full_screen"&gt;true&lt;/item&gt;</span>
+&lt;/style&gt;</a></code></pre>
+	</li>
+	<li>That's it. Run the sample app on an Android TV physical or virtual device. You should see the fullscreen button in the control bar.
+	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Fullscreen button" src="/assets/images/android/snippets/android_tv_fullscreen.png" />
+	<figcaption class="bcls-caption--image">Fullscreen button</figcaption>
+	</figure>
+	</li>
+</ol>
+</section>
+
+
+</article>
