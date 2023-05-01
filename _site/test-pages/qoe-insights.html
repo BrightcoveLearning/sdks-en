@@ -2025,13 +2025,24 @@
 
   <section class="bcls-section">
     <h2 id="Quality_Score">Quality Score</h2>
-    <p>The error rate is the number of errors reported by the player divided by the number of play requests.</p>
-    <p>Here we focus on the errors that prevent playback since some errors occur in the background without affecting the viewer experience. Brightcove Player reports errors that prevent video playback, but some of these errors happen before playback begins. Low error rates mean that viewers can watch their selected content.</p>
+    <p>The Quality Score is a quick way to view customer engagement. The score is based on correlations between video playback and viewer dropoff. The colors indicate the following:</p>
+    <ul>
+      <li><strong>Green</strong> - Everything looks good</li>
+      <li><strong>Yellow</strong> - Areas to watch</li>
+      <li><strong>Red</strong> - Action may be taken to improve</li>
+    </ul>
+
     <!-- <aside class="bcls-aside bcls-aside--information">Error rate cannot be broken down by Stream type.</aside> -->
-    <p>This example shows the top 5 devices by view count, and the account level.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Quality score" src="/assets/images/s-analytics-img/module/qoe-insights/quality-score-detail.webp" />
       <figcaption class="bcls-caption--image">Quality score</figcaption> 
     </figure>
+
+    <p>Metrics are weighted to calculate the Quality Score:</p>
+    <pre><code class="language-bash" translate="No">Quality Score = Video start time / 50
+              + Rebuffering per min / 30
+              + Upscale duration / 20
+              - Percentage error rate
+    </code></pre>
   </section>
 
   <!-- <section class="bcls-section">
