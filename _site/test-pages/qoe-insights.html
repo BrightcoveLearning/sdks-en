@@ -2097,47 +2097,40 @@
     <p>Another way to look at the data is to group by the selected metric.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Group by metric" src="/assets/images/s-analytics-img/module/qoe-insights/group-by-metric.webp" />
     </figure>
-
-  </section>
-
-  <!-- <section class="bcls-section">
-    <h2 id="Stall_rate">Stall rate</h2>
-    <p>The stall rate is the total number of stalls divided by the total number of hours streamed.</p>
-    <p>We focus on actual video stalls instead of all rebuffering events because rebuffering may or may not impact playback, depending on the platform. Stalls affect the viewer experience, including single stalls of significant length or frequent stalls of varying lengths. Low stall rates provide smoother playback and a better viewer experience.</p>
-    <p>This example shows the top 5 devices by view count, and the account level.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stall rate" src="/assets/images/s-analytics-img/module/qoe/stall-rate.webp" />
-      <figcaption class="bcls-caption--image">Stall rate</figcaption> 
-    </figure>
   </section>
 
   <section class="bcls-section">
-    <h2 id="Upscale_time">Upscale time</h2>
-    <p>The upscale time is the average number of seconds per hour of viewing that is spent in an upscaled state (seconds per hour).</p>
-    <p>Upscaling occurs when a video rendition is streamed in a lower resolution than the current player size. Upscaling can result in fuzziness or video pixelation. One area where upscaling is common is when content is streamed to a 4K TV. In this case, the stream may be available at a high resolution but not encoded at 4k. While technically, this is upscaling, most viewers will not notice. Low upscaling time is associated with smooth, crisp video playback.</p>
-    <p>This example shows the top 5 countries by view count, and the account level.</p>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Upscale time" src="/assets/images/s-analytics-img/module/qoe/upscale-time.webp" />
-      <figcaption class="bcls-caption--image">Upscale time</figcaption> 
+    <h2 id="Completion_Rate">Completion Rate</h2>
+    <p>The Completion Rate charts show what happens over time to viewers once they are watching a video. When video start time is high, most viewers will drop off.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Completion Rate" src="/assets/images/s-analytics-img/module/qoe-insights/completion-rate.webp" />
+      <figcaption class="bcls-caption--image">Completion Rate</figcaption> 
     </figure>
-  </section>
-
-  <section class="bcls-section">
-    <h2 id="Summary table">Summary table</h2>
-    <p>The summary table makes it easy to explore and identify anomalies.</p>
-    <p>The date range and dimensions that you set for the page, also applies to the data in the summary table. For example, if you select the <strong>Device</strong> dimension, you will see a <strong>Summary by Device</strong>.</p>
-    <h3>Summary by Device</h3>
-    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Summary by Device" src="/assets/images/s-analytics-img/module/qoe/summary-by-device.webp" />
-      <figcaption class="bcls-caption--image">Summary by Device</figcaption> 
+    <h3>Dimension</h3>
+    <p>Click <strong>Video start time</strong> to expand the Completion Rate dimension dropdown menu. Select a dimension to change the data displayed.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Video start dimension" src="/assets/images/s-analytics-img/module/qoe-insights/completion-dimension.webp" />
     </figure>
-    <p>Each column is sortable. The default sort order is video views descending.</p>
-    <p>In addition to the key metrics, the summary table includes the following data:</p>
+    <h3>Completion Rate example</h3>
+    <p>With <strong>Rebuffering time</strong> selected, we see that most viewers decide to continue watching within the first 20 percent of the video length.</p>
+    <p>Most viewers (97%) continue watching when the re-buffering time is less than 5 seconds.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Completion Rate example" src="/assets/images/s-analytics-img/module/qoe-insights/completion-rate-example.webp" />
+    </figure>
+    <h3>Interest Phase</h3>
+    <p>The bar graph shows when viewers have the highest risk of dropping off the video. Here we can see that video views drop significantly when the video start time is more than 6 seconds.</p>
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Interest Phase" src="/assets/images/s-analytics-img/module/qoe-insights/interest-phase.webp" />
+    </figure>
+    <h3>Completion details</h3>
+    <p>The completion details allow you to dig into what is happening within a metric time period. This example shows the following:</p>
     <ul>
-      <li>View count</li>
-      <li>Video resolution breakdown</li>
-      <li>Rebuffering time</li>
-      <li>Avg Bitrate</li>
+      <li>When the re-buffer rate is between 1 and 5 minutes, only 14.1% of viewers watch at least 75% of the video length (considered complete)</li>
+      <li>There are 76.6K total views</li>
+      <li>Average error rate is 6.9%</li>
+      <li>Average stall rate is 12.5/hr</li>
+      <li>Upscale time is 3.7min/hr</li>
+      <li>Top views by country, device, and content duration</li>
     </ul>
-    <p>For details about the column data, see the <a href="#Glossary">Glossary</a> below.</p>
-  </section> -->
+    <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Completion details" src="/assets/images/s-analytics-img/module/qoe-insights/completion-details.webp" />
+    </figure>
+  </section>
 
   <section class="bcls-section">
     <h2 id="Glossary">Glossary</h2>
