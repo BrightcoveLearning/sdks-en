@@ -20,7 +20,11 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Customize_properties">Customize properties</h2>
 
-<p>As of version 6.12.1 of the Brightcove Mobile SDK for Android, you can send custom values to Brightcove Analytics from your app for Destination URI and Source URI.</p>
+<p>As of version 6.12.1 of the Brightcove Mobile SDK for Android, you can send custom values to Brightcove Analytics from your app to Brightcove Analytics:</p>
+<ul>
+  <li>Destination URI</li>
+  <li>Source URI</li>
+</ul>
 
 <!-- <p>Your Account Id is required, but is automatically set when you use the Brightcove player and the <code translate="No">catalog</code>.</p> -->
 
@@ -38,9 +42,19 @@ controller.analytics.source = <span class="bcls-input">valid URI</span>;</code><
 <!-- controller.analytics.account = <span class="bcls-input">your accountId</span>; -->
 
 
-<!-- <h3>Account</h3>
+<h3>Account</h3>
+<aside class="bcls-aside bcls-aside--information">You don't need to send your Account ID to Video Cloud Analytics, unless you override the <code translate="No">BCOVVideo</code> class or do NOT use the Brightcove player and catalog. You need to send your Account ID if you are using remote assets instead of your Video Cloud library.</aside>
+<p>Here's an example of setting Account ID for a single video:</p>
+<pre class="line-numbers">
+  <code class="language-objectivec" translate="No">BCOVVideo *video = [BCOVVideo videoWithHLSSourceURL:[NSURL URLWithString:@&quot;http://url.to.content/master.m3u8&quot;]];
+    video = [video update:^(id&lt;BCOVMutableVideo&gt;  _Nonnull mutableVideo) {
+        NSMutableDictionary *updatedProperties = mutableVideo.properties.mutableCopy;
+        updatedProperties[kBCOVVideoPropertyKeyAccountId] = @&quot;your accountID&quot;;
+        mutableVideo.properties = updatedProperties;
+    }];</code></pre>
 
-<p>Use the <code translate="No">account</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code translate="No">accountId</code> value in the video’s metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountId</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountId</code> property).</p>
+
+<!-- <p>Use the <code translate="No">account</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code translate="No">accountId</code> value in the video’s metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountId</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountId</code> property).</p>
 
 <pre class="line-numbers">
 <code class="language-swift" translate="No">controller.analytics.account = @"<span class="bcls-input">your accountId</span>";</code></pre>
