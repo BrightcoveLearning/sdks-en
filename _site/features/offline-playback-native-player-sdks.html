@@ -2015,9 +2015,9 @@
 <p>You may be wondering which rendition is downloaded and used for Offline Playback. Here is the answer:</p>
 <ul>
   <li><p><strong>Android</strong> - The ExoPlayer sets the default rendition. To find the current rendition, listen to the <code translate="No">ExoPlayerVideoDisplayComponent.RENDITION_CHANGED</code> event.</p> 
-    <p>Internally, the Native SDK for Android uses the <a href="https://developer.android.com/reference/kotlin/androidx/media3/exoplayer/trackselection/DefaultTrackSelector">DefaultTrackSelector</a>. You can set the peak bitrate as follows:</p>
+    <p>Internally, the Native SDK for Android uses the <a href="https://developer.android.com/reference/kotlin/androidx/media3/exoplayer/trackselection/DefaultTrackSelector">DefaultTrackSelector</a>. You can set the peak bitrate for downloading as follows, in your OfflineCatalog object:</p>
    
-    <pre data-start="1"><code class="language-json" translate="No">VideoDisplayComponent: videoDisplayComponent.setPeakBitrate(yourPeakBitrate);</code></pre>
+    <pre data-start="1"><code class="language-json" translate="No">catalog.setVideoBitrate(peakDownloadBitrateInBytes);</code></pre>
     <br/>
   </li>
   <li><p><strong>iOS</strong> - If you do not specify a bitrate for your download, you will get the lowest rendition that has a video track.</p> 
