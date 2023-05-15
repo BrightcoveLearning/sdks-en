@@ -1994,7 +1994,10 @@
     <p>For a list of QoE terms and definitions, see the <a href="#Glossary">Glossary</a> section.</p>
 
     <h3 id="Setup">Setup</h3>
-    <p>QoE Analytics are available to Media Video Cloud customers at no extra charge. Contact your Customer Success Manager to enable your account.</p>
+    <p>Brightcove QoE Analytics are available to Media Video Cloud customers at no extra charge. Contact your Customer Success Manager to enable your account.</p>
+
+    <h3 id="QoE_Insights">QoE Insights</h3>
+    <p>Brightcove QoE Insights builds on the analytics in this topic, and incorporates user engagement data to provide greater understanding of audience behavior. For details, see the <a href="https://studio.support.brightcove.com/analytics/module/qoe-insights.html">Brightcove QoE Insights</a> document.</p>
     
   </section>
 
@@ -2029,36 +2032,28 @@
      
         <h4><strong>Account</strong></h4>
         <p>The Account view provides an overall number for all streams in your account across all platforms.</p>
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Account" src="/assets/images/s-analytics-img/module/qoe/account-dimension.webp" />
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Account" src="/assets/images/s-analytics-img/module/qoe/video-start-time-account.webp" />
           <figcaption class="bcls-caption--image">Account</figcaption> 
         </figure>
-     
      
         <h4><strong>Device</strong></h4>
         <p>The Device view makes it easier to see device-specific issues and trends over time. The example below shows a spike in error rate for Android devices that could correlate to a recent app update.</p>
         <p>This graph shows the top 5 devices by view count, and the account level.</p>
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device" src="/assets/images/s-analytics-img/module/qoe/device-type.webp" />
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Device" src="/assets/images/s-analytics-img/module/qoe/video-start-time-device.webp" />
           <figcaption class="bcls-caption--image">Device</figcaption> 
         </figure>
       
-      <!-- <li>Domain and subdomain</li> -->
-      
-        <h4><strong>Stream type</strong> (VOD)</h4>
-        <p>The Stream type view currently compares all content in your account and VOD metrics.</p>
-        <aside class="bcls-aside bcls-aside--information">Error rate cannot be broken down by Stream type.</aside>
-        <!-- <p>Live QoE metrics will be coming soon, allowing you to isolate mode-specific issues or trends.  In the fictional example below, there was a jump in upscaling around a live event, which resolved quickly.</p> -->
-        <!-- <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/stream-type.webp" />
-          <figcaption class="bcls-caption--image">Stream type</figcaption> 
-        </figure> -->
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/stream-type-vod.webp" />
+        <h4><strong>Stream type</strong></h4>
+        <p>The Stream type view compares all content in your account with VOD and Live metrics.</p>
+        <!-- <aside class="bcls-aside bcls-aside--information">Error rate cannot be broken down by Stream type.</aside> -->
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stream type" src="/assets/images/s-analytics-img/module/qoe/video-start-time-stream-type.webp" />
           <figcaption class="bcls-caption--image">Stream type</figcaption> 
         </figure>
-      
       
         <h4><strong>Player</strong></h4>
         <p>The Player view shows specific players' performance and allows you to isolate and troubleshoot players where QoE is underperforming. Modifications to chunk size and buffer size can be measured using this metric.</p>
         <p>This graph shows the top 5 players by view count, and the account level.</p>
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Player" src="/assets/images/s-analytics-img/module/qoe/player-dimension.webp" />
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Player" src="/assets/images/s-analytics-img/module/qoe/video-start-time-player.webp" />
           <figcaption class="bcls-caption--image">Player</figcaption> 
         </figure>
       
@@ -2066,24 +2061,24 @@
         <h4><strong>Country</strong></h4>
         <p>For international customers, viewing QoE metrics by country can assist in isolating regional issues. In the fictional example below, the customer adopted a new content delivery network (CDN) for their Asian consumers. The chart shows that the CDN underperformed when looking at the stall rate.</p>
         <p>This graph shows the top 5 countries by view count, and the account level.</p>
-        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Country" src="/assets/images/s-analytics-img/module/qoe/country-dimension.webp" />
+        <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Country" src="/assets/images/s-analytics-img/module/qoe/video-start-time-country.webp" />
           <figcaption class="bcls-caption--image">Country</figcaption> 
         </figure>
      
       <!-- <li>Day</li> -->
   </section>
 
-  <section class="bcls-section">
+  <!-- <section class="bcls-section">
     <h2 id="Error_rate">Error rate</h2>
     <p>The error rate is the number of errors reported by the player divided by the number of play requests.</p>
-    <!-- <p>Brightcove Player reports errors that prevent video playback. These errors often happen before playback begins. Low error rates mean that viewers can watch their selected content.</p> -->
     <p>Here we focus on the errors that prevent playback since some errors occur in the background without affecting the viewer experience. Brightcove Player reports errors that prevent video playback, but some of these errors happen before playback begins. Low error rates mean that viewers can watch their selected content.</p>
     <aside class="bcls-aside bcls-aside--information">Error rate cannot be broken down by Stream type.</aside>
     <p>This example shows the top 5 devices by view count, and the account level.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Error rate" src="/assets/images/s-analytics-img/module/qoe/error-rate.webp" />
       <figcaption class="bcls-caption--image">Error rate</figcaption> 
     </figure>
-  </section>
+  </section> -->
+  <!-- <p>Brightcove Player reports errors that prevent video playback. These errors often happen before playback begins. Low error rates mean that viewers can watch their selected content.</p> -->
 
   <section class="bcls-section">
     <h2 id="Video_start_time">Video start time</h2>
@@ -2096,7 +2091,7 @@
     </figure>
   </section>
 
-  <section class="bcls-section">
+  <!-- <section class="bcls-section">
     <h2 id="Stall_rate">Stall rate</h2>
     <p>The stall rate is the total number of stalls divided by the total number of hours streamed.</p>
     <p>We focus on actual video stalls instead of all rebuffering events because rebuffering may or may not impact playback, depending on the platform. Stalls affect the viewer experience, including single stalls of significant length or frequent stalls of varying lengths. Low stall rates provide smoother playback and a better viewer experience.</p>
@@ -2104,9 +2099,9 @@
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Stall rate" src="/assets/images/s-analytics-img/module/qoe/stall-rate.webp" />
       <figcaption class="bcls-caption--image">Stall rate</figcaption> 
     </figure>
-  </section>
+  </section> -->
 
-  <section class="bcls-section">
+  <!-- <section class="bcls-section">
     <h2 id="Upscale_time">Upscale time</h2>
     <p>The upscale time is the average number of seconds per hour of viewing that is spent in an upscaled state (seconds per hour).</p>
     <p>Upscaling occurs when a video rendition is streamed in a lower resolution than the current player size. Upscaling can result in fuzziness or video pixelation. One area where upscaling is common is when content is streamed to a 4K TV. In this case, the stream may be available at a high resolution but not encoded at 4k. While technically, this is upscaling, most viewers will not notice. Low upscaling time is associated with smooth, crisp video playback.</p>
@@ -2114,7 +2109,7 @@
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Upscale time" src="/assets/images/s-analytics-img/module/qoe/upscale-time.webp" />
       <figcaption class="bcls-caption--image">Upscale time</figcaption> 
     </figure>
-  </section>
+  </section> -->
 
   <section class="bcls-section">
     <h2 id="Summary table">Summary table</h2>
