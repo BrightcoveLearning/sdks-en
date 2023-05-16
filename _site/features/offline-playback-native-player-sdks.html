@@ -2049,6 +2049,8 @@
 	<p>Video content can only be watched until a specific date and time expiration.</p>
 
 	<p>The Native SDKs allow users to rent or buy videos. The expiration applies to rentals, and is set in the DRM license using the Native SDKs API for downloading videos. In contrast, the expiration set in the Fastly token applies to streaming content.</p>
+  <p>Videos can be viewed within the defined rental period, no matter how long or short. The SDKs store the expiration date as a 32-bit signed integer with a maximum value of 2,147,483,647. For detailed examples, see the <a href="#Samples">Samples</a> section.</p>
+  <aside class="bcls-aside bcls-aside--information">Depending on DRM, device, or software version, a license window may or may not be supported. Also, the behavior on expiration may vary (continue to play or hard stop).</aside>
 	</li>
 	<li>Video URLs returned to the client will expire so that others can not use them.</li>
 </ul>
