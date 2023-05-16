@@ -75,7 +75,7 @@ This program will be captioned</code></pre>
   <h3>Captions</h3>
   <ul>
     <li>
-      There is a known limitation with caption support where 608/708 captions are displayed in the player without the formatting that may be present in the segment data. This is planned to be addressed in a future update of the SDK.
+      There is a known limitation with caption support where 608/708 and in-manifest captions are displayed in the player without the formatting that may be present in the segment data. This is planned to be addressed in a future update of the SDK.
     </li>
     <li>
       <p>In-manifest and 608/708 Captions do not automatically display after Activity lifecycle events.</p>
@@ -104,7 +104,7 @@ This program will be captioned</code></pre>
 
   <h3>Live streams</h3>
   <ul>
-    <li>The Native SDK does not support DASH Live streams, nor does it support ads with HLS Live streams.</li>
+    <li>There are no known issues with Live streams.</li>
   </ul>
 
   <h3>Offline playback</h3>
@@ -149,13 +149,6 @@ This program will be captioned</code></pre>
     <li>If your video has both HTTP and HTTPS sources for WebVTT captions/subtitles, then the Native SDK for Android may not return the HTTPS version. Brightcove is aware of this situation and will have a fix in a future release.</li>
   </ul>
 
-  <h3>Subtitles</h3>
-  <ul>
-    <li>
-      <p>The CC button will not appear in the control bar and the player will not load text tracks if you assign text tracks to a video in Video Cloud Studio and set the <strong>KIND</strong> field value to <strong>Subtitles</strong>. The work-around is to set the <strong>KIND</strong> field value to <strong>Close Captions</strong> when you assign text tracks in Studio.</p>
-      <aside class="bcls-aside bcls-aside--tip">This issue has been fixed with the Native SDK for Android release 6.16.2</aside>
-    </li>
-  </ul>
 
   <!-- <h3>Version 4.11.0: Known Issues</h3>
 
