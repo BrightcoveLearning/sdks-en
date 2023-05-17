@@ -1983,11 +1983,20 @@
         </ul>
       </li>
     </ul>
-    <p>For a list of ad insight terms and definitions, see the <a href="#Glossary">Glossary</a> section.</p>
+    <!-- <p>For a list of ad insight terms and definitions, see the <a href="#Glossary">Glossary</a> section.</p> -->
 
     <h3 id="Setup">Setup</h3>
     <p>Ad insights are available to Media Video Cloud customers at no extra charge. Contact your Customer Success Manager to enable your account.</p>
     
+  </section>
+  
+  <section class="bcls-section">
+    <h2 id="Requirements">Requirements</h2>
+    <p>To be able to collect data from Ad Insights, you must:</p>
+    <ul>
+      <li>Have the basic ad configuration integrated with our Brightcove Player v6.x and above. For more information about the plugins and the setup for advertisement, see <a href="https://player.support.brightcove.com/advertising/index.html">here</a>.</li>
+      <li>If a Non-BC player is being used, or the player used doesn't have the basic ad configuration, you need to instrument the player with the <code translate="no">ad_mode_begin</code> and <code translate="no">ad_mode_end</code> events. For more information about these events see <a href="https://apis.support.brightcove.com/data-collection/references/reference.html">Data Collection API Reference</a>.</li>
+    </ul>
   </section>
 
   <section class="bcls-section">
@@ -2015,7 +2024,8 @@
   <section class="bcls-section">
     <h2 id="Ad_Consumption">Ad Consumption</h2>
     <p>Ad consumption helps you understand how your audience is engaged with advertisements over time.</p>
-   
+    <p>The left axis of the chart describes the hours of ads watched by new users and engaged users, while the right axis of the chart follows the yellow line, which indicates the average session duration.</p>
+    <p>The Ad Consumption chart can help predict how engaging the content can be depending on its duration. The information in this chart helps visualize if the applied ad strategy is working as expected.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Ad Consumption" src="/assets/images/s-analytics-img/module/ad-insights/ad-consumption.webp" />
       <figcaption class="bcls-caption--image">Ad Consumption</figcaption> 
     </figure>
@@ -2023,10 +2033,10 @@
     <h4>Ad consumption by:</h4>
     <ul>
       <li><strong>ALL</strong> - Filter by all the parameters</li>
-      <li><strong>Video duration</strong> - Duration in minutes of the video (< 5, 5-10, 10-30, 30+)</li>
       <li><strong>Video type</strong> - Type of video</li>
+      <li><strong>Device model type</strong> - Type of device model </li>
       <li><strong>Genre</strong> - Genre watched </li>
-      <li><strong>Device</strong> - Device type</li>
+      <li><strong>Device os</strong> - Operating system of the device</li>
     </ul>
     <h4>Measure dimensions</h4>
     <ul>
@@ -2051,9 +2061,9 @@
     </figure>
     <h3>Values</h3>
     <ul>
-      <li><strong>Monetization rate</strong> - Number of views that have been successfully monetized</li>
-      <li><strong>Ad minutes per hour</strong> - Number of minutes of ads watched</li>
-      <li><strong>Monetizated attention index</strong> - </li>
+      <li><strong>Monetization rate</strong> - Percentage of the number of views that have been successfully monetized</li>
+      <li><strong>Ad minutes per content hour</strong> - Number of minutes of ads watched</li>
+      <li><strong>Attention index</strong> - Average how long the user remained</li>
       <li><strong>Ad sensitivity</strong> - Shows the impact on completion rate between no ads and having ads</li>
     </ul>
     
@@ -2062,32 +2072,39 @@
   <section class="bcls-section">
     <h2 id="VOD_Completion_Rates">VOD Completion Rates</h2>
     <p>Track your content completion rates filtering by content duration.</p>
-   
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="AVOD Completion Rates" src="/assets/images/s-analytics-img/module/ad-insights/vod-completion-rates.webp" />
       <figcaption class="bcls-caption--image">VOD Completion Rates</figcaption>  
     </figure>
+    <h3>Dimensions</h3>
+    <h4>VOD Completion rates by:</h4>
+    <ul>
+      <li><strong>Content duration</strong> - Duration in minutes of the content</li>
+      <li><strong>Gnere</strong> - Genre type</li>
+      <li><strong>Top 5 content</strong> - The top 5 content most watched </li>
+      <li><strong>Pod duration</strong> - Ad pod duration</li>
+    </ul>
     <h3>Data view</h3>
-    <p>The graph below helps track the total number of customers versus the duration they spend viewing the content categorized by content duration.</p>
+    <p>The y-axis of this chart shows the percentage of viewers that remained watching the content. This chart provides information on when the audience is dropping out and is analyzed based on content duration.</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="AVOD Completion Rates" src="/assets/images/s-analytics-img/module/ad-insights/content-duration-graph.webp" />
       <figcaption class="bcls-caption--image">Content Duration</figcaption>  
     </figure>
-    <p>The following graphs explain each of the categories in detail.</p>
+    <p>The following graphs explain each one of the categories in detail:</p>
     <figure class="bcls-figure"><img class="bcls-image--no-border" alt="AVOD Completion Rates" src="/assets/images/s-analytics-img/module/ad-insights/categories-chart.webp" />
       <figcaption class="bcls-caption--image">Categories Chart</figcaption>  
     </figure>
     <h4>Values</h4>
     <ul>
-      <li><strong>Attention index</strong> - Average how long the user stays </li>
+      <li><strong>Attention index</strong> - Average how long the user remained </li>
       <li><strong>Attention index (mon) </strong> - Attention index for monetized content</li>
       <li><strong>Monetization rate</strong> - Number of views that have been successfully monetized for this category</li>
       <!-- <li><strong>Ad error rate</strong> - Number of ads that have failed(not available for now)</li> -->
       <li><strong>Ad minutes/hour</strong> - Ad minutes versus hours</li>
       <li><strong>Pods/hours</strong> - Number of ad pods per hour</li>
     </ul>
-    <h4>Ad minutes</h4>
+    <h4>Ad minutes by</h4>
     <li><strong>Top genres</strong> - Most popular genres </li>
     <li><strong>Top titles</strong> - Most popular titles</li>
-    <li><strong>Pod duration</strong> - Ad pod duration</li>
+    <li><strong>Pod duration</strong> - Ad pod duration in seconds</li>
   </section>
 
   <!-- <section class="bcls-section">
