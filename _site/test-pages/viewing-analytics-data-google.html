@@ -1964,7 +1964,12 @@
   <section class="bcls-section">
     <aside class="bcls-aside bcls-aside--information">Brightcove SDKs does NOT send full analytics back to Video Cloud. Only video starts are reported back to Video Cloud Analytics.</aside>
     <h2 id="Introduction">Introduction</h2>
-    <p>To learn about the audience for your Brightcove SDKs apps, you can use Google Analytics. To get you started, Brightcove will load a customized template for Looker Studio into your Google Analytics account.</p>
+    <p>To learn about the audience for your Brightcove SDKs apps, you can use Google Analytics. To get you started, Brightcove will load the following into your Google Analytics account:</p>
+    <ul>
+      <li>A customized report template for Google Looker Studio</li>
+      <li>A customized dashboard for Google Analytics</li>
+    </ul>
+    <h3>Looker Studio</h3>
     <p>Looker Studio, a part of the Google Marketing Platform, is an online tool for visualizing analytics data in customizable reports and dashboards. Looker Studio offers features including:</p>
     <ul>
       <li><strong>Data Visualization</strong> - Create interactive charts, diagrams, and tables</li>
@@ -1972,11 +1977,36 @@
       <li><strong>Teamwork</strong> - Collaborate by sharing dashboards among team members</li>
     </ul>
     <p>For more details, see Google's <a href="https://lookerstudio.google.com/navigation/reporting">Looker Studio</a> homepage.</p>
+
+    <h3>Google Analytics</h3>
+    <p>In addition to the customized dashboard, you can use the standard analytics tools in Google Analytics to view customer behavior.</p>
     
 
     <!-- <p>Undoubtedly you will want to know what viewers are watching in your Brightcove SDKs apps. To accomplish this you will use Google Analytics. Brightcove will load a customized Dashboard and a customized Google Data Studio report into your Google Analytics account. Both of these tools provide great insight into how your customers are using your Brightcove SDKs apps.</p>
     <p>In addition to the customized dashboard and report, you can use the standard analytics tools in Google Analytics to view customer behavior. You can use the standard analytics data gathered by Google, and in addition Brightcove adds other entities to use, detailed later in this document. For instance, <strong>Movies</strong> events are dispatched when a movie is played, a default Google analytics measure, and time watched is calculated, a measure added by Brightcove. Therefore, in Google Analytics you can see the "most watched" movies by both how many times viewers played the movie and total time watched. These entities added by Brightcove are used extensively in the customized dashboard and report mentioned in the previous paragraph.</p> -->
   </section>
+  
+  <section class="bcls-section">
+    <h2 id="Viewing_the_Looker_Studio_report">Viewing the Looker Studio report</h2>
+    <p>Use Looker Studio to turn your data into data visualization stories, which include interactive reports and dashboards.</p>
+    <p>To view the customized Google Looker Studio report installed by Brightcove, follow these steps:</p>
+    <ol class="bcls-tasklist-restart">
+      <li>Log in to <a href="https://lookerstudio.google.com/u/0/navigation/reporting/">Google Looker Studio</a>.</li>
+      <li>You will see a list of reports on the landing page:
+        <figure class="bcls-figure">
+          <img class="bcls-image" src="/assets/images/s-analytics-img/third-party/looker-studio/looker-reports-list.webp" alt="Looker Studio landing page">
+        </figure>
+      </li>
+      <li>Click on a report name to open it.</li>
+      <li>The first page of an example report is shown here.
+        <aside class="bcls-aside bcls-aside--tip">Navigation to see other report pages can be found in the top left corner.</aside>
+        <figure class="bcls-figure">
+          <img class="bcls-image" src="/assets/images/s-analytics-img/third-party/looker-studio/report-page1.webp" alt="Looker Studio report">
+        </figure>
+      </li>
+    </ol>
+  </section>
+
   <!-- <section class="bcls-section">
     <h2 id="Viewing_the_Dashboard">Viewing the Dashboard</h2>
     <p>To view the Google Analytics Dashboard installed by Brightcove, and more importantly the data the dashboard displays, follow these steps:</p>
@@ -2014,26 +2044,7 @@
       </li>
     </ol>
   </section> -->
-  <section class="bcls-section">
-    <h2 id="Viewing_the_Looker_Studio_report">Viewing the Looker Studio report</h2>
-    <p>Use Looker Studio to turn your data into data visualization stories, which include interactive reports and dashboards.</p>
-    <p>To view the customized Google Looker Studio report installed by Brightcove, follow these steps:</p>
-    <ol class="bcls-tasklist-restart">
-      <li>Log in to <a href="https://lookerstudio.google.com/u/0/navigation/reporting/">Google Looker Studio</a>.</li>
-      <li>You will see a list of reports on the landing page:
-        <figure class="bcls-figure">
-          <img class="bcls-image" src="/assets/images/s-analytics-img/third-party/looker-studio/looker-reports-list.webp" alt="Looker Studio landing page">
-        </figure>
-      </li>
-      <li>Click on a report name to open it.</li>
-      <li>The first page of an example report is shown here.
-        <aside class="bcls-aside bcls-aside--tip">Navigation to see other report pages can be found in the top left corner.</aside>
-        <figure class="bcls-figure">
-          <img class="bcls-image" src="/assets/images/s-analytics-img/third-party/looker-studio/report-page1.webp" alt="Looker Studio report">
-        </figure>
-      </li>
-    </ol>
-  </section>
+
   <section class="bcls-section">
     <h2 id="Viewing_dimensions_and_metrics">Viewing dimensions and metrics</h2>
     <aside class="bcls-aside bcls-aside--tip">If you are not familiar with analytics dimensions and metrics here is a VERY simplified explanation:
@@ -2088,6 +2099,143 @@
       </li>
     </ol>
   </section>
+
+  <section class="bcls-section">
+    <h2 id="Events_and_parameters">Events and parameters</h2>
+    <p>The following events and parameters are reported to Google Analytics by your Brightcove SDKs apps.</p>
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Platform</th>
+          <th>Event name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td>All</td>
+          <td><code translate="No">loading</code></td>
+          <td>Loading the app: <code translate="No">loading</code> method</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">sign_up</code></td>
+          <td>When a user has signed up -
+            Only applicable with Beacon Auth</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">login</code></td>
+          <td>When a user logins a Beacon App</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">video_start</code></td>
+          <td>When a user first starts a video - Applies only to video loaded on screen, across all players/locations in the apps.</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">content_type</code>, <code translate="No">item_title</code>, <code translate="No">genre</code>, <code translate="No">production_year</code>, <code translate="No">country_origin</code><br/><br/>
+            For Episodes: <code translate="No">episode_number</code>, <code translate="No">season_number</code>, <code translate="No">episode_title</code><br/><br/>
+            For Channels: <code translate="No">program_title</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">add_to_favorites</code></td>
+          <td>When a user adds a video to the favorites list</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">content_type</code>, <code translate="No">item_title</code>, <code translate="No">genre</code>, <code translate="No">production_year</code>, <code translate="No">country_origin</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">rate_content</code></td>
+          <td>User rates an asset in the app</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">content_type</code>, <code translate="No">item_title</code>, <code translate="No">genre</code>, <code translate="No">production_year</code>, <code translate="No">country_origin</code>, <code translate="No">stars</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">search</code></td>
+          <td>When a user performs a site search</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">search_term</code>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td><code translate="No">subscribe</code></td>
+          <td>when a user subscribes to a package</td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">plan_name</code>, <code translate="No">payment_gateway</code>, <code translate="No">value</code>, <code translate="No">currency</code>
+          </td>
+        </tr>
+        <tr>
+          <td>iOS / Android</td>
+          <td><code translate="No">screen_view</code></td>
+          <td></td>
+          <td>
+            User Properties : <code translate="No">user_type</code>, <code translate="No">language</code><br/><br/>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">screen_name</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Web / STV</td>
+          <td><code translate="No">page_view</code></td>
+          <td></td>
+          <td>
+            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">page_title</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Web / iOS / Android</td>
+          <td><code translate="No">user_engagement</code></td>
+          <td>When the app is in the foreground or webpage is in focus for at least one second</td>
+          <td>
+            Event Parameters: <code translate="No">engagement_time_msec</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Web / iOS / Android</td>
+          <td><code translate="No">session_start</code></td>
+          <td>When a user engages the app or website<br/><br/>
+            A session ID and session number are generated automatically with each session and associated with each event in the session. <a href="https://support.google.com/analytics/answer/9191807?visit_id=638235569772034437-3510608155&rd=1">Learn more</a>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>Web / iOS / Android</td>
+          <td><code translate="No">first_visit</code></td>
+          <td>The first time a user visits a website or launches an Android instant app with Analytics enabledh each event in the session. <a href="https://support.google.com/analytics/answer/9191807?visit_id=638235569772034437-3510608155&rd=1">Learn more</a>
+          </td>
+          <td>
+          </td>
+        </tr>
+       
+        
+      </tbody>
+    </table>
+  </section>
+
   <section class="bcls-section">
     <h2 id="Report_examples">Report examples</h2>
     <p>This document is to make you aware of information you can use from Google Analytics. It is NOT the intention of this document to be a complete instructional guide on how to use Google Analytics with your Brightcove SDKs apps. That being said, the next section of the document will detail how to see a few commonly requested reports about your Brightcove SDKs apps.</p>
