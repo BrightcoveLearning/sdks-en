@@ -2103,6 +2103,7 @@
   <section class="bcls-section">
     <h2 id="Events_and_parameters">Events and parameters</h2>
     <p>The following events and parameters are reported to Google Analytics by your Brightcove SDKs apps.</p>
+    <h3>Events Reported to Google Analytics</h3>
     <table class="bcls-table">
       <thead class="bcls-table__head">
         <tr>
@@ -2270,10 +2271,57 @@
           <td>
             <code translate="No">product_id</code>, <code translate="No">price</code>, <code translate="No">value</code>, <code translate="No">currency</code>, <code translate="No">quantity</code>, <code translate="No">renewal_count</code>
           </td>
-        </tr>
+        </tr> 
+      </tbody>
+    </table>
 
-       
-        
+    <h3>Parameters Reported to Google Analytics</h3>
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Parameter</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="No">user_type</code></td>
+          <td>
+            <code translate="No">Authenticated User</code>, <code translate="No">Trialist</code>, <code translate="No">Visitor</code>, <code translate="No">Subscriber</code>
+          </td>
+          <td>
+            <code translate="No">Visitor</code>: Anonymous users<br/><br/>
+            <code translate="No">Authenticated User</code>: Authenticated user with no active subscription<br/><br/>
+            <code translate="No">Trialist</code>: Authenticated user with a subscription in Trial status<br/><br/>
+            <code translate="No">Subscriber</code>: Authenticated user with an active subscription (not in trial status)
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="No">streaming_platform</code></td>
+          <td>
+            <code translate="No">Android</code>, <code translate="No">iOS</code>, <code translate="No">Web</code>, <code translate="No">roku</code>, <code translate="No">firetv</code>, <code translate="No">androidtv</code>, <code translate="No">AppleTV</code>, <code translate="No">samsung_tizen</code>, <code translate="No">webos</code>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="No">content_type</code></td>
+          <td>
+            <code translate="No">movies</code>, <code translate="No">channels</code>, <code translate="No">episodes</code>, <code translate="No">events</code>, <code translate="No">series</code>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="No">genre</code></td>
+          <td>
+            Based on customer metadata assigned to the assets
+          </td>
+          <td>
+            Only the first genre of each asset is sent to GA4 reports
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>
