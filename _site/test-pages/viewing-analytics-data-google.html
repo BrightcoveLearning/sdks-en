@@ -2202,7 +2202,7 @@
           <td><code translate="No">page_view</code></td>
           <td></td>
           <td>
-            Event Parameters: <code translate="No">streaming_platform</code>, <code translate="No">page_title</code>
+            <code translate="No">streaming_platform</code>, <code translate="No">page_title</code>
           </td>
         </tr>
         <tr>
@@ -2210,7 +2210,7 @@
           <td><code translate="No">user_engagement</code></td>
           <td>When the app is in the foreground or webpage is in focus for at least one second</td>
           <td>
-            Event Parameters: <code translate="No">engagement_time_msec</code>
+            <code translate="No">engagement_time_msec</code>
           </td>
         </tr>
         <tr>
@@ -2230,6 +2230,48 @@
           <td>
           </td>
         </tr>
+        <tr>
+          <td>Web / iOS / Android</td>
+          <td><code translate="No">first_open</code></td>
+          <td>
+            The first time a user launches an app after installing or re-installing it<br/><br/>
+            This event is not triggered when a user downloads the app onto a device, but instead when he or she first uses it. To see raw download numbers, look in Google Play Developer Console or in AppStoreConnect.<br/><br/>
+            Supports measuring first_open conversions for users who accept Apple's iOS 14 app-tracking prompt.
+          </td>
+          <td>
+            <code translate="No">previous_gmp_app_id</code>, <code translate="No">updated_with_analytics</code>, <code translate="No">previous_first_open_count</code>, <code translate="No">system_app</code>, <code translate="No">system_app_update</code>, <code translate="No">deferred_analytics_collection</code>, <code translate="No">reset_analytics_cause</code>, <code translate="No">engagement_time_msec</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Web</td>
+          <td><code translate="No">form_start</code></td>
+          <td>the first time a user interacts with a form in a session</td>
+          <td>
+            <code translate="No">form_id</code>, <code translate="No">form_name</code>, <code translate="No">form_destination</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Android</td>
+          <td><code translate="No">app_remove</code></td>
+          <td>When an application package is removed (uninstalled) from an Android device<br/><br/>
+            Android only
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Web / iOS / Android</td>
+          <td><code translate="No">app_store_subs<br/><br/>cription_renew</code></td>
+          <td>
+            When a paid subscription is renewed<br/><br/>
+            This event is set as a default conversion<br/><br/>
+            Requires an initial subscription that was made on or after July 1, 2019<br/><br/>
+            This event is not exported to BigQuery
+          </td>
+          <td>
+            <code translate="No">product_id</code>, <code translate="No">price</code>, <code translate="No">value</code>, <code translate="No">currency</code>, <code translate="No">quantity</code>, <code translate="No">renewal_count</code>
+          </td>
+        </tr>
+
        
         
       </tbody>
