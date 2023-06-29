@@ -1,9 +1,8 @@
 ---
-title: 'Developing with SwiftUI and the Native SDK for iOS'
+title: 'SwiftUI Development with the Native SDK for iOS'
 description: In this topic, you will be introduced to SwiftUI for developing apps with the Brightcove Native SDK for iOS/tvOS.
 parent: Framework
 grandparent: iOS Development
-layout: staging
 ---
 
 <h1>{{ page.title }}</h1>
@@ -42,17 +41,116 @@ layout: staging
       <img class="bcls-image--no-border" alt="Choose app template" src="/assets/images/framework/choose-ios-template.webp" />
     </figure>
 	</li>
-  <li></li>
-	
+  <li>
+    <p>Set the project information as follows:</p>
+
+    <ul>
+      <li><strong>Product Name:</strong> Enter your project name</li>
+      <li><strong>Team:</strong> none
+      <p>The Team field is optional. If you want to distribute your app on the App Store, you will need to select a team that you belong to through the Apple Developer Program. The team name is required for code signing. In this example, we'll select none.</p>
+      </li>
+      <li><strong>Organization Name:</strong> your company name</li>
+      <li><strong>Organization Identifier:</strong> com.example-company<br />
+      This makes the product name unique for the app store.</li>
+      <li><strong>Interface:</strong> SwiftUI</li>
+      <li><strong>Language:</strong> Swift</li>
+    </ul>
+    <p>Click <strong>Next</strong>.</p>
+    <figure class="bcls-figure">
+      <img class="bcls-image--no-border" alt="Project options" src="/assets/images/framework/project-options.webp" />
+    </figure>
+  </li>
+  <li><p>Choose the location where you want to save your project and create it.</p></li>
+  <li>Now close the project (<strong>yes, close it — this is important!</strong>)</li>	
 </ol>
 </section>
 
 <section class="bcls-section">
-<h2 id="Additional_Resources">Additional Resources</h2>
+  <h2 id="Add_SDK_dependencies">Add SDK dependencies</h2>
+  <p>The easiest way to add the SDK and its dependencies to your project is to use CocoaPods.</p>
 
-<ul>
-	<li>Apple Developer Forum: <a href="https://forums.developer.apple.com/thread/48979">App Transport Security Required January 2017</a></li>
-	<li>Apple Developer Forum: <a href="https://forums.developer.apple.com/message/15705#15705">App Transport Security update</a></li>
-</ul>
-</section>
+  <p>CocoaPods is a dependency manager that adds libraries to your project. It is not required, but makes installation easier. To install CocoaPods, see the instructions on the <a href="//cocoapods.org">CocoaPods</a> site.</p>
+
+  <!-- <aside class="bcls-aside bcls-aside--warning">
+  <ul>
+    <li>CocoaPods version 1.0 or newer is required.</li>
+    <li>Using CocoaPods (the <code translate="No">pod</code> tool) on an existing Xcode project will modify the project file. You may want to make a backup before doing this.</li>
+  </ul>
+  </aside> -->
+
+  <ol class="bcls-tasklist">
+    <li>
+    <p>In your project folder, create a plain text file called <strong>Podfile</strong> (no file extension).</p>
+    </li>
+    <li>
+    <p>Using a text editor, add the following lines of code to the Podfile and save it. This code does the following:</p>
+    <ul>
+      <li>Line 1: Points to the GitHub location for the CocoaPods pod specs</li>
+      <li>Line 2: Points to the GitHub location for the Brightcove pod specs</li>
+      <li>Line 4: Defines the iOS platform version</li>
+      <li>Line 5: Sets Pods to use frameworks instead of static libraries</li>
+      <li>
+      <p>Lines 7-12: Install the Brightcove Native Player SDK</p>
+
+      <ul>
+        <li>
+          For more information about managing dependencies, see the <a href="https://cocoacasts.com/how-to-manage-dependencies-with-cocoapods/">How To Manage Dependencies With CocoaPods</a> article.
+        </li>
+      </ul>
+      </li>
+    </ul>
+
+	<pre class="line-numbers" data-start="1"><code class="language-swift" translate="No">source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+platform :ios, '13.6'
+use_frameworks!
+
+target 'SwiftUIPlayer' do
+
+  # Pods for SwiftUIPlayer
+  pod 'Brightcove-Player-Core/XCFramework'
+
+end</code></pre>
+    </li>
+    <li>
+      <p>Open a Terminal session and navigate to your Xcode project folder.</p>
+    </li>
+    <li>
+    <p>In the Terminal session, type the command</p>
+	<pre>
+<code class="language-swift" translate="No">pod install</code></pre>
+    <p>and press <strong>Return</strong> to run the it.</p>
+    <p>If CocoaPods can not find a compatible version for the pod, or it is not the latest version, try running the following in the Terminal app:</p>
+  <pre>
+<code class="language-swift" translate="No">pod update</code></pre>
+    <p>You should see a series of messages in the terminal indicating that the Brightcove Player SDK has been added to your project.</p>
+    </li>
+    <li>
+      <p>The <code translate="No">pod install</code> command creates the <code translate="No">.xcworkspace</code> file for your project.</p>
+      <p><strong>Notice the last line</strong>, which is important — from this point on, you must do the following:</p>
+      <ul>
+        <li>Open the <strong>.xcworkspace</strong> file in Xcode</li>
+        <li>Do <strong>not</strong> use the <em>.xcodeproj</em> file</li>
+      </ul>
+    </li>
+  </ol>
+
+    <aside class="bcls-aside bcls-aside--tip">
+    <ul>
+      <li>If you create and edit Podfiles on a regular basis, you can try using the <a href="https://cocoapods.org/app">CocoaPods App</a> to complete the previous steps.</li>
+      <li>If you don't want to use CocoaPods , you can <a href="https://github.com/brightcove/brightcove-player-sdk-ios/releases">download the latest version of the SDK</a> and manually add it to your project.</li>
+    </ul>
+    </aside>
+    <li>Now you are ready to code your app. To learn more about using SwiftUI, see the <a href="#Resources">Resources section</a>.</li>
+  </section>
+
+  <section class="bcls-section">
+    <h2 id="Code_sample">Code sample</h2>
+    <p>To help you with your app code, Brightcove has provided the following code sample:</p>
+    <ul>
+      <li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SwiftUI/SwiftUIPlayer">SwiftUIPlayer sample</a></li>
+    </ul> 
+    </section>
+
 </article>
