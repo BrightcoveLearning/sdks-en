@@ -488,14 +488,15 @@ let kViewControllerVideoID = "<span class="bcls-input">your video id</span>"</co
 
 	<pre class="line-numbers" data-start="59">
 <code class="language-swift" translate="No">func requestContentFromPlaybackService() {
-  playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) { (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
-
-    if let v = video {
-        self.playbackController.setVideos([v] as NSArray)
-    } else {
-        print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")
-    }
-  }
+  let configuration = [kBCOVPlaybackServiceConfigurationKeyAssetID:kViewControllerVideoID]
+  playbackService?.findVideo(withConfiguration: configuration, queryParameters: nil, completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) in
+      
+      if let v = video {
+          self?.playbackController.setVideos([v] as NSArray)
+      } else {
+          print(&quot;ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? &quot;unknown error&quot;)&quot;)
+      }
+  })
 }</code></pre>
 	</li>
 </ol>
@@ -573,14 +574,15 @@ class ViewController: UIViewController, BCOVPlaybackControllerDelegate {
   }
 
   func requestContentFromPlaybackService() {
-    playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) { (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
-
-      if let v = video {
-        self.playbackController.setVideos([v] as NSArray)
-      } else {
-        print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")
-      }
-    }
+    let configuration = [kBCOVPlaybackServiceConfigurationKeyAssetID:kViewControllerVideoID]
+    playbackService?.findVideo(withConfiguration: configuration, queryParameters: nil, completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) in
+        
+        if let v = video {
+            self?.playbackController.setVideos([v] as NSArray)
+        } else {
+            print(&quot;ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? &quot;unknown error&quot;)&quot;)
+        }
+    })
   }
 }</code></pre>
 </div>
