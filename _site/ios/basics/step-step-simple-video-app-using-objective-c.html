@@ -2468,18 +2468,19 @@ _playbackService = [[BCOVPlaybackService alloc] initWithAccountId:kViewControlle
 	<pre class="line-numbers" data-start="70">
 <code class="language-objectivec" translate="No">- (void)requestContentFromPlaybackService
 {
-[self.playbackService findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+  NSDictionary *configuration = @{kBCOVPlaybackServiceConfigurationKeyAssetID:kViewControllerVideoID};
+  [self.playbackService findVideoWithConfiguration:configuration queryParameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
 
-	if (video)
-	{
-		[self.playbackController setVideos:@[ video ]];
-	}
-	else
-	{
-		NSLog(@"ViewController Debug - Error retrieving video: `%@`", error);
-	}
+    if (video)
+    {
+        [self.playbackController setVideos:@[ video ]];
+    }
+    else
+    {
+        NSLog(@&quot;ViewController Debug - Error retrieving video playlist: `%@`&quot;, error);
+    }
 
-}];
+  }];
 }</code></pre>
 	</li>
 </ol>
@@ -2562,18 +2563,18 @@ _playerView.playbackController = _playbackController;
 
 - (void)requestContentFromPlaybackService
 {
-[self.playbackService findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+  NSDictionary *configuration = @{kBCOVPlaybackServiceConfigurationKeyAssetID:kViewControllerVideoID};
+  [self.playbackService findVideoWithConfiguration:configuration queryParameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
 
-	if (video)
-	{
-		[self.playbackController setVideos:@[ video ]];
-	}
-	else
-	{
-		NSLog(@"ViewController Debug - Error retrieving video: `%@`", error);
-	}
-
-}];
+    if (video)
+    {
+        [self.playbackController setVideos:@[ video ]];
+    }
+    else
+    {
+        NSLog(@&quot;ViewController Debug - Error retrieving video playlist: `%@`&quot;, error);
+    }
+  }];
 }
 
 @end</code></pre>
