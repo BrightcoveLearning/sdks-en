@@ -1,5 +1,15 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.2.1
+
+  SDK Changes:
+    * Improvements and minor bug fixes to Ad Insights
+    * Fix playback issues for Dolby Atmos media on unsupported devices. Also emit an error event when a video with only Atmos-capable audio is attempted to load on a device without Atmos decoder support.
+    * Fixes an issue where captions languages could be emitted with an empty language list for SSAI videos.
+    
+  ExoPlayer Changes
+    * Fixes an issue where destroying the player on garbage-collecting the playback Object could result in a crash on TV platforms.
+
 Version 8.2.0
 
   SDK Changes:
