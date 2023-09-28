@@ -1,5 +1,23 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.2.3
+
+  SDK Changes:
+    * Adds support for Player ID, Player Name, and Application ID Analytics fields. Note that these fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.
+    * Improves null checking when adding videos or playlists to a player.
+    * Fixes an issue where a preroll ad was played twice when added using cue points.
+    * Fixes an issue with customizing the Captions, Rewind, Fast Forward, and Audio Tracks buttons.
+
+  Offline Plugin Changes:
+    * Selects https source URL by default for offline playback.
+
+  SSAI Plugin Changes:
+    * Fixes an issue with the Play/Pause button state after seeking through midroll ads.
+    * Improves null checking when adding videos or playlists to a player.
+    * Fixes an issue where a NullPointerException would be thrown when using the SSAIComponent class constructor: SSAIComponent(@NonNull Context context, @NonNull BaseVideoView baseVideoView, int connectTimeout, int readTimeout)
+    * Fixes an issue where the adDataReady event was emitted after adding the video to the view. This fix restores the order of emitted events in previous SDK versions.
+    * Fixes an issue with rewind behavior when the player’s playhead position is 0.
+
 Version 8.2.2
 
   SSAI Plugin Changes:
