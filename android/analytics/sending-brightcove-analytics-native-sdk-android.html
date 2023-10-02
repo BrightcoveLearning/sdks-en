@@ -20,15 +20,20 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Customize_properties">Customize properties</h2>
 
-<p>As of version 8.0.0 of the Brightcove Mobile SDK for Android, you can send the following custom values from your app to Brightcove Analytics:</p>
+<p>As of version 8.2.3 of the Brightcove Mobile SDK for Android, you can send the following custom values from your app to Brightcove Analytics:</p>
 <ul>
   <!-- <li>
     Account ID
     <p>Your Account Id is required, but is automatically set when you use the Brightcove player and make a <code translate="No">catalog</code> request.</p>
   </li> -->
+  <li>Player ID</li>
+  <li>Player Name</li>
+  <li>Application ID</li>
   <li>Destination URI</li>
   <li>Source URI</li>
 </ul>
+
+<aside class="bcls-aside bcls-aside--information"><strong>Note</strong> These fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.</aside>
 
 <p>You can set the Destination and Source URIs if you choose. The default values are based on the application package name.</p>
 
@@ -38,7 +43,11 @@ grandparent: Android Development
 <code class="language-java" translate="No">brightcoveVideoView = (SeamlessVideoView) findViewById(R.id.brightcove_video_view);
 Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setDestination("<span class="bcls-input">valid URI</span>");
-analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
+analytics.setSource("<span class="bcls-input">valid URI</span>");
+analytics.setApplication("<span class="bcls-input">My Application Name</span>");
+analytics.setPlayerName("<span class="bcls-input">My Player Name</span>");
+analytics.setPlayerID("<span class="bcls-input">My-player-id</span>");
+</code></pre>
 
 
 <!-- analytics.setAccount("<span class="bcls-input">your accountID</span>"); -->
