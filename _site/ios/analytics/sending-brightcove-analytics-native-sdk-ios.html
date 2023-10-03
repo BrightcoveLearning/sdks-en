@@ -1985,8 +1985,11 @@
 <section class="bcls-section">
 <h2 id="Customize_properties">Customize properties</h2>
 
-<p>As of version 6.12.1 of the Brightcove Mobile SDK for Android, you can send custom values to Brightcove Analytics from your app to Brightcove Analytics:</p>
+<p>As of version 6.12.4 of the Brightcove Mobile SDK for iOS, you can send custom values to Brightcove Analytics from your app to Brightcove Analytics:</p>
 <ul>
+  <li>Player ID</li>
+  <li>Player Name</li>
+  <li>Application ID</li>
   <li>Destination URI</li>
   <li>Source URI</li>
 </ul>
@@ -2002,7 +2005,10 @@
     [[BCOVPlayerSDKManager sharedManager] createPlaybackController];
 
 controller.analytics.destination = <span class="bcls-input">valid URI</span>;
-controller.analytics.source = <span class="bcls-input">valid URI</span>;</code></pre>
+controller.analytics.source = <span class="bcls-input">valid URI</span>;
+controller.analytics.player = <span class="bcls-input">My-player-id</span>;
+controller.analytics.player_name = <span class="bcls-input">My-player-name</span>;
+controller.analytics.application = <span class="bcls-input">My Application Name</span>;</code></pre>
 
 <!-- controller.analytics.account = <span class="bcls-input">your accountId</span>; -->
 
@@ -2066,7 +2072,22 @@ controller.analytics.source = <span class="bcls-input">valid URI</span>;</code><
 
 <aside class="bcls-aside bcls-aside--information">For more details about URI structures for use in the destination and source fields, see the <a href="//en.wikipedia.org/wiki/URI_scheme">URI Scheme</a> Wikipedia page. You can use a tool like this <a href="https://www.url-encode-decode.com/">URL Encoder</a> to convert characters into UTF-8 encoding format.</aside>
 </section>
-
+<section class="bcls-section">
+  <h3 id="Player-ID">Player ID</h3>
+  
+  <p>Use the <code translate="No">player</code> property to set the ID of the player.
+</section>
+<section class="bcls-section">
+    <h3 id="Player-Name">Player Name</h3>
+    
+    <p>Use the <code translate="No">player_name</code> property to set the name of the player, (This is the same name you see in the Studio list of players).</p>
+    
+</section>
+<section class="bcls-section">
+      <h3 id="Application-ID">Application ID</h3>
+      
+      <p>The <code translate="No">application</code> field is not a field in itself but a custom string to identify the usage of the player.</p>
+</section>
 <section class="bcls-section">
 <h2 id="View_analytics">View analytics</h2>
 
