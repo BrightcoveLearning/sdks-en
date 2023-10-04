@@ -12,9 +12,9 @@ grandparent: Android Development
 <section class="bcls-section">
 <h2 id="Analytics_integration">Analytics integration</h2>
 
-<p>If you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos, analytics data will be automatically collected and will appear in the Video Cloud Analytics module.</p>
+<p>Suppose you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos. In that case, analytics data are automatically collected and appear in the Video Cloud Analytics module.</p>
 
-<p>If you override the <code translate="No">BrightcoveVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Account Id to Video Cloud Analytics.</p> 
+<p>If you override the <code translate="No">BrightcoveVideoView</code> class or do not use the Brightcove player and catalog, you must to send your Account Id to Video Cloud Analytics.</p> 
 </section>
 
 <section class="bcls-section">
@@ -33,7 +33,7 @@ grandparent: Android Development
   <li>Source URI</li>
 </ul>
 
-<aside class="bcls-aside bcls-aside--information"><strong>Note</strong> These fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.</aside>
+<aside class="bcls-aside bcls-aside--information">Note: These fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.</aside>
 
 <p>You can set the Player, Player Name, Application, Destination and Source URIs if you choose. The default values are based on the application package name.</p>
 
@@ -55,10 +55,10 @@ analytics.setPlayerID("<span class="bcls-input">My-player-id</span>");
 
 <section class="bcls-section">
 <h3 id="Account">Account</h3>
-<aside class="bcls-aside bcls-aside--information">You don't need to send your Account ID to Video Cloud Analytics, unless you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do NOT use the Brightcove player and catalog. You need to send your Account ID if you are using remote assets instead of your Video Cloud library.</aside>
+<aside class="bcls-aside bcls-aside--information">Note: It is unnecessary to send your Account ID to Video Cloud Analytics unless you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do not use the Brightcove player and catalog. You must send your Account ID if you use remote assets instead of your Video Cloud library.</aside>
 <!-- <p>If you are using remote assets instead of your Video Cloud library, then you do need to set <code translate="No">accountID</code> for analytics.</p> -->
 
-<p>Use the <code translate="No">Video.Fields.PUBLISHER_ID</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code translate="No">accountID</code> value in the video's metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountID</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountID</code> property).</p>
+<p>Use the <code translate="No">Video.Fields.PUBLISHER_ID</code> property to set the Account Id value in Brightcove Analytics. This property is useful only in cases where there is no <code translate="No">accountID</code> value in the video's metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountID</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountID</code> property).</p>
 
 <p>For example, you can set the Account Id value when creating a remote Video object using the Native SDK for Android:</p>
 
@@ -67,7 +67,7 @@ analytics.setPlayerID("<span class="bcls-input">My-player-id</span>");
 </code></pre>
 <!-- brightcoveVideoView.getAnalytics().setAccount("<span class="bcls-input">your accountID</span>"); -->
 
-<p>When you set the <code translate="No">Video.Fields.PUBLISHER_ID</code> property, the value of this property will be used for this remote video only. It will not affect the reporting of any VideoCloud videos you may also use. The most useful value for this property is your Account Id. These videos will be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
+<p>When you set the <code translate="No">Video.Fields.PUBLISHER_ID</code> property, the value of this property is used for this remote video only. It does not affect the reporting of any VideoCloud videos you may also use. The most useful value for this property is your Account Id. These videos are be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
 
 </section>
 
@@ -126,13 +126,13 @@ analytics.setPlayerID("<span class="bcls-input">My-player-id</span>");
 <section class="bcls-section">
 <h2 id="View_analytics"><a name="viewAnalytics"></a>View analytics</h2>
 
-<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video.To learn how, view the following docs:</p>
+<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video. To learn more, see: </p>
 
 <ul>
   <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
   <li><a href="https://studio.support.brightcove.com/analytics/performance-report-reference.html">Performance Report Reference</a></li>
 </ul>
 
-<p class="BCL-aside">Note: Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</p>
+<aside class="bcls-aside bcls-aside--information">Note: Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</aside>
 </section>
 </article>
