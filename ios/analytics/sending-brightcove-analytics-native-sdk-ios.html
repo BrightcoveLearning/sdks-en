@@ -12,7 +12,7 @@ grandparent: iOS Development
 <section class="bcls-section">
 <h2 id="Analytics_integration">Analytics integration</h2>
 
-<p>If you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos, analytics data will be automatically collected and will appear in the Video Cloud Analytics module.</p>
+<p>Suppose you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos. In that case, analytics data will be automatically collected and appear in the Video Cloud Analytics module.</p>
 
 <p>If you override the <code translate="No">BCOVVideo</code> class or do not use the Brightcove player and <code translate="No">catalog</code>, you need to send your Account Id to Video Cloud Analytics.</p>
 </section>
@@ -42,8 +42,8 @@ grandparent: iOS Development
 controller.analytics.destination = <span class="bcls-input">valid URI</span>;
 controller.analytics.source = <span class="bcls-input">valid URI</span>;
 controller.analytics.player = <span class="bcls-input">My-player-id</span>;
-controller.analytics.player_name = <span class="bcls-input">My-player-name</span>;
-controller.analytics.application = <span class="bcls-input">My Application Name</span>;</code></pre>
+controller.analytics.playerName = <span class="bcls-input">My-player-name</span>;
+controller.analytics.applicationid = <span class="bcls-input">My Application Name</span>;</code></pre>
 
 <!-- controller.analytics.account = <span class="bcls-input">your accountId</span>; -->
 
@@ -115,13 +115,13 @@ controller.analytics.application = <span class="bcls-input">My Application Name<
 <section class="bcls-section">
     <h3 id="Player-Name">Player Name</h3>
     
-    <p>Use the <code translate="No">player_name</code> property to set the name of the player, (This is the same name you see in the Studio list of players).</p>
+    <p>Use the <code translate="No">playerName</code> property to set the name of the player, (This is the same name you see in the Studio list of players).</p>
     
 </section>
 <section class="bcls-section">
       <h3 id="Application-ID">Application ID</h3>
       
-      <p>The <code translate="No">application</code> field is not a field in itself but a custom string to identify the usage of the player.</p>
+      <p>The <code translate="No">applicationid</code> field is not a field in itself but a custom string to identify the usage of the player.</p>
 </section>
 <section class="bcls-section">
 <h2 id="View_analytics">View analytics</h2>
