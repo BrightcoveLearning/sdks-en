@@ -411,7 +411,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.1.1: Native SDK for Android Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.2.3: Native SDK for Android Overview</a></li>
                   
                   
                   
@@ -960,7 +960,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.12.2: Native SDK for iOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.12.5: Native SDK for iOS Overview</a></li>
                   
                   
                   
@@ -1385,7 +1385,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.12.2: Native SDK for tvOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.12.5: Native SDK for tvOS Overview</a></li>
                   
                   
                   
@@ -1977,25 +1977,30 @@
 <section class="bcls-section">
 <h2 id="Analytics_integration">Analytics integration</h2>
 
-<p>If you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos, analytics data will be automatically collected and will appear in the Video Cloud Analytics module.</p>
+<p>Suppose you use the Brightcove player and <code translate="No">catalog</code> included in the SDK to retrieve and play videos. In that case, analytics data are automatically collected and appear in the Video Cloud Analytics module.</p>
 
-<p>If you override the <code translate="No">BrightcoveVideoView</code> class or do not use the Brightcove player and catalog, you need to send your Account Id to Video Cloud Analytics.</p> 
+<p>If you override the <code translate="No">BrightcoveVideoView</code> class or do not use the Brightcove player and catalog, you must to send your Account Id to Video Cloud Analytics.</p> 
 </section>
 
 <section class="bcls-section">
 <h2 id="Customize_properties">Customize properties</h2>
 
-<p>As of version 8.0.0 of the Brightcove Mobile SDK for Android, you can send the following custom values from your app to Brightcove Analytics:</p>
+<p>As of version 8.2.3 of the Brightcove Mobile SDK for Android, you can send the following custom values from your app to Brightcove Analytics:</p>
 <ul>
   <!-- <li>
     Account ID
     <p>Your Account Id is required, but is automatically set when you use the Brightcove player and make a <code translate="No">catalog</code> request.</p>
   </li> -->
+  <li>Player ID</li>
+  <li>Player Name</li>
+  <li>Application ID</li>
   <li>Destination URI</li>
   <li>Source URI</li>
 </ul>
 
-<p>You can set the Destination and Source URIs if you choose. The default values are based on the application package name.</p>
+<aside class="bcls-aside bcls-aside--information">Note: These fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.</aside>
+
+<p>You can set the Player, Player Name, Application, Destination and Source URIs if you choose. The default values are based on the application package name.</p>
 
 <p>These properties can be set in your Android <code translate="No">MainActivity</code> class file:</p>
 
@@ -2003,7 +2008,11 @@
 <code class="language-java" translate="No">brightcoveVideoView = (SeamlessVideoView) findViewById(R.id.brightcove_video_view);
 Analytics analytics = brightcoveVideoView.getAnalytics();
 analytics.setDestination("<span class="bcls-input">valid URI</span>");
-analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
+analytics.setSource("<span class="bcls-input">valid URI</span>");
+analytics.setApplication("<span class="bcls-input">My Application Name</span>");
+analytics.setPlayerName("<span class="bcls-input">My Player Name</span>");
+analytics.setPlayerID("<span class="bcls-input">My-player-id</span>");
+</code></pre>
 
 
 <!-- analytics.setAccount("<span class="bcls-input">your accountID</span>"); -->
@@ -2011,10 +2020,10 @@ analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
 
 <section class="bcls-section">
 <h3 id="Account">Account</h3>
-<aside class="bcls-aside bcls-aside--information">You don't need to send your Account ID to Video Cloud Analytics, unless you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do NOT use the Brightcove player and catalog. You need to send your Account ID if you are using remote assets instead of your Video Cloud library.</aside>
+<aside class="bcls-aside bcls-aside--information">Note: It is unnecessary to send your Account ID to Video Cloud Analytics unless you override the <code translate="No">BrightcoveExoPlayerVideoView</code> class or do not use the Brightcove player and catalog. You must send your Account ID if you use remote assets instead of your Video Cloud library.</aside>
 <!-- <p>If you are using remote assets instead of your Video Cloud library, then you do need to set <code translate="No">accountID</code> for analytics.</p> -->
 
-<p>Use the <code translate="No">Video.Fields.PUBLISHER_ID</code> property to set the Account Id value in Brightcove Analytics. This property will be useful only in cases where there is no <code translate="No">accountID</code> value in the video's metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountID</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountID</code> property).</p>
+<p>Use the <code translate="No">Video.Fields.PUBLISHER_ID</code> property to set the Account Id value in Brightcove Analytics. This property is useful only in cases where there is no <code translate="No">accountID</code> value in the video's metadata (for example, if your app uses a mix of Video Cloud videos, which contain the <code translate="No">accountID</code> property, and non-Video Cloud videos, which will not contain the <code translate="No">accountID</code> property).</p>
 
 <p>For example, you can set the Account Id value when creating a remote Video object using the Native SDK for Android:</p>
 
@@ -2023,7 +2032,7 @@ analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
 </code></pre>
 <!-- brightcoveVideoView.getAnalytics().setAccount("<span class="bcls-input">your accountID</span>"); -->
 
-<p>When you set the <code translate="No">Video.Fields.PUBLISHER_ID</code> property, the value of this property will be used for this remote video only. It will not affect the reporting of any VideoCloud videos you may also use. The most useful value for this property is your Account Id. These videos will be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
+<p>When you set the <code translate="No">Video.Fields.PUBLISHER_ID</code> property, the value of this property is used for this remote video only. It does not affect the reporting of any VideoCloud videos you may also use. The most useful value for this property is your Account Id. These videos are be reported in the Analytics module as <strong>Other/Third Party</strong> since Brightcove Analytics does not currently support detailed reporting for videos that are not retrieved through the Brightcove Catalog service.</p>
 
 </section>
 
@@ -2062,18 +2071,34 @@ analytics.setSource("<span class="bcls-input">valid URI</span>");</code></pre>
 
 <p class="BCL-aside">Note: For more details about URI structures for use in the destination and source fields, see the <a href="//en.wikipedia.org/wiki/URI_scheme">URI Scheme</a> Wikipedia page. You can use a tool like this <a href="https://www.url-encode-decode.com/">URL Encoder</a> to convert characters into UTF-8 encoding format.</p>
 </section>
+<section class="bcls-section">
+  <h3 id="Player-ID">Player ID</h3>
+  
+  <p>Use the <code translate="No">player</code> property to set the ID of the player.
+  </section>
+  <section class="bcls-section">
+    <h3 id="Player-Name">Player Name</h3>
+    
+    <p>Use the <code translate="No">player_name</code> property to set the name of the player, (This is the same name you see in the Studio list of players).</p>
+    
+    </section>
+    <section class="bcls-section">
+      <h3 id="Application-ID">Application ID</h3>
+      
+      <p>The <code translate="No">application</code> field is not a field in itself but a custom string to identify the usage of the player.</p>
+      </section>
 
 <section class="bcls-section">
 <h2 id="View_analytics"><a name="viewAnalytics"></a>View analytics</h2>
 
-<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video.To learn how, view the following docs:</p>
+<p>In the Video Cloud Analytics module, you can view metric data at the account level or at a detailed level such as by video. To learn more, see: </p>
 
 <ul>
   <li><a href="/features/viewing-brightcove-analytics-player-sdks.html">Viewing Brightcove Analytics</a></li>
   <li><a href="https://studio.support.brightcove.com/analytics/performance-report-reference.html">Performance Report Reference</a></li>
 </ul>
 
-<p class="BCL-aside">Note: Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</p>
+<aside class="bcls-aside bcls-aside--information">Note: Brightcove Analytics converts the destination and source values you’ve set to an all lower-case string value in all reports.</aside>
 </section>
 </article>
 

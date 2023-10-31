@@ -24,6 +24,7 @@ grandparent: Android Development
 <ul>
 	<li>This example uses the <code translate="No">BrightcoveExoPlayerVideoView</code>, which is the recommended view to use in most cases. If you think you need to use a different view, see the <a href="/android/basics/android-choosing-video-view.html">Choosing a BaseVideoView</a> document.</li>
 	<li class="video-cloud-only">This example uses the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>. This is the latest and recommended API to retrieve content from your Video Cloud library.</li>
+  <li>Android Studio uses the latest version of some dependencies that target Android 14(through the compileSdk and targetSdk pointing to 34), and Android 14 still needs to be fully supported by the SDK.</li>
 </ul>
 </aside>
 </section>
@@ -175,9 +176,23 @@ include ':app'</code></pre>
 			It is recommended that you use the ExoPlayer. If you are not using the exoplayer, you can use the following:
 		</p> --> <!-- <code translate="No">implementation 'com.brightcove.player:android-sdk:6.+'</code> --></li>
 		<li><a href="https://google.github.io/ExoPlayer/">Google's ExoPlayer</a> is an open source, application-level media player for Android. Notice that we are using the ExoPlayer 2 framework. For details, see the <a href=" /android/framework/migrating-exoplayer-2-framework.html">Migrating to ExoPlayer 2 Framework</a> document.</li>
+    <li>Android Studio uses Gradle version 8+ and the SDK does not support it yet.</li>
 	</ul>
 	</aside>
 	</li>
+  <li><p>Downgrade Gradle to v7.1.3 by changing in the <code translate="No">build.gradle(PlayVideos)</code> file In the <strong>Gradle Scripts</strong>.</p>
+    <pre class="line-numbers" data-start="1">
+      <code class="language-java" translate="No">
+        plugins &#123;
+          id 'com.android.application' version '7.1.3' apply false
+          &#125;
+      </code></pre>
+      <p>And in the <code translate="No">gradle-wrapper.properties</code> file In the <strong>Gradle Scripts</strong>.</p>
+    <pre class="line-numbers" data-start="1">
+      <code class="language-java" translate="No">
+        distributionUrl=https\://services.gradle.org/distributions/gradle-7.4.1-bin.zip
+      </code></pre>
+  </li>
   <li>
     <p>In the <strong>Gradle Scripts</strong> group, open the <code translate="No">gradle.properties</code> file.</p>
       <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Gradle properties" src="/assets/images/android/step-by-step/gradle-properties.webp" />

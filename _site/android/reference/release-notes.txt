@@ -1,5 +1,46 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.2.3
+
+  SDK Changes:
+    * Adds support for Player ID, Player Name, and Application ID Analytics fields. Note that these fields are optional; if a value is not supplied, an empty or placeholder value will not be sent.
+    * Improves null checking when adding videos or playlists to a player.
+    * Fixes an issue where a preroll ad was played twice when added using cue points.
+    * Fixes an issue with customizing the Captions, Rewind, Fast Forward, and Audio Tracks buttons.
+
+  Offline Plugin Changes:
+    * Selects https source URL by default for offline playback.
+
+  SSAI Plugin Changes:
+    * Fixes an issue with the Play/Pause button state after seeking through midroll ads.
+    * Improves null checking when adding videos or playlists to a player.
+    * Fixes an issue where a NullPointerException would be thrown when using the SSAIComponent class constructor: SSAIComponent(@NonNull Context context, @NonNull BaseVideoView baseVideoView, int connectTimeout, int readTimeout)
+    * Fixes an issue where the adDataReady event was emitted after adding the video to the view. This fix restores the order of emitted events in previous SDK versions.
+    * Fixes an issue with rewind behavior when the player’s playhead position is 0.
+
+Version 8.2.2
+
+  SSAI Plugin Changes:
+    * Fixes an issue where midroll ads would replay after seeking backwards through content
+
+Version 8.2.1
+
+  SDK Changes:
+    * Improvements and minor bug fixes to Ad Insights
+    * Fix playback issues for Dolby Atmos media on unsupported devices. Also emit an error event when a video with only Atmos-capable audio is attempted to load on a device without Atmos decoder support.
+    * Fixes an issue where captions languages could be emitted with an empty language list for SSAI videos.
+    
+  ExoPlayer Changes
+    * Fixes an issue where destroying the player on garbage-collecting the playback Object could result in a crash on TV platforms.
+
+Version 8.2.0
+
+  SDK Changes:
+    * Improvements to handling captions; fix formatted offline caption playback.
+    * Use the language label set in Brightcove Video Cloud when showing the dialog for available captions.
+    * Fix a NullPointerException when playback is using Generic Stream Concurrency and the device goes offline.
+    * Adds support for Brightcove Ad Insights.
+
 Version 8.1.1
 
   SDK Changes:
