@@ -412,7 +412,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.2.3: Native SDK for Android Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.3.0: Native SDK for Android Overview</a></li>
                   
                   
                   
@@ -1990,6 +1990,60 @@
 
     <section id="Current_release" class="section">
       <h2 id="Current_release"><strong>Current release</strong></h2>
+      <h3>Version 8.3.0</h3>
+      <h4>08 December 2023</h4>
+      <p>SDK Changes:</p>
+      <ul>
+        <li>Fixes a regression issue where the Fast Backward button showed the
+          wrong icon on TV devices.</li>
+        <li>Fixes an issue where the fast-forward button could not be set with a
+            custom icon.</li>
+       <li>Fixes a crash issue on Android 14 devices with BroadcastReceiver and
+        Foreground Service.</li>
+       <li>Video.findHighQualitySource now favors HTTPS, ensuring safer downloads
+        and ClearText restriction compliance.</li>
+        <li>Prioritize HTTPS URLs, enhancing security and compatibility in
+          restricted ClearText environments.</li>
+      </ul>
+      <p>ExoPlayer Changes:</p>
+      <ul>
+        <li>The Brightcove Native Player SDK for Android now supports ExoPlayer
+          2.19.1. Please refer to the ExoPlayer release notes for information on
+          ExoPlayer changes since 2.17.1, particularly for TrackSelectionOverride
+          changes made in ExoPlayer 2.18.0.</li>
+        <li>Fixes an issue where the Play and Pause button on Android TV remotes
+            did not work as expected.</li>
+        <li>Fixes an issue where the notification shows the title instead of the
+          description.</li>
+      </ul>
+      <p>Cast Plugin Changes:</p>
+      <ul>
+        <li>The Cast plugin is updated to use the latest Brightcove Cast receiver
+          app.</li>
+      </ul>
+      <p>IMA Plugin Changes:</p>
+      <ul>
+        <li>The Google IMA SDK dependency has been upgraded to 3.31.0. This
+          upgrade fixes a crash in Android 14 related to this library.</li>
+      </ul>
+      <p>Offline Playback Changes:</p>
+      <ul>
+        <li>Fixes an issue where a clear text source could be selected by the
+          OfflineCatalog, and improves source selection.</li>
+          <li>Fixes incorrect error handling when downloading offline videos.</li>
+          <li>Enhanced error handling in DownloadManager to prevent stalls and
+            improve notification management.</li>
+      </ul>
+      <p>SSAI Plugin Changes:</p>
+      <ul>
+        <li>Included ProGuard consumer files to retain essential IAB parser
+          classes when minification is enabled.</li>
+      </ul>
+
+
+    </section>
+    <section class="section">
+      <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
       <h3>Version 8.2.3</h3>
       <h4>27 September 2023</h4>
       <p><strong>ExoPlayer 2.17.1</strong></p>
@@ -2014,9 +2068,6 @@
           previous SDK versions.</li>
           <li>Fixes an issue with rewind behavior when the player’s playhead position is 0.</li>
         </ul>
-    </section>
-    <section class="section">
-      <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
       <h3>Version 8.2.2</h3>
       <h4>25 August 2023</h4>
       <p><strong>ExoPlayer 2.17.1</strong></p>
