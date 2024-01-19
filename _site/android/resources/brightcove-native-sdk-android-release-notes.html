@@ -412,7 +412,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.3.0: Native SDK for Android Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.4.0: Native SDK for Android Overview</a></li>
                   
                   
                   
@@ -1984,6 +1984,53 @@
 
     <section id="Current_release" class="section">
       <h2 id="Current_release"><strong>Current release</strong></h2>
+      <h3>Version 8.4.0</h3>
+      <h4>17 January 2024</h4>
+      <p>SDK Changes:</p>
+      <ul>
+        <li>Support for Android 14 is added with this version of the Brightcove
+          Native SDK for Android.</li>
+        <li>With this version of the Brightcove Native SDK for Android, Android OS
+            versions 6 and 7 are moved to Passive Support. Please refer to the Android
+            SDK support pages for more information on support levels.</li>
+        <li>Adds support functionality that allows users to zoom in and out of a
+              video while it is playing.</li>
+        <li>Fixes an issue where the player was not destroyed when a fragment was
+          destroyed.</li>
+        <li>Remove unnecessary code that could cause a potential bug in the
+          LoadImageTask class.</li>
+      </ul>
+      <p>ExoPlayer Changes:</p>
+      <ul>
+        <li>Adds support for overriding ExoPlayer's default connect and read
+          timeout settings.</li>
+      </ul>
+      <p>Freewheel Plugin Changes:</p>
+      <ul>
+        <li>Fixes an issue that could produce a crash during ad playback.</li>
+      </ul>
+      <p>IMA Plugin Changes:</p>
+      <ul>
+        <li>The IMA plugin now offers a function to clear some internal and
+          external objects used by the plugin.</li>
+      </ul>
+      <p>OfflinePlayback Changes:</p>
+      <ul>
+        <li>Improved download queue functionality now gracefully handles
+          individual download failures, ensuring uninterrupted progression of
+          remaining downloads.
+        </li>
+      </ul>
+      <p>SSAI Plugin Changes:</p>
+      <ul>
+        <li>Fixes an issue where ad stitched positions were returned for ad and
+          linear start events with incorrect values.</li>
+      </ul>
+
+
+    </section>
+    <section class="section">
+      <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
       <h3>Version 8.3.0</h3>
       <h4>08 December 2023</h4>
       <p>SDK Changes:</p>
@@ -2033,11 +2080,6 @@
         <li>Included ProGuard consumer files to retain essential IAB parser
           classes when minification is enabled.</li>
       </ul>
-
-
-    </section>
-    <section class="section">
-      <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
       <h3>Version 8.2.3</h3>
       <h4>27 September 2023</h4>
       <p><strong>ExoPlayer 2.17.1</strong></p>
