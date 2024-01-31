@@ -33,15 +33,13 @@ grandparent: Android Development
 <p>Brightcove provides active support for the latest Android SDK on the following Android versions:</p>
 
 <ul>
-  <!-- <li>13.0</li> -->
+  <li>14.0</li>
   <li>13.0</li>
   <li>12.0</li>
   <li>11.0</li>
   <li>10.0</li>
   <li>9.0</li>
   <li>8.0, 8.1</li>
-  <li>7.0, 7.1</li>
-  <li>6.0</li>
 </ul>
 
 <h3>Passive support</h3>
@@ -49,6 +47,8 @@ grandparent: Android Development
 <p>Brightcove provides passive support for the following Android versions:</p>
 
 <ul><!-- <li>Currently, there is no Android OS in passive support</li> -->
+  <li>7.0, 7.1</li>
+  <li>6.0</li>
   <li>5.0, 5.1</li>
 </ul>
 
@@ -57,8 +57,8 @@ grandparent: Android Development
 <p>Support is defined in terms of the <strong>[major version]</strong>.<strong>[minor version]</strong> of an OS (for example: Android 8.1). In order to take advantage of the latest technology improvements from Google, we offer two levels of support:</p>
 
 <ul>
-  <li><strong>Active</strong>: Brightcove will test and fix bugs on these OS versions.</li>
-  <li><strong>Passive</strong>: Brightcove will test on these OS versions, but bug fixes will be handled on a case by case basis.</li>
+  <li><strong>Active</strong>: Brightcove actively tests these versions, prioritizing newer OS levels, and addresses issues found with these OS versions.</li>
+  <li><strong>Passive</strong>: Brightcove no longer tests on these OS versions. Issues found will be handled on a case by case basis.</li>
 </ul>
 
 <p>Generally, Brightcove provides active support for the versions of the OS that are used by 80% of the user base, and passive support for other versions used by at least 5% of the user base.</p>
@@ -152,10 +152,10 @@ grandparent: Android Development
   <tbody class="bcls-table__body">
     <tr>
       <td style="background-color:#dbdbdb;font-weight: bold;">SDK</td>
-      <td><a href="https://sdks.support.brightcove.com/android/reference/android-native-player-public-8.2.3.zip">Native SDK for Android v8.2.3</a></td>
+      <td><a href="https://sdks.support.brightcove.com/android/reference/android-native-player-public-8.4.0.zip">Native SDK for Android v8.4.0</a></td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/index.html">SDK Reference</a></td>
       <td><a href="/android/resources/brightcove-native-sdk-android-release-notes.html">Release Notes</a></td>
-      <td><a href="https://github.com/brightcove/ExoPlayer">ExoPlayer 2.17.1</a></td>
+      <td><a href="https://exoplayer.dev/hello-world.html">ExoPlayer 2.19.1</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples">Sample Applications</a></td> 
     </tr>
   </tbody>
@@ -163,13 +163,12 @@ grandparent: Android Development
 
 <p>or select this button:</p>
 
-<p><button class="bcls-button" type="button" title="Android Native SDK" onclick="location.href='https://sdks.support.brightcove.com/android/reference/android-native-player-public-8.2.3.zip';">Download the SDK</button></p>
+<p><button class="bcls-button" type="button" title="Android Native SDK" onclick="location.href='https://sdks.support.brightcove.com/android/reference/android-native-player-public-8.4.0.zip';">Download the SDK</button></p>
 
 <h3>Notes</h3>
 
 <p>The following notes refer to the latest version of the Native SDK:</p>
 
-<ul>
   <li>
   <p>Starting with version 6.10.0, Brightcove's Native SDK for Android uses the Jetpack (androidx.*) libraries instead of the original support libraries. This change is required for Exoplayer version 2.10.0 and above. To use Jetpack, your apps must meet the following requirements:</p>
 
@@ -182,7 +181,7 @@ grandparent: Android Development
   <p>For more information on how to migrate to JetPack refer to the official <a href="https://developer.android.com/jetpack/androidx/migrate">Android migration guide</a>.</p>
   </li>
   <li>The Android Minimum SDK Version supported by the Brightcove Native SDK for Android is now 19.</li>
-  <li>For ExoPlayer v2.17.1, you need to enable Java 11 support. To do this, add the following to the android section of your app's build.gradle file. For details, see <a href="https://exoplayer.dev/hello-world.html">Android's ExoPlayer</a> document.
+  <li>For ExoPlayer v2.19.1, you need to enable Java 11 support. To do this, add the following to the android section of your app's build.gradle file. For details, see <a href="https://exoplayer.dev/hello-world.html">Android's ExoPlayer</a> document.
   <pre class="line-numbers">
 <code class="language-java" translate="No">android {
     compileOptions {
@@ -255,7 +254,7 @@ grandparent: Android Development
   <tbody class="bcls-table__body">
     <tr>
       <td rowspan="7" style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Advertising</td>
-      <td>FreeWheel plugin 8.2.3 <sup><a href="#n1"> [1]</a></sup></td>
+      <td>FreeWheel plugin 8.4.0 <sup><a href="#n1"> [1]</a></sup></td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/com/brightcove/freewheel/controller/package-frame.html">FreeWheel Reference</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/FreeWheelSampleApp/src/main">Basic FreeWheel Sample</a></td>
       <td>FreeWheel AdManager library 6.28.0</td>
@@ -267,10 +266,10 @@ grandparent: Android Development
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>IMA plugin 8.2.3 <sup><a href="#n2"> [2]</a></sup></td>
+      <td>IMA plugin 8.4.0 <sup><a href="#n2"> [2]</a></sup></td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/com/brightcove/ima/package-frame.html">IMA Reference</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMASampleApp">Ad Rules with IMA Sample</a></td>
-      <td>Google IMA 3.27.0</td>
+      <td>Google IMA 3.31.0</td>
     </tr>
     <tr>
       <td>&nbsp;</td>
@@ -285,20 +284,20 @@ grandparent: Android Development
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>Pulse plugin 8.2.3</td>
+      <td>Pulse plugin 8.4.0</td>
       <td><a href="/android/reference/javadoc/com/brightcove/pulse/package-frame.html">Pulse Reference</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/PulseSampleApp">Pulse Sample</a></td>
       <td>Pulse SDK 2.5.20.3.0</td>
     </tr>
     <tr>
-      <td>SSAI plugin 8.2.3</td>
+      <td>SSAI plugin 8.4.0</td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/com/brightcove/ssai/package-frame.html">SSAI Reference</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Sample</a></td>
       <td>None</td>
     </tr>
     <tr>
       <td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Analytics</td>
-      <td>Omniture plugin 8.2.3 <sup><a href="#n3"> [3]</a></sup></td>
+      <td>Omniture plugin 8.4.0 <sup><a href="#n3"> [3]</a></sup></td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/com/brightcove/omniture/package-frame.html">Omniture Reference</a></td>
       <td></td>
       <td>AdobeVideoLibrary 4.11.0<br />
@@ -307,11 +306,11 @@ grandparent: Android Development
     </tr>
     <tr> 
       <td style="background-color:#dbdbdb;font-weight: bold;border-bottom:1px solid #707070;">Chromecast</td>
-      <td>Cast plugin 8.2.3</td>
+      <td>Cast plugin 8.4.0</td>
       <td><a href="https://sdks.support.brightcove.com/android/reference/javadoc/com/brightcove/cast/package-frame.html">Cast Reference</a></td>
       <td><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicCastBrightcoveReceiverSampleApp">Brightcove Receiver Sample</a><br/>
       <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicCastGoogleReceiverSampleApp">Google Receiver Sample</a></td>
-      <td>ExoPlayer Cast Extension 2.17.1</td>
+      <td>ExoPlayer Cast Extension 2.19.1</td>
     </tr>
   </tbody>
 </table>
@@ -341,7 +340,7 @@ grandparent: Android Development
 
 <h3>Combining plugins</h3>
 
-<p>With the Native SDK for Android, most plugins can be combined. This <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">sample app</a> shows you how to use the Brightcove ExoPlayer with Google IMA ads and content protection with Widevine Modular.</p>
+<p>With the Native SDK for Android, most plugins can be combined. This <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AdRulesIMAWidevineModularSampleApp">sample app</a> shows you how to use the Brightcove ExoPlayer with Google IMA 3.31.0 ads and content protection with Widevine Modular.</p>
 </section>
 
 <section class="bcls-section">
@@ -487,7 +486,7 @@ grandparent: Android Development
 <ul>
   <li><a href="https://developers.google.com/interactive-media-ads/docs/sdks/html5/vastinspector">Google VAST Ad Response validator</a></li>
   <li><a href="https://www.iab.com/guidelines/digital-video-multiple-ad-playlist-vmap-1-0-1/">Digital Video Multiple Ad Playlist (VMAP) guide</a></li>
-  <li><a href="https://groups.google.com/forum/#!forum/ima-sdk">Google IMA Technical Forum</a></li>
+  <li><a href="https://groups.google.com/forum/#!forum/ima-sdk">Google IMA 3.31.0 Technical Forum</a></li>
 </ul>
 
 <h3>Companion ads</h3>

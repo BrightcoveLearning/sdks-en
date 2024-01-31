@@ -145,6 +145,7 @@ grandparent: Home
 	<li>Listen for the <code translate="No">GoogleIMAEventType.ADS_REQUEST_FOR_VIDEO</code> event. Here, you will build an ads request object and point to your Ad Tag URL. In this case, it is an Ad Rules VMAP file.</li>
 	<li>The <code translate="No">setupAdMarkers()</code> method is optional. This method calls the IMA AdManager and creates ad markers on the seek bar, so that users can visually see when ads will play.</li>
 </ol>
+<aside class="bcls-aside bcls-aside--information">Note: SSAI and IMA combination are supported. However, there is no failover between SSAI and IMA since the SDK does not support fallback from one ad system to another.</aside>
 
 <h4>Seek without ads</h4> 
 <p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="https://sdks.support.brightcove.com/android/resources/code-snippets-using-native-sdk-android.html#Seek_without_ads">Seek without ads</a> code snippet.</p>

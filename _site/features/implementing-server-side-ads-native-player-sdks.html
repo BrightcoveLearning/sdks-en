@@ -412,7 +412,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.2.3: Native SDK for Android Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/overview-brightcove-player-sdk-android.html">v8.4.0: Native SDK for Android Overview</a></li>
                   
                   
                   
@@ -961,7 +961,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.12.5: Native SDK for iOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.12.7: Native SDK for iOS Overview</a></li>
                   
                   
                   
@@ -1386,7 +1386,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.12.5: Native SDK for tvOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.12.7: Native SDK for tvOS Overview</a></li>
                   
                   
                   
@@ -2004,6 +2004,7 @@
   <ul>
     <li>To use SSAI, your Video Cloud account needs to be configured for <a href="https://studio.support.brightcove.com/general/architecture/overview-dynamic-delivery.html">Dynamic Delivery</a> and enabled for SSAI. Contact your account manager to start using this feature.</li>
     <li>SSAI works with Video-on-Demand (VOD) and supports Live playback.</li>
+	<li>SSAI and IMA combination are supported. However, there is no failover between SSAI and IMA since the SDK does not support fallback from one ad system to another.</li>
     <li>For a list of limitations, see the <a href="https://ssai.support.brightcove.com/getting-started/video-cloud-ssai-overview.html#Limitations">SSAI Overview</a> document.</li>
   </ul>
   </aside>
@@ -2202,6 +2203,7 @@ SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
 	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">The SSAI Plugin for the Native SDK for iOS</a></li>
 	<!-- <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li> -->
 </ul>
+<aside class="bcls-aside bcls-aside--information language-editable">The plugins that can be mixed are SSAI (using Live Stream) and IMA. This is not supported for VOD.</aside>
 </section>
 
 <section class="bcls-section">
