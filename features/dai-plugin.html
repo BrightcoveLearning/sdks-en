@@ -1,5 +1,5 @@
 ---
-title: 'Implementing DAI Plugin'
+title: 'Implementing DAI Plugin for Android'
 description: This topic covers the use of the IMA DAI plugin and how it can be implemented through custom coding.
 parent: Features
 grandparent: Home
@@ -21,228 +21,206 @@ grandparent: Home
 <pre class="line-numbers">
     <code class="language-java" translate="No">implementation "com.brightcove.player:android-dai-plugin:[BRIGHTCOVE_SDK_LAST_VERSION]"
 </code></pre>
-
+<br>
+<h3>Creating An Instance Of The Brightcove DAI Plugin</h3>
 <p>Use the GoogleDAIComponent.Builder class to create a new instance:</p>
 <pre class="line-numbers">
     <code class="language-java" translate="No">GoogleDAIComponent daiComponent = new GoogleDAIComponent.Builder(brightcoveVideoView, eventEmitter).build();
 </code></pre>
 <p>Through the GoogleDAIComponent.Builder you can set up the ImaSdkSettings, AdsRenderingSettings, AdLoadTimeout, and others.</p>
-</section>
 
-<section class="bcls-section">
-<h2 id="Create_an_ad_configuration">Create an ad configuration</h2>
-
-<p>The ad configuration defines various aspects of SSAI playback, including a URL to your Video Multiple Ad Playlist (VMAP) file, beacons, and other configurations. To create an ad configuration, follow these steps:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>
-	<p>In Video Cloud Studio, expand the <strong>ADMIN</strong> menu and select <strong>Server-Side Ad Settings</strong>.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Ad configuration admin" src="/assets/images/features/ssai/ad-config-admin.png" />
-	<figcaption class="bcls-caption--image">Ad configuration admin</figcaption>
-	</figure>
-	</li>
-	<li>
-	<p>Add information for your ad configuration and select <strong>Save</strong>.</p>
-
-	<figure class="bcls-figure"><img class="bcls-image--no-border" alt="Ad settings" src="/assets/images/features/ssai/ad-settings.png" />
-	<figcaption class="bcls-caption--image">Ad settings</figcaption>
-	</figure>
-	</li>
-</ol>
-
-<p>For details, see the <a href="https://studio.support.brightcove.com/admin/general/configuring-server-side-ad-settings.html">Configuring Server-Side Ad Settings</a> document.</p>
-
-<p>To create an ad configuration using the SSAI API, see the <a href="https://ssai.support.brightcove.com/vod/guides/video-cloud-ssai-ad-config-api.html">Video Cloud SSAI Ad Config API</a> document.</p>
-</section>
-
-<section class="bcls-section">
-<h2 id="Android_implementation">Android implementation</h2>
-
-<p>Follow these steps within your app to get your ad configuration and play your video:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>In Android Studio, open your <strong>MainActivity.java</strong> file.</li>
-	<li>Add the following import statements:
-	<pre>
-<code class="language-java" translate="No">import com.brightcove.ssai.SSAIComponent;
-import com.brightcove.player.network.HttpRequestConfig;</code></pre>
-	</li>
-	<li>Define constants for your account id, policy key, video id, and your ad configuration id.
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">private String accountId = "<span class="bcls-input">your account id</span>";
-private String policyKey = "<span class="bcls-input">your policy key</span>";
-private String videoId = "<span class="bcls-input">your video id</span>";
-private String adConfigId = "<span class="bcls-input">your ad configuration id</span>";</code></pre>
-
-	<aside class="bcls-aside bcls-aside--tip">Learn how to get or generate a policy key in the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy Keys</a> document.</aside>
-	</li>
-	<!-- <li>In the <code translate="No">onCreate</code> method, set the query parameter value to your ad configuration id.
-  	<pre class="line-numbers">
-<code class="language-swift" translate="No">Map&lt;String, String&gt; parameters = new HashMap&lt;&gt;();
-      parameters.put("ad_config_id", adConfigId);
-      </code></pre>
-  	</li> -->
-	<li>Create an instance of the catalog service, which provides asynchronous methods for retrieving data from the Playback API. Create an instance of the SSAI component.
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">Catalog catalog = new Catalog(eventEmitter, myAccountId, myPolicyKey);
-SSAIComponent plugin = new SSAIComponent(appContext, getBrightcoveVideoView());
+<h3>Requesting Video Streams</h3>
+<p>You can request live streams or video on demand through the following interfaces:</p>
+<pre class="line-numbers">
+    <code class="language-java" translate="No">//For Video On Demand 
+		daiComponent.requestVOD(String contentSourceID, String videoID, String apiKey);
+		// For Live streams 
+		daiComponent.requestLiveStream(String assetKey, String apiKey);
 </code></pre>
-	</li>
-	<li>Set the adConfigId as a URL parameter.
-	<pre class="line-numbers">
-<code class="language-java" translate="No">HttpRequestConfig httpRequestConfig = new HttpRequestConfig.Builder()
-  .addQueryParameter("ad_config_id", myAdConfig)
-  .build();</code></pre>
-	</li>
-	<li>Call the catalog service to retrieve your video along with your ad configuration from the Playback API. Start video playback with your specified ads.
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">catalog.findVideoByID(myVideoId, httpRequestConfig, new VideoListener() {
-    @Override
-    public void onVideo(Video video) {
-
-    // Process the Video
-    plugin.processVideo(video);
-  }
-});</code></pre>
-	</li>
-</ol>
-
-<h3>Captions</h3>
-<aside class="bcls-aside bcls-aside--information">The Native SDK for Android only supports in-manifest captions with SSAI. Sidecar (or remote) captions may not synchronize with the content and ad breaks.</aside>
-
-<h3>Events</h3>
-<p>For details about events associated with Server-side ad insertion, see the following:</p>
-<ul>
-	<li><a href="/android/reference/javadoc/com/brightcove/ssai/event/SSAIEventType.html">SSAI event types</a></li>
-</ul>
-
-<h3>Seek without ads</h3>
-<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="/android/resources/code-snippets-using-native-sdk-android.html#Seek_without_ads">Seek without ads</a> code snippet.</p>
-
-<h3>Code sample</h3>
-<p>Here is a complete code sample:</p>
-<ul>
-	<li><a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSsaiSampleApp">Basic SSAI Player using the Native SDK for Android</a></li>
-</ul>
-
-<!-- <h3>Related topics</h3>
-<p>For more details, see the following:</p>
-<ul>
-	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html">The SSAI Plugin for the Native SDK for Android</a></li>
-	<li><a href="/android/advertising/ssai-plugin-native-sdk-android.html#Migrating_from_the_OnceUx_Plugin">Migrating from the OnceUX plugin</a></li>
-</ul> -->
+<br>
+<h3>Configuring a fallback video</h3>
+<p>Google suggests configuring a fallback video if the DAI video stream cannot be loaded:</p>
+<pre class="line-numbers">
+    <code class="language-java" translate="No">daiComponent.setFallbackVideo(Video myVideo);
+</code></pre>
+<p>We recommend retrieving the fallback video through the Brightcove Catalog API:</p>
+<pre class="line-numbers">
+    <code class="language-java" translate="No">catalog.findVideoByID("MY_VIDEO_ID", new VideoListener() { 
+		@Override 
+		public void onVideo(Video video) {
+				googleDAIComponent.setFallbackVideo(video);              
+		  // Request a VOD 
+		  googleDAIComponent.requestVOD(MY_DAI_VIDEO_CMS_ID, MY_DAI_VIDEO_ID, null); 
+	} 
+	});
+</code></pre>
+<br>
+<h3>Getting The Response From Google IMA-DAI</h3>
+<p>Use <code translate="no">GoogleDAIComponent.Listener</code> to get the stream response from Google IMA-DAI.</p>
+<pre class="line-numbers">
+    <code class="language-java" translate="No">daiComponent.addCallback(new GoogleDAIComponent.Listener() { 
+		@Override public void onStreamReady(Video video) {
+				 Log.d(TAG, "onStreamReady");
+				 brightcoveVideoView.add(video); 
+		  brightcoveVideoView.start(); 
+		}
+	
+			 @Override public void onContentComplete() {
+				 Log.d(TAG, "onContentComplete"); 
+		}
+	});	
+</code></pre>
+<p>The Listener notifies you when a stream is ready and when the content has completed playback.
+</p>
+<br>
+<h3>Basic Stream Request</h3>
+<p>The complete code for a basic stream request would be the following:</p>
+<pre class="line-numbers">
+    <code class="language-java" translate="No">catalog.findVideoByID(getString("MY_VIDEO_ID", new VideoListener() &#123; 
+		@Override 
+		public void onVideo(Video video) &#123;
+				 daiComponent.setFallbackVideo(video); 
+		  daiComponent.addCallback(new GoogleDAIComponent.Listener() &#123;
+					@Override 
+			public void onStreamReady(Video video) &#123; 
+				Log.d(TAG, "onStreamReady"); 
+				brightcoveVideoView.add(video); 
+				brightcoveVideoView.start(); 
+				&#125;
+	
+			@Override 
+			public void onContentComplete() &#123; 
+				Log.d(TAG, "onContentComplete"); 
+				&#125; 
+				&#125;); 
+		  
+		  // Request a VOD video
+		  googleDAIComponent.requestVOD(VOD_TEARS_OF_STEEL_CMS_ID, VOD_TEARS_OF_STEEL_VIDEO_ID, null); 
+		  &#125;
+		  &#125;);		
+</code></pre>
+<p>Refer to the Brightcove DAI Sample app in our <a href="https://github.com/BrightcoveOS/android-player-samples">Samples repository</a> for the complete code.</p>
 </section>
-
 <section class="bcls-section">
-<h2 id="iOS_implementation">iOS implementation</h2>
-
-<p>Follow these steps within your app to get your ad configuration and play your video:</p>
-
-<ol class="bcls-tasklist-restart">
-	<li>In Xcode, open your <strong>ViewController.m</strong> file.</li>
-	<li>Import the SSAI plugin for iOS.
-	<pre>
-<code class="language-swift" translate="No">import BrightcoveSSAI</code></pre>
-	</li>
-	<li>Define constants for your account id, policy key, video id, and your ad configuration id.
+    <h2 id="open-measurement">Open Measurement</h2>
+	<p>The IMA SDK for Android includes the Open Measurement (OM) SDK, an industry standard developed by the Interactive Advertising Bureau (IAB) to enable third-party viewability and verification measurement. When using the IMA SDK for Android, the included OM SDK automatically parses the <strong>&#60;AdVerifications&#62;</strong> tag within VAST ad tags and sends viewability data to the specified measurement vendors via the OMID API. <a href="https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/android/omsdk">Learn more</a>.</p>
+	<br>
+	<h3>Registering An Obstruction</h3>
+	<p>To register a friendly obstruction, create the <code>FriendlyObstruction</code> object as follows:</p>
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">struct Constants {
-  static let AccountID = "<span class="bcls-input">your account id</span>"
-  static let PlaybackServicePolicyKey = "<span class="bcls-input">your policy key</span>"
-  static let VideoId = "<span class="bcls-input">your video id</span>"
-  static let AdConfigId = "<span class="bcls-input">your ad configuration id</span>"
-}</code></pre>
-
-	<aside class="bcls-aside bcls-aside--tip">Learn how to get or generate a policy key in the <a href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy Keys</a> document.</aside>
-	</li>
-	<!-- <li>
-      Define the view along with the companion view for ads.
-      <pre class="line-numbers"><code class="language-swift" translate="No">class ViewController: UIViewController {
-    @IBOutlet weak var videoContainerView: UIView!
-    @IBOutlet weak var companionSlotContainerView: UIView!</code></pre>
-    </li> -->
-	<li>Define the <code translate="No">BCOVPlaybackService</code> class, which provides asynchronous methods for retrieving data from the Playback API.
+		<code class="language-java" translate="No">// Create your UI object
+			myPlayButton = (ImageButton) rootView.findViewById(R.id.playButton);
+			
+			// Create the FriendlyObstruction object
+			playButtonObstruction = ImaSdkFactory.createFriendlyObstruction(
+			  myPlayButton, // The UI Object
+			  FriendlyObstructionPurpose.VIDEO_CONTROLS, // The pupose
+			  "This is my Play button" // A detailed reason
+			);
+			
+			brightcoveDAIComponent.getStreamDisplayContainer().registerFriendlyObstruction(playButtonObstruction);
+				
+	</code></pre>
+	<br>
+	<h3>Unregistering An Obstruction</h3>
+	<p>To unregister an obstruction, use the <code>unregisterAllFriendlyObstructions()</code> method:</p>
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">private lazy var playbackService: BCOVPlaybackService = {
-  let factory = BCOVPlaybackServiceRequestFactory(accountId: Constants.AccountID, policyKey: Constants.PlaybackServicePolicyKey, baseURLStr: "https://edge.api.brightcove.com/playback/v1")
-  return BCOVPlaybackService(requestFactory: factory)
-}()</code></pre>
-	</li>
-	<li>Set the query parameter value to your ad configuration id.
-	<pre>
-<code class="language-swift" translate="No">let queryParameters = [kBCOVPlaybackServiceParamaterKeyAdConfigId: Constants.AdConfigId]</code></pre>
-	</li>
-	<li>
-	<p>Call the <code translate="No">playbackService</code> to retrieve your video along with your ad configuration from the Playback API. Start video playback with your specified ads.</p>
-
-	<pre class="line-numbers">
-<code class="language-swift" translate="No">playbackService.findVideo(withVideoID: Constants.VideoId, parameters: queryParameters) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
-
-  guard let _video = video else {
-    print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")
-    return
-  }
-
-  self?.playbackController?.setVideos([_video] as NSFastEnumeration)
-}</code></pre>
-	</li>
-</ol>
-
-<h3>Events</h3>
-<p>For details about events associated with Server-side ad insertion, see the following:</p>
-<ul>
-	<!-- <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">SSAI events</a></li> -->
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Advertising events</a></li>
-</ul>
-
-<h3>Seek without ads</h3>
-<p>When you want to disable ad playback while the user is seeking through the video, refer to the <a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#seek-without-ads">Seek without ads</a> section of the SDK reference.</p>
-
-<h3>Code sample</h3>
-<p>Here is a complete code sample:</p>
-<ul>
-		<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAIPlayer">Basic SSAI Player using the Native SDK for iOS (Objective-C and Swift)</a></li>
-</ul>
-
-<h3>Related topics</h3>
-<p>For more details, see the following:</p>
-<ul>
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai">The SSAI Plugin for the Native SDK for iOS</a></li>
-	<!-- <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai#migrating-onceux-to-ssai">Migrating from the OnceUX plugin</a></li> -->
-</ul>
-<aside class="bcls-aside bcls-aside--information language-editable">The plugins that can be mixed are SSAI (using Live Stream) and IMA. This is not supported for VOD.</aside>
+		<code class="language-java" translate="No">brightcoveDAIComponent.getStreamDisplayContainer().unregisterAllFriendlyObstructions();
+	</code></pre>
 </section>
-
 <section class="bcls-section">
-<h2 id="tvOS_implementation">tvOS implementation</h2>
-
-<p>The code to implement SSAI with the Native SDK for tvOS is similar to the <a href="#iOS_implementation">iOS implementation</a> above.</p>
-
-<h3>Events</h3>
-<p>For details about events associated with Server-side ad insertion, see the following:</p>
-
-<ul>
-	<!-- <li><a href="https://github.com/brightcove/brightcove-player-sdk-ios-ssai/blob/master/ios/dynamic/BrightcoveSSAI.framework/Headers/BCOVSSAIConstants.h">SSAI events</a></li> -->
-	<li><a href="https://github.com/brightcove/brightcove-player-sdk-ios/blob/master/ios/dynamic/BrightcovePlayerSDK.framework/Headers/BCOVAdvertising.h">Advertising events</a></li>
-</ul>
-
-<h3>Code sample</h3>
-<p>Here is a complete code sample:</p>
-<ul>
-		<li><a href="https://github.com/BrightcoveOS/ios-player-samples/tree/master/SSAI/BasicSSAItvOSPlayer">Basic SSAI Player using the Native SDK for tvOS (Objective-C and Swift)</a></li>
-</ul>
+    <h2 id="localization">Localization</h2>
+	<p>The Google IMA-DAI library supports multiple languages applied to the ads and the UI controls. This is configurable through the <code>ImaSDKSettings</code> object from the Google IMA-DAI library, and after the locale is set, the <code>ImaSDKSettings</code> object can be passed to the Brightcove DAI plugin:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">ImaSdkSettings imaSdkSettings = ImaSdkFactory.getInstance().createImaSdkSettings();
+			imaSdkSettings.setLanguage("fr");
+			
+	GoogleDAIComponent.Builder daiBuilder = new GoogleDAIComponent.Builder(brightcoveVideoView, eventEmitter)
+				   .setImaSdkSettings(imaSdkSettings)
+				   
+	GoogleDAIComponent googleDAIComponent = daiBuilder.build();
+	</code></pre>
+	<a href="https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/android/localization#locale-codes">Supported Country codes</a>.
 </section>
-
-<!-- <section class="bcls-section">
-<h2 id="Additional_notes">Additional notes</h2>
-
-<p>There are a few technical notes to be aware of when using SSAI with the Native SDKs.</p>
-
-<h3>Brightcove Native SDK for iOS/tvOS</h3>
-
-<ul>
-	<li><strong>Post-rolls:</strong> The OnceUX plugin translates the <code translate="No">timeOffset</code> value of <code translate="No">end</code> on the final ad break (post-roll) to a <code translate="No">CMTime</code> value of <code translate="No">+INFINITY</code>, for speed and efficiency. This translation is done AFTER the VMAP document is received (which occurs after the Playback API response is received) and BEFORE playback begins.</li>
-</ul>
-</section> -->
+<section class="bcls-section">
+    <h2 id="privacy">Privacy</h2>
+	<p>The Brightcove DAI plugin allows the end user to consent to the usage of their data to offer personalized ads.</p>
+	<p>This can be set by passing a <code translate="no">Map</code> with the parameters for each consent and their value into the <code>GoogleDAIComponent.Builder</code> class:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">Map&#60;String, String&#62; adTagParameters = new HashMap&#60;String, String&#62;;
+			adTagParameters.put(BaseIMAComponent.TAG_NON_PERSONALIZED_ADS, “1”);
+			
+	ImaSdkSettings imaSdkSettings = ImaSdkFactory.getInstance().createImaSdkSettings();
+	GoogleDAIComponent.Builder daiBuilder = new GoogleDAIComponent.Builder(brightcoveVideoView, eventEmitter)
+					.setImaSdkSettings(imaSdkSettings)
+					.setAdTagParameters(adTagParameters);
+	</code></pre>
+	<br>
+	<h3>The supported consents are the following:</h3>
+	<ul>
+		<li>Non-Personalized Ads.</li>
+		<li>Users under the Age of Consent in Europe.</li>
+		<li>California Consumer Privacy Act.
+			<ul>
+				<li>Google’s RDP (Restricted Data Processing).</li>
+				<li>IAB’s RDP.</li>
+			</ul>
+		</li>
+		<li>Limited Ads.</li>
+	</ul>
+	<br>
+	<p><strong>Non-personalized ads</strong></p>
+	<p>To force non-personalized ads follow the next snippet:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">adTagParameters.put(BaseIMAComponent.TAG_NON_PERSONALIZED_ADS, “1”);
+	</code></pre>
+	<br>
+	<p><strong>Users under age</strong></p>
+	<p>To tag users as under the age of consent follow the next snippet:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">adTagParameters.put(BaseIMAComponent.TAG_FOR_USERS_UNDER_AGE, “1”);
+	</code></pre>
+	<br>
+	<p><strong>RDP</strong></p>
+	<p>To notify that RDP should be enabled using Google’s signal follow the next snippet:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">adTagParameters.put(BaseIMAComponent.TAG_GOOGLE_RDP_SIGNAL, “1”);
+	</code></pre>
+	<br>
+	<p><strong>IAB signal</strong></p>
+	<p>The value for this has to align with the <a href="https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md">IAB specification</a>:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">adTagParameters.put(BaseIMAComponent.TAG_IAB_RDP_SIGNAL, “1YYN”);
+	</code></pre>
+	<br>
+	<p><strong>Limit ads</strong></p>
+	<p>To limit ads follow the next snippet:</p>
+	<pre class="line-numbers">
+		<code class="language-java" translate="No">adTagParameters.put(BaseIMAComponent.TAG_LIMITED_ADS, “1”);
+	</code></pre>
+</section>
+<section class="bcls-section">
+    <h2 id="limitations">Limitations</h2>
+	<h3>Manifest Expiration</h3>
+	<p>Brightcove VOD manifest URLs are not static and are designed to expire after a certain time.</p>
+	<p>A stream being ingested by Google and re-streamed as a DAI stream will stop working after the manifest URL expires. Google does not yet offer a mechanism to refresh the expired URL.</p>
+	
+	<h3>Stream Preconditioning</h3>
+	<p>Google IMA-DAI requires streams to be preconditioned using <em>#EXT-X-PLACEMENT-OPPORTUNITY</em> tags in the source HLS manifest, or through multiple periods in a DASH manifest, to signal where ad breaks should appear.</p>
+	<p>Brightcove VOD delivery does not include this non-standard HLS tag today.</p>
+	
+	<h3>HLSe Not Supported</h3>
+	<p>Google IMA-DAI does not currently offer support for HLSe.</p>
+</section>
+<section class="bcls-section">
+    <h2 id="known-issues">Known Issues</h2>
+	<h3>Ad Events Notifications</h3>
+	<p>The Google IMA-DAI library only notifies ad events once per ad. If users replay an ad, the Brightcove DAI plugin will not receive ad notifications of that second ad playback. This is by design by the Google IMA team.</p>
+	
+	<h3>Livestreams Return Null Ad Info</h3>
+	<p>The Google IMA-DAI library provides null information about ad events when the user joins a livestream in the middle of an ad. This behavior is by design in the Google IMA-DAI library, and it limits the Brightcove DAI plugin in knowing if an ad is being played and acting accordingly(notifying the user, blocking playback controls, sending the right video and analytics data to the Brightcove backend, etc.).</p>
+	
+	<h3>Manual-start Playback</h3>
+	<p>The Google IMA-DAI library controls the playback controls, which means that we cannot control playback while an ad is being played. This affects the stream when it has pre-rolls by not allowing it to start playback manually.</p>
+</section>
 </article>

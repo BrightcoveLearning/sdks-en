@@ -1,0 +1,414 @@
+---
+title: 'Implementing DAI Plugin for iOS'
+description: This topic covers the use of the IMA DAI plugin and how it can be implemented through custom coding.
+parent: Adverstising
+grandparent: iOS
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+
+<p>The Brightcove SDK offers a plugin to interact with the Google IMA-DAI library for multimedia ads playback in your application, and abstracts the setup and basic interaction with the Google IMA-DAI library so you can focus on requesting video streams.</p>
+</section>
+
+<section class="bcls-section">
+<h2 id="cocoapods">Cocoapods Implementation</h2>
+
+<p>You can use <a href="https://cocoapods.org/">CocoaPods</a> to add the DAI Plugin for Brightcove Player SDK to your project. You can find the latest Brightcove-Player-DAI podspec <a href="https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-DAI">here</a>. The pod incorporates the correct version of IMA automatically.</p>
+<p>CocoaPod podfile snippet</p>
+<pre class="line-numbers">
+    <code class="language-Swift" translate="No">source 'https://github.com/CocoaPods/Specs'
+    source 'https://github.com/brightcove/BrightcoveSpecs.git'
+
+    platform :ios, '14.0'
+    use_frameworks!
+
+    target 'MyDAIPlayer' do
+        pod 'Brightcove-Player-DAI'
+    end
+</code></pre>
+</section>
+<section class="bcls-section">
+<h2 id="cocoapods">Manual Implementation</h2>
+
+<p>To add the DAI Plugin for Brightcove Player SDK to your project manually follow the next steps:</p>
+<ol class="bcls-tasklist-restart">
+    <li>Download the Brightcove Player SDK framework.</li>
+    <li>Download the DAI Plugin for Brightcove Player SDK framework.</li>
+    <li>Download the Google IMA framework.</li>
+    <li>Add the <strong>dymnamic</strong> framework.
+        <ul>
+            <li>On the "<strong>General</strong>" tab of your application target, add the <code translate="no">BrightcovePlayerSDK.framework</code> or <code>BrightcovePlayerSDK.xcframework</code>.</li>
+            <li>From the Brightcove Player SDK download to the list of <strong>Frameworks</strong>, <strong>Libraries</strong>, and <strong>Embedded Content</strong>. The <strong>universal Framework</strong> and <strong>XCFramework</strong> are found in the <strong>ios/dynamic</strong> directory of the download. The <em>Embed</em> setting must be "<strong>Embed & Sign</strong>".</li>
+        </ul>
+    </li>
+    <li>Add the <strong>DAI</strong> framework.
+        <ul>
+            <li>On the "<strong>General</strong>" tab of your application target, add the <code translate="no">BrightcoveDAI.framework</code> or <code>BrightcoveDAI.xcframework</code>.</li>
+            <li>From the DAI Plugin from Brightcove Player SDK download to the list of <strong>Frameworks</strong>, <strong>Libraries</strong>, and <strong>Embedded Content</strong>. The <em>Embed</em> setting must be "<strong>Embed & Sign</strong>".</li>
+        </ul>
+    </li>
+    <li>Add the <strong>Google Media Ads</strong> framework.
+        <ul>
+            <li>On the "<strong>General</strong>" tab of your application target, add the <code translate="no">GoogleInteractiveMediaAds.xcframework</code>.</li>
+            <li>From the Google IMA download to the list of <strong>Frameworks</strong>, <strong>Libraries</strong>, and <strong>Embedded Content</strong>. The <em>Embed</em> setting for the XCFrameworks must be "<strong>Embed & Sign</strong>".</li>
+        </ul>
+    </li>
+    <li>On the "<strong>Build Settings</strong>" tab of your application target, ensure that the "<strong>Framework Search Paths</strong>" include the paths to the frameworks. 
+        <aside class="bcls-aside bcls-aside--information">Note: This should have been done
+            automatically unless the framework is stored under a different root directory than your project.</aside>
+    </li>
+    <li>On the "<strong>Build Settings</strong>" tab of your application target Ensure that -<strong>ObjC</strong> has been added to the "<strong>Other Linker Flags</strong>" build setting.
+    </li>
+    <li>For (<strong>Universal Framework</strong> only).
+    <ul>
+        <li>On the "<strong>Build Phases</strong>" tab, add a "<strong>Run Script</strong>" phase with the command bash
+            <code translate="no">${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveDAI.framework/strip-frameworks.sh</code>.</li>
+            <li>Check "<strong>Run script only when installing</strong>". This will
+                remove unneeded architectures from the build, which is important for App Store submission.</li>
+    </ul></li>
+    <li>For (<strong>Apple Silicon</strong> only).
+    <ul>
+        <li>On the "<strong>Build Settings</strong>" tab of your application target, ensure that <em>arm64</em> has been added to your "<strong>Excluded Architectures</strong>" build setting for Any iOS Simulator SDK.</li>
+    </ul>
+    </li>
+</ol>
+</section>
+<section class="bcls-section">
+    <h2 id="swift-package-manager">Swift Package Manager Implementation</h2>
+    <p>To add the DAI Plugin for Brightcove Player SDK to your project with Swift Package Manager follow the next steps:</p>
+    <ol class="bcls-tasklist-restart">
+        <li>add the Core XCFramework.
+            <ol type="a">
+                <li>Select the "<strong>Package Dependencies</strong>" tab for your Project.</li>
+                <li>Click the "<strong>+</strong>" button.</li>
+                <li><p>In the "<strong>Search or Enter Package URL</strong>" field enter:</p>
+                <code translate="no">https://github.com/brightcove/brightcove-player-sdk-ios.git</code>
+                </li>
+                <li>When the UI updates click the "<strong>Add Package</strong>" button.</li>
+                <li>After Xcode processess the repo you are prompted to "<strong>Choose Package Products</strong>".</li>
+                <li>ensure that your app target is selected and click the "<strong>Add Package</strong>" button.</li>
+            </ol>
+        </li>
+        <li><p>Add the DAI package to Swift Package Manager using:</p>
+        <code translate="no">https://github.com/brightcove/brightcove-player-sdk-ios-dai.git</code>
+        </li>
+        <li>Download the <a href="https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side/download">Google IMA</a> framework.</li>
+        <li>Add the <strong>Google Media Ads</strong> framework.
+            <ul>
+                <li>On the "<strong>General</strong>" tab of your application target, add the <code translate="no">GoogleInteractiveMediaAds.xcframework</code>.</li>
+                <li>From the Google IMA download to the list of <strong>Frameworks</strong>, <strong>Libraries</strong>, and <strong>Embedded Content</strong>. The <em>Embed</em> setting for the XCFrameworks must be "<strong>Embed & Sign</strong>".</li>
+            </ul>
+        </li>
+        <li>On the "<strong>Build Settings</strong>" tab of your application target, ensure that the "<strong>Framework Search Paths</strong>" include the paths to the frameworks.
+            <aside class="bcls-aside bcls-aside--information">Note: This should have been done automatically unless the framework is stored under a different root directory than your project.</aside>
+            
+        </li>
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="swift-package-manager">Quick Start</h2>
+    <p>Create ads rendering settings.</p>
+            <pre class="line-numbers">
+                <code class="language-Swift" translate="No">IMASettings *imaSettings = [IMASettings new];
+                imaSettings.ppid = kViewControllerIMAPublisherID;
+                imaSettings.language = kViewControllerIMALanguage;
+
+                IMAAdsRenderingSettings *adsRenderingSettings = [IMAAdsRenderingSettings new];
+                adsRenderingSettings.linkOpenerDelegate = self;
+                adsRenderingSettings.linkOpenerPresentingController = self;
+
+                UIView *videoContainerView = &#60;UIView of video container&#62;;
+                </code></pre>
+                <br>
+      <p><code>BCOVDAIAdsRequestPolicy</code> provides methods to specify DAI Streams for VOD and Live. Select the appropriate method to select your ads policy.</p>
+      <pre class="line-numbers">
+        <code class="language-Swift" translate="No">BCOVDAIAdsRequestPolicy *adsRequestPolicy = [BCOVDAIAdsRequestPolicy videoPropertiesAdsRequestPolicy];
+
+        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+        </code></pre>
+        <br>
+        <p>BrightcoveDAI adds some category methods to BCOVPlaybackManager. The first of these is - <code translate="no">createDAIPlaybackControllerWithSettings:adsRenderingSettings:adsRequestPolicy:adContainer:viewController:companionSlots:viewStrategy:</code>. Use this method to create your playback controller.</p>
+            <pre class="line-numbers">
+                <code class="language-Swift" translate="No">id&#60;BCOVPlaybackController&#62; controller = 
+                [manager createDAIPlaybackControllerWithSettings:imaSettings
+                                            adsRenderingSettings:adsRenderingSettings
+                                                adsRequestPolicy:adsRequestPolicy
+                                                     adContainer:playerView.contentOverlayView
+                                                  viewController:self
+                                                  companionSlots:nil
+                                                    viewStrategy:nil];
+                controller.delegate = self;
+
+                [videoContainerView addSubview:playerView];
+
+                NSString *policyKey = &#60;your-policy-key&#62;;
+                NSString *accountId = &#60;your-account-id&#62;;
+                NSString *videoID = &#60;your-video-id&#62;;
+                BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithAccountId:accountID
+                                                                                            policyKey:policyKey];
+                NSDictionary *configuration = @{
+                kBCOVPlaybackServiceConfigurationKeyVideoID:videoID
+                };
+                [playbackService findVideoWithConfiguration:configuration
+                                            queryParameters:nil
+                                                 completion:^(BCOVVideo *video,
+                                                              NSDictionary *jsonResponse,
+                                                              NSError *error) {
+                [controller setVideos:@[ video ]];
+                [controller play];
+                }];
+                </code></pre>
+
+                <p>The complete code is:</p>
+                <pre class="line-numbers">
+                    <code class="language-Swift" translate="No">IMASettings *imaSettings = [IMASettings new];
+                    imaSettings.ppid = kViewControllerIMAPublisherID;
+                    imaSettings.language = kViewControllerIMALanguage;
+
+                    IMAAdsRenderingSettings *adsRenderingSettings = [IMAAdsRenderingSettings new];
+                    adsRenderingSettings.linkOpenerDelegate = self;
+                    adsRenderingSettings.linkOpenerPresentingController = self;
+
+                    UIView *videoContainerView = &#60;UIView of video container&#62;;
+
+                    BCOVDAIAdsRequestPolicy *adsRequestPolicy = [BCOVDAIAdsRequestPolicy videoPropertiesAdsRequestPolicy];
+
+                    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+                    id&#60;BCOVPlaybackController&#62; controller =
+                    [manager createDAIPlaybackControllerWithSettings:imaSettings
+                                                adsRenderingSettings:adsRenderingSettings
+                                                    adsRequestPolicy:adsRequestPolicy
+                                                         adContainer:playerView.contentOverlayView
+                                                      viewController:self
+                                                      companionSlots:nil
+                                                        viewStrategy:nil];
+                    controller.delegate = self;
+
+                    [videoContainerView addSubview:playerView];
+
+                    NSString *policyKey = &#60;your-policy-key&#62;;
+                    NSString *accountId = &#60;your-account-id&#62;;
+                    NSString *videoID = &#60;your-video-id&#62;;
+                    BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithAccountId:accountID
+                                                                                                policyKey:policyKey];
+                    NSDictionary *configuration = @{
+                    kBCOVPlaybackServiceConfigurationKeyVideoID:videoID
+                    };
+                    [playbackService findVideoWithConfiguration:configuration
+                                                queryParameters:nil
+                                                    completion:^(BCOVVideo *video,
+                                                                 NSDictionary *jsonResponse,
+                                                                 NSError *error) {
+                              [controller setVideos:@[ video ]];
+                              [controller play];
+                    }];
+                    </code></pre>
+</section>
+<section class="bcls-section">
+    <h2 id="play-pause">Play and Pause</h2>
+    <p>The Brightcove DAI Plugin implements custom play and pause. Use the play method on the <code translate="no">BCOVPlaybackController</code> or the -<code>[BCOVSessionProviderExtension dai_play]</code> or -<code>[BCOVSessionProviderExtension dai_pause]</code> (<a href="https://github.com/brightcove/brightcove-player-sdk-ios-dai/blob/master/ios/BrightcoveDAI.framework/Headers/BCOVDAIComponent.h">BCOVSessionProviderExtension</a>), and not the AVPlayer.</p>
+</section>
+<section class="bcls-section">
+    <h2 id="playerui">Using the Built-In PlayerUI</h2>
+    <ol class="bcls-tasklist-restart">
+        <li>
+            <p>In your <code>UIViewController</code>, create a <code>BCOVPUIPlayerView</code> property called the player view, to contain the playback controls, the video content view, and a special view where DAI can display its ads</p>
+            <pre class="line-numbers">
+                <code class="language-Swift" translate="No">// PlayerUI's player view
+                @property (nonatomic) BCOVPUIPlayerView *playerView;
+                </code></pre>
+        </li>
+        <li><p>Create your player view</p>
+            <p>Supply a nil playback controller. This player view contains both the video content view and the view that displays playback controls and ad controls. Set up the player view to match the video container from your layout ( videoView ) when it resizes</p>
+            <pre class="line-numbers">
+                <code class="language-Swift" translate="No">// Create and configure Control View.
+                BCOVPUIBasicControlView *controlView = [BCOVPUIBasicControlView basicControlViewWithVODLayout];
+
+                // Create the player view with a nil playback controller.
+                self.playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:nil options:nil controlsView:controlView];
+
+                // Add BCOVPUIPlayerView to your video view.
+                [self.videoView addSubview:self.playerView];
+                </code></pre>
+        </li>
+        <li><p>Set up the layout for the player view</p>
+            <p>Do this with Auto Layout or the older Springs & Struts method.</p>
+            <ol type="a">
+                <li><p><strong>Springs & Struts</strong></p>
+                    <pre class="line-numbers">
+                    <code class="language-Swift" translate="No">self.playerView.frame = self.videoView.bounds;
+                    self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                        </code></pre>
+                </li>
+                <br>
+                <li><p><strong>Auto Layout</strong></p>
+                    <pre class="line-numbers">
+                    <code class="language-Swift" translate="No">self.playerView.translatesAutoresizingMaskIntoConstraints = NO;
+                    [NSLayoutConstraint activateConstraints:@[
+                                                              [self.playerView.topAnchor constraintEqualToAnchor:self.videoView.topAnchor],
+                                                              [self.playerView.rightAnchor constraintEqualToAnchor:self.videoView.rightAnchor],
+                                                              [self.playerView.leftAnchor constraintEqualToAnchor:self.videoView.leftAnchor],
+                                                              [self.playerView.bottomAnchor constraintEqualToAnchor:self.videoView.bottomAnchor],
+                                                              ]];
+                        </code></pre>
+                </li>
+            </ol>
+        </li>
+        <li><p>Create the Content Overlay View</p>
+            <p>The <code translate="no">contentOverlayView</code> is a special view used for overlaying views on the main video content.</p>
+            <pre class="line-numbers">
+                <code class="language-Swift" translate="No">// Create the playback controller.
+                id&#60;BCOVPlaybackController&#62; controller =
+                                    [manager createDAIPlaybackControllerWithSettings:imaSettings
+                                                                adsRenderingSettings:adsRenderingSettings
+                                                                    adsRequestPolicy:adsRequestPolicy
+                                                                         adContainer:playerView.contentOverlayView
+                                                                      viewController:self
+                                                                      companionSlots:nil
+                                                                        viewStrategy:nil];
+
+                controller.delegate = self;
+
+                // Assign new playback controller to the player view.
+                // This associates the playerController's session with the PlayerUI.
+                // You can keep this player view around and assign new
+                // playback controllers to it as they are created.
+                self.playerView.playbackController = self.playbackController;
+                    </code></pre>
+        </li>
+    </ol>
+    <p>Now, when playing video with ads, you will see the PlayerUI controls while playing video content, plus ad markers on the timeline scrubber.</p>
+    <p>The playerUI is highly customizable. For more info and sample code, please se <strong>Custom Layouts</strong> section in the README.md file of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Native Player SDK repository</a></p>
+</section>
+<section class="bcls-section">
+    <h2 id="seek-without-ads">Seek without Ads</h2>
+    <p>Use -<code>[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]</code> to resume playback at a
+        specific time without forcing the user to watch ads scheduled before <code>seekToTime</code>.</p>
+    <p>In preparation for <code translate="no">seekWithoutAds:completionHandler:</code> , disable <code translate="no">autoPlay</code> when setting up the <code translate="no">BCOVPlaybackController</code>.</p>
+    <pre class="line-numbers">
+        <code class="language-Swift" translate="No">- (void)playbackController:(NSObject&#60;BCOVPlaybackController&#62;*)controller
+                    playbackSession:(NSObject<BCOVPlaybackSession>*)session
+                         didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+        &#123;
+            if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+            &#123;
+                // self.resumePlayback is a hypothetical instance variable used here for illustration.
+                if (self.resumePlayback)
+                &#123;
+                    __weak typeof(controller) weakController = controller;
+
+                    // seek without playing ads which are scheduled before the seek time, i.e. resume playback.
+                    [controller seekWithoutAds:CMTimeMake(seekWithoutAdsValue, seekWithoutAdsTimescale)
+                                completionHandler:^(BOOL finished) &#123;
+
+                        if (!finished)
+                        &#123;
+                            NSLog (@"seekWithoutAds failed to finish");
+                        &#125;
+
+                typeof(controller) strongController = weakController;
+                if (strongController)
+                &#123;
+                    // fade out the shutter to reveal the player view.
+                    strongController.shutterFadeTime = 0.25;
+                    strongController.shutter = NO;
+
+                    // turn off seek without ads - especially important if this player is being used with a playlist
+                    self.resumePlayback = NO;
+                &#125;
+             &#125;];
+            &#125;
+          &#125;
+        &#125;
+            </code></pre>
+<p>Enable the shutter to hide the player view:</p>
+<pre class="line-numbers">
+    <code class="language-Swift" translate="No">NSObject&#60;BCOVPlaybackController&#62; *playbackController;
+
+    playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:nil
+                                                                      viewStrategy:nil];
+    playbackController.delegate = self;
+
+    if (self.resumePlayback)
+    &#123;
+        // set the shutter fade time to zero to hide the player view immediately.
+        playbackController.shutterFadeTime = 0.0;
+        playbackController.shutter = YES;
+
+        // disable autoPlay when resuming playback.
+        playbackController.autoPlay = NO;
+    &#125;
+        </code></pre>
+
+<aside class="bcls-aside bcls-aside--tip">Note: Note that when Seek Without Ads is used in your app, you might observe network traffic which normally occurs as part of setting up the DAI plugin. This traffic is necessary for proper plugin setup, and does not affect the Seek Without Ads functionality.</aside>
+</section>
+<section class="bcls-section">
+    <h2 id="seek-without-ads">Customizing Plugin Behavior</h2>
+    <p>You can combine BCOVDAI with another plugin for the Brightcove Player SDK for iOS to create a custom view strategy and supply a custom ads request policy.</p>
+    <h3>Ads Request Policy for VOD and Live</h3>
+    
+    <p><code translate="no">BCOVDAIAdsRequestPolicy</code> has two factory methods to generate ads request policy; one for <em>VOD</em> and one for <em>Live</em>.</p>
+    <p>Method for <strong>VOD</strong></p>
+    <p>The method +<code translate="no">videoPropertiesAdsRequestPolicy</code> : returns an ads request policy which looks for the <code translate="no">kBCOVDAIVideoPropertiesKeySourceId</code> and <code translate="no">kBCOVDAIVideoPropertiesKeyVideoId</code> in each <code translate="no">BCOVVideo</code>'s properties to determine the DAI Stream.</p>
+    <p>Method for <strong>Live</strong></p>
+    <p>The method +<code translate="no">videoPropertiesAssetKeyAdsRequestPolicy</code> : returns an ads request policy that checks each <code translate="no">BCOVVideo</code>'s properties for the key <code translate="no">kBCOVDAIVideoPropertiesKeyAssetKey</code> to determine the DAI Live Stream.</p>
+
+    <p><strong>Add properties to a video</strong></p>
+    <p>You can add properties to a video by using the <code translate="no">update:</code> method on the <code>BCOVVideo</code> object. The following example adds the properties needed for <em>VOD</em>:</p>
+    <pre class="line-numbers">
+        <code class="language-Objective-C" translate="No">// Objective-C
+        - (BCOVVideo *)updateVideo:(BCOVVideo *)video
+        &#123;
+            return [video update:^(id&#60;BCOVMutableVideo&#62; mutableVideo)
+            &#123;
+                NSDictionary *adProperties = @&#123;
+                        kBCOVDAIVideoPropertiesKeySourceId: kViewControllerGoogleDAISourceId,
+                        kBCOVDAIVideoPropertiesKeyVideoId: kViewControllerGoogleDAIVideoId
+                &#125;;
+
+                NSMutableDictionary *propertiesToUpdate = mutableVideo.properties.mutableCopy;
+                    propertiesToUpdate addEntriesFromDictionary:adProperties];
+                mutableVideo.properties = propertiesToUpdate;
+            &#125;];
+        &#125;
+            </code></pre>
+    <pre class="line-numbers">
+        <code class="language-Swift" translate="No">// Swift
+        func updateVideo(_ video: BCOVVideo) -> BCOVVideo &#123;
+            return update &#123; (mutableVideo: BCOVMutableVideo?) in
+                guard let mutableVideo = mutableVideo else &#123;
+                    return
+                &#125;
+
+                if var updatedProperties = mutableVideo.properties &#123;
+                    updatedProperties[kBCOVDAIVideoPropertiesKeySourceId] = GoogleDAIConfig.SourceID
+                    updatedProperties[kBCOVDAIVideoPropertiesKeyVideoId] = GoogleDAIConfig.VideoID
+
+                    mutableVideo.properties = updatedProperties
+                &#125;
+            &#125;
+        &#125;
+            </code></pre>
+
+        <p><strong>View Strategy</strong></p>
+        <p>With a custom view strategy, the ad container view and ad companion slots can be tied with the video content view. This is an example of custom view strategy</p>
+        <pre class="line-numbers">
+            <code class="language-Swift" translate="No">BCOVPlaybackControllerViewStrategy customViewStrategy =
+            ^UIView* (UIView *view, id&#60;BCOVPlaybackController&#60; playbackController)&#123;
+
+                    BCOVPlaybackControllerViewStrategy defaultControlsViewStrategy = [playbackManager defaultControlsViewStrategy];
+                    UIView *contentAndDefaultControlsView = defaultControlsViewStrategy(view, playbackController);
+                    
+                    [<UIView of video container> addSubview:contentAndDefaultControlsView];
+                        
+                    return <UIView of video container>;
+            &#125;;
+                </code></pre>
+</section>
+
+</article>
