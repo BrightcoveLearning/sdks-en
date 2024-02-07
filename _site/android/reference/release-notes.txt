@@ -1,5 +1,13 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.4.1
+
+  SDK Changes:
+    * Changed the startup flag on the MediaPlaybackService to START_STICKY to improve foreground service performance.
+
+  ExoPlayer Changes:
+    * Fixed an issue with seeking and navigation in the Brightcove notification.
+
 Version 8.4.0
 
   SDK Changes:
@@ -8,14 +16,19 @@ Version 8.4.0
     * Adds support functionality that allows users to zoom in and out of a video while it is playing.
     * Fixes an issue where the player was not destroyed when a fragment was destroyed.
     * Remove unnecessary code that could cause a potential bug in the LoadImageTask class.
+  
   ExoPlayer Changes:
     * Adds support for overriding ExoPlayer's default connect and read timeout settings.
+  
   Freewheel Plugin Changes:
     * Fixes an issue that could produce a crash during ad playback.
+  
   IMA Plugin Changes:
     * The IMA plugin now offers a function to clear some internal and external objects used by the plugin.
+  
   OfflinePlayback Changes:
     * Improved download queue functionality now gracefully handles individual download failures, ensuring uninterrupted progression of remaining downloads.
+  
   SSAI Plugin Changes:
     * Fixes an issue where ad stitched positions were returned for ad and linear start events with incorrect values.
 
