@@ -2065,7 +2065,7 @@
 </section>
 <section class="bcls-section">
     <h2 id="open-measurement">Open Measurement</h2>
-	<p>The IMA SDK for Android includes the Open Measurement (OM) SDK, an industry standard developed by the Interactive Advertising Bureau (IAB) to enable third-party viewability and verification measurement. When using the IMA SDK for Android, the included OM SDK automatically parses the <strong>&#60;AdVerifications&#62;</strong> tag within VAST ad tags and sends viewability data to the specified measurement vendors via the OMID API. <a href="https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/android/omsdk">Learn more</a>.</p>
+	<p>The IMA SDK for Android includes the Open Measurement (OM) SDK, an industry standard developed by the Interactive Advertising Bureau (IAB) to enable third-party viewability and verification measurement. When using the IMA SDK for Android, the included OM SDK automatically parses the <code translate="no">&#60;AdVerifications&#62;</code> tag within VAST ad tags and sends viewability data to the specified measurement vendors via the OMID API. <a href="https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/android/omsdk">Learn more</a>.</p>
 	<br>
 	<h3>Registering An Obstruction</h3>
 	<p>To register a friendly obstruction, create the <code>FriendlyObstruction</code> object as follows:</p>
@@ -2163,27 +2163,39 @@
 </section>
 <section class="bcls-section">
     <h2 id="limitations">Limitations</h2>
-	<h3>Manifest Expiration</h3>
+	<ul>
+		<li>
+			<h3>Manifest Expiration</h3>
 	<p>Brightcove VOD manifest URLs are not static and are designed to expire after a certain time.</p>
 	<p>A stream being ingested by Google and re-streamed as a DAI stream will stop working after the manifest URL expires. Google does not yet offer a mechanism to refresh the expired URL.</p>
-	
-	<h3>Stream Preconditioning</h3>
+		</li>
+		<li>
+			<h3>Stream Preconditioning</h3>
 	<p>Google IMA-DAI requires streams to be preconditioned using <em>#EXT-X-PLACEMENT-OPPORTUNITY</em> tags in the source HLS manifest, or through multiple periods in a DASH manifest, to signal where ad breaks should appear.</p>
 	<p>Brightcove VOD delivery does not include this non-standard HLS tag today.</p>
-	
-	<h3>HLSe Not Supported</h3>
+		</li>
+		<li>
+			<h3>HLSe Not Supported</h3>
 	<p>Google IMA-DAI does not currently offer support for HLSe.</p>
+		</li>
+	</ul>
 </section>
 <section class="bcls-section">
     <h2 id="known-issues">Known Issues</h2>
-	<h3>Ad Events Notifications</h3>
+	<ul>
+		<li>
+			<h3>Ad Events Notifications</h3>
 	<p>The Google IMA-DAI library only notifies ad events once per ad. If users replay an ad, the Brightcove DAI plugin will not receive ad notifications of that second ad playback. This is by design by the Google IMA team.</p>
-	
-	<h3>Livestreams Return Null Ad Info</h3>
+		</li>
+		<li>
+			<h3>Livestreams Return Null Ad Info</h3>
 	<p>The Google IMA-DAI library provides null information about ad events when the user joins a livestream in the middle of an ad. This behavior is by design in the Google IMA-DAI library, and it limits the Brightcove DAI plugin in knowing if an ad is being played and acting accordingly(notifying the user, blocking playback controls, sending the right video and analytics data to the Brightcove backend, etc.).</p>
-	
-	<h3>Manual-start Playback</h3>
+		</li>
+		<li>
+			<h3>Manual-start Playback</h3>
 	<p>The Google IMA-DAI library controls the playback controls, which means that we cannot control playback while an ad is being played. This affects the stream when it has pre-rolls by not allowing it to start playback manually.</p>
+		</li>
+	</ul>
 </section>
 </article>
 
