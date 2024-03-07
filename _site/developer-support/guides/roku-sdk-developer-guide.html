@@ -1993,20 +1993,33 @@
     <h2 id="features">Features</h2>
     <p>The Brightcove Roku SDK package has the following features:</p>
     <ul>
-        <li>Standard Roku UI/UX".</li>
+        <li>OOTB UI/UX.</li>
         <li>VOD and Live streams playback support.</li>
         <li>Native <a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/trick-mode/hls-and-dash.md">HLS/DASH</a> seek thumbnails support.</li>
         <li>Widevine and Playready <a href="https://developer.roku.com/en-gb/docs/specs/media/content-protection.md">DRM</a> support.</li>
         <li>HLS, DASH and MP4 <a href="https://developer.roku.com/en-gb/docs/specs/media/streaming-specifications.md">stream formats</a> support.</li>
-        <li>HLSe (HLS + AES-128 encryption) playback support (v4 manifests only)</li>
+        <li>HLSe (HLS + AES-128 encryption) playback support (v4 manifests only).</li>
+        <li><a href="https://ssai.support.brightcove.com/index.html">SSAI </a>support.
+        <ul>
+            <li>VOD.</li>
+            <li>Live - Brightcove only.</li>
+        </ul>
+        </li>
+        <li>CSAI <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md">CSAS</a> support.
+        <ul>
+            <li>VOD.</li>
+            <li>Live [TBD].</li>
+        </ul>
+        </li>
+        <li>Brightcove Analytics support (<a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Data Collection API v2</a>).</li>
         <li>Multichannel Audio on supported devices (5.1 AC3, 5.1 E-AC3, Dolby Atmos)
         </li>
-        <li><a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">Voice Controls</a>.</li>
+        <li><a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">OOTB Voice Controls</a> support.</li>
         <li>Forensic Watermarking</li>
         <li>Configurable sources and DRM systems prioritization.</li>
         <li>Multiple Audio Tracks support.</li>
         <li>Configurable stream buffering timeout.</li>
-        <li>Expired sources refresh (on previous and next playlist functions only).</li>
+        <li>Expired sources refresh.</li>
         <li>Playback retry on stream error.</li>
         <li>Brightcove Playback API interfaces
             <ul>
@@ -2016,6 +2029,7 @@
                 <li><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Retrieve videos by playlist ID</a> or reference.</li>
             </ul>
         </li>
+        <li>Brightcove Edge Playback Authorization (EPA) support.</li>
         <li>Load custom Brightcove videos metadata.</li>
         <li>External video and playlist sources support.</li>
         <li>Utilities
@@ -2027,6 +2041,117 @@
         </li>
     </ul>
   </section>
+  <section class="bcls-section">
+    <h2 id="sources-refresh">Sources Refresh</h2>
+    <p>Brightcove video sources have a Time To Live (TTL) timestamp associated with it which, once expired, video playback will not be possible through that source. The bcPlayer automatically checks for sources TTL expiration in the following situations:</p>
+    <ul>
+        <li>When starting a video playback for the first time.</li>
+        <li>When switching to a previous or next video in a playlist.</li>
+    </ul>
+    <p>If a Brightcove video source is detected to be expired, it’ll be automatically refreshed by:</p>
+    <ol>
+        <li>Retrieving updated source URL from the Playback API.</li>
+        <li>Reset the video <code translate="no">url</code> ContentNode field. Keep in mind this step may trigger any <code translate="no">bcPlayer.content</code> observing functions.</li>
+    </ol>
+    <p>Once the <em>video sources</em> are updated, <em>bcPlayer</em> will resume the requested action (<em>next/previous, play the requested video, load CSAI/SSAI handlers, complete the ongoing metadata loading process</em>) with the updated sources in place.</p>
+    </section>
+    <section class="bcls-section">
+        <h2 id="voice-controls">Voice Controls</h2>
+        <p>Allows users to control the video playback through voice commands. These voice commands are captured by a supported Roku Remote Control as well as the Roku mobile app and sent to the Roku app. With the OOTB Roku UI most of these commands are handled natively. With a custom UI experience the Brightcove SDK will automatically handle the commands. <a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">Learn more</a>.</p>
+        <h3>OOTB UI/UX</h3>
+        <ul>
+            <li><strong>Basic Commands</strong>.
+                <ul>
+                    <li><strong>play</strong> - Start playback if paused or stopped / resume playback if paused.</li>
+                    <li><strong>pause</strong> - Pause playback.</li>
+                    <li><strong>ok</strong> - Pause / resume playback.</li>
+                    <li><strong>replay</strong> - Rewind playback 10 to 25 seconds (time depends on application's implementation).</li>
+                    <li><strong>rewind</strong> -  Rewind playback until another command is received and processed.</li>
+                    <li><strong>forward</strong> - Fast forward playback until another command is received and processed.</li>
+                </ul>
+            </li>
+            <li><strong>Enhanced commands</strong>.
+                <ul>
+                    <li><strong>start over</strong> - Start playback from the beginning.</li>
+                    <li><strong>seek</strong> - Skip playback forwards or backwards by the specified time.</li>
+                    
+                </ul>
+            </li>
+        </ul>
+        <h3>Custom UI/UX</h3>
+        <ul>
+            <li><strong>TBD</strong>.</li>
+        </ul>
+    </section>
+    <section class="bcls-section">
+        <h2 id="brightcove-analytics">Brightcove Analytics</h2>
+        <p>The following events and their respective fields will be sent automatically to Brightcove by the SDK. The end user can provide the information for most of the fields in each event. Alternatively, the SDK will attempt to build it and include it in the events. Otherwise, some fields won't be sent. <a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Learn more</a>.</p>
+        <p><strong>Events</strong></p>
+        <ul>
+            <li><strong>player_init</strong>: Sent when the player is initialized.</li>
+            <li><strong>player_load</strong>: Sent when the player is initialized.</li>
+            <li><strong>video_impression</strong>: Sent when the metadata for a video added to the player finishes loading and the player is ready to start video playback, either via auto-play or user interaction.</li>
+            <li><strong>play_request</strong>: Sent when the user presses to play the asset. (once per session per media stream).</li>
+            <li><strong>video_view</strong>: Sent when the first frame of the video starts (applies to the video content. If a pre-roll is present, the video is triggered as soon as the pre-roll ends).</li>
+            <li><strong>video_engagement</strong>: Sent periodically every 10 seconds while video content is playing.</li>
+            <li><strong>ad_mode_begin</strong>: Sent when an ad break starts.</li>
+            <li><strong>ad_mode_complete</strong>: Sent when an ad break finishes.</li>
+            <li><strong>error</strong>: Sent when a playback error occurs.</li>
+            <li><strong>catalog_request</strong>: Sent when a request to the Playback API is triggered (through <code translate="no">bcPlayer</code> only).</li>
+            <li><strong>catalog_response</strong>: Sent on a successful Playback API response.</li>
+            <li><strong>catalog_request_error</strong>: Sent on an error Playback API response.</li>
+        </ul>
+        <br>
+        <p><strong>Supported parameters</strong></p>
+        <ul>
+            <li><strong>sesion</strong>: random UUID representing the unique session ID.</li>
+            <li><strong>domain</strong>: <code translate="no">videocloud</code>videocloud for Brightcove sources, <code translate="no">external</code> for other sources.</li>
+            <li><strong>account</strong>: Brightcove Account ID. Uses <code translate="no">bcPlayer.credentials.account_id</code> value by default but it can be overridden through the <code translate="no">bcPlayer.analytics.accountId</code> field.</li>
+            <li><strong>time</strong>: event timestamp.</li>
+            <li><strong>device_os</strong>: hardcoded to <code translate="no">roku</code>.</li>
+            <li><strong>device_manufacturer</strong>: specifies the Roku device vendor name (as per <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getmodeldetails-as-object">GetModelDetails()</a>).</li>
+            <li><strong>device_os_version</strong>: specifies the Roku OS version (as per <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getosversion-as-object">GetOSVersion()</a>).</li>
+            <li><strong>seq</strong>: specifies the sequence of events per session, in the following format: 
+                <code translate="no">&#60;#-of-events&#62;</code>_<code translate="no">&#60;#-of-streams&#62;</code>.</li>
+            <li><strong>device_type</strong>: hardcoded to <code translate="no">tv</code>.</li>
+            <li><strong>user</strong>: <code class="text-success" translate="No">OPTIONAL
+            </code>  specifies the user identification for Viewer Analytics purposes. This parameter should be provided through the <code translate="no">bcPlayer.analytics.user</code> field..</li>
+            <li><strong>destination</strong>: <code class="text-success" translate="No">OPTIONAL
+            </code> value of <code translate="no">bcPlayer.analytics.destination</code>, if provided.</li>
+            <li><strong>source</strong>: <code class="text-success" translate="No">OPTIONAL
+            </code> value of <code translate="no">bcPlayer.analytics.source</code>, if provided.</li>
+            <li><strong>player</strong>:  player identification. Defaults to: <code translate="no">players.brightcove.com/&#60;bc_account_id&#62;/player</code>. Some analytics configurations may be used to customize this parameter, as follows:
+            <ul>
+                <li>if <code translate="no">bcPlayer.analytics.playerID</code> is provided: <code translate="no">players.brightcove.com/&#60;bc_account_id&#62;/&#60;playerID&#62;</code></li>
+                <li>if <code translate="no">bcPlayer.analytics.applicationID</code> is provided: <code translate="no">players.brightcove.com/&#60;bc_account_id&#62;/&#60;playerID&#62;&#60;applicationID&#62;</code></li>
+            </ul>
+            </li>
+            <li><strong>player_name</strong>: <code class="text-success" translate="No">OPTIONAL
+            </code> depends on the analytics configurations provided:
+            <ul>
+                <li>if only <code translate="no">bcPlayer.analytics.playerName</code> is provided: uses the value provided.</li>
+                <li>if only <code translate="no">bcPlayer.analytics.applicationID</code> is provided: uses the value provided.</li>
+                <li>if both are provided: uses <code translate="no">playerName-applicationID</code>.</li>
+            </ul>
+            </li>
+            <li><strong>platform_version</strong>: specifies the <code translate="no">bcPlayer.sdkVersion</code> value.</li>
+            <li><strong>video</strong>: specifies the video ID (this value is retrieved from the video <code translate="no">ContentNode.id</code> field).</li>
+            <li><strong>video_name</strong>: specifies the video name (this value is retrieved from the video <code translate="no">ContentNode.title</code> field).</li>
+            <li><strong>video_duration</strong>: specifies the video duration (this value is retrieved from the video <code translate="no">ContentNode.length</code> field).</li>
+            <li><strong>rendition_url</strong>: specifies the video URL (this value is retrieved from the video <code translate="no">ContentNode.url</code> in case of HLS/DASH playback or from <code translate="no">bcPlayer.streamingSegment</code> in case of MP4 playback).</li>
+            <li><strong>rendition_indicated_bps</strong>: specifies the stream bitrate (this value is retrieved from <code translate="no">bcPlayer.streamingSegment</code> and <code translate="no">bcPlayer.downloadedSegment</code>).</li>
+            <li><strong>rendition_mime_type</strong>: specifies the stream mime-type based on the video <code translate="no">ContentNode.streamFormat</code> field.</li>
+            <li><strong>rendition_height</strong>: specifies the rendition height (this value is retrieved from <code translate="no">bcPlayer.streamingSegment</code> and <code translate="no">bcPlayer.downloadedSegment</code>).</li>
+            <li><strong>rendition_width</strong>: specifies the rendition width (this value is retrieved from <code translate="no">bcPlayer.streamingSegment</code> and <code translate="no">bcPlayer.downloadedSegment</code>).</li>
+            <li><strong>rebuffering_seconds</strong>: specifies the rebuffering duration measured during the buffering state of bcPlayer.</li>
+            <li><strong>rebuffering_count</strong>: specifies the number of rebufferings in a playback session.</li>
+            <li><strong>forward_buffer_seconds</strong>: specifies the start time of the segment from the start of the video (this value is retrieved from <code translate="no">bcPlayer.downloadedSegment</code>).</li>
+            <li><strong>measured_bps</strong>: specifies the ratio of the number of bits included in the most recently downloaded segment to the time spend downloading that segment, in bits per second. Calculated from the data provided by <code translate="no">bcPlayer.downloadedSegment</code>.</li>
+            <li><strong>player_width</strong>: specifies the player width as per the <code translate="no">bcPlayer.width field</code>.</li>
+            <li><strong>player_height</strong>: specifies the player height as per the <code translate="no">bcPlayer.height</code> field.</li>
+            <li><strong>dropped_frames</strong>: specifies the number of frames that have been dropped since playback was started (this value is retrieved from <code translate="no">bcPlayer.decoderStats</code>).</li>
+        </ul>
+    </section>
   <section class="bcls-section">
     <h2 id="setup">Setup</h2>
     <p>To setup Brightcove Roku SDK in a Roku channel, you must request access to the SDK package file. Brightcove provides two ways for developers to access the SDK package file.</p>
@@ -2795,6 +2920,264 @@
         </section>
         <hr>
         <section>
+            <h3 id="analytics">analytics</h3>
+            <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
+            </code></p>
+            <p>Configures the data needed for Brightcove Analytics. This allows the SDK to gather all the information provided by the end user and subsequently trigger Brightcove Analytics during playback.</p>
+
+            <p>You can provide the following data:</p>
+            <div class="table-responsive">
+                <table class="bcls-table">
+                      <caption class="bcls-caption--table">analytics fields description</caption>
+                      <thead class="bcls-table__head">
+                          <tr>
+                              <th>Field</th>
+                              <th>Data</th>
+                              <th>Description</th>
+                          </tr>
+                      </thead>
+                      <tbody class="bcls-table__body">
+                          <tr>
+                              <td class="align-top">accountId</td>
+                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                            <ul>
+                                
+                                    <li>Store the accountId as a string.
+                                        <ul>
+                                            <li>ex: “12121212“</li>
+                                        </ul>
+                                    </li>
+                                
+                                <li>If no value is set the SDK will use the accountId from the active account from the appContent.</li>
+                            </ul>
+                            </td>
+                              <td><p>Represents the Video Cloud Account Id.</p>
+                            <p>It will be used in the <code translate="no">account</code>, <code translate="no">player</code>, <code translate="no">player_name</code> params in all events.</p></td>
+                          </tr>
+                          <tr>
+                              <td class="align-top">url</td>
+                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                            <ul>
+                                
+                                    <li>Store the Analytics Collector URl.
+                                        <ul>
+                                            <li>ex: “http://rokumadeiracatcher.com“</li>
+                                        </ul>
+                                    </li>
+                                
+                                <li>If no value is set the SDK will use the hardcoded ones:
+                                    <div class="row overflow-scroll">
+                                        <div class="col overflow-scroll" style="max-width: 100%;">
+                                    <pre class="line-numbers"><code class="language-JS" translate="No">environment = {
+    production: "https://metrics.brightcove.com/v2/tracker",
+    staging: "https://metrics.juju.staging.brightcove.com/v2/tracker",
+    qa: "https://metrics.juju.qa.brightcove.com/v2/tracker",
+}</code></pre>
+</div>
+</div>
+
+                                </li>
+                            </ul>
+                            </td>
+                              <td><p>Analytics Collector URL.</p>
+                            <p>If a specific collector URL is desired, this option can be set. It will accept any non-empty string as a value.</p>
+                                <p>In case the <code translate="no">url</code> exists use it otherwise pick on of the environments by the <code translate="no">env</code>.</p>
+                        </td>
+                          </tr>
+                          <tr>
+                            <td class="align-top">applicationId</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the application id as string.
+                                      <ul>
+                                          <li>ex: “4I545H345“</li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will use as ““.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>It is used to denote a specific instance or application of a player and it will be use to add to the <code translate="no">player</code> , <code translate="no">player_name</code> params in all events.</p></td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">env</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the environment.
+                                      <ul>
+                                          <li>ex: “production“, “staging“, “qa“</li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will pick up the production by default.
+                                  <div class="row overflow-scroll">
+                                      <div class="col overflow-scroll" style="max-width: 100%;">
+                                  <pre class="line-numbers"><code class="language-JS" translate="No">environment = {
+  production: "https://metrics.brightcove.com/v2/tracker",
+  staging: "https://metrics.juju.staging.brightcove.com/v2/tracker",
+  qa: "https://metrics.juju.qa.brightcove.com/v2/tracker",
+}</code></pre>
+</div>
+</div>
+
+                              </li>
+                          </ul>
+                          </td>
+                            <td><p>Specifies the environment to which metrics will be sent. This adjusts the URL for the tracking GIF to an appropriate value. </p>
+                          <p>It will be used right before the analytics request.</p>
+                              
+                      </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">playerId</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the player id.
+                                      <ul>
+                                          <li>ex: “12345“</li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will use as “player“.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Specifies the Id of the player. </p>
+                        <p>It will be used to concatenate to the <code translate="no">player</code> param in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">platformVersion</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <p>Store the platform version.</p>
+                          <p>ex:“major_versionXXX.minor_versionXXX.build_versionXXX“</p>
+                          <p>If no value is set the SDK will not add this field.</p>
+                          </td>
+                            <td>
+                          <p>Version of the Platform.</p>
+                        <p>It will be used in the <code translate="no">platformVersion</code> param in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">playerName</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the player name.
+                                      <ul>
+                                          <li>ex: “playerNameTest“</li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will use the <code translate="no">applicationId</code> if exists and if not it will apply as <code translate="no">invalid</code>.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Specifies the name of the player. </p>
+                        <p>It will be used in the <code translate="no">player_name</code> param as playerName-applicationId in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">user</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the user token.
+                                      <ul>
+                                          <li>ex: “QWE&%SD8“</li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will not apply any value and the field will not be sent.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Specifies the user token.</p>
+                        <p>It will be used in the <code translate="no">user</code> param in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">destination</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the URI that originated the event.
+                                      <ul>
+                                          <li>ex: <code translate="no">"roku/"+appInfo.GetTitle()</code></li>
+                                      </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will not add any value and the field will not be sent.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Specifies the value of the location that originates the event and MUST be in proper URI format ex: bcsdk://com.mhogben.source</p>
+                        <p>It will be used in the <code translate="no">destination</code> param in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">source</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                          <ul>
+                              
+                                  <li>Store the source value.
+                                  </li>
+                              
+                              <li>If no value is set the SDK will not add any custom value and the field will not be sent.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Specifies the source value.</p>
+                        <p>It will be used in the <code translate="no">source</code> param in all events.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">streamCount</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">INTEGER</code>
+                          <ul>
+                              
+                                  <li>Store the stream count.
+                                    <ul>
+                                        <li>ex: 1,2,3,4</li>
+                                    </ul>
+                                  </li>
+                              
+                              <li>If no value is set the SDK will not add any custom value and it will send the <code translate="no">seq</code> param only with the custom counter from the SDK.</li>
+                          </ul>
+                          </td>
+                            <td>
+                          <p>Stream count is used to apply to the <code translate="no">seq</code> param that will sent during every event trigger in order. ex: <code translate="no">1_1, 2_1, 3_1</code> the first number is the counter from the SDK and the second one _X is the <code translate="no">streamCount</code>.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">eventOut</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">READ ONLY</code>
+                          <p>Read this field to see the event that was made during the Brightcove Analytics request.</p>
+                          </td>
+                            <td>
+                          <p>All the data from the Brihghtcove Analytics request.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">isHidden</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">READ ONLY</code>
+                          <p>Read this field to check if the player is hidden or not.</p>
+                          </td>
+                            <td>
+                          <p>It will indicate if the player is hidden or not.</p>
+                        </td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </div>
+                
+        </section>
+        <hr>
+        <section>
             <h3 id="buffer-timeout">bufferTimeout</h3>
             <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
@@ -2821,6 +3204,12 @@
                       bufferTimeout: 20
                     })
                 </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3>sdkVersion</h3>
+            <p><code translate="no" class="text-secondary">STRING</code> <code translate="no">READ-ONLY</code></p>
+            <p>Store the SDK version by reading the major, minor and build version from the manifest and save it in this field. </p>
         </section>
         <hr>
         <section>
@@ -3344,9 +3733,11 @@
                             </li>
                         </ul>
                         </td>
-                        <td class="align-top"><p>Reflects the <code translate="no">buffering</code> value of the Video.state field and specifies that stream buffering is in progress. To capture the buffering progress in real-time, an event listener should be set into the <code translate="no">Video.bufferingStatus</code> like so:</p>
+                        <td class="align-top"><p>Reflects the <code translate="no">buffering</code> value of the Video.state field and specifies that stream buffering is in progress. To capture the buffering progress in real-time, an event listener should be set into the <code translate="no">Video.bufferingStatus</code> 
+                            <!-- like so: -->
+                        </p>
 
-                            <div class="row overflow-scroll">
+                            <!-- <div class="row overflow-scroll">
                                 <div class="col overflow-scroll" style="max-width: 250px;">
                                     <pre class="line-numbers">
                                         <code class="language-basic" translate="No">sub init()
@@ -3367,7 +3758,8 @@
                                           
                                           end sub
                                         </code></pre>
-                               
+                               </div>
+                               </div> -->
                 
                         
                         </td>
@@ -4660,7 +5052,7 @@
                     </tr>
                     <tr >
                         <td class="align-top">3</td>
-                        <td><p>Once a Videocloud video source has been selected, it’s then converted into the required Video ContentNode fields.</p>
+                        <td><p>Once a Videocloud video source has been selected, it’s then converted into the required <a href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Video ContentNode fields</a>.</p>
                         <p>At this stage the selected source URL is also verified for any supported query parameters we might need to set, such as the Forensic Watermarking token.</p>
                         </td>
                     </tr>
@@ -5245,7 +5637,7 @@
             <p>Using the name and short description of the specified video <code translate="no">id</code>, the Playback API searches for videos with any partial matches in the following fields: <code translate="no">name</code>, <code translate="no">short_description</code> , <code translate="no">long_description</code>, <code translate="no">tags</code>.</p>
 
             <p>The response object is handled as described in the request field. In this case, the response <code translate="no">id</code> property is always “getRelated“.</p>
-            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID"></a>Playback API reference</p>
+            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API reference</a></p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An AssociativeArray object containing the following properties:</p>
