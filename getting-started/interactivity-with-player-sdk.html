@@ -1,0 +1,241 @@
+---
+title: Interactivity with Player SDK
+description: 'The Interactivity with Player SDKs can be implemented to provide a dynamic feature-rich user experience.'
+parent: Getting Started
+layout: staging
+---
+
+<article class="bcls-article">
+<h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+  <section class="bcls-section">
+    <h2 id="interactivity-for-ios">Using Interactivity With The Brightcove Player SDK for iOS</h2>
+    <p>The Brightcove Player SDK currently supports Interactivity in a limited capacity.</p>
+    <br>
+    <h3>Supported Annotations:</h3>
+    <ul>
+        <li><strong>Image Overlay</strong>
+            <ul>
+                <li>Support for Command and Command Data
+                    <ul>
+                        <li>The actual mechanism that does things in interactivity. The standard ones are things like jump to time (and the time you set) or open URL (and the URL you set), but if you open any standard interaction, you can add any command you want.</li>
+                    </ul>
+                </li>
+                <li>Support for “Jump to video time”.</li>
+                <li>Support for opening URL. (Mobile Only).</li>
+            </ul>
+        </li>
+        <li><strong>Text Overlay</strong>
+            <ul>
+                <li>White theme.</li>
+                <li>Black “Mullins Special” theme.</li>
+                <li>Support for Command and Command Data.</li>
+                <li>Support for “Jump to video time”.</li>
+                <li>Support for opening URL. (Mobile Only).</li>
+            </ul>
+        </li>
+        <li><strong>Time Triggered Action</strong>
+            <ul>
+                <li>Support for Command and Command Data (Mobile and TV).</li>
+                <li>Support for “Jump to video time” (Mobile and TV).</li>
+            </ul>
+        </li>
+        <li><strong>Transparent Overlay</strong>
+            <ul>
+                <li>Support for Command and Command Data.</li>
+                <li>Support for “Jump to video time” (Mobile and TV).</li>
+                <li>Support for opening URL (Mobile Only).</li>
+            </ul>
+        </li>
+        <li><strong>Fade-in/fade-out transitions</strong></li>
+        <li><strong>Preconditions for dynamic showing and hiding of annotations</strong>
+            <ul>
+                <li>Click X to show Y.</li>
+                <li>Show Y on pause of the video.</li>
+            </ul>
+        </li>
+    </ul>
+
+<br>
+
+    <h3>Requirements</h3>
+    <ul>
+        <li>Brightcove Native Player SDK v6.12.6+</li>
+        <li>Brightcove Account with Dynamic Delivery.</li>
+        <li>Brightcove Account with <a href="https://www.brightcove.com/en/products/interactivity/">Interactivity</a> Enabled.</li>
+    </ul>
+    <aside class="bcls-aside bcls-aside--tip">Note: This SDK displays the annotations of a project already built in the Video Cloud Int. editor. It does not allow you to create a net-new project directly through the SDK.</aside>
+
+    <br>
+
+    <h3>Limitations</h3>
+    <ul>
+        <li>Only the "<em>Fade</em>" transition is supported for Text and Image overlays.</li>
+        <li>Text, Transparent and Image overlays can be configured to be interactive on iOS, but this behavior is not yet supported on tvOS.</li>
+        <li>The "<em>Mullins Special</em>" and "<em>White</em>" themes are supported for Text overlay annotations.</li>
+    </ul>
+
+    <br>
+
+    <h3>Quick Start</h3>
+    <p>Here is an example of adding Interactivity to your project:</p>
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="tab-bkgdcolor-objc" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-objc" type="button" role="tab" aria-controls="nav-bkgdcolor-objc" aria-selected="true">Obj-C</button>
+          <button class="nav-link" id="tab-bkgdcolor-swift" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-swift" type="button" role="tab" aria-controls="nav-bkgdcolor-swift" aria-selected="false">Swift</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-bkgdcolor-objc" role="tabpanel" aria-labelledby="tab-bkgdcolor-objc" tabindex="0">
+            <pre class="line-numbers"><code class="language-objectivec" translate="No">self.interactivityHandler = [[BCOVInteractivityHandler alloc] initWithAccountId:kViewControllerAccountID projectId:kViewControllerProjectId containerView:self.playerView.interactivityOverlayView playbackController:self.playbackController];
+self.interactivityHandler.delegate = self;</code></pre>
+        </div>
+        <div class="tab-pane fade" id="nav-bkgdcolor-swift" role="tabpanel" aria-labelledby="tab-bkgdcolor-swift" tabindex="0">
+            <pre class="line-numbers"><code class="language-swift" translate="No">if let interactivityOverlayView = playerView.interactivityOverlayView, let playbackController = playbackController {
+    interactivityHandler = BCOVInteractivityHandler(accountId: playbackConfig.accountID, projectId: playbackConfig.interactivityProjectID, containerView: interactivityOverlayView,  playbackController: playbackController)
+    interactivityHandler?.delegate = self
+}</code></pre>
+        </div>
+      </div>
+
+      <br>
+      
+    <h3>Customization</h3>
+    <p>The following delegate methods are available for customizing annotations:</p>
+
+    <pre class="line-numbers"><code class="language-swift" translate="No">- (CGFloat)animationTimeForTransition:(BCOVInteractivityAnnotationTransition)transition;
+- (UIFont *)fontForTextAnnotation:(BCOVInteractivityAnnotation *)annotation;
+- (UIColor *)backgroundColorForTextAnnotation:(BCOVInteractivityAnnotation *)annotation;
+- (UIColor *)textColorForTextAnnotation:(BCOVInteractivityAnnotation *)annotation;
+- (void)annotationWasTapped:(BCOVInteractivityAnnotation *)annotation; // iOS Only
+- (void)annotationWasTriggered:(BCOVInteractivityAnnotation *)annotation;</code></pre>
+
+<br>
+
+<h3>Behavior</h3>
+<p>On iOS, if an annotation is set up to "Jump to video time" or launch a URL, it will do so without any additional work on your end. When the annotation is tapped, the `annotationWasTapped:` is called.</p>
+
+<p>A Time-Triggered annotation will be triggered at the specified time, and the `annotationWasTriggered:` delegate method will be called. This delegate method can be used if you want additional behavior other than "Jump to video time".</p>
+
+<p>You may also configure additional behavior on iOS by giving the annotation a Command value in the Interactivity editor (<strong>Edit > More > Link > Advanced</strong>). You may also supply additional values for the Command by adding <em>key/value</em> pairs to the Command Data.</p>
+
+<p>Here's an example of displaying a Chapters menu using an `<em>UIAlertController</em>`:</p>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="tab-UIAlert-objc" data-bs-toggle="tab" data-bs-target="#nav-UIAlert-objc" type="button" role="tab" aria-controls="nav-UIAlert-objc" aria-selected="true">Obj-C</button>
+      <button class="nav-link" id="tab-UIAlert-swift" data-bs-toggle="tab" data-bs-target="#nav-UIAlert-swift" type="button" role="tab" aria-controls="nav-UIAlert-swift" aria-selected="false">Swift</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-UIAlert-objc" role="tabpanel" aria-labelledby="tab-UIAlert-objc" tabindex="0">
+        <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)annotationWasTapped:(BCOVInteractivityAnnotation *)annotation
+{
+    NSString *command = annotation.command;
+    NSDictionary *commandData = annotation.commandData;
+
+    if ([command isEqualToString:@"my-command"])
+    {
+        NSArray *sortedKeys = [commandData keysSortedByValueUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }];
+
+        NSMutableArray *sortedChapters = @[].mutableCopy;
+        for (NSString *key in sortedKeys)
+        {
+            NSNumber *time = commandData[key];
+            NSDictionary *chapter = @{
+                @"title": key,
+                @"time": time
+            };
+            [sortedChapters addObject:chapter];
+        }
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Interactivity" message:@"Chapter Selection" preferredStyle:UIAlertControllerStyleActionSheet];
+
+        for (NSDictionary *chapter in sortedChapters)
+        {
+            NSNumber *timeNum = chapter[@"time"];
+            NSString *title = chapter[@"title"];
+            CMTime time = CMTimeMake(timeNum.longLongValue, 1);
+            [alert addAction:[UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.playbackController seekToTime:time completionHandler:nil];
+            }]];
+        }
+
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+
+        alert.popoverPresentationController.sourceView = annotation.annotationView;
+
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+            </code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-UIAlert-swift" role="tabpanel" aria-labelledby="tab-UIAlert-swift" tabindex="0">
+        <pre class="line-numbers"><code class="language-swift" translate="No">func annotationWasTapped(_ annotation: BCOVInteractivityAnnotation) {
+    guard let command = annotation.command, let commandData = annotation.commandData else {
+        return
+    }
+
+    if command == "my-command" {
+        let sortedKeys = (commandData as NSDictionary).keysSortedByValue { (obj1, obj2) -> ComparisonResult in
+            return (obj1 as! String).compare(obj2 as! String)
+        }
+
+        var sortedChapters: [NSDictionary] = []
+        for key in sortedKeys {
+            guard let key = key as? String, let timeStr = commandData[key] as? String, let time = NumberFormatter().number(from: timeStr) else {
+                continue
+            }
+            let chapter: [String: Any] = [
+                "title": key,
+                "time": time
+            ]
+            sortedChapters.append(chapter as NSDictionary)
+        }
+
+        let alert = UIAlertController(title: "Interactivity", message: "Chapter Selection", preferredStyle: .actionSheet)
+
+        for chapter in sortedChapters {
+            if let timeNum = chapter["time"] as? NSNumber, let title = chapter["title"] as? String {
+                let time = CMTimeMake(value: timeNum.int64Value, timescale: 1)
+                alert.addAction(UIAlertAction(title: title, style: .default) { _ in
+                    self.playbackController.seek(to: time, completionHandler: nil)
+                })
+            }
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        alert.popoverPresentationController?.sourceView = annotation.annotationView
+
+        self.present(alert, animated: true, completion:nil)
+    }
+}</code></pre>
+    </div>
+  </div>
+
+  <br>
+  <h3>Preconditions</h3>
+  <p>You can set up preconditions for your annotations to show and hide them on demand. Here is an example of hiding an annotation when playback begins and showing it five seconds after pause:</p>
+
+  <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)playbackController:(id<BCOVPlaybackController>)controller playbackSession:(id<BCOVPlaybackSession>)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+{
+    if ([lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventPause])
+    {
+        self.xRayTimer = [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
+            [self.interactivityHandler enablePrecondition:@"xRay"];
+        }];
+    }
+
+    if ([lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventPlay])
+    {
+        [self.xRayTimer invalidate];
+        [self.interactivityHandler disablePrecondition:@"xRay"];
+    }
+}</code></pre>
+
+  </section>
+</article>
