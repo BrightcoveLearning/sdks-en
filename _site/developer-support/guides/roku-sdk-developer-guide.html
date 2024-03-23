@@ -2157,11 +2157,72 @@
     <p>To setup Brightcove Roku SDK in a Roku channel, you must request access to the SDK package file. Brightcove provides two ways for developers to access the SDK package file.</p>
     <aside class="bcls-aside bcls-aside--information">Note: In the following examples, <strong>bcLib.pkg</strong> is the Brightcove SDK library package provided by Brightcove.</aside>
 
-    <h3>Loading the library from a remote location</h3>
-    <aside class="bcls-aside bcls-aside--information">Note: Brightcove updates the Roku SDK regularly, and loading the SDK from the remote location makes it easier to stay up-to-date with the latest fixes and features.</aside>
-    <p>Brightcove provides the SDK package URL in this case, as the package file is hosted in Brightcove servers. The library package is downloaded at runtime by following these simple steps:</p>
+<!-- start -->
+
+    <h3>Package Sources</h3>
+    <p>
+      To include the Roku SDK in your project, you will need to obtain the SDK package source. 
+      Brightcove provides access to the Roku SDK through a specific URL endpoint using Semantic Versioning. 
+      This enables you to target specific versions of the SDK you wish to implement in your Roku applications.
+    </p>
+  
+    <!-- Information Note -->
+    <aside class="bcls-aside bcls-aside--information">
+      The base URL for all SDK versions is <code translate="no">https://players.brightcove.net/roku-sdk</code>.
+      Remember to replace the version placeholders with the desired version numbers.
+    </aside>
+  
+    <!-- Code Block for SDK Download Link -->
+    <div class="bcls-code-block">
+      <pre class="line-numbers"><code class="language-markup" translate="no">
+  &lt;!-- Latest Major Version --&gt;
+  https://players.brightcove.net/roku-sdk/{MAJOR_VERSION}/roku-sdk.pkg
+  
+  &lt;!-- Specific Version --&gt;
+  https://players.brightcove.net/roku-sdk/{MAJOR_VERSION}.{MINOR_VERSION}.{BUILD_VERSION}/roku-sdk.pkg
+      </code></pre>
+    </div>
+  
+    <!-- List of Available Versions -->
+    <p><strong>Available Versions</strong></p>
     <ol class="bcls-tasklist">
-        <li><p>In the scene XML component, create the ComponentLibrary child node and set its <code translate="No">id</code> and <code translate="No">uri</code> fields. </p>
+      <li>1.0.0</li>
+      <li>1.0.1</li>
+      <li>1.2.0</li>
+      <li>1.2.1</li>
+      <li>1.2.2</li>
+      <li>1.2.3</li>
+      <li>2.0.0</li>
+    </ol>
+  
+    <!-- Example for Specific Version Retrieval -->
+    <p><strong>Retrieving a Specific Version</strong></p>
+    <p>
+      To download a specific version of the Roku SDK, replace the placeholders in the URL with the respective version numbers.
+      For instance, to download version 1.2.3, your URL would be:
+    </p>
+  
+    <!-- Code Block for Specific Version Example -->
+    <div class="bcls-code-block">
+      <pre class="line-numbers"><code class="language-markup" translate="no">
+  https://players.brightcove.net/roku-sdk/1.2.3/roku-sdk.pkg
+      </code></pre>
+    </div>
+  
+    <!-- Tip Note -->
+    <aside class="bcls-aside bcls-aside--tip">
+      <p>Note: <code translate="no">https://players.brightcove.net/roku-sdk/1/roku-sdk.pkg</code> - refers to the most recent version in the v1 major release. In this case, it refers to the v1.2.3 release. </p>
+      <p>It's recommended to always use the most recent stable version to take advantage of the latest features and fixes.</p>
+    </aside>
+
+  
+<!-- end -->
+
+    <h3>Loading the library directly from the source</h3>
+    <!-- <aside class="bcls-aside bcls-aside--information">Note: Brightcove updates the Roku SDK regularly, and loading the SDK from the remote location makes it easier to stay up-to-date with the latest fixes and features.</aside> -->
+    <p>In this case the Roku SDK package URL can be set directly into the <code translate="no">ComponentLibrary</code> <code translate="no">uri</code> field. The <code translate="no">ComponentLibrary</code> node will handle the package file download and loading process automatically. For example, to load the latest v1 major release into a Roku channel, you can follow these steps:</p>
+    <ol class="bcls-tasklist">
+        <li><p>In the scene XML component, create the <code translate="no">ComponentLibrary</code> node and set its <code translate="No">id</code> and <code translate="No">uri</code> fields. </p>
             <ul>
                 <li><p>The <code translate="No">uri</code> field contains the SDK package URL.</p></li>
                 <li><p>The <code translate="No">id</code> field is used during the library components initialization.</p></li>
@@ -2207,14 +2268,15 @@
         </li>
     </ol>
     <h3>Loading the library locally</h3>
-    <p>In this case, Brightcove provides the actual SDK package file, which, once downloaded, can be added to the Roku channel file structure. The library is loaded from the internal structure at runtime. Here’s an example:</p>
+    <p>In this case, you should manually download the Roku SDK package file from Brightcove sources and embed it into a Roku channel. In this process the library is simply loaded from the internal channel’s file structure at runtime. This is the recommended approach as it’s much faster and efficient than letting ComponentLibrary download and load the SDK package. For this approach, the following steps can be taken:</p>
     <ol class="bcls-tasklist-restart">
+        <li>Download the SDK package manually.</li>
         <li>Place the SDK package in the Roku channel file structure (in this case, we named it <strong>bcLib.pkg</strong>). The exact location doesn't matter. In the following example, it was placed in the lib directory.
             <figure class="bcls-figure">
                 <img class="bcls-image" src="/assets/images/s-misc-img/developer/roku/ruku-library-locally.webp" alt="Loading the roku library locally">
               </figure>
         </li>
-        <li>In the scene XML component, create the ComponentLibrary child and set the <code translate="No">id</code> and <code translate="No">uri</code> fields. 
+        <li>In the scene XML component, create the <code translate="no">ComponentLibrary</code> node and set the <code translate="No">id</code> and <code translate="No">uri</code> fields. 
             <ul>
                 <li>The <code translate="No">uri</code> field contains the <strong>bcLib.pkg</strong> file local path.</li>
                 <li>The <code translate="No">id</code> field is used during the library components initialization.</li>
@@ -2261,6 +2323,8 @@
     </ol>
     <aside class="bcls-aside bcls-aside--information">
         <p>Note: Be careful not to reference any library components before the library is completely loaded.</p>
+        <p>The <code translate="no">ComponentLibrary</code> package download process takes around 1 second, so we recommend the local loading approach which is much faster.</p>
+        <p>This process is asynchronous, so it runs at the same time as other tasks (ie, CMS API calls or other channel initialization tasks).</p>
     </aside>
     <hr>
     <h3>Loading the library dynamically</h3>
@@ -2276,10 +2340,11 @@
             m.bcLib.uri = "&#60;path_or_url_to_the_pkg_file&#62;"
         end sub
         </code></pre>
+        <p>This allows you to control where and when exactly they want to load the library package into their Roku channel.</p>
   </section>
   <section class="bcls-section">
     <h2 id="accessing-components">Accessing Components</h2>
-    <p>Once the SDK library is successfully loaded, an instance of any of its components can be created like so:</p>
+    <p>Once the SDK library is successfully loaded (ie, the <code translate="no">ComponentLibrary</code> <code translate="no">loadStatus</code> field is ready), an instance of any of its components can be created like so:</p>
     <pre class="line-numbers">
         <code class="language-basic" translate="No">
             ' 1 - create an instance of the bcPlayer node
@@ -2310,7 +2375,7 @@
               drmPreference: ["widevine", "playready", "none"],
               logLevel: 4,
               credentials: invalid,           
-              <!-- env: "production", -->
+              env: "production",
               watermarkToken: "",
               spinnerConfig: {},
               closeOnBack: true,
@@ -2322,6 +2387,44 @@
                 DialogSecondaryItemColor: "#00000000"
               },
               loading: false
+            })
+
+            analytics = m.bcPlayer.analytics
+            analytics.setFields({
+              accountId: ""
+              url: ""
+              applicationID: ""
+              env: ""
+              playerId: ""
+              playerName: ""
+              accountId: ""
+              user: ""
+              destination: ""
+              source: ""
+              eventOut: {} ' read-only
+            })
+
+            ssai = m.bcPlayer.ssai
+            ssai.setFields({
+              enabled: false
+              enableDiscontinuities: true
+              adMeasurements: {}
+              bcovToken: ""
+              macros: {}
+              event: {} ' read-only
+            })
+
+            csai = m.bcPlayer.csai
+            csai.setFields({
+              enabled: false
+              useCSAS: true
+              closeOnFinish: true
+              maxRequests: 1
+              enableJIT: true
+              enableInPodStitching: true
+              adMeasurements: {}
+              adConstraints: {}
+              event: {} ' read-only
             })
         </code></pre>
         <h3>Fields</h3>
@@ -2397,22 +2500,22 @@
                         <ul>
                             <li><p>The Edge Playback API service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is not available.</p></li>
-                            <li><p>HLSe content is playable via the standard Playback API.</p></li>
-                            <li><p>HLSe with License Key protection needs Playback Auth.</p></li>
+                            <!-- <li><p>HLSe content is playable via the standard Playback API.</p></li>
+                            <li><p>HLSe with License Key protection needs Playback Auth.</p></li> -->
                         </ul>
                         </li>
                         <li><p><strong>policy_key</strong> not set / <strong>auth_token</strong> set: </p>
                         <ul>
                             <li><p>The Edge Playback Authorization service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is available.</p></li>
-                            <li><p>HLSe content playback is possible.</p></li>
+                            <!-- <li><p>HLSe content playback is possible.</p></li> -->
                         </ul>
                         </li>
                         <li><p>both <strong>policy_key</strong> set and <strong>auth_token</strong>  set: </p>
                         <ul>
                             <li><p>The Edge Playback API service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is not available.</p></li>
-                            <li><p>HLSe content playback is possible.</p></li>
+                            <!-- <li><p>HLSe content playback is possible.</p></li> -->
                         </ul>
                         </li>
                     </ul>
@@ -2921,259 +3024,211 @@
         <hr>
         <section>
             <h3 id="analytics">analytics</h3>
-            <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
-            </code></p>
-            <p>Configures the data needed for Brightcove Analytics. This allows the SDK to gather all the information provided by the end user and subsequently trigger Brightcove Analytics during playback.</p>
+            <p><code class="text-secondary" translate="no">NODE</code></p>
+            <p>Configures Brightcove’s Data Collection API support. This node allows for some of the Analytics metrics to be customized thus allowing for some flexibility and account for different use cases.</p>
+            <p>It also provides a read-only field where all the triggered events data can be accessed for further processing or logging.</p>
+            <p>All the available fields are listed in the table below.</p>
 
-            <p>You can provide the following data:</p>
             <div class="table-responsive">
                 <table class="bcls-table">
                       <caption class="bcls-caption--table">analytics fields description</caption>
                       <thead class="bcls-table__head">
                           <tr>
                               <th>Field</th>
-                              <th>Data</th>
+                              <!-- <th>Data</th> -->
                               <th>Description</th>
                           </tr>
                       </thead>
                       <tbody class="bcls-table__body">
                           <tr>
-                              <td class="align-top">accountId</td>
-                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                              <td class="align-top">accountID</td>
+                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                              </code>
                             <ul>
                                 
-                                    <li>Store the accountId as a string.
-                                        <ul>
-                                            <li>ex: “12121212“</li>
-                                        </ul>
+                                    <li>Specifies the Video Cloud Account ID for the Analytics events specifically.
                                     </li>
+                                    <li>Applies to the account, player and player_name metrics.</li>
                                 
-                                <li>If no value is set the SDK will use the accountId from the active account from the appContent.</li>
+                                <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
+                                    
+                                    <ul><li>if not set, the <code translate="no">bcPlayer.credentials.account_id</code> field value is used.</li></ul></li>
                             </ul>
                             </td>
-                              <td><p>Represents the Video Cloud Account Id.</p>
-                            <p>It will be used in the <code translate="no">account</code>, <code translate="no">player</code>, <code translate="no">player_name</code> params in all events.</p></td>
+                              
                           </tr>
                           <tr>
                               <td class="align-top">url</td>
-                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                              <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                              </code>
                             <ul>
                                 
-                                    <li>Store the Analytics Collector URl.
-                                        <ul>
-                                            <li>ex: “http://rokumadeiracatcher.com“</li>
-                                        </ul>
+                                    <li>Allows to redirect the Analytics events to a specify endpoint.
                                     </li>
+                                    <li>This can be useful for test and debugging purposes to validate if all the events and metrics are properly set.</li>
                                 
-                                <li>If no value is set the SDK will use the hardcoded ones:
-                                    <div class="row overflow-scroll">
-                                        <div class="col overflow-scroll" style="max-width: 100%;">
-                                    <pre class="line-numbers"><code class="language-JS" translate="No">environment = {
-    production: "https://metrics.brightcove.com/v2/tracker",
-    staging: "https://metrics.juju.staging.brightcove.com/v2/tracker",
-    qa: "https://metrics.juju.qa.brightcove.com/v2/tracker",
-}</code></pre>
-</div>
-</div>
-
-                                </li>
+                                <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
+                                    
+                                    <ul><li>If not set, events are sent to through Brightcove’s Data Collection API v2.</li></ul></li>
                             </ul>
                             </td>
-                              <td><p>Analytics Collector URL.</p>
-                            <p>If a specific collector URL is desired, this option can be set. It will accept any non-empty string as a value.</p>
-                                <p>In case the <code translate="no">url</code> exists use it otherwise pick on of the environments by the <code translate="no">env</code>.</p>
-                        </td>
+                              
                           </tr>
+                          
                           <tr>
-                            <td class="align-top">applicationId</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                            <td class="align-top">applicationID</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
                           <ul>
                               
-                                  <li>Store the application id as string.
-                                      <ul>
-                                          <li>ex: “4I545H345“</li>
-                                      </ul>
+                                  <li>Can be used to specify an ID for the application.
                                   </li>
                               
-                              <li>If no value is set the SDK will use as ““.</li>
+                              <li>Applies to the following metrics:
+                                <ul>
+                                    <li><code translate="no">player</code> - <code translate="no">applicationID</code> is appended to the default value of player as such: <code translate="no">&#60;player&#62;/&#60;applicationID&#62;</code></li>
+                                    <li><code translate="no">player_name</code> - if the <code translate="no">playerName</code> is provided, <code translate="no">applicationID</code> is appended to its value as such: <code translate="no">&#60;playerName&#62;/&#60;applicationID&#62;</code>. Otherwise <code translate="no">player_name</code> takes the value of <code translate="no">applicationID</code></li>
+                                </ul>
+                              </li>
+                              <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code></li>
                           </ul>
                           </td>
-                            <td>
-                          <p>It is used to denote a specific instance or application of a player and it will be use to add to the <code translate="no">player</code> , <code translate="no">player_name</code> params in all events.</p></td>
+                            
                         </tr>
                         <tr>
                             <td class="align-top">env</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
                           <ul>
                               
-                                  <li>Store the environment.
-                                      <ul>
-                                          <li>ex: “production“, “staging“, “qa“</li>
-                                      </ul>
+                                  <li>Specifies the Data Collection API environment to use.
                                   </li>
-                              
-                              <li>If no value is set the SDK will pick up the production by default.
-                                  <div class="row overflow-scroll">
-                                      <div class="col overflow-scroll" style="max-width: 100%;">
-                                  <pre class="line-numbers"><code class="language-JS" translate="No">environment = {
-  production: "https://metrics.brightcove.com/v2/tracker",
-  staging: "https://metrics.juju.staging.brightcove.com/v2/tracker",
-  qa: "https://metrics.juju.qa.brightcove.com/v2/tracker",
-}</code></pre>
-</div>
-</div>
-
-                              </li>
-                          </ul>
-                          </td>
-                            <td><p>Specifies the environment to which metrics will be sent. This adjusts the URL for the tracking GIF to an appropriate value. </p>
-                          <p>It will be used right before the analytics request.</p>
-                              
-                      </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">playerId</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <ul>
-                              
-                                  <li>Store the player id.
-                                      <ul>
-                                          <li>ex: “12345“</li>
-                                      </ul>
-                                  </li>
-                              
-                              <li>If no value is set the SDK will use as “player“.</li>
-                          </ul>
-                          </td>
-                            <td>
-                          <p>Specifies the Id of the player. </p>
-                        <p>It will be used to concatenate to the <code translate="no">player</code> param in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">platformVersion</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <p>Store the platform version.</p>
-                          <p>ex:“major_versionXXX.minor_versionXXX.build_versionXXX“</p>
-                          <p>If no value is set the SDK will not add this field.</p>
-                          </td>
-                            <td>
-                          <p>Version of the Platform.</p>
-                        <p>It will be used in the <code translate="no">platformVersion</code> param in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">playerName</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <ul>
-                              
-                                  <li>Store the player name.
-                                      <ul>
-                                          <li>ex: “playerNameTest“</li>
-                                      </ul>
-                                  </li>
-                              
-                              <li>If no value is set the SDK will use the <code translate="no">applicationId</code> if exists and if not it will apply as <code translate="no">invalid</code>.</li>
-                          </ul>
-                          </td>
-                            <td>
-                          <p>Specifies the name of the player. </p>
-                        <p>It will be used in the <code translate="no">player_name</code> param as playerName-applicationId in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">user</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <ul>
-                              
-                                  <li>Store the user token.
-                                      <ul>
-                                          <li>ex: “QWE&%SD8“</li>
-                                      </ul>
-                                  </li>
-                              
-                              <li>If no value is set the SDK will not apply any value and the field will not be sent.</li>
-                          </ul>
-                          </td>
-                            <td>
-                          <p>Specifies the user token.</p>
-                        <p>It will be used in the <code translate="no">user</code> param in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">destination</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <ul>
-                              
-                                  <li>Store the URI that originated the event.
-                                      <ul>
-                                          <li>ex: <code translate="no">"roku/"+appInfo.GetTitle()</code></li>
-                                      </ul>
-                                  </li>
-                              
-                              <li>If no value is set the SDK will not add any value and the field will not be sent.</li>
-                          </ul>
-                          </td>
-                            <td>
-                          <p>Specifies the value of the location that originates the event and MUST be in proper URI format ex: bcsdk://com.mhogben.source</p>
-                        <p>It will be used in the <code translate="no">destination</code> param in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">source</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code>
-                          <ul>
-                              
-                                  <li>Store the source value.
-                                  </li>
-                              
-                              <li>If no value is set the SDK will not add any custom value and the field will not be sent.</li>
-                          </ul>
-                          </td>
-                            <td>
-                          <p>Specifies the source value.</p>
-                        <p>It will be used in the <code translate="no">source</code> param in all events.</p>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top">streamCount</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">INTEGER</code>
-                          <ul>
-                              
-                                  <li>Store the stream count.
+                                  <li>The possible values are:
                                     <ul>
-                                        <li>ex: 1,2,3,4</li>
+                                        <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no" class="text-secondary">production</code></li>
+                                        <li><code translate="no" class="text-secondary">staging</code></li>
+                                        <li><code translate="no" class="text-secondary">qa</code></li>
                                     </ul>
                                   </li>
                               
-                              <li>If no value is set the SDK will not add any custom value and it will send the <code translate="no">seq</code> param only with the custom counter from the SDK.</li>
+                              <li>If not set (or set to <code translate="no">""</code>), the production environment endpoint will be used.</li>
+                              
                           </ul>
                           </td>
-                            <td>
-                          <p>Stream count is used to apply to the <code translate="no">seq</code> param that will sent during every event trigger in order. ex: <code translate="no">1_1, 2_1, 3_1</code> the first number is the counter from the SDK and the second one _X is the <code translate="no">streamCount</code>.</p>
-                        </td>
+                            
                         </tr>
+                        <tr>
+                            <td class="align-top">playerID</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
+                          <ul>
+                              
+                                  <li>Allows to specify an ID for the player.
+                                  </li>
+                                  <li>If not set, uses the value of <code translate="no">player</code>.</li>
+                                  <li>Applies to the player metric which takes the following format: <code translate="no">players.brightcove.com/&#60;accountID&#62;/&#60;playerID&#62;[/&#60;applicationID&#62;]</code></li>
+                                  <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code></li>
+                          </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">playerName</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
+                          <ul>
+                              
+                                  <li>Allows to specify a name for the player.
+                                  </li>
+                                  <li>Applies to the player_name metric which takes the following format: <code translate="no">&#60;playerName&#62;[ - &#60;applicationID&#62;] or &#60;applicationID&#62;</code> if <code translate="no">playerName</code> is not set.</li>
+                                  <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code></li>
+                          </ul>
+                          </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="align-top">user</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
+                          <ul>
+                              
+                                  <li>Specifies the user identification.
+                                  </li>
+                                  <li>Applies to the user metric.</li>
+                                  <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
+                                    <ul>
+                                        <li>If not set, the user metric will not be added to the request.</li>
+                                    </ul>
+                                  </li>
+                          </ul>
+                          </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="align-top">destination</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
+                          <ul>
+                              
+                                  <li>Allows to specify the destination metric.
+                                  </li>
+                              
+                              <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
+                            <ul>
+                                <li>If not set, the destination metric will not be added to the request.</li>
+                            </ul></li>
+                          </ul>
+                          </td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="align-top">source</td>
+                            <td class="align-top"><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            </code>
+                          <ul>
+                              
+                                  <li>Allows to specify the <code translate="no">source</code> metric.
+                                  </li>
+                              
+                                  <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
+                                    <ul>
+                                        <li>If not set, the source metric will not be added to the request.</li>
+                                    </ul></li>
+                          </ul>
+                          </td>
+                            
+                        </tr>
+                        
                         <tr>
                             <td class="align-top">eventOut</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">READ ONLY</code>
-                          <p>Read this field to see the event that was made during the Brightcove Analytics request.</p>
+                            <td class="align-top"><code class="text-secondary" translate="no">associative array</code> <code class="text-success" translate="No">READ-ONLY
+                            </code>
+                         <ul>
+                            <li>Allows for all the Analytics event metrics to be accessed as soon as they trigger. The <code translate="no">AssociativeArray</code> contains all the event metrics and their values.</li>
+                            <li>This field can be observed to access the event data.</li>
+                         </ul>
                           </td>
-                            <td>
-                          <p>All the data from the Brihghtcove Analytics request.</p>
-                        </td>
+                            
                         </tr>
-                        <tr>
-                            <td class="align-top">isHidden</td>
-                            <td class="align-top"><code class="text-secondary" translate="no">READ ONLY</code>
-                          <p>Read this field to check if the player is hidden or not.</p>
-                          </td>
-                            <td>
-                          <p>It will indicate if the player is hidden or not.</p>
-                        </td>
-                        </tr>
+                        
                       </tbody>
                   </table>
                 </div>
+
+                <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                m.bcPlayer.analytics.accountID = "my account ID" ' setting a different accountID
+                m.bcPlayer.analytics.user = "123456" ' setting the user identification
+                m.bcPlayer.analytics.observeField("eventOut", "onAnalyticsEvent") ' observing the eventOut field
+                
+                ...
+                
+                sub onAnalyticsEvent(ev)
+                  data = ev.getData()
+                  eventName = data.event
+                  ? "Analytics " + eventName + " event data: " data
+                end sub
+                </code></pre>
                 
         </section>
         <hr>
@@ -3209,7 +3264,41 @@
         <section>
             <h3>sdkVersion</h3>
             <p><code translate="no" class="text-secondary">STRING</code> <code translate="no">READ-ONLY</code></p>
-            <p>Store the SDK version by reading the major, minor and build version from the manifest and save it in this field. </p>
+            <p>Provides the Roku SDK version.</p>
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li>The version number in the following format: <code translate="no">&#60;major-version&#62;.&#60;minor-version&#62;.&#60;build-version&#62;</code></li>
+                
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                sdkVersion = m.bcPlayer.sdkVersion
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3>adPlaying</h3>
+            <p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no">READ-ONLY</code></p>
+            <p>Indicates if a SSAI or CSAI ad is currently playing.</p>
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><code translate="no">true</code> - an ad is currently playing.</li>
+                <li><code translate="no">false</code> - no ad is currently playing.</li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">sub init()
+                  m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                  m.bcPlayer.observeField("adPlaying", "onAdPlaying")
+                end sub
+                
+                ...
+                
+                sub onAdPlaying(ev)
+                  ? "is it playing ads? " ev.getData()
+                end sub
+                </code></pre>
         </section>
         <hr>
         <section>
@@ -3217,9 +3306,7 @@
             <p><code translate="no" class="text-secondary">ROSGNODE</code> <code translate="no">READ-ONLY</code></p>
             <p>Allows access to all the bcPlayer events. Developers should setup event listeners to capture the events data through the <code translate="no">observeField()</code> or <code translate="no">observeFieldScoped()</code> functions. Check the table below for all the available events and the data they provide. Check the code snippet to understand how to setup event listeners to capture these events.
             </p>
-        </section>
-        <section class="bcls-section">
-            <h2 id="event-list">Event List</h2>
+            <p><strong>Event List</strong></p>
             <div class="table-responsive">
             <table class="bcls-table">
                 <caption class="bcls-caption--table">Events</caption>
@@ -3232,7 +3319,7 @@
                 </thead>
                 <tbody class="bcls-table__body">
                     <tr>    
-                        <td>sdkReady</td>
+                        <td class="align-top">sdkReady</td>
                         <td><p><code translate="no" class="text-secondary">BOOLEAN</code></p>
                         <ul>
                             <li><p><code translate="no">true</code> bcPlayer features are "live" and ready to use.</p></li>
@@ -3243,24 +3330,24 @@
                     <tr>
                         <td class="align-top">load</td>
                         <td><p><code translate="no" class="text-secondary">ASSOCOATIVE ARRAY</code></p>
-                        <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
+                        <p>Provides an ASSOCIATIVE ARRAY object with the following properties:</p>
                         <ul>
-                            <li><p><code translate="no">event</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                            <!-- <li><p><code translate="no">event</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <ul><p>Posible Values:</p>
                                 <li><p><code translate="no">error</code>: an error has occurred while loading Brightcove metadata.</p></li>
                                 <li><p><code translate="no">start</code>: Brightcove metadata loading has started.</p></li>
                                 <li><p><code translate="no">end</code>: Brightcove metadata loading has completed successfully. This event indicates that the <code translate="no">bcPlayer.content</code> field has been successfully updated with the new catalog metadata.</p></li>
                             </ul>
-                            </li>
-                            <li><p><code translate="no">type</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
-            </code></p>
+                            </li> -->
+                            <li><p><code translate="no">type</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
             <p>Metadata type. Available in <code translate="no">start</code> and <code translate="no">end</code> events. Possible values:</p>
                             <ul>
                                 <li><p><code translate="no">video</code>: specifies that a single video metadata is being  loaded.</p></li>
                                 <li><p><code translate="no">playlist</code>: specifies that a playlist metadata is being loaded (applies to Brightcove playlists as well as search results and related videos metadata).</p></li>
+                                <li><p><code translate="no">unknown</code>: the metadata type couldn’t be identified.</p></li>
                             </ul>
                             </li>
-                            <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
+                            <!-- <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
                             <p>Specifies the video or playlist Videocloud ID. Available in <code translate="no">start</code> and <code translate="no">end</code> events. It’s set to <code translate="no">invalid</code> when loading multiple videos (video search and related metadata).</p>  
                             </li>
@@ -3275,18 +3362,27 @@
                             <li><p><code translate="no">message</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
                             <p>Specifies an error message. Only present when <code translate="no">event</code>event is <code translate="no">error</code>.</p>  
+                            </li> -->
+                            <li><p><code translate="no">data</code> <code class="text-secondary" translate="no">DYNAMIC</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                <p>Provides the processed ContentNode which is being loaded into the bcPlayer if the loading process is successful. On the other hand, if an error occurs, data provides the original metadata object.</p>
+                            </li>
+                            <li><p><code translate="no">error</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies the error message. Only available when an error occurs during the loading process.</p>
                             </li>
                         </ul>
                         </td>
-                        <td class="align-top"><p>The <code translate="no">load</code> event is triggered when metadata load process starts, when it ends and when an error occurs during the loading process.</p></td>
+                        <td class="align-top"><p>Allows for a better tracking of the load and loadCustom progress. The <code translate="no">load</code> event is triggered when metadata load process starts, when it ends and when an error occurs during the loading process.  It also triggers during the custom metadata loading process initiated through the <code translate="no">loadCustom</code> function.</p></td>
                     </tr>
                     <tr>
                         <td class="align-top">start</td>
                         <td><p><code translate="no" class="text-secondary">ASSOCOATIVE ARRAY</code></p>
-                            <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
+                            <p>Provides an ASSOCIATIVE ARRAY object with the following  properties:</p>
                             <ul>
                                 <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                                 <p>Reference to the native <code translate="no">Video.contentIndex</code> field. Specifies the index of the video that is currently playing in the playlist. It’s set to <code translate="no">0</code> if only a single video is playing.</p>
+                                </li>
+                                <li><p><code translate="no">downloadedSegment</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                <p>Reference to the native <code translate="no">Video.downloadedSegment</code> field.</p>
                                 </li>
                                 <li><p><code translate="no">timeToStartStreaming</code> <code class="text-secondary" translate="no">INTEGER/FLOAT</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                                 <p>Reference to the native <code translate="no">Video.timeToStartStreaming</code> field. Specifies the time in seconds from playback being started until the video actually began playing.</p>
@@ -3437,7 +3533,7 @@
                                 
                             </ul>
                             </td>
-                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered at the start of every video playback. It triggers only once per video asset, and it provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node.</p></td>
+                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered at the start of every video playback. It triggers only once per video asset, and it provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node. Please refer to the Roku documentation for more specific details on those fields.</p></td>
                     </tr>
                     <tr>
                         <td class="align-top">play</td>
@@ -3462,7 +3558,7 @@
                     <tr>
                         <td class="align-top">previous</td>
                         <td><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
-                        <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
+                        <p>Provides an ASSOCIATIVE ARRAY object with the following properties:</p>
                         <ul>
                             <li><p><code translate="no">fromIndex</code> <code translate="no" class="text-secondary">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>The index of the currently playing video in the playlist.</p>
@@ -3477,7 +3573,7 @@
                     <tr>
                         <td class="align-top">next</td>
                         <td><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
-                        <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
+                        <p>Provides an ASSOCIATIVE ARRAY object with the following properties:</p>
                         <ul>
                             <li><p><code translate="no">fromIndex</code> <code translate="no" class="text-secondary">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>The index of the currently playing video in the playlist.</p>
@@ -3492,8 +3588,19 @@
                     <tr>
                         <td class="align-top">finished</td>
                         <td><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
-                        <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
+                        <p>Provides an ASSOCIATIVE ARRAY object with the following properties:</p>
                         <ul>
+                            <li>
+                                <p>
+                                <code>reason</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code>
+                                </p>
+                                <p>Specifies the reason for the finished event. The possible values for this property are:
+                                    <ul>
+                                        <li><code translate="no">finished</code>: the playback reached the end of the stream or it was interrupted by an error.</li>
+                                        <li><code translate="no">stopped</code>: the playback was stopped by an external action.</li>
+                                    </ul>
+                                </p>
+                            </li>
                             <li><p><code translate="no">completedStreamInfo</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reference to the native <code translate="no">Video.completedStreamInfo</code> field. Provides information about the video stream that most recently completed playing, due to an error, user action, or end of the stream. The following keys are available through this property:</p>
                             <ul>
@@ -3709,11 +3816,11 @@
                         <td><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
                         <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
                         <ul>
-                            <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                            <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reflects the value of the native <code translate="no">Video.contentIndex</code> field.</p></li>
-                            <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">FLOAT</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                            <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">FLOAT</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reflects the value of the native <code translate="no">Video.position</code> field.</p></li>
-                            <li><p><code translate="no">bufferingStatus</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                            <li><p><code translate="no">bufferingStatus</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reflects the value of the native Video.bufferingStatus field.
                                 The following properties are available:</p>
                             <ul>
@@ -3881,8 +3988,6 @@
                 </tbody>
             </table>
         </div>
-        </section>
-        <section>
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
@@ -3918,8 +4023,185 @@
                     
                   end sub
                 </code></pre>
-
+            
         </section>
+        <hr>
+        <section>
+            <h3>ssai</h3>
+            <p><code class="text-secondary" translate="no">NODE</code></p>
+            <p>Allows to configure SSAI support in the <code translate="no">bcPlayer</code>.</p>
+            <p>Live video streams only support SSAI service provided by Brightcove.</p>
+            <p>When setting up SSAI in a Brightcove video, the <code translate="no">bcPlayer</code> will automatically set the <code translate="no">adsData</code> field in the video ContentNode node. This field stores all the SSAI details, including the parsed VAST/VMAP data and it’s required to initialize RAF. Currently Brightcove SSAI sources will automatically create the <code translate="no">adsData</code> field, but it should also be possible to adapt it to work with custom metadata and other SSAI providers (<em>VOD sources only</em>), like so:</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer") 
+
+                ' enable SSAI handling
+                m.bcPlayer.ssai.enabled = true
+                
+                ' setup the custom metadata you wish to load through the loadCustom function and add the adsData property
+                ' this function should start video playback automatically
+                m.bcPlayer.callFunc("loadCustom", {
+                  ...                                 ' add the custom metadata properties
+                  Url: "https://my.ssai.video.url"    ' make sure to set the video URL. This should be a stitched video, containing both the ads and the content
+                  StreamFormat: "hls/dash"            ' set the stream format
+                  adsData: {                          ' adsData should be an AssociativeArray object
+                    type: "ssai",                     ' specifies that this is a SSAI enabled video
+                    adBreaks: <adBreaks-ad-structure> ' provide the Ad Structure array as requested by Roku. This information is usually parsed from a VAST/VMAP document
+                  }
+                })
+                </code></pre>
+                <br>
+                <p>Through the <code translate="no">bcPlayer.ssai.macros</code> field it’s possible to specify a set of macros that will get replaced in the ad tag (please check the <code translate="no">bcPlayer.ssai.macros</code> field description in the table below for more details), but it’s also possible to add custom macros into the ad tag as well, by setting up the <code translate="no">vmapMacros</code> field in the video ContentNode node. <code translate="no">vmapMacros</code> should be an Associative Array object and all the key-value pairs provided will be added into the ad tag (please be aware that it doesn’t check if the macro is already present in the ad tag, if it is, it’ll add it anyway).</p>
+
+                <pre class="line-numbers">
+                    <code class="language-basic" translate="No">sub init()
+  
+                        m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                      
+                        ' enable SSAI handling
+                        m.bcPlayer.ssai.enabled = true
+                      
+                        ' request the SSAI ready video metadata through PAPI and disable the autoload flag so that the metadata can be adjusted before loading it into bcPlayer
+                        ' if you already have the metadata, you can skip this step and move on to the onVideoResponse() logic where the vmapMacros property is added.
+                        rNode = m.bcPlayer.callFunc("getVideo", SSAIVideoID, { autoload: false })
+                        if rNode &#60;&#62; invalid then rNode.observeField("response", "onVideoResponse")
+                        
+                      end sub
+                      
+                      sub onVideoResponse(ev)
+                        
+                        data = ev.getData()
+                        if data.code &#60;&#62; 200 then
+                          
+                          ' handle the error
+                          return
+                          
+                        end if
+                        
+                        metadata = data.body
+                        
+                        ' setup the vmapMacros property. 
+                        ' List all the custom macros you wish to add into the ad tag
+                        ' Make sure that these macros are not repeated in the bcPlayer.ssai.macros field, otherwise the ad tag might end up with duplicated macros
+                        metadata.vmapMacros = {
+                          myCustomMacro: "hello-world"
+                        }
+                        
+                        ' load the metadata into bcPlayer
+                        m.bcPlayer.callFunc("load", metadata)
+                        
+                      end sub
+                    </code></pre>
+
+                    <p><strong>Fields</strong></p>
+                    <div class="table-responsive">
+                        <table class="bcls-table">
+                            <thead class="bcls-table__head">
+                                <tr>
+                                    <th class="sticky-top">Field</th>
+                                    <th class="sticky-top">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bcls-table__body">
+                                <tr>    
+                                    <td class="align-top">enabled</td>
+                                    <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                        <p>Toggles SSAI support on and off. If set to false (the default value), SSAI will be disabled on all videos.</p>
+                                        
+                                    <ul>Possible values:
+                                        <li><p><code translate="no">false</code> <code translate="no" class="text-warning">DEFAULT</code> disables SSAI in the <code translate="no">bcPlayer</code>.</p></li>
+                                        <li><p><code translate="no">true</code>  enables SSAI in the <code translate="no">bcPlayer</code>.</p></li>
+                                    </ul></td>
+                                </tr>
+                                <tr>    
+                                    <td class="align-top">enableDiscontinuities</td>
+                                    <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                        <p>Toggles discontinuities/multiperiods in Brightcove sources. More info <a target="_blank" href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html#Entrypoint_URL_parameters">here</a>.</p>
+                                        
+                                    <ul>Possible values:
+                                        <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> enables playback with Discontinuities in HLS & MultiPeriods in Dash. Sets the <code translate="no">rule</code> query parameter in the video source URL to <code translate="no">discos-enabled</code>.</p></li>
+                                        <li><p><code translate="no">false</code> sets the <code translate="no">rule</code> query parameter in the video source URL to <code translate="no">discos-disabled</code>.</p></li>
+                                    </ul></td>
+                                </tr>
+                                <tr>    
+                                    <td class="align-top">adMeasurements</td>
+                                    <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                        <p>Allows to specify custom ad measurement properties. These properties are usually retrieved for the video ContentNode, but their values can be overridden through this setting.</p>
+                                        <p>Be aware that these properties have to be set and/or reset for each video individually.</p>
+                                        
+                                    <ul>Possible values:
+                                        <li><p><code translate="no">invalid</code>  Disables all the ad measurement properties. Please keep in mind this will also affect some of the Roku macros that get their values from this setting. This essentially means that ad measurements will be disabled through RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enableadmeasurementsenabled">enableAdMeasurements()</a> function.</p></li>
+                                        <li><p><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> initializes all properties with their default values.</p></li>
+                                        <li>Supported properties in the AssociativeArray object:
+                                            <ul>
+                                                <li><p><code translate="no">childDirected</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p> 
+                                                    <p>Specifies if the video contains child directed content. This value is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean">setContentGenre()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_KIDS_CONTENT</code> Roku macro value.</p>
+                                                
+                                                <ul>
+                                                    <li><p><code translate="no" class="text-warning">DEFAULT</code> <code translate="no" class="text-secondary">false</code></p></li>
+                                                </ul></li>
+                                                <li><p><code translate="no">contentid</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p> 
+                                                    <p>Specifies the video ID. If not provided, the id field of the video ContentNode is used. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentidid-as-string">setContentId()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_ID</code> Roku macro value.</p>
+                                                
+                                                <ul>
+                                                    <li><p><code translate="no" class="text-warning">DEFAULT</code> <code translate="no" class="text-secondary">ContentNode.id</code></p></li>
+                                                </ul></li>
+                                                <li><p><code translate="no">contentGenre</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p> 
+                                                    <p>Specifies the video genre. If not provided, the Categories or tags fields of the video ContentNode are used, in that order specifically. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean">setContentGenre()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_GENRE</code> Roku macro value.</p>
+                                                
+                                                <ul>
+                                                    <li><p><code translate="no" class="text-warning">DEFAULT</code>  the first applicable option:</p>
+                                                    <ul>
+                                                        <li>If <code translate="no">ContentNode.Categories</code> is set, joins all items in the array, separated by a comma.</li>
+                                                        <li>if <code translate="no">ContentNode.tags</code> is set, joins all items in the array, separated by a comma.</li>
+                                                        <li><code translate="no">""</code></li>
+                                                    </ul></li>
+                                                </ul></li>
+                                                <li><p><code translate="no">contentLength</code> <code class="text-secondary" translate="no">NUMBER</code> <code class="text-success" translate="no">OPTIONAL</code></p> 
+                                                    <p>Specifies the video content length. If not provided, the Length field of the video ContentNode is used. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentlengthlength-as-integer"></a>setContentLength() function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> Roku macro value. On live streams, this value is set to <code translate="no">999999</code>.</p>
+                                                
+                                                <ul>
+                                                    <li><p><code translate="no" class="text-warning">DEFAULT</code>  the first applicable option:</p>
+                                                    <ul>
+                                                        <li>if it’s a live stream: <code translate="no">999999</code></li>
+                                                        <li><code translate="no">ContentNode.Length</code></li>
+                                                        <li><code translate="no">0</code></li>
+                                                    </ul></li>
+                                                </ul></li>
+                                            </ul>
+                                        </li>
+                                        
+                                    </ul></td>
+                                </tr>
+                                <tr>    
+                                    <td class="align-top">bcovToken</td>
+                                    <td><p><code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                        <p>Specifies a Brightcove authentication JWT. This allows SSAI videos to use a different token than the one provided through the <code translate="no">bcPlayer.credentials.auth_token</code> property. If not provided, it’ll use the <code translate="no">bcPlayer.credentials.auth_token</code> token, if available. Essentially, this property adds the bcov_auth query parameter to the source URL.</p>
+                                        
+                                    <ul>Possible values:
+                                        <li><p><code translate="no">""</code> <code translate="no" class="text-warning">DEFAULT</code> uses bcPlayer.credentials.auth_token token if available, otherwise ignores it.</p></li>
+                                        <li><p><code translate="no">"&#60;JWT&#62;"</code>  sets the bcov_auth query parameter with the token provided.</p></li>
+                                    </ul></td>
+                                </tr>
+                                <tr>    
+                                    <td class="align-top">macros</td>
+                                    <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                        <p>Specifies a list of macros that will get replaced in the video ad tag source URL (VMAP). These only apply to the query parameters identified with &#123;&#123;url.&#60;macro&#62;&#125;&#125;. </p>
+                                        <p>For example, if the VMAP ad tag URL contains the following query parameter: <code translate="no">...&foobar=...</code>, setting bcPlayer.ssai.macros to {foo: "bar"} would replace  with bar and in the end it would look like so:  <code translate="no">...&foobar=bar...</code></p>
+                                        <p>Roku macros can also be used as a macro value. Using the same ad tag example, setting <code translate="no">bcPlayer.ssai.macros</code> to <code translate="no">&#123;foo: "&#123;ROKU_ADS_DISPLAY_WIDTH&#125;"&#125;</code> would replace <code translate="no">&#123;&#123;url.foo&#125;&#125;</code> with the display width value and in the end it would look like so: <code translate="no">...&foobar=1080....</code> The list of supported macros can be found <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                                        <p>Be aware that the <code translate="no">ROKU_ADS_CONTENT_ID</code>, <code translate="no">ROKU_ADS_CONTENT_GENRE</code>, <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> and <code translate="no">ROKU_ADS_KIDS_CONTENT</code> macros value depend on their respective <code translate="">bcPlayer.ssai.adMeasurements</code> values, so if ad measurements are disabled, these macros won’t be available. More info here.</p>
+                                        
+                                    <ul>Possible values:
+                                        <li><p><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> No query parameters are replaced.</p></li>
+                                        <li><p><code translate="no">&#123;&#60;key-value-pairs-of-macros&#62;&#125;</code></p></li>
+                                    </ul></td>
+                                </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                        
+        </section>
+
         <section class="bcls-section">
             <h2 id="functions">Functions</h2>
             <p>The bcPlayer node also provides some functions to interact with the Video content and playback.</p>
