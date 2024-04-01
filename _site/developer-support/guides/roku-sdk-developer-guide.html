@@ -1976,17 +1976,150 @@
 
   <section class="bcls-section">
     <h2 id="overview">Overview</h2>
-    <p>The Brightcove Roku SDK is a Roku <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/control-nodes/componentlibrary.md">ComponentLibrary</a> package that can be imported and loaded into a Roku channel, allowing easy access to Brightcove’s Playback services.</p>
+    <p>The Brightcove Roku SDK is a Roku <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/control-nodes/componentlibrary.md">ComponentLibrary</a> package that can be imported and loaded into a Roku channel, allowing easy access to Brightcove’s Playback services.</p>
   </section>
   <section class="bcls-section">
     <h2 id="components">Components</h2>
     <p>The Brightcove Roku SDK package contains the following components:</p>
     <ul>
-        <li><strong>bcPlayer</strong> - Allows for Brightcove and external sources video playback using Roku’s Video node.</li>
-        <li><strong>bcAPI</strong> - Provides independent access to Brightcove’s Playback API and an interface for general HTTP requests.</li>
-        <li><strong>Dialog</strong> - Customizable <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> node.</li>
-        <li><strong>Logger</strong> - Customizable logger node.</li>
-        <li><strong>Utils</strong> - Provides general Brightscript helping functions.</li>
+        <li><strong><a href="#bcPlayer">bcPlayer</a></strong> - Allows for Brightcove and external sources video playback using Roku’s Video node.
+        <ul>
+            <li><a href="#fields">Fields</a>
+            <ul>
+                <li><a href="#credentials">credentials</a></li>
+                <li><a href="#watermarkToken">watermarkToken</a></li>
+                <li><a href="#streamPreference">streamPreference</a></li>
+                <li><a href="#drmPreference">drmPreference</a></li>
+                <li><a href="#logLevel">logLevel</a></li>
+                <li><a href="#spinnerConfig">spinnerConfig</a></li>
+                <li><a href="#loading">loading</a></li>
+                <li><a href="#retryOnError">retryOnError</a></li>
+                <li><a href="#closeOnBack">closeOnBack</a></li>
+                <li><a href="#enableDialogs">enableDialogs</a></li>
+                <li><a href="#dialogTheme">dialogTheme</a></li>
+                <li><a href="#analytics">analytics</a></li>
+                <li><a href="#bufferTimeout">bufferTimeout</a></li>
+                <li><a href="#sdkVersion">sdkVersion</a></li>
+                <li><a href="#adPlaying">adPlaying</a></li>
+                <li><a href="#on">on</a></li>
+                <li><a href="#ssai">ssai</a></li>
+                <li><a href="#csai">csai</a></li>
+
+            </ul>
+            </li>
+            <li><a href="#bcPlayer-functions">Functions</a>
+                <ul>
+                    <li><a href="#load">load</a></li>
+                    <li><a href="#loadCustom">loadCustom</a></li>
+                    <li><a href="#getVideo">getVideo</a></li>
+                    <li><a href="#getVideos">getVideos</a></li>
+                    <li><a href="#getPlaylist">getPlaylist</a></li>
+                    <li><a href="#getRelated">getRelated</a></li>
+                    <li><a href="#playback">playback</a></li>
+                    <li><a href="#playlist">playlist</a></li>
+                    <li><a href="#close">close</a></li>
+                </ul>
+            </li>
+            <li><a href="#videoSourcesSelection">Video Sources selection</a></li>
+        </ul>
+        </li>
+        <li><strong><a href="#bcAPI">bcAPI</a></strong> - Provides independent access to Brightcove’s Playback API and an interface for general HTTP requests.
+        <ul>
+            <li><a href="#configFields">Config Fields</a>
+            <ul>
+                <li><a href="#bcAPI-credentials">credentials</a></li>
+                <li><a href="#bcAPI-maxRequests">maxRequests</a></li>
+                <li><a href="#bcAPI-logger">logger</a></li>
+            </ul>
+            </li>
+            <li><a href="#actionFields">Action Fields</a>
+            <ul>
+                <li><a href="#request">request</a></li>
+                <li><a href="#bcAPI-getVideo">getVideo</a></li>
+                <li><a href="#bcAPI-getVideos">getVideos</a></li>
+                <li><a href="#bcAPI-getRelated">getRelated</a></li>
+                <li><a href="#bcAPI-getPlaylist">getPlaylist</a></li>
+                <li><a href="#abort">abort</a></li>
+                <li><a href="#kill">kill</a></li>
+            </ul>
+            </li>
+            <li><a href="#outputFields">Output Fields</a>
+            <ul>
+                <li><a href="#response">response</a></li>
+                <li><a href="#ready">ready</a></li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        <li><strong><a href="#utils">Utils</a></strong> - Provides general Brightscript helping functions.
+        <ul>
+            <li><a href="#utils-functions">Functions</a>
+            <ul>
+                <li><a href="#validate">validate</a></li>
+                <li><a href="#contains">contains</a></li>
+                <li><a href="#indexOf">indexOf</a></li>
+                <li><a href="#isBool">isBool</a></li>
+                <li><a href="#isFunction">isFunction</a></li>
+                <li><a href="#isAA">isAA</a></li>
+                <li><a href="#isArray">isArray</a></li>
+                <li><a href="#isArrayisInt">isArrayisInt</a></li>
+                <li><a href="#isFloat">isFloat</a></li>
+                <li><a href="#isNumber">isNumber</a></li>
+                <li><a href="#isString">isString</a></li>
+                <li><a href="#charAt">charAt</a></li>
+                <li><a href="#toString">toString</a></li>
+                <li><a href="#toDouble">toDouble</a></li>
+                <li><a href="#setAddFields">setAddFields</a></li>
+                <li><a href="#addURLParams">addURLParams</a></li>
+                <li><a href="#match">match</a></li>
+                <li><a href="#replace">replace</a></li>
+                <li><a href="#truncate">truncate</a></li>
+                <li><a href="#toMD5">toMD5</a></li>
+                <li><a href="#toSHA1">toSHA1</a></li>
+                <li><a href="#toSHA256">toSHA256</a></li>
+                <li><a href="#toSHA512">toSHA512</a></li>
+                <li><a href="#is4kReady">is4kReady</a></li>
+                <li><a href="#isHDRReady">isHDRReady</a></li>
+                <li><a href="#canPlayAudio">canPlayAudio</a></li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        <li><strong><a href="#logger-id">Logger</a></strong> - Customizable logger node.
+        <ul>
+            <li><a href="#logger-fields">Fields</a>
+            <ul>
+                <li><a href="#level">level</a></li>
+                <li><a href="#mode">mode</a></li>
+                <li><a href="#output">output</a></li>
+            </ul>
+            </li>
+            <li><a href="#logger-functions">Functions</a>
+            <ul>
+                <li><a href="#error">error</a></li>
+                <li><a href="#warn">warn</a></li>
+                <li><a href="#info">info</a></li>
+                <li><a href="#verbose">verbose</a></li>
+                <li><a href="#debug">debug</a></li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        <li><strong><a href="#dialog">Dialog</a></strong> - Customizable <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> node.
+        <ul>
+            <li><a href="#dialog-fields">Fields</a>
+            <ul>
+                <li><a href="#theme">theme</a></li>
+                <li><a href="#titleConfig">titleConfig</a></li>
+                <li><a href="#content">content</a></li>
+                <li><a href="#sidecard">sidecard</a></li>
+                <li><a href="#buttons">buttons</a></li>
+            </ul>
+            </li>
+        </ul>
+        </li>
+        
+        
     </ul>
   </section>
   <section class="bcls-section">
@@ -1995,26 +2128,26 @@
     <ul>
         <li>OOTB UI/UX.</li>
         <li>VOD and Live streams playback support.</li>
-        <li>Native <a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/trick-mode/hls-and-dash.md">HLS/DASH</a> seek thumbnails support.</li>
-        <li>Widevine and Playready <a href="https://developer.roku.com/en-gb/docs/specs/media/content-protection.md">DRM</a> support.</li>
-        <li>HLS, DASH and MP4 <a href="https://developer.roku.com/en-gb/docs/specs/media/streaming-specifications.md">stream formats</a> support.</li>
+        <li>Native <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/trick-mode/hls-and-dash.md">HLS/DASH</a> seek thumbnails support.</li>
+        <li>Widevine and Playready <a target="_blank" href="https://developer.roku.com/en-gb/docs/specs/media/content-protection.md">DRM</a> support.</li>
+        <li>HLS, DASH and MP4 <a target="_blank" href="https://developer.roku.com/en-gb/docs/specs/media/streaming-specifications.md">stream formats</a> support.</li>
         <li>HLSe (HLS + AES-128 encryption) playback support (v4 manifests only).</li>
-        <li><a href="https://ssai.support.brightcove.com/index.html">SSAI </a>support.
+        <li><a target="_blank" href="https://ssai.support.brightcove.com/index.html">SSAI </a>support.
         <ul>
             <li>VOD.</li>
-            <li>Live - Brightcove only.</li>
+            <li>Live - Brightcove sources only.</li>
         </ul>
         </li>
-        <li>CSAI <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md">CSAS</a> support.
+        <li>CSAI <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md">CSAS</a> support.
         <ul>
             <li>VOD.</li>
-            <li>Live [TBD].</li>
+            <li>Live [to be implemented].</li>
         </ul>
         </li>
-        <li>Brightcove Analytics support (<a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Data Collection API v2</a>).</li>
+        <li>Brightcove Analytics support (<a target="_blank" href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Data Collection API v2</a>).</li>
         <li>Multichannel Audio on supported devices (5.1 AC3, 5.1 E-AC3, Dolby Atmos)
         </li>
-        <li><a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">OOTB Voice Controls</a> support.</li>
+        <li><a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">OOTB Voice Controls</a> support.</li>
         <li>Forensic Watermarking</li>
         <li>Configurable sources and DRM systems prioritization.</li>
         <li>Multiple Audio Tracks support.</li>
@@ -2023,10 +2156,10 @@
         <li>Playback retry on stream error.</li>
         <li>Brightcove Playback API interfaces
             <ul>
-                <li><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Retrieve a video by video ID</a> or reference.</li>
-                <li><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Retrieve videos by search query</a>.</li>
-                <li><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Retrieve related videos by video ID</a> or reference.</li>
-                <li><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Retrieve videos by playlist ID</a> or reference.</li>
+                <li><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Retrieve a video by video ID</a> or reference.</li>
+                <li><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Retrieve videos by search query</a>.</li>
+                <li><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Retrieve related videos by video ID</a> or reference.</li>
+                <li><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Retrieve videos by playlist ID</a> or reference.</li>
             </ul>
         </li>
         <li>Brightcove Edge Playback Authorization (EPA) support.</li>
@@ -2057,7 +2190,7 @@
     </section>
     <section class="bcls-section">
         <h2 id="voice-controls">Voice Controls</h2>
-        <p>Allows users to control the video playback through voice commands. These voice commands are captured by a supported Roku Remote Control as well as the Roku mobile app and sent to the Roku app. With the OOTB Roku UI most of these commands are handled natively. With a custom UI experience the Brightcove SDK will automatically handle the commands. <a href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">Learn more</a>.</p>
+        <p>Allows users to control the video playback through voice commands. These voice commands are captured by a supported Roku Remote Control as well as the Roku mobile app and sent to the Roku app. With the OOTB Roku UI most of these commands are handled natively. With a custom UI experience the Brightcove SDK will automatically handle the commands. <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">Learn more</a>.</p>
         <h3>OOTB UI/UX</h3>
         <ul>
             <li><strong>Basic Commands</strong>.
@@ -2074,6 +2207,7 @@
                 <ul>
                     <li><strong>start over</strong> - Start playback from the beginning.</li>
                     <li><strong>seek</strong> - Skip playback forwards or backwards by the specified time.</li>
+                    <li><strong>next</strong> - Play next video when having a playlist.</li>
                     
                 </ul>
             </li>
@@ -2085,7 +2219,7 @@
     </section>
     <section class="bcls-section">
         <h2 id="brightcove-analytics">Brightcove Analytics</h2>
-        <p>The following events and their respective fields will be sent automatically to Brightcove by the SDK. The end user can provide the information for most of the fields in each event. Alternatively, the SDK will attempt to build it and include it in the events. Otherwise, some fields won't be sent. <a href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Learn more</a>.</p>
+        <p>The following events and their respective fields will be sent automatically to Brightcove by the SDK. The end user can provide the information for most of the fields in each event. Alternatively, the SDK will attempt to build it and include it in the events. Otherwise, some fields won't be sent. <a target="_blank" href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Learn more</a>.</p>
         <p><strong>Events</strong></p>
         <ul>
             <li><strong>player_init</strong>: Sent when the player is initialized.</li>
@@ -2109,8 +2243,8 @@
             <li><strong>account</strong>: Brightcove Account ID. Uses <code translate="no">bcPlayer.credentials.account_id</code> value by default but it can be overridden through the <code translate="no">bcPlayer.analytics.accountId</code> field.</li>
             <li><strong>time</strong>: event timestamp.</li>
             <li><strong>device_os</strong>: hardcoded to <code translate="no">roku</code>.</li>
-            <li><strong>device_manufacturer</strong>: specifies the Roku device vendor name (as per <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getmodeldetails-as-object">GetModelDetails()</a>).</li>
-            <li><strong>device_os_version</strong>: specifies the Roku OS version (as per <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getosversion-as-object">GetOSVersion()</a>).</li>
+            <li><strong>device_manufacturer</strong>: specifies the Roku device vendor name (as per <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getmodeldetails-as-object">GetModelDetails()</a>).</li>
+            <li><strong>device_os_version</strong>: specifies the Roku OS version (as per <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getosversion-as-object">GetOSVersion()</a>).</li>
             <li><strong>seq</strong>: specifies the sequence of events per session, in the following format: 
                 <code translate="no">&#60;#-of-events&#62;</code>_<code translate="no">&#60;#-of-streams&#62;</code>.</li>
             <li><strong>device_type</strong>: hardcoded to <code translate="no">tv</code>.</li>
@@ -2361,7 +2495,7 @@
   </section>
   <section class="bcls-section">
     <h2 id="bcPlayer">bcPlayer component</h2>
-    <p>The <strong>bcPlayer</strong> component is the main SDK node as it enables both Brightcove sources and external sources video playback in Roku channels. This node essentially extends Roku’s native <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node, allowing all its fields to be easily accessed for further customization options. It is possible to configure the appearance of some elements in the node as well as some behaviors and flows by customizing the node fields values.</p>
+    <p>The <strong>bcPlayer</strong> component is the main SDK node as it enables both Brightcove sources and external sources video playback in Roku channels. This node essentially extends Roku’s native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node, allowing all its fields to be easily accessed for further customization options. It is possible to configure the appearance of some elements in the node as well as some behaviors and flows by customizing the node fields values.</p>
     <p>An instance of this node can be created like so:</p>
     <pre class="line-numbers">
     <code class="language-basic" translate="No">
@@ -2428,7 +2562,7 @@
             })
         </code></pre>
         <h3 id="fields">Fields</h3>
-        <p>The bcPlayer node is configured through a set of fields.  Since it extends the native Video node, all native fields are also accessible; these can be checked out in <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Roku documentation</a>.</p>
+        <p>The bcPlayer node is configured through a set of fields.  Since it extends the native Video node, all native fields are also accessible; these can be checked out in <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Roku documentation</a>.</p>
         <p>The following tags are used in this section to make the identification of the different types of fields easier.</p>
         <ul>
             <li><p><code class="text-secondary" translate="No">&#60;VALUE_TYPE&#62;
@@ -2458,7 +2592,7 @@
                 <li>
                     <p><code translate="no">policy_key</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
                 <ul>
-                    <li><p>Specifies the user policy key required to access the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Playback API</a>.</p></li>
+                    <li><p>Specifies the user policy key required to access the <a target="_blank" href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Playback API</a>.</p></li>
                 </ul>
                 </li>
                 <li>
@@ -2519,8 +2653,8 @@
                         </ul>
                         </li>
                     </ul>
-                    <p>Brightcove JSON <a href="https://general.support.brightcove.com/developer/create-json-web-token.html">Web Token</a> reference.</p>
-                    <p>Brightcove <a href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html">Playback Restrictions</a> reference.</p>
+                    <p>Brightcove JSON <a target="_blank" href="https://general.support.brightcove.com/developer/create-json-web-token.html">Web Token</a> reference.</p>
+                    <p>Brightcove <a target="_blank" href="https://apis.support.brightcove.com/playback-restrictions/getting-started/overview-playback-restrictions.html">Playback Restrictions</a> reference.</p>
                 </aside>
         </section>
         <!-- <hr>
@@ -2571,7 +2705,7 @@
             </code></p>
             <p>Configures the Forensic Watermarking token, which is required when playing watermarked encoded Brightcove sources.</p>
             <p>Playing a watermarked video without the <code translate="no">watermarkToken</code> field properly set will result in a playback error.</p>
-            <p>Please check <a href="https://apis.support.brightcove.com/general/overview-forensic-watermarking.html#Limitations">Videocloud documentation</a> for more information on Forensic Watermark.</p>
+            <p>Please check <a target="_blank" href="https://apis.support.brightcove.com/general/overview-forensic-watermarking.html#Limitations">Videocloud documentation</a> for more information on Forensic Watermark.</p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An ASSOCIATIVE ARRAY containing the following keys:</p>
@@ -2603,7 +2737,7 @@
             <p>Configures sources types/containers preferences ordered by the priority each type/container will have when filtering the available video sources.</p>
             <p>This allows you to setup the bcPlayer so that only certain stream types/containers are used or ignored, and the order in those sources will be filtered.</p>
             <p>Playing a video in which no sources are listed in the <code translate="no">streamPreference</code> field will result in an error.</p>
-            <p>Find more information on how the sources are parsed and filtered in the <a href="#sources-selection">Sources Selection</a> section.</p>
+            <p>Find more information on how the sources are parsed and filtered in the <a target="_blank" href="#sources-selection">Sources Selection</a> section.</p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An array containing any combination of the following values:</p>
@@ -2642,11 +2776,11 @@
             <p>Configures DRM encryption systems preferences ordered by the priority each DRM system will have when filtering the available video sources.</p>
             <p>This allows developers to setup the bcPlayer so that only certain DRM encrypted sources are used or ignored and the order in which the sources will be filtered through.</p>
             <p>Playing a video in which no DRM encrypted sources are listed in the <code translate="no">drmPreference</code> field will result in an error. The <code>none</code> value forces the selection of sources with no DRM encryption.</p>
-            <p>Find more information on how the sources are parsed and filtered in the <a href="#sources-selection">Sources Selection</a> section.
+            <p>Find more information on how the sources are parsed and filtered in the <a target="_blank" href="#sources-selection">Sources Selection</a> section.
 
             </p>
-            <p><a href="https://developer.roku.com/en-gb/docs/specs/media/content-protection.md">Roku DRM reference</a></p>
-            <p><a href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/ingesting-content-drm.html">Videocloud DRM reference</a></p>
+            <p><a target="_blank" href="https://developer.roku.com/en-gb/docs/specs/media/content-protection.md">Roku DRM reference</a></p>
+            <p><a target="_blank" href="https://apis.support.brightcove.com/dynamic-ingest/ingest-guides/ingesting-content-drm.html">Videocloud DRM reference</a></p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An array containing any combination of the following values:</p>
@@ -2826,7 +2960,7 @@
             <p>Controls the custom loading spinner visibility. This field is used by internal functions but it also allows the custom spinner to be controller externally if needed.</p>
             <p>Keep in mind that the OOTB UI has its loading spinner. This field is independent from the OOTB UI built in loading spinner.
             </p>
-            <p>The appearance of the loading spinner can be customized through the <a href="#spinner-config">spinnerConfig</a> field.</p>
+            <p>The appearance of the loading spinner can be customized through the <a target="_blank" href="#spinner-config">spinnerConfig</a> field.</p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An array containing any combination of the following values:</p>
@@ -2913,7 +3047,7 @@
             <p>Configures bcPlayer to show error dialogs when an error occurs.</p>
             <p>It’s enabled by default; you can disable it and capture the errors through the <code translate="no">bcPlayer.on.error</code> event.
             </p>
-            <p>These dialogs appearance can be customized through the <a href="#dialog-theme">dialogTheme</a> field.
+            <p>These dialogs appearance can be customized through the <a target="_blank" href="#dialog-theme">dialogTheme</a> field.
             </p>
             
             <p><strong>Possible Values:</strong></p>
@@ -2939,7 +3073,7 @@
             <h3 id="dialogTheme">dialogTheme</h3>
             <p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-            <p>Configures error dialogs appearance when <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">enableDialogs</a> is enabled.</p>
+            <p>Configures error dialogs appearance when <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">enableDialogs</a> is enabled.</p>
             <p>The expected properties are the same as the native StandardDialog <code translate="no">palette</code> field properties, except for <code translate="no">DialogItemColor</code>, <code translate="no">DialogInputFieldColor</code>, <code translate="no">DialogSecondaryTextColor</code>, and <code translate="no">DialogKeyboardColor</code> properties, which do not apply.
             </p>
             <p>Check below how the error dialogs look like in the default configuration.</p>
@@ -3240,7 +3374,7 @@
             </p>
             <p>Setting it to 0 disables the buffering timeout timer.
             </p>
-            <p>If the <a href="#retry-error">retryOnError</a> config is enabled, if a buffering timeout error is trigger it’ll retry playing other available sources with no visual interruption to the user. Although an error will still be triggered through the <code translate="no">bcPlayer.on.error</code> event.</p>
+            <p>If the <a target="_blank" href="#retry-error">retryOnError</a> config is enabled, if a buffering timeout error is trigger it’ll retry playing other available sources with no visual interruption to the user. Although an error will still be triggered through the <code translate="no">bcPlayer.on.error</code> event.</p>
             
             <p><strong>Possible Values:</strong></p>
             <ul>
@@ -3528,12 +3662,12 @@
                                             </ul>
                                     </li>
                                     <li><p><code translate="no">retries</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
-                                        <p>Available when playing Brightcove sources only. Specifies the number of playback retries when <a href="#retry-error">retryOnError</a> is enabled. If it’s disabled, this property is set to <code translate="no">1</code>.</p>
+                                        <p>Available when playing Brightcove sources only. Specifies the number of playback retries when <a target="_blank" href="#retry-error">retryOnError</a> is enabled. If it’s disabled, this property is set to <code translate="no">1</code>.</p>
                                     </li>
                                 
                             </ul>
                             </td>
-                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered at the start of every video playback. It triggers only once per video asset, and it provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node. Please refer to the Roku documentation for more specific details on those fields.</p></td>
+                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered at the start of every video playback. It triggers only once per video asset, and it provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node. Please refer to the Roku documentation for more specific details on those fields.</p></td>
                     </tr>
                     <tr>
                         <td class="align-top">play</td>
@@ -3664,7 +3798,7 @@
                         <ul>
                             <li><p>The video has played until the end of the stream.</p></li>
                             <li><p>A playback error occurs, either while loading the stream or mid-stream. Keep in mind that an <code translate="no">error</code>error event will trigger before the <code translate="no">finished</code> event in this case.</p></li>
-                            <li><p>A retrial error occurs, when it’s not possible to play any of the video available sources. Valid when <a href="#retry-error">retryOnError</a> is enabled.</p></li>
+                            <li><p>A retrial error occurs, when it’s not possible to play any of the video available sources. Valid when <a target="_blank" href="#retry-error">retryOnError</a> is enabled.</p></li>
                             <li><p>The video playback is stopped by an external action.</p></li>
                         </ul>
                         </td>
@@ -3704,9 +3838,9 @@
                                 <p>Provides an indication of the source of the error. This allows errors to be filtered and individually handled depending on their source. Possible values:</p>
                                 <ul>
                                     <li><p><code translate="no">playback</code> an error occurred during video playback. This error is triggered when the native <code translate="no">Video.state</code> field value is set to <code translate="no">error</code>. More info on the error can be found in the <code translate="no">data</code> key object.</p></li>
-                                    <li><p><code translate="no">playback-retrial</code>  triggered when <a href="#retry-error">retryOnError</a> is enabled. Lets developers know that there are no more valid video sources to retry.</p></li>
-                                    <li><p><code translate="no">playback-buffering</code>  triggered when <a href="#buffer-timeout">bufferTimeout</a> is enabled (ie, set to a value higher than 0) and indicates that the buffering timeout has been reached. Keep in mind that if <a href="#retry-error">retryOnError</a> is enabled, it’ll still try to playback another source, otherwise the playback will stop.</p></li>
-                                    <li><p><code translate="no">load</code> triggered when an error occurs within the <a href="#load">load</a> function.</p></li>
+                                    <li><p><code translate="no">playback-retrial</code>  triggered when <a target="_blank" href="#retry-error">retryOnError</a> is enabled. Lets developers know that there are no more valid video sources to retry.</p></li>
+                                    <li><p><code translate="no">playback-buffering</code>  triggered when <a target="_blank" href="#buffer-timeout">bufferTimeout</a> is enabled (ie, set to a value higher than 0) and indicates that the buffering timeout has been reached. Keep in mind that if <a target="_blank" href="#retry-error">retryOnError</a> is enabled, it’ll still try to playback another source, otherwise the playback will stop.</p></li>
+                                    <li><p><code translate="no">load</code> triggered when an error occurs within the <a target="_blank" href="#load">load</a> function.</p></li>
                                     <li><p><code translate="no">getVideo</code> triggered when an error occurs within the getVideo function.</p></li>
                                     <li><p><code translate="no">getVideos</code> triggered when an error occurs within the getVideos function.</p></li>
                                     <li><p><code translate="no">getPlaylist</code> triggered when an error occurs within the getPlaylist function.</p></li>
@@ -3733,7 +3867,7 @@
                                     <li><p><code translate="no">playback-retrial/playback-buffering</code>: provides a description of the error.</p></li>
                                     <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated</code>:</p>
                                     <ul>
-                                        <li>In case of a Playback API request failure this property contains either the error message provided in the response body or, if that’s not available, the associated roUrlEvent <a href="https://developer.roku.com/en-gb/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string">GetFailureReason</a> value.</li>
+                                        <li>In case of a Playback API request failure this property contains either the error message provided in the response body or, if that’s not available, the associated roUrlEvent <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string">GetFailureReason</a> value.</li>
                                         <li>In all other cases (validation errors), provides a description of the error.</li>
                                     </ul>
                                     </li>
@@ -3768,7 +3902,7 @@
                                     <p>The value of this property depends on the error source:</p>
                                     <ul>
                                         <li><p><code translate="no">playback/playback-retrial/playback-buffering</code>: contains the value of the native <code translate="no">Video.errorMsg</code> field. Only present if errorCode is not <code translate="no">0</code>.</p></li>
-                                        <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated/refreshSources</code>: contains the return value of the Playback API request associated <code translate="no">roUrlEvent</code> <a href="https://developer.roku.com/en-gb/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string">GetFailureReason</a> function.</p></li>
+                                        <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated/refreshSources</code>: contains the return value of the Playback API request associated <code translate="no">roUrlEvent</code> <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string">GetFailureReason</a> function.</p></li>
                                     </ul>
                                 </li>
                                     <li>
@@ -3782,7 +3916,7 @@
                                     <p>The value of this property depends on the error <code translate="no">source</code>:</p>
                                     <ul>
                                         <li><p><code translate="no">playback/playback-retrial/playback-buffering</code>: contains the value of the native Video.errorInfo field. Only present if errorCode is not 0.</p></li>
-                                        <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated/refreshSources</code>: contains the Playback API request error response body. The expected value is an ASSOCIATIVE ARRAY object containing the following properties (for more detailed information on these please check the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html">Playback API documentation</a> page):</p>
+                                        <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated/refreshSources</code>: contains the Playback API request error response body. The expected value is an ASSOCIATIVE ARRAY object containing the following properties (for more detailed information on these please check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html">Playback API documentation</a> page):</p>
                                         <ul>
                                             <li><p><code translate="no">error_code</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p></li>
                                             <li><p><code translate="no">message</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p></li>
@@ -3945,7 +4079,7 @@
                         </ul>
                         </td>
                         <td class="align-top"><p>Allows access to the internal bcPlayer logs, which are triggered by an internal Logger node.</p>
-                        <p>The log level can be configured through the <a href="#log-level">logLevel</a> field, allowing to control the amount of logs coming through the <code translate="no">logOutput</code> event.</p>
+                        <p>The log level can be configured through the <a target="_blank" href="#log-level">logLevel</a> field, allowing to control the amount of logs coming through the <code translate="no">logOutput</code> event.</p>
                         </td>
                     </tr>
                     <tr>    
@@ -4188,8 +4322,8 @@
                                     <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                         <p>Specifies a list of macros that will get replaced in the video ad tag source URL (VMAP). These only apply to the query parameters identified with &#123;&#123;url.&#60;macro&#62;&#125;&#125;. </p>
                                         <p>For example, if the VMAP ad tag URL contains the following query parameter: <code translate="no">...&foobar=...</code>, setting bcPlayer.ssai.macros to {foo: "bar"} would replace  with bar and in the end it would look like so:  <code translate="no">...&foobar=bar...</code></p>
-                                        <p>Roku macros can also be used as a macro value. Using the same ad tag example, setting <code translate="no">bcPlayer.ssai.macros</code> to <code translate="no">&#123;foo: "&#123;ROKU_ADS_DISPLAY_WIDTH&#125;"&#125;</code> would replace <code translate="no">&#123;&#123;url.foo&#125;&#125;</code> with the display width value and in the end it would look like so: <code translate="no">...&foobar=1080....</code> The list of supported macros can be found <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
-                                        <p>Be aware that the <code translate="no">ROKU_ADS_CONTENT_ID</code>, <code translate="no">ROKU_ADS_CONTENT_GENRE</code>, <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> and <code translate="no">ROKU_ADS_KIDS_CONTENT</code> macros value depend on their respective <code translate="">bcPlayer.ssai.adMeasurements</code> values, so if ad measurements are disabled, these macros won’t be available. More info <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                                        <p>Roku macros can also be used as a macro value. Using the same ad tag example, setting <code translate="no">bcPlayer.ssai.macros</code> to <code translate="no">&#123;foo: "&#123;ROKU_ADS_DISPLAY_WIDTH&#125;"&#125;</code> would replace <code translate="no">&#123;&#123;url.foo&#125;&#125;</code> with the display width value and in the end it would look like so: <code translate="no">...&foobar=1080....</code> The list of supported macros can be found <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                                        <p>Be aware that the <code translate="no">ROKU_ADS_CONTENT_ID</code>, <code translate="no">ROKU_ADS_CONTENT_GENRE</code>, <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> and <code translate="no">ROKU_ADS_KIDS_CONTENT</code> macros value depend on their respective <code translate="">bcPlayer.ssai.adMeasurements</code> values, so if ad measurements are disabled, these macros won’t be available. More info <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
                                         
                                     <ul>Possible values:
                                         <li><p><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> No query parameters are replaced.</p></li>
@@ -4266,7 +4400,7 @@
         <section>
             <h3 id="csai">csai</h3>
             <p>Allows to configure CSAI support in the <code translate="no">bcPlayer</code>.</p>
-            <p><code translate="no">bcPlayer</code> employs Roku's <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) solution for CSAI handling.</p>
+            <p><code translate="no">bcPlayer</code> employs Roku's <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) solution for CSAI handling.</p>
             <aside class="bcls-aside bcls-aside--tip"><p>Note: CSAS doesn’t work as expected with Live video streams.</p>
             <p>CSAS video playback is handled automatically by RAF.</p></aside>
             <p>When playing videos with CSAS, RAF creates its own internal Video nodes to seamlessly stitch video content and ad content together. This means that the bcPlayer native Video fields won't be able to control video playback or get the usual playback events. Alternatively, while playing CSAS videos, the following options are available:</p>
@@ -4380,13 +4514,13 @@ end sub
                         <tr>    
                             <td class="align-top">useCSAS</td>
                             <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Toggles the CSAI implementation between <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) and RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p>
+                                <p>Toggles the CSAI implementation between <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) and RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p>
 
                                 <aside class="bcls-aside bcls-aside--tip">Note: In the Roku SDK v1.0.0 release, this flag value is ignored as CSAS is always used when CSAI is enabled.</aside>
                                 <p>Possible values:</p>
                             <ul>
                                 <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> - Implements Client-Side Ad Stitching (CSAS).</p></li>
-                                <li><p><code translate="no">false</code> - implements CSAI through RAF's <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p></li>
+                                <li><p><code translate="no">false</code> - implements CSAI through RAF's <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p></li>
                             </ul></td>
                         </tr>
                         <tr>    
@@ -4402,7 +4536,7 @@ end sub
                         <tr>    
                             <td class="align-top">maxRequests</td>
                             <td><p><code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Specifies the maximum number of attempts the <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function is allowed to make. This property allows RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadprefsuserokuadsasfallback-as-boolean-maxrequests-as-integer" target="_blank" rel="noopener noreferrer">setAdPrefs()</a> function parameter to be customized.</p>
+                                <p>Specifies the maximum number of attempts the <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function is allowed to make. This property allows RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadprefsuserokuadsasfallback-as-boolean-maxrequests-as-integer" target="_blank" rel="noopener noreferrer">setAdPrefs()</a> function parameter to be customized.</p>
                                
                              <code translate="no" class="text-warning">DEFAULT</code> <code translate="no">1</code></li>
                                 
@@ -4411,7 +4545,7 @@ end sub
                         <tr>    
                             <td class="align-top">enableJIT</td>
                             <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Specifies RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enablejitpodsenabled-as-boolean" target="_blank" rel="noopener noreferrer">enableJITPods()</a> function parameter.</p>
+                                <p>Specifies RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enablejitpodsenabled-as-boolean" target="_blank" rel="noopener noreferrer">enableJITPods()</a> function parameter.</p>
                                 <p>Possible values:</p>
                             <ul>
                                 <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> - Enables “Just In Time” fetching of midroll ads.</p></li>
@@ -4430,20 +4564,20 @@ end sub
                                 <p>Possible values:</p>
                                 
                             <ul>
-                                <li><code translate="no">invalid</code> - Disables all the ad measurement properties. Please keep in mind this will also affect some of the Roku macros that get their values from this setting. This essentially means that ad measurements. will be disabled through RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enableadmeasurementsenabled" target="_blank" rel="noopener noreferrer">enableAdMeasurements()</a> function.</li>
+                                <li><code translate="no">invalid</code> - Disables all the ad measurement properties. Please keep in mind this will also affect some of the Roku macros that get their values from this setting. This essentially means that ad measurements. will be disabled through RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enableadmeasurementsenabled" target="_blank" rel="noopener noreferrer">enableAdMeasurements()</a> function.</li>
                                 <li><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> - initializes all properties with their default values.</li>
                                 <li><p>Supported properties in the AssociativeArray object:</p>
                                 <ul>
                                     <li><p><code translate="no">childDirected</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                    <p>Specifies if the video contains child directed content. This value is used to set RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean" target="_blank" rel="noopener noreferrer">setContentGenre()</a> function parameter. It’s also used to set the ROKU_ADS_KIDS_CONTENT Roku macro value.</p>
+                                    <p>Specifies if the video contains child directed content. This value is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean" target="_blank" rel="noopener noreferrer">setContentGenre()</a> function parameter. It’s also used to set the ROKU_ADS_KIDS_CONTENT Roku macro value.</p>
                                     <p><code translate="no" class="text-warning">DEFAULT</code> <code translate="no">false</code></p>
                                     </li>
                                     <li><p><code translate="no">contentid</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                    <p>Specifies the video ID. If not provided, the id field of the video ContentNode is used. This property is used to set RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentidid-as-string" target="_blank" rel="noopener noreferrer">setContentId()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_ID</code> Roku macro value.</p>
+                                    <p>Specifies the video ID. If not provided, the id field of the video ContentNode is used. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentidid-as-string" target="_blank" rel="noopener noreferrer">setContentId()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_ID</code> Roku macro value.</p>
                                     <p><code translate="no" class="text-warning">DEFAULT</code> <code translate="no">ContentNode.id</code></p>
                                     </li>
                                     <li><p><code translate="no">contentGenre</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                    <p>Specifies the video genre. If not provided, the Categories or tags fields of the video ContentNode are used, in that order specifically. This property is used to set RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean" target="_blank" rel="noopener noreferrer">setContentGenre()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_GENRE</code> Roku macro value.</p>
+                                    <p>Specifies the video genre. If not provided, the Categories or tags fields of the video ContentNode are used, in that order specifically. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentgenregenres-as-string-kidscontent-as-boolean" target="_blank" rel="noopener noreferrer">setContentGenre()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_GENRE</code> Roku macro value.</p>
                                     <p><code translate="no" class="text-warning">DEFAULT</code> the first applicable option:</p>
                                     <ul>
                                         <li><p>If <code translate="no">ContentNode.Categories</code> is set, joins all items in the array, separated by a comma.</p></li>
@@ -4452,7 +4586,7 @@ end sub
                                     </ul>
                                     </li>
                                     <li><p><code translate="no">contentLength</code> <code translate="no" class="text-secondary">NUMBER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                    <p>Specifies the video content length. If not provided, the <code translate="no">Length</code> field of the video ContentNode is used. This property is used to set RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentlengthlength-as-integer" target="_blank" rel="noopener noreferrer">setContentLength()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> Roku macro value. On live streams, this value is set to <code translate="no">999999</code>.</p>
+                                    <p>Specifies the video content length. If not provided, the <code translate="no">Length</code> field of the video ContentNode is used. This property is used to set RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setcontentlengthlength-as-integer" target="_blank" rel="noopener noreferrer">setContentLength()</a> function parameter. It’s also used to set the <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> Roku macro value. On live streams, this value is set to <code translate="no">999999</code>.</p>
                                     <p><code translate="no" class="text-warning">DEFAULT</code> the first applicable option:</p>
                                     <ul>
                                         <li><p>if it’s a live stream: <code translate="no">999999</code>.</p></li>
@@ -4467,10 +4601,10 @@ end sub
                         <tr>
                             <td class="align-top">adConstraints</td>
                             <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Specifies RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadconstraintsmaxheight-as-integer-maxwidth-as-integer-maxbitrate-as-integer-supportedmimetypes-as-object" target="_blank" rel="noopener noreferrer">setAdConstraints()</a> function parameters.</p>
+                            <p>Specifies RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadconstraintsmaxheight-as-integer-maxwidth-as-integer-maxbitrate-as-integer-supportedmimetypes-as-object" target="_blank" rel="noopener noreferrer">setAdConstraints()</a> function parameters.</p>
                             <p>Possible values</p>
                             <ul>
-                                <li><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> - Ignores the <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadconstraintsmaxheight-as-integer-maxwidth-as-integer-maxbitrate-as-integer-supportedmimetypes-as-object" target="_blank" rel="noopener noreferrer">setAdConstraints()</a> function.</li>
+                                <li><code translate="no">&#123;&#125;</code> <code translate="no" class="text-warning">DEFAULT</code> - Ignores the <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadconstraintsmaxheight-as-integer-maxwidth-as-integer-maxbitrate-as-integer-supportedmimetypes-as-object" target="_blank" rel="noopener noreferrer">setAdConstraints()</a> function.</li>
                                 <li>
                                     Supported properties in the AssociativeArray object:
                                     <ul>
@@ -4506,7 +4640,7 @@ end sub
                                     <li>Custom events
                                         <ul>
                                             <li><p><code translate="no">raf-init</code> - RAF lib was initialized and all configs were set (except for the adBreaks).</p></li>
-                                            <li><p><code translate="no">raf-pods</code> - the adPods were retrieved through RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function. The data property contains the list of adPods structured as required by Roku (<a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#ad-structure" target="_blank" rel="noopener noreferrer">reference</a>).</p></li>
+                                            <li><p><code translate="no">raf-pods</code> - the adPods were retrieved through RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function. The data property contains the list of adPods structured as required by Roku (<a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#ad-structure" target="_blank" rel="noopener noreferrer">reference</a>).</p></li>
                                             <li><p><code translate="no">start</code> - the adPods have been loaded into RAF and video playback will now start. The <code translate="no">RAFContentRenderer</code> node reference is provided in the event <code translate="no">data</code> property. If no adPods are found, this event will not be triggered.</p></li>
                                             <li><p><code translate="no">close</code> - playback has finished or was interrupted.</p></li>
                                         </ul>
@@ -4515,7 +4649,7 @@ end sub
                                         <ul>
                                             <li><p><code translate="no">raf-state</code> - equivalent to <code translate="no">bcPlayer.state</code>. Reports the video state (<code translate="">playing</code>, <code translate="">paused</code>, <code translate="">buffering</code>, <code translate="">stopped</code>, <code translate="">error</code> and <code translate="">finished</code>).</p></li>
                                             <li><p><code translate="no">raf-position</code> - equivalent to <code translate="no">bcPlayer.position</code>. Reports the current playback position.</p></li>
-                                            <li><p><code translate="no">raf-adrequest</code> - reports all the ad requests executed by RAF’s <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function.</p></li>
+                                            <li><p><code translate="no">raf-adrequest</code> - reports all the ad requests executed by RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function.</p></li>
                                             <li><p><code translate="no">raf-podstart</code> - An adPod started playing. <code translate="no">data</code> contains the adPod details.</p></li>
                                             <li><p><code translate="no">raf-impression</code> - An ad started playing. <code translate="no">data</code> contains the ad details.</p></li>
                                             <li><p><code translate="no">raf-pause</code> - video playback was paused.</p></li>
@@ -4567,7 +4701,7 @@ end sub
             <hr>
             <section>
                 <h3 id="load">Load</h3>
-                <p>Asynchronously loads Playback API contents (a video or a playlist) into the bcPlayer and starts the playback. Usually the data entered in the load function comes from the bcAPI component available in the Brightcove SDK which retrieves videos data from the Playback API, but it’s also used internally by the <a href="#get-video">getVideo</a>, <a href="#get-videos">getVideos</a>, <a href="#get-playlist">getPlaylist</a> and <a href="#get-related">getRelated</a> functions.</p>
+                <p>Asynchronously loads Playback API contents (a video or a playlist) into the bcPlayer and starts the playback. Usually the data entered in the load function comes from the bcAPI component available in the Brightcove SDK which retrieves videos data from the Playback API, but it’s also used internally by the <a target="_blank" href="#get-video">getVideo</a>, <a target="_blank" href="#get-videos">getVideos</a>, <a target="_blank" href="#get-playlist">getPlaylist</a> and <a target="_blank" href="#get-related">getRelated</a> functions.</p>
                 <p>The load function may trigger two bcPlayer.on.load events:</p>
                 <ul>
                     <li>A start event when the load process begins.</li>
@@ -4580,7 +4714,7 @@ end sub
                     <ul>
                         <li><p>A single video object
                             <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code>
-                             <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Video by ID/Reference</a></p>
+                             <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Video by ID/Reference</a></p>
                             <ul>
                                 <li><p>Expected metadata object structure:</p>
                                     <pre class="line-numbers">
@@ -4611,7 +4745,7 @@ end sub
                             </li>
                         <li><p>A playlist object
                             <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code>
-                             <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playlist by ID/Reference</a></p>
+                             <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playlist by ID/Reference</a></p>
                             <ul>
                                 <li><p>Expected metadata object structure:</p>
                                     <pre class="line-numbers">
@@ -4635,7 +4769,7 @@ end sub
                             </li>
                         <li><p>An array containing a set of videos
                             <code class="text-secondary" translate="no">ARRAY</code>
-                             <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Related Videos</a> or <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Video Search</a></p>
+                             <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Related Videos</a> or <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Video Search</a></p>
                             <ul>
                                 <li><p>Expected metadata object structure:</p>
                                     <pre class="line-numbers">
@@ -4748,7 +4882,7 @@ end sub
                 <section>
                     <h3 id="loadCustom">loadCustom</h3>
                     <p>Asynchronously loads custom metadata (a video or set of videos) into the bcPlayer. This function should be used to load non-Brightcove videos metadata.</p>
-                    <p>Developers should provide the required playback properties as specified by Roku in their <a href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md" target="_blank" rel="noopener noreferrer">documentation page</a>.</p>
+                    <p>Developers should provide the required playback properties as specified by Roku in their <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md" target="_blank" rel="noopener noreferrer">documentation page</a>.</p>
                     <p>The <code translate="no">loadCustom</code> function triggers a <code translate="no">bcPlayer.on.load</code> event reporting on the success or failure of the  load process.</p>
                     <p>Parameters:</p>
                     <ul>
@@ -4818,7 +4952,7 @@ end sub
                 <section>
                     <h3 id="getVideo">getVideo</h3>
                     <p>Retrieves a specific Brightcove video through Playback API, loads its metadata into bcPlayer, and starts playback.</p>
-                    <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API reference</a>.</p>
+                    <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API reference</a>.</p>
                     <p>Parameters:</p>
                     <ul>
                         <li><p><code translate="no">id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -4827,7 +4961,7 @@ end sub
                         <p>Additional options to allow for some behaviors to be customized. The following properties can be set in this object:</p>
                         <ul>
                             <li><p><code translate="no">params</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
+                            <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
                             <ul>
                                 <li><code translate="no">ad_config_id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Include server-side ad insertion.</p>
@@ -4936,16 +5070,16 @@ end sub
                     <h3 id="getVideos">getVideos</h3>
                     <p>Retrieves a set of Brightcove videos through Playback API and, if configured to do so, loads its metadata into bcPlayer and starts playback. </p>
                     <p>This option is commonly used to programmatically search for Brightcove videos.</p>
-                    <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API reference</a>.</p>
+                    <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API reference</a>.</p>
                     <p>Parameters:</p>
                     <ul>
                         <li><p><code translate="no">query</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                        <p>Search query used to retrieved a set of Brightcove videos. More details about the search query format, <a href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/Playback API</a>.</p></li>
+                        <p>Search query used to retrieved a set of Brightcove videos. More details about the search query format, <a target="_blank" href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/Playback API</a>.</p></li>
                         <li><p><code translate="no">options</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                         <p>Additional options to allow for some behaviors to be customized. The following properties can be set in this object:</p>
                         <ul>
                             <li><p><code translate="no">params</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API Reference</a>. The following properties are supported:</p>
+                            <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API Reference</a>. The following properties are supported:</p>
                             <ul>
                                 <li><code translate="no">limit</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>The number of videos to return.</p>
@@ -4954,7 +5088,7 @@ end sub
                                 <p>The number of videos to skip - used to page multiple sets of videos.</p>
                                 </li>
                                 <li><code translate="no">sort</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Field to sort results by. Check the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
+                                <p>Field to sort results by. Check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
                                 </li>
                                 <li><code translate="no">ad_config_id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Include server-side ad insertion.</p>
@@ -5060,7 +5194,7 @@ end sub
                 <section>
                     <h3 id="getPlaylist">getPlaylist</h3>
                     <p>Retrieves a Brightcove playlist through Playback API and, if configured to do so, loads its metadata into bcPlayer and starts playback.</p>
-                    <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API reference</a>.</p>
+                    <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API reference</a>.</p>
                     <p>Parameters:</p>
                     <ul>
                         <li><p><code translate="no">id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -5069,7 +5203,7 @@ end sub
                         <p>Additional options to allow for some behaviors to be customized. The following properties can be set in this object:</p>
                         <ul>
                             <li><p><code translate="no">params</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
+                            <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
                             <ul>
                                 <li><code translate="no">limit</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>The number of videos to return.</p>
@@ -5078,7 +5212,7 @@ end sub
                                 <p>The number of videos to skip - used to page multiple sets of videos.</p>
                                 </li>
                                 <!-- <li><code translate="no">sort</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Field to sort results by. Check the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
+                                <p>Field to sort results by. Check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
                                 </li> -->
                                 <li><code translate="no">ad_config_id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Include server-side ad insertion.</p>
@@ -5186,7 +5320,7 @@ end sub
                     <h3 id="getRelated">getRelated</h3>
                     <p>Retrieves a set of Brightcove videos that are related to the specified video through Playback API and, if configured to do so, loads its metadata into bcPlayer and starts playback. </p>
                     <p>Using the name and short description of the specified video, the Playback API searches for videos with any partial matches in the following fields: <code translate="no">name</code>, <code translate="no">short description</code>, <code translate="no">long_description</code>, <code translate="no">tags</code>.</p>
-                    <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API reference</a>.</p>
+                    <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API reference</a>.</p>
                     <p>Parameters:</p>
                     <ul>
                         <li><p><code translate="no">id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -5195,7 +5329,7 @@ end sub
                         <p>Additional options to allow for some behaviors to be customized. The following properties can be set in this object:</p>
                         <ul>
                             <li><p><code translate="no">params</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
+                            <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
                             <ul>
                                 <li><code translate="no">limit</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>The number of videos to return.</p>
@@ -5204,7 +5338,7 @@ end sub
                                 <p>The number of videos to skip - used to page multiple sets of videos.</p>
                                 </li>
                                 <!-- <li><code translate="no">sort</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                <p>Field to sort results by. Check the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
+                                <p>Field to sort results by. Check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API</a> Reference for all the possible values.</p>
                                 </li> -->
                                 <li><code translate="no">ad_config_id</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Include server-side ad insertion.</p>
@@ -5311,7 +5445,7 @@ end sub
                 <p>Allows custom video metadata (non-Brightcove videos) to be loaded into bcPlayer for playback.</p>
                 <p>If present, current content of bcPlayer will be replaced. <code translate="no">setSources</code> parses an array of associative arrays, each one representing the properties of a single video, into fields of a ContentNode and loads it into bcPlayer content.</p>
 
-                <aside class="bcls-aside bcls-aside--information">Note: Developers must take into account the required <a href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Content Node fields</a> for proper video playback in a Roku Video component. setSources does not alter the provided metadata in any way, all the provided properties and its values are set into ContentNode fields as is.</aside>
+                <aside class="bcls-aside bcls-aside--information">Note: Developers must take into account the required <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Content Node fields</a> for proper video playback in a Roku Video component. setSources does not alter the provided metadata in any way, all the provided properties and its values are set into ContentNode fields as is.</aside>
 
                 <p>Parameters:</p>
                 <ul>
@@ -5819,7 +5953,7 @@ end sub
                     </tr>
                     <tr >
                         <td class="align-top">3</td>
-                        <td><p>Once a Videocloud video source has been selected, it’s then converted into the required <a href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Video ContentNode fields</a>.</p>
+                        <td><p>Once a Videocloud video source has been selected, it’s then converted into the required <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Video ContentNode fields</a>.</p>
                         <p>At this stage the selected source URL is also verified for any supported query parameters we might need to set, such as the Forensic Watermarking token.</p>
                         </td>
                     </tr>
@@ -5886,10 +6020,11 @@ end sub
             
           end sub
         </code></pre>
-        <h3>Config Fields</h3>
+        <hr>
+        <h3 id="configFields">Config Fields</h3>
         
             <section>
-                <h3 id="credentials">Credentials</h3>
+                <h3 id="bcAPI-credentials">Credentials</h3>
                 <p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="No">OPTIONAL
                 </code></p>
                 <p>Configures Brightcove API credentials. It should contain the Account ID as well as the Policy Key or Authentication token. These are used to retrieve videos metadata from Brightcove’s Playback API.</p>
@@ -5905,7 +6040,7 @@ end sub
                     <li>
                         <p><code translate="no">policy_key</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
                     <ul>
-                        <li><p>Specifies the user policy key required to access the <a href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Playback API</a>.</p></li>
+                        <li><p>Specifies the user policy key required to access the <a target="_blank" href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Playback API</a>.</p></li>
                     </ul>
                     </li>
                     <li>
@@ -5934,7 +6069,7 @@ end sub
             </section>
             <hr>
         <section>
-            <h3>maxRequests</h3>
+            <h3 id="bcAPI-maxRequests">maxRequests</h3>
             <p><code class="text-secondary" translate="no">INTEGER</code>    <code class="text-success" translate="No">OPTIONAL
             </code></p>
             <p>Specifies the number of simultaneous requests that can be executed at the same time. If the number of requests surpass the value defined in <code translate="no">maxRequests</code>, these requests are put on hold until the ongoing requests are completed. It follows a FIFO approach.</p>
@@ -5963,7 +6098,7 @@ end sub
         </section>
         <hr>
         <section>
-            <h3>logger</h3>
+            <h3 id="bcAPI-logger">logger</h3>
             <p>Specifies the Logger node reference to be used for logging purposes.</p>
             
             <p><strong>Possible Values:</strong></p>
@@ -6034,7 +6169,7 @@ end sub
         
         <hr>
         <section>
-            <h3>Action Fields</h3>
+            <h3 id="actionFields">Action Fields</h3>
             <p>Since <code translate="no">bcAPI</code> is a Task node, it's not feasible to interact with it through Functions so all the actions requested to this node are initiated through its fields. Check below the list of all possible actions this node provides.</p>
             <hr>
             <section>
@@ -6086,15 +6221,15 @@ end sub
                     </li>
                         <li><p><code translate="no">gzip</code> <code class="text-secondary" translate="no">BOOLEAN</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
-                        <p>Enables the GZIP encoding through <a href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifurltransfer.md#enableencodingsenable-as-boolean-as-boolean">EnableEncodings</a>. Disabled by default.</p>
+                        <p>Enables the GZIP encoding through <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifurltransfer.md#enableencodingsenable-as-boolean-as-boolean">EnableEncodings</a>. Disabled by default.</p>
                     </li>
                         <li><p><code translate="no">cookies</code> <code class="text-secondary" translate="no">BOOLEAN</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
-                        <p>Enables cookies through <a href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifhttpagent.md#enablecookies-as-void">EnableCookies</a>. Disabled by default.</p>
+                        <p>Enables cookies through <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifhttpagent.md#enablecookies-as-void">EnableCookies</a>. Disabled by default.</p>
                     </li>
                         <li><p><code translate="no">http2</code> <code class="text-secondary" translate="no">BOOLEAN</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
-                        <p>Enables HTTP/2 support through <a href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifurltransfer.md#sethttpversionversion-as-string-as-void">SetHttpVersion</a>. Disabled by default.</p>
+                        <p>Enables HTTP/2 support through <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/interfaces/ifurltransfer.md#sethttpversionversion-as-string-as-void">SetHttpVersion</a>. Disabled by default.</p>
                     </li>
                         <li><p><code translate="no">forceFormat</code> <code class="text-secondary" translate="no">STRING</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
@@ -6215,7 +6350,7 @@ end sub
 
             <p>In this case, the response <code translate="no">id</code> property is always “getVideo“.</p>
 
-            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API reference</a>.</p>
+            <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API reference</a>.</p>
             
             
             <p><strong>Possible Values:</strong></p>
@@ -6230,7 +6365,7 @@ end sub
                 <li><p><code translate="no">params</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code>    <code class="text-success" translate="No">OPTIONAL
                 </code>
                 </p>
-                <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
+                <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Video_by_ID_or_Reference_ID">Playback API Reference</a>. The following properties are supported:</p>
                 <ul>
                     <li><p><code translate="no">ad_config_id</code> <code class="text-secondary" translate="no">STRING</code>    <code class="text-success" translate="No">OPTIONAL
                     </code></p>
@@ -6306,7 +6441,7 @@ end sub
 
             <p>The response object is handled as described in the request field. In this case, the response id property is always “getVideos“.</p>
 
-            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API reference</a>.</p>
+            <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API reference</a>.</p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An Associative Array object containing the following properties:</p>
@@ -6314,12 +6449,12 @@ end sub
                 <li><p><code translate="no">query</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="No">REQUIRED
             </code>
                 </p>
-                <p>Search query used to retrieved a set of Brightcove videos. More details see <a href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/Playback API</a> </p>
+                <p>Search query used to retrieved a set of Brightcove videos. More details see <a target="_blank" href="https://apis.support.brightcove.com/cms/searching/cmsplayback-api-videos-search.html">CMS/Playback API</a> </p>
                 </li>
                 <li><p><code translate="no">params</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="No">OPTIONAL
             </code>
                 </p>
-                <p>Playback API request parameters as specified in the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API Reference</a>. The following properties are supported:</p>
+                <p>Playback API request parameters as specified in the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos">Playback API Reference</a>. The following properties are supported:</p>
                 <ul>
                     <li><p><code translate="no">limit</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
                     </code></p>
@@ -6329,7 +6464,7 @@ end sub
                         <p>The number of videos to skip - used to page multiple sets of videos.</p></li>
                     <li><p><code translate="no">sort</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
                     </code></p>
-                        <p>Field to sort results by. Check the <a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos" target="_blank" rel="noopener noreferrer">Playback API</a> Reference for all the possible values.</p></li>
+                        <p>Field to sort results by. Check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Videos" target="_blank" rel="noopener noreferrer">Playback API</a> Reference for all the possible values.</p></li>
                     <li><p><code translate="no">ad_config_id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
                     </code></p>
                         <p>Include server-side ad insertion.</p></li>
@@ -6407,7 +6542,7 @@ end sub
             <p>Using the name and short description of the specified video <code translate="no">id</code>, the Playback API searches for videos with any partial matches in the following fields: <code translate="no">name</code>, <code translate="no">short_description</code> , <code translate="no">long_description</code>, <code translate="no">tags</code>.</p>
 
             <p>The response object is handled as described in the request field. In this case, the response <code translate="no">id</code> property is always “getRelated“.</p>
-            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API reference</a></p>
+            <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Videos/operation/Get_Related_Videos_by_ID_or_Reference_ID">Playback API reference</a></p>
             
             <p><strong>Possible Values:</strong></p>
             <p>An AssociativeArray object containing the following properties:</p>
@@ -6502,7 +6637,7 @@ end sub
 
             <p>The response object is handled as described in the request field. In this case, the response id property is always “getPlaylist“.</p>
 
-            <p><a href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API reference</a></p>
+            <p><a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html#tag/Playlists/operation/Get_Playlists_by_ID_or_Reference_ID">Playback API reference</a></p>
 
             <p><strong>Possible Values:</strong></p>
             <p>An AssociativeArray object containing the following properties:</p>
@@ -6638,9 +6773,9 @@ end sub
         
         <hr>
         <section>
-            <h3>Output Fields</h3>
+            <h3 id="outputFields">Output Fields</h3>
             <section>
-                <h3>response</h3>
+                <h3 id="response">response</h3>
                 <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
                 <p>Requests responses can be accessed through the response field unless a response Node was provided in the request options to capture the response metadata.</p>
                 <p><strong>Possible Values:</strong></p>
@@ -6658,7 +6793,7 @@ end sub
                         <p>The response HTTP headers.</p>
                         </li>
                         <li><p><code translate="no">failure</code> <code class="text-secondary" translate="no">STRING</code></p>
-                        <p>An error message is applicable, <code translate="no">OK</code> in a successful request. <code translate="no">failure</code> contains the <a href="https://developer.roku.com/en-ca/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string" target="_blank" rel="noopener noreferrer">GetFailureReason</a> value.</p>
+                        <p>An error message is applicable, <code translate="no">OK</code> in a successful request. <code translate="no">failure</code> contains the <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string" target="_blank" rel="noopener noreferrer">GetFailureReason</a> value.</p>
                         </li>
                         <li><p><code translate="no">duration</code> <code class="text-secondary" translate="no">FLOAT</code></p>
                         <p>Request duration since its initialization until a response is received.</p>
@@ -6846,7 +6981,7 @@ end sub
                                 <li><p><code translate="no">array</code> Value must be an Array.</p></li>
                                 <li><p><code translate="no">node</code> Value must be a roSGNode.</p></li>
                                 <li><p><code translate="no">aa</code> Value must be an Associative Array.</p></li>
-                                <li><p><code translate="no">&#60;type&#62;</code> If none of the previous values is recognized, it uses <code translate="no">&#60;type&#62;</code> to support other Roku types. Please be aware that <a href="https://developer.roku.com/en-gb/docs/references/brightscript/language/runtime-functions.md#typevariable-optional-version-as-string" target="_blank" rel="noopener noreferrer">type()</a> can return different values for the “same” type, ie: “String” vs “roString”.</p></li>
+                                <li><p><code translate="no">&#60;type&#62;</code> If none of the previous values is recognized, it uses <code translate="no">&#60;type&#62;</code> to support other Roku types. Please be aware that <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/language/runtime-functions.md#typevariable-optional-version-as-string" target="_blank" rel="noopener noreferrer">type()</a> can return different values for the “same” type, ie: “String” vs “roString”.</p></li>
                             </ul>
                             </li>
                             <li><p><code translate="no">required</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
@@ -7417,7 +7552,7 @@ end sub
                         <section>
                 <h3 id="match">match</h3>
                 <p>Search for matching substrings in a String through a regex pattern. If the matching pattern contains N parenthetical substrings, the relevant substrings are returned as an array of length N+1, where array[0] is again the entire match and each additional entry in the array is the match for the corresponding parenthetical expression.</p>
-                <p>Uses Roku’s <a href="https://developer.roku.com/en-gb/docs/references/brightscript/components/roregex.md">roRegex</a> component internally.</p>
+                <p>Uses Roku’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/components/roregex.md">roRegex</a> component internally.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">string</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -7451,7 +7586,7 @@ end sub
                 <h3 id="replace">replace</h3>
                 <p>Replaces all occurrences of a matching pattern in string with replacement String and returns the result. The replacement may contain numbered back-references to parenthetical substrings.</p>
                 <p>Keep in mind that the replace function does not use any behavior flags.</p>
-                <p>Uses Roku’s <a href="https://developer.roku.com/en-gb/docs/references/brightscript/components/roregex.md">roRegex</a> component internally.</p>
+                <p>Uses Roku’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/components/roregex.md">roRegex</a> component internally.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">string</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -7617,7 +7752,7 @@ end sub
                         <hr>
                         <section>
                 <h3 id="isHDRReady">isHDRReady</h3>
-                <p>Checks if the current Roku device is capable of reproducing the specified HDR type. Uses <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getdisplayproperties-as-object">getDisplayProperties</a> for this purpose.</p>
+                <p>Checks if the current Roku device is capable of reproducing the specified HDR type. Uses <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#getdisplayproperties-as-object">getDisplayProperties</a> for this purpose.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">hdr</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
@@ -7654,17 +7789,17 @@ end sub
                         <hr>
                         <section>
                 <h3 id="canPlayAudio">canPlayAudio</h3>
-                <p>Checks if the current Roku device is capable of reproducing the specified audio codec. Essentially this function provides an interface for <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a>.</p>
+                <p>Checks if the current Roku device is capable of reproducing the specified audio codec. Essentially this function provides an interface for <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a>.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">params</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                    <p>Specifies the audio codec to check for support. Supports the same properties as the  <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> <code translate="no">audio_format</code> parameter.</p>
+                    <p>Specifies the audio codec to check for support. Supports the same properties as the  <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> <code translate="no">audio_format</code> parameter.</p>
                 
                     </li>
                 </ul>
                 <p>Return Value</p>
                 <p><code translate="no" class="text-secondary">BOOLEAN</code></p>
-                <p>Returns <code translate="no">true</code> if the device is able to reproduce the specified audio codec, <code translate="no">false</code> otherwise. Essentially returns the value of the <a href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> return result property.</p>
+                <p>Returns <code translate="no">true</code> if the device is able to reproduce the specified audio codec, <code translate="no">false</code> otherwise. Essentially returns the value of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> return result property.</p>
                 <p>Code Snippet</p>
                 <pre class="line-numbers">
                     <code class="language-basic" translate="No">m.bcUtils = createObject("roSGNode", "bcLib:Utils")
@@ -7728,7 +7863,7 @@ end sub
             </section>
         
         <section class="bcls-section">
-            <h2 id="logger">Logger</h2>
+            <h2 id="logger-id">Logger</h2>
             <p>The Logger node allows for logging messages to be configured and triggered.</p>
             <p>bcPlayer node has an internal Logger node and one can also be provided to the bcAPI node so that internal log messages can be triggered and captured.</p>
             <p>An instance of this node can be created like so:</p>
@@ -7813,10 +7948,10 @@ end sub
                 </section>
                 <hr>
                 <section>
-                <h3>Functions</h3>
+                <h3 id="logger-functions">Functions</h3>
                 <p>The following functions allow log messages to be triggered from the Logger node.</p>
                     <section>
-                        <h3>error</h3>
+                        <h3 id="error">error</h3>
                         <p>Triggers an error log message (level 0).</p>
                         <p>Parameters:</p>
                         <ul>
@@ -7836,7 +7971,7 @@ end sub
                     </section>
                     <hr>
                     <section>
-                        <h3>warn</h3>
+                        <h3 id="warn">warn</h3>
                         <p>Triggers a warning log message (level 1).</p>
                         <p>Parameters:</p>
                         <ul>
@@ -7857,7 +7992,7 @@ end sub
                     </section>
                     <hr>
                     <section>
-                        <h3>info</h3>
+                        <h3 id="info">info</h3>
                         <p>Triggers an info log message (level 2).</p>
                         <p>Parameters:</p>
                         <ul>
@@ -7877,7 +8012,7 @@ end sub
                     </section>
                     <hr>
                     <section>
-                        <h3>verbose</h3>
+                        <h3 id="verbose">verbose</h3>
                         <p>Triggers a verbose log message (level 3).</p>
                         <p>Parameters:</p>
                         <ul>
@@ -7897,7 +8032,7 @@ end sub
                     </section>
                     <hr>
                     <section>
-                        <h3>debug</h3>
+                        <h3 id="debug">debug</h3>
                         <p>Triggers a debug log message (level 4).</p>
                         <p>Parameters:</p>
                         <ul>
@@ -7919,7 +8054,7 @@ end sub
         </section>
         <section class="bcls-section">
             <h2 id="dialog">Dialog</h2>
-            <p>Dialog provides a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> node with extended customization options. Since Dialog extends the native <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, all its fields are accessible through Dialog as well.</p>
+            <p>Dialog provides a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> node with extended customization options. Since Dialog extends the native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, all its fields are accessible through Dialog as well.</p>
             <p>Once a Dialog node is instanced and configured, it can be shown by assigning it to the <code translate="no">dialog</code> field of the app's Scene node.</p>
             <p>Dialog component can be initialized like so:</p>
             <pre class="line-numbers">
@@ -7938,45 +8073,45 @@ end sub
                 </code></pre>
                 <hr>
                 <section>
-                    <h3>Fields</h3>
-                    <p>Besides the native fields of <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, Dialog provides a set of custom fields meant to streamline the creation and setup of a Dialog window.</p>
-                    <p><strong>theme:</strong></p>
-                    <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                    <p>Allows to set up the Dialog theme colors. The properties provided in theme are reflected in the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> palette field.</p>
-                    <p>Possible values</p>
-                    <ul>
-                        <li>
-                            <p>Supports all <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md" target="_blank" rel="noopener noreferrer">StandardDialog</a> palette field properties. If not provided, Roku default colors are used.</p>
-                        </li>
-                    </ul>
-                    <p>Code Sinippet</p>
-                    <pre class="line-numbers">
-                        <code class="language-basic" translate="No">m.dialog = createObject("roSGNode", "bcLib:Dialog")
-
-                            m.dialog.theme = {
-                              DialogBackgroundColor: "#29292900",
-                              DialogTextColor: "#D1D1D100",
-                              DialogFocusColor: "#B9323200"
-                            }
-                            
-                            m.top.getScene().dialog = m.dialog
-                        </code></pre>
-                </section>
-                <hr>
+                    <h3 id="dialog-fields">Fields</h3>
+                    <p>Besides the native fields of <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, Dialog provides a set of custom fields meant to streamline the creation and setup of a Dialog window.</p>
+                    <section>
+                        <h3 id="theme">theme</h3>
+                        <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                        <p>Allows to set up the Dialog theme colors. The properties provided in theme are reflected in the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> palette field.</p>
+                        <p>Possible values</p>
+                        <ul>
+                            <li>
+                                <p>Supports all <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md" target="_blank" rel="noopener noreferrer">StandardDialog</a> palette field properties. If not provided, Roku default colors are used.</p>
+                            </li>
+                        </ul>
+                        <p>Code Sinippet</p>
+                        <pre class="line-numbers">
+                            <code class="language-basic" translate="No">m.dialog = createObject("roSGNode", "bcLib:Dialog")
+                                m.dialog.theme = {
+                                  DialogBackgroundColor: "#29292900",
+                                  DialogTextColor: "#D1D1D100",
+                                  DialogFocusColor: "#B9323200"
+                                }
+                        
+                                m.top.getScene().dialog = m.dialog
+                            </code></pre>
+                    </section>
+                        <hr>
                 <section>
-                    <h3>titleConfig</h3>
+                    <h3 id="titleConfig">titleConfig</h3>
                     <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                     <p>Allows to customize the Dialog title area.</p>
                     <p><strong>Possible values:</strong></p>
-                    <p>Supports all <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> fields plus the following custom properties:</p>
+                    <p>Supports all <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> fields plus the following custom properties:</p>
                     <ul>
                         <li>
                             <p><code translate="no">fontSize</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Specifies the Dialog title font size. If not provided, the default <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> font size is used.</p>
+                            <p>Specifies the Dialog title font size. If not provided, the default <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> font size is used.</p>
                         </li>
                         <li>
                             <p><code translate="no">fontUrl</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Specifies the Dialog title font URL. If not provided, the default <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> font URL is used.</p>
+                            <p>Specifies the Dialog title font URL. If not provided, the default <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-title-area.md">StdDlgTitleArea</a> font URL is used.</p>
                         </li>
                         <li>
                             <p><code translate="no">align</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
@@ -8001,7 +8136,7 @@ end sub
                 </section>
                 <hr>
                 <section>
-                    <h3>content</h3>
+                    <h3 id="content">content</h3>
                     <p><code translate="no" class="text-secondary">ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                     <p>Allows to customize the Dialog content area.</p>
                     <p><strong>Possible values:</strong></p>
@@ -8009,7 +8144,7 @@ end sub
                     <ul>
                         <li>
                             <p><code translate="no" class="text-secondary">STRING</code></p>
-                            <p>Adds a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> node to the Dialog content area. The provided string specifies its <code translate="no">text</code> field.</p>
+                            <p>Adds a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> node to the Dialog content area. The provided string specifies its <code translate="no">text</code> field.</p>
                         </li>
                         <li>
                             <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
@@ -8019,15 +8154,15 @@ end sub
                                     <ul>
                                         <li>
                                             <p><code translate="no">type</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                                            <p>Specifies the type of the component, <code translate="no">text</code> for a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> component.</p>
+                                            <p>Specifies the type of the component, <code translate="no">text</code> for a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> component.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">text</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> text field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> text field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">style</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> <code translate="no">namedTextStyle</code> field value. If not provided, normal is used.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdDlgTextItem</a> <code translate="no">namedTextStyle</code> field value. If not provided, normal is used.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">align</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
@@ -8040,47 +8175,47 @@ end sub
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">Progress component</a>
+                                <li><a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">Progress component</a>
                                     <ul>
                                         <li>
                                             <p><code translate="no">type</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                                            <p>Specifies the type of the component, <code translate="no">progress</code> for a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">StdDlgProgressItem</a> component.</p>
+                                            <p>Specifies the type of the component, <code translate="no">progress</code> for a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">StdDlgProgressItem</a> component.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">text</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">StdDlgProgressItem</a> <code translate="no">text</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-progress-item.md">StdDlgProgressItem</a> <code translate="no">text</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">interval</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the internal <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node <code translate="no">spinInterval</code> field value.</p>
+                                            <p>Specifies the internal <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node <code translate="no">spinInterval</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">counterclockwise</code> <code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies if the internal <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node should rotate in the counter-clockwise direction. Set to <code translate="no">false</code> if not specified.</p>
+                                            <p>Specifies if the internal <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node should rotate in the counter-clockwise direction. Set to <code translate="no">false</code> if not specified.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">size</code> <code translate="no" class="text-secondary">NUMBER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <code translate="no">width</code> and <code translate="no">height</code> values of the internal <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node.</p>
+                                            <p>Specifies the <code translate="no">width</code> and <code translate="no">height</code> values of the internal <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">url</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the Poster node <code translate="no">url</code> of the internal <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node. The <code translate="no">size</code> property is required for the <code translate="no">url</code> value to be properly applied.</p>
+                                            <p>Specifies the Poster node <code translate="no">url</code> of the internal <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/widget-nodes/busyspinner.md">BusySpinner</a> node. The <code translate="no">size</code> property is required for the <code translate="no">url</code> value to be properly applied.</p>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">MultiStyle component</a>
+                                <li><a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">MultiStyle component</a>
                                     <ul>
                                         <li>
                                             <p><code translate="no">type</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                                            <p>Specifies the type of the component, <code translate="no">multistyle</code> for a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> component.</p>
+                                            <p>Specifies the type of the component, <code translate="no">multistyle</code> for a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> component.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">text</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> <code translate="no">text</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> <code translate="no">text</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">styles</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> <code translate="no">drawingStyles</code> field value. Keep in mind that the specified styles require all the following properties to be provided:</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-multi-style-text-item.md">StdDlgMultiStyleTextItem</a> <code translate="no">drawingStyles</code> field value. Keep in mind that the specified styles require all the following properties to be provided:</p>
                                             <ul>
                                                 <li><p><code translate="no">fontSize</code> <code translate="no" class="text-danger">REQUIRED</code></p></li>
                                                 <li><p><code translate="no">fontUri</code> <code translate="no" class="text-danger">REQUIRED</code></p></li>
@@ -8098,19 +8233,19 @@ end sub
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">Graphic component</a>
+                                <li><a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">Graphic component</a>
                                     <ul>
                                         <li>
                                             <p><code translate="no">type</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                                            <p>Specifies the type of the component, graphic for a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> component.</p>
+                                            <p>Specifies the type of the component, graphic for a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> component.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">text</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">text</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">text</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">url</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicUri</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicUri</code> field value.</p>
                                             <!-- <ul>
                                                 <li><p><code translate="no">fontSize</code> <code translate="no" class="text-danger">REQUIRED</code></p></li>
                                                 <li><p><code translate="no">fontUri</code> <code translate="no" class="text-danger">REQUIRED</code></p></li>
@@ -8119,15 +8254,15 @@ end sub
                                         </li>
                                         <li>
                                             <p><code translate="no">width</code> <code translate="no" class="text-secondary">NUMBER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicWidth</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicWidth</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">height</code> <code translate="no" class="text-secondary">NUMBER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicHeight</code> field value.</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicHeight</code> field value.</p>
                                         </li>
                                         <li>
                                             <p><code translate="no">align</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                            <p>Specifies the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicAlign</code> field value. The following values are supported:</p>
+                                            <p>Specifies the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-graphic-item.md">StdDlgGraphicItem</a> <code translate="no">graphicAlign</code> field value. The following values are supported:</p>
                                             <ul>
                                                 <li><p><code translate="no">left</code> <code translate="no" class="text-warning">DEFAULT</code></p></li>
                                                 <li><p><code translate="no">right</code></p></li>
@@ -8184,7 +8319,7 @@ end sub
                 </section>
                 <hr>
                 <section>
-                    <h3>sidecard</h3>
+                    <h3 id="sidecard">sidecard</h3>
                     <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                     <p>Allows to set up the Dialog side card area.</p>
                     <p><strong>Possible values:</strong></p>
@@ -8193,7 +8328,7 @@ end sub
                             <p><code translate="no">invalid</code> removes the current side card if present.</p>
                         </li>
                         <li>
-                            <p>An Associative Array containing any of the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-side-card-area.md">StdDlgSideCardArea</a> fields plus the following custom properties:</p>
+                            <p>An Associative Array containing any of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-side-card-area.md">StdDlgSideCardArea</a> fields plus the following custom properties:</p>
                             <ul>
                                 <li>
                                     <p><code translate="no">content</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -8263,30 +8398,30 @@ end sub
                         <p>The code snippet above produces the following Dialog content:</p>
                         <figure class="bcls-figure">
                             <img class="bcls-image" src="/assets/images/s-misc-img/developer/roku/roku-sidecard.webp">
-                            <figcaption class="bcls-caption--image">Image by <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">usplash</a></figcaption>
+                            <figcaption class="bcls-caption--image">Image by <a target="_blank" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">usplash</a></figcaption>
                         </figure>
             
 
                 </section>
                 <hr>
                 <section>
-                    <h3>buttons</h3>
+                    <h3 id="buttons">buttons</h3>
                     <p><code translate="no" class="text-secondary">ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                     <p>Allows to set up the buttons of the Dialog.</p>
-                    <p>Since Dialog extends a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, its buttons selection and focus events can be accessed through the <code translate="no">buttonSelected</code> and <code translate="no">buttonFocused</code> fields.</p>
+                    <p>Since Dialog extends a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a>, its buttons selection and focus events can be accessed through the <code translate="no">buttonSelected</code> and <code translate="no">buttonFocused</code> fields.</p>
                     <p><strong>Possible values:</strong></p>
-                    <p>An Array where each item is mapped into a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a>. Any combination of the following items is supported:</p>
+                    <p>An Array where each item is mapped into a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a>. Any combination of the following items is supported:</p>
                     <ul>
                         <li>
                             <p><code translate="no" class="text-secondary">STRING</code></p>
-                            <p>Adds a <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> node with its <code translate="no">text</code> field set to the text provided.</p>
+                            <p>Adds a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> node with its <code translate="no">text</code> field set to the text provided.</p>
                         </li>
                         <li>
-                            <p>An Associative Array containing any of the <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-side-card-area.md">StdDlgSideCardArea</a> fields plus the following custom properties:</p>
+                            <p>An Associative Array containing any of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-side-card-area.md">StdDlgSideCardArea</a> fields plus the following custom properties:</p>
                             <ul>
                                 <li>
                                     <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
-                                    <p>Allows for some extra <a href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> customization options. The following properties are supported:</p>
+                                    <p>Allows for some extra <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> customization options. The following properties are supported:</p>
                                     <ul>
                                         <li>
                                             <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
@@ -8357,6 +8492,8 @@ end sub
             
 
                 </section>
+                </section>
+                
         </section>
 </article>
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
