@@ -1,0 +1,119 @@
+---
+title: 'Integrating IMA3 Advertising with Brightcove Web and Smart TV SDK'
+description: This document provides detailed instructions on integrating Interactive Media Ads (IMA3) with the Brightcove Web and Smart TV SDK. 
+parent: Code Samples
+grandparent: Player SDK for Web And Smart TV
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>Google's Interactive Media Ads (IMA) SDK allows for the easy integration of video advertising into your media players built with the Brightcove Web and Smart TV SDK. The IMA3 integration facilitates pre-roll, mid-roll, and post-roll ad placements, as well as sophisticated ad management capabilities.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web and Smart TV SDK installed in your project.</p>
+    </li>
+    <li>
+        <p>Access to the Google IMA SDK resources and an Ad Manager account.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Integration</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/sdk';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the ImaClientSide integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaClientSideIntegration } from '@brightcove/sdk/integrations/imaClientSide';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/sdk/integrations/imaClientSide/styles.css';
+            </code></pre>
+        </li>
+        <li>
+            <p>Setup ima-client-side integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+            </code></pre>
+        </li>
+        <li>
+            <p>Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
+
+player.updateConfiguration({
+  brightcove: {
+    accountId: 'your-account-id',
+    auth: { policyKey: 'your-policy-key' }
+  }
+});
+            </code></pre>
+        </li>
+        <li>
+            <p>Attach a video element to the Player instance.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const videoElement = document.querySelector('video');
+
+player.attach(videoElement);
+            </code></pre>
+        </li>
+        <li>
+            <p>Listen to the SdkLoaded event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
+  const adTag = 'your-ad-tag-url';
+  player.integrations.imaClientSide.adRequest(adTag);
+});
+            </code></pre>
+        </li>
+    </ol>
+    <p>Complete snippet:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
+import {Player} from '@brightcove/sdk';
+
+// Import the ImaClientSide integration class from the Brightcove SDK
+import { ImaClientSideIntegration } from '@brightcove/sdk/integrations/imaClientSide';
+
+// Import the ImaClientSide integration CSS from the Brightcove SDK
+import '@brightcove/sdk/integrations/imaClientSide/styles.css';
+
+// Setup ima-client-side integration before creating player
+Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+
+// Create a new Player
+const player = new Player();
+
+player.updateConfiguration({
+  brightcove: {
+    accountId: 'your-account-id',
+    auth: { policyKey: 'your-policy-key' }
+  }
+});
+
+// Attach a video element to the Player instance
+const videoElement = document.querySelector('video');
+
+player.attach(videoElement);
+
+// Listen to the SdkLoaded event
+player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
+  // Use the IMA integration (for example: creating on-demand ad request)
+  const adTag = 'your-ad-tag';
+  player.integrations.imaClientSide.adRequest(adTag);
+});        
+</code></pre>
+</section>
+
+
+</article>
