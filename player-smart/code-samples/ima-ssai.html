@@ -1,5 +1,5 @@
 ---
-title: 'Integrating IMA3 Advertising with Brightcove Web and Smart TV SDK'
+title: 'Integrating IMA3 SSAI Advertising with Brightcove Web and Smart TV SDK'
 description: This document provides detailed instructions on integrating Interactive Media Ads (IMA3) with the Brightcove Web and Smart TV SDK. 
 parent: Code Samples
 grandparent: Player SDK for Web And Smart TV
@@ -36,18 +36,18 @@ grandparent: Player SDK for Web And Smart TV
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaClientSide integration class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaClientSideIntegration } from '@brightcove/sdk/integrations/imaClientSide';
+            <p>Import the ImaServerSide integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaServerSideIntegration } from '@brightcove/sdk/integrations/imaServerSide';
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/sdk/integrations/imaClientSide/styles.css';
+            <p>Import the ImaServerSide integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/sdk/integrations/imaServerSide/styles.css';
             </code></pre>
         </li>
         <li>
             <p>Setup ima-client-side integration.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addImaServerSideIntegrationFactory(ImaServerSideIntegration);
             </code></pre>
         </li>
         <li>
@@ -71,9 +71,9 @@ player.attach(videoElement);
         </li>
         <li>
             <p>Listen to the SdkLoaded event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
+            <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaServerSide.SdkLoaded, ({ imaServerSideSdk }) => {
   const adTag = 'your-ad-tag-url';
-  player.integrations.imaClientSide.adRequest(adTag);
+  player.integrations.imaServerSide.adRequest(adTag);
 });
             </code></pre>
         </li>
@@ -82,14 +82,14 @@ player.attach(videoElement);
     <pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
 import {Player} from '@brightcove/sdk';
 
-// Import the ImaClientSide integration class from the Brightcove SDK
-import { ImaClientSideIntegration } from '@brightcove/sdk/integrations/imaClientSide';
+// Import the ImaServerSide integration class from the Brightcove SDK
+import { ImaServerSideIntegration } from '@brightcove/sdk/integrations/ImaServerSide';
 
-// Import the ImaClientSide integration CSS from the Brightcove SDK
-import '@brightcove/sdk/integrations/imaClientSide/styles.css';
+// Import the ImaServerSide integration CSS from the Brightcove SDK
+import '@brightcove/sdk/integrations/ImaServerSide/styles.css';
 
 // Setup ima-client-side integration before creating player
-Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+Player.addImaServerSideIntegrationFactory(ImaServerSideIntegration);
 
 // Create a new Player
 const player = new Player();
@@ -107,10 +107,10 @@ const videoElement = document.querySelector('video');
 player.attach(videoElement);
 
 // Listen to the SdkLoaded event
-player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
+player.one(Player.Event.Integration.ImaServerSide.SdkLoaded, ({ ImaServerSideSdk }) => {
   // Use the IMA integration (for example: creating on-demand ad request)
   const adTag = 'your-ad-tag';
-  player.integrations.imaClientSide.adRequest(adTag);
+  player.integrations.ImaServerSide.adRequest(adTag);
 });        
 </code></pre>
 </section>

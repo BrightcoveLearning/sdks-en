@@ -1,0 +1,111 @@
+---
+title: 'Integrating DRM with Brightcove Web and Smart TV SDK'
+description: This document provides detailed instructions on how to integrate Digital Rights Management (DRM) technologies into your media players using the Brightcove Web and Smart TV SDK. 
+parent: Code Samples
+grandparent: Player SDK for Web And Smart TV
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>Digital Rights Management (DRM) prevents your videos from being played back except in clients that are granted permission to do so. Brightcove Web and Smart TV SDK supports several DRM systems to secure video content, including Widevine, PlayReady, and FairPlay, ensuring that your media can be securely streamed across different platforms and devices.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with DRM capabilities enabled.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web and Smart TV SDK installed in your project.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Integration</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/sdk';
+            </code></pre>
+        </li>
+        <li>
+            <p>Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
+player.updateConfiguration({
+  brightcove: {
+    accountId: 'your-account-id',
+    auth: { policyKey: 'your-policy-key' }
+  },
+  drm: {
+    widevine: {
+      url: 'https://widevine-license-server-url'
+    },
+    playReady: {
+      url: 'https://playready-license-server-url'
+    },
+    fairPlay: {
+      certificateUrl: 'https://fairplay-certificate-server-url',
+      licenseUrl: 'https://fairplay-license-server-url'
+    }
+  }
+});
+            </code></pre>
+        </li>
+        <li>
+            <p>Attach the Player to a Video Element.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const videoElement = document.querySelector('video');
+player.attach(videoElement);
+            </code></pre>
+        </li>
+        <li>
+            <p>Load DRM-protected Content.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const videoId = 'your-drm-protected-video-id';
+player.getVideoById({ videoId: videoId }).then((videoModel) => {
+  player.loadVideoModel(videoModel);
+});
+            </code></pre>
+        </li>
+    </ol>
+    <p>Complete snippet:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">//Import Required Modules
+import { Player } from '@brightcove/sdk';
+
+//Create and Configure the Player
+const player = new Player();
+player.updateConfiguration({
+  brightcove: {
+    accountId: 'your-account-id',
+    auth: { policyKey: 'your-policy-key' }
+  },
+  drm: {
+    widevine: {
+      url: 'https://widevine-license-server-url'
+    },
+    playReady: {
+      url: 'https://playready-license-server-url'
+    },
+    fairPlay: {
+      certificateUrl: 'https://fairplay-certificate-server-url',
+      licenseUrl: 'https://fairplay-license-server-url'
+    }
+  }
+});
+
+//Attach the Player to a Video Element
+const videoElement = document.querySelector('video');
+player.attach(videoElement);
+
+//Load DRM-protected Content
+const videoId = 'your-drm-protected-video-id';
+player.getVideoById({ videoId: videoId }).then((videoModel) => {
+  player.loadVideoModel(videoModel);
+});
+</code></pre>
+</section>
+
+
+</article>
