@@ -1,6 +1,6 @@
 ---
-title: 'Integrating Social Dialog with Brightcove Web and Smart TV SDK'
-description: This document provides comprehensive instructions on how to integrate social sharing capabilities using the Social Dialog features of the Brightcove Web and Smart TV SDK.
+title: 'Integrating Social Dialog with Brightcove Web & Smart TV SDK'
+description: This document provides comprehensive instructions on how to integrate social sharing capabilities using the Social Dialog features of the Brightcove Web & Smart TV SDK.
 parent: Code Samples
 grandparent: Player SDK for Web And Smart TV
 ---
@@ -20,7 +20,7 @@ grandparent: Player SDK for Web And Smart TV
         <p>A functional Brightcove account and access to the Video Cloud.</p>
     </li>
     <li>
-        <p>The Brightcove Web and Smart TV SDK installed in your project.</p>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
     </li>
 </ul>
 </section>
@@ -29,22 +29,22 @@ grandparent: Player SDK for Web And Smart TV
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/sdk';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
             </code></pre>
         </li>
         <li>
             <p>Import the Social integration class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegration } from '@brightcove/sdk/integrations/social';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegration } from '@brightcove/web-sdk/integrations/social';
             </code></pre>
         </li>
         <li>
             <p>Import the Social integration CSS from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/sdk/integrations/social/styles.css';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/social/styles.css';
             </code></pre>
         </li>
         <li>
             <p>Import required Social Language Packs from the Brightcove SDK (in this example: French)</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegrationFrenchLanguagePack } from '@brightcove/sdk/integrations/social/languagePacks/fr';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegrationFrenchLanguagePack } from '@brightcove/web-sdk/integrations/social/languagePacks/fr';
             </code></pre>
         </li>
         <li>
@@ -92,16 +92,16 @@ player.integrations.social.setDirectLink(directLink);
 
     <p>Complete snippet:</p>
     <pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
-import {Player} from '@brightcove/sdk';
+import {Player} from '@brightcove/web-sdk';
 
 // Import the Social integration class from the Brightcove SDK
-import { SocialIntegration } from '@brightcove/sdk/integrations/social';
+import { SocialIntegration } from '@brightcove/web-sdk/integrations/social';
 
 // Import the Social integration CSS from the Brightcove SDK
-import '@brightcove/sdk/integrations/social/styles.css';
+import '@brightcove/web-sdk/integrations/social/styles.css';
 
 // Import required Social Language Packs from the Brightcove SDK (in this example: French)
-import { SocialIntegrationFrenchLanguagePack } from '@brightcove/sdk/integrations/social/languagePacks/fr';
+import { SocialIntegrationFrenchLanguagePack } from '@brightcove/web-sdk/integrations/social/languagePacks/fr';
  
 // Setup social integration before creating player
 Player.addSocialIntegration(ImaClientSideIntegration, { 

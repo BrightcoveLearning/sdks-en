@@ -1,6 +1,6 @@
 ---
-title: 'Integrating DRM with Brightcove Web and Smart TV SDK'
-description: This document provides detailed instructions on how to integrate Digital Rights Management (DRM) technologies into your media players using the Brightcove Web and Smart TV SDK. 
+title: 'Integrating DRM with Brightcove Web & Smart TV SDK'
+description: This document provides detailed instructions on how to integrate Digital Rights Management (DRM) technologies into your media players using the Brightcove Web & Smart TV SDK. 
 parent: Code Samples
 grandparent: Player SDK for Web And Smart TV
 ---
@@ -11,7 +11,7 @@ grandparent: Player SDK for Web And Smart TV
 
 <section class="bcls-section">
 <h2 id="overview">Overview</h2> 
-<p>Digital Rights Management (DRM) prevents your videos from being played back except in clients that are granted permission to do so. Brightcove Web and Smart TV SDK supports several DRM systems to secure video content, including Widevine, PlayReady, and FairPlay, ensuring that your media can be securely streamed across different platforms and devices.</p>
+<p>Digital Rights Management (DRM) prevents your videos from being played back except in clients that are granted permission to do so. Brightcove Web & Smart TV SDK supports several DRM systems to secure video content, including Widevine, PlayReady, and FairPlay, ensuring that your media can be securely streamed across different platforms and devices.</p>
 </section> 
 <section class="bcls-section">
     <h2 id="prerequisites">Prerequisites</h2> 
@@ -20,7 +20,7 @@ grandparent: Player SDK for Web And Smart TV
         <p>A Brightcove account with DRM capabilities enabled.</p>
     </li>
     <li>
-        <p>The Brightcove Web and Smart TV SDK installed in your project.</p>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
     </li>
 </ul>
 </section>
@@ -29,7 +29,7 @@ grandparent: Player SDK for Web And Smart TV
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/sdk';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
             </code></pre>
         </li>
         <li>
@@ -72,7 +72,7 @@ player.getVideoById({ videoId: videoId }).then((videoModel) => {
     </ol>
     <p>Complete snippet:</p>
     <pre class="line-numbers"><code class="language-JS" translate="No">//Import Required Modules
-import { Player } from '@brightcove/sdk';
+import { Player } from '@brightcove/web-sdk';
 
 //Create and Configure the Player
 const player = new Player();
