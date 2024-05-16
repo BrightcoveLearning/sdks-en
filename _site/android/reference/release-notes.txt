@@ -1,5 +1,22 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 8.4.2
+
+  SDK Changes:
+    * Fix for a regression where descriptive audio track items for DASH video were not displayed as expected in the Audio Track Selection menu.
+    * Set custom read and connect timeouts for catalog requests through the HttpRequestConfig class.
+    * Implement better handling of exceptions in Generic Stream Concurrency and in the PlaybackNotification.
+    * Fix for a regression when disabling captions from the Settings screen fails.
+    * Support for display MP4-Encapsulated VTT captions
+
+  IMA Changes:
+    * Fix for a crash when tapping back button or closing the screen in ad playback.
+    * Improvements to Ad Insights reporting for ad errors, audible duration (for muted and partially-muted ads) and video resumption after mid-roll ad pods.
+    * Upgrade the IMA library to v3.33.0. It fixes the issue where ad clickthroughs using the Learn more button and the companion ad will not open a new page in Android API version 30 and higher.
+
+  SSAI Changes:
+    * Fix for a regression where a mid-roll is repeatedly played for every seek after it was crossed.
+
 Version 8.4.1
 
   SDK Changes:
