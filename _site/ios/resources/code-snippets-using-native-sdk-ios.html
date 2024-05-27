@@ -2113,18 +2113,19 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-airplay-objc" data-bs-toggle="tab" data-bs-target="#nav-airplay-objc" type="button" role="tab" aria-controls="nav-airplay-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-airplay-swift" data-bs-toggle="tab" data-bs-target="#nav-airplay-swift" type="button" role="tab" aria-controls="nav-airplay-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-airplay-swift" data-bs-toggle="tab" data-bs-target="#nav-airplay-swift" type="button" role="tab" aria-controls="nav-airplay-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-airplay-objc" data-bs-toggle="tab" data-bs-target="#nav-airplay-objc" type="button" role="tab" aria-controls="nav-airplay-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-airplay-objc" role="tabpanel" aria-labelledby="tab-airplay-objc" tabindex="0">
-      <pre>
-        <code class="language-objectivec" translate="No">_playbackController.allowsExternalPlayback = YES;</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-airplay-swift" role="tabpanel" aria-labelledby="tab-airplay-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-airplay-swift" role="tabpanel" aria-labelledby="tab-airplay-swift" tabindex="0">
       <pre>
         <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-airplay-objc" role="tabpanel" aria-labelledby="tab-airplay-objc" tabindex="0">
+      <pre>
+        <code class="language-objectivec" translate="No">_playbackController.allowsExternalPlayback = YES;</code></pre>
     </div>
   </div>
   <!-- end tabs -->
@@ -2158,19 +2159,12 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-captions1-objc" data-bs-toggle="tab" data-bs-target="#nav-captions1-objc" type="button" role="tab" aria-controls="nav-captions1-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-captions1-swift" data-bs-toggle="tab" data-bs-target="#nav-captions1-swift" type="button" role="tab" aria-controls="nav-captions1-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-captions1-swift" data-bs-toggle="tab" data-bs-target="#nav-captions1-swift" type="button" role="tab" aria-controls="nav-captions1-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-captions1-objc" data-bs-toggle="tab" data-bs-target="#nav-captions1-objc" type="button" role="tab" aria-controls="nav-captions1-objc" aria-selected="false">Obj-C</button>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-captions1-objc" role="tabpanel" aria-labelledby="tab-captions1-objc" tabindex="0">
-      <pre class="line-numbers">
-        <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
-        BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] 
-        initWithPlaybackController:self.playbackController options:nil controlsView:
-        [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-captions1-swift" role="tabpanel" aria-labelledby="tab-captions1-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-captions1-swift" role="tabpanel" aria-labelledby="tab-captions1-swift" tabindex="0">
       <pre>
         <code class="language-swift" translate="No">// Set up our player view. Create with a standard VOD layout.
         guard let playerView = BCOVPUIPlayerView(playbackController: 
@@ -2179,6 +2173,14 @@
           return
         }</code></pre>
     </div>
+    <div class="tab-pane fade" id="nav-captions1-objc" role="tabpanel" aria-labelledby="tab-captions1-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// Set up our player view. Create with a standard VOD layout.
+        BCOVPUIPlayerView *playerView = [[BCOVPUIPlayerView alloc] 
+        initWithPlaybackController:self.playbackController options:nil controlsView:
+        [BCOVPUIBasicControlView basicControlViewWithVODLayout] ];</code></pre>
+    </div>
+    
   </div>
   <!-- end tabs -->
 
@@ -2190,20 +2192,13 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-captions2-objc" data-bs-toggle="tab" data-bs-target="#nav-captions2-objc" type="button" role="tab" aria-controls="nav-captions2-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-captions2-swift" data-bs-toggle="tab" data-bs-target="#nav-captions2-swift" type="button" role="tab" aria-controls="nav-captions2-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-captions2-swift" data-bs-toggle="tab" data-bs-target="#nav-captions2-swift" type="button" role="tab" aria-controls="nav-captions2-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-captions2-objc" data-bs-toggle="tab" data-bs-target="#nav-captions2-objc" type="button" role="tab" aria-controls="nav-captions2-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-captions2-objc" role="tabpanel" aria-labelledby="tab-captions2-objc" tabindex="0">
-      <pre class="line-numbers">
-        <code class="language-objectivec" translate="No">// Customize the CC button.
-        BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
-        ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
-        ccButton.primaryTitle = @&quot;CC&quot;;
-        [ccButton showPrimaryTitle:YES];</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-captions2-swift" role="tabpanel" aria-labelledby="tab-captions2-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-captions2-swift" role="tabpanel" aria-labelledby="tab-captions2-swift" tabindex="0">
       <pre>
         <code class="language-swift" translate="No">if let ccButton = playerView.controlsView.closedCaptionButton {    
           ccButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)    
@@ -2211,6 +2206,15 @@
           ccButton.showPrimaryTitle(true)}
         }</code></pre>
     </div>
+    <div class="tab-pane fade" id="nav-captions2-objc" role="tabpanel" aria-labelledby="tab-captions2-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// Customize the CC button.
+        BCOVPUIButton *ccButton = playerView.controlsView.closedCaptionButton;
+        ccButton.titleLabel.font = [UIFont systemFontOfSize:14.];
+        ccButton.primaryTitle = @&quot;CC&quot;;
+        [ccButton showPrimaryTitle:YES];</code></pre>
+    </div>
+    
   </div>
   <!-- end tabs -->
 
@@ -2228,21 +2232,23 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-fairplay-objc" data-bs-toggle="tab" data-bs-target="#nav-fairplay-objc" type="button" role="tab" aria-controls="nav-fairplay-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-fairplay-swift" data-bs-toggle="tab" data-bs-target="#nav-fairplay-swift" type="button" role="tab" aria-controls="nav-fairplay-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-fairplay-swift" data-bs-toggle="tab" data-bs-target="#nav-fairplay-swift" type="button" role="tab" aria-controls="nav-fairplay-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-fairplay-objc" data-bs-toggle="tab" data-bs-target="#nav-fairplay-objc" type="button" role="tab" aria-controls="nav-fairplay-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-fairplay-objc" role="tabpanel" aria-labelledby="tab-fairplay-objc" tabindex="0">
-      <pre class="line-numbers">
-        <code class="language-objectivec" translate="No">playbackController.allowsExternalPlayback = YES;
-        playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-fairplay-swift" role="tabpanel" aria-labelledby="tab-fairplay-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-fairplay-swift" role="tabpanel" aria-labelledby="tab-fairplay-swift" tabindex="0">
       <pre class="line-numbers">
         <code class="language-swift" translate="No">playbackController.allowsExternalPlayback = true
         playbackController.usesExternalPlaybackWhileExternalScreenIsActive = true</code></pre>
     </div>
+    <div class="tab-pane fade" id="nav-fairplay-objc" role="tabpanel" aria-labelledby="tab-fairplay-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">playbackController.allowsExternalPlayback = YES;
+        playbackController.usesExternalPlaybackWhileExternalScreenIsActive = YES;</code></pre>
+    </div>
+    
   </div>
   <!-- end tabs -->
 
@@ -2267,57 +2273,13 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-ga-objc" data-bs-toggle="tab" data-bs-target="#nav-ga-objc" type="button" role="tab" aria-controls="nav-ga-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-ga-swift" data-bs-toggle="tab" data-bs-target="#nav-ga-swift" type="button" role="tab" aria-controls="nav-ga-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-ga-swift" data-bs-toggle="tab" data-bs-target="#nav-ga-swift" type="button" role="tab" aria-controls="nav-ga-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-ga-objc" data-bs-toggle="tab" data-bs-target="#nav-ga-objc" type="button" role="tab" aria-controls="nav-ga-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-ga-objc" role="tabpanel" aria-labelledby="tab-ga-objc" tabindex="0">
-      <pre class="line-numbers">
-        <code class="language-objectivec" translate="No">// This snippet shows one way to track video playback
-        // using the Firebase SDK from Google Analytics with
-        // the lifecycle event playback controller delegate method.
-        - (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-        {
-          // Common parameters
-          NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
-          NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
-        
-          // Session is ready to play
-          if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
-          {
-            [FIRAnalytics logEventWithName:@&quot;bcov_video_ready&quot;
-              parameters:@{
-                  @&quot;bcov_video_name&quot;: video_name,
-                  @&quot;bcov_video_id&quot;: video_ID
-              }];
-          }
-        
-          // Session encountered an error
-          if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
-          {
-            NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
-            int error_code = error.code;
-            [FIRAnalytics logEventWithName:@&quot;bcov_video_playback_error&quot;
-              parameters:@{
-                  @&quot;bcov_video_name&quot;: video_name,
-                  @&quot;bcov_video_id&quot;: video_ID,
-                  @&quot;bcov_video_error_code&quot;: @(error_code)
-              }];
-          }
-        
-          // Session has completed
-          if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
-          {
-            [FIRAnalytics logEventWithName:@&quot;bcov_video_terminate&quot;
-              parameters:@{
-                  @&quot;bcov_video_name&quot;: video_name,
-                  @&quot;bcov_video_id&quot;: video_ID
-               }];
-          }
-        }</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-ga-swift" role="tabpanel" aria-labelledby="tab-ga-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-ga-swift" role="tabpanel" aria-labelledby="tab-ga-swift" tabindex="0">
       <pre class="line-numbers">
         <code class="language-swift" translate="No">// This snippet shows one way to track video playback
         // using the Firebase SDK from Google Analytics with
@@ -2371,6 +2333,52 @@
         
         }</code></pre>
     </div>
+    <div class="tab-pane fade" id="nav-ga-objc" role="tabpanel" aria-labelledby="tab-ga-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">// This snippet shows one way to track video playback
+        // using the Firebase SDK from Google Analytics with
+        // the lifecycle event playback controller delegate method.
+        - (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+        {
+          // Common parameters
+          NSString *video_name = session.video.properties[kBCOVVideoPropertyKeyName];
+          NSString *video_ID = session.video.properties[kBCOVVideoPropertyKeyId];
+        
+          // Session is ready to play
+          if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+          {
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_ready&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID
+              }];
+          }
+        
+          // Session encountered an error
+          if ([kBCOVPlaybackSessionLifecycleEventError isEqualToString:lifecycleEvent.eventType])
+          {
+            NSError *error = lifecycleEvent.properties[kBCOVPlaybackSessionEventKeyError];
+            int error_code = error.code;
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_playback_error&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID,
+                  @&quot;bcov_video_error_code&quot;: @(error_code)
+              }];
+          }
+        
+          // Session has completed
+          if ([kBCOVPlaybackSessionLifecycleEventTerminate isEqualToString:lifecycleEvent.eventType])
+          {
+            [FIRAnalytics logEventWithName:@&quot;bcov_video_terminate&quot;
+              parameters:@{
+                  @&quot;bcov_video_name&quot;: video_name,
+                  @&quot;bcov_video_id&quot;: video_ID
+               }];
+          }
+        }</code></pre>
+    </div>
+    
   </div>
   <!-- end tabs -->
 	</li>
@@ -2391,19 +2399,21 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-bitrate-objc" data-bs-toggle="tab" data-bs-target="#nav-bitrate-objc" type="button" role="tab" aria-controls="nav-bitrate-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-bitrate-swift" data-bs-toggle="tab" data-bs-target="#nav-bitrate-swift" type="button" role="tab" aria-controls="nav-bitrate-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-bitrate-swift" data-bs-toggle="tab" data-bs-target="#nav-bitrate-swift" type="button" role="tab" aria-controls="nav-bitrate-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-bitrate-objc" data-bs-toggle="tab" data-bs-target="#nav-bitrate-objc" type="button" role="tab" aria-controls="nav-bitrate-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-bitrate-objc" role="tabpanel" aria-labelledby="tab-bitrate-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">[self.playbackController setPreferredPeakBitRate:1000];</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-bitrate-swift" role="tabpanel" aria-labelledby="tab-bitrate-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-bitrate-swift" role="tabpanel" aria-labelledby="tab-bitrate-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">playbackController.setPreferredPeakBitRate(1000)</code></pre>
   </div>
+  <div class="tab-pane fade" id="nav-bitrate-objc" role="tabpanel" aria-labelledby="tab-bitrate-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">[self.playbackController setPreferredPeakBitRate:1000];</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2419,12 +2429,27 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-loop-objc" data-bs-toggle="tab" data-bs-target="#nav-loop-objc" type="button" role="tab" aria-controls="nav-loop-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-loop-swift" data-bs-toggle="tab" data-bs-target="#nav-loop-swift" type="button" role="tab" aria-controls="nav-loop-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-loop-swift" data-bs-toggle="tab" data-bs-target="#nav-loop-swift" type="button" role="tab" aria-controls="nav-loop-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-loop-objc" data-bs-toggle="tab" data-bs-target="#nav-loop-objc" type="button" role="tab" aria-controls="nav-loop-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-loop-objc" role="tabpanel" aria-labelledby="tab-loop-objc" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-loop-swift" role="tabpanel" aria-labelledby="tab-loop-swift" tabindex="0">
+      <pre>
+        <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
+                
+            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventEnd) {
+                controller.seek(to: CMTime.zero) { (finished: Bool) in
+                    if (finished) {
+                        controller.play()
+                    }
+                }
+            }
+            
+        }</code></pre>
+    </div>
+    <div class="tab-pane fade" id="nav-loop-objc" role="tabpanel" aria-labelledby="tab-loop-objc" tabindex="0">
       <pre>
         <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
         {
@@ -2439,20 +2464,7 @@
           }
         }</code></pre>
     </div>
-    <div class="tab-pane fade" id="nav-loop-swift" role="tabpanel" aria-labelledby="tab-loop-swift" tabindex="0">
-      <pre>
-        <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
-                
-            if (lifecycleEvent.eventType == kBCOVPlaybackSessionLifecycleEventEnd) {
-                controller.seek(to: CMTime.zero) { (finished: Bool) in
-                    if (finished) {
-                        controller.play()
-                    }
-                }
-            }
-            
-        }</code></pre>
-    </div>
+    
   </div>
   <!-- end tabs -->
 
@@ -2472,12 +2484,44 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-playlist-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist-objc" type="button" role="tab" aria-controls="nav-playlist-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-playlist-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist-swift" type="button" role="tab" aria-controls="nav-playlist-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-playlist-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist-swift" type="button" role="tab" aria-controls="nav-playlist-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-playlist-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist-objc" type="button" role="tab" aria-controls="nav-playlist-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-playlist-objc" role="tabpanel" aria-labelledby="tab-playlist-objc" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-playlist-swift" role="tabpanel" aria-labelledby="tab-playlist-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func retrievePlaylist() {
+          refreshControl.beginRefreshing()
+          
+          let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
+          let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
+          
+          playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+              
+              guard let strongSelf = self else {
+                  return
+              }
+              
+              strongSelf.refreshControl.endRefreshing()
+              
+              if let playlist = playlist {
+                  strongSelf.currentVideos = playlist.videos
+                  strongSelf.currentPlaylistTitle = playlist.properties[&quot;name&quot;] as? String ?? &quot;&quot;
+                  strongSelf.currentPlaylistDescription = playlist.properties[&quot;description&quot;] as? String ?? &quot;&quot;
+                  
+                  print(&quot;Retrieved playlist containing \(playlist.videos.count) videos&quot;)
+                  
+                  strongSelf.usePlaylist(playlist)
+              } else {
+                  print(&quot;No playlist for ID \(kDynamicDeliveryPlaylistRefID) was found.&quot;);
+              }
+              
+          })
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-playlist-objc" role="tabpanel" aria-labelledby="tab-playlist-objc" tabindex="0">
     <pre>
       <code class="language-objectivec" translate="No">- (void)retrievePlaylist
       {
@@ -2514,37 +2558,7 @@
         }];
       }</code></pre>
   </div>
-  <div class="tab-pane fade" id="nav-playlist-swift" role="tabpanel" aria-labelledby="tab-playlist-swift" tabindex="0">
-    <pre>
-      <code class="language-swift" translate="No">func retrievePlaylist() {
-          refreshControl.beginRefreshing()
-          
-          let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
-          let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
-          
-          playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
-              
-              guard let strongSelf = self else {
-                  return
-              }
-              
-              strongSelf.refreshControl.endRefreshing()
-              
-              if let playlist = playlist {
-                  strongSelf.currentVideos = playlist.videos
-                  strongSelf.currentPlaylistTitle = playlist.properties[&quot;name&quot;] as? String ?? &quot;&quot;
-                  strongSelf.currentPlaylistDescription = playlist.properties[&quot;description&quot;] as? String ?? &quot;&quot;
-                  
-                  print(&quot;Retrieved playlist containing \(playlist.videos.count) videos&quot;)
-                  
-                  strongSelf.usePlaylist(playlist)
-              } else {
-                  print(&quot;No playlist for ID \(kDynamicDeliveryPlaylistRefID) was found.&quot;);
-              }
-              
-          })
-      }</code></pre>
-  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2558,26 +2572,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-playlist2-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist2-objc" type="button" role="tab" aria-controls="nav-playlist2-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-playlist2-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist2-swift" type="button" role="tab" aria-controls="nav-playlist2-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-playlist2-swift" data-bs-toggle="tab" data-bs-target="#nav-playlist2-swift" type="button" role="tab" aria-controls="nav-playlist2-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-playlist2-objc" data-bs-toggle="tab" data-bs-target="#nav-playlist2-objc" type="button" role="tab" aria-controls="nav-playlist2-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-playlist2-objc" role="tabpanel" aria-labelledby="tab-playlist2-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">// Play the video in this row when selected
-      - (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-      {
-        NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
-        BCOVVideo *video = videoDictionary[@&quot;video&quot;];
-      
-        if (video != nil)
-        {
-          [self.playbackController setVideos:@[ video ]];
-        }
-      }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-playlist2-swift" role="tabpanel" aria-labelledby="tab-playlist2-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-playlist2-swift" role="tabpanel" aria-labelledby="tab-playlist2-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
               
@@ -2591,6 +2592,21 @@
           
       }</code></pre>
   </div>
+  <div class="tab-pane fade" id="nav-playlist2-objc" role="tabpanel" aria-labelledby="tab-playlist2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// Play the video in this row when selected
+      - (IBAction)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+      {
+        NSDictionary *videoDictionary = self.videosTableViewData[ (int)indexPath.row ];
+        BCOVVideo *video = videoDictionary[@&quot;video&quot;];
+      
+        if (video != nil)
+        {
+          [self.playbackController setVideos:@[ video ]];
+        }
+      }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2612,12 +2628,24 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-progress-objc" data-bs-toggle="tab" data-bs-target="#nav-progress-objc" type="button" role="tab" aria-controls="nav-progress-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-progress-swift" data-bs-toggle="tab" data-bs-target="#nav-progress-swift" type="button" role="tab" aria-controls="nav-progress-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-progress-swift" data-bs-toggle="tab" data-bs-target="#nav-progress-swift" type="button" role="tab" aria-controls="nav-progress-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-progress-objc" data-bs-toggle="tab" data-bs-target="#nav-progress-objc" type="button" role="tab" aria-controls="nav-progress-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-progress-objc" role="tabpanel" aria-labelledby="tab-progress-objc" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-progress-swift" role="tabpanel" aria-labelledby="tab-progress-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didProgressTo progress: TimeInterval) {
+              
+          if (progress &lt; 0.0 || progress &gt;= Double.infinity) {
+              return;
+          }
+          
+          // Your code here
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-progress-objc" role="tabpanel" aria-labelledby="tab-progress-objc" tabindex="0">
     <pre>
       <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didProgressTo:(NSTimeInterval)progress
       {
@@ -2629,17 +2657,7 @@
         // Your code here
       }</code></pre>
   </div>
-  <div class="tab-pane fade" id="nav-progress-swift" role="tabpanel" aria-labelledby="tab-progress-swift" tabindex="0">
-    <pre>
-      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didProgressTo progress: TimeInterval) {
-              
-          if (progress &lt; 0.0 || progress &gt;= Double.infinity) {
-              return;
-          }
-          
-          // Your code here
-      }</code></pre>
-  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2657,25 +2675,13 @@
     <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-captionspro-objc" data-bs-toggle="tab" data-bs-target="#nav-captionspro-objc" type="button" role="tab" aria-controls="nav-captionspro-objc" aria-selected="true">Obj-C</button>
-      <button class="nav-link" id="tab-captionspro-swift" data-bs-toggle="tab" data-bs-target="#nav-captionspro-swift" type="button" role="tab" aria-controls="nav-captionspro-swift" aria-selected="false">Swift</button>
+      <button class="nav-link active" id="tab-captionspro-swift" data-bs-toggle="tab" data-bs-target="#nav-captionspro-swift" type="button" role="tab" aria-controls="nav-captionspro-swift" aria-selected="true">Swift</button>
+      <button class="nav-link" id="tab-captionspro-objc" data-bs-toggle="tab" data-bs-target="#nav-captionspro-objc" type="button" role="tab" aria-controls="nav-captionspro-objc" aria-selected="false">Obj-C</button>
+      
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-captionspro-objc" role="tabpanel" aria-labelledby="tab-captionspro-objc" tabindex="0">
-      <pre class="line-numbers">
-        <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-          {
-              if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
-              {
-                  AVMediaSelectionGroup *legibleMediaSelectionGroup = session.legibleMediaSelectionGroup;
-                  NSArray&lt;AVMediaSelectionOption *&gt; *options = [AVMediaSelectionGroup mediaSelectionOptionsFromArray:legibleMediaSelectionGroup.options withLocale:[NSLocale localeWithLocaleIdentifier:@&quot;es&quot;]];
-                  AVMediaSelectionOption *option = options.firstObject;
-                  session.selectedLegibleMediaOption = option;
-              }
-          }</code></pre>
-    </div>
-    <div class="tab-pane fade" id="nav-captionspro-swift" role="tabpanel" aria-labelledby="tab-captionspro-swift" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-captionspro-swift" role="tabpanel" aria-labelledby="tab-captionspro-swift" tabindex="0">
       <pre>
         <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController?, playbackSession session: BCOVPlaybackSession?, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent?) {
             if kBCOVPlaybackSessionLifecycleEventReady == lifecycleEvent?.eventType {
@@ -2688,6 +2694,20 @@
             }
         }</code></pre>
     </div>
+    <div class="tab-pane fade" id="nav-captionspro-objc" role="tabpanel" aria-labelledby="tab-captionspro-objc" tabindex="0">
+      <pre class="line-numbers">
+        <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+          {
+              if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+              {
+                  AVMediaSelectionGroup *legibleMediaSelectionGroup = session.legibleMediaSelectionGroup;
+                  NSArray&lt;AVMediaSelectionOption *&gt; *options = [AVMediaSelectionGroup mediaSelectionOptionsFromArray:legibleMediaSelectionGroup.options withLocale:[NSLocale localeWithLocaleIdentifier:@&quot;es&quot;]];
+                  AVMediaSelectionOption *option = options.firstObject;
+                  session.selectedLegibleMediaOption = option;
+              }
+          }</code></pre>
+    </div>
+    
   </div>
   <!-- end tabs -->
   </section>
@@ -2709,12 +2729,24 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-paging-objc" data-bs-toggle="tab" data-bs-target="#nav-paging-objc" type="button" role="tab" aria-controls="nav-paging-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-paging-swift" data-bs-toggle="tab" data-bs-target="#nav-paging-swift" type="button" role="tab" aria-controls="nav-paging-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-paging-swift" data-bs-toggle="tab" data-bs-target="#nav-paging-swift" type="button" role="tab" aria-controls="nav-paging-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-paging-objc" data-bs-toggle="tab" data-bs-target="#nav-paging-objc" type="button" role="tab" aria-controls="nav-paging-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-paging-objc" role="tabpanel" aria-labelledby="tab-paging-objc" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-paging-swift" role="tabpanel" aria-labelledby="tab-paging-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">let params = [
+          &quot;limit&quot;: 6,
+          &quot;offset&quot;: 9
+      ]
+      
+      playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+          // Your code here
+      })</code></pre>
+  </div>
+  <div class="tab-pane fade" id="nav-paging-objc" role="tabpanel" aria-labelledby="tab-paging-objc" tabindex="0">
     <pre>
       <code class="language-objectivec" translate="No">NSDictionary *params = @{
         @&quot;limit&quot;: @6,
@@ -2726,17 +2758,7 @@
           // Your code here
       }];</code></pre>
   </div>
-  <div class="tab-pane fade" id="nav-paging-swift" role="tabpanel" aria-labelledby="tab-paging-swift" tabindex="0">
-    <pre>
-      <code class="language-swift" translate="No">let params = [
-          &quot;limit&quot;: 6,
-          &quot;offset&quot;: 9
-      ]
-      
-      playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
-          // Your code here
-      })</code></pre>
-  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2752,48 +2774,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-cuepoints-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-objc" type="button" role="tab" aria-controls="nav-cuepoints-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-cuepoints-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-swift" type="button" role="tab" aria-controls="nav-cuepoints-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-cuepoints-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-swift" type="button" role="tab" aria-controls="nav-cuepoints-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-cuepoints-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints-objc" type="button" role="tab" aria-controls="nav-cuepoints-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-cuepoints-objc" role="tabpanel" aria-labelledby="tab-cuepoints-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">// programmatically add cue points to a video
-      - (void)requestContentFromPlaybackService
-      {
-          [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
-              if (video)
-              {
-                  // Get the video duration from the properties dictionary
-                  NSNumber *durationNumber = video.properties[@&quot;duration&quot;]; // milliseconds
-                  float duration = durationNumber.floatValue / 1000.0; // convert to seconds
-                  video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
-                  {
-                      // Add quarterly interval cue points of your own type
-                      BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 250, 1000)];
-                      BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 500, 1000)];
-                      BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 750, 1000)];
-                      BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 1000, 1000)];
-                      // Create new cue point collection using existing cue points and new cue points
-                      NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
-                      [newCuePoints addObject:cp1];
-                      [newCuePoints addObject:cp2];
-                      [newCuePoints addObject:cp3];
-                      [newCuePoints addObject:cp4];
-                      mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
-                  }];
-                      
-                  [self.playbackController setVideos:@[ video ]];
-              }
-              else
-              {
-                  NSLog(@&quot;ViewController Debug - Error retrieving video: `%@`&quot;, error);
-              }
-          }];
-      }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-cuepoints-swift" role="tabpanel" aria-labelledby="tab-cuepoints-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-cuepoints-swift" role="tabpanel" aria-labelledby="tab-cuepoints-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">// programmatically add cue points to a video
       func requestContentFromPlaybackService() {
@@ -2845,6 +2832,43 @@
           }
       }</code></pre>
   </div>
+  <div class="tab-pane fade" id="nav-cuepoints-objc" role="tabpanel" aria-labelledby="tab-cuepoints-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// programmatically add cue points to a video
+      - (void)requestContentFromPlaybackService
+      {
+          [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+              if (video)
+              {
+                  // Get the video duration from the properties dictionary
+                  NSNumber *durationNumber = video.properties[@&quot;duration&quot;]; // milliseconds
+                  float duration = durationNumber.floatValue / 1000.0; // convert to seconds
+                  video = [video update:^(id&lt;BCOVMutableVideo&gt; mutableVideo)
+                  {
+                      // Add quarterly interval cue points of your own type
+                      BCOVCuePoint *cp1 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 250, 1000)];
+                      BCOVCuePoint *cp2 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 500, 1000)];
+                      BCOVCuePoint *cp3 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 750, 1000)];
+                      BCOVCuePoint *cp4 = [[BCOVCuePoint alloc] initWithType:@&quot;<span class="bcls-input">your cue point type</span>&quot; position:CMTimeMake(duration * 1000, 1000)];
+                      // Create new cue point collection using existing cue points and new cue points
+                      NSMutableArray *newCuePoints = [[NSMutableArray alloc] initWithArray:mutableVideo.cuePoints.array];
+                      [newCuePoints addObject:cp1];
+                      [newCuePoints addObject:cp2];
+                      [newCuePoints addObject:cp3];
+                      [newCuePoints addObject:cp4];
+                      mutableVideo.cuePoints = [[BCOVCuePointCollection alloc] initWithArray:newCuePoints];
+                  }];
+                      
+                  [self.playbackController setVideos:@[ video ]];
+              }
+              else
+              {
+                  NSLog(@&quot;ViewController Debug - Error retrieving video: `%@`&quot;, error);
+              }
+          }];
+      }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2858,27 +2882,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-cuepoints2-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-objc" type="button" role="tab" aria-controls="nav-cuepoints2-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-cuepoints2-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-swift" type="button" role="tab" aria-controls="nav-cuepoints2-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-cuepoints2-swift" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-swift" type="button" role="tab" aria-controls="nav-cuepoints2-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-cuepoints2-objc" data-bs-toggle="tab" data-bs-target="#nav-cuepoints2-objc" type="button" role="tab" aria-controls="nav-cuepoints2-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-cuepoints2-objc" role="tabpanel" aria-labelledby="tab-cuepoints2-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">// listen for cue points and display them
-      -(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo
-      {
-          BCOVCuePointCollection *cpc = cuePointInfo[@&quot;kBCOVPlaybackSessionEventKeyCuePoints&quot;];
-          for (BCOVCuePoint *cp in cpc.array)
-          {
-              if ([cp.type isEqualToString:@&quot;<span class="bcls-input">your cue point type</span>&quot;])
-              {
-                  NSLog(@&quot;Found your cue point at %f&quot;, CMTimeGetSeconds(cp.position));
-              }
-          }
-      }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-cuepoints2-swift" role="tabpanel" aria-labelledby="tab-cuepoints2-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-cuepoints2-swift" role="tabpanel" aria-labelledby="tab-cuepoints2-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">// listen for cue points and display them
       func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didPassCuePoints cuePointInfo: [AnyHashable : Any]!) {
@@ -2893,6 +2903,22 @@
           }
       }</code></pre>
   </div>
+  <div class="tab-pane fade" id="nav-cuepoints2-objc" role="tabpanel" aria-labelledby="tab-cuepoints2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">// listen for cue points and display them
+      -(void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didPassCuePoints:(NSDictionary *)cuePointInfo
+      {
+          BCOVCuePointCollection *cpc = cuePointInfo[@&quot;kBCOVPlaybackSessionEventKeyCuePoints&quot;];
+          for (BCOVCuePoint *cp in cpc.array)
+          {
+              if ([cp.type isEqualToString:@&quot;<span class="bcls-input">your cue point type</span>&quot;])
+              {
+                  NSLog(@&quot;Found your cue point at %f&quot;, CMTimeGetSeconds(cp.position));
+              }
+          }
+      }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2924,23 +2950,25 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-removeplayer-objc" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-objc" type="button" role="tab" aria-controls="nav-removeplayer-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-removeplayer-swift" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-swift" type="button" role="tab" aria-controls="nav-removeplayer-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-removeplayer-swift" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-swift" type="button" role="tab" aria-controls="nav-removeplayer-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-removeplayer-objc" data-bs-toggle="tab" data-bs-target="#nav-removeplayer-objc" type="button" role="tab" aria-controls="nav-removeplayer-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-removeplayer-objc" role="tabpanel" aria-labelledby="tab-removeplayer-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">[self.playerView removeFromSuperview];
-      self.playerView = nil;
-      self.playbackController = nil;</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-removeplayer-swift" role="tabpanel" aria-labelledby="tab-removeplayer-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-removeplayer-swift" role="tabpanel" aria-labelledby="tab-removeplayer-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">playerView?.removeFromSuperview()
       playerView = nil
       playbackController = nil</code></pre>
   </div>
+  <div class="tab-pane fade " id="nav-removeplayer-objc" role="tabpanel" aria-labelledby="tab-removeplayer-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">[self.playerView removeFromSuperview];
+      self.playerView = nil;
+      self.playbackController = nil;</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -2961,21 +2989,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-audiobehavior-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-objc" type="button" role="tab" aria-controls="nav-audiobehavior-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-audiobehavior-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-swift" type="button" role="tab" aria-controls="nav-audiobehavior-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-audiobehavior-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-swift" type="button" role="tab" aria-controls="nav-audiobehavior-swift" aria-selected="true">Swift</button>
+    <button class="nav-link " id="tab-audiobehavior-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior-objc" type="button" role="tab" aria-controls="nav-audiobehavior-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-audiobehavior-objc" role="tabpanel" aria-labelledby="tab-audiobehavior-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">NSError *categoryError = nil;
-        BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
-        if (!success)
-        {
-            // Handle error
-        }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-audiobehavior-swift" role="tabpanel" aria-labelledby="tab-audiobehavior-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-audiobehavior-swift" role="tabpanel" aria-labelledby="tab-audiobehavior-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">var categoryError :NSError?
         var success: Bool
@@ -2990,6 +3010,16 @@
             // Handle error
         }</code></pre>
   </div>
+  <div class="tab-pane fade " id="nav-audiobehavior-objc" role="tabpanel" aria-labelledby="tab-audiobehavior-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">NSError *categoryError = nil;
+        BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&amp;categoryError];
+        if (!success)
+        {
+            // Handle error
+        }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -3000,36 +3030,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-audiobehavior2-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-objc" type="button" role="tab" aria-controls="nav-audiobehavior2-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-audiobehavior2-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-swift" type="button" role="tab" aria-controls="nav-audiobehavior2-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-audiobehavior2-swift" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-swift" type="button" role="tab" aria-controls="nav-audiobehavior2-swift" aria-selected="true">Swift</button>
+    <button class="nav-link " id="tab-audiobehavior2-objc" data-bs-toggle="tab" data-bs-target="#nav-audiobehavior2-objc" type="button" role="tab" aria-controls="nav-audiobehavior2-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-audiobehavior2-objc" role="tabpanel" aria-labelledby="tab-audiobehavior2-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">- (void)setUpAudioSession
-        {
-            NSError *categoryError = nil;
-            BOOL success;
-            
-            // If the player is muted, then allow mixing.
-            // Ensure other apps can have their background audio active when this app is in foreground
-            if (self.currentPlayer.isMuted)
-            {
-                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&amp;categoryError];
-            }
-            else
-            {
-                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&amp;categoryError];
-            }
-            
-            if (!success)
-            {
-                NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
-            }
-        }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-audiobehavior2-swift" role="tabpanel" aria-labelledby="tab-audiobehavior2-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-audiobehavior2-swift" role="tabpanel" aria-labelledby="tab-audiobehavior2-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">func setUpAudioSession() {
         var categoryError :NSError?
@@ -3057,6 +3064,31 @@
         }
       }</code></pre>
   </div>
+  <div class="tab-pane fade" id="nav-audiobehavior2-objc" role="tabpanel" aria-labelledby="tab-audiobehavior2-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)setUpAudioSession
+        {
+            NSError *categoryError = nil;
+            BOOL success;
+            
+            // If the player is muted, then allow mixing.
+            // Ensure other apps can have their background audio active when this app is in foreground
+            if (self.currentPlayer.isMuted)
+            {
+                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&amp;categoryError];
+            }
+            else
+            {
+                success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:0 error:&amp;categoryError];
+            }
+            
+            if (!success)
+            {
+                NSLog(@&quot;AppDelegate Debug - Error setting AVAudioSession category.  Because of this, there may be no sound. `%@`&quot;, categoryError);
+            }
+        }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
   
@@ -3100,26 +3132,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-playbackrate-objc" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-objc" type="button" role="tab" aria-controls="nav-playbackrate-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-playbackrate-swift" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-swift" type="button" role="tab" aria-controls="nav-playbackrate-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-playbackrate-swift" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-swift" type="button" role="tab" aria-controls="nav-playbackrate-swift" aria-selected="true">Swift</button>
+    <button class="nav-link" id="tab-playbackrate-objc" data-bs-toggle="tab" data-bs-target="#nav-playbackrate-objc" type="button" role="tab" aria-controls="nav-playbackrate-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-playbackrate-objc" role="tabpanel" aria-labelledby="tab-playbackrate-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
-        playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
-      {
-          if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] )
-          {
-              NSLog(@&quot;%@ at time %f&quot;, kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
-              AVPlayerItem *avPlayerItem = [session.player currentItem];
-              avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
-              session.player.rate = 1.7;
-          }
-      }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-playbackrate-swift" role="tabpanel" aria-labelledby="tab-playbackrate-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-playbackrate-swift" role="tabpanel" aria-labelledby="tab-playbackrate-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, playbackSession session: BCOVPlaybackSession!, didReceive lifecycleEvent: BCOVPlaybackSessionLifecycleEvent!) {
           
@@ -3133,6 +3152,21 @@
           
       }</code></pre>
   </div>
+  <div class="tab-pane fade " id="nav-playbackrate-objc" role="tabpanel" aria-labelledby="tab-playbackrate-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller
+        playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+      {
+          if ( [lifecycleEvent.eventType isEqualToString:kBCOVPlaybackSessionLifecycleEventReady] )
+          {
+              NSLog(@&quot;%@ at time %f&quot;, kBCOVPlaybackSessionLifecycleEventReady, CMTimeGetSeconds([session.player currentTime]));
+              AVPlayerItem *avPlayerItem = [session.player currentItem];
+              avPlayerItem.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmVarispeed;
+              session.player.rate = 1.7;
+          }
+      }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -3156,21 +3190,13 @@
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-vrmode-objc" data-bs-toggle="tab" data-bs-target="#nav-vrmode-objc" type="button" role="tab" aria-controls="nav-vrmode-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-vrmode-swift" data-bs-toggle="tab" data-bs-target="#nav-vrmode-swift" type="button" role="tab" aria-controls="nav-vrmode-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-vrmode-swift" data-bs-toggle="tab" data-bs-target="#nav-vrmode-swift" type="button" role="tab" aria-controls="nav-vrmode-swift" aria-selected="true">Swift</button>
+    <button class="nav-link " id="tab-vrmode-objc" data-bs-toggle="tab" data-bs-target="#nav-vrmode-objc" type="button" role="tab" aria-controls="nav-vrmode-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-vrmode-objc" role="tabpanel" aria-labelledby="tab-vrmode-objc" tabindex="0">
-    <pre>
-      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
-      {
-          BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
-          [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
-          [self.playbackController setViewProjection:viewProjection];
-      }</code></pre>
-  </div>
-  <div class="tab-pane fade" id="nav-vrmode-swift" role="tabpanel" aria-labelledby="tab-vrmode-swift" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-vrmode-swift" role="tabpanel" aria-labelledby="tab-vrmode-swift" tabindex="0">
     <pre>
       <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
           if let viewProjection: BCOVVideo360ViewProjection = controller.viewProjection.copy() as? BCOVVideo360ViewProjection {
@@ -3179,6 +3205,16 @@
           }
       }</code></pre>
   </div>
+  <div class="tab-pane fade " id="nav-vrmode-objc" role="tabpanel" aria-labelledby="tab-vrmode-objc" tabindex="0">
+    <pre>
+      <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
+      {
+          BCOVVideo360ViewProjection *viewProjection = [self.playbackController.viewProjection copy];
+          [viewProjection setProjectionStyle:BCOVVideo360ProjectionStyleVRGoggles];
+          [self.playbackController setViewProjection:viewProjection];
+      }</code></pre>
+  </div>
+  
 </div>
 <!-- end tabs -->
 
@@ -3195,8 +3231,8 @@
   <!-- tabs -->
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="tab-view-objc" data-bs-toggle="tab" data-bs-target="#nav-view-objc" type="button" role="tab" aria-controls="nav-view-objc" aria-selected="true">Obj-C</button>
-      <!-- <button class="nav-link" id="tab-view-swift" data-bs-toggle="tab" data-bs-target="#nav-view-swift" type="button" role="tab" aria-controls="nav-view-swift" aria-selected="false">Swift</button> -->
+      <button class="nav-link active" id="tab-view-objc" data-bs-toggle="tab" data-bs-target="#nav-view-objc" type="button" role="tab" aria-controls="nav-view-objc" aria-selected="false">Obj-C</button>
+      <!-- <button class="nav-link" id="tab-view-swift" data-bs-toggle="tab" data-bs-target="#nav-view-swift" type="button" role="tab" aria-controls="nav-view-swift" aria-selected="true">Swift</button> -->
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
@@ -3272,24 +3308,26 @@ self.playerView.controlsView.playbackButton.accessibilityHint = @"Play or pause 
 <!-- tabs -->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="tab-bkgdcolor-objc" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-objc" type="button" role="tab" aria-controls="nav-bkgdcolor-objc" aria-selected="true">Obj-C</button>
-    <button class="nav-link" id="tab-bkgdcolor-swift" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-swift" type="button" role="tab" aria-controls="nav-bkgdcolor-swift" aria-selected="false">Swift</button>
+    <button class="nav-link active" id="tab-bkgdcolor-swift" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-swift" type="button" role="tab" aria-controls="nav-bkgdcolor-swift" aria-selected="true">Swift</button>
+    <button class="nav-link " id="tab-bkgdcolor-objc" data-bs-toggle="tab" data-bs-target="#nav-bkgdcolor-objc" type="button" role="tab" aria-controls="nav-bkgdcolor-objc" aria-selected="false">Obj-C</button>
+    
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-bkgdcolor-objc" role="tabpanel" aria-labelledby="tab-bkgdcolor-objc" tabindex="0">
+  <div class="tab-pane fade show active" id="nav-bkgdcolor-swift" role="tabpanel" aria-labelledby="tab-bkgdcolor-swift" tabindex="0">
+    <pre>
+      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
+          session.playerLayer.backgroundColor = UIColor.white.cgColor
+      }</code></pre>
+  </div>
+  <div class="tab-pane fade " id="nav-bkgdcolor-objc" role="tabpanel" aria-labelledby="tab-bkgdcolor-objc" tabindex="0">
     <pre>
       <code class="language-objectivec" translate="No">- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller didAdvanceToPlaybackSession:(id&lt;BCOVPlaybackSession&gt;)session
       {
           session.playerLayer.backgroundColor = UIColor.whiteColor.CGColor;
       }</code></pre>
   </div>
-  <div class="tab-pane fade" id="nav-bkgdcolor-swift" role="tabpanel" aria-labelledby="tab-bkgdcolor-swift" tabindex="0">
-    <pre>
-      <code class="language-swift" translate="No">func playbackController(_ controller: BCOVPlaybackController!, didAdvanceTo session: BCOVPlaybackSession!) {
-          session.playerLayer.backgroundColor = UIColor.white.cgColor
-      }</code></pre>
-  </div>
+  
 </div>
 <!-- end tabs -->
 
