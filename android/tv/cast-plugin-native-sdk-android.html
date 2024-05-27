@@ -63,7 +63,8 @@ grandparent: Android Development
 <p>There are two ways you can integrate your app with the Native SDK for Android Cast plugin. You can integrate with either the Brightcove Cast Receiver v2.0, or with the Google Cast Demo Receiver.</p>
 <p>For either integration, you need to add this dependency to your app project:</p>
 <pre>
-<code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-cast-plugin:6.16.0&quot;</code></pre>
+<code class="language-java" translate="No">implementation &quot;com.brightcove.player:android-cast-plugin:$&#123;anpVersion&#125;&quot;</code></pre>
+<aside class="bcls-aside bcls-aside--information">Note: $&#123;anpVersion&#125;&quot; specifies the SDK version being integrated into your application.</aside>
 
 <h3 id="Using_the_Brightcove_Cast_Receiver_v2">Using the Brightcove Cast Receiver v2.0</h3>
 <p>This integration is intended for those Brightcove customers who use Brightcove APIs to deliver their content.</p>
@@ -79,6 +80,17 @@ grandparent: Android Development
 <p>To override this value with your Cast Receiver Application, define the following string value in the sample app’s <strong>strings.xml</strong> file:</p>
 <pre>
 <code class="language-java" translate="No">&lt;string name=&quot;cast_receiver_app_id&quot;&gt;4F8B3483&lt;/string&gt;</code></pre>
+
+<h3 id="limitations">Limitations</h3>
+<ul>
+	<li><p>DRM is not supported.</p></li>
+	<li><p>Captions in any video configuration are not supported.</p></li>
+	<li><p>Multiple Audio Tracks are not supported.</p></li>
+	<li><p>Client-side Advertising is not supported.</p></li>
+	<li><p>Server-side Advertising is not supported.</p></li>
+	<li><p>Live and Live DVR streams are not supported.</p></li>
+
+</ul>
 </section>
 
 <section class="bcls-section">
