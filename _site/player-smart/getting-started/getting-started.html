@@ -2021,12 +2021,42 @@
 <pre class="line-numbers"><code class="language-bash" translate="No">npm install @brightcove/web-sdk
 
 </code></pre>
+<p>After installation, you can import the SDK using your preferred module system:</p>
+
+<h4>CommonJS</h4>
+<pre class="line-numbers"><code class="language-JS" translate="No">const &#123; Player &#125; = require('@brightcove/web-sdk');
+</code></pre>
+
+<h4>ES Module</h4>
+<pre class="line-numbers"><code class="language-JS" translate="No">import &#123; Player &#125; from '@brightcove/web-sdk';
+</code></pre>
 <br>
-<h3>Using CDN:</h3>
-<p>Alternatively, if you prefer to use the SDK from the CDN, include the following script tag in your HTML files:</p>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/web-sdk/1/index.js"&#62;&#60;/script&#62;
+<h3>Using CDN</h3>
+<p>Alternatively, if you prefer to use the SDK from the CDN, include one of the following script tags in your HTML files:</p>
 
-
+<h4>CommonJS</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.cjs.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>ES Module</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/main/index.es.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>IIFE (Immediately Invoked Function Expression)</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.iife.min.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>Specifying a Version</h4>
+<p>To specify a version in the CDN URL:</p>
+<ul>
+  <li>Use v&#123;major&#125; to include the latest patch within a major version.</li>
+  <li>Use v&#123;major&#125;.&#123;minor&#125; to include the latest patch within a minor version.</li>
+  <li>Use v&#123;major&#125;.&#123;minor&#125;.&#123;patch&#125; to include a specific version.</li>
+</ul>
+<p>For example</p>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.iife.min.js"&#62;&#60;/script&#62;
+&#60;script src="https://players.brightcove.net/sdk/v1.1/main/index.iife.min.js"&#62;&#60;/script&#62;
+&#60;script src="https://players.brightcove.net/sdk/v1.1.1/main/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 
 </section> 
@@ -2037,61 +2067,279 @@
     <li>
         <p>Import the Player (with UI) class from the Brightcove SDK:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+import '@brightcove/web-sdk/styles';
         </code></pre>
     </li>
     <li>
-        <p>Create a Player Instance:</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
-        </code></pre>
-    </li>
-    <li>
-        <p>Set up the player with your Brightcove account details:</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">player.updateConfiguration({
+        <p>Set up the player with your Brightcove account details and optional parameters:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+  // Account ID parameter is required to initialize a player
+  accountId: '&#60;ACCOUNT_ID&#62;',
+
+  // Examples of optional parameters
   brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
+  ui: {
+    language: 'fr',
+    playsinline: true
   }
 });
         </code></pre>
     </li>
     <li>
-        <p>Link the player to a video element:</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">const videoElement = document.querySelector('video');
-player.attach(videoElement);
+        <p>Attach the player to a mount root (DOM element in the page):</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+player.attach(root);
         </code></pre>
     </li>
     <li>
-        <p>Load a video by its ID from the Brightcove Playback API:</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">const { promise } = player.getVideoById({ videoId: 'your-video-id' });
-promise.then((videoModel) => player.loadVideoModel(videoModel));
-            
+        <p>Dynamically update params in the player configuration:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">player.updateConfiguration({
+  ui: {
+    language: 'en',
+    playsinline: false
+  }
+});
                     </code></pre>
     </li>
 </ol>
 Final code:
-<pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
-import { Player } from '@brightcove/web-sdk';
+<pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+import '@brightcove/web-sdk/styles';
 
-// Create a new player
-const player = new Player();
+const player = new Player({
+  // Account ID parameter is required to initialize a player
+  accountId: '<ACCOUNT_ID>',
 
-// Update the player's configuration
-player.updateConfiguration({
+  // Examples of optional parameters
   brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
+    policyKey: '<POLICY_KEY>'
+  },
+  ui: {
+    language: 'fr',
+    playsinline: true
   }
 });
 
-// Attach a video element to the Player instance
-const videoElement = document.querySelector('video');
-player.attach(videoElement);
-    
-// Load a video by its ID from the Brightcove Playback API
-const { promise } = player.getVideoById({ videoId: 'your-video-id' });
-promise.then((videoModel) => player.loadVideoModel(videoModel));
-                
+const root = document.querySelector('#player-mount-root');
+
+// Attach the player to a mount root (DOM element in the page).
+player.attach(root);
+
+// Dynamically update params in the player configuration
+player.updateConfiguration({
+  ui: {
+    language: 'en',
+    playsinline: false
+  }
+});            
 </code></pre>
+</section>
+<section class="bcls-section">
+  <h2 id="loading-media">Loding Media</h2> 
+  <h3>Video Cloud VOD</h3>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+  accountId: '&#60;ACCOUNT_ID&#62;',
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  }
+});
+
+async function loadVideo(videoId) {
+  const { promise } = player.getVideoByIdFromPlaybackApi({ videoId });
+
+  try {
+    let videoModel = await promise;
+
+    player.loadBrightcoveVideoModel(videoModel);
+  } catch (error) {
+    // Handle error
+    console.error('Error loading video:', error);
+  }
+}
+
+loadVideo('&#60;VIDEO_ID&#62;');
+  </code></pre>
+
+  <h3>Video Cloud Playlist</h3>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+  accountId: '<ACCOUNT_ID>',
+  brightcove: {
+    policyKey: '<POLICY_KEY>'
+  }
+});
+
+async function loadPlaylist(playlistId) {
+  const { promise } = player.getPlaylistByIdFromPlaybackApi({ playlistId });
+
+  try {
+    const playlistModel = await promise;
+    const playlistManager = player.getPlaylistManager();
+
+    // Create playlist object
+    const playlist = playlistManager.createPlaylistFromBrightcoveVideoModels(playlistModel.videos);
+
+    // Pass the playlist object to the PlaylistManager
+    playlistManager.setPlaylist(playlist);
+
+    // Load the first playlist item
+    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+  } catch (error) {
+    // Handle error
+    console.error('Error loading playlist:', error);
+  }
+}
+
+loadPlaylist('<PLAYLIST_ID>');
+
+function advanceToNextItem() {
+  try {
+    const playlistManager = player.getPlaylistManager();
+    const playlist = playlistManager.getPlaylist();
+
+    // Advance to the next item
+    playlist.moveToNext();
+    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+  } catch (error) {
+    // Handle error
+    console.error('Error advancing to next item:', error);
+  }
+}
+
+advanceToNextItem();
+  </code></pre>
+
+  <h3>Remote Source</h3>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+  // accountId is still required even when loading remote media
+  accountId: '<ACCOUNT_ID>'
+});
+
+const source = {
+  url: 'http://video.com/index.m3u8'
+};
+
+try {
+  player.loadRemoteVideo(source);
+} catch (error) {
+  // Handle error
+}
+  </code></pre>
+
+</section>
+<section class="bcls-section">
+  <h2 id="integrationmanager">IntegrationsManager</h2> 
+  <p>You can integrate specific features using modular imports and the <code translate="no">IntegrationsManager</code>:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
+import { PinningIntegration } from '@brightcove/web-sdk/integrations/pinning';
+import { ThumbnailsIntegration } from '@brightcove/web-sdk/integrations/thumbnails';
+import '@brightcove/web-sdk/styles';
+import '@brightcove/web-sdk/integrations/pinning/styles';
+import '@brightcove/web-sdk/integrations/thumbnails/styles';
+
+// Register integrations before creating a Player
+IntegrationsManager.registerPinningIntegrationFactory(PinningIntegration);
+IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
+
+const player = new Player({
+  accountId: '&#60;ACCOUNT_ID&#62;',
+
+  // Integrations can have their own configuration options
+  integrations: {
+    pinning: {
+      posX: 'left',
+      posY: 'top',
+      closeable: true
+    }
+  }
+});
+
+const root = document.querySelector('#player-mount-root');
+
+player.attach(root);
+
+// Access individual integrations via the IntegrationsManager
+const { pinningIntegration } = player.getIntegrationsManager();
+
+// Perform integration-specific operations
+pinningIntegration.togglePinning();
+    </code></pre>
+</section>
+
+<section class="bcls-section">
+  <h2 id="networkingmanager">NetworkingManager</h2> 
+  <p>The <code translate="no">NetworkingManager</code> can be used to hook into the SDK's request/response cycle:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
+    
+networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
+  console.log('HLS Playlist request interceptor ', request);
+
+  return request;
+});
+
+networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
+  console.log('HLS Playlist response interceptor ', response);
+
+  return response;
+});
+    </code></pre>
+</section>
+
+<section class="bcls-section">
+  <h2 id="playlistmanager">Playlist and PlaylistManager</h2> 
+  <p>The <code translate="no">PlaylistManager</code> is used for manipulation of a <code translate="no">Playlist</code> object, comprising a list of media sources:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
+
+networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
+  console.log('HLS Playlist request interceptor ', request);
+
+  return request;
+});
+
+networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
+  console.log('HLS Playlist response interceptor ', response);
+
+  return response;
+});
+    </code></pre>
+</section>
+
+<section class="bcls-section">
+  <h2 id="playlistmanager">Events</h2> 
+
+  <pre class="line-numbers"><code class="language-JS" translate="No">// Handle only the first emission of the PlayerPlaying event
+player.once(Player.Event.PlayerPlaying, (event) => {
+  console.log('PlayerPlaying event: ', event);
+});
+
+const handlePlayerQualityLevelsChanged = (event) => console.log('PlayerQualityLevelsChanged event: ', event);
+
+// Handle every emission of the PlayerQualityLevelsChanged event
+player.addEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+
+// Remove one specific event listener
+player.removeEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+
+// Remove all listeners for a specific event
+player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);
+
+// Remove all event listeners
+player.removeAllEventListeners();
+    </code></pre>
+</section>
+
+<section class="bcls-section">
+  <h2 id="localizations">Localizations</h2> 
+  <p>Support for multiple languages and localizations can be included as follows:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">import Japanese from '@brightcove/web-sdk/main/languagePacks/ja';
+
+// .. other imports and code
+
+const uiManager = player.getUiManager();
+
+uiManager.addLanguagePack('ja', Japanese);
+        </code></pre>
 </section>
 
 </article>
