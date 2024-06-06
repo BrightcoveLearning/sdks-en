@@ -109,11 +109,11 @@ import '@brightcove/web-sdk/styles';
 
 const player = new Player({
   // Account ID parameter is required to initialize a player
-  accountId: '<ACCOUNT_ID>',
+  accountId: '&#60;ACCOUNT_ID&#62;',
 
   // Examples of optional parameters
   brightcove: {
-    policyKey: '<POLICY_KEY>'
+    policyKey: '&#60;POLICY_KEY&#62;'
   },
   ui: {
     language: 'fr',
@@ -161,11 +161,13 @@ async function loadVideo(videoId) {
 loadVideo('&#60;VIDEO_ID&#62;');
   </code></pre>
 
+  <br>
+
   <h3>Video Cloud Playlist</h3>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-  accountId: '<ACCOUNT_ID>',
+  accountId: '&#60;ACCOUNT_ID&#62;',
   brightcove: {
-    policyKey: '<POLICY_KEY>'
+    policyKey: '&#60;POLICY_KEY&#62;'
   }
 });
 
@@ -190,7 +192,7 @@ async function loadPlaylist(playlistId) {
   }
 }
 
-loadPlaylist('<PLAYLIST_ID>');
+loadPlaylist('&#60;PLAYLIST_ID&#62;');
 
 function advanceToNextItem() {
   try {
@@ -208,11 +210,11 @@ function advanceToNextItem() {
 
 advanceToNextItem();
   </code></pre>
-
+<br>
   <h3>Remote Source</h3>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
   // accountId is still required even when loading remote media
-  accountId: '<ACCOUNT_ID>'
+  accountId: '&#60;ACCOUNT_ID&#62;'
 });
 
 const source = {
