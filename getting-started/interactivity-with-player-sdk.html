@@ -1,6 +1,6 @@
 ---
 title: Interactivity with Player SDK
-description: 'The Interactivity with Player SDKs can be implemented to provide a dynamic feature-rich user experience.'
+description: 'The Interactivity with Player SDKs can be implemented to provide a dynamic feature-rich user experience for iOS and Android.'
 parent: Getting Started
 layout: staging
 ---
@@ -235,4 +235,122 @@ self.interactivityHandler.delegate = self;</code></pre>
 }</code></pre>
 
   </section>
+  <section class="bcls-section">
+    <h2 id="interactivity-for-android">Using Interactivity With The Brightcove Player SDK for Android</h2>
+    <p>The Android SDK's interactivity component allows annotations to be displayed on the player. These annotations must be previously set and configured for a video through Brightcove Studio. See the <a href="https://studio.support.brightcove.com/interactivity/index.html" target="_blank">interactivity documentation</a> to learn the basics of Interactivity and how to set annotations in Brightcove Studio.</p>
+    <p>Once the interactivity component is enabled in the Android SDK, the SDK will retrieve and display the annotations on the player view.</p>
+</section>
+
+<section id="annotations-supported">
+    <h2>Annotations Supported</h2>
+    <ul>
+        <li>Image Overlay
+            <ul>
+                <li>Command and Command Data.</li>
+                <li>Jump to video time.</li>
+                <li>Open URL.</li>
+            </ul>
+        </li>
+        <li>Text Overlay
+            <ul>
+                <li>White and Black “Mullins Special” theme.</li>
+                <li>Command and Command Data.</li>
+                <li>Jump to video time.</li>
+                <li>Open URL.</li>
+            </ul>
+        </li>
+        <li>Time-Triggered Action
+            <ul>
+                <li>Command and Command Data.</li>
+                <li>Jump to video time.</li>
+            </ul>
+        </li>
+        <li>Transparent Overlay
+            <ul>
+                <li>Command and Command Data.</li>
+                <li>Jump to video time.</li>
+                <li>Open URL.</li>
+            </ul>
+        </li>
+        <li>Fade-in/fade-out transitions</li>
+        <li>Preconditions for dynamic showing and hiding of annotations</li>
+    </ul>
+</section>
+
+
+<section id="implementation">
+    <h2 id="seetting-android-interactivity">Setting Up Interactivity</h2>
+    <p>The Android SDK allows interacting with interactivity’s functionalities through the <code translate="no">InteractivityComponent</code> class, which provides capabilities such as retrieving annotations from the backend, setting listeners for annotation events, enabling and disabling preconditions, etc.</p>
+    <ol class="bcls-tasklist">
+        <li><p><strong>Create an instance of InteractivityComponent</strong></p>
+        <p>This component will help retrieve the annotations related to the video you want to play.</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">val interactivityComponent = InteractivityComponent(baseVideoView)</code></pre>
+        </li>
+        <li><p><strong>Retrieve Annotations</strong></p>
+        <p>Retrieve the annotations for your video by passing the account ID and video ID. Use the <code translate="no">getAnnotations()</code> method to fetch this data.</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">interactivityComponent.getAnnotations(account = accountId, videoId = videoId, object : AnnotationsCallback&#60;List&#60;Annotation&#62;&#62; {
+    override fun onSuccess(result: List&#60;Annotation&#62;) {
+        Log.i("AnnotationsCallback", result.toString())
+    }
+
+    override fun onError(error: Throwable?) {
+        error?.message?.let { Log.i("AnnotationsCallback", it) }
+    }
+})</code></pre>
+<aside class="bcls-aside bcls-aside--information">Note: There is no need to call <code translate="no">setAnnotations()</code> method as the <code translate="no">InteractivityComponent</code> class automatically keeps the retrieved list.</aside>
+        </li>
+        <li><p><strong>Set Up Annotation Listener</strong></p>
+        <p>To handle annotation events, set up an <code translate="no">AnnotationListener</code>. This listener provides information about various annotation-related events, such as when an annotation is displayed, removed, or interacted with.</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">//Annotations Listener
+private val annotationsListener = object : AnnotationsListener {
+    override fun onAnnotationDisplayed(annotation: Annotation) {
+        Log.i(TAG, "onAnnotationDisplayed $annotation")
+    }
+    
+    override fun onAnnotationRemoved(annotation: Annotation) {
+        Log.i(TAG, "onAnnotationRemoved $annotation")
+    }
+    
+    override fun onAnnotationTapped(annotation: Annotation) {
+        Log.i(TAG, "onAnnotationTapped $annotation")
+    }
+    override fun onJumpToVideoTime(annotation: Annotation) {
+        Log.i(TAG, "onJumpToVideoTime $annotation")
+    }
+    
+    override fun onOpenURL(annotation: Annotation) {
+        Log.i(TAG, "onOpenURL $annotation")
+    }
+}
+
+interactivityComponent.setAnnotationsListener(annotationsListener)</code></pre>
+        </li>
+        <li><p><strong>Managing Preconditions</strong></p>
+        <p>Preconditions can be used to dynamically show and hide annotations based on certain conditions. For example, if a precondition named "blue" is set in the Studio, you can enable it in the app as follows:</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">interactivityComponent.enablePrecondition("blue")</code></pre>
+        <p>To disable the precondition:</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">interactivityComponent.disablePrecondition("blue")</code></pre>
+        </li>
+        <li><p><strong>Access Command and Command Data</strong></p>
+        <p>In order to get the data for <code translate="no">command</code> and <code translate="no">commandData</code> in studio, you can access them through the annotation list returned on the <code translate="no">onSuccess</code> method like this:</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">override fun onSuccess(result: List<Annotation>) {
+            val command: String? = result.find { it.id == "annotationId" }?.command
+            val commandData: Map&#60;String, String&#62;? = result.find { it.id == "annotationId" }?.commandData
+        }</code></pre>
+        <p>In this example, we get the <code translate="no">command</code> and <code translate="no">commandData</code> values from the annotation list when the <code translate="no">annotationId</code> is equal to the one we are looking for.</p>
+        <p>Additionally, you can access <code translate="no">command</code> and <code translate="no">commandData</code> properties once an action occurs in an annotation (e.g., Displayed, hide, tapped, jumpedInTime, openURL) through the <code>annotationsListener</code>.</p>
+        <pre class="line-numbers"><code class="language-kotlin" translate="No">override fun onAnnotationTapped(annotation: Annotation) {
+    val command: String = annotation.command
+    val commandData: Map<String, String> = annotation.commandData
+}</code></pre>
+        </li>
+    </ol>
+</section>
+
+
+<section id="captions">
+    <h2 id="captions-annotations">Captions and Annotations</h2>
+    <p>Annotations can be placed at the same place as captions, but captions are always in front of annotations. Even if annotations and captions are at the same position, annotations can be tapped to trigger the actions set in Studio.</p>
+    <aside class="bcls-aside bcls-aside--tip">Note: Be aware that annotations may not show completely if placed at the same position as captions.</aside>
+</section>
 </article>
