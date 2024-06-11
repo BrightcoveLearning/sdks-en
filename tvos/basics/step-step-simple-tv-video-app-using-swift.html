@@ -501,7 +501,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	<pre class="line-numbers" data-start="75">
 <code class="language-swift" translate="No">private func requestContentFromPlaybackService() {
-  playbackService.findVideo(withVideoID: playbackConfig.videoID, parameters: nil) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+  playbackService.findVideo(withConfiguration: configuration, queryParameters: nil, completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
     if let _video = video {
       //  since "isAutoPlay" is true, setVideos will begin playing the content
@@ -640,7 +640,7 @@ class ViewController: UIViewController {
   }
 
   private func requestContentFromPlaybackService() {
-    playbackService.findVideo(withVideoID: playbackConfig.videoID, parameters: nil) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+    playbackService.findVideo(withConfiguration: configuration, queryParameters: nil, completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
       if let _video = video {
         //  since "isAutoPlay" is true, setVideos will begin playing the content

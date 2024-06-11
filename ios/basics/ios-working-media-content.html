@@ -88,7 +88,7 @@ override func viewDidLoad() {
 }
 
 func requestContentFromPlaybackService() {
-  playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) { (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+  playbackService?.findVideo(withConfiguration: configuration, parameters: nil), completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
     if let v = video {
     	self.playbackController.setVideos([v] as NSArray)
@@ -111,7 +111,7 @@ func requestContentFromPlaybackService() {
 
 	<pre class="line-numbers">
 <code class="language-swift" translate="No">func requestContentFromPlaybackService() {
-playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) { (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+playbackService?.findVideo(withConfiguration: configuration, parameters: nil), completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
   if let v = video {
 <span class="bcls-highlight">	print("video name: \(v.properties["name"] as AnyObject)")

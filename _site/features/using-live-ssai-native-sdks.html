@@ -2204,7 +2204,7 @@
 	<p>Make the catalog call to the Playback API with your live stream video id and the updated HTTP request.</p>
 
 	<pre class="line-numbers">
-<code class="language-swift" translate="No">playbackService.findVideo(withVideoID: Constants.VideoId, parameters: queryParameters) { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+<code class="language-swift" translate="No">playbackService.findVideo(withConfiguration: configuration, parameters: queryParameters), completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
 
    guard let _video = video else {
      print("ViewController Debug - Error retrieving video: \(error?.localizedDescription ?? "unknown error")")

@@ -2284,7 +2284,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     <p>
       For a video request, use one of the following:
     </p>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithVideoID:(NSString *)videoID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithConfiguration:(NSDictionary *)configuration queryParameters:(NSDictionary *)queryParameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
     <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findVideoWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
@@ -2292,7 +2292,7 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     <p>
       For a playlist request, use one of the following:
     </p>
-    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithPlaylistID:(NSString *)playlistID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
+    <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithConfiguration:(NSDictionary *)configuration queryParameters:(NSDictionary *)queryParameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
     <pre class="line-numbers"><code class="language-objectivec" translate="No">- (void)findPlaylistWithReferenceID:(NSString *)referenceID authToken:(NSString *)authToken parameters:(NSDictionary *)parameters completion:(void (^)(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error))completionHandler;
 </code></pre>
@@ -2330,23 +2330,14 @@ playlist.findPlaylist(catalog, httpRequestConfig, new PlaylistListener() {
     </p>
 
     <h3>License Keys Protection with Delivery Rules</h3>
-    <p>
-      To combine License Keys Protection with Delivery Rules, do the following:
-    </p>
-    <ul>
-      <li>Define the parameter for your Delivery Rules ID</li>
-      <li>Pass the Delivery Rules ID as a parameter with the catalog call to the Playback API</li>
-      <li>Pass your JSON Web Token (JWT) using the <code translate="No">authToken</code> parameter</li>
-    </ul>
+    <p>To secure your video content with license keys, use the <code translate="no">findVideoWithConfiguration:queryParameters:completion:</code> method.
+      This method uses a configuration dictionary to specify the video ID. Pass any query parameters as a dictionary and handle the completion block to manage the video playback.</p>
     <p>Here is a code example:</p>
     <pre class="line-numbers"><code class="language-java" translate="No">- (void)requestContentFromPlaybackService
   {
-    <span class="bcls-highlight">NSDictionary *playbackAPIParameters = @{@&quot;config_id&quot;:@&quot;<span class="bcls-input">your rules id</span>&quot;};</span>
+    <span class="bcls-highlight">NSDictionary *configuration = @{kBCOVPlaybackServiceConfigurationKeyAssetID: kViewControllerVideoID};
 
-    [self.playbackService findVideoWithVideoID:kViewControllerVideoID
-      <span class="bcls-highlight">authToken:(NSString *)authToken</span>
-      <span class="bcls-highlight">parameters:playbackAPIParameters</span>
-      completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+    [self.playbackService findVideoWithConfiguration:configuration queryParameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
 
       if (video)
       {

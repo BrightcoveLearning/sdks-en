@@ -2498,7 +2498,7 @@
           let playbackServiceRequestFactory = BCOVPlaybackServiceRequestFactory(accountId: kDynamicDeliveryAccountID, policyKey: kDynamicDeliveryPolicyKey)
           let playbackService = BCOVPlaybackService(requestFactory: playbackServiceRequestFactory)
           
-          playbackService?.findPlaylist(withPlaylistID: kDynamicDeliveryPlaylistRefID, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+          playbackService?.findPlaylist(withConfiguration: configuration, parameters: nil, completion: { [weak self] (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
               
               guard let strongSelf = self else {
                   return
@@ -2533,7 +2533,7 @@
         policyKey:kDynamicDeliveryPolicyKey];
         BCOVPlaybackService *playbackService = [[BCOVPlaybackService alloc] initWithRequestFactory:playbackServiceRequestFactory];
       
-        [playbackService findPlaylistWithReferenceID:kDynamicDeliveryPlaylistRefID parameters:nil 
+        [playbackService findPlaylistWithConfiguration:configuration parameters:nil 
         completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error) 
         {
           [self.refreshControl endRefreshing];
@@ -2742,7 +2742,7 @@
           &quot;offset&quot;: 9
       ]
       
-      playbackService?.findPlaylist(withPlaylistID: playlistRefID, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
+      playbackService?.findPlaylist(withConfiguration: configurastion, parameters: params, completion: { (playlist: BCOVPlaylist?, jsonResponse: [AnyHashable:Any]?, error: Error?) in
           // Your code here
       })</code></pre>
   </div>
@@ -2753,7 +2753,7 @@
         @&quot;offset&quot;: @9
       };
       
-      [playbackService findPlaylistWithReferenceID:playlistRefID parameters:params completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
+      [playbackService findPlaylistWithConfiguration:configuration parameters:params completion:^(BCOVPlaylist *playlist, NSDictionary *jsonResponse, NSError *error)
       { 
           // Your code here
       }];</code></pre>
@@ -2784,8 +2784,7 @@
     <pre>
       <code class="language-swift" translate="No">// programmatically add cue points to a video
       func requestContentFromPlaybackService() {
-          playbackService?.findVideo(withVideoID: kViewControllerVideoID, parameters: nil) 
-          { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
+          playbackService?.findVideo(withConfiguration: configuration, queryParameters: nil, completion: { [weak self] (video: BCOVVideo?, jsonResponse: [AnyHashable: Any]?, error: Error?) -&gt; Void in
       
               if let error = error {
                   print(&quot;ViewController Debug - Error retrieving video: `\(error.localizedDescription)`&quot;)
@@ -2837,7 +2836,7 @@
       <code class="language-objectivec" translate="No">// programmatically add cue points to a video
       - (void)requestContentFromPlaybackService
       {
-          [self.service findVideoWithVideoID:kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+          [self.service findVideoWithConfiguration:configuration parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
               if (video)
               {
                   // Get the video duration from the properties dictionary
