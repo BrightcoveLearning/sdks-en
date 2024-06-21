@@ -2035,15 +2035,15 @@
 <p>Alternatively, if you prefer to use the SDK from the CDN, include one of the following script tags in your HTML files:</p>
 
 <h4>CommonJS</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.cjs.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.cjs.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>ES Module</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/main/index.es.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/playback/index.es.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>IIFE (Immediately Invoked Function Expression)</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.iife.min.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>Specifying a Version</h4>
@@ -2054,21 +2054,29 @@
   <li>Use v&#123;major&#125;.&#123;minor&#125;.&#123;patch&#125; to include a specific version.</li>
 </ul>
 <p>For example</p>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/main/index.iife.min.js"&#62;&#60;/script&#62;
-&#60;script src="https://players.brightcove.net/sdk/v1.1/main/index.iife.min.js"&#62;&#60;/script&#62;
-&#60;script src="https://players.brightcove.net/sdk/v1.1.1/main/index.iife.min.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+&#60;script src="https://players.brightcove.net/sdk/v1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+&#60;script src="https://players.brightcove.net/sdk/v1.1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 
 </section> 
 <section class="bcls-section">
-    <h2 id="player">Creating a Media Player</h2> 
+    <h2 id="initialiting-player">Initializing the Player</h2> 
 <p>Once the SDK is installed, you can create a media player to embed in your application. By following these steps, you will have a basic video player set up using the Brightcove Web & Smart TV SDK.</p>
 <ol class="bcls-tasklist">
     <li>
-        <p>Import the Player (with UI) class from the Brightcove SDK:</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+      <ul>
+        <li><p><strong>Playback-Only</strong></p>
+          <p>For applications that only require playback functionality, and no additional UI features:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/playback';
+          </code></pre></li>
+          <li><p><strong>Playback with UI</strong></p>
+            <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
 import '@brightcove/web-sdk/styles';
-        </code></pre>
+            </code></pre></li>
+      </ul>
+        
     </li>
     <li>
         <p>Set up the player with your Brightcove account details and optional parameters:</p>
@@ -2104,8 +2112,8 @@ player.attach(root);
                     </code></pre>
     </li>
 </ol>
-Final code:
-<pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+<p>Final code:</p>
+<pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
 import '@brightcove/web-sdk/styles';
 
 const player = new Player({
@@ -2139,6 +2147,36 @@ player.updateConfiguration({
 <section class="bcls-section">
   <h2 id="loading-media">Loding Media</h2> 
   <h3>Video Cloud VOD</h3>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+    accountId: '&#60;ACCOUNT_ID&#62;',
+    brightcove: {
+        policyKey: '&#60;POLICY_KEY&#62;'
+    }
+});</code></pre>
+    </li>
+    <li><p><strong>Create a Function to Load Video</strong>: Define an asynchronous function to load video metadata using the video ID.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">async function loadVideo(videoId) {
+    const promise = player.getVideoByIdFromPlaybackApi({ videoId });
+
+    try {
+        let videoModel = await promise;
+
+        player.loadBrightcoveVideoModel(videoModel);
+    } catch (error) {
+        console.error('Error loading video:', error);
+    }
+}
+</code></pre>
+    </li>
+    <li><p>Call the <strong>loadVideo</strong> function with your specific video ID to load the video into the player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">loadVideo('&#60;VIDEO_ID&#62;');
+
+</code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
   accountId: '&#60;ACCOUNT_ID&#62;',
   brightcove: {
@@ -2163,8 +2201,48 @@ loadVideo('&#60;VIDEO_ID&#62;');
   </code></pre>
 
   <br>
+</section>
+  <section class="bcls-section">
+  <h2 id="playlist">Video Cloud Playlist</h2>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+    accountId: '&#60;ACCOUNT_ID&#62;',
+    brightcove: {
+        policyKey: '&#60;POLICY_KEY&#62;'
+    }
+});</code></pre>
+    </li>
+    <li><p><strong>Create a Function to Load Playlist</strong>: Define an asynchronous function to load a playlist using the playlist ID.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">async function loadPlaylist(playlistId) {
+    const promise = player.getPlaylistByIdFromPlaybackApi({ playlistId });
 
-  <h3>Video Cloud Playlist</h3>
+    try {
+        const playlistModel = await promise;
+        const playlistManager = player.getPlaylistManager();
+
+        // Create playlist object
+        const playlist = playlistManager.createPlaylistFromBrightcoveVideoModels(playlistModel.videos);
+
+        // Pass the playlist object to the PlaylistManager
+        playlistManager.setPlaylist(playlist);
+
+        // Load the first playlist item
+        player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+    } catch (error) {
+        console.error('Error loading playlist:', error);
+    }
+}
+</code></pre>
+    </li>
+    <li><p>Call the <strong>loadPlaylist</strong> function with your specific playlist ID to load the playlist into the player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">loadPlaylist('&#60;PLAYLIST_ID&#62;');
+
+
+</code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
   accountId: '&#60;ACCOUNT_ID&#62;',
   brightcove: {
@@ -2211,10 +2289,35 @@ function advanceToNextItem() {
 
 advanceToNextItem();
   </code></pre>
+</section>
 <br>
-  <h3>Remote Source</h3>
+<section class="bcls-section">
+  <h2 id="remote-source">Remote Source</h2>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+    // accountId is still required even when loading remote media
+    accountId: '&#60;ACCOUNT_ID&#62;',
+});</code></pre>
+    </li>
+    <li><p><strong>Define the Remote Video Source</strong>: Define the remote video source URL.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const source = {
+    url: 'http://video.com/index.m3u8'
+};
+</code></pre>
+    </li>
+    <li><p><strong>Load the Remote Video</strong>: Load the remote video source and handle any potential errors.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">try {
+    player.loadRemoteVideo(source);
+} catch (error) {
+    // Handle error
+    console.error('Error loading remote video:', error);
+}    
+</code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-  // accountId is still required even when loading remote media
   accountId: '&#60;ACCOUNT_ID&#62;'
 });
 
@@ -2235,6 +2338,48 @@ try {
   <p>The <code translate="no">IntegrationsManager</code> class in the Brightcove Web SDK is designed to manage various integrations within the SDK, such as pinning, thumbnails, IMA ads, and more. It allows you to register, deregister, and access different integration factories, providing a flexible way to enhance your video player with additional features.</p>
   <h3>Example Usage</h3>
   <p>Below is an example of how to use the <code translate="no">IntegrationsManager</code> to register integrations and use them within your Brightcove Player instance.</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import Necessary Modules</strong>: Import the required modules from the Brightcove Web SDK.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
+import { PinningIntegration } from '@brightcove/web-sdk/integrations/pinning';
+import { ThumbnailsIntegration } from '@brightcove/web-sdk/integrations/thumbnails';
+import '@brightcove/web-sdk/styles';
+import '@brightcove/web-sdk/integrations/pinning/styles';
+import '@brightcove/web-sdk/integrations/thumbnails/styles';</code></pre>
+    </li>
+    <li><p><strong>Register Integrations</strong>: Register the integrations before creating the player instance.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegration);
+IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
+</code></pre>
+    </li>
+    <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Brightcove Player and include the integrations with their configuration options.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+    accountId: '<ACCOUNT_ID>',
+    integrations: {
+        pinning: {
+            posX: 'left',
+            posY: 'top',
+            closeable: true
+        }
+    }
+});    
+</code></pre>
+    </li>
+    <li><p><strong>Attach the Player to the DOM</strong>: Specify the DOM element where the player should be attached.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+        player.attach(root);          
+</code></pre>
+    </li>
+    <li><p><strong>Access Individual Integrations</strong>: Use the <code translate="no">IntegrationsManager</code> to access and control specific integrations.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const pinningIntegration = player.getIntegrationsManager().get(PinningIntegration);         
+</code></pre>
+    </li>
+    <li><p><strong>Perform Integration-Specific Operations</strong>: Perform specific operations provided by the integration.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">pinningIntegration.togglePinning();       
+</code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
 import { PinningIntegration } from '@brightcove/web-sdk/integrations/pinning';
 import { ThumbnailsIntegration } from '@brightcove/web-sdk/integrations/thumbnails';
