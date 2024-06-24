@@ -222,6 +222,12 @@
               
               
               
+              <li class="nav-item"><a class="nav-link" href="/getting-started/interactivity-with-player-sdk.html">Interactivity with Player SDK</a></li>
+              
+              
+              
+              
+              
               <li class="nav-item"><a class="nav-link" href="/getting-started/native-video-playback.html">Native Video Playback</a></li>
               
               
@@ -2418,7 +2424,16 @@ pinningIntegration.togglePinning();
 
 <section class="bcls-section">
   <h2 id="networkingmanager">NetworkingManager</h2> 
-  <p>The <code translate="no">NetworkingManager</code> can be used to hook into the SDK's request/response cycle:</p>
+  <p>The <code translate="no">NetworkingManager</code> is used to hook into the SDK's request/response cycle and allows you to intercept and manipulate network requests and responses the player makes. enabling a wide range of custom behaviors and optimizations.</p>
+
+  <p>The <code translate="no">NetworkingManager</code> provides two main functionalities:</p>
+  <ul>
+    <li><p><strong>Request Interceptors</strong>: These allow you to intercept and modify outgoing requests before they are sent to the server.</p></li>
+    <li><p><strong>Response Interceptors</strong>: These allow you to intercept and modify incoming responses before they are processed by the player.</p></li>
+  </ul>
+  <ol class="bcls-tasklist-restart">
+    <li><p>Initialize the <code translate="no">NetworkingManager</code></p></li>
+  </ol>
   <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
     
 networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
