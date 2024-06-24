@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Framework</title>
+        <title>Android SDK v9.0 Migration Guide</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Learn the fundamental framework supporting the Brightcove Native SDK for tvOS.">
+        <meta name="description" content="In this topic, you will learn about the new improvements and features in the major version release of Android SDK v9.0.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1977,11 +1977,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/tvos/">Tvos</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/android/">Android</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Framework</li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/android/basics/">Basics</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">Android SDK v9.0 Migration Guide</li>
             
             
           </ol>
@@ -1994,77 +1998,159 @@
   <div class="container">
     <div class="docs-overview py-5">
       
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br>
       
-<!-- Template for sub-section that has just pages -->
+      
+<h1>Android SDK v9.0 Migration Guide</h1>
+<article class="bcls-article">
+  <summary>In this topic, you will learn about the new improvements and features in the major version release of Android SDK v9.0.</summary>
 
-  
+<section class="bcls-section">
+<h2 id="Introduction">Introduction</h2>
+<p>The Android SDK v9.0 decouples the foreground service from its core, introducing breaking changes compared to previous versions. The foreground service is used mainly for background playback and downloading media to store on the device. The code will need adjustment if the application uses one or both of these features.</p>
+<p>Before the Android SDK v9.0, the previous versions used to create the notification for background playback and background download automatically. Due to policy changes in the Google Play Store for applications targeting Android 14 and above, starting from v9.0, only applications that offer one or both features should explicitly implement the plugins Offline-Playback and Playback-Notification.</p>
+</section>
 
-  
+<section class="bcls-section">
+<h2 id="Background_Playback_updates">Background Playback updates</h2>
+<p>With Android SDK v9.0, the new plugin Playback-Notification was introduced, which helps create notifications for background playback. If your application does not offer background playback but you are planning to implement it, see this <a href="https://developer.android.com/media/media3/session/background-playback">documentation</a>.</p>
+<p>If your application already offers background playback, follow the next instructions to migrate to the new plugin:</p>
+<h3>Breaking updates</h3>
+<p>The following classes were affected by the updates:</p>
+<ul>
+    <li>The <code>BrightcoveNotification</code> class has been replaced with the <code>PlaybackNotification</code> class.</li>
+    <li>The <code>MediaPlaybackService</code> class has been moved into the new <code>Playback-Notification</code> plugin.</li>
+    <li>The <code>PlaybackNotification</code> changed from being a <strong>Class</strong> to being an <strong>Interface</strong>.</li>
+    <li>The <code>PlaybackNotification.Config</code> class has been renamed to <code>BackgroundPlaybackNotification</code>.</li>
+</ul>
+</section>
 
-  
+<section class="bcls-section">
+<h2 id="Adding_the_new_plugin">Adding the new plugin</h2>
 
-  
+<p>Include the new plugin in your <code>build.gradle</code> file:</p>
 
-  
+<pre class="line-numbers">
+<code class="language-kotlin" translate="No">dependencies {
+    implementation "com.brightcove.player:android-playback-notification-plugin:[SDK_VERSION]"
+}</code>
+</pre>
+</section>
 
-  
+<section class="bcls-section">
+    <h2 id="Creating_the_notification">Creating the notification</h2>
+    <p>Here is the list of steps for creating the notification:</p>
+    <ol class="bcls-tasklist">
+    <li><p>In the activity where Brightcove Player lives, you can create the <code>PlaybackNotification</code> through the <code>BackgroundPlaybackNotification</code> class.</p>
+    <h4>Kotlin version</h4>
     
-      
+    <pre class="line-numbers"><code class="language-kotlin" translate="No">val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+ val myNotification = BackgroundPlaybackNotification.getInstance(this)</code></pre>
     
-      
+ <h4>Java version</h4>
     
-      
-    
-      
-    
-      
-    
-      
-      <h1><i class="fa-brands fa-apple"></i> Framework</h1>
-      <article class="bcls-article">
-        <summary>Learn the fundamental framework supporting the Brightcove Native SDK for tvOS.</summary>
+ <pre class="line-numbers"><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+ PlaybackNotification myNotification =  BackgroundPlaybackNotification.getInstance(this);</code></pre>
+</li>
+ <li>   
+ <p>The <code>BackgroundPlaybackNotification</code> class will create a default notification</p>
+ <p>The notification requires a <code>config</code> object; the default action is to set a new <code>PlaybackNotificationConfig</code> object. Finally, the notification will require  the player that will be attached to it:</p>
 
-        <div class="col-12 col-lg-4 py-3">
-          <div class="card shadow-sm" style="background: white" onclick="window.location.href = '/tvos/index.html'">
-            <div class="card-body">
-              <section class="flex-container">
-                <div>
-                  <ul class="list-group list-group-flush">
-                    
-                    <li class="list-group-item"><a href="/ios/framework/swiftui-development.html" style="text-decoration: none;">SwiftUI Development</a></li>
-                    
-                    <li class="list-group-item"><a href="/ios/framework/working-app-transport-security-ats.html" style="text-decoration: none;">Working with App Transport Security (ATS)</a></li>
-                    
-                  </ul>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-      </article>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
+ <h4>Kotlin version</h4>
 
-  
+ <pre class="line-numbers"><code class="language-kotlin" translate="No">myNotification?.setConfig(PlaybackNotificationConfig(this))
+myNotification?.playback = videoDisplayComponent?.playback
+</code></pre>
+       
+<h4>Java version</h4>
 
-  
+<pre class="line-numbers"><code class="language-java" translate="No">myNotification.setConfig(new PlaybackNotificationConfig(this));
+myNotification.setPlayback(displayComponent.getPlayback());</code></pre>
+</li>
 
-  
+<li>
+<p>Once the notification is created and configured, it is set in the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
+
+<h4>Kotlin version</h4>
+
+ <pre class="line-numbers"><code class="language-kotlin" translate="No">videoDisplayComponent?.let {
+    videoDisplayComponent.playbackNotification = myNotification
+}</code></pre>
+       
+<h4>Java version</h4>
+
+<pre class="line-numbers"><code class="language-java" translate="No">if (videoDisplayComponent != null ) {
+    videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+ }</code></pre>
+</li>
+
+<li>
+    <p>Here is the complete code:</p>
+    
+    <h4>Kotlin version</h4>
+    
+     <pre class="line-numbers"><code class="language-kotlin" translate="No">
+val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+val myNotification = BackgroundPlaybackNotification.getInstance(this)
+myNotification?.setConfig(PlaybackNotificationConfig(this))
+myNotification?.playback = videoDisplayComponent?.playback
+
+videoDisplayComponent?.let {
+    videoDisplayComponent.playbackNotification = myNotification
+}</code></pre>
+           
+    <h4>Java version</h4>
+    
+    <pre class="line-numbers"><code class="language-java" translate="No">
+ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
+myNotification.setConfig(new PlaybackNotificationConfig(this));
+myNotification.setPlayback(displayComponent.getPlayback());
+
+if (videoDisplayComponent != null ) {
+   videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+}
+</code></pre>
+    </li>
+</ol>
+</section>
+
+<section class="bcls-section">
+    <h2 id="Offline_Playback_updates">Offline Playback updates</h2>
+    <p>Downloading media to play it offline later requires integrating the Offline-Playback plugin in your <code>build.gradle</code> file manually:</p>
+    
+    <pre class="line-numbers"><code class="language-kotlin" translate="No">dependencies {
+        implementation "com.brightcove.player:offline-playback:[SDK_VERSION]"
+}</code></pre>
+
+<p>Finally, in the activity where Brightcove Player lives, it is necessary to set a <code>MediaStore</code> through the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
+<h4>Kotlin version</h4>
+    
+    <pre class="line-numbers"><code class="language-kotlin" translate="No">val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+videoDisplayComponent?.let {
+    videoDisplayComponent.setMediaStore = OfflineStoreManager.getInstance(this)
+}</code></pre>
+    
+ <h4>Java version</h4>
+    
+ <pre class="line-numbers"><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent videoDisplayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+if (videoDisplayComponent != null) {
+    videoDisplayComponent.setMediaStore(OfflineStoreManager.getInstance(this));
+}</code></pre>
+
+</section>
 
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">Page Contents</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
   
 <!-- </div> -->
 </div>
