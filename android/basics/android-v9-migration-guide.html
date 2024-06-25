@@ -9,137 +9,208 @@ grandparent: Android Development
 <article class="bcls-article">
   <summary>{{ page.description }}</summary>
 
-<section class="bcls-section">
-<h2 id="Introduction">Introduction</h2>
-<p>The Android SDK v9.0 decouples the foreground service from its core, introducing breaking changes compared to previous versions. The foreground service is used mainly for background playback and downloading media to store on the device. The code will need adjustment if the application uses one or both of these features.</p>
-<p>Before the Android SDK v9.0, the previous versions used to create the notification for background playback and background download automatically. Due to policy changes in the Google Play Store for applications targeting Android 14 and above, starting from v9.0, only applications that offer one or both features should explicitly implement the plugins Offline-Playback and Playback-Notification.</p>
-</section>
+    <section class="bcls-section">
+    <h2 id="Introduction">Introduction</h2>
+    <p>The Android SDK v9.0 decouples the foreground service from its core, introducing breaking changes compared to previous versions. The foreground service is used mainly for background playback and downloading media to store on the device. The code will need adjustment if the application uses one or both of these features.</p>
+    <p>Before the Android SDK v9.0, the previous versions used to create the notification for background playback and background download automatically. Due to policy changes in the Google Play Store for applications targeting Android 14 and above, starting from v9.0, only applications that offer one or both features should explicitly implement the plugins Offline-Playback and Playback-Notification.</p>
+    </section>
 
-<section class="bcls-section">
-<h2 id="Background_Playback_updates">Background Playback updates</h2>
-<p>With Android SDK v9.0, the new plugin Playback-Notification was introduced, which helps create notifications for background playback. If your application does not offer background playback but you are planning to implement it, see this <a href="https://developer.android.com/media/media3/session/background-playback">documentation</a>.</p>
-<p>If your application already offers background playback, follow the next instructions to migrate to the new plugin:</p>
-<h3>Breaking updates</h3>
-<p>The following classes were affected by the updates:</p>
-<ul>
-    <li>The <code>BrightcoveNotification</code> class has been replaced with the <code>PlaybackNotification</code> class.</li>
-    <li>The <code>MediaPlaybackService</code> class has been moved into the new <code>Playback-Notification</code> plugin.</li>
-    <li>The <code>PlaybackNotification</code> changed from being a <strong>Class</strong> to being an <strong>Interface</strong>.</li>
-    <li>The <code>PlaybackNotification.Config</code> class has been renamed to <code>BackgroundPlaybackNotification</code>.</li>
-</ul>
-</section>
+    <section class="bcls-section">
+    <h2 id="Background_Playback_updates">Background Playback updates</h2>
+    <p>With Android SDK v9.0, the new plugin Playback-Notification was introduced, which helps create notifications for background playback. If your application does not offer background playback but you are planning to implement it, see <a href="/android/playback/android-background-playback.html">Backgroung Playback</a> for more details.</p>
+    <p>If your application already offers background playback, follow the next instructions to migrate to the new plugin:</p>
+    <h3>Breaking updates</h3>
+    <p>The following classes were affected by the updates:</p>
+    <ul>
+        <li>The <code>BrightcoveNotification</code> class has been replaced with the <code>PlaybackNotification</code> class.</li>
+        <li>The <code>MediaPlaybackService</code> class has been moved into the new <code>Playback-Notification</code> plugin.</li>
+        <li>The <code>PlaybackNotification</code> changed from being a <strong>Class</strong> to being an <strong>Interface</strong>.</li>
+        <li>The <code>PlaybackNotification.Config</code> class has been renamed to <code>BackgroundPlaybackNotification</code>.</li>
+    </ul>
+    </section>
 
-<section class="bcls-section">
-<h2 id="Adding_the_new_plugin">Adding the new plugin</h2>
+    <!-- <section class="bcls-section">
+        <h2 id="Adding_the_new_plugin">Adding the new plugin</h2>
 
-<p>Include the new plugin in your <code>build.gradle</code> file:</p>
+        <p>Include the new plugin in your <code>build.gradle</code> file:</p>
 
-<pre class="line-numbers">
-<code class="language-kotlin" translate="No">dependencies {
-    implementation "com.brightcove.player:android-playback-notification-plugin:[SDK_VERSION]"
-}</code>
-</pre>
-</section>
+        <pre class="line-numbers">
+            <code class="language-kotlin" translate="No">dependencies {
+                implementation "com.brightcove.player:android-playback-notification-plugin:[SDK_VERSION]"
+                }
+            </code
+        </pre>
+    </section> -->
 
-<section class="bcls-section">
-    <h2 id="Creating_the_notification">Creating the notification</h2>
-    <p>Here is the list of steps for creating the notification:</p>
-    <ol class="bcls-tasklist">
-    <li><p>In the activity where Brightcove Player lives, you can create the <code>PlaybackNotification</code> through the <code>BackgroundPlaybackNotification</code> class.</p>
-    <h4>Kotlin version</h4>
+    <section class="bcls-section">
+        <h2 id="Creating_the_notification">Creating the notification</h2>
+        <p>Here is the list of steps for creating the notification:</p>
+        
+        <ol class="bcls-tasklist">
+            <li>
+                <p>Include the new plugin in your <code>build.gradle</code> file:</p>
+
+                <pre class="line-numbers">
+                    <code class="language-kotlin" translate="No">dependencies {
+                        implementation "com.brightcove.player:android-playback-notification-plugin:[SDK_VERSION]"
+                        }
+                    </code
+                </pre>
+            </li>
+
+            <li>
+                <p>In the activity where Brightcove Player lives, you can create the <code>PlaybackNotification</code> through the <code>BackgroundPlaybackNotification</code> class.</p>
+                <ul>
+                    <li>Here is the Kotlin version:
+                        <pre class="line-numbers">
+                            <code class="language-kotlin" translate="No">
+                                // Kotlin
+                                val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+                                val myNotification = BackgroundPlaybackNotification.getInstance(this)
+                            </code>
+                        </pre>
+                    </li>
+                    <li>Here is the Java version:
+                        <pre class="line-numbers">
+                            <code class="language-java" translate="No">
+                                // Java
+                                ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                                PlaybackNotification myNotification =  BackgroundPlaybackNotification.getInstance(this);
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </li>
+
+            <li>   
+                <p>The <code>BackgroundPlaybackNotification</code> class will create a default notification</p>
+                <p>The notification requires a <code>config</code> object; the default action is to set a new <code>PlaybackNotificationConfig</code> object. Finally, the notification will require  the player that will be attached to it:</p>
+                <ul>
+                    <li>Here is the Kotlin version:
+                        <pre class="line-numbers">
+                            <code class="language-kotlin" translate="No">
+                                // Kotlin
+                                myNotification?.setConfig(PlaybackNotificationConfig(this))
+                                myNotification?.playback = videoDisplayComponent?.playback
+                            </code>
+                        </pre>
+                    </li>
+                    <li>Here is Java version:
+                        <pre class="line-numbers">
+                            <code class="language-java" translate="No">
+                                // Java
+                                myNotification.setConfig(new PlaybackNotificationConfig(this));
+                                myNotification.setPlayback(displayComponent.getPlayback());
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <p>Once the notification is created and configured, it is set in the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
+
+                <ul>
+                    <li>Here is the Kotlin version:
+                        <pre class="line-numbers">
+                            <code class="language-kotlin" translate="No">
+                                // Kotlin
+                                videoDisplayComponent?.let {
+                                    videoDisplayComponent.playbackNotification = myNotification
+                                }
+                            </code>
+                        </pre>
+                    </li>
+                    <li>Here is the Java version:
+                        <pre class="line-numbers">
+                            <code class="language-java" translate="No">
+                                // Java
+                                if (videoDisplayComponent != null ) {
+                                    videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+                                }
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <p>Here is the complete code:</p>
+                
+                <ul>
+                    <li>Here is the Kotlin version
+                        <pre class="line-numbers">
+                            <code class="language-kotlin" translate="No">
+                                // Kotlin
+                                val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+                                val myNotification = BackgroundPlaybackNotification.getInstance(this)
+                                myNotification?.setConfig(PlaybackNotificationConfig(this))
+                                myNotification?.playback = videoDisplayComponent?.playback
+                                
+                                videoDisplayComponent?.let {
+                                    videoDisplayComponent.playbackNotification = myNotification
+                                }
+                            </code>
+                        </pre>
+                    </li>
+                    <li>Here is the Java version:
+                        <pre class="line-numbers">
+                            <code class="language-java" translate="No">
+                                // Java
+                                ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                                PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
+                                myNotification.setConfig(new PlaybackNotificationConfig(this));
+                                myNotification.setPlayback(displayComponent.getPlayback());
+                                
+                                if (videoDisplayComponent != null ) {
+                                    videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+                                }
+                            </code>
+                        </pre>
+                    </li>
+                
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section class="bcls-section">
+        <h2 id="Offline_Playback_updates">Offline Playback updates</h2>
+        <p>Downloading media to play it offline later requires integrating the Offline-Playback plugin in your <code>build.gradle</code> file manually:</p>
     
-    <pre class="line-numbers"><code class="language-kotlin" translate="No">val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
- val myNotification = BackgroundPlaybackNotification.getInstance(this)</code></pre>
+        <pre class="line-numbers">
+            <code class="language-kotlin" translate="No">
+                dependencies {
+                    implementation "com.brightcove.player:offline-playback:[SDK_VERSION]"
+                }
+            </code>
+        </pre>
+
+        <p>Finally, in the activity where Brightcove Player lives, it is necessary to set a <code>MediaStore</code> through the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
     
- <h4>Java version</h4>
-    
- <pre class="line-numbers"><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
- PlaybackNotification myNotification =  BackgroundPlaybackNotification.getInstance(this);</code></pre>
-</li>
- <li>   
- <p>The <code>BackgroundPlaybackNotification</code> class will create a default notification</p>
- <p>The notification requires a <code>config</code> object; the default action is to set a new <code>PlaybackNotificationConfig</code> object. Finally, the notification will require  the player that will be attached to it:</p>
-
- <h4>Kotlin version</h4>
-
- <pre class="line-numbers"><code class="language-kotlin" translate="No">myNotification?.setConfig(PlaybackNotificationConfig(this))
-myNotification?.playback = videoDisplayComponent?.playback
-</code></pre>
-       
-<h4>Java version</h4>
-
-<pre class="line-numbers"><code class="language-java" translate="No">myNotification.setConfig(new PlaybackNotificationConfig(this));
-myNotification.setPlayback(displayComponent.getPlayback());</code></pre>
-</li>
-
-<li>
-<p>Once the notification is created and configured, it is set in the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
-
-<h4>Kotlin version</h4>
-
- <pre class="line-numbers"><code class="language-kotlin" translate="No">videoDisplayComponent?.let {
-    videoDisplayComponent.playbackNotification = myNotification
-}</code></pre>
-       
-<h4>Java version</h4>
-
-<pre class="line-numbers"><code class="language-java" translate="No">if (videoDisplayComponent != null ) {
-    videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
- }</code></pre>
-</li>
-
-<li>
-    <p>Here is the complete code:</p>
-    
-    <h4>Kotlin version</h4>
-    
-     <pre class="line-numbers"><code class="language-kotlin" translate="No">
-val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
-val myNotification = BackgroundPlaybackNotification.getInstance(this)
-myNotification?.setConfig(PlaybackNotificationConfig(this))
-myNotification?.playback = videoDisplayComponent?.playback
-
-videoDisplayComponent?.let {
-    videoDisplayComponent.playbackNotification = myNotification
-}</code></pre>
-           
-    <h4>Java version</h4>
-    
-    <pre class="line-numbers"><code class="language-java" translate="No">
-ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
-PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
-myNotification.setConfig(new PlaybackNotificationConfig(this));
-myNotification.setPlayback(displayComponent.getPlayback());
-
-if (videoDisplayComponent != null ) {
-   videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
-}
-</code></pre>
-    </li>
-</ol>
-</section>
-
-<section class="bcls-section">
-    <h2 id="Offline_Playback_updates">Offline Playback updates</h2>
-    <p>Downloading media to play it offline later requires integrating the Offline-Playback plugin in your <code>build.gradle</code> file manually:</p>
-    
-    <pre class="line-numbers"><code class="language-kotlin" translate="No">dependencies {
-        implementation "com.brightcove.player:offline-playback:[SDK_VERSION]"
-}</code></pre>
-
-<p>Finally, in the activity where Brightcove Player lives, it is necessary to set a <code>MediaStore</code> through the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
-<h4>Kotlin version</h4>
-    
-    <pre class="line-numbers"><code class="language-kotlin" translate="No">val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
-videoDisplayComponent?.let {
-    videoDisplayComponent.setMediaStore = OfflineStoreManager.getInstance(this)
-}</code></pre>
-    
- <h4>Java version</h4>
-    
- <pre class="line-numbers"><code class="language-java" translate="No">ExoPlayerVideoDisplayComponent videoDisplayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
-if (videoDisplayComponent != null) {
-    videoDisplayComponent.setMediaStore(OfflineStoreManager.getInstance(this));
-}</code></pre>
-
-</section>
+        <ul>
+            <li>Here is the Kotlin version:
+                <pre class="line-numbers">
+                    <code class="language-kotlin" translate="No">
+                        // Kotlin
+                        val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+                        videoDisplayComponent?.let {
+                            videoDisplayComponent.setMediaStore = OfflineStoreManager.getInstance(this)
+                        }
+                    </code>
+                </pre>
+            </li>
+            <li>Here is the Java version:
+                <pre class="line-numbers">
+                    <code class="language-java" translate="No">
+                        // Java
+                        ExoPlayerVideoDisplayComponent videoDisplayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                        if (videoDisplayComponent != null) {
+                            videoDisplayComponent.setMediaStore(OfflineStoreManager.getInstance(this));
+                        }
+                    </code>
+                </pre>
+            </li>
+        </ul>
+    </section>
+</article>

@@ -476,6 +476,12 @@
                   
                   
                   
+                  
+                  
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/android-v9-migration-guide.html">Android SDK v9.0 Migration Guide</a></li>
+                  
+                  
+                  
                 </ul>
               </li>
               
@@ -825,6 +831,12 @@
                   
                   
                   <li class="nav-item"><a class="nav-link" href="/android/playback/video-and-playlist-objects-json.html">Video and Playlist Objects from JSON</a></li>
+                  
+                  
+                  
+                  
+                  
+                  <li class="nav-item"><a class="nav-link" href="/android/playback/android-background-playback.html">Background Playback</a></li>
                   
                   
                   
@@ -2048,6 +2060,28 @@
 	<li>Contact your account manager to enable your account for offline playback.</li>
 	<li>Make sure to use Dynamic Delivery when ingesting your videos.</li>
   <li><a href="#Prepare_videos">Prepare each video</a> that you want enabled for download.</li>
+  <li>
+    Add the Offline-Playback plugin in your <code>build.gradle</code> file manually:
+        <pre class="line-numbers">
+          <code class="language-kotlin" translate="No">
+             
+            dependencies {
+              implementation "com.brightcove.player:offline-playback:[SDK_VERSION]"
+            }
+          </code>
+      </pre>
+  </li>
+  <li>
+    In the activity where Brightcove Player lives, set a <code>MediaStore</code> through the <code>ExoPlayerVideoDisplayComponent</code> class:
+    <pre class="line-numbers">
+      <code class="language-kotlin" translate="No">   
+        
+         val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+          videoDisplayComponent?.let {
+            videoDisplayComponent.setMediaStore = OfflineStoreManager.getInstance(this)
+          }
+      </code>
+  </li>
 </ul>
 </section>
 

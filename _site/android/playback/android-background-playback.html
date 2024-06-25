@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Android: Understanding the BrightcovePlayer Class</title>
+        <title>Android: Backgroung Playback</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="In this topic, you will learn about the BrightcovePlayer class and how it provides basic lifecycle management.">
+        <meta name="description" content="In this topic, you will learn about enabling Background Playback.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -436,7 +436,7 @@
                   
                   
                   
-                  <li class="nav-item section-doc"><a class="nav-link" href="/android/basics/android-understanding-brightcoveplayer-class.html" aria-current="page">BrightcovePlayer Class</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/basics/android-understanding-brightcoveplayer-class.html">BrightcovePlayer Class</a></li>
                   
                   
                   
@@ -836,7 +836,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/playback/android-background-playback.html">Background Playback</a></li>
+                  <li class="nav-item section-doc"><a class="nav-link" href="/android/playback/android-background-playback.html" aria-current="page">Background Playback</a></li>
                   
                   
                   
@@ -1999,11 +1999,11 @@
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/android/basics/">Basics</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/android/playback/">Playback</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Android: Understanding the BrightcovePlayer Class</li>
+            <li class="breadcrumb-item active" aria-current="page">Android: Backgroung Playback</li>
             
             
           </ol>
@@ -2024,123 +2024,226 @@
       <br>
       
       
-<h1>Android: Understanding the BrightcovePlayer Class</h1>
+<h1>Android: Backgroung Playback</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn about the BrightcovePlayer class and how it provides basic lifecycle management.</summary>
+  <summary>In this topic, you will learn about enabling Background Playback.</summary>
 
 <section class="bcls-section">
-<h2 id="BrightcovePlayer_class">BrightcovePlayer class</h2>
-
-<p>The <a href="/android/reference/javadoc/com/brightcove/player/view/BrightcovePlayer.html">BrightcovePlayer</a> class resides in the core Brightcove SDK for Android and extends Android's <a href="https://developer.android.com/reference/android/app/Activity">Activity</a> class.</p>
-
-<p>As a basic <code translate="No">Activity</code>, the <code translate="No">BrightcovePlayer</code> class wraps a <code translate="No">BrightcoveExoPlayerVideoView</code> and sets up an <code translate="No">EventLogger</code> and default <code translate="No">MediaController</code>. It implements basic lifecycle management and full screen logic. It is meant to be subclassed.</p>
-
-<pre>
-<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayer {
-...
-}</code></pre>
-
-<p>At a minimum the <code translate="No">onCreate()</code> method should be overridden with logic to wire up the <code translate="No">BrightcoveExoPlayerVideoView</code> variable to the <strong>layout.xml</strong> file. For example:</p>
-
-<pre>
-<code class="language-java" translate="No">brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);</code></pre>
-
-<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/BasicSampleApp/src/main">BasicSampleApp</a> code sample.</p>
+<h2 id="Introduction">Introduction</h2>
+<p>The previous Brightcove SDK used to offer background playback on its main core, but due to policy changes in the Google Play Store, this was removed from the SDK core with the new version. You will need to implement the new Playback-Notification plugin to integrate support for background playback. See <a href="/android/basics/android-v9-migration-guide.html">Android SDK v9.0 Migration Guide</a> for more details.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Support_library_components">Support library components</h2>
+    <h2 id="Playback-Notification_plugin_implementation">Playback-Notification plugin implementation</h2>
+    <p>The Android SDK offers a new plugin for creating a notification for playback in the background only.</p>
+    <aside class="bcls-aside bcls-aside--information"><strong>Note:</strong> The notification provided by this plugin cannot be used for other background tasks.</aside>
+    <p>The purpose of this plugin is to separate logic for background and foreground playback. Here is the list of steps for the implementation:</p>
+    <ol class="bcls-tasklist">
+        <li><p>To add the new dependency, include the new plugin in your <code>build.gradle</code> file:</p>
+            <pre class="line-numbers">
+                <code class="language-kotlin" translate="No">dependencies {
+                    implementation "com.brightcove.player:android-playback-notification-plugin:[SDK_VERSION]"
+                }
+                </code>
+            </pre>
+        </li>
+        <li>
+            <p>In the activity where Brightcove player lives, you can create the <code>PlaybackNotification</code> through the <code>BackgroundPlaybackNotification</code> class. </p>
+            <ul>
+                <li>Here is the Kotlin version:
+    
+                    <pre class="line-numbers"><code class="language-kotlin" translate="No">
+                        // Kotlin 
+                        val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+                        val myNotification = BackgroundPlaybackNotification.getInstance(this)
+                        </code>
+                    </pre>
+                </li>
+                <li>Here is the Java version:
+    
+                    <pre class="line-numbers">
+                        <code class="language-java" translate="No">
+                            // Java
+                            ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                            PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>The notification requires a <code>config</code> object; the default action is to set a new <code>PlaybackNotificationConfig</code> object. Finally, the notification will require the player that will be attached to it:</p>
+        
+            <ul>
+                <li>Here is the Kotlin version:
+    
+                    <pre class="line-numbers"><code class="language-kotlin" translate="No">
+                        // Kotlin 
+                        myNotification?.setConfig(PlaybackNotificationConfig(this))
+                        myNotification?.playback = videoDisplayComponent?.playback                
+                        </code>
+                    </pre>
+                </li>
+    
+                <li>Here is the Java version:
+    
+                    <pre class="line-numbers">
+                        <code class="language-java" translate="No">
+                            // Java
+                            myNotification.setConfig(new PlaybackNotificationConfig(this));
+                            myNotification.setPlayback(displayComponent.getPlayback());
+                        </code>
+                    </pre>
+                </li>
+            </ul>
+        </li>
+      
+        <li>
+            <p>Once the notification is created and configured, it is set in the <code>ExoPlayerVideoDisplayComponent</code> class:</p>
+            <ul>
+                <li>Here is the Kotlin version:
 
-<p>If you choose not to use the <code translate="No">BrightcovePlayer</code> class, the <code translate="No">BrightcovePlayerActivity</code> and <code translate="No">BrightcovePlayerFragment</code> classes are available to you. To use either of these classes, you need to include the <code translate="No">appcompat</code> plugin in your <strong>build.gradle</strong> file as follows:</p>
+                    <pre class="line-numbers">
+                        <code class="language-kotlin" translate="No">
+                        // Kotlin 
+                        videoDisplayComponent?.let {
+                            videoDisplayComponent.playbackNotification = myNotification
+                        }
+                                        
+                        </code>
+                    </pre>
+                </li>
+                <li>Here is the Java version:
+                    <pre class="line-numbers">
+                        <code class="language-java" translate="No">
+                            // Java
+                            if (videoDisplayComponent != null ) {
+                                videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+                             }                     
+                        </code>
+                    </pre>
 
-<pre>
-<code class="language-java" translate="No">implementation "com.brightcove.player:android-appcompat-plugin:${anpVersion}"</code></pre>
+                </li>
+            </ul>
+        </li>
 
-<h3 id="BrightcovePlayerFragment_class">BrightcovePlayerFragment class</h3>
+        <li>
+            <p>Here is the complete code:</p>
+            <ul>
+                <li>Here is the Kotlin version:
 
-<p>The <a href="/android/reference/javadoc/com/brightcove/player/appcompat/BrightcovePlayerFragment.html">BrightcovePlayerFragment</a> class extends the <a href="https://developer.android.com/reference/android/support/v4/app/Fragment">android.support.v4.app.Fragment</a> class.</p>
+                    <pre class="line-numbers">
+                        <code class="language-kotlin" translate="No">
+                            // Kotlin 
+                            val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent?
+                            val myNotification = BackgroundPlaybackNotification.getInstance(this)
+                            myNotification?.setConfig(PlaybackNotificationConfig(this))
+                            myNotification?.playback = videoDisplayComponent?.playback
 
-<p>If you want to combine the Brightcove Player with other design elements in your layout, you can use the <code translate="No">BrightcovePlayerFragment</code> class. This is useful when designing for a tablet or larger screen, which has more room to combine UI components. For example, with a tablet, you could display multiple fragments at the same time, both living within the same activity.</p>
+                            videoDisplayComponent?.let {
+                                videoDisplayComponent.playbackNotification = myNotification
+                            }               
+                        </code>
+                    </pre>
+                </li>
+                <li>Here is the Java version:
+                    <pre class="line-numbers">
+                        <code class="language-java" translate="No">
+                            // Java
+                            ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                            PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
+                            myNotification.setConfig(new PlaybackNotificationConfig(this));
+                            myNotification.setPlayback(displayComponent.getPlayback());
 
-<pre>
-<code class="language-java" translate="No">public class MainFragment extends BrightcovePlayerFragment {
-...
-}</code></pre>
+                            if (videoDisplayComponent != null ) {
+                                videoDisplayComponent.setPlaybackNotification(createPlaybackNotification());
+                            }
+                 
+                        </code>
+                    </pre>
 
-<p>The <code translate="No">onCreateView()</code> should be extended to wire up the fragment's layout to the <code translate="No">baseVideoView</code> instance variable before calling <code translate="No">super.onCreateView()</code>.</p>
+                </li>
+            </ul>
+        </li>
+    </ol>
 
-<pre>
-<code class="language-java" translate="No">baseVideoView = (BaseVideoView) result.findViewById(R.id.brightcove_video_view);</code></pre>
-
-<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatFragmentSampleApp">AppCompatFragmentSampleApp</a> code sample.</p>
-
-<h3 id="BrightcovePlayerFragment_class">BrightcovePlayerActivity class</h3>
-
-<p>The <a href="/android/reference/javadoc/com/brightcove/player/appcompat/BrightcovePlayerActivity.html">BrightcovePlayerActivity</a> class extends the <a href="https://developer.android.com/reference/android/support/v7/app/AppCompatActivity">android.support.v7.app.AppCompatActivity</a> class.</p>
-
-<p>If you choose to use an Activity, you can use the <code translate="No">BrightcovePlayerActivity</code> class.</p>
-
-<pre>
-<code class="language-java" translate="No">public class MainActivity extends BrightcovePlayerActivity {
-...
-}</code></pre>
-
-<p>For implementation details, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/AppCompatActivitySampleApp">AppCompatActivitySampleApp</a> code sample.</p>
 </section>
 
 <section class="bcls-section">
-<h2 id="Lifecycle_management">Lifecycle management</h2>
+    <h2 id="Customizing_the_Playback_Notification">Customizing the Playback Notification</h2>
+    <p>With the <code>PlaybackNotificationConfig</code> class, you can customize the notification through its <strong>Builder</strong> class. It offers the options to set the color, icon, buttons to be displayed, channel importance, visibility, etc.</p>
+    <p>It also supports setting a listener to be notified when the notification is posted and removed.</p>
+    <ul>
+        <li>Here is the Kotlin version:
 
-<p>It is best practice to start with either the <code translate="No">BrightcovePlayer</code> activity or the <code translate="No">BrightcovePlayerFragment</code>, since these provide default lifecycle management implementation, including the following:</p>
+            <pre class="line-numbers">
+                <code class="language-kotlin" translate="No">
+                    // Kotlin 
+                    val manager = PlayerNotificationManager.Builder(
+                        config.context, config.notificationId, config.channelId
+                    ).setChannelImportance(config.channelImportance)
+                    .setChannelNameResourceId(config.channelNameResourceId)
+                    .setMediaDescriptionAdapter(createAdapter(config))
+                    .setNotificationListener(listener)
+                    .build()
+                    manager.setSmallIcon(config.smallIconResourceId)
+                    manager.setUseNextAction(config.useNextAction)
+                    manager.setUsePreviousAction(config.usePreviousAction)
+                    manager.setUseNextActionInCompactView(config.useNextActionInCompactView)
+                    manager.setUsePreviousActionInCompactView(config.usePreviousActionInCompactView)
+                    manager.setColor(config.color)
+                    manager.setColorized(config.colorized)
+                    manager.setUseFastForwardAction(config.useFastForwardAction)
+                    manager.setUseFastForwardActionInCompactView(config.useFastForwardActionInCompactView)
+                    manager.setUsePlayPauseActions(config.usePlayPauseActions)
+                    manager.setUseRewindAction(config.useRewindAction)
+                    manager.setUseRewindActionInCompactView(config.useRewindActionInCompactView)
+                    manager.setUseStopAction(false)
+                    manager.setVisibility(config.visibility)
+                    manager.setPriority(config.priority)
+                    manager.setUseChronometer(true)
 
-<ul>
-	<li>When a user pauses the app, the class keeps track of where they stopped.</li>
-	<li>When your app comes back from the background, the class remembers whether the video was playing or not, and restart playback where it left off.</li>
-	<li>If your app is killed due to memory issues, the class will seek to time in video to where it was.</li>
-	<li>An event logger is setup, which logs all events to logcat. This can be helpful for debugging.</li>
-	<li>The class dispatches events to communicate with plugins.</li>
-</ul>
+                </code>
+            </pre>
+        </li>
+        <li>Here is the Java version:
+
+            <pre class="line-numbers">
+                <code class="language-java" translate="No">
+                    // Java
+                    PlayerNotificationManager manager = new PlayerNotificationManager.Builder(
+                        config.context, config.notificationId, config.channelId
+                    ).setChannelImportance(config.channelImportance)
+                        .setChannelNameResourceId(config.channelNameResourceId)
+                        .setMediaDescriptionAdapter(createAdapter(config))
+                        .setNotificationListener(listener)
+                        .build()
+                    manager.setSmallIcon(config.smallIconResourceId)
+                    manager.setUseNextAction(config.useNextAction)
+                    manager.setUsePreviousAction(config.usePreviousAction)
+                    manager.setUseNextActionInCompactView(config.useNextActionInCompactView)    
+                    manager.setUsePreviousActionInCompactView(config.usePreviousActionInCompactView)
+                    manager.setColor(config.color)
+                    manager.setColorized(config.colorized)
+                    manager.setUseFastForwardAction(config.useFastForwardAction)
+                    manager.setUseFastForwardActionInCompactView(config.useFastForwardActionInCompactView)
+                    manager.setUsePlayPauseActions(config.usePlayPauseActions)
+                    manager.setUseRewindAction(config.useRewindAction)       
+                    manager.setUseRewindActionInCompactView(config.useRewindActionInCompactView)
+                    manager.setUseStopAction(false)
+                    manager.setVisibility(config.visibility)
+                    manager.setPriority(config.priority)
+                    manager.setUseChronometer(true)
+
+                </code>
+            </pre>
+        </li>
+    </ul>
+
 </section>
-&nbsp;
 
-<p>Now that you have an activity, you are ready to choose a video view, as detailed in the next document.</p>
-
-<div style="text-align:center"><button class="bcls-button" type="button" title="Previous button" onclick="location.href='/android/basics/architecture-brightcove-player-sdk-android.html';">&lt; Prev</button><button class="bcls-button" type="button" title="Next button" onclick="location.href='/android/basics/android-choosing-video-view.html';">Next &gt;</button></div>
 </article>
-<!-- Learning path right navigation -->
-<link rel="stylesheet" href="https://support.brightcove.com/site-assets/css/site/learning-paths.css" /><script translate="no">
-    var learning_path = [
-      {
-        node: '18250',
-        title: 'Native SDK Architecture'
-      },
-      {
-        node: '18252',
-        title: 'Understand the Activity Class'
-      },
-      {
-        node: '18248',
-        title: 'Choose a Video View'
-      }
-      ,
-      {
-        node: '18247',
-        title: 'Register Your App'
-      },
-      {
-        node: '18251',
-        title: 'Use Media Content'
-      },
-      {
-        node: '18249',
-        title: 'Understand Events'
-      },
-      {
-        node: '18238',
-        title: 'Step-by-Step: Simple Video App'
-      }
-    ]
-  </script><script src="https://support.brightcove.com/site-assets/js/site/learning-paths.js"></script>
+
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
   
   <nav class="right-side-nav" id="right_side_nav">
