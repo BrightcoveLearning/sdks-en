@@ -20,6 +20,7 @@ grandparent: Web & Smart TV SDK
 <pre class="line-numbers"><code class="language-bash" translate="No">npm install @brightcove/web-sdk
 
 </code></pre>
+<br>
 <p>After installation, you can import the SDK using your preferred module system:</p>
 
 <h4>CommonJS</h4>
@@ -144,8 +145,9 @@ player.updateConfiguration({
 </code></pre>
 </section>
 <section class="bcls-section">
-  <h2 id="loading-media">Loding Media</h2> 
+  <h2 id="loading-media">Loading Media</h2> 
   <h3>Video Cloud VOD</h3>
+  <p>Load media into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
@@ -203,6 +205,7 @@ loadVideo('&#60;VIDEO_ID&#62;');
 </section>
   <section class="bcls-section">
   <h2 id="playlist">Video Cloud Playlist</h2>
+  <p>Integrate playlists into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
@@ -292,6 +295,7 @@ advanceToNextItem();
 <br>
 <section class="bcls-section">
   <h2 id="remote-source">Remote Source</h2>
+  <p>Integrate a remote source into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
@@ -619,7 +623,41 @@ player.loadBrightcoveVideoModel(playlist.getCurrentItem());
 
 <section class="bcls-section">
   <h2 id="playlistmanager">Events</h2> 
+<p>To handle events, add or remove event listeners follow these steps:</p>
+<ol class="bcls-tasklist-restart">
+  <li><p><strong>Handle the First Emission of an Event</strong>: If you want to handle only the first occurrence of an event, use the <code translate="no">once</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">player.once(Player.Event.PlayerPlaying, (event) => {
+    console.log('PlayerPlaying event: ', event);
+});</code></pre>
+  </li>
+  <li><p><strong>Handle Every Emission of an Event</strong>: To handle every emission of an event, use the <code translate="no">addEventListener</code> method. Below is an example of handling the PlayerQualityLevelsChanged event:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Define the event handler function
+const handlePlayerQualityLevelsChanged = (event) => {
+    console.log('PlayerQualityLevelsChanged event: ', event);
+};
 
+// Handle every emission of the PlayerQualityLevelsChanged event
+player.addEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+</code></pre>
+  </li>
+  <li><p><strong>Remove Specific Event Listeners</strong>: To remove a specific event listener, use the <code translate="no">removeEventListener</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove one specific event listener
+player.removeEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+      
+</code></pre>
+  </li>
+  <li><p><strong>Remove All Listeners for a Specific Event</strong>: To remove all listeners for a specific event, use the <code translate="no">removeAllEventListenersForType</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove all listeners for a specific event
+player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);      
+</code></pre>
+  </li>
+  <li><p><strong>Remove All Event Listeners</strong>: To remove all event listeners for all events, use the <code translate="no">removeAllEventListeners</code> method:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove all listeners for a specific event
+player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);      
+</code></pre>
+  </li>
+</ol>
+<p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">// Handle only the first emission of the PlayerPlaying event
 player.once(Player.Event.PlayerPlaying, (event) => {
   console.log('PlayerPlaying event: ', event);
