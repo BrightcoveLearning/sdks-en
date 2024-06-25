@@ -425,8 +425,26 @@ pinningIntegration.togglePinning();
     <li><p><strong>Response Interceptors</strong>: These allow you to intercept and modify incoming responses before they are processed by the player.</p></li>
   </ul>
   <ol class="bcls-tasklist-restart">
-    <li><p>Initialize the <code translate="no">NetworkingManager</code></p></li>
+    <li><p><strong>Initialize the </strong><code translate="no">NetworkingManager</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();      
+      </code></pre>
+    </li>
+    <li><p><strong>Add a Request Interceptor</strong>: Add a request interceptor to modify or log the outgoing requests.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addRequestInterceptor(Player.RequestType.HLSPlaylist, (request) => {
+    console.log('HLS Playlist request interceptor', request);
+    return request;
+});      
+      </code></pre>
+    </li>
+    <li><p><strong>Add a Response Interceptor</strong>:  Add a response interceptor to modify or log the incoming responses.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addResponseInterceptor(Player.RequestType.HLSPlaylist, (response) => {
+    console.log('HLS Playlist response interceptor', response);
+    return response;
+});   
+      </code></pre>
+    </li>
   </ol>
+  <p>Final code:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
     
 networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
@@ -442,24 +460,161 @@ networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (respon
 });
     </code></pre>
 </section>
-
 <section class="bcls-section">
-  <h2 id="playlistmanager">Playlist and PlaylistManager</h2> 
-  <p>The <code translate="no">PlaylistManager</code> is used for manipulation of a <code translate="no">Playlist</code> object, comprising a list of media sources:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
+  <h2 id="uimanager">UiManager</h2> 
+  <p>The UiManager provides a structured way to control, customize, and extend the default UI elements to better suit your application's needs.</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import Required Modules</strong></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent } from '@brightcove/web-sdk/ui';
+      </code></pre>
+    </li>
+    <li><p><strong>Create a Custom UI Component</strong></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">class CustomPlayButton extends BigPlayButtonUiComponent {
+  // ... custom play button code
+}
+      </code></pre>
+    </li>
+    <li><p><strong>Override the Default Component</strong>: override the default <code translate="no">BigPlayButton</code> with the <code translate="no">CustomPlayButton</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">UiManager.overrideDefaultComponent('BigPlayButton', CustomPlayButton);
+      </code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent } from '@brightcove/web-sdk/ui';
 
-networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
-  console.log('HLS Playlist request interceptor ', request);
+class CustomPlayButton extends BigPlayButtonUiComponent {
+   // ... custom play button code
+}
 
-  return request;
-});
+UiManager.overrideDefaultComponent('BigPlayButton', CustomPlayButton);</code></pre>
+</section>
+<section class="bcls-section">
+  <h2 id="custom-components">Custom Components</h2> 
+  <p>By creating custom components, you can add unique features and tailor the player interface to better fit your application requirements.</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import <code translate="no">BaseUiComponent</code></strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { BaseUiComponent } from '@brightcove/web-sdk/ui';</code></pre>
+    </li>
+    <li><p><strong>Initialize UI Manager and Player Component</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">// Import and initialize UI Player
+const uiManager = player.getUiManager();
+const playerComponent = uiManager.getPlayerContainerUiComponent();
+</code></pre>
+    </li>
+    <li><p><strong>Create a Custom Component</strong>: Create a new custom component by extending the <code translate="no">BaseUiComponent</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">class CustomComponent extends BaseUiComponent {
+  // Custom component code
+}</code></pre>
+    </li>
+    <li><p><strong>Instantiate the Custom Component</strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const customComponent = new CustomComponent();
+      </code></pre>
+    </li>
+    <li><p><strong>Add the Custom Component to the Player</strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">playerComponent.addChild(customComponent);</code></pre>
+    </li>
+    <li><p><strong>(Optional) Add the Custom Component to Another Component </strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const controlBarComponent = playerComponent.getChild('controlBar');
+controlBarComponent.addChild(customComponent);
+        </code></pre>
+    </li>
+  </ol>
+  <p>Final code:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">import { BaseUiComponent } from '@brightcove/web-sdk/ui';
 
-networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
-  console.log('HLS Playlist response interceptor ', response);
+// import and initialize UI Player
 
-  return response;
-});
-    </code></pre>
+const uiManager = player.getUiManager();
+const playerComponent = uiManager.getPlayerContainerUiComponent();
+
+class CustomComponent extends BaseUiComponent {
+   // ... custom component code
+}
+
+const customComponent = new CustomComponent();
+
+// Add the custom component as a child of the player component
+playerComponent.addChild(customComponent);
+
+// Or add it as a child of another component ,for example the ControlBar
+const controlBarComponent = playerComponent.getChild('controlBar');
+
+controlBarComponent.addChild(customComponent);</code></pre>
+</section>
+<section class="bcls-section">
+  <h2 id="playlistmanager">PlaylistManager</h2> 
+  <p>The <code translate="no">PlaylistManager</code> provides methods for creating playlists, managing the current playing item, and navigating through the playlist items.</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize PlaylistManager</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const playlistManager = player.getPlaylistManager();</code></pre>
+    </li>
+    <li><p><strong>Create a Playlist from a Playback API Response</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels([
+  /* Array&#60;BrightcoveVideoModel&#62; */
+]);</code></pre>
+    </li>
+    <li><p><strong>Create a Playlist from Remote Sources</strong>: Alternatively, create a playlist using remote media sources.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const remotePlaylist = playlistManager.createPlaylistFromRemoteSources([
+        /* Array&#60;Source&#62; */
+      ]);</code></pre>
+    </li>
+    <li><p><strong>Set the Playlist in the PlaylistManager</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(videoCloudPlaylist || remotePlaylist);
+      </code></pre>
+    </li>
+    <li><p><strong>Load the First Playlist Item</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());</code></pre>
+    </li>
+    <li><p><strong>Navigate Through the Playlist</strong>: Use the next methods to navigate through the playlist items.</p>
+      <ul>
+        <li><p>Move to the next item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveToNext();
+          </code></pre>
+        </li>
+        <li><p>Move to the previous item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveToPrevious();
+          </code></pre>
+        </li>
+        <li><p>Move to a specific item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveTo(/* index number */);
+          </code></pre>
+        </li>
+        <li><p>Load the new current item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+          </code></pre>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <p>Final code:</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">// Get the PlaylistManager instance
+const playlistManager = player.getPlaylistManager();
+
+// Create playlist from a Playback API response
+const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels([
+  // Add your Brightcove video models here
+]);
+
+// Create playlist from remote sources
+const remotePlaylist = playlistManager.createPlaylistFromRemoteSources([
+  // Add your remote sources here
+]);
+
+// Set the playlist in the PlaylistManager
+playlistManager.setPlaylist(videoCloudPlaylist || remotePlaylist);
+
+// Load the first item in the playlist
+player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+
+// Playlist methods to navigate through items
+playlist.moveToNext();    // Move to next item
+playlist.moveToPrevious(); // Move to previous item
+playlist.moveTo(2);       // Move to the item at index 2
+playlist.shuffle();       // Shuffle the playlist
+
+// Load the new current item after navigation
+player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+</code></pre>
 </section>
 
 <section class="bcls-section">
