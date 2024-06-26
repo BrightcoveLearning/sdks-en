@@ -2697,6 +2697,25 @@ player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);
 player.removeAllEventListeners();
     </code></pre>
 </section>
+<section class="bcls-section">
+  <h2 id="styling">Styling</h2>
+  <p>To apply CSS for UI features follow these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import the Player Class</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import Player from '@brightcove/web-sdk/ui';</code></pre>
+    </li>
+    <li><p><strong>Import the CSS for the Player Class</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/ui/styles';</code></pre>
+    </li>
+    <li><p><strong>Importing Integration-Specific Styles</strong>: you must import the styles specific to that integration from
+      <br>
+       <code translate="no">@brightcove/web-sdk/integrations/&#60;integration-name&#62;/styles</code>
+      <br>
+       If you are integrating with a specific feature like <code translate="no">custom-controls</code>, follow this pattern:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/custom-controls/styles';</code></pre>
+    </li>
+  </ol>
+</section>
 
 <section class="bcls-section">
   <h2 id="localizations">Localizations</h2> 
@@ -2710,6 +2729,7 @@ const uiManager = player.getUiManager();
 uiManager.addLanguagePack('ja', Japanese);
         </code></pre>
 </section>
+
 
 </article>
 
