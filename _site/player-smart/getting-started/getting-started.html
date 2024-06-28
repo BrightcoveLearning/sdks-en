@@ -2250,6 +2250,21 @@ loadVideo('&#60;VIDEO_ID&#62;');
 
 </code></pre>
     </li>
+    <li><p>Create a function to advance to the next video in the playlist.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">function advanceToNextItem() {
+  try {
+    const playlistManager = player.getPlaylistManager();
+    const playlist = playlistManager.getPlaylist();
+
+    // Advance to the next item
+    playlist.moveToNext();
+    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+  } catch (error) {
+    // Handle error
+    console.error('Error advancing to next item:', error);
+  }
+}</code></pre>
+    </li>
   </ol>
   <p>Full example:</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
@@ -2377,7 +2392,7 @@ IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
     </li>
     <li><p><strong>Attach the Player to the DOM</strong>: Specify the DOM element where the player should be attached.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
-        player.attach(root);          
+player.attach(root);          
 </code></pre>
     </li>
     <li><p><strong>Access Individual Integrations</strong>: Use the <code translate="no">IntegrationsManager</code> to access and control specific integrations.</p>
@@ -2594,11 +2609,16 @@ controlBarComponent.addChild(customComponent);</code></pre>
           <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveTo(/* index number */);
           </code></pre>
         </li>
-        <li><p>Load the new current item:</p>
-          <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+        <li><p>Shuffle the playlist:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.shuffle();
           </code></pre>
         </li>
+        
       </ul>
+    </li>
+    <li><p>Load the new current item: Load the newly selected item in the playlist.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+      </code></pre>
     </li>
   </ol>
   <p>Full example:</p>

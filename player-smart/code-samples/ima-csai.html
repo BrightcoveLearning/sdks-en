@@ -70,7 +70,7 @@ player.attach(videoElement);
             </code></pre>
         </li>
         <li>
-            <p>Listen to the SdkLoaded event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
+            <p>Listen to the <code translate="no">SdkLoaded</code> event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
   const adTag = 'your-ad-tag-url';
   player.integrations.imaClientSide.adRequest(adTag);
