@@ -61,25 +61,24 @@ grandparent: Web & Smart TV SDK
 
 </section> 
 <section class="bcls-section">
+  <h2 id="import-player">Import the Player</h2> \<ul>
+    <p><strong>Playback-Only</strong></p>
+      <p>For applications that only require playback functionality, and no additional UI features:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/playback';
+      </code></pre>
+      <p><strong>Playback with UI</strong></p>
+        <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
+import '@brightcove/web-sdk/styles';
+        </code></pre>
+  </ul>
+</section>
+<section class="bcls-section">
     <h2 id="initialiting-player">Initializing the Player</h2> 
 <p>Once the SDK is installed, you can create a media player to embed in your application. By following these steps, you will have a basic video player set up using the Brightcove Web & Smart TV SDK.</p>
 <ol class="bcls-tasklist">
     <li>
-      <ul>
-        <li><p><strong>Playback-Only</strong></p>
-          <p>For applications that only require playback functionality, and no additional UI features:</p>
-          <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/playback';
-          </code></pre></li>
-          <li><p><strong>Playback with UI</strong></p>
-            <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
-import '@brightcove/web-sdk/styles';
-            </code></pre></li>
-      </ul>
-        
-    </li>
-    <li>
-        <p>Set up the player with your Brightcove account details and optional parameters:</p>
+        <p><strong>Initialize the Player</strong>: Set up the player with your Brightcove account details and optional parameters:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
   // Account ID parameter is required to initialize a player
   accountId: '&#60;ACCOUNT_ID&#62;',
