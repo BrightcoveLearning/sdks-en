@@ -2054,7 +2054,7 @@
         </li>
         <li>
             <p>Setup ima-client-side integration.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerImaClientSideIntegrationFactory(ImaClientSideIntegration);
             </code></pre>
         </li>
         <li>
@@ -2096,7 +2096,7 @@ import { ImaClientSideIntegration } from '@brightcove/web-sdk/integrations/imaCl
 import '@brightcove/web-sdk/integrations/imaClientSide/styles.css';
 
 // Setup ima-client-side integration before creating player
-Player.addImaClientSideIntegrationFactory(ImaClientSideIntegration);
+Player.registerImaClientSideIntegrationFactory(ImaClientSideIntegration);
 
 // Create a new Player
 const player = new Player();

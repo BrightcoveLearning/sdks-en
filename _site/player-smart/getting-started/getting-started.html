@@ -2056,19 +2056,19 @@
 <h4>Specifying a Version</h4>
 <p>To specify a version in the CDN URL:</p>
 <ul>
-  <li>Use v&#123;major&#125; to include the latest patch within a major version.</li>
-  <li>Use v&#123;major&#125;.&#123;minor&#125; to include the latest patch within a minor version.</li>
-  <li>Use v&#123;major&#125;.&#123;minor&#125;.&#123;patch&#125; to include a specific version.</li>
+  <li>Use <code translate="no">v&#123;major&#125;</code> to include the latest patch within a major version.</li>
+  <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code> to include the latest patch within a minor version.</li>
+  <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code>.<code>&#123;patch&#125;</code> to include a specific version.</li>
 </ul>
 <p>For example</p>
 <pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.iife.min.js"&#62;&#60;/script&#62;
-&#60;script src="https://players.brightcove.net/sdk/v1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
-&#60;script src="https://players.brightcove.net/sdk/v1.1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 
 </section> 
 <section class="bcls-section">
-  <h2 id="import-player">Import the Player</h2> \<ul>
+  <h2 id="import-player">Import the Player</h2>
     <p><strong>Playback-Only</strong></p>
       <p>For applications that only require playback functionality, and no additional UI features:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/playback';
@@ -2076,7 +2076,7 @@
       <p><strong>Playback with UI</strong></p>
         <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
-import '@brightcove/web-sdk/styles';
+ import '@brightcove/web-sdk/styles';
         </code></pre>
   </ul>
 </section>
@@ -2104,7 +2104,7 @@ import '@brightcove/web-sdk/styles';
     <li>
         <p>Attach the player to a mount root (DOM element in the page):</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
-player.attach(root);
+ player.attach(root);
         </code></pre>
     </li>
     <li>
@@ -2118,37 +2118,6 @@ player.attach(root);
                     </code></pre>
     </li>
 </ol>
-<p>Full example:</p>
-<pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
-import '@brightcove/web-sdk/styles';
-
-const player = new Player({
-  // Account ID parameter is required to initialize a player
-  accountId: '&#60;ACCOUNT_ID&#62;',
-
-  // Examples of optional parameters
-  brightcove: {
-    policyKey: '&#60;POLICY_KEY&#62;'
-  },
-  ui: {
-    language: 'fr',
-    playsinline: true
-  }
-});
-
-const root = document.querySelector('#player-mount-root');
-
-// Attach the player to a mount root (DOM element in the page).
-player.attach(root);
-
-// Dynamically update params in the player configuration
-player.updateConfiguration({
-  ui: {
-    language: 'en',
-    playsinline: false
-  }
-});            
-</code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="loading-media">Loading Media</h2> 
@@ -2183,31 +2152,6 @@ player.updateConfiguration({
 </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-  accountId: '&#60;ACCOUNT_ID&#62;',
-  brightcove: {
-    policyKey: '&#60;POLICY_KEY&#62;'
-  }
-});
-
-async function loadVideo(videoId) {
-  const { promise } = player.getVideoByIdFromPlaybackApi({ videoId });
-
-  try {
-    let videoModel = await promise;
-
-    player.loadBrightcoveVideoModel(videoModel);
-  } catch (error) {
-    // Handle error
-    console.error('Error loading video:', error);
-  }
-}
-
-loadVideo('&#60;VIDEO_ID&#62;');
-  </code></pre>
-
-  <br>
 </section>
   <section class="bcls-section">
   <h2 id="playlist">Video Cloud Playlist</h2>
@@ -2249,69 +2193,8 @@ loadVideo('&#60;VIDEO_ID&#62;');
 
 </code></pre>
     </li>
-    <li><p>Create a function to advance to the next video in the playlist.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">function advanceToNextItem() {
-  try {
-    const playlistManager = player.getPlaylistManager();
-    const playlist = playlistManager.getPlaylist();
-
-    // Advance to the next item
-    playlist.moveToNext();
-    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
-  } catch (error) {
-    // Handle error
-    console.error('Error advancing to next item:', error);
-  }
-}</code></pre>
-    </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-  accountId: '&#60;ACCOUNT_ID&#62;',
-  brightcove: {
-    policyKey: '&#60;POLICY_KEY&#62;'
-  }
-});
-
-async function loadPlaylist(playlistId) {
-  const { promise } = player.getPlaylistByIdFromPlaybackApi({ playlistId });
-
-  try {
-    const playlistModel = await promise;
-    const playlistManager = player.getPlaylistManager();
-
-    // Create playlist object
-    const playlist = playlistManager.createPlaylistFromBrightcoveVideoModels(playlistModel.videos);
-
-    // Pass the playlist object to the PlaylistManager
-    playlistManager.setPlaylist(playlist);
-
-    // Load the first playlist item
-    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
-  } catch (error) {
-    // Handle error
-    console.error('Error loading playlist:', error);
-  }
-}
-
-loadPlaylist('&#60;PLAYLIST_ID&#62;');
-
-function advanceToNextItem() {
-  try {
-    const playlistManager = player.getPlaylistManager();
-    const playlist = playlistManager.getPlaylist();
-
-    // Advance to the next item
-    playlist.moveToNext();
-    player.loadBrightcoveVideoModel(playlist.getCurrentItem());
-  } catch (error) {
-    // Handle error
-    console.error('Error advancing to next item:', error);
-  }
-}
-
-advanceToNextItem();
-  </code></pre>
+  
 </section>
 <br>
 <section class="bcls-section">
@@ -2340,21 +2223,6 @@ advanceToNextItem();
 </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-  accountId: '&#60;ACCOUNT_ID&#62;'
-});
-
-const source = {
-  url: 'http://video.com/index.m3u8'
-};
-
-try {
-  player.loadRemoteVideo(source);
-} catch (error) {
-  // Handle error
-}
-  </code></pre>
 
 </section>
 <section class="bcls-section">
@@ -2365,15 +2233,15 @@ try {
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import Necessary Modules</strong>: Import the required modules from the SDK.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
-import { PinningIntegration } from '@brightcove/web-sdk/integrations/pinning';
-import { ThumbnailsIntegration } from '@brightcove/web-sdk/integrations/thumbnails';
-import '@brightcove/web-sdk/styles';
-import '@brightcove/web-sdk/integrations/pinning/styles';
-import '@brightcove/web-sdk/integrations/thumbnails/styles';</code></pre>
+ import { PinningIntegrationFactory } from '@brightcove/web-sdk/integrations/pinning';
+ import { ThumbnailsIntegrationFactory } from '@brightcove/web-sdk/integrations/thumbnails';
+ import '@brightcove/web-sdk/styles';
+ import '@brightcove/web-sdk/integrations/pinning/styles';
+ import '@brightcove/web-sdk/integrations/thumbnails/styles';</code></pre>
     </li>
     <li><p><strong>Register Integrations</strong>: Register the integrations before creating the player instance.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegration);
-IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
+ IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
 </code></pre>
     </li>
     <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Brightcove Player and include the integrations with their configuration options.</p>
@@ -2391,7 +2259,7 @@ IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
     </li>
     <li><p><strong>Attach the Player to the DOM</strong>: Specify the DOM element where the player should be attached.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
-player.attach(root);          
+ player.attach(root);          
 </code></pre>
     </li>
     <li><p><strong>Access Individual Integrations</strong>: Use the <code translate="no">IntegrationsManager</code> to access and control specific integrations.</p>
@@ -2403,46 +2271,11 @@ player.attach(root);
 </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
-import { PinningIntegration } from '@brightcove/web-sdk/integrations/pinning';
-import { ThumbnailsIntegration } from '@brightcove/web-sdk/integrations/thumbnails';
-import '@brightcove/web-sdk/styles';
-import '@brightcove/web-sdk/integrations/pinning/styles';
-import '@brightcove/web-sdk/integrations/thumbnails/styles';
-
-// Register integrations before creating a Player
-IntegrationsManager.registerPinningIntegrationFactory(PinningIntegration);
-IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
-
-const player = new Player({
-  accountId: '&#60;ACCOUNT_ID&#62;',
-
-  // Integrations can have their own configuration options
-  integrations: {
-    pinning: {
-      posX: 'left',
-      posY: 'top',
-      closeable: true
-    }
-  }
-});
-
-const root = document.querySelector('#player-mount-root');
-
-player.attach(root);
-
-// Access individual integrations via the IntegrationsManager
-const { pinningIntegration } = player.getIntegrationsManager();
-
-// Perform integration-specific operations
-pinningIntegration.togglePinning();
-    </code></pre>
 </section>
 
 <section class="bcls-section">
   <h2 id="networkingmanager">NetworkingManager</h2> 
-  <p>The <code translate="no">NetworkingManager</code> is used to hook into the SDK's request/response cycle and allows you to intercept and manipulate network requests and responses the player makes. enabling a wide range of custom behaviors and optimizations.</p>
+  <p>The <code translate="no">NetworkingManager</code> is used to hook into the SDK's request/response cycle and allows you to intercept and manipulate network requests and responses the player makes, enabling a wide range of custom behaviors and optimizations.</p>
 
   <p>The <code translate="no">NetworkingManager</code> provides two main functionalities:</p>
   <ul>
@@ -2470,21 +2303,6 @@ pinningIntegration.togglePinning();
       </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();
-    
-networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
-  console.log('HLS Playlist request interceptor ', request);
-
-  return request;
-});
-
-networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
-  console.log('HLS Playlist response interceptor ', response);
-
-  return response;
-});
-    </code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="uimanager">UiManager</h2> 
@@ -2508,14 +2326,6 @@ networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (respon
       </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent } from '@brightcove/web-sdk/ui';
-
-class CustomPlayButton extends BigPlayButtonUiComponent {
-   // ... custom play button code
-}
-
-UiManager.overrideDefaultComponent('BigPlayButton', CustomPlayButton);</code></pre>
 <br>
 
   <h3 id="custom-components">Custom Components</h3> 
@@ -2545,31 +2355,10 @@ const playerComponent = uiManager.getPlayerContainerUiComponent();
     </li>
     <li><p><strong>(Optional) Add the Custom Component to Another Component </strong>: (for example the ControlBar)</code></p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const controlBarComponent = playerComponent.getChild('controlBar');
-controlBarComponent.addChild(customComponent);
+ controlBarComponent.addChild(customComponent);
         </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import { BaseUiComponent } from '@brightcove/web-sdk/ui';
-
-// import and initialize UI Player
-
-const uiManager = player.getUiManager();
-const playerComponent = uiManager.getPlayerContainerUiComponent();
-
-class CustomComponent extends BaseUiComponent {
-   // ... custom component code
-}
-
-const customComponent = new CustomComponent();
-
-// Add the custom component as a child of the player component
-playerComponent.addChild(customComponent);
-
-// Or add it as a child of another component ,for example the ControlBar
-const controlBarComponent = playerComponent.getChild('controlBar');
-
-controlBarComponent.addChild(customComponent);</code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="playlistmanager">PlaylistManager</h2> 
@@ -2586,11 +2375,11 @@ controlBarComponent.addChild(customComponent);</code></pre>
     </li>
     <li><p><strong>Create a Playlist from Remote Sources</strong>: Alternatively, create a playlist using remote media sources.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const remotePlaylist = playlistManager.createPlaylistFromRemoteSources([
-        /* Array&#60;Source&#62; */
-      ]);</code></pre>
+   /* Array&#60;Source&#62; */
+ ]);</code></pre>
     </li>
     <li><p><strong>Set the Playlist in the PlaylistManager</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(videoCloudPlaylist | remotePlaylist);
+      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(/* videoCloudPlaylist | remotePlaylist */);
       </code></pre>
     </li>
     <li><p><strong>Load the First Playlist Item</strong>:</p>
@@ -2622,35 +2411,6 @@ controlBarComponent.addChild(customComponent);</code></pre>
       </code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">// Get the PlaylistManager instance
-const playlistManager = player.getPlaylistManager();
-
-// Create playlist from a Playback API response
-const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels([
-  // Add your Brightcove video models here
-]);
-
-// Create playlist from remote sources
-const remotePlaylist = playlistManager.createPlaylistFromRemoteSources([
-  // Add your remote sources here
-]);
-
-// Set the playlist in the PlaylistManager
-playlistManager.setPlaylist(videoCloudPlaylist || remotePlaylist);
-
-// Load the first item in the playlist
-player.loadBrightcoveVideoModel(playlist.getCurrentItem());
-
-// Playlist methods to navigate through items
-playlist.moveToNext();    // Move to next item
-playlist.moveToPrevious(); // Move to previous item
-playlist.moveTo(2);       // Move to the item at index 2
-playlist.shuffle();       // Shuffle the playlist
-
-// Load the new current item after navigation
-player.loadBrightcoveVideoModel(playlist.getCurrentItem());
-</code></pre>
 </section>
 
 <section class="bcls-section">
@@ -2689,26 +2449,6 @@ player.removeAllEventListeners();
 </code></pre>
   </li>
 </ol>
-<p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">// Handle only the first emission of the PlayerPlaying event
-player.once(Player.Event.PlayerPlaying, (event) => {
-  console.log('PlayerPlaying event: ', event);
-});
-
-const handlePlayerQualityLevelsChanged = (event) => console.log('PlayerQualityLevelsChanged event: ', event);
-
-// Handle every emission of the PlayerQualityLevelsChanged event
-player.addEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
-
-// Remove one specific event listener
-player.removeEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
-
-// Remove all listeners for a specific event
-player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);
-
-// Remove all event listeners
-player.removeAllEventListeners();
-    </code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="errors">Errors</h2>
@@ -2748,8 +2488,8 @@ if (error) {
       <br>
        <code translate="no">@brightcove/web-sdk/integrations/&#60;integration-name&#62;/styles</code>
       <br>
-       If you are integrating with a specific feature like <code translate="no">custom-controls</code>, follow this pattern:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/custom-controls/styles';</code></pre>
+       If you are integrating with a specific feature like <code translate="no">pinning</code>, follow this pattern:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/pinning/styles';</code></pre>
     </li>
   </ol>
 </section>
@@ -2760,7 +2500,7 @@ if (error) {
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import the required Player class and associated styles</strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
-import '@brightcove/web-sdk/styles';</code></pre>
+ import '@brightcove/web-sdk/styles';</code></pre>
     </li>
     <li><p><strong>Initialize a UI-enabled player for Spatial Navigation</strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
@@ -2791,35 +2531,6 @@ spatialNavigationManager.resume();
 spatialNavigationManager.stop();</code></pre>
     </li>
   </ol>
-  <p>Full example:</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
-import '@brightcove/web-sdk/styles';
-
-// Initialize a UI-enabled player for Spatial Navigation
-const player = new Player({
-  ui: {
-    spatialNavigation: {
-      // Enable Spatial Navigation
-      enabled: true,
-
-      // Enable horizontal navigation seek functionality, using right and left RCU arrow keys.
-      horizontalSeek: true,
-    }
-  }
-});
-
-const spatialNavigationManager = player.getSpatialNavigationManager()
-// Start listening for keydown events
-spatialNavigationManager.start();
-
-// Pause listening for keydown events without removing listeners
-spatialNavigationManager.pause();
-
-// Resume listening for keydown events after pausing
-spatialNavigationManager.resume();
-
-// Disable Spatial Navigation by removing all keydown listeners
-spatialNavigationManager.stop();</code></pre>
 <br>
 <h3>Spatial Navigation Events</h3>
 <p>The Web & Smart TV SDK provides two key events for spatial navigation:</p>
@@ -2848,30 +2559,15 @@ spatialNavigationManager.stop();</code></pre>
     </li>
     <li><p><strong>Add the Language Pack to the UI Manager</strong>: Use the <code translate="no">addLanguagePack</code> method of the UI manager to add the imported language pack:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">uiManager.addLanguagePack('ja', mainJapanese);
-uiManager.addLanguagePack('ja', imaDaiJapanese);
+ uiManager.addLanguagePack('ja', imaDaiJapanese);
       </code></pre>
     </li>
   </ol>
-  <p>Full example</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">// Import general player localizations
-import mainJapanese from '@brightcove/web-sdk/ui/languagePacks/ja';
-
-// Import integration-specific localizations
-import imaDaiJapanese from '@brightcove/web-sdk/integrations/imaDai/languagePacks/ja';
-
-// Initialize the player and other imports
-const player = videojs('my-player-id');
-const uiManager = player.getUiManager();
-
-// Add Japanese language support
-uiManager.addLanguagePack('ja', mainJapanese);
-uiManager.addLanguagePack('ja', imaDaiJapanese);
-  </code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="sample-implementations">Sample Implementations</h2> 
   <p>To help you quickly get up to speed with the Brightcove Web & Smart TV SDK, we offer several sample implementations. These examples demonstrate various features and use cases, providing a hands-on way to learn how to use the SDK effectively.</p>
-  <p>explore a variety of sample implementations by visiting the following links:</p>
+  <p>Explore a variety of sample implementations by visiting the following links:</p>
   <ul>
     <li><p>Preset Video Cloud Media:</p>
     <ul>
