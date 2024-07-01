@@ -2395,7 +2395,7 @@ player.attach(root);
 </code></pre>
     </li>
     <li><p><strong>Access Individual Integrations</strong>: Use the <code translate="no">IntegrationsManager</code> to access and control specific integrations.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const pinningIntegration = player.getIntegrationsManager().get(PinningIntegration);         
+      <pre class="line-numbers"><code class="language-JS" translate="No">const { pinningIntegration } = player.getIntegrationsManager();         
 </code></pre>
     </li>
     <li><p><strong>Perform Integration-Specific Operations provided by the integration</strong>.</p>
@@ -2488,8 +2488,10 @@ networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (respon
 </section>
 <section class="bcls-section">
   <h2 id="uimanager">UiManager</h2> 
-  <p>The UiManager provides a structured way to control, customize, and extend the default UI elements to better suit your application's needs.</p>
-  <p>To use the <code translate="no">UiManager</code> following these steps:</p>
+  <p>The <code translate="no">UiManager</code> provides a structured way to control, customize, and extend the default UI elements to better suit your application's needs.</p>
+  <br>
+  <h3>Overriding Default Components</h3>
+  <p>Modify existing components to better suit your application's needs.</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import Required Modules</strong></p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent } from '@brightcove/web-sdk/ui';
@@ -2514,9 +2516,9 @@ class CustomPlayButton extends BigPlayButtonUiComponent {
 }
 
 UiManager.overrideDefaultComponent('BigPlayButton', CustomPlayButton);</code></pre>
-</section>
-<section class="bcls-section">
-  <h2 id="custom-components">Custom Components</h2> 
+<br>
+
+  <h3 id="custom-components">Custom Components</h3> 
   <p>By creating custom components, you can add unique features and tailor the player interface to better fit your application requirements.</p>
   <p>To apply Custom Components following these steps:</p>
   <ol class="bcls-tasklist-restart">
@@ -2588,7 +2590,7 @@ controlBarComponent.addChild(customComponent);</code></pre>
       ]);</code></pre>
     </li>
     <li><p><strong>Set the Playlist in the PlaylistManager</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(videoCloudPlaylist || remotePlaylist);
+      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(videoCloudPlaylist | remotePlaylist);
       </code></pre>
     </li>
     <li><p><strong>Load the First Playlist Item</strong>:</p>
@@ -2671,18 +2673,18 @@ player.addEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQua
 </code></pre>
   </li>
   <li><p><strong>Remove Specific Event Listeners</strong>: To remove a specific event listener, use the <code translate="no">removeEventListener</code> method.</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove one specific event listener
+    <pre class="line-numbers"><code class="language-JS" translate="No">
 player.removeEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
       
 </code></pre>
   </li>
   <li><p><strong>Remove All Listeners for a Specific Event</strong>: To remove all listeners for a specific event, use the <code translate="no">removeAllEventListenersForType</code> method.</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove all listeners for a specific event
+    <pre class="line-numbers"><code class="language-JS" translate="No">
 player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);      
 </code></pre>
   </li>
   <li><p><strong>Remove All Event Listeners</strong>: To remove all event listeners for all events, use the <code translate="no">removeAllEventListeners</code> method:</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">// Remove all event listeners
+    <pre class="line-numbers"><code class="language-JS" translate="No">
 player.removeAllEventListeners();   
 </code></pre>
   </li>
@@ -2754,6 +2756,7 @@ if (error) {
 <section class="bcls-section">
   <h2 id="spatial-navigation">Spatial Navigation</h2> 
   <p><code translate="no">spatialNavigation</code> enhances user experience and accessibility on smart TV devices by enabling navigation through interactive elements within the player using remote control arrow keys.</p>
+  <h3>Enable Spatial Navigation</h3>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import the required Player class and associated styles</strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
@@ -2831,8 +2834,12 @@ spatialNavigationManager.stop();</code></pre>
   <p>Localization is a crucial aspect of developing a user-friendly video player that meets the needs of a diverse, global audience.</p>
   <p>Support for multiple languages and localizations can be included as follows:</p>
   <ol class="bcls-tasklist-restart">
-    <li><p><strong>Import the Language Pack</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">import Japanese from '@brightcove/web-sdk/ui/languagePacks/ja';
+    <li><p><strong>Import general player localizations</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import mainJapanese from '@brightcove/web-sdk/ui/languagePacks/ja';
+      </code></pre>
+    </li>
+    <li><p><strong>Import integration-specific localizations</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import imaDaiJapanese from '@brightcove/web-sdk/integrations/imaDai/languagePacks/ja';
       </code></pre>
     </li>
     <li><p><strong>Initialize the UI Manager</strong>:</p>
@@ -2840,19 +2847,26 @@ spatialNavigationManager.stop();</code></pre>
       </code></pre>
     </li>
     <li><p><strong>Add the Language Pack to the UI Manager</strong>: Use the <code translate="no">addLanguagePack</code> method of the UI manager to add the imported language pack:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">uiManager.addLanguagePack('ja', Japanese);
+      <pre class="line-numbers"><code class="language-JS" translate="No">uiManager.addLanguagePack('ja', mainJapanese);
+uiManager.addLanguagePack('ja', imaDaiJapanese);
       </code></pre>
     </li>
   </ol>
   <p>Full example</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import Japanese from '@brightcove/web-sdk/ui/languagePacks/ja';
+  <pre class="line-numbers"><code class="language-JS" translate="No">// Import general player localizations
+import mainJapanese from '@brightcove/web-sdk/ui/languagePacks/ja';
 
-    // Initialize the player and other imports
-    const player = videojs('my-player-id');
-    const uiManager = player.getUiManager();
-    
-    // Add Japanese language support
-    uiManager.addLanguagePack('ja', Japanese);</code></pre>
+// Import integration-specific localizations
+import imaDaiJapanese from '@brightcove/web-sdk/integrations/imaDai/languagePacks/ja';
+
+// Initialize the player and other imports
+const player = videojs('my-player-id');
+const uiManager = player.getUiManager();
+
+// Add Japanese language support
+uiManager.addLanguagePack('ja', mainJapanese);
+uiManager.addLanguagePack('ja', imaDaiJapanese);
+  </code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="sample-implementations">Sample Implementations</h2> 
