@@ -967,7 +967,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.13.1: Native SDK for iOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/ios/basics/overview-brightcove-player-sdk-ios.html">v6.13.2: Native SDK for iOS Overview</a></li>
                   
                   
                   
@@ -1398,7 +1398,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.13.1: Native SDK for tvOS Overview</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/tvos/basics/overview-brightcove-player-sdk-tvos.html">v6.13.2: Native SDK for tvOS Overview</a></li>
                   
                   
                   
@@ -2036,31 +2036,25 @@
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
             </code></pre>
         </li>
         <li>
-            <p>Create and Configure the Player.</p>
+            <p>Create the player</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  },
-  drm: {
-    widevine: {
-      url: 'https://widevine-license-server-url'
-    },
-    playReady: {
-      url: 'https://playready-license-server-url'
-    },
-    fairPlay: {
-      certificateUrl: 'https://fairplay-certificate-server-url',
-      licenseUrl: 'https://fairplay-license-server-url'
-    }
-  }
-});
             </code></pre>
+        </li>
+        <li>
+            <p>Configure the Player</p>
+            <p><strong>DRM</strong> playback is enabled automatically when loading encrypted Brightcove media from the <a target="_blank" href="https://apis.support.brightcove.com/playback/index.html">Playback API</a>, so no additional <strong>DRM </strong>configuration is necessary.</p>
+            <p>If you are loading remote encrypted media outside of Brightcove, you need to configure the <code translate="no">keySystems</code> property in the <code translate="no">Source</code> object.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">//Widevine keySystems example:
+
+source.keySystems = {
+  '&#60;keySystem&#62;' : {
+    licenseServerUri: '&#60;licenseUrl&#62;'  
+  }
+}</code></pre>
         </li>
         <li>
             <p>Attach the Player to a Video Element.</p>
@@ -2077,41 +2071,6 @@ player.getVideoById({ videoId: videoId }).then((videoModel) => {
             </code></pre>
         </li>
     </ol>
-    <p>Complete snippet:</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">//Import Required Modules
-import { Player } from '@brightcove/web-sdk';
-
-//Create and Configure the Player
-const player = new Player();
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  },
-  drm: {
-    widevine: {
-      url: 'https://widevine-license-server-url'
-    },
-    playReady: {
-      url: 'https://playready-license-server-url'
-    },
-    fairPlay: {
-      certificateUrl: 'https://fairplay-certificate-server-url',
-      licenseUrl: 'https://fairplay-license-server-url'
-    }
-  }
-});
-
-//Attach the Player to a Video Element
-const videoElement = document.querySelector('video');
-player.attach(videoElement);
-
-//Load DRM-protected Content
-const videoId = 'your-drm-protected-video-id';
-player.getVideoById({ videoId: videoId }).then((videoModel) => {
-  player.loadVideoModel(videoModel);
-});
-</code></pre>
 </section>
 
 
