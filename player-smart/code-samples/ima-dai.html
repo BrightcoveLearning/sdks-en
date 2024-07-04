@@ -1,0 +1,137 @@
+---
+title: 'Integrating DAI with Brightcove Web & Smart TV SDK'
+description: This document provides detailed instructions on integrating DAI (Dynamic Ad Insertion) with the Brightcove Web & Smart TV SDK. 
+parent: Code Samples
+grandparent: Web & Smart TV SDK
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>Dynamic Ad Insertion (DAI) allows for real-time ad insertion into live or on-demand video content. This guide will walk you through the process of implementing DAI using it's API.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Integration</h2> 
+    <ol class="bcls-tasklist">
+      <li><p>Import Required Modules</p>
+        <pre class="line-numbers"><code class="language-TS" translate="No">import initImaDaiPlugin from '@brightcove/player-core/imaDai';
+ import '@brightcove/player-core/imaDai/styles';
+ import BaseVideoJsPluginIntegration from '@adapters/videojs/integrations/base/VideoJsPluginIntegration';
+ import ImaDaiIntegration from '@types/integrations/imaDaiIntegration.declarations';
+ import { ImaDaiConfiguration } from '@types/configuration.declarations';
+ import type { VideoJsPlayer } from '@types/videojs.declarations';
+ import type { VideoJsServiceDependencies } from '@adapters/videojs/base/VideoJsService';            
+</code></pre></li>
+      <li><p>Define the SSAI Integration Class</p>
+        <pre class="line-numbers"><code class="language-TS" translate="No">export default class ImaDaiIntegrationImpl
+ extends BaseVideoJsPluginIntegration<VideoJsPlayer, ImaDaiPlugin, ImaDaiConfiguration>
+ implements ImaDaiIntegration {
+   public constructor(dependencies: VideoJsServiceDependencies<ImaDaiConfiguration>) {
+     super(dependencies);
+     initImaDaiPlugin(this.videoJs_);
+   }
+ 
+   // Life Cycle Hooks
+   protected handlePlayerAttach_(player: VideoJsPlayer): void {
+     const plugin = player.imaDai(this.configuration);
+     player.on('imaDaiLoaded', this.handleImaDaiSdkLoaded_);
+     this.pluginProvider_.updateValue(plugin);
+   }
+ 
+   protected handlePlayerDetach_(player: VideoJsPlayer): void {
+     this.pluginProvider_.voidSafeAttemptOn('dispose', (plugin) => {
+       player.off('imaDaiLoaded', this.handleImaDaiSdkLoaded_ as (event: unknown) => void);
+       plugin.dispose();
+     });
+     this.pluginProvider_.updateValue(null);
+   }
+ 
+   protected handleUpdateConfiguration_(configuration: ImaDaiConfiguration): void {
+     return this.pluginProvider_.updateConfig('updateConfiguration', configuration, { silent: true });
+   }
+ 
+   protected handleDispose_(): void {
+     this.videoJs_.deregisterPlugin('imaDai');
+   }
+ 
+   private readonly handleImaDaiSdkLoaded_ = (event: ImaDaiSdkLoadedEvent): void => {
+     this.sdkEventEmitter_.emit(ImaDaiEvents.ImaDaiSdkLoaded, new ImaDaiSdkLoadedEvent(event.imaDaiSdk));
+   };
+ }                     
+</code></pre></li>
+<li><p>Implement Public API Methods</p>
+  <pre class="line-numbers"><code class="language-TS" translate="No">public load(options: ImaDaiIntegrationLoadOptions): void {
+   this.pluginProvider_.safeAttemptOn('load', (plugin) => {
+     plugin.updateConfig(options);
+     plugin.load({ src: options.streamSource, fallbackSource: options.fallbackSource });
+   });
+ }
+ 
+ public getIsImaDaiStream(): boolean {
+   return this.pluginProvider_.safeAttemptOn('getIsImaDaiStream', (plugin) => plugin.isImaDaiStream, false);
+ }
+ 
+ public getContentDuration(): number {
+   return this.pluginProvider_.safeAttemptOn('getContentDuration', (plugin) => plugin.contentDuration, 0);
+ }
+ 
+ public getRelativeDuration(): number {
+   return this.pluginProvider_.safeAttemptOn('getRelativeDuration', (plugin) => plugin.relativeDuration, 0);
+ }  
+ </code></pre>
+</li>
+</section>
+<section class="bcls-section">
+    <h2 id="configuration-options">Configuration Options</h2> 
+    <p>This section provides detailed information about the various configuration options available for the Dynamic Ad Insertion (DAI) when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+          <caption class="bcls-caption--table">IMA DAI Configuration Options</caption>
+          <thead class="bcls-table__head">
+            <tr>
+              <th>Option</th>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Default Value</th>
+            </tr>
+          </thead>
+          <tbody class="bcls-table__body">
+            <tr>
+              <td><code>sdkUrl</code></td>
+              <td><code>string</code></td>
+              <td>The URL of your self-hosted IMA DAI SDK.</td>
+              <td><code>"//imasdk.googleapis.com/js/sdkloader/ima3_dai.js"</code></td>
+            </tr>
+            <tr>
+              <td><code>skipPlayedAds</code></td>
+              <td><code>boolean</code></td>
+              <td>Whether to skip over ads that have already played when seeking.</td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>hideOverlays</code></td>
+              <td><code>boolean</code></td>
+              <td>If true, it hides overlays while ads are playing.</td>
+              <td><code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+    
+</section>
+
+</article>
