@@ -2085,43 +2085,64 @@ player.attach(videoElement);
             </code></pre>
         </li>
     </ol>
-    <p>Complete snippet:</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
-import {Player} from '@brightcove/web-sdk';
-
-// Import the ImaServerSide integration class from the Brightcove SDK
-import { ImaServerSideIntegration } from '@brightcove/web-sdk/integrations/ImaServerSide';
-
-// Import the ImaServerSide integration CSS from the Brightcove SDK
-import '@brightcove/web-sdk/integrations/ImaServerSide/styles.css';
-
-// Setup ima-client-side integration before creating player
-Player.addImaServerSideIntegrationFactory(ImaServerSideIntegration);
-
-// Create a new Player
-const player = new Player();
-
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  }
-});
-
-// Attach a video element to the Player instance
-const videoElement = document.querySelector('video');
-
-player.attach(videoElement);
-
-// Listen to the SdkLoaded event
-player.one(Player.Event.Integration.ImaServerSide.SdkLoaded, ({ ImaServerSideSdk }) => {
-  // Use the IMA integration (for example: creating on-demand ad request)
-  const adTag = 'your-ad-tag';
-  player.integrations.ImaServerSide.adRequest(adTag);
-});        
-</code></pre>
 </section>
-
+<section class="bcls-section">
+    <h2 id="configuration-options">Configuration Options</h2> 
+    <p>This section provides detailed information about the various configuration options available for Server-Side Ad Insertion (SSAI) when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <caption>SSAI Configuration Options</caption>
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Configuration Option</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code translate="no">hideOverlays</code></td>
+      <td>boolean</td>
+      <td>If true, the countdown timer and Learn More click-through overlays will not be shown while ads are playing.</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code translate="no">timeout</code></td>
+      <td>number</td>
+      <td>The number of milliseconds after which an XHR to fetch a VMAP will time out.</td>
+      <td>45000</td>
+    </tr>
+    <tr>
+      <td><code translate="no">enableDiscontinuities</code></td>
+      <td>boolean</td>
+      <td>If true, request the video source with HLS discontinuities or DASH multiperiod. Only valid for VOD SSAI.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code translate="no">enableOm</code></td>
+      <td>boolean</td>
+      <td>If true (and the necessary Open Measurement SDK scripts are embedded), the plugin will use values from the omParams object to start an OM manager and create a new OM session client.</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code translate="no">omParams</code></td>
+      <td>OmConfiguration</td>
+      <td>An object describing the required parameters for starting an Open Measurement session client and OM ad features.</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td><code translate="no">vmapURLParams</code></td>
+      <td>object</td>
+      <td>An object containing the parameters for replacing arbitrary values in the VMAP source URL. <a target="_blank" href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html#URL_variables">See</a>
+        <aside class="bcls-aside bcls-aside--tip">Note: Object keys can have any name. The name of this variable must match the VMAP source URL param string or else it will not be replaced.</aside>
+    </td>
+      <td>{}</td>
+    </tr>
+  </tbody>
+        </table>
+    </div>
+</section>
 
 </article>
 

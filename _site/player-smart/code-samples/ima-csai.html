@@ -2083,6 +2083,15 @@ player.attach(videoElement);
   player.integrations.imaClientSide.adRequest(adTag);
 });
             </code></pre>
+            <p>You can also activate the plugin by passing specific options within the configuration object.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">var player = videojs('my-player', {
+    plugins: {
+        imaClientSide: {
+            adTagUrl: 'your-ad-tag-url',
+            // Other configuration options
+        }
+    }
+});</code></pre>
         </li>
     </ol>
 </section>
