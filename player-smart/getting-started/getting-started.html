@@ -228,13 +228,13 @@ grandparent: Web & Smart TV SDK
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
  import { PinningIntegrationFactory } from '@brightcove/web-sdk/integrations/pinning';
  import { ThumbnailsIntegrationFactory } from '@brightcove/web-sdk/integrations/thumbnails';
- import '@brightcove/web-sdk/styles';
+ import '@brightcove/web-sdk/ui/styles';
  import '@brightcove/web-sdk/integrations/pinning/styles';
  import '@brightcove/web-sdk/integrations/thumbnails/styles';</code></pre>
     </li>
     <li><p><strong>Register Integrations</strong>: Register the integrations before creating the player instance.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegration);
- IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegration);
+      <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegrationFactory);
+ IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegrationFactory);
 </code></pre>
     </li>
     <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Brightcove Player and include the integrations with their configuration options.</p>

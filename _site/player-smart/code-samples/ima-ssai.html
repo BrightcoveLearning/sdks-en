@@ -2049,68 +2049,7 @@
 <section class="bcls-section">
     <h2 id="integration">Integration</h2> 
     <ol class="bcls-tasklist">
-      <li><p>Import Required Modules</p>
-        <pre class="line-numbers"><code class="language-TS" translate="No">import initSsaiPlugin from '@brightcove/player-core/ssai';
- import '@brightcove/player-core/ssai/styles';
- import BaseVideoJsPluginIntegration from '@adapters/videojs/integrations/base/VideoJsPluginIntegration';
- import SsaiClickThroughEvent from '@events/integrationEvents';
- import { SsaiConfiguration } from '@types/configuration.declarations';
- import type { VideoJsPlayer } from '@types/videojs.declarations';
- import type { VideoJsServiceDependencies } from '@adapters/videojs/base/VideoJsService';
-</code></pre></li>
-      <li><p>Define the SSAI Integration Class</p>
-        <pre class="line-numbers"><code class="language-TS" translate="No">export default class SsaiIntegrationImpl
- extends BaseVideoJsPluginIntegration<VideoJsPlayer, SsaiPlugin, SsaiConfiguration>
- implements SsaiIntegration {
-   public constructor(dependencies: VideoJsServiceDependencies<SsaiConfiguration>) {
-     super(dependencies);
-     initSsaiPlugin(this.videoJs_);
-   }
- 
-   // Life Cycle Hooks
-   protected handlePlayerAttach_(player: VideoJsPlayer): void {
-     const plugin = player.ssai(this.configuration);
-     player.on('bcov-ssai-click-through', this.handleSsaiClickThroughEvent_);
-     this.pluginProvider_.updateValue(plugin);
-   }
- 
-   protected handlePlayerDetach_(player: VideoJsPlayer): void {
-     player.off('bcov-ssai-click-through', this.handleSsaiClickThroughEvent_);
-     this.pluginProvider_.updateValue(null);
-   }
- 
-   protected handleUpdateConfiguration_(configuration: SsaiConfiguration): void {
-     return this.pluginProvider_.updateConfig('updateConfiguration', configuration, { silent: true });
-   }
- 
-   protected handleDispose_(): void {
-     this.videoJs_.deregisterPlugin('ssai');
-   }
- 
-   private readonly handleSsaiClickThroughEvent_ = (): void => {
-     this.sdkEventEmitter_.emit(SsaiEvents.ClickThrough, new SsaiClickThroughEvent());
-   };
- }          
-</code></pre></li>
-<li><p>Implement Public API Methods</p>
-  <pre class="line-numbers"><code class="language-TS" translate="No">public getRelativeDuration(): number {
-   return this.videoJsPlayerProvider_.safeAttemptOnVideoJsPlayer('getRelativeDuration', (player) => player.duration() as number);
- }
- 
- public seekTimeRelative(seekTarget: number, preventAdSkips?: boolean): void {
-   this.pluginProvider_.updateValue('seek', seekTarget, { preventAdSkips });
- }
- 
- public getCurrentLinearAd(): LinearAd | null {
-   return this.pluginProvider_.safeAttempt('getCurrentLinearAd');
- }
- 
- public getRelativeTimelineState(): TimelineState | null {
-   return this.pluginProvider_.safeAttempt('getRelativeTimelineState');
- }
- </code></pre>
-</li>
-        <!-- <li>
+        <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
             </code></pre>
@@ -2157,7 +2096,7 @@ player.attach(videoElement);
 });
             </code></pre>
         </li>
-    </ol> -->
+    </ol>
 </section>
 <section class="bcls-section">
     <h2 id="configuration-options">Configuration Options</h2> 

@@ -29,27 +29,27 @@ grandparent: Player SDK for Web And Smart TV
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
             </code></pre>
         </li>
         <li>
             <p>Import the Social integration class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegration } from '@brightcove/web-sdk/integrations/social';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialSharingIntegrationFactory } from '@brightcove/web-sdk/integrations/socialSharing';
             </code></pre>
         </li>
         <li>
             <p>Import the Social integration CSS from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/social/styles.css';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/socialSharing/styles.css';
             </code></pre>
         </li>
         <li>
             <p>Import required Social Language Packs from the Brightcove SDK (in this example: French)</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialIntegrationFrenchLanguagePack } from '@brightcove/web-sdk/integrations/social/languagePacks/fr';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import socialSharingFr from '@brightcove/web-sdk/integrations/socialSharing/languagePacks/fr';
             </code></pre>
         </li>
         <li>
             <p>Setup social integration to ensure it's available when the player initializes.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addSocialIntegration(ImaClientSideIntegration, { 
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerSocialSharingIntegration(ImaClientSideIntegration, { 
   languagePacks: [SocialIntegrationFrenchLanguagePack],
   services: [
     SocialIntegration.Service.Google,
@@ -89,50 +89,6 @@ player.integrations.social.setDirectLink(directLink);
             </code></pre>
         </li>
     </ol>
-
-    <p>Complete snippet:</p>
-    <pre class="line-numbers"><code class="language-JS" translate="No">// Import the Player (with UI) class from the Brightcove SDK
-import {Player} from '@brightcove/web-sdk';
-
-// Import the Social integration class from the Brightcove SDK
-import { SocialIntegration } from '@brightcove/web-sdk/integrations/social';
-
-// Import the Social integration CSS from the Brightcove SDK
-import '@brightcove/web-sdk/integrations/social/styles.css';
-
-// Import required Social Language Packs from the Brightcove SDK (in this example: French)
-import { SocialIntegrationFrenchLanguagePack } from '@brightcove/web-sdk/integrations/social/languagePacks/fr';
- 
-// Setup social integration before creating player
-Player.addSocialIntegration(ImaClientSideIntegration, { 
-  languagePacks: [SocialIntegrationFrenchLanguagePack],
-  services: [
-    SocialIntegration.Service.Google,
-    SocialIntegration.Service.Pinterest,
-    SocialIntegration.Service.LinkedIn
-  ]
-});
-
-// Create a new Player
-const player = new Player();
-
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  }
-});
-
-// Attach a video element to the Player instance
-const videoElement = document.querySelector('video');
-
-player.attach(videoElement);  
-
-// Use social integration
-const directLink = 'your-direct-link';
-player.integrations.social.setDirectLink(directLink);
-
-                    </code></pre>
 </section>
 
 </article>
