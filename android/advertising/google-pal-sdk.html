@@ -1,0 +1,36 @@
+---
+title: 'Google PAL SDK'
+description: 'In this topic,'
+parent: Advertising
+grandparent: Android Development
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+  
+  <section class="bcls-section">
+<h1 id="top">Google PAL SDK</h1>
+<p>As of v2.6.0 the SSAI plugin facilitates usage of Google’s PAL SDK with a simple API. If PAL SDK is enabled, the plugin will load in the SDK script from Google and provide a set of default parameters to generate an identifier that will be appended to the ad request for VOD and Live content. You can customize the parameters on a per-player basis or at runtime before a video source is set.</p>
+<h2>Setting up the Ad Tag</h2>
+<p>The SSAI plugin will append a givn parameter to requests for VMAP (VOD) or M3U8 manifests (Live). This can be seen by inspecting the requests in the Network tab of the browsers dev tools:
+  (imagen aqui)
+  <aside class="bcls-aside bcls-aside--information language-editable">Note: To use this parameter, the ad tag in use should contain the <code>{{url.givn}}</code>e.g.: <code>https://general.support.brightcove.com/assets/ads/vmap/simple-vmap.xml?givn={{url.givn}}`</code> </aside>
+</p>
+<h2>Parameters and Options</h2>
+<h3>Automatic PAL Parameters</h3>
+<p>The following parameters are set by the SSAI plugin for all Google PAL SDK enabled requests:</p>
+<table class="bcls-table">
+  <thead class="bcls-table__head">
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+      </td>
+    </tr>
+  </section>
