@@ -38,7 +38,7 @@ layout: staging
         </li>
         <li>
             <p>Import the ImaServerSide integration class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaServerSideIntegration } from '@brightcove/web-sdk/integrations/imaServerSide';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaServerSideIntegration } from '@brightcove/web-sdk/integrations/ssai';
             </code></pre>
         </li>
         <li>
@@ -47,8 +47,8 @@ layout: staging
             </code></pre>
         </li>
         <li>
-            <p>Setup ima-client-side integration.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.addImaServerSideIntegrationFactory(ImaServerSideIntegration);
+            <p>Setup ima-server-side integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerSsaiIntegrationFactory(SsaiIntegrationFactory);
             </code></pre>
         </li>
         <li>
@@ -65,9 +65,9 @@ player.updateConfiguration({
         </li>
         <li>
             <p>Attach a video element to the Player instance.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const videoElement = document.querySelector('video');
+            <pre class="line-numbers"><code class="language-JS" translate="No">const mountContainer = document.querySelector('video');
 
-player.attach(videoElement);
+player.attach(mountContainer);
             </code></pre>
         </li>
         <li>

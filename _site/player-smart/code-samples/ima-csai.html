@@ -2060,7 +2060,7 @@
         </li>
         <li>
             <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/imaClientSide/styles.css';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/imaClientSide/styles';
             </code></pre>
         </li>
         <li>
@@ -2070,7 +2070,7 @@
         </li>
         <li>
             <p>Create and Configure the Player.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(accountId);
 
 player.updateConfiguration({
   brightcove: {
