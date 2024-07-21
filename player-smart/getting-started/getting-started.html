@@ -36,15 +36,15 @@ layout: staging
 <p>Alternatively, if you prefer to use the SDK from the CDN, include one of the following script tags in your HTML files:</p>
 
 <h4>CommonJS</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.cjs.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.cjs.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>ES Module</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/playback/index.es.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.es.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>IIFE (Immediately Invoked Function Expression)</h4>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 <br>
 <h4>Specifying a Version</h4>
@@ -55,9 +55,9 @@ layout: staging
   <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code>.<code>&#123;patch&#125;</code> to include a specific version.</li>
 </ul>
 <p>For example</p>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/playback/index.iife.min.js"&#62;&#60;/script&#62;
- &#60;script src="https://players.brightcove.net/sdk/v1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
- &#60;script src="https://players.brightcove.net/sdk/v1.1.1/playback/index.iife.min.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
 
 </section> 
@@ -70,7 +70,7 @@ layout: staging
       <p><strong>Playback with UI</strong></p>
         <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
- import '@brightcove/web-sdk/styles';
+ import '@brightcove/web-sdk/ui/styles';
         </code></pre>
   </ul>
 </section>
@@ -79,21 +79,12 @@ layout: staging
 <p>Once the SDK is installed, you can create a media player to embed in your application. By following these steps, you will have a basic video player set up using the Brightcove Web & Smart TV SDK.</p>
 <ol class="bcls-tasklist">
     <li>
-        <p><strong>Initialize the Player</strong>: Set up the player with your Brightcove account details and optional parameters:</p>
+        <p><strong>Initialize the Player</strong>: Set up the player with your Brightcove account details:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
   // Account ID parameter is required to initialize a player
   accountId: '&#60;ACCOUNT_ID&#62;',
-
-  // Examples of optional parameters
-  brightcove: {
-    policyKey: '&#60;POLICY_KEY&#62;'
-  },
-  ui: {
-    language: 'fr',
-    playsinline: true
-  }
-});
-        </code></pre>
+ });
+</code></pre>
     </li>
     <li>
         <p>Attach the player to a mount root (DOM element in the page):</p>
@@ -104,6 +95,9 @@ layout: staging
     <li>
         <p>Dynamically update params in the player configuration:</p>
         <pre class="line-numbers"><code class="language-JS" translate="No">player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
   ui: {
     language: 'en',
     playsinline: false
@@ -119,21 +113,24 @@ layout: staging
   <p>Load media into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-    accountId: '&#60;ACCOUNT_ID&#62;',
-    brightcove: {
-        policyKey: '&#60;POLICY_KEY&#62;'
-    }
-});</code></pre>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
+});
+      </code></pre>
     </li>
     <li><p><strong>Create a Function to Load Video</strong>: Define an asynchronous function to load video metadata using the video ID.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">async function loadVideo(videoId) {
-    const promise = player.getVideoByIdFromPlaybackApi({ videoId });
+// you can abort a request by calling abort()
+    const { abort, promise } = player.getVideoByIdFromPlaybackApi({ videoId: '&#60;VIDEO_ID&#62;' });
 
     try {
-        let videoModel = await promise;
+        let brightcoveVideoModel = await promise;
 
-        player.loadBrightcoveVideoModel(videoModel);
+        player.loadBrightcoveVideoModel(brightcoveVideoModel);
     } catch (error) {
         console.error('Error loading video:', error);
     }
@@ -152,16 +149,18 @@ layout: staging
   <p>Integrate playlists into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-    accountId: '&#60;ACCOUNT_ID&#62;',
-    brightcove: {
-        policyKey: '&#60;POLICY_KEY&#62;'
-    }
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
 });</code></pre>
     </li>
     <li><p><strong>Create a Function to Load Playlist</strong>: Define an asynchronous function to load a playlist using the playlist ID.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">async function loadPlaylist(playlistId) {
-    const promise = player.getPlaylistByIdFromPlaybackApi({ playlistId });
+// you can abort request by calling abort()
+    const { abort, promise } = player.getPlaylistByIdFromPlaybackApi({ playlistId });
 
     try {
         const playlistModel = await promise;
@@ -187,6 +186,18 @@ layout: staging
 
 </code></pre>
     </li>
+    <li><p>Create a function to advance to the next item.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">function advanceToNextItem() {
+  const playlistManager = player.getPlaylistManager();
+  const playlist = playlistManager.getPlaylist();
+
+  // Advance to the next item
+  playlist.moveToNext();
+  player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+}
+
+advanceToNextItem();</code></pre>
+    </li>
   </ol>
   
 </section>
@@ -197,7 +208,7 @@ layout: staging
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-    // accountId is still required even when loading remote media
+// accountId is still required even when loading remote media
     accountId: '&#60;ACCOUNT_ID&#62;',
 });</code></pre>
     </li>
@@ -207,13 +218,8 @@ layout: staging
 };
 </code></pre>
     </li>
-    <li><p><strong>Load the Remote Video</strong>: Load the remote video source and handle any potential errors.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">try {
-    player.loadRemoteVideo(source);
-} catch (error) {
-    // Handle error
-    console.error('Error loading remote video:', error);
-}    
+    <li><p><strong>Load the Remote Video</strong>: Load the remote video source.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadRemoteVideo(source);  
 </code></pre>
     </li>
   </ol>
@@ -239,16 +245,18 @@ layout: staging
 </code></pre>
     </li>
     <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Brightcove Player and include the integrations with their configuration options.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-    accountId: '<ACCOUNT_ID>',
-    integrations: {
-        pinning: {
-            posX: 'left',
-            posY: 'top',
-            closeable: true
-        }
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+// Integrations can have their own configuration options
+  integrations: {
+    pinning: {
+      posX: 'left',
+      posY: 'top',
+      closeable: true
     }
-});    
+  }
+});
 </code></pre>
     </li>
     <li><p><strong>Attach the Player to the DOM</strong>: Specify the DOM element where the player should be attached.</p>
