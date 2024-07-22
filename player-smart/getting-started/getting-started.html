@@ -314,7 +314,7 @@ player.updateConfiguration({
   <p>Modify existing components to better suit your application's needs.</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import Required Modules</strong></p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent } from '@brightcove/web-sdk/ui';
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent, UiComponentType } from '@brightcove/web-sdk/ui';
       </code></pre>
     </li>
     <li><p><strong>Create a Custom UI Component</strong></p>
@@ -324,7 +324,7 @@ player.updateConfiguration({
       </code></pre>
     </li>
     <li><p><strong>Override the Default Component</strong>: override the default <code translate="no">BigPlayButton</code> with the <code translate="no">CustomPlayButton</code></p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">UiManager.overrideDefaultComponent('BigPlayButton', CustomPlayButton);
+      <pre class="line-numbers"><code class="language-JS" translate="No">UiManager.overrideDefaultComponent(UiComponentType.BigPlayButton, CustomPlayButton);
       </code></pre>
     </li>
   </ol>
