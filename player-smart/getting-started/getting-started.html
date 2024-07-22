@@ -505,16 +505,19 @@ if (error) {
  import '@brightcove/web-sdk/styles';</code></pre>
     </li>
     <li><p><strong>Initialize a UI-enabled player for Spatial Navigation</strong>.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
-    ui: {
-        spatialNavigation: {
-            // Enable Spatial Navigation
-            enabled: true,
-            // Enable horizontal navigation seek functionality using right and left RCU arrow keys.
-            horizontalSeek: true,
-        }
-    }
-});</code></pre>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({ accountId: '&#60;ACCOUNT_ID&#62;' });
+
+ player.updateConfiguration({
+   ui: {
+     spatialNavigation: {
+       // Enable Spatial Navigation
+       enabled: true,
+ 
+       // Enable horizontal navigation seek functionality, using right and left RCU arrow keys.
+       horizontalSeek: true,
+     }
+   }
+ });</code></pre>
     </li>
     <li><p><strong>Retrieve the Spatial Navigation Manager</strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const spatialNavigationManager = player.getSpatialNavigationManager();</code></pre>
@@ -573,14 +576,14 @@ spatialNavigationManager.stop();</code></pre>
   <ul>
     <li><p>Preset Video Cloud Media:</p>
     <ul>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-presets.html#preset:vod">VOD</a></p></li>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-presets.html#preset:vod-drm">VOD with DRM</a></p></li>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-presets.html#preset:mat">Video Cloud VOD with Multiple Audio Tracks</a></p></li>
+      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod">VOD</a></p></li>
+      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod-drm">VOD with DRM</a></p></li>
+      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:mat">Video Cloud VOD with Multiple Audio Tracks</a></p></li>
     </ul>
     </li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-playlist.html#preset:drone">Video Cloud Playlists</a></p></li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-video-cloud.html">Custom Video Cloud Media</a></p></li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/vanilla-demo-app/web/playback-remote.html">Custom Remote Media</a></p></li>
+    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-playlist.html">Video Cloud Playlists</a></p></li>
+    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-video-cloud.html?accountId=3303963094001&policyKey=BCpkADawqM0k6S1rIqFhnNBmm3NQxaFcIuu0oEG5BTIuxtTtoJ6ohz9hYoxeGaisA7V2Ry2XRz0tPEsSaYAwiGGzZWbsXFhzGCkT_R-L8JpFxP8x2mRnJ4eCAcbYvjIt9PuXiM5ZCG3UUJwb&videoId=ref%3Abbb-clear&watermarkingToken=&authToken=&tveToken=&adConfigId=&viewerId=&filterSourcesTo=&streamConcurrency=false&imaSdkUrl=&imaServerUrl=">Custom Video Cloud Media</a></p></li>
+    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-remote.html?accountId=&sourceUrl=&keySystem=&licenseUrl=&certificateUrl=">Custom Remote Media</a></p></li>
   </ul>
 </section>
 
