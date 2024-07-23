@@ -2050,51 +2050,54 @@
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
             </code></pre>
         </li>
         <li>
             <p>Import the ImaServerSide integration class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaServerSideIntegration } from '@brightcove/web-sdk/integrations/ssai';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SsaiIntegrationFactory } from '@brightcove/web-sdk/integrations/ssai';
             </code></pre>
         </li>
         <li>
             <p>Import the ImaServerSide integration CSS from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/imaServerSide/styles.css';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/ssai/styles';
             </code></pre>
         </li>
         <li>
             <p>Setup ima-server-side integration.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerSsaiIntegrationFactory(SsaiIntegrationFactory);
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerSsaiIntegrationFactory(SsaiIntegrationFactory);
             </code></pre>
         </li>
         <li>
             <p>Create and Configure the Player.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player();
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
 
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  }
-});
-            </code></pre>
+ player.updateConfiguration({
+   brightcove: {
+ // Passing an Ad Config ID will enable the fetching of an SSAI stream from the Playback API
+     adConfigId: '&#60;valid-ad-config-id&#62;',
+   },
+   ssai: {
+     timoeut: 30_000,
+     hideOverlays: false,
+     // etc
+   }
+ });</code></pre>
         </li>
         <li>
             <p>Attach a video element to the Player instance.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const mountContainer = document.querySelector('video');
-
-player.attach(mountContainer);
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
             </code></pre>
         </li>
-        <li>
+        <!-- <li>
             <p>Listen to the SdkLoaded event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaServerSide.SdkLoaded, ({ imaServerSideSdk }) => {
   const adTag = 'your-ad-tag-url';
   player.integrations.imaServerSide.adRequest(adTag);
 });
             </code></pre>
-        </li>
+        </li> -->
     </ol>
 </section>
 <section class="bcls-section">
