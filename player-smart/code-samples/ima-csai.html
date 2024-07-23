@@ -33,7 +33,7 @@ layout: staging
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
             </code></pre>
         </li>
         <li>
@@ -48,26 +48,28 @@ layout: staging
         </li>
         <li>
             <p>Setup ima-client-side integration.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerImaClientSideIntegrationFactory(ImaClientSideIntegrationFactory);
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerImaClientSideIntegrationFactory(ImaClientSideIntegrationFactory);
             </code></pre>
         </li>
         <li>
             <p>Create and Configure the Player.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(accountId);
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
 
-player.updateConfiguration({
-  brightcove: {
-    accountId: 'your-account-id',
-    auth: { policyKey: 'your-policy-key' }
-  }
-});
-            </code></pre>
+ player.updateConfiguration({
+   integrations: {
+     imaClientSide: {
+       serverUrl: '<ad-tag-url>',
+       requestMode: 'onload',
+       hardTiemouts: false,
+       // etc
+     },
+   },
+ });</code></pre>
         </li>
         <li>
-            <p>Attach a video element to the Player instance.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const videoElement = document.querySelector('video');
-
-player.attach(videoElement);
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
             </code></pre>
         </li>
         <li>
@@ -77,7 +79,7 @@ player.attach(videoElement);
   player.integrations.imaClientSide.adRequest(adTag);
 });
             </code></pre>
-            <p>You can also activate the plugin by passing specific options within the configuration object.</p>
+            <!-- <p>You can also activate the plugin by passing specific options within the configuration object.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">var player = videojs('my-player', {
     plugins: {
         imaClientSide: {
@@ -85,7 +87,7 @@ player.attach(videoElement);
             // Other configuration options
         }
     }
-});</code></pre>
+});</code></pre> -->
         </li>
     </ol>
 </section>
