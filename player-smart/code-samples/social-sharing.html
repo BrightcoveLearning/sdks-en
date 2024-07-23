@@ -1,0 +1,203 @@
+---
+title: 'Integrating Social Sharing with Brightcove Web & Smart TV SDK'
+description: This document provides comprehensive instructions on how to integrate social sharing with the Brightcove Web & Smart TV SDK.
+parent: Code Samples
+grandparent: Player SDK for Web And Smart TV
+layout: staging
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>The Social Sharing integration enables the inclusion of social sharing buttons within your media player, facilitating easy sharing of content on social networks like Facebook, Twitter, Pinterest, and LinkedIn. This feature enhances viewer engagement and promotes content virality.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A functional Brightcove account and access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Integration</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the Social integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SocialSharingIntegrationFactory } from '@brightcove/web-sdk/integrations/socialSharing';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the Social integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/socialSharing/styles';
+            </code></pre>
+        </li>
+        <!-- <li>
+            <p>Import required Social Language Packs from the Brightcove SDK (in this example: French)</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import socialSharingFr from '@brightcove/web-sdk/integrations/socialSharing/languagePacks/fr';
+            </code></pre>
+        </li> -->
+        <!-- <li>
+            <p>Setup social integration to ensure it's available when the player initializes.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">Player.registerSocialSharingIntegration(ImaClientSideIntegration, { 
+  languagePacks: [SocialIntegrationFrenchLanguagePack],
+  services: [
+    SocialIntegration.Service.Google,
+    SocialIntegration.Service.Pinterest,
+    SocialIntegration.Service.LinkedIn
+  ]
+});
+              
+            </code></pre>
+        </li> -->
+        <li>
+            <p> Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
+
+
+ player.updateConfiguration({
+   integrations: {
+     socialSharing: {
+       title: 'Social Sharing Overlay Title',
+       description: 'Overlay description...',
+       services: {
+         facebook: true,
+         twitter: true,
+         tumblr: false,
+         pinterest: false,
+         linkedin: false,
+       },
+       // etc
+     },
+   },
+ });</code></pre>
+        </li>
+        <li>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+                
+            </code></pre>
+        </li>
+        <!-- <li>
+            <p>Use social integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const directLink = 'your-direct-link';
+
+player.integrations.social.setDirectLink(directLink);
+                
+            </code></pre>
+        </li> -->
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="configuration-options">Configuration Options</h2> 
+    <p>This section provides detailed information about the various configuration options available for Social Sharing Integration when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <caption>Social Sharing Configuration Options</caption>
+            <thead class="bcls-table__head">
+                <tr>
+                    <th>Configuration Option</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody class="bcls-table__body">
+                <tr>
+                    <td><code translate="no">title</code></td>
+                    <td>string</td>
+                    <td>Used to provide a title for use in the social overlay. Can be updated dynamically.</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">description</code></td>
+                    <td>string</td>
+                    <td>Used to provide a description for use in the social overlay. Can be updated dynamically.</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">url</code></td>
+                    <td>string</td>
+                    <td>Used to provide a custom URL that replaces the generated one. Can be updated dynamically.</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">label</code></td>
+                    <td>string</td>
+                    <td>Used to provide a label for the social overlay. Can only be updated on initialization of the plugin.</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedCode</code></td>
+                    <td>string</td>
+                    <td>Used to provide a custom embed code that replaces the generated one. Can be updated dynamically.</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedDomain</code></td>
+                    <td>string</td>
+                    <td>This value is only used when the embed code is not set. Used to provide a custom domain if proxy is being used. Can be updated dynamically. </td>
+                    <td>"players.brightcove.net"</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedDimensions</code></td>
+                    <td>boolean</td>
+                    <td>If true, the current dimensions of the player will be provided in the embed code. Can be updated dynamically.</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">deeplinking</code></td>
+                    <td>boolean</td>
+                    <td>If true, direct links will include a start offset. Can be updated dynamically.</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">offset</code></td>
+                    <td>string</td>
+                    <td>An offset in "hh:mm:ss" format to use for sharing URLs. Can be updated dynamically.</td>
+                    <td>"00:00:00"</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">removeDirect</code></td>
+                    <td>boolean</td>
+                    <td>If true, turns off the direct link. Can be updated dynamically.</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">removeEmbed</code></td>
+                    <td>boolean</td>
+                    <td>If true, turns off the embed code. Can be updated dynamically.</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">services</code></td>
+                    <td>SocialSharingConfigurationServices</td>
+                    <td>Can be updated dynamically.</td>
+                    <td>
+                        <ul>
+                            <li>facebook</li>
+                            <li>twitter</li>
+                            <li>tumblr</li>
+                            <li>pinterestk</li>
+                            <li>linkedin</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+
+</article>
