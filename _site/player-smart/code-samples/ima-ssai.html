@@ -2085,9 +2085,19 @@
  });</code></pre>
         </li>
         <li>
-            <p>Attach a video element to the Player instance.</p>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
  player.attach(root);
+            </code></pre>
+        </li>
+        <li>
+            <p>Access the SSAI Integration API via the IntegrationsManager</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const { ssaiIntegration } = player.getIntegrationsManager();
+            </code></pre>
+        </li>
+        <li>
+            <p>Call SSAI-specific methods</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">ssaiIntegration.seekInRelativeTime(50);
             </code></pre>
         </li>
         <!-- <li>
@@ -2156,6 +2166,54 @@
   </tbody>
         </table>
     </div>
+</section>
+<section class="bcls-section">
+  <h2 id="methods">API Methods Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+        <caption>SSAI API Methods</caption>
+        <thead class="bcls-table__head">
+          <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Parameter Type</th>
+            <th>Returns</th>
+          </tr>
+        </thead>
+        <tbody class="bcls-table__body">
+          <tr>
+            <td>getRelativeDuration</td>
+            <td>Get the duration of a linear ad or content, whichever is currently playing.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>number</td>
+          </tr>
+          <tr>
+            <td>seekInRelativeTime</td>
+            <td>Seek to any point in a linear ad or content, whichever is currently playing.
+            </td>
+            <td>seekTarget, preventAdSkips</td>
+            <td>number, boolean?</td>
+            <td>void</td>
+          </tr>
+          <tr>
+            <td>getCurrentLinearAd</td>
+            <td>Get the current LinearAd.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>LinearAd | null</td>
+          </tr>
+          <tr>
+            <td>getRelativeTimelineState</td>
+            <td>Get the TimelineState object relative to the current linear ad or content.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>TimelineState | null</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 </section>
 
 </article>

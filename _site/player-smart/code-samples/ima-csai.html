@@ -2090,13 +2090,23 @@
             </code></pre>
         </li>
         <li>
+            <p>Access the IMA Client Side Integration API via the IntegrationsManager:</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const { imaClientSideIntegration } = player.getIntegrationsManager();
+            </code></pre>
+        </li>
+        <li>
+            <p>Call CSAI-specific methods</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">imaClientSideIntegration.adMacroReplacement('url');
+            </code></pre>
+        </li>
+        <!-- <li>
             <p>Listen to the <code translate="no">SdkLoaded</code> event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
   const adTag = 'your-ad-tag-url';
   player.integrations.imaClientSide.adRequest(adTag);
 });
             </code></pre>
-            <!-- <p>You can also activate the plugin by passing specific options within the configuration object.</p>
+            <p>You can also activate the plugin by passing specific options within the configuration object.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">var player = videojs('my-player', {
     plugins: {
         imaClientSide: {
@@ -2104,8 +2114,8 @@
             // Other configuration options
         }
     }
-});</code></pre> -->
-        </li>
+});</code></pre>
+        </li> -->
     </ol>
 </section>
 <section class="bcls-section">
