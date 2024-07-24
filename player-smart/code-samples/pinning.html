@@ -12,7 +12,7 @@ layout: staging
 
 <section class="bcls-section">
 <h2 id="overview">Overview</h2> 
-<p>Pinning allows for real-time ad insertion into live or on-demand video content. This guide will walk you through the process of implementing DAI using it's API.</p>
+<p>The Pinning integration allows viewers to pin videos on the screen, ensuring that the video player stays visible while users scroll through the rest of the page. This enhances the user experience by allowing continuous viewing without interruption.</p>
 </section> 
 <section class="bcls-section">
     <h2 id="prerequisites">Prerequisites</h2> 
@@ -28,111 +28,152 @@ layout: staging
 <section class="bcls-section">
     <h2 id="integration">Integration</h2> 
     <ol class="bcls-tasklist">
-      <li><p>Import Required Modules</p>
-        <pre class="line-numbers"><code class="language-TS" translate="No">import initImaDaiPlugin from '@brightcove/player-core/imaDai';
- import '@brightcove/player-core/imaDai/styles';
- import BaseVideoJsPluginIntegration from '@adapters/videojs/integrations/base/VideoJsPluginIntegration';
- import ImaDaiIntegration from '@types/integrations/imaDaiIntegration.declarations';
- import { ImaDaiConfiguration } from '@types/configuration.declarations';
- import type { VideoJsPlayer } from '@types/videojs.declarations';
- import type { VideoJsServiceDependencies } from '@adapters/videojs/base/VideoJsService';            
+      <li><p>Import the Player (with UI) class from the Brightcove SDK.</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';          
 </code></pre></li>
-      <li><p>Define the SSAI Integration Class</p>
-        <pre class="line-numbers"><code class="language-TS" translate="No">export default class ImaDaiIntegrationImpl
- extends BaseVideoJsPluginIntegration<VideoJsPlayer, ImaDaiPlugin, ImaDaiConfiguration>
- implements ImaDaiIntegration {
-   public constructor(dependencies: VideoJsServiceDependencies<ImaDaiConfiguration>) {
-     super(dependencies);
-     initImaDaiPlugin(this.videoJs_);
-   }
- 
-   // Life Cycle Hooks
-   protected handlePlayerAttach_(player: VideoJsPlayer): void {
-     const plugin = player.imaDai(this.configuration);
-     player.on('imaDaiLoaded', this.handleImaDaiSdkLoaded_);
-     this.pluginProvider_.updateValue(plugin);
-   }
- 
-   protected handlePlayerDetach_(player: VideoJsPlayer): void {
-     this.pluginProvider_.voidSafeAttemptOn('dispose', (plugin) => {
-       player.off('imaDaiLoaded', this.handleImaDaiSdkLoaded_ as (event: unknown) => void);
-       plugin.dispose();
-     });
-     this.pluginProvider_.updateValue(null);
-   }
- 
-   protected handleUpdateConfiguration_(configuration: ImaDaiConfiguration): void {
-     return this.pluginProvider_.updateConfig('updateConfiguration', configuration, { silent: true });
-   }
- 
-   protected handleDispose_(): void {
-     this.videoJs_.deregisterPlugin('imaDai');
-   }
- 
-   private readonly handleImaDaiSdkLoaded_ = (event: ImaDaiSdkLoadedEvent): void => {
-     this.sdkEventEmitter_.emit(ImaDaiEvents.ImaDaiSdkLoaded, new ImaDaiSdkLoadedEvent(event.imaDaiSdk));
-   };
- }                     
+      <li><p>Import the Pinning integration class from the Brightcove SDK.</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">import { PinningIntegrationFactory } from '@brightcove/web-sdk/integrations/pinning';                   
 </code></pre></li>
-<li><p>Implement Public API Methods</p>
-  <pre class="line-numbers"><code class="language-TS" translate="No">public load(options: ImaDaiIntegrationLoadOptions): void {
-   this.pluginProvider_.safeAttemptOn('load', (plugin) => {
-     plugin.updateConfig(options);
-     plugin.load({ src: options.streamSource, fallbackSource: options.fallbackSource });
-   });
- }
- 
- public getIsImaDaiStream(): boolean {
-   return this.pluginProvider_.safeAttemptOn('getIsImaDaiStream', (plugin) => plugin.isImaDaiStream, false);
- }
- 
- public getContentDuration(): number {
-   return this.pluginProvider_.safeAttemptOn('getContentDuration', (plugin) => plugin.contentDuration, 0);
- }
- 
- public getRelativeDuration(): number {
-   return this.pluginProvider_.safeAttemptOn('getRelativeDuration', (plugin) => plugin.relativeDuration, 0);
- }  
+<li><p>Import the Pinning integration CSS from the Brightcove SDK.</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/pinning/styles';
  </code></pre>
 </li>
+<li><p>Register the Pinning Integration Factory with the Integrations Manager.</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegrationFactory);
+ </code></pre>
+</li>
+<li><p>Create and Configure the Player.</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123; accountId: '&#60;your-account-id&#62;' &#125;);
+
+ player.updateConfiguration({
+   integrations: {
+       pinning: {
+           posX: 'left', // Position on the X-axis (left, right, center)
+           posY: 'top',  // Position on the Y-axis (top, bottom, center)
+           closeable: true, // Whether the pinned player can be closed
+           // Add any other configurations as needed
+       },
+   },
+ });
+ </code></pre>
+</li>
+<li>
+  <p>Attach the player to a mount root (DOM element in the page):</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+  </code></pre>
+</li>
+<li>
+  <p>Access the Pinning Integration API via the Integrations Manager.</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">const pinningIntegration = player.getIntegrationsManager().getIntegration('pinning');
+  </code></pre>
+</li>
+<li>
+  <p>Call Pinning-specific methods.</p>
+  <pre class="line-numbers"><code class="language-JS" translate="No">pinningIntegration.togglePinning(); // Example method to toggle pinning
+  </code></pre>
+</li>
 </section>
+
 <section class="bcls-section">
-    <h2 id="configuration-options">Configuration Options</h2> 
-    <p>This section provides detailed information about the various configuration options available for the Dynamic Ad Insertion (DAI) when using the Web & Smart TV SDK.</p>
-    <div class="table-responsive">
-        <table class="bcls-table">
-          <caption class="bcls-caption--table">IMA DAI Configuration Options</caption>
+  <h2 id="configuration-options">Configuration Options</h2> 
+  <p>This section provides detailed information about the various configuration options available for Pinning when using the Web & Smart TV SDK.</p>
+  <div class="table-responsive">
+      <table class="bcls-table">
+          <caption>Pinning Configuration Options</caption>
           <thead class="bcls-table__head">
             <tr>
-              <th>Option</th>
+              <th>Configuration Option</th>
               <th>Type</th>
               <th>Description</th>
-              <th>Default Value</th>
+              <th>Default</th>
             </tr>
           </thead>
           <tbody class="bcls-table__body">
             <tr>
-              <td><code>sdkUrl</code></td>
-              <td><code>string</code></td>
-              <td>The URL of your self-hosted IMA DAI SDK.</td>
-              <td><code>"//imasdk.googleapis.com/js/sdkloader/ima3_dai.js"</code></td>
-            </tr>
-            <tr>
-              <td><code>skipPlayedAds</code></td>
-              <td><code>boolean</code></td>
-              <td>Whether to skip over ads that have already played when seeking.</td>
-              <td><code>true</code></td>
-            </tr>
-            <tr>
-              <td><code>hideOverlays</code></td>
-              <td><code>boolean</code></td>
-              <td>If true, it hides overlays while ads are playing.</td>
-              <td><code>false</code></td>
-            </tr>
+              <td><code translate="no">allowOnMobile</code></td>
+              <td>boolean</td>
+              <td>By default, pinning mode will not work on Android or iOS mobile devices.</td>
+              <td>false</td>
+          </tr>
+          <tr>
+              <td><code translate="no">closeable</code></td>
+              <td>boolean</td>
+              <td>By default, pinning mode will include a close button, which the user can click to disable pinning mode.</td>
+              <td>true</td>
+          </tr>
+          <tr>
+              <td><code translate="no">height</code></td>
+              <td>number | null</td>
+              <td>By default, the plugin will scale down the player's dimensions by a factor determined by the <code translate="no">scale</code> option. However, providing a <code translate="no">height</code> (or <code translate="no">width</code>) will override the default scaling and set the size of the scaled-down player explicitly. If only one dimension is provided, the other will be scaled down to maintain the aspect ratio. If both dimensions are provided, the player will be set to the exact, specified size.</td>
+              <td>null</td>
+          </tr>
+          <tr>
+              <td><code translate="no">width</code></td>
+              <td>number | null</td>
+              <td>By default, the plugin will scale down the player's dimensions by a factor determined by the <code translate="no">scale</code> option. However, providing a <code translate="no">width</code> (or <code translate="no">height</code>) will override the default scaling and set the size of the scaled-down player explicitly.</td>
+              <td>null</td>
+          </tr>
+          <tr>
+              <td><code translate="no">scale</code></td>
+              <td>number</td>
+              <td>The scaling factor applied to the player when it is in pinning mode. Must be a number greater than <code translate="no">0</code> and less than or equal to <code translate="no">1</code>.</td>
+              <td>2/3</td>
+          </tr>
+          <tr>
+              <td><code translate="no">manualContainerSize</code></td>
+              <td>boolean</td>
+              <td>By default, a player with this plugin enabled will keep the physical dimensions of the special container element in sync with the player's dimensions. However, this doesn't work for all cases, so it can be disabled by setting this option to <code translate="no">false</code>. When doing so, the container element will behave like a normal block element. This means that users of the plugin will need to manage its size on their own.</td>
+              <td>false</td>
+          </tr>
+          <tr>
+              <td><code translate="no">posX</code></td>
+              <td>'right' | 'left'</td>
+              <td>The horizontal alignment of the player when it is in pinning mode.</td>
+              <td>right</td>
+          </tr>
+          <tr>
+              <td><code translate="no">posY</code></td>
+              <td>'top' | 'bottom'</td>
+              <td>The vertical alignment of the player when it is in pinning mode.</td>
+              <td>bottom</td>
+          </tr>
+          <tr>
+              <td><code translate="no">viewable</code></td>
+              <td>number</td>
+              <td>The threshold at which the player is considered viewable. In other words, when this percentage of the player is visible in the browser's viewport, it is considered viewable. For example, with the default of <code translate="no">0.8</code>, the player is not considered viewable unless 80% of it is visible in the viewport. Must be a number greater than or equal to <code translate="no">0</code> or less than or equal to <code translate="no">1</code>.</td>
+              <td>0.8</td>
+          </tr>
           </tbody>
         </table>
-        </div>
-    
+  </div>
 </section>
+<section class="bcls-section">
+  <h2 id="methods">API Methods Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+        <caption>Pinning API Methods</caption>
+        <thead class="bcls-table__head">
+          <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Parameter Type</th>
+            <th>Returns</th>
+          </tr>
+        </thead>
+        <tbody class="bcls-table__body">
+          <tr>
+            <td><code translate="no">togglePinning</code></td>
+            <td>Activate or deactivate pinning mode based on the current state.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>void</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</section>
+
 
 </article>
