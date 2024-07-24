@@ -12,7 +12,7 @@ layout: staging
 
 <section class="bcls-section">
 <h2 id="overview">Overview</h2> 
-<p>Clien-Side allows for the easy integration of video advertising into your media players built with the Brightcove Web & Smart TV SDK. The IMA3 integration facilitates pre-roll, mid-roll, and post-roll ad placements, as well as sophisticated ad management capabilities.</p>
+<p>IMA Client-Side allows for the easy integration of video advertising into your media players built with the Brightcove Web & Smart TV SDK. The IMA3 integration facilitates pre-roll, mid-roll, and post-roll ad placements, as well as sophisticated ad management capabilities.</p>
 </section> 
 <section class="bcls-section">
     <h2 id="prerequisites">Prerequisites</h2> 
@@ -37,7 +37,7 @@ layout: staging
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaClientSide integration class from the Brightcove SDK.</p>
+            <p>Import the IMA Client-Side integration class from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaClientSideIntegrationFactory } from '@brightcove/web-sdk/integrations/imaClientSide';
             </code></pre>
         </li>
@@ -58,7 +58,7 @@ layout: staging
  player.updateConfiguration({
    integrations: {
      imaClientSide: {
-       serverUrl: '<ad-tag-url>',
+       serverUrl: '&#60;ad-tag-url&#62;',
        requestMode: 'onload',
        hardTiemouts: false,
        // etc
@@ -79,7 +79,7 @@ layout: staging
         </li>
         <li>
             <p>Call CSAI-specific methods</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">imaClientSideIntegration.adMacroReplacement('url');
+            <pre class="line-numbers"><code class="language-JS" translate="No">imaClientSideIntegration.isVpaid();
             </code></pre>
         </li>
         <!-- <li>
@@ -106,7 +106,7 @@ layout: staging
     <p>This section provides detailed information about the various configuration options available for Client-Side Ad Insertion (CSAI) when using the Web & Smart TV SDK.</p>
     <div class="table-responsive">
         <table class="bcls-table">
-            <caption>CSAI Configuration Options</caption>
+            <!-- <caption>CSAI Configuration Options</caption> -->
             <thead class="bcls-table__head">
               <tr>
                 <th>Configuration Option</th>
@@ -189,7 +189,7 @@ layout: staging
   <h2 id="methods">API Methods Summary</h2> 
   <div class="table-responsive">
     <table class="bcls-table">
-        <caption>CSAI API Methods</caption>
+        <!-- <caption>CSAI API Methods</caption> -->
         <thead class="bcls-table__head">
           <tr>
             <th>Method</th>
