@@ -1,0 +1,75 @@
+---
+title: 'Integrating Thumbnails with Brightcove Web & Smart TV SDK'
+description: This document provides detailed instructions on integrating Tumbnails with the Brightcove Web & Smart TV SDK. 
+parent: Code Samples
+grandparent: Web & Smart TV SDK
+layout: staging
+---
+
+<article class="bcls-article">
+  <h1>{{ page.title }}</h1>
+  <summary>{{ page.description }}</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>The Thumbnails integration allows you to display thumbnail previews as the user hovers or scrubs through the video timeline. This feature enhances the user experience by providing visual cues about different parts of the video.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Integration</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the ImaClientSide integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { ThumbnailsIntegrationFactory } from '@brightcove/web-sdk/integrations/thumbnails';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/thumbnails/styles';
+            </code></pre>
+        </li>
+        <li>
+            <p>Setup ima-client-side integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegrationFactory);
+            </code></pre>
+        </li>
+        <li>
+            <p>Create the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
+
+ // No additional configuration is supported for the Thumbnails Integration.
+ // Once registered, it will automatically work whenever fetching a source from the Playback API that contains a thumbnails text track</code></pre>
+        </li>
+        <li>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+            </code></pre>
+        </li>
+        <li>
+            <p>Load third-party thumbnails from a remote WebVTT file.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">player.addThumbnailTrack({
+     src: 'thumbnails.vtt',
+     label: 'thumbnails-label',
+ });            
+            </code></pre>
+        </li>
+    </ol>
+</section>
+
+</article>
