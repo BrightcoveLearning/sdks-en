@@ -2148,7 +2148,7 @@ This program will be captioned</code></pre>
       </ul>
 
       <p>When <code translate="No">playDuration</code> becomes less than 60 seconds, the Widevine CDM handles the license as expired and throws a <strong>Failed to get key request</strong> error. Playback will not start with this Widevine license exception.</p>
-
+      <p>Brightcove recommends not using a value for <code translate="no">playDuration</code> greater than 1 year.</p>
       <p>With the Brightcove Native SDK for Android v6.1.0+, you can try calling <code translate="No">AbstractOfflineCatalog.requestRentalLicense(Video, Date, long, EventListener)</code> or <code translate="No">AbstractOfflineCatalog.requestPurchaseLicense(Video, EventListener)</code> to retrieve a new license. Note: The device must be online to acquire a new license.</p>
     </li>
   </ul>
