@@ -55,7 +55,8 @@ layout: staging
   <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code>.<code>&#123;patch&#125;</code> to include a specific version.</li>
 </ul>
 <p>For example</p>
-<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+<pre class="line-numbers"><code class="language-html" translate="No">
+&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
  &#60;script src="https://players.brightcove.net/sdk/v1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
  &#60;script src="https://players.brightcove.net/sdk/v1.1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
 </code></pre>
@@ -112,7 +113,7 @@ layout: staging
   <h3>Video Cloud VOD</h3>
   <p>Load media into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
-    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
 
 player.updateConfiguration({
@@ -148,7 +149,7 @@ player.updateConfiguration({
   <h2 id="playlist">Video Cloud Playlist</h2>
   <p>Integrate playlists into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
-    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
 
 player.updateConfiguration({
@@ -206,7 +207,7 @@ advanceToNextItem();</code></pre>
   <h2 id="remote-source">Remote Source</h2>
   <p>Integrate a remote source into your project by following these steps:</p>
   <ol class="bcls-tasklist-restart">
-    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Brightcove Player.</p>
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
 // accountId is still required even when loading remote media
     accountId: '&#60;ACCOUNT_ID&#62;',
@@ -214,7 +215,7 @@ advanceToNextItem();</code></pre>
     </li>
     <li><p><strong>Define the Remote Video Source</strong>: Define the remote video source URL.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const source = {
-    url: 'http://video.com/index.m3u8'
+    url: 'https:'
 };
 </code></pre>
     </li>
@@ -229,7 +230,7 @@ advanceToNextItem();</code></pre>
   <h2 id="integrationmanager">IntegrationsManager</h2> 
   <p>The <code translate="no">IntegrationsManager</code> class is designed to manage various integrations within the SDK, such as pinning, thumbnails, IMA ads, and more. It allows you to register, deregister, and access different integration factories, providing a flexible way to enhance your video player with additional features.</p>
   <h3>Example Usage</h3>
-  <p>Below is an example of how to use the <code translate="no">IntegrationsManager</code> to register integrations and use them within your Brightcove Player instance.</p>
+  <p>Below is an example of how to use the <code translate="no">IntegrationsManager</code> to register integrations and use them within your Player instance.</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import Necessary Modules</strong>: Import the required modules from the SDK.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
@@ -244,7 +245,7 @@ advanceToNextItem();</code></pre>
  IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegrationFactory);
 </code></pre>
     </li>
-    <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Brightcove Player and include the integrations with their configuration options.</p>
+    <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Player and include the integrations with their configuration options.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
 
 player.updateConfiguration({
@@ -497,7 +498,7 @@ if (error) {
 </section>
 <section class="bcls-section">
   <h2 id="spatial-navigation">Spatial Navigation</h2> 
-  <p><code translate="no">spatialNavigation</code> enhances user experience and accessibility on smart TV devices by enabling navigation through interactive elements within the player using remote control arrow keys.</p>
+  <p><code translate="no">spatialNavigation</code> enhances user experience and accessibility on Smart TV devices by enabling navigation through interactive elements within the player using remote control arrow keys.</p>
   <h3>Enable Spatial Navigation</h3>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import the required Player class and associated styles</strong>.</p>
