@@ -48,9 +48,9 @@ layout: staging
  player.updateConfiguration({
    integrations: {
        pinning: {
-           posX: 'left', // Position on the X-axis (left, right, center)
-           posY: 'top',  // Position on the Y-axis (top, bottom, center)
-           closeable: true, // Whether the pinned player can be closed
+           posX: 'left', 
+           posY: 'top',  
+           closeable: true, 
            // Add any other configurations as needed
        },
    },
@@ -65,11 +65,11 @@ layout: staging
 </li>
 <li>
   <p>Access the Pinning Integration API via the Integrations Manager.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const pinningIntegration = player.getIntegrationsManager().getIntegration('pinning');
+  <pre class="line-numbers"><code class="language-JS" translate="No">const { pinningIntegration } = player.getIntegrationsManager();
   </code></pre>
 </li>
 <li>
-  <p>Call Pinning-specific methods.</p>
+  <p>Call Pinning-specific method.</p>
   <pre class="line-numbers"><code class="language-JS" translate="No">pinningIntegration.togglePinning(); // Example method to toggle pinning
   </code></pre>
 </li>
