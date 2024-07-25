@@ -2041,12 +2041,12 @@
         <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
     </li>
     <li>
-        <p>Access to the Google IMA SDK resources and an Ad Manager account.</p>
+        <p>Have created an <a target="_blank" href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Ad Configuration</a>.</p>
     </li>
 </ul>
 </section>
 <section class="bcls-section">
-    <h2 id="integration">Integration</h2> 
+    <h2 id="integration">Usage Example</h2> 
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
@@ -2054,17 +2054,17 @@
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaServerSide integration class from the Brightcove SDK.</p>
+            <p>Import the SSAI integration class from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import { SsaiIntegrationFactory } from '@brightcove/web-sdk/integrations/ssai';
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaServerSide integration CSS from the Brightcove SDK.</p>
+            <p>Import the SSAI integration CSS from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/ssai/styles';
             </code></pre>
         </li>
         <li>
-            <p>Setup ima-server-side integration.</p>
+            <p>Setup SSAI integration.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerSsaiIntegrationFactory(SsaiIntegrationFactory);
             </code></pre>
         </li>
@@ -2074,11 +2074,11 @@
 
  player.updateConfiguration({
    brightcove: {
- // Passing an Ad Config ID will enable the fetching of an SSAI stream from the Playback API
+     // Passing an Ad Config ID will enable the fetching of an SSAI stream from the Playback API
      adConfigId: '&#60;valid-ad-config-id&#62;',
    },
    ssai: {
-     timoeut: 30_000,
+     timeout: 30_000,
      hideOverlays: false,
      // etc
    }
@@ -2111,7 +2111,7 @@
     </ol>
 </section>
 <section class="bcls-section">
-    <h2 id="configuration-options">Configuration Options</h2> 
+    <h2 id="configuration-options">Configuration Summary</h2> 
     <p>This section provides detailed information about the various configuration options available for Server-Side Ad Insertion (SSAI) when using the Web & Smart TV SDK.</p>
     <div class="table-responsive">
         <table class="bcls-table">
@@ -2168,7 +2168,7 @@
     </div>
 </section>
 <section class="bcls-section">
-  <h2 id="methods">API Methods Summary</h2> 
+  <h2 id="methods">Public Methods Summary</h2> 
   <div class="table-responsive">
     <table class="bcls-table">
         <!-- <caption>SSAI API Methods</caption> -->
@@ -2214,6 +2214,92 @@
         </tbody>
       </table>
 </div>
+</section>
+<section class="bcls-section">
+  <h2 id="event">Event Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Event Name</th>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="no">ClickThrough</code></td>
+          <td>Readonly</td>
+          <td>Triggered when a click-through event occurs on the SSAI ad.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="bcls-section">
+  <h2 id="error">Error Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Error Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <!-- General Ads Errors -->
+        <tr>
+          <td><code translate="no">AdsBeforePrerollError</code></td>
+          <td>Error encountered before the preroll ad starts.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPrerollError</code></td>
+          <td>Error during the preroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMidrollError</code></td>
+          <td>Error during the midroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPostrollError</code></td>
+          <td>Error during the postroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMacroReplacementError</code></td>
+          <td>Error in replacing macros in the ad URL or tracking events.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsResumeContentError</code></td>
+          <td>Error while resuming the content after an ad break.</td>
+        </tr>
+        <!-- SSAI Specific Errors -->
+        <tr>
+          <td><code translate="no">SsaiVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiLiveVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for live SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiVodVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for VOD SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiUnsupportedOmidAdSessionError</code></td>
+          <td>OMID (Open Measurement Interface Definition) ad session not supported.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiOmSessionError</code></td>
+          <td>Error with the OM session for SSAI.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiVmapRequestError</code></td>
+          <td>Error making the VMAP request for SSAI ads.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 </article>

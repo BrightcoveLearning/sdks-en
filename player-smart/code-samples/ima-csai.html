@@ -29,7 +29,7 @@ layout: staging
 </ul>
 </section>
 <section class="bcls-section">
-    <h2 id="integration">Integration</h2> 
+    <h2 id="integration">Usage Example</h2> 
     <ol class="bcls-tasklist">
         <li>
             <p>Import the Player (with UI) class from the Brightcove SDK.</p>
@@ -102,7 +102,7 @@ layout: staging
     </ol>
 </section>
 <section class="bcls-section">
-    <h2 id="configuration-options">Configuration Options</h2> 
+    <h2 id="configuration-options">Configuration Summary</h2> 
     <p>This section provides detailed information about the various configuration options available for Client-Side Ad Insertion (CSAI) when using the Web & Smart TV SDK.</p>
     <div class="table-responsive">
         <table class="bcls-table">
@@ -186,7 +186,7 @@ layout: staging
     </div>
 </section>
 <section class="bcls-section">
-  <h2 id="methods">API Methods Summary</h2> 
+  <h2 id="methods">Public Methods Summary</h2> 
   <div class="table-responsive">
     <table class="bcls-table">
         <!-- <caption>CSAI API Methods</caption> -->
@@ -260,6 +260,171 @@ layout: staging
       </table>
 </div>
 </section>
-
+<section class="bcls-section">
+  <h2 id="event">Event Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Event Name</th>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code>imaClientSideAdClick</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is clicked by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdComplete</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad playback completes.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdError</code></td>
+          <td>Readonly</td>
+          <td>Triggered when there is an error in ad playback.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdStarted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad starts playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsLoad</code></td>
+          <td>Readonly</td>
+          <td>Triggered when ads are loaded and ready to play.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsPodEnded</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad pod (a group of ads) finishes playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsPodStarted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad pod (a group of ads) starts playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsRequest</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad request is made to the server.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAllAdsCompleted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when all scheduled ads have completed playback.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideFirstQuartile</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the first quartile.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideMidPoint</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the midpoint.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSidePaused</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is paused by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideResumed</code></td>
+          <td>Readonly</td>
+          <td>Triggered when a paused ad is resumed by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideSdkLoaded</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the IMA SDK is fully loaded and ready.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideSkipped</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is skipped by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideThirdQuartile</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the third quartile.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideVolumeChanged</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad volume is changed by the user.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="bcls-section">
+  <h2 id="error">Error Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Error Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <!-- General Ads Errors -->
+        <tr>
+          <td><code translate="no">AdsBeforePrerollError</code></td>
+          <td>Error encountered before the preroll ad starts.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPrerollError</code></td>
+          <td>Error during the preroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMidrollError</code></td>
+          <td>Error during the midroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPostrollError</code></td>
+          <td>Error during the postroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMacroReplacementError</code></td>
+          <td>Error in replacing macros in the ad URL or tracking events.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsResumeContentError</code></td>
+          <td>Error while resuming the content after an ad break.</td>
+        </tr>
+        <!-- IMA Specific Errors -->
+        <tr>
+          <td><code translate="no">ImaVmapCancelledError</code></td>
+          <td>VMAP ad playlist request was canceled.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaAdsManagerStartError</code></td>
+          <td>Error when starting the IMA Ads Manager.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaInvalidVpaidModeError</code></td>
+          <td>Invalid VPAID mode set.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaSdkLoadError</code></td>
+          <td>Error loading the IMA SDK.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaInvalidCueError</code></td>
+          <td>Error due to an invalid cue point in the ad break.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaCueParsingError</code></td>
+          <td>Error parsing the ad cue points.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 </article>
