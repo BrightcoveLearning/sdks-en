@@ -34,26 +34,23 @@ layout: staging
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaClientSide integration class from the Brightcove SDK.</p>
+            <p>Import the Thumbnails integration class from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import { ThumbnailsIntegrationFactory } from '@brightcove/web-sdk/integrations/thumbnails';
             </code></pre>
         </li>
         <li>
-            <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
+            <p>Import the Thumbnails integration CSS from the Brightcove SDK.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/thumbnails/styles';
             </code></pre>
         </li>
         <li>
-            <p>Setup ima-client-side integration.</p>
+            <p>Setup Thumbnails integration.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegrationFactory);
             </code></pre>
         </li>
         <li>
             <p>Create the Player.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
-
- // No additional configuration is supported for the Thumbnails Integration.
- // Once registered, it will automatically work whenever fetching a source from the Playback API that contains a thumbnails text track</code></pre>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);</code></pre>
         </li>
         <li>
             <p>Attach the player to a mount root (DOM element in the page):</p>
@@ -61,15 +58,17 @@ layout: staging
  player.attach(root);
             </code></pre>
         </li>
-        <li>
-            <p>Load third-party thumbnails from a remote WebVTT file.</p>
+    </ol>
+    <aside class="bcls-aside bcls-aside--information">Note: After registration, Thumbnails Integration works without any extra configuration, automatically activating when fetching a source with a thumbnails text track.</aside>
+</section>
+<section class="bcls-section">
+    <h2 id="third-party">Third-party Thumbnails</h2> 
+    <p>Load third-party thumbnails from a remote WebVTT file.</p>
             <pre class="line-numbers"><code class="language-JS" translate="No">player.addThumbnailTrack({
      src: 'thumbnails.vtt',
      label: 'thumbnails-label',
  });            
             </code></pre>
-        </li>
-    </ol>
 </section>
 
 </article>
