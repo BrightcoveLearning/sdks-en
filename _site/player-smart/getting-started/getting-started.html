@@ -2326,10 +2326,11 @@ player.updateConfiguration({
 </section>
 <section class="bcls-section">
   <h2 id="uimanager">UiManager</h2> 
-  <p>The <code translate="no">UiManager</code> provides a structured way to control, customize, and extend the default UI elements to better suit your application's needs.</p>
+  <p>The <code translate="no">UiManager</code> creates and manages UI Components. All SDK UI Components extend the <code translate="no">UiComponent</code> class, which has an <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.UiComponent.html">extensive API</a>.</p>
   <br>
   <h3>Overriding Default Components</h3>
   <p>Modify existing components to better suit your application's needs.</p>
+  <aside class="bcls-aside bcls-aside--information">Note: Only <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/enums/core.DefaultPlayerComponents.html">default player components</a> can be overridden.</aside>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import Required Modules</strong></p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent, UiComponentType } from '@brightcove/web-sdk/ui';
@@ -2349,25 +2350,37 @@ player.updateConfiguration({
 <br>
 
   <h3 id="custom-components">Custom Components</h3> 
-  <p>By creating custom components, you can add unique features and tailor the player interface to better fit your application requirements.</p>
+  <p>By using the <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/types/ui.BaseUiComponent.html">BaseUiComponent</a> class, you can add unique features and tailor the player interface to better fit your application requirements.</p>
+  <aside class="bcls-aside bcls-aside--tip">Note:  Each instance of a custom component must have a unique <code translate="no">name</code> property.</aside>
   <p>To apply Custom Components following these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Import <code translate="no">BaseUiComponent</code></strong>:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">import { BaseUiComponent } from '@brightcove/web-sdk/ui';</code></pre>
     </li>
     <li><p><strong>Initialize UI Manager and Player Component</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">// Import and initialize UI Player
+      <pre class="line-numbers"><code class="language-JS" translate="No">
 const uiManager = player.getUiManager();
-const playerComponent = uiManager.getPlayerContainerUiComponent();
+ const playerComponent = uiManager.getPlayerContainerUiComponent();
 </code></pre>
     </li>
-    <li><p><strong>Create a Custom Component</strong>: Create a new custom component by extending the <code translate="no">BaseUiComponent</code></p>
+    <li><p><strong>Create a DOM element</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const customElement = document.createElement('div');
+</code></pre>
+    </li>
+    <!-- <li><p><strong>Create a Custom Component</strong>:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">class CustomComponent extends BaseUiComponent {
   // Custom component code
 }</code></pre>
-    </li>
-    <li><p><strong>Instantiate the Custom Component</strong>:</code></p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const customComponent = new CustomComponent();
+    </li> -->
+    <li><p><strong>Create a new custom UI component</strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const customComponent = new BaseUiComponent({
+   // Add a unique name
+   name: 'CustomUiComponent',
+   componentOptions: {
+     // Pass the custom DOM element as an option
+     el: customElement,
+   },
+ });
       </code></pre>
     </li>
     <li><p><strong>Add the Custom Component to the Player</strong>:</code></p>
@@ -2481,7 +2494,7 @@ player.removeAllEventListeners();
   console.log('An error occurred:', error);
 });</code></pre>
     </li>
-    <li><p><strong>Checking if the Player is Currently in an Error State</strong>:</p>
+    <!-- <li><p><strong>Checking if the Player is Currently in an Error State</strong>:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const error = player.getCurrentError();
 
 if (error) {
@@ -2491,7 +2504,7 @@ if (error) {
     // No error, continue as normal
     console.log('No current error');
 }</code></pre>
-    </li>
+    </li> -->
   </ol>
 </section>
 <section class="bcls-section">
@@ -2512,6 +2525,64 @@ if (error) {
       <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/pinning/styles';</code></pre>
     </li>
   </ol>
+  <br>
+      <h3>CSS Variables</h3>
+      <p>The CSS from <code translate="no">@brightcove/web-sdk/ui/styles</code> comes with a set of preset CSS variables to control certain aspects of the player's styling. These CSS variables can be overridden by resetting the value.</p>
+      <pre class="line-numbers"><code class="language-CSS" translate="No">.bc-sdk {
+     /* Override the default control bar color */
+     --bc-sdk-control-bar-color: red;
+ }</code></pre>
+ <p>The following are the available CSS variables, along with their default values:</p>
+ <div class="table-responsive">
+  <table class="bcls-table">
+    <!-- <caption class="bcls-caption--table">CSS Variables</caption> -->
+    <thead class="bcls-table__head">
+        <tr>
+            <th>Variable</th>
+            <th>Default Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody class="bcls-table__body">
+        <tr>
+            <td><code>--bc-sdk-control-color</code></td>
+            <td>#fff</td>
+            <td>The color of buttons and text.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-progress-color</code></td>
+            <td>#80888c</td>
+            <td>The color of the progress bar.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-control-bar-transparency</code></td>
+            <td>0.45</td>
+            <td>The transparency of the background color of the control bar and the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-control-bar-color</code></td>
+            <td>rgba(0, 0, 0, var(--bc-sdk-control-bar-transparency))</td>
+            <td>The background color of the control bar and the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--border</code></td>
+            <td>none</td>
+            <td>The border of the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--width</code></td>
+            <td>2em</td>
+            <td>The width of the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--height</code></td>
+            <td>2em</td>
+            <td>The height of the big play button.</td>
+        </tr>
+    </tbody>
+</table>
+ </div>
+
 </section>
 <section class="bcls-section">
   <h2 id="spatial-navigation">Spatial Navigation</h2> 
