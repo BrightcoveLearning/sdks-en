@@ -292,24 +292,25 @@ player.updateConfiguration({
       </code></pre>
     </li>
     <li><p><strong>Add a Request Interceptor</strong>: Add a request interceptor to modify or log the outgoing requests.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addRequestInterceptor(Player.RequestType.HLSPlaylist, (request) => {
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
     console.log('HLS Playlist request interceptor', request);
     return request;
 });      
       </code></pre>
     </li>
     <li><p><strong>Add a Response Interceptor</strong>:  Add a response interceptor to modify or log the incoming responses.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addResponseInterceptor(Player.RequestType.HLSPlaylist, (response) => {
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
     console.log('HLS Playlist response interceptor', response);
     return response;
 });   
       </code></pre>
-    </li>
+    </li>`
   </ol>
 </section>
 <section class="bcls-section">
   <h2 id="uimanager">UiManager</h2> 
   <p>The <code translate="no">UiManager</code> creates and manages UI Components. All SDK UI Components extend the <code translate="no">UiComponent</code> class, which has an <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.UiComponent.html">extensive API</a>.</p>
+  <p>See the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.UiComponentDependencies.html">UiComponentDependencies</a> interface for the basic list of options that can be passed to components.</p>
   <br>
   <h3>Overriding Default Components</h3>
   <p>Modify existing components to better suit your application's needs.</p>
@@ -385,14 +386,14 @@ const uiManager = player.getUiManager();
       <pre class="line-numbers"><code class="language-JS" translate="No">const playlistManager = player.getPlaylistManager();</code></pre>
     </li>
     <li><p><strong>Create a Playlist from a Playback API Response</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels([
+      <pre class="line-numbers"><code class="language-JS" translate="No">const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels(
   /* Array&#60;BrightcoveVideoModel&#62; */
-]);</code></pre>
+);</code></pre>
     </li>
     <li><p><strong>Create a Playlist from Remote Sources</strong>: Alternatively, create a playlist using remote media sources.</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">const remotePlaylist = playlistManager.createPlaylistFromRemoteSources([
+      <pre class="line-numbers"><code class="language-JS" translate="No">const remotePlaylist = playlistManager.createPlaylistFromRemoteSources(
    /* Array&#60;Source&#62; */
- ]);</code></pre>
+ );</code></pre>
     </li>
     <li><p><strong>Set the Playlist in the PlaylistManager</strong>:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(/* videoCloudPlaylist | remotePlaylist */);
@@ -627,7 +628,7 @@ spatialNavigationManager.stop();</code></pre>
       </code></pre>
     </li>
     <li><p><strong>Import integration-specific localizations</strong>:</p>
-      <pre class="line-numbers"><code class="language-JS" translate="No">import imaDaiJapanese from '@brightcove/web-sdk/integrations/imaDai/languagePacks/ja';
+      <pre class="line-numbers"><code class="language-JS" translate="No">import ssaiJapanese from '@brightcove/web-sdk/integrations/ssai/languagePacks/ja';
       </code></pre>
     </li>
     <li><p><strong>Initialize the UI Manager</strong>:</p>
@@ -636,7 +637,7 @@ spatialNavigationManager.stop();</code></pre>
     </li>
     <li><p><strong>Add the Language Pack to the UI Manager</strong>: Use the <code translate="no">addLanguagePack</code> method of the UI manager to add the imported language pack:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">uiManager.addLanguagePack('ja', mainJapanese);
- uiManager.addLanguagePack('ja', imaDaiJapanese);
+ uiManager.addLanguagePack('ja', ssaiJapanese);
       </code></pre>
     </li>
   </ol>
@@ -648,14 +649,14 @@ spatialNavigationManager.stop();</code></pre>
   <ul>
     <li><p>Preset Video Cloud Media:</p>
     <ul>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod">VOD</a></p></li>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod-drm">VOD with DRM</a></p></li>
-      <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:mat">Video Cloud VOD with Multiple Audio Tracks</a></p></li>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod">VOD</a></p></li>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod-drm">VOD with DRM</a></p></li>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:mat">Video Cloud VOD with Multiple Audio Tracks</a></p></li>
     </ul>
     </li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-playlist.html">Video Cloud Playlists</a></p></li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-video-cloud.html?accountId=3303963094001&policyKey=BCpkADawqM0k6S1rIqFhnNBmm3NQxaFcIuu0oEG5BTIuxtTtoJ6ohz9hYoxeGaisA7V2Ry2XRz0tPEsSaYAwiGGzZWbsXFhzGCkT_R-L8JpFxP8x2mRnJ4eCAcbYvjIt9PuXiM5ZCG3UUJwb&videoId=ref%3Abbb-clear&watermarkingToken=&authToken=&tveToken=&adConfigId=&viewerId=&filterSourcesTo=&streamConcurrency=false&imaSdkUrl=&imaServerUrl=">Custom Video Cloud Media</a></p></li>
-    <li><p><a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-remote.html?accountId=&sourceUrl=&keySystem=&licenseUrl=&certificateUrl=">Custom Remote Media</a></p></li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-playlist.html">Video Cloud Playlists</a></p></li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-video-cloud.html?accountId=3303963094001&policyKey=BCpkADawqM0k6S1rIqFhnNBmm3NQxaFcIuu0oEG5BTIuxtTtoJ6ohz9hYoxeGaisA7V2Ry2XRz0tPEsSaYAwiGGzZWbsXFhzGCkT_R-L8JpFxP8x2mRnJ4eCAcbYvjIt9PuXiM5ZCG3UUJwb&videoId=ref%3Abbb-clear&watermarkingToken=&authToken=&tveToken=&adConfigId=&viewerId=&filterSourcesTo=&streamConcurrency=false&imaSdkUrl=&imaServerUrl=">Custom Video Cloud Media</a></p></li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-remote.html?accountId=&sourceUrl=&keySystem=&licenseUrl=&certificateUrl=">Custom Remote Media</a></p></li>
   </ul>
 </section>
 
