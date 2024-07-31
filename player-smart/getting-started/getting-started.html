@@ -228,7 +228,7 @@ advanceToNextItem();</code></pre>
 </section>
 <section class="bcls-section">
   <h2 id="integrationmanager">IntegrationsManager</h2> 
-  <p>The <code translate="no">IntegrationsManager</code> class is designed to manage various integrations within the SDK, such as pinning, thumbnails, IMA ads, and more. It allows you to register, deregister, and access different integration factories, providing a flexible way to enhance your video player with additional features.</p>
+  <p>The <code translate="no">IntegrationsManager</code> class is designed to manage various integrations within the SDK, such as pinning, thumbnails, IMA ads, and more. <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.IntegrationsManager.html">See</a>. It allows you to register, deregister, and access different integration factories, providing a flexible way to enhance your video player with additional features.</p>
   <h3>Example Usage</h3>
   <p>Below is an example of how to use the <code translate="no">IntegrationsManager</code> to register integrations and use them within your Player instance.</p>
   <ol class="bcls-tasklist-restart">
@@ -285,7 +285,7 @@ player.updateConfiguration({
     <li><p><strong>Request Interceptors</strong>: These allow you to intercept and modify outgoing requests before they are sent to the server.</p></li>
     <li><p><strong>Response Interceptors</strong>: These allow you to intercept and modify incoming responses before they are processed by the player.</p></li>
   </ul>
-  <p>To use the <code translate="no">NetworkingManager</code> following these steps:</p>
+  <p>To use the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.NetworkingManager.html">NetworkingManager</a> follow these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize the </strong><code translate="no">NetworkingManager</code></p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();      
@@ -334,7 +334,7 @@ player.updateConfiguration({
 <br>
 
   <h3 id="custom-components">Custom Components</h3> 
-  <p>By using the <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/types/ui.BaseUiComponent.html">BaseUiComponent</a> class, you can add unique features and tailor the player interface to better fit your application requirements.</p>
+  <p>By using the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/types/ui.BaseUiComponent.html">BaseUiComponent</a> class, you can add unique features and tailor the player interface to better fit your application requirements.</p>
   <aside class="bcls-aside bcls-aside--tip">Note:  Each instance of a custom component must have a unique <code translate="no">name</code> property.</aside>
   <p>To apply Custom Components following these steps:</p>
   <ol class="bcls-tasklist-restart">
@@ -380,7 +380,7 @@ const uiManager = player.getUiManager();
 <section class="bcls-section">
   <h2 id="playlistmanager">PlaylistManager</h2> 
   <p>The <code translate="no">PlaylistManager</code> provides methods for creating playlists, managing the current playing item, and navigating through the playlist items.</p>
-  <p>To use the <code translate="no">PlaylistManager</code> following these steps:</p>
+  <p>To use the <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.PlaylistManager.html" target="_blank">PlaylistManager</a> follow these steps:</p>
   <ol class="bcls-tasklist-restart">
     <li><p><strong>Initialize PlaylistManager</strong>:</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const playlistManager = player.getPlaylistManager();</code></pre>
@@ -577,7 +577,7 @@ if (error) {
       <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
  import '@brightcove/web-sdk/styles';</code></pre>
     </li>
-    <li><p><strong>Initialize a UI-enabled player for Spatial Navigation</strong>.</p>
+    <li><p><strong>Initialize a UI-enabled player for <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.SpacialNavigationConfiguration.html">Spatial Navigation</a></strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({ accountId: '&#60;ACCOUNT_ID&#62;' });
 
  player.updateConfiguration({
@@ -595,7 +595,7 @@ if (error) {
     <li><p><strong>Retrieve the Spatial Navigation Manager</strong>.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">const spatialNavigationManager = player.getSpatialNavigationManager();</code></pre>
     </li>
-    <li><p><strong>Manage Spatial Navigation Events</strong>. The spatial navigation manager allows you to <strong>start</strong>, <strong>pause</strong>, <strong>resume</strong>, and <strong>stop</strong> listening for keydown events.</p>
+    <li><p><strong>Manage Spatial Navigation Events</strong>. The <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.SpatialNavigationManager.html">SpatialNavigationManager</a> allows you to <strong>start</strong>, <strong>pause</strong>, <strong>resume</strong>, and <strong>stop</strong> listening for keydown events.</p>
       <pre class="line-numbers"><code class="language-JS" translate="No">// Start listening for keydown events
 spatialNavigationManager.start();
 
