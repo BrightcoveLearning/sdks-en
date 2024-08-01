@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>TypeScript Sample App</title>
+        <title>Integrating EndScreen with Brightcove Web & Smart TV SDK</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Welcome to the Web & Smart TV SDK TypeScript Sample App.">
+        <meta name="description" content="This document provides comprehensive instructions on how to integrate end screen capabilities using both Custom and Social EndScreen features for the Brightcove Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,15 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/sample-apps/">Sample apps</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/code-samples/">Code samples</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">TypeScript Sample App</li>
+            <li class="breadcrumb-item active" aria-current="page">Integrating EndScreen with Brightcove Web & Smart TV SDK</li>
             
             
           </ol>
@@ -2024,9 +2024,219 @@
       
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
 <article class="bcls-article">
-  <h1>TypeScript Sample App</h1>
-  <summary>Welcome to the Web & Smart TV SDK TypeScript Sample App.</summary>
+  <h1>Integrating EndScreen with Brightcove Web & Smart TV SDK</h1>
+  <summary>This document provides comprehensive instructions on how to integrate end screen capabilities using both Custom and Social EndScreen features for the Brightcove Web & Smart TV SDK.</summary>
+
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>The EndScreen integration allows developers to add a customizable end screen to their video player. This can include either a social sharing end screen or a custom end screen. The Social EndScreen feature enhances viewer engagement by allowing viewers to easily share the video on various social media platforms once the video has finished playing. The Custom EndScreen feature allows developers to create a tailored end screen with specific content.</p>
+<aside class="bcls-aside bcls-aside--tip">Note: Only one EndScreen integration (Custom or Social) can be registered at a time.</aside>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Usage Example</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the required EndScreen integration classes (Custom or Social).</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { CustomEndScreenIntegrationFactory } from '@brightcove/web-sdk/integrations/customEndScreen';
+ import { SocialEndScreenIntegrationFactory } from '@brightcove/web-sdk/integrations/socialEndScreen';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the desired EndScreen integration CSS (Custom or Social).</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/customEndScreen/styles';
+ import '@brightcove/web-sdk/integrations/socialEndScreen/styles';
+            </code></pre>
+        </li>
+        <li>
+            <p>Register the chosen EndScreen Integration Factory with the Integrations Manager.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerEndScreenIntegrationFactory(CustomEndScreenIntegrationFactory);
+            </code></pre>
+            <p>or</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerEndScreenIntegrationFactory(SocialEndScreenIntegrationFactory);
+            </code></pre>
+            <aside class="bcls-aside bcls-aside--tip">Note: Only one EndScreen integration (Custom or Social) can be registered at a time.</aside>
+        </li>
+        <li>
+            <p>Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123; accountId: '&#60;your-account-id&#62;' &#125;);
+
+ player.updateConfiguration({
+     integrations: {
+         endScreen: {
+ // Configuration for Custom EndScreen
+             custom: {
+                 content: '&#60;strong&#62;Content&#60;/strong&#62; for &#60;em&#62;custom&#60;/em&#62; end screen',
+             },
+ // Configuration for Social EndScreen
+             social: {
+                title: 'Social Endscreen Title',
+                description: 'Social Endscreen description',
+                services: {
+                    facebook: true,
+                    twitter: true,
+                    tumblr: false,
+                    pinterest: false,
+                    linkedin: false
+                },
+            },
+         },
+     },
+ });
+            </code></pre>
+        </li>
+        <li>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+            </code></pre>
+        </li>
+    </ol>
+</section>
+
+<section class="bcls-section">
+    <h2 id="configuration-options">Custom Configuration Summary</h2> 
+    <p>This section provides detailed information about the configuration options available for Custom EndScreen when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <!-- <caption>Custom EndScreen Configuration Options</caption> -->
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Configuration Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code translate="no">content</code></td>
+      <td>string</td>
+      <td>""</td>
+      <td>Any string literal or HTML that is rendered on the custom endscreen.</td>
+    </tr>
+  </tbody>
+        </table>
+    </div>
+</section>
+<section class="bcls-section">
+    <h2 id="configuration-options">Social Configuration Summary</h2> 
+    <p>This section provides detailed information about the various configuration options available for Social Sharing Integration when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <!-- <caption>Social Sharing Configuration Options</caption> -->
+            <thead class="bcls-table__head">
+                <tr>
+                    <th>Configuration Option</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody class="bcls-table__body">
+                <tr>
+                    <td><code translate="no">title</code></td>
+                    <td>string</td>
+                    <td>""</td>
+                    <td>Used to provide a title for use in the social overlay. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">description</code></td>
+                    <td>string</td>
+                    <td>""</td>
+                    <td>Used to provide a description for use in the social overlay. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">url</code></td>
+                    <td>string</td>
+                    <td>""</td>
+                    <td>Used to provide a custom URL that replaces the generated one. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">label</code></td>
+                    <td>string</td>
+                    <td>""</td>
+                    <td>Used to provide a label for the social overlay. Can only be updated on initialization of the plugin.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedCode</code></td>
+                    <td>string</td>
+                    <td>""</td>
+                    <td>Used to provide a custom embed code that replaces the generated one. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedDomain</code></td>
+                    <td>string</td>
+                    <td>"players.brightcove.net"</td>
+                    <td>This value is only used when the embed code is not set. Used to provide a custom domain if proxy is being used. Can be updated dynamically. </td>
+                </tr>
+                <tr>
+                    <td><code translate="no">embedDimensions</code></td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>If true, the current dimensions of the player will be provided in the embed code. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">deeplinking</code></td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>If true, direct links will include a start offset. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">offset</code></td>
+                    <td>string</td>
+                    <td>"00:00:00"</td>
+                    <td>An offset in "hh:mm:ss" format to use for sharing URLs. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">removeDirect</code></td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>If true, turns off the direct link. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">removeEmbed</code></td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td>If true, turns off the embed code. Can be updated dynamically.</td>
+                </tr>
+                <tr>
+                    <td><code translate="no">services</code></td>
+                    <td>SocialSharingConfigurationServices</td>
+                    <td>
+                        <ul>
+                            <li>facebook</li>
+                            <li>twitter</li>
+                            <li>tumblr</li>
+                            <li>pinterestk</li>
+                            <li>linkedin</li>
+                        </ul>
+                    </td>
+                    <td>Can be updated dynamically.</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+
+
 </article>
+
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
   
   <nav class="right-side-nav" id="right_side_nav">

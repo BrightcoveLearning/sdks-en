@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Overview: Brightcove Web & Smart TV SDK</title>
+        <title>Web Sample App</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Welcome to the Web & Smart TV SDK developer documentation. Here you will find comprehensive instructions and examples for utilizing the Web & Smart TV SDK in your development.">
+        <meta name="description" content="Welcome to the Web & Smart TV SDK Web Sample App.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,15 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/getting-started/">Getting started</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/sample-apps/">Sample apps</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Overview: Brightcove Web & Smart TV SDK</li>
+            <li class="breadcrumb-item active" aria-current="page">Web Sample App</li>
             
             
           </ol>
@@ -2024,95 +2024,9 @@
       
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
 <article class="bcls-article">
-  <h1>Overview: Brightcove Web & Smart TV SDK</h1>
-  <summary>Welcome to the Web & Smart TV SDK developer documentation. Here you will find comprehensive instructions and examples for utilizing the Web & Smart TV SDK in your development.</summary>
-
-<section class="bcls-section">
-<h2 id="introduction">Introduction</h2> 
-<p>The Brightcove Web & Smart TV SDK is designed for modern applications on web-based platforms, especially Samsung Tizen and LG WebOS. It aims to facilitate the creation of media players that can stream content, monetize it, and allow extensive customization using Brightcove's technology stack.</p>
-
-</section> 
-<section class="bcls-section">
-<h2 id="features">Key features</h2> 
-<ul>
-    <li><p><strong>Universal Streaming Capability</strong>: Utilizes <a target="_blank" href="https://videojs.com">Video.js</a>, Brightcove's trusted and mature player framework, to deliver content via HLS and DASH streaming protocols.</p></li>
-    <li><p><strong>Smart TV Support</strong>: Specifically designed with support for popular Smart TV platforms such as Samsung Tizen and LG webOS. Remote control / spatial navigation support out-of-the-box.</p></li>
-    <li><p><strong>Full Customization</strong>: Offers extensive customization options, allowing developers to tailor players to specific needs without relying on external script loaders. Full TypeScript support enhances development efficiency and safety.</p></li>
-    <li><p><strong>Comprehensive API Access</strong>: Integrates seamlessly with the Brightcove <a target="_blank" href="https://apis.support.brightcove.com/playback/index.html">Playback API</a>, ensuring developers have access to advanced features like DRM and Playback Rights.</p></li>
-    <li><p><strong>Enhanced Analytics</strong>: Includes a complete analytics beaconing implementation for the Brightcove <a target="_blank" href="https://apis.support.brightcove.com/data-collection/index.html">Data Collection API</a>, capable of supporting standard Brightcove Analytics, Quality of Experience (QoE), and Ad Insights to optimize and monetize streaming content effectively.</p></li>
-    <li><p><strong>Ad Integration</strong>: Supports major advertising standards through integrations like IMA SDK and Brightcove SSAI, enabling monetization directly within the player.</p></li>
-</ul>
-
-</section> 
-<section class="bcls-section">
-  <h2 id="platforms">Supported Platforms</h2> 
-  <p>The Brightcove Web & Smart TV SDK is designed to support a wide range of web browsers and Smart TV platforms. This ensures that developers can create applications that provide a consistent viewing experience across various devices and platforms. Below are the specific platforms supported by the SDK.</p>
-  <br>
-<h3>Supported Smart TV Platforms</h3>
-<ul>
-  <li>
-    <p><strong>Samsung Tizen 6.0+</strong> (Chromium 76).</p>
-  </li>
-  <li>
-    <p><strong>LG webOS 6.x+</strong> (Chromium 79).</p>
-  </li>
-</ul>
-<br>
-
-<h3>Supported Web Browsers</h3>
-<p>The SDK is compatible with all major web browsers that are supported by the <a target="_blank" href="https://player.support.brightcove.com/references/brightcove-player-system-requirements.html">Brightcove Player</a>. This includes:</p>
-<ul>
-  <li>
-    <p><strong>Google Chrome</strong>: Latest version.</p>
-  </li>
-  <li>
-    <p><strong>Mozilla Firefox</strong>: Latest version.</p>
-  </li>
-  <li>
-    <p><strong>Apple Safari</strong>: Latest version on macOS and iOS.</p>
-  </li>
-  <li>
-    <p><strong>Microsoft Edge</strong>: Latest version.</p>
-  </li>
-</ul>
-<br>
-
-<h3>Minimum Requirements for Unsupported Environments</h3>
-<ul>
-  <li><p><strong>Chromium version 85 and newer</strong></p></li>
-  <li><p><strong>HTTPS with TLS 1.2</strong>.</p></li>
-  <li><p><strong>Standards-compliant HTML5 video</strong></p></li>
-  <li><p><strong>Media Source Extensions</strong></p></li>
-  <li><p><strong>DRM</strong></p>
-  <ul>
-    <li><p>Encrypted Media Source Extensions</p></li>
-    <li><p>Widevine/PlayReady</p></li>
-    <li><p>HDCP supports</p></li>
-  </ul>
-  </li>
-</ul>
-
-<br>
-<h3>Playback Requirements</h3>
-<ul>
-  <li><p>AVC/H.264 codec support for all video</p></li>
-  <li><p>HEVC/H.265 recommended for 4K/UHD content</p></li>
-  <li><p>AAC audio</p></li>
-  <li><p>AC-3 and/or E-AC3/EC3 for multichannel audio (dependent on video and account configuration)</p></li>
-</ul>
-<br>
-
-<h3 id="support">Support Policy</h3> 
-<p>Brightcove’s support policy for the SDK covers the last three model years for each smart TV platform. This means if a new model year is introduced, support will extend to the three most recent model years.</p>
-<p>For example, if the last OS version was released in 2023, and there was no release in 2021, we support model years 2023, 2022, 2020.</p>
-
-</section>
-
-  
-
-
+  <h1>Web Sample App</h1>
+  <summary>Welcome to the Web & Smart TV SDK Web Sample App.</summary>
 </article>
-
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
   
   <nav class="right-side-nav" id="right_side_nav">

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Integrating Pinning with Brightcove Web & Smart TV SDK</title>
+        <title>Brightcove Web & Smart TV SDK Release Notes</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="This document provides detailed instructions on integrating Pinning with the Brightcove Web & Smart TV SDK.">
+        <meta name="description" content="In this topic, you will find the latest information on changes and enhancements to the Brightcove Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,15 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/code-samples/">Code samples</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/release-notes/">Release notes</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Integrating Pinning with Brightcove Web & Smart TV SDK</li>
+            <li class="breadcrumb-item active" aria-current="page">Brightcove Web & Smart TV SDK Release Notes</li>
             
             
           </ol>
@@ -2023,242 +2023,22 @@
       <br>
       
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
+<h1>Brightcove Web & Smart TV SDK Release Notes</h1>
 <article class="bcls-article">
-  <h1>Integrating Pinning with Brightcove Web & Smart TV SDK</h1>
-  <summary>This document provides detailed instructions on integrating Pinning with the Brightcove Web & Smart TV SDK.</summary>
+  <summary>In this topic, you will find the latest information on changes and enhancements to the Brightcove Web & Smart TV SDK.</summary>
+  <br/>
 
-<section class="bcls-section">
-<h2 id="overview">Overview</h2> 
-<p>The Pinning integration allows viewers to pin videos on the screen, ensuring that the video player stays visible while users scroll through the rest of the page. This enhances the user experience by allowing continuous viewing without interruption.</p>
-</section> 
-<section class="bcls-section">
-    <h2 id="prerequisites">Prerequisites</h2> 
-<ul>
-    <li>
-        <p>A Brightcove account with access to the Video Cloud.</p>
-    </li>
-    <li>
-        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
-    </li>
-</ul>
-</section>
-<section class="bcls-section">
-    <h2 id="integration">Usage Example</h2> 
-    <ol class="bcls-tasklist">
-      <li><p>Import the Player (with UI) class from the Brightcove SDK.</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';          
-</code></pre></li>
-      <li><p>Import the Pinning integration class from the Brightcove SDK.</p>
-        <pre class="line-numbers"><code class="language-JS" translate="No">import { PinningIntegrationFactory } from '@brightcove/web-sdk/integrations/pinning';                   
-</code></pre></li>
-<li><p>Import the Pinning integration CSS from the Brightcove SDK.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/pinning/styles';
- </code></pre>
-</li>
-<li><p>Register the Pinning Integration Factory with the Integrations Manager.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegrationFactory);
- </code></pre>
-</li>
-<li><p>Create and Configure the Player.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123; accountId: '&#60;your-account-id&#62;' &#125;);
-
- player.updateConfiguration({
-   integrations: {
-       pinning: {
-           posX: 'left', 
-           posY: 'top',  
-           closeable: true, 
-           // Add any other configurations as needed
-       },
-   },
- });
- </code></pre>
-</li>
-<li>
-  <p>Attach the player to a mount root (DOM element in the page):</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
- player.attach(root);
-  </code></pre>
-</li>
-<li>
-  <p>Access the Pinning Integration API via the Integrations Manager.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">const { pinningIntegration } = player.getIntegrationsManager();
-  </code></pre>
-</li>
-<li>
-  <p>Call Pinning-specific method.</p>
-  <pre class="line-numbers"><code class="language-JS" translate="No">pinningIntegration.togglePinning(); // Example method to toggle pinning
-  </code></pre>
-</li>
-</section>
-
-<section class="bcls-section">
-  <h2 id="configuration-options">Configuration Summary</h2> 
-  <p>This section provides detailed information about the various configuration options available for Pinning when using the Web & Smart TV SDK.</p>
-  <div class="table-responsive">
-      <table class="bcls-table">
-          <!-- <caption>Pinning Configuration Options</caption> -->
-          <thead class="bcls-table__head">
-            <tr>
-              <th>Configuration Option</th>
-              <th>Type</th>
-              <th>Default</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody class="bcls-table__body">
-            <tr>
-              <td><code translate="no">allowOnMobile</code></td>
-              <td>boolean</td>
-              <td>false</td>
-              <td>By default, pinning mode will not work on Android or iOS mobile devices.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">closeable</code></td>
-              <td>boolean</td>
-              <td>true</td>
-              <td>By default, pinning mode will include a close button, which the user can click to disable pinning mode.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">height</code></td>
-              <td>number | null</td>
-              <td>null</td>
-              <td>By default, the plugin will scale down the player's dimensions by a factor determined by the <code translate="no">scale</code> option. However, providing a <code translate="no">height</code> (or <code translate="no">width</code>) will override the default scaling and set the size of the scaled-down player explicitly. If only one dimension is provided, the other will be scaled down to maintain the aspect ratio. If both dimensions are provided, the player will be set to the exact, specified size.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">width</code></td>
-              <td>number | null</td>
-              <td>null</td>
-              <td>By default, the plugin will scale down the player's dimensions by a factor determined by the <code translate="no">scale</code> option. However, providing a <code translate="no">width</code> (or <code translate="no">height</code>) will override the default scaling and set the size of the scaled-down player explicitly.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">scale</code></td>
-              <td>number</td>
-              <td>2/3</td>
-              <td>The scaling factor applied to the player when it is in pinning mode. Must be a number greater than <code translate="no">0</code> and less than or equal to <code translate="no">1</code>.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">manualContainerSize</code></td>
-              <td>boolean</td>
-              <td>false</td>
-              <td>By default, a player with this plugin enabled will keep the physical dimensions of the special container element in sync with the player's dimensions. However, this doesn't work for all cases, so it can be disabled by setting this option to <code translate="no">false</code>. When doing so, the container element will behave like a normal block element. This means that users of the plugin will need to manage its size on their own.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">posX</code></td>
-              <td>'right' | 'left'</td>
-              <td>right</td>
-              <td>The horizontal alignment of the player when it is in pinning mode.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">posY</code></td>
-              <td>'top' | 'bottom'</td>
-              <td>bottom</td>
-              <td>The vertical alignment of the player when it is in pinning mode.</td>
-          </tr>
-          <tr>
-              <td><code translate="no">viewable</code></td>
-              <td>number</td>
-              <td>0.8</td>
-              <td>The threshold at which the player is considered viewable. In other words, when this percentage of the player is visible in the browser's viewport, it is considered viewable. For example, with the default of <code translate="no">0.8</code>, the player is not considered viewable unless 80% of it is visible in the viewport. Must be a number greater than or equal to <code translate="no">0</code> or less than or equal to <code translate="no">1</code>.</td>
-          </tr>
-          </tbody>
-        </table>
-  </div>
-</section>
-<section class="bcls-section">
-  <h2 id="methods">Public Methods Summary</h2> 
-  <div class="table-responsive">
-    <table class="bcls-table">
-        <!-- <caption>Pinning API Methods</caption> -->
-        <thead class="bcls-table__head">
-          <tr>
-            <th>Method</th>
-            <th>Description</th>
-            <th>Parameters</th>
-            <th>Parameter Type</th>
-            <th>Returns</th>
-          </tr>
-        </thead>
-        <tbody class="bcls-table__body">
-          <tr>
-            <td><code translate="no">togglePinning</code></td>
-            <td>Activate or deactivate pinning mode based on the current state.</td>
-            <td>None</td>
-            <td>N/A</td>
-            <td>void</td>
-          </tr>
-        </tbody>
-      </table>
-</div>
-</section>
-<section class="bcls-section">
-  <h2 id="event">Event Summary</h2> 
-  <div class="table-responsive">
-    <table class="bcls-table">
-      <thead class="bcls-table__head">
-        <tr>
-          <th>Event Name</th>
-          <th>Attribute</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody class="bcls-table__body">
-        <tr>
-          <td><code translate="no">BeforePin</code></td>
-          <td>Readonly</td>
-          <td>Triggered just before a pin action is performed.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">BeforePinClose</code></td>
-          <td>Readonly</td>
-          <td>Triggered just before a pin close action is performed.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">BeforePinningDisabled</code></td>
-          <td>Readonly</td>
-          <td>Triggered just before pinning is disabled.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">BeforePinningEnabled</code></td>
-          <td>Readonly</td>
-          <td>Triggered just before pinning is enabled.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">BeforeUnpin</code></td>
-          <td>Readonly</td>
-          <td>Triggered just before an unpin action is performed.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">Pin</code></td>
-          <td>Readonly</td>
-          <td>Triggered when a pin action is performed.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">PinClose</code></td>
-          <td>Readonly</td>
-          <td>Triggered when a pin close action is performed.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">PinningDisabled</code></td>
-          <td>Readonly</td>
-          <td>Triggered when pinning is disabled.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">PinningEnabled</code></td>
-          <td>Readonly</td>
-          <td>Triggered when pinning is enabled.</td>
-        </tr>
-        <tr>
-          <td><code translate="no">Unpin</code></td>
-          <td>Readonly</td>
-          <td>Triggered when an unpin action is performed.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-
+  <section id="Current_release" class="section">
+    <h2 id="Current_release"><strong>Current release</strong></h2>
+    <h3>Version 0.1.0</h3>
+    <h4>14 Jun 2024</h4>
+    <ul>
+      <li>web-sdk v0.1.0 release.</li>
+    </ul>
+  </section>
+  <!-- <section class="section">
+    <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+  </section> -->
 </article>
 
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>References</title>
+        <title>Integrating SSAI with Brightcove Web & Smart TV SDK</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="This section provides references for the Web & Smart TV SDK.">
+        <meta name="description" content="This document provides detailed instructions on integrating SSAI (Server-Side Ad Insertion) with the Brightcove Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,11 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">References</li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/code-samples/">Code samples</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">Integrating SSAI with Brightcove Web & Smart TV SDK</li>
             
             
           </ol>
@@ -2011,28 +2015,301 @@
   <div class="container">
     <div class="docs-overview py-5">
       
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br>
+      
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
-<!-- Template for sub-section that has just pages -->
+<article class="bcls-article">
+  <h1>Integrating SSAI with Brightcove Web & Smart TV SDK</h1>
+  <summary>This document provides detailed instructions on integrating SSAI (Server-Side Ad Insertion) with the Brightcove Web & Smart TV SDK.</summary>
 
-  
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>Server-Side Ad Insertion (SSAI) allows you to insert ads into your video streams on the server side, providing a seamless ad experience for viewers. This guide will walk you through the process of implementing SSAI using it's API.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+    <li>
+        <p>Have created an <a target="_blank" href="https://studio.support.brightcove.com/admin/configuring-server-side-ad-settings.html">Ad Configuration</a>.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Usage Example</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the SSAI integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { SsaiIntegrationFactory } from '@brightcove/web-sdk/integrations/ssai';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the SSAI integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/ssai/styles';
+            </code></pre>
+        </li>
+        <li>
+            <p>Setup SSAI integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerSsaiIntegrationFactory(SsaiIntegrationFactory);
+            </code></pre>
+        </li>
+        <li>
+            <p>Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
 
-  
+ player.updateConfiguration({
+   brightcove: {
+     // Passing an Ad Config ID will enable the fetching of an SSAI stream from the Playback API
+     adConfigId: '&#60;valid-ad-config-id&#62;',
+   },
+   ssai: {
+     timeout: 30_000,
+     hideOverlays: false,
+     // etc
+   }
+ });</code></pre>
+        </li>
+        <li>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+            </code></pre>
+        </li>
+        <li>
+            <p>Access the SSAI Integration API via the IntegrationsManager</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const { ssaiIntegration } = player.getIntegrationsManager();
+            </code></pre>
+        </li>
+        <li>
+            <p>Call SSAI-specific methods</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">ssaiIntegration.seekInRelativeTime(50);
+            </code></pre>
+        </li>
+        <!-- <li>
+            <p>Listen to the SdkLoaded event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaServerSide.SdkLoaded, ({ imaServerSideSdk }) => {
+  const adTag = 'your-ad-tag-url';
+  player.integrations.imaServerSide.adRequest(adTag);
+});
+            </code></pre>
+        </li> -->
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="configuration-options">Configuration Summary</h2> 
+    <p>This section provides detailed information about the various configuration options available for Server-Side Ad Insertion (SSAI) when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <!-- <caption>SSAI Configuration Options</caption> -->
+  <thead class="bcls-table__head">
+    <tr>
+      <th>Configuration Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody class="bcls-table__body">
+    <tr>
+      <td><code translate="no">hideOverlays</code></td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>If true, the countdown timer and Learn More click-through overlays will not be shown while ads are playing.</td>
+    </tr>
+    <tr>
+      <td><code translate="no">timeout</code></td>
+      <td>number</td>
+      <td>45000</td>
+      <td>The number of milliseconds after which an XHR to fetch a VMAP will time out.</td>
+    </tr>
+    <tr>
+      <td><code translate="no">enableDiscontinuities</code></td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>If true, request the video source with HLS discontinuities or DASH multiperiod. Only valid for VOD SSAI.</td>
+    </tr>
+    <tr>
+      <td><code translate="no">enableOm</code></td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>If true (and the necessary Open Measurement SDK scripts are embedded), the plugin will use values from the omParams object to start an OM manager and create a new OM session client.</td>
+    </tr>
+    <tr>
+      <td><code translate="no">omParams</code></td>
+      <td>OmConfiguration</td>
+      <td>N/A</td>
+      <td>An object describing the required parameters for starting an Open Measurement session client and OM ad features.</td>
+    </tr>
+    <tr>
+      <td><code translate="no">vmapURLParams</code></td>
+      <td>object</td>
+      <td>{}</td>
+      <td>An object containing the parameters for replacing arbitrary values in the VMAP source URL. <a target="_blank" href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html#URL_variables">See</a>
+        <aside class="bcls-aside bcls-aside--tip">Note: Object keys can have any name. The name of this variable must match the VMAP source URL param string or else it will not be replaced.</aside>
+    </td>
+    </tr>
+  </tbody>
+        </table>
+    </div>
+</section>
+<section class="bcls-section">
+  <h2 id="methods">Public Methods Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+        <!-- <caption>SSAI API Methods</caption> -->
+        <thead class="bcls-table__head">
+          <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Parameter Type</th>
+            <th>Returns</th>
+          </tr>
+        </thead>
+        <tbody class="bcls-table__body">
+          <tr>
+            <td><code translate="no">getRelativeDuration</code></td>
+            <td>Get the duration of a linear ad or content, whichever is currently playing.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>number</td>
+          </tr>
+          <tr>
+            <td><code translate="no">seekInRelativeTime</code></td>
+            <td>Seek to any point in a linear ad or content, whichever is currently playing.
+            </td>
+            <td>seekTarget, preventAdSkips</td>
+            <td>number, boolean?</td>
+            <td>void</td>
+          </tr>
+          <tr>
+            <td><code translate="no">getCurrentLinearAd</code></td>
+            <td>Get the current LinearAd.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>LinearAd | null</td>
+          </tr>
+          <tr>
+            <td><code translate="no">getRelativeTimelineState</code></td>
+            <td>Get the TimelineState object relative to the current linear ad or content.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>TimelineState | null</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</section>
+<section class="bcls-section">
+  <h2 id="event">Event Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Event Name</th>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code translate="no">ClickThrough</code></td>
+          <td>Readonly</td>
+          <td>Triggered when a click-through event occurs on the SSAI ad.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="bcls-section">
+  <h2 id="error">Error Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Error Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <!-- General Ads Errors -->
+        <tr>
+          <td><code translate="no">AdsBeforePrerollError</code></td>
+          <td>Error encountered before the preroll ad starts.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPrerollError</code></td>
+          <td>Error during the preroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMidrollError</code></td>
+          <td>Error during the midroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPostrollError</code></td>
+          <td>Error during the postroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMacroReplacementError</code></td>
+          <td>Error in replacing macros in the ad URL or tracking events.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsResumeContentError</code></td>
+          <td>Error while resuming the content after an ad break.</td>
+        </tr>
+        <!-- SSAI Specific Errors -->
+        <tr>
+          <td><code translate="no">SsaiVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiLiveVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for live SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiVodVmapParsingError</code></td>
+          <td>Error parsing the VMAP response for VOD SSAI ads.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiUnsupportedOmidAdSessionError</code></td>
+          <td>OMID (Open Measurement Interface Definition) ad session not supported.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiOmSessionError</code></td>
+          <td>Error with the OM session for SSAI.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">SsaiVmapRequestError</code></td>
+          <td>Error making the VMAP request for SSAI ads.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+</article>
 
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">Page Contents</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
   
 <!-- </div> -->
 </div>

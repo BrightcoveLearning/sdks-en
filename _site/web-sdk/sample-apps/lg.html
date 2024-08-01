@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Getting Started</title>
+        <title>Step-by-Step: Simple Video App for LG</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Understand the basic concepts for the Brightcove Web & Smart TV SDK">
+        <meta name="description" content="In this topic, you will learn how to build a simple video playback app using the Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,11 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Getting Started</li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/sample-apps/">Sample apps</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">Step-by-Step: Simple Video App for LG</li>
             
             
           </ol>
@@ -2011,29 +2015,133 @@
   <div class="container">
     <div class="docs-overview py-5">
       
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br>
+      
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
-<!-- Template for sub-section that has just pages -->
+<article class="bcls-article">
+  <h1>Step-by-Step: Simple Video App for LG</h1>
+  <summary>In this topic, you will learn how to build a simple video playback app using the Web & Smart TV SDK.</summary>
+  <section class="bcls-section">
+    <h2 id="Overview">Overview</h2>
+    <p>This example plays a video returned from the <a target="_blank" href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library.</p>
+    <p>For this option, you will need a Policy Key. If you are not familiar with Policy Keys, see <a target="_blank" href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</p>
+  </section>
+  <section class="bcls-section">
+    <h2 id="system-requirements">System Requirements</h2>
+    <div class="table-responsive">
+      <table class="bcls-table">
+            <caption class="bcls-caption--table">Systems requirements</caption>
+            <thead class="bcls-table__head">
+                <tr>
+                    <th>OS</th>
+                    <th>Requirement</th>
+                </tr>
+            </thead>
+            <tbody class="bcls-table__body">
+                <tr>
+                    <td>Windows</td>
+                    <td>Windows 10 or higher (64bit only)</td>
+                </tr>
+                <tr>
+                    <td>macOS</td>
+                    <td>macOS High Sierra (10.13) or higher (64bit only)</td>
+                </tr>
+                <tr>
+                    <td>Linux</td>
+                    <td>Ubuntu 20.04 or higher (64bit only)</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+  </section>
+  <section class="bcls-section">
+    <h2 id="system-requirements">Prerequisites</h2>
+    <ul>
+      <li><p><strong>Node.js</strong>: Recommended versions: 14.15.1 - 16.20.2.</p></li>
+      <li><p><strong>NPM</strong>: Node Package Manager.</p></li>
+    </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="set-up-environment">Set Up Your Development Environment</h2>
+    <ol class="bcls-tasklist">
+      <li><p>Verify the <strong>Node.js</strong> and <strong>npm</strong> installation:</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No">node -v
+npm -v
+                    </code></pre>
+      </li>
+      <li><p>Install <strong><a target="_blank" href="https://webostv.developer.lge.com/develop/tools/cli-installation">webOS CLI</a></strong> globally using npm:</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No">npm install -g @webos-tools/cli
 
-  
+        </code></pre>
+      </li>
+      <li><p>Verify the installation:</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No">ares -V
 
-  
+        </code></pre>
+      </li>
+      <li><p><strong>Configure Environment Variables</strong>. In VsCode create a file named .zshenv with the next code:</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No"># Setting the LG_WEBOS_TV_SDK_HOME variable to the parent directory of CLI
+export LG_WEBOS_TV_SDK_HOME="/Users/<your_username>/lg_webos_cli"
+if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
+# Setting the WEBOS_CLI_TV variable to the bin directory of CLI
+  export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
+# Adding the bin directory of CLI to the PATH variable
+  export PATH="$PATH:$WEBOS_CLI_TV"
+fi</code></pre>
+      </li>
+      <li><strong>Install and Configure VSCode Extension</strong>:
+      <ul>
+        <li><p>Download and install the webOS TV extension for VSCode.</p></li>
+        <li><p>Restart your PC.</p></li>
+        <li><p>In VSCode, click the Plus sign in the new TV icon extension to install a new device. Ensure the LG TV is in developer mode and connected to the same WiFi as your PC.</p></li>
+        <li><p>Select the device, set up <strong>SSH Key</strong>, and enter the passphrase shown on the STV in developer mode (Enable Key Server).</p></li>
+      </ul>
+      </li>
+    </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="create-app">Create Your Video App</h2>
+    <ol class="bcls-tasklist">
+      <li><p>Build the app by running the following command in the root directory of the SDK</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No">$ npx nx run-many -t build
 
-  
 
-  
+        </code></pre>
+        <aside class="bcls-aside bcls-aside--information"><p>Note: For each build, open the project folder in VSCode:</p>
+          <p><strong>File</strong> > <strong>Open Folder</strong> > <strong>Select folder</strong> > <strong>File will load</strong> > <strong>View</strong> > <strong>Command Palette</strong> > <strong>webOS TV: Package Application</strong> ><strong> Enter</strong> > <strong>Yes</strong></p></aside>
+      </li>
+      <li><p>In your-lg-device, select Install Application, select the app file ipk.</p></li>
+      <li><p>The app now appear below the <strong>Installed</strong> section below your your-lg-device right-click on it, select <strong>Run</strong> or <strong>Debug</strong>.</p></li>
 
-  
-
-  
-
-  
-
-  
-
-  
-
+    </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="test-your-app">Test Your App on LG Emulator</h2>
+    <ol class="bcls-tasklist">
+      <li><p>Build the app:</p>
+        <pre class="line-numbers"><code class="language-sh" translate="No">$ npx nx run-many -t build
+        </code></pre>
+      </li>
+      <li><p><a target="_blank" href="https://webostv.developer.lge.com/develop/tools/simulator-installation">Instal the simulator</a>.</p></li>
+      <li><p>Open the LG Simulator.</p></li>
+      <li><p>Click <strong>App</strong> in the controller.</p></li>
+      <li><p>Find the <strong>dist</strong> directory.</p></li>
+      <li><p>Once inside the directory, click <strong>open</strong>.</p></li>
+    </ol>
+  </section>
+</article>
 
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">Page Contents</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
   
 <!-- </div> -->
 </div>

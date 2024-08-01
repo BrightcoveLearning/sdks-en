@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Code Samples</title>
+        <title>Integrating IMA Client Side with Brightcove Web & Smart TV SDK</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="This section provides code samples for the Web & Smart TV SDK.">
+        <meta name="description" content="This document provides detailed instructions on integrating Interactive Media Ads (IMA) Client Side with the Brightcove Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,11 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Code Samples</li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/code-samples/">Code samples</a></li>
+            
+            
+            
+            <li class="breadcrumb-item active" aria-current="page">Integrating IMA Client Side with Brightcove Web & Smart TV SDK</li>
             
             
           </ol>
@@ -2011,28 +2015,443 @@
   <div class="container">
     <div class="docs-overview py-5">
       
+      <div class="centered-inpage-nav" id="centered_inpage_nav">
+        <nav id="centered_toc">
+          <select id="centered_in_page_toc" class="form-select select-focus"></select>
+        </nav>
+      </div>
+      <br>
+      
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
-<!-- Template for sub-section that has just pages -->
+<article class="bcls-article">
+  <h1>Integrating IMA Client Side with Brightcove Web & Smart TV SDK</h1>
+  <summary>This document provides detailed instructions on integrating Interactive Media Ads (IMA) Client Side with the Brightcove Web & Smart TV SDK.</summary>
 
-  
+<section class="bcls-section">
+<h2 id="overview">Overview</h2> 
+<p>IMA Client-Side allows for the easy integration of video advertising into your media players built with the Brightcove Web & Smart TV SDK. The IMA3 integration facilitates pre-roll, mid-roll, and post-roll ad placements, as well as sophisticated ad management capabilities.</p>
+</section> 
+<section class="bcls-section">
+    <h2 id="prerequisites">Prerequisites</h2> 
+<ul>
+    <li>
+        <p>A Brightcove account with access to the Video Cloud.</p>
+    </li>
+    <li>
+        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
+    </li>
+    <li>
+        <p>Access to the Google IMA SDK resources and an Ad Manager account.</p>
+    </li>
+</ul>
+</section>
+<section class="bcls-section">
+    <h2 id="integration">Usage Example</h2> 
+    <ol class="bcls-tasklist">
+        <li>
+            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the IMA Client-Side integration class from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import { ImaClientSideIntegrationFactory } from '@brightcove/web-sdk/integrations/imaClientSide';
+            </code></pre>
+        </li>
+        <li>
+            <p>Import the ImaClientSide integration CSS from the Brightcove SDK.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/imaClientSide/styles';
+            </code></pre>
+        </li>
+        <li>
+            <p>Setup ima-client-side integration.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerImaClientSideIntegrationFactory(ImaClientSideIntegrationFactory);
+            </code></pre>
+        </li>
+        <li>
+            <p>Create and Configure the Player.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123;accountId:'&#60;account-id&#62;'&#125;);
 
-  
+ player.updateConfiguration({
+   integrations: {
+     imaClientSide: {
+       serverUrl: '&#60;ad-tag-url&#62;',
+       requestMode: 'onload',
+       hardTiemouts: false,
+       // etc
+     },
+   },
+ });</code></pre>
+        </li>
+        <li>
+            <p>Attach the player to a mount root (DOM element in the page):</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+            </code></pre>
+        </li>
+        <li>
+            <p>Access the IMA Client Side Integration API via the IntegrationsManager:</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">const { imaClientSideIntegration } = player.getIntegrationsManager();
+            </code></pre>
+        </li>
+        <li>
+            <p>Call CSAI-specific methods</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">imaClientSideIntegration.isVpaid();
+            </code></pre>
+        </li>
+        <!-- <li>
+            <p>Listen to the <code translate="no">SdkLoaded</code> event and configure the ad integration using your specific ad tag URL provided by Google Ad Manager.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">player.one(Player.Event.Integration.ImaClientSide.SdkLoaded, ({ imaClientSideSdk }) => {
+  const adTag = 'your-ad-tag-url';
+  player.integrations.imaClientSide.adRequest(adTag);
+});
+            </code></pre>
+            <p>You can also activate the plugin by passing specific options within the configuration object.</p>
+            <pre class="line-numbers"><code class="language-JS" translate="No">var player = videojs('my-player', {
+    plugins: {
+        imaClientSide: {
+            adTagUrl: 'your-ad-tag-url',
+            // Other configuration options
+        }
+    }
+});</code></pre>
+        </li> -->
+    </ol>
+</section>
+<section class="bcls-section">
+    <h2 id="configuration-options">Configuration Summary</h2> 
+    <p>This section provides detailed information about the various configuration options available for Client-Side Ad Insertion (CSAI) when using the Web & Smart TV SDK.</p>
+    <div class="table-responsive">
+        <table class="bcls-table">
+            <!-- <caption>CSAI Configuration Options</caption> -->
+            <thead class="bcls-table__head">
+              <tr>
+                <th>Configuration Option</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class="bcls-table__body">
+              <tr>
+                <td><code translate="no">sdkUrl</code></td>
+                <td>string</td>
+                <td>`$&#123;protocol&#125;//imasdk.googleapis.com/js/sdkloader/ima3.js`</td>
+                <td >The URL to load the IMA3 SDK.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">serverUrl</code></td>
+                <td>string</td>
+                <td>`'$&#123;protocol&#125;//pubads.g.doubleclick.net/gampad/ads?
+                  sz=400x300&iu=%2F6062%2Fiab_vast_samples
+                  &ciu_szs=300x250%2C728x90&gdfp_req=1&env=vp
+                  &output=xml_vast2&unviewed_position_start=1
+                  &url=[referrer_url]&correlator=[timestamp]
+                  &cust_params=iab_vast_samples%3Dlinear'`</td>
+                <td >URL of the ad server from which ads will be requested.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">requestMode</code></td>
+                <td>'onload' | 'onplay' | 'ondemand' | 'once'</td>
+                <td>'onload'</td>
+                <td >Defines when the ad requests should be made.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">hardTimeouts</code></td>
+                <td>boolean</td>
+                <td>true</td>
+                <td >If set to true, ads that take too long to load will be abandoned.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">showVpaidControls</code></td>
+                <td>boolean</td>
+                <td>false</td>
+                <td >Determines whether custom player controls for VPAID ads should be displayed.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">clickTrackingElement</code></td>
+                <td>HTMLElement | undefined</td>
+                <td >undefined</td>
+                <td>Specifies the alternative video ad click element. If undefined, the IMA SDK handles clicks.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">postRollTimeout</code></td>
+                <td>number</td>
+                <td>same as timeout</td>
+                <td >Timeout setting for post-roll ads in videojs-contrib-ads. Overrides the default timeout value.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">preRollTimeout</code></td>
+                <td>number</td>
+                <td>same as timeout</td>
+                <td >Timeout setting for pre-roll ads in videojs-contrib-ads. Overrides the default timeout value.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">useMediaCuePoints</code></td>
+                <td>boolean</td>
+                <td>false</td>
+                <td >Enables the use of Video Cloud ad cue points to trigger ads.</td>
+              </tr>
+              <tr>
+                <td><code translate="no">vpaidMode</code></td>
+                <td>string</td>
+                <td>undefined</td>
+                <td >Specifies the VPAID 2 mode for the IMA HTML5 SDK. Defaults to the SDK's current setting, which is ENABLED.</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+<section class="bcls-section">
+  <h2 id="methods">Public Methods Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+        <!-- <caption>CSAI API Methods</caption> -->
+        <thead class="bcls-table__head">
+          <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Parameter Type</th>
+            <th>Returns</th>
+          </tr>
+        </thead>
+        <tbody class="bcls-table__body">
+          <tr>
+            <td><code translate="no">getAdDisplayContainer</code></td>
+            <td>Get the active AdDisplayContainer instance where ads are displayed.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>AdDisplayContainer | null</td>
+          </tr>
+          <tr>
+            <td><code translate="no">replaceMacroVariablesFor</code></td>
+            <td>Replace macro variables in a provided url. For list of supported macros, please <a target="_blank" href="https://player.support.brightcove.com/plugins/advertising-ima3-plugin.html#Ad_macros_and_the_serverUrl">see</a>:</td>
+            <td>url</td>
+            <td>string</td>
+            <td>string</td>
+          </tr>
+          <tr>
+            <td><code translate="no">getAdsLoader</code></td>
+            <td>Returns the AdsLoader instance responsible for loading the ads.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>AdsLoader | null</td>
+          </tr>
+          <tr>
+            <td><code translate="no">getAdsManager</code></td>
+            <td>Returns the AdsManager instance which manages the playback of ads.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>AdsManager | null</td>
+          </tr>
+          <tr>
+            <td><code translate="no">requestAd</code></td>
+            <td>Makes an ad request using the provided ad request URL.</td>
+            <td>adRequestUrl</td>
+            <td>string</td>
+            <td>void</td>
+          </tr>
+          <tr>
+            <td><code translate="no">getCurrentAd</code></td>
+            <td>Returns the currently playing ad.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>Ad | null</td>
+          </tr>
+          <tr>
+            <td><code translate="no">isVpaid</code></td>
+            <td>Checks if the current ad is a VPAID (Video Player Ad-Serving Interface Definition) ad.</td>
+            <td>None</td>
+            <td>N/A</td>
+            <td>boolean</td>
+          </tr>
+          <tr>
+            <td><code translate="no">setAdsRenderingSettings</code></td>
+            <td>Sets the rendering settings for ads.</td>
+            <td>adsRenderingSettings</td>
+            <td>AdsRenderingSettings</td>
+            <td>void</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</section>
+<section class="bcls-section">
+  <h2 id="event">Event Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Event Name</th>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <tr>
+          <td><code>imaClientSideAdClick</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is clicked by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdComplete</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad playback completes.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdError</code></td>
+          <td>Readonly</td>
+          <td>Triggered when there is an error in ad playback.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdStarted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad starts playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsLoad</code></td>
+          <td>Readonly</td>
+          <td>Triggered when ads are loaded and ready to play.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsPodEnded</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad pod (a group of ads) finishes playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsPodStarted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad pod (a group of ads) starts playing.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAdsRequest</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad request is made to the server.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideAllAdsCompleted</code></td>
+          <td>Readonly</td>
+          <td>Triggered when all scheduled ads have completed playback.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideFirstQuartile</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the first quartile.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideMidPoint</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the midpoint.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSidePaused</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is paused by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideResumed</code></td>
+          <td>Readonly</td>
+          <td>Triggered when a paused ad is resumed by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideSdkLoaded</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the IMA SDK is fully loaded and ready.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideSkipped</code></td>
+          <td>Readonly</td>
+          <td>Triggered when an ad is skipped by the user.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideThirdQuartile</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad playback reaches the third quartile.</td>
+        </tr>
+        <tr>
+          <td><code>imaClientSideVolumeChanged</code></td>
+          <td>Readonly</td>
+          <td>Triggered when the ad volume is changed by the user.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="bcls-section">
+  <h2 id="error">Error Summary</h2> 
+  <div class="table-responsive">
+    <table class="bcls-table">
+      <thead class="bcls-table__head">
+        <tr>
+          <th>Error Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="bcls-table__body">
+        <!-- General Ads Errors -->
+        <tr>
+          <td><code translate="no">AdsBeforePrerollError</code></td>
+          <td>Error encountered before the preroll ad starts.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPrerollError</code></td>
+          <td>Error during the preroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMidrollError</code></td>
+          <td>Error during the midroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsPostrollError</code></td>
+          <td>Error during the postroll ad.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsMacroReplacementError</code></td>
+          <td>Error in replacing macros in the ad URL or tracking events.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">AdsResumeContentError</code></td>
+          <td>Error while resuming the content after an ad break.</td>
+        </tr>
+        <!-- IMA Specific Errors -->
+        <tr>
+          <td><code translate="no">ImaVmapCancelledError</code></td>
+          <td>VMAP ad playlist request was canceled.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaAdsManagerStartError</code></td>
+          <td>Error when starting the IMA Ads Manager.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaInvalidVpaidModeError</code></td>
+          <td>Invalid VPAID mode set.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaSdkLoadError</code></td>
+          <td>Error loading the IMA SDK.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaInvalidCueError</code></td>
+          <td>Error due to an invalid cue point in the ad break.</td>
+        </tr>
+        <tr>
+          <td><code translate="no">ImaCueParsingError</code></td>
+          <td>Error parsing the ad cue points.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+</article>
 
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
+  
+  <nav class="right-side-nav" id="right_side_nav">
+    <h6 class="toc">Page Contents</h6>
+    <ul id="in_page_nav" class="list-none"></ul>
+  </nav>
   
 <!-- </div> -->
 </div>

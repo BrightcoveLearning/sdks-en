@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>Integrating EndScreen with Brightcove Web & Smart TV SDK</title>
+        <title>Getting Started with Brightcove Web & Smart TV SDK</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="robots" content="noindex,nofollow"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="This document provides comprehensive instructions on how to integrate end screen capabilities using both Custom and Social EndScreen features for the Brightcove Web & Smart TV SDK.">
+        <meta name="description" content="This section provides the initial steps required to set up and begin using the Brightcove Web & Smart TV SDK.">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -1994,15 +1994,15 @@
             <li class="breadcrumb-item"><a class="theme-link" href="/">Home</a></li>
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/">Player smart</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/">Web sdk</a></li>
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/player-smart/code-samples/">Code samples</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/web-sdk/getting-started/">Getting started</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">Integrating EndScreen with Brightcove Web & Smart TV SDK</li>
+            <li class="breadcrumb-item active" aria-current="page">Getting Started with Brightcove Web & Smart TV SDK</li>
             
             
           </ol>
@@ -2024,214 +2024,657 @@
       
       <h3 style="color:#990000;border:#990000 solid 1px; padding:10px;width: fit-content;">Limited Availability - Do not share this document</h3>
 <article class="bcls-article">
-  <h1>Integrating EndScreen with Brightcove Web & Smart TV SDK</h1>
-  <summary>This document provides comprehensive instructions on how to integrate end screen capabilities using both Custom and Social EndScreen features for the Brightcove Web & Smart TV SDK.</summary>
+  <h1>Getting Started with Brightcove Web & Smart TV SDK</h1>
+  <summary>This section provides the initial steps required to set up and begin using the Brightcove Web & Smart TV SDK.</summary>
 
 <section class="bcls-section">
-<h2 id="overview">Overview</h2> 
-<p>The EndScreen integration allows developers to add a customizable end screen to their video player. This can include either a social sharing end screen or a custom end screen. The Social EndScreen feature enhances viewer engagement by allowing viewers to easily share the video on various social media platforms once the video has finished playing. The Custom EndScreen feature allows developers to create a tailored end screen with specific content.</p>
-<aside class="bcls-aside bcls-aside--tip">Note: Only one EndScreen integration (Custom or Social) can be registered at a time.</aside>
+<h2 id="installing">Installing the SDK</h2> 
+<p>You can install the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/index.html">Brightcove Web & Smart TV SDK</a> using npm or directly from the Brightcove CDN.</p>
+<aside class="bcls-aside bcls-aside--information">Note: The npm installation is recommended for ease of use and version management.</aside>
+
+<br>
+<h3>Using npm:</h3>
+<p>Open your command line interface and run the following command to install the SDK:</p>
+<pre class="line-numbers"><code class="language-bash" translate="No">npm install @brightcove/web-sdk
+
+</code></pre>
+<br>
+<p>After installation, you can import the SDK using your preferred module system:</p>
+
+<h4>CommonJS</h4>
+<pre class="line-numbers"><code class="language-JS" translate="No">const &#123; Player &#125; = require('@brightcove/web-sdk');
+</code></pre>
+
+<h4>ES Module</h4>
+<pre class="line-numbers"><code class="language-JS" translate="No">import &#123; Player &#125; from '@brightcove/web-sdk';
+</code></pre>
+<br>
+<h3>Using CDN</h3>
+<p>Alternatively, if you prefer to use the SDK from the CDN, include one of the following script tags in your HTML files:</p>
+
+<h4>CommonJS</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.cjs.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>ES Module</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script type="module" src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.es.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>IIFE (Immediately Invoked Function Expression)</h4>
+<pre class="line-numbers"><code class="language-html" translate="No">&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+</code></pre>
+<br>
+<h4>Specifying a Version</h4>
+<p>To specify a version in the CDN URL:</p>
+<ul>
+  <li>Use <code translate="no">v&#123;major&#125;</code> to include the latest patch within a major version.</li>
+  <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code> to include the latest patch within a minor version.</li>
+  <li>Use <code>v&#123;major&#125;</code>.<code>&#123;minor&#125;</code>.<code>&#123;patch&#125;</code> to include a specific version.</li>
+</ul>
+<p>For example</p>
+<pre class="line-numbers"><code class="language-html" translate="No">
+&#60;script src="https://players.brightcove.net/sdk/v1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+ &#60;script src="https://players.brightcove.net/sdk/v1.1.1/web-sdk/playback/index.iife.min.js"&#62;&#60;/script&#62;
+</code></pre>
+
 </section> 
 <section class="bcls-section">
-    <h2 id="prerequisites">Prerequisites</h2> 
-<ul>
-    <li>
-        <p>A Brightcove account with access to the Video Cloud.</p>
-    </li>
-    <li>
-        <p>The Brightcove Web & Smart TV SDK installed in your project.</p>
-    </li>
-</ul>
+  <h2 id="import-player">Import the Player</h2>
+    <p><strong>Playback-Only</strong></p>
+      <p>For applications that only require playback functionality, and no additional UI features:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/playback';
+      </code></pre>
+      <p><strong>Playback with UI</strong></p>
+        <p>For applications that need playback functionality along with a UI, use the following player entry point:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
+ import '@brightcove/web-sdk/ui/styles';
+        </code></pre>
+  </ul>
 </section>
 <section class="bcls-section">
-    <h2 id="integration">Usage Example</h2> 
-    <ol class="bcls-tasklist">
-        <li>
-            <p>Import the Player (with UI) class from the Brightcove SDK.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk/ui';
-            </code></pre>
+    <h2 id="initialiting-player">Initializing the Player</h2> 
+<p>Once the SDK is installed, you can create a media player to embed in your application. By following these steps, you will have a basic video player set up using the Brightcove Web & Smart TV SDK.</p>
+<ol class="bcls-tasklist">
+    <li>
+        <p><strong>Initialize the Player</strong>: Set up the player with your Brightcove account details:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+  // Account ID parameter is required to initialize a player
+  accountId: '&#60;ACCOUNT_ID&#62;',
+ });
+</code></pre>
+    </li>
+    <li>
+        <p>Attach the player to a mount root (DOM element in the page):</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);
+        </code></pre>
+    </li>
+    <li>
+        <p>Dynamically update params in the <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.PlayerConfiguration.html">player configuration</a>:</p>
+        <pre class="line-numbers"><code class="language-JS" translate="No">player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
+  ui: {
+    language: 'en',
+    playsinline: false
+  }
+});
+                    </code></pre>
+    </li>
+</ol>
+</section>
+<section class="bcls-section">
+  <h2 id="loading-media">Loading Media</h2> 
+  <h3>Video Cloud VOD</h3>
+  <p>Load media into your project by following these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
+});
+      </code></pre>
+    </li>
+    <li><p><strong>Create a Function to Load Video</strong>: Define an asynchronous function to load video metadata using the video ID.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">async function loadVideo(videoId) {
+// you can abort a request by calling abort()
+    const { abort, promise } = player.getVideoByIdFromPlaybackApi({ videoId: '&#60;VIDEO_ID&#62;' });
+
+    try {
+        let brightcoveVideoModel = await promise;
+
+        player.loadBrightcoveVideoModel(brightcoveVideoModel);
+    } catch (error) {
+        console.error('Error loading video:', error);
+    }
+}
+</code></pre>
+    </li>
+    <li><p>Call the <strong>loadVideo</strong> function with your specific video ID to load the video into the player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">loadVideo('&#60;VIDEO_ID&#62;');
+
+</code></pre>
+    </li>
+  </ol>
+</section>
+  <section class="bcls-section">
+  <h2 id="playlist">Video Cloud Playlist</h2>
+  <p>Integrate playlists into your project by following these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+  brightcove: {
+    policyKey: '&#60;POLICY_KEY&#62;'
+  },
+});</code></pre>
+    </li>
+    <li><p><strong>Create a Function to Load Playlist</strong>: Define an asynchronous function to load a playlist using the playlist ID.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">async function loadPlaylist(playlistId) {
+// you can abort request by calling abort()
+    const { abort, promise } = player.getPlaylistByIdFromPlaybackApi({ playlistId });
+
+    try {
+        const playlistModel = await promise;
+        const playlistManager = player.getPlaylistManager();
+
+        // Create playlist object
+        const playlist = playlistManager.createPlaylistFromBrightcoveVideoModels(playlistModel.videos);
+
+        // Pass the playlist object to the PlaylistManager
+        playlistManager.setPlaylist(playlist);
+
+        // Load the first playlist item
+        player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+    } catch (error) {
+        console.error('Error loading playlist:', error);
+    }
+}
+</code></pre>
+    </li>
+    <li><p>Call the <strong>loadPlaylist</strong> function with your specific playlist ID to load the playlist into the player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">loadPlaylist('&#60;PLAYLIST_ID&#62;');
+
+
+</code></pre>
+    </li>
+    <li><p>Create a function to advance to the next item.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">function advanceToNextItem() {
+  const playlistManager = player.getPlaylistManager();
+  const playlist = playlistManager.getPlaylist();
+
+  // Advance to the next item
+  playlist.moveToNext();
+  player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+}
+
+advanceToNextItem();</code></pre>
+    </li>
+  </ol>
+  
+</section>
+<br>
+<section class="bcls-section">
+  <h2 id="remote-source">Remote Source</h2>
+  <p>Integrate a remote source into your project by following these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the Player</strong>: Create a new instance of the Player.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({
+// accountId is still required even when loading remote media
+    accountId: '&#60;ACCOUNT_ID&#62;',
+});</code></pre>
+    </li>
+    <li><p><strong>Define the Remote Video Source</strong>: Define the remote video source URL.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const source = {
+    url: 'https:'
+};
+</code></pre>
+    </li>
+    <li><p><strong>Load the Remote Video</strong>: Load the remote video source.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadRemoteVideo(source);  
+</code></pre>
+    </li>
+  </ol>
+
+</section>
+<section class="bcls-section">
+  <h2 id="integrationmanager">IntegrationsManager</h2> 
+  <p>The <code translate="no">IntegrationsManager</code> class is designed to manage various integrations within the SDK, such as pinning, thumbnails, IMA ads, and more. <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.IntegrationsManager.html">See</a>. It allows you to register, deregister, and access different integration factories, providing a flexible way to enhance your video player with additional features.</p>
+  <h3>Example Usage</h3>
+  <p>Below is an example of how to use the <code translate="no">IntegrationsManager</code> to register integrations and use them within your Player instance.</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import Necessary Modules</strong>: Import the required modules from the SDK.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { Player, IntegrationsManager } from '@brightcove/web-sdk';
+ import { PinningIntegrationFactory } from '@brightcove/web-sdk/integrations/pinning';
+ import { ThumbnailsIntegrationFactory } from '@brightcove/web-sdk/integrations/thumbnails';
+ import '@brightcove/web-sdk/ui/styles';
+ import '@brightcove/web-sdk/integrations/pinning/styles';
+ import '@brightcove/web-sdk/integrations/thumbnails/styles';</code></pre>
+    </li>
+    <li><p><strong>Register Integrations</strong>: Register the integrations before creating the player instance.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerPinningIntegrationFactory(PinningIntegrationFactory);
+ IntegrationsManager.registerThumbnailsIntegrationFactory(ThumbnailsIntegrationFactory);
+</code></pre>
+    </li>
+    <li><p><strong>Initialize the Player with Integrations</strong>: Create a new instance of the Player and include the integrations with their configuration options.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({accountId: '&#60;ACCOUNT_ID&#62;'});
+
+player.updateConfiguration({
+// Integrations can have their own configuration options
+  integrations: {
+    pinning: {
+      posX: 'left',
+      posY: 'top',
+      closeable: true
+    }
+  }
+});
+</code></pre>
+    </li>
+    <li><p><strong>Attach the Player to the DOM</strong>: Specify the DOM element where the player should be attached.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
+ player.attach(root);          
+</code></pre>
+    </li>
+    <li><p><strong>Access Individual Integrations</strong>: Use the <code translate="no">IntegrationsManager</code> to access and control specific integrations.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const { pinningIntegration } = player.getIntegrationsManager();         
+</code></pre>
+    </li>
+    <li><p><strong>Perform Integration-Specific Operations provided by the integration</strong>.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">pinningIntegration.togglePinning();       
+</code></pre>
+    </li>
+  </ol>
+</section>
+
+<section class="bcls-section">
+  <h2 id="networkingmanager">NetworkingManager</h2> 
+  <p>The <code translate="no">NetworkingManager</code> is used to hook into the SDK's request/response cycle and allows you to intercept and manipulate network requests and responses the player makes, enabling a wide range of custom behaviors and optimizations.</p>
+
+  <p>The <code translate="no">NetworkingManager</code> provides two main functionalities:</p>
+  <ul>
+    <li><p><strong>Request Interceptors</strong>: These allow you to intercept and modify outgoing requests before they are sent to the server.</p></li>
+    <li><p><strong>Response Interceptors</strong>: These allow you to intercept and modify incoming responses before they are processed by the player.</p></li>
+  </ul>
+  <p>To use the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.NetworkingManager.html">NetworkingManager</a> follow these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize the </strong><code translate="no">NetworkingManager</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const networkingManager = player.getNetworkingManager();      
+      </code></pre>
+    </li>
+    <li><p><strong>Add a Request Interceptor</strong>: Add a request interceptor to modify or log the outgoing requests.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addRequestInterceptor(Player.RequestType.HlsPlaylist, (request) => {
+    console.log('HLS Playlist request interceptor', request);
+    return request;
+});      
+      </code></pre>
+    </li>
+    <li><p><strong>Add a Response Interceptor</strong>:  Add a response interceptor to modify or log the incoming responses.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">networkingManager.addResponseInterceptor(Player.RequestType.HlsPlaylist, (response) => {
+    console.log('HLS Playlist response interceptor', response);
+    return response;
+});   
+      </code></pre>
+    </li>`
+  </ol>
+</section>
+<section class="bcls-section">
+  <h2 id="uimanager">UiManager</h2> 
+  <p>The <code translate="no">UiManager</code> creates and manages UI Components. All SDK UI Components extend the <code translate="no">UiComponent</code> class, which has an <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.UiComponent.html">extensive API</a>.</p>
+  <p>See the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.UiComponentDependencies.html">UiComponentDependencies</a> interface for the basic list of options that can be passed to components.</p>
+  <br>
+  <h3>Overriding Default Components</h3>
+  <p>Modify existing components to better suit your application's needs.</p>
+  <aside class="bcls-aside bcls-aside--information">Note: Only <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/enums/core.DefaultPlayerComponents.html">default player components</a> can be overridden.</aside>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import Required Modules</strong></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { UiManager, BigPlayButtonUiComponent, UiComponentType } from '@brightcove/web-sdk/ui';
+      </code></pre>
+    </li>
+    <li><p><strong>Create a Custom UI Component</strong></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">class CustomPlayButton extends BigPlayButtonUiComponent {
+  // ... custom play button code
+}
+      </code></pre>
+    </li>
+    <li><p><strong>Override the Default Component</strong>: override the default <code translate="no">BigPlayButton</code> with the <code translate="no">CustomPlayButton</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">UiManager.overrideDefaultComponent(UiComponentType.BigPlayButton, CustomPlayButton);
+      </code></pre>
+    </li>
+  </ol>
+<br>
+
+  <h3 id="custom-components">Custom Components</h3> 
+  <p>By using the <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/types/ui.BaseUiComponent.html">BaseUiComponent</a> class, you can add unique features and tailor the player interface to better fit your application requirements.</p>
+  <aside class="bcls-aside bcls-aside--tip">Note:  Each instance of a custom component must have a unique <code translate="no">name</code> property.</aside>
+  <p>To apply Custom Components following these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import <code translate="no">BaseUiComponent</code></strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { BaseUiComponent } from '@brightcove/web-sdk/ui';</code></pre>
+    </li>
+    <li><p><strong>Initialize UI Manager and Player Component</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">
+const uiManager = player.getUiManager();
+ const playerComponent = uiManager.getPlayerContainerUiComponent();
+</code></pre>
+    </li>
+    <li><p><strong>Create a DOM element</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const customElement = document.createElement('div');
+</code></pre>
+    </li>
+    <!-- <li><p><strong>Create a Custom Component</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">class CustomComponent extends BaseUiComponent {
+  // Custom component code
+}</code></pre>
+    </li> -->
+    <li><p><strong>Create a new custom UI component</strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const customComponent = new BaseUiComponent({
+   // Add a unique name
+   name: 'CustomUiComponent',
+   componentOptions: {
+     // Pass the custom DOM element as an option
+     el: customElement,
+   },
+ });
+      </code></pre>
+    </li>
+    <li><p><strong>Add the Custom Component to the Player</strong>:</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">playerComponent.addChild(customComponent);</code></pre>
+    </li>
+    <li><p><strong>(Optional) Add the Custom Component to Another Component </strong>: (for example the ControlBar)</code></p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const controlBarComponent = playerComponent.getChild('controlBar');
+ controlBarComponent.addChild(customComponent);
+        </code></pre>
+    </li>
+  </ol>
+</section>
+<section class="bcls-section">
+  <h2 id="playlistmanager">PlaylistManager</h2> 
+  <p>The <code translate="no">PlaylistManager</code> provides methods for creating playlists, managing the current playing item, and navigating through the playlist items.</p>
+  <p>To use the <a href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.PlaylistManager.html" target="_blank">PlaylistManager</a> follow these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Initialize PlaylistManager</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const playlistManager = player.getPlaylistManager();</code></pre>
+    </li>
+    <li><p><strong>Create a Playlist from a Playback API Response</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const videoCloudPlaylist = playlistManager.createPlaylistFromBrightcoveVideoModels(
+  /* Array&#60;BrightcoveVideoModel&#62; */
+);</code></pre>
+    </li>
+    <li><p><strong>Create a Playlist from Remote Sources</strong>: Alternatively, create a playlist using remote media sources.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const remotePlaylist = playlistManager.createPlaylistFromRemoteSources(
+   /* Array&#60;Source&#62; */
+ );</code></pre>
+    </li>
+    <li><p><strong>Set the Playlist in the PlaylistManager</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">playlistManager.setPlaylist(/* videoCloudPlaylist | remotePlaylist */);
+      </code></pre>
+    </li>
+    <li><p><strong>Load the First Playlist Item</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());</code></pre>
+    </li>
+    <li><p><strong>Navigate Through the Playlist</strong>: Use the next methods to navigate through the playlist items.</p>
+      <ul>
+        <li><p>Move to the next item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveToNext();
+          </code></pre>
         </li>
-        <li>
-            <p>Import the required EndScreen integration classes (Custom or Social).</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import { CustomEndScreenIntegrationFactory } from '@brightcove/web-sdk/integrations/customEndScreen';
- import { SocialEndScreenIntegrationFactory } from '@brightcove/web-sdk/integrations/socialEndScreen';
-            </code></pre>
+        <li><p>Move to the previous item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveToPrevious();
+          </code></pre>
         </li>
-        <li>
-            <p>Import the desired EndScreen integration CSS (Custom or Social).</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/customEndScreen/styles';
- import '@brightcove/web-sdk/integrations/socialEndScreen/styles';
-            </code></pre>
+        <li><p>Move to a specific item:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.moveTo(/* index number */);
+          </code></pre>
         </li>
-        <li>
-            <p>Register the chosen EndScreen Integration Factory with the Integrations Manager.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerEndScreenIntegrationFactory(CustomEndScreenIntegrationFactory);
-            </code></pre>
-            <p>or</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">IntegrationsManager.registerEndScreenIntegrationFactory(SocialEndScreenIntegrationFactory);
-            </code></pre>
-            <aside class="bcls-aside bcls-aside--tip">Note: Only one EndScreen integration (Custom or Social) can be registered at a time.</aside>
+        <li><p>Shuffle the playlist:</p>
+          <pre class="line-numbers"><code class="language-JS" translate="No">playlist.shuffle();
+          </code></pre>
         </li>
-        <li>
-            <p>Create and Configure the Player.</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player(&#123; accountId: '&#60;your-account-id&#62;' &#125;);
+        
+      </ul>
+    </li>
+    <li><p><strong>Load the new current item</strong>: Load the newly selected item in the playlist.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">player.loadBrightcoveVideoModel(playlist.getCurrentItem());
+      </code></pre>
+    </li>
+  </ol>
+</section>
+
+<section class="bcls-section">
+  <h2 id="playlistmanager">Events</h2> 
+<p>To handle events, add or remove event listeners follow these steps:</p>
+<ol class="bcls-tasklist-restart">
+  <li><p><strong>Handle the First Emission of an Event</strong>: If you want to handle only the first occurrence of an event, use the <code translate="no">once</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">player.once(Player.Event.PlayerPlaying, (event) => {
+    console.log('PlayerPlaying event: ', event);
+});</code></pre>
+  </li>
+  <li><p><strong>Handle Every Emission of an Event</strong>: To handle every emission of an event, use the <code translate="no">addEventListener</code> method. Below is an example of handling the <code translate="no">PlayerQualityLevelsChanged</code> event:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">// Define the event handler function
+const handlePlayerQualityLevelsChanged = (event) => {
+    console.log('PlayerQualityLevelsChanged event: ', event);
+};
+
+// Handle every emission of the PlayerQualityLevelsChanged event
+player.addEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+</code></pre>
+  </li>
+  <li><p><strong>Remove Specific Event Listeners</strong>: To remove a specific event listener, use the <code translate="no">removeEventListener</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">
+player.removeEventListener(Player.Event.PlayerQualityLevelsChanged, handlePlayerQualityLevelsChanged);
+      
+</code></pre>
+  </li>
+  <li><p><strong>Remove All Listeners for a Specific Event</strong>: To remove all listeners for a specific event, use the <code translate="no">removeAllEventListenersForType</code> method.</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">
+player.removeAllEventListenersForType(Player.Event.PlayerQualityLevelsChanged);      
+</code></pre>
+  </li>
+  <li><p><strong>Remove All Event Listeners</strong>: To remove all event listeners for all events, use the <code translate="no">removeAllEventListeners</code> method:</p>
+    <pre class="line-numbers"><code class="language-JS" translate="No">
+player.removeAllEventListeners();   
+</code></pre>
+  </li>
+</ol>
+</section>
+<section class="bcls-section">
+  <h2 id="errors">Errors</h2>
+  <p>To listen for error events and check the player's current error state, follow these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Listening for Error Events</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">this.player.addEventListener(Player.Event.PlayerError, (event) => {
+  const error = event.error;
+
+  console.log('An error occurred:', error);
+});</code></pre>
+    </li>
+    <!-- <li><p><strong>Checking if the Player is Currently in an Error State</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const error = player.getCurrentError();
+
+if (error) {
+    // Handle the error
+    console.error('Current error:', error);
+} else {
+    // No error, continue as normal
+    console.log('No current error');
+}</code></pre>
+    </li> -->
+  </ol>
+</section>
+<section class="bcls-section">
+  <h2 id="styling">Styling</h2>
+  <p>To apply CSS for UI features follow these steps:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import the Player Class</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import Player from '@brightcove/web-sdk/ui';</code></pre>
+    </li>
+    <li><p><strong>Import the CSS for the Player Class</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/ui/styles';</code></pre>
+    </li>
+    <li><p><strong>Importing Integration-Specific Styles</strong>: you must import the styles specific to that integration from
+      <br>
+       <code translate="no">@brightcove/web-sdk/integrations/&#60;integration-name&#62;/styles</code>
+      <br>
+       If you are integrating with a specific feature like <code translate="no">pinning</code>, follow this pattern:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import '@brightcove/web-sdk/integrations/pinning/styles';</code></pre>
+    </li>
+  </ol>
+  <br>
+      <h3>CSS Variables</h3>
+      <p>The CSS from <code translate="no">@brightcove/web-sdk/ui/styles</code> comes with a set of preset CSS variables to control certain aspects of the player's styling. These CSS variables can be overridden by resetting the value.</p>
+      <pre class="line-numbers"><code class="language-CSS" translate="No">.bc-sdk {
+     /* Override the default control bar color */
+     --bc-sdk-control-bar-color: red;
+ }</code></pre>
+ <p>The following are the available CSS variables, along with their default values:</p>
+ <div class="table-responsive">
+  <table class="bcls-table">
+    <!-- <caption class="bcls-caption--table">CSS Variables</caption> -->
+    <thead class="bcls-table__head">
+        <tr>
+            <th>Variable</th>
+            <th>Default Value</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody class="bcls-table__body">
+        <tr>
+            <td><code>--bc-sdk-control-color</code></td>
+            <td>#fff</td>
+            <td>The color of buttons and text.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-progress-color</code></td>
+            <td>#80888c</td>
+            <td>The color of the progress bar.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-control-bar-transparency</code></td>
+            <td>0.45</td>
+            <td>The transparency of the background color of the control bar and the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-control-bar-color</code></td>
+            <td>rgba(0, 0, 0, var(--bc-sdk-control-bar-transparency))</td>
+            <td>The background color of the control bar and the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--border</code></td>
+            <td>none</td>
+            <td>The border of the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--width</code></td>
+            <td>2em</td>
+            <td>The width of the big play button.</td>
+        </tr>
+        <tr>
+            <td><code>--bc-sdk-big-play-button--height</code></td>
+            <td>2em</td>
+            <td>The height of the big play button.</td>
+        </tr>
+    </tbody>
+</table>
+ </div>
+
+</section>
+<section class="bcls-section">
+  <h2 id="spatial-navigation">Spatial Navigation</h2> 
+  <p><code translate="no">spatialNavigation</code> enhances user experience and accessibility on Smart TV devices by enabling navigation through interactive elements within the player using remote control arrow keys.</p>
+  <h3>Enable Spatial Navigation</h3>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import the required Player class and associated styles</strong>.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import { Player } from '@brightcove/web-sdk/ui';
+ import '@brightcove/web-sdk/styles';</code></pre>
+    </li>
+    <li><p><strong>Initialize a UI-enabled player for <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.SpacialNavigationConfiguration.html">Spatial Navigation</a></strong>.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const player = new Player({ accountId: '&#60;ACCOUNT_ID&#62;' });
 
  player.updateConfiguration({
-     integrations: {
-         endScreen: {
- // Configuration for Custom EndScreen
-             custom: {
-                 content: '&#60;strong&#62;Content&#60;/strong&#62; for &#60;em&#62;custom&#60;/em&#62; end screen',
-             },
- // Configuration for Social EndScreen
-             social: {
-                title: 'Social Endscreen Title',
-                description: 'Social Endscreen description',
-                services: {
-                    facebook: true,
-                    twitter: true,
-                    tumblr: false,
-                    pinterest: false,
-                    linkedin: false
-                },
-            },
-         },
-     },
- });
-            </code></pre>
-        </li>
-        <li>
-            <p>Attach the player to a mount root (DOM element in the page):</p>
-            <pre class="line-numbers"><code class="language-JS" translate="No">const root = document.querySelector('#player-mount-root');
- player.attach(root);
-            </code></pre>
-        </li>
-    </ol>
+   ui: {
+     spatialNavigation: {
+       // Enable Spatial Navigation
+       enabled: true,
+ 
+       // Enable horizontal navigation seek functionality, using right and left RCU arrow keys.
+       horizontalSeek: true,
+     }
+   }
+ });</code></pre>
+    </li>
+    <li><p><strong>Retrieve the Spatial Navigation Manager</strong>.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const spatialNavigationManager = player.getSpatialNavigationManager();</code></pre>
+    </li>
+    <li><p><strong>Manage Spatial Navigation Events</strong>. The <a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk/docs/interfaces/core.SpatialNavigationManager.html">SpatialNavigationManager</a> allows you to <strong>start</strong>, <strong>pause</strong>, <strong>resume</strong>, and <strong>stop</strong> listening for keydown events.</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">// Start listening for keydown events
+spatialNavigationManager.start();
+
+// Pause listening for keydown events without removing listeners
+spatialNavigationManager.pause();
+
+// Resume listening for keydown events after pausing
+spatialNavigationManager.resume();
+
+// Disable Spatial Navigation by removing all keydown listeners
+spatialNavigationManager.stop();</code></pre>
+    </li>
+  </ol>
+<br>
+<h3>Spatial Navigation Events</h3>
+<p>The Web & Smart TV SDK provides two key events for spatial navigation:</p>
+<ol>
+  <li><p><code translate="no">Player.Event.SpatialNavigation.EndOfFocusableComponents</code>: Fired when there are no more focusable components available in the specified direction within the player interface.</p></li>
+  <li><p><code translate="no">Player.Event.SpatialNavigation.FocusableComponentsChanged</code>: Fired when the list of focusable components changes.</p></li>
+</ol>
 </section>
 
 <section class="bcls-section">
-    <h2 id="configuration-options">Custom Configuration Summary</h2> 
-    <p>This section provides detailed information about the configuration options available for Custom EndScreen when using the Web & Smart TV SDK.</p>
-    <div class="table-responsive">
-        <table class="bcls-table">
-            <!-- <caption>Custom EndScreen Configuration Options</caption> -->
-  <thead class="bcls-table__head">
-    <tr>
-      <th>Configuration Option</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody class="bcls-table__body">
-    <tr>
-      <td><code translate="no">content</code></td>
-      <td>string</td>
-      <td>""</td>
-      <td>Any string literal or HTML that is rendered on the custom endscreen.</td>
-    </tr>
-  </tbody>
-        </table>
-    </div>
+  <h2 id="localizations">Localizations</h2> 
+  <p>Localization is a crucial aspect of developing a user-friendly video player that meets the needs of a diverse, global audience.</p>
+  <p>Support for multiple languages and localizations can be included as follows:</p>
+  <ol class="bcls-tasklist-restart">
+    <li><p><strong>Import general player localizations</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import mainJapanese from '@brightcove/web-sdk/ui/languagePacks/ja';
+      </code></pre>
+    </li>
+    <li><p><strong>Import integration-specific localizations</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">import ssaiJapanese from '@brightcove/web-sdk/integrations/ssai/languagePacks/ja';
+      </code></pre>
+    </li>
+    <li><p><strong>Initialize the UI Manager</strong>:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">const uiManager = player.getUiManager();
+      </code></pre>
+    </li>
+    <li><p><strong>Add the Language Pack to the UI Manager</strong>: Use the <code translate="no">addLanguagePack</code> method of the UI manager to add the imported language pack:</p>
+      <pre class="line-numbers"><code class="language-JS" translate="No">uiManager.addLanguagePack('ja', mainJapanese);
+ uiManager.addLanguagePack('ja', ssaiJapanese);
+      </code></pre>
+    </li>
+  </ol>
 </section>
 <section class="bcls-section">
-    <h2 id="configuration-options">Social Configuration Summary</h2> 
-    <p>This section provides detailed information about the various configuration options available for Social Sharing Integration when using the Web & Smart TV SDK.</p>
-    <div class="table-responsive">
-        <table class="bcls-table">
-            <!-- <caption>Social Sharing Configuration Options</caption> -->
-            <thead class="bcls-table__head">
-                <tr>
-                    <th>Configuration Option</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody class="bcls-table__body">
-                <tr>
-                    <td><code translate="no">title</code></td>
-                    <td>string</td>
-                    <td>""</td>
-                    <td>Used to provide a title for use in the social overlay. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">description</code></td>
-                    <td>string</td>
-                    <td>""</td>
-                    <td>Used to provide a description for use in the social overlay. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">url</code></td>
-                    <td>string</td>
-                    <td>""</td>
-                    <td>Used to provide a custom URL that replaces the generated one. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">label</code></td>
-                    <td>string</td>
-                    <td>""</td>
-                    <td>Used to provide a label for the social overlay. Can only be updated on initialization of the plugin.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">embedCode</code></td>
-                    <td>string</td>
-                    <td>""</td>
-                    <td>Used to provide a custom embed code that replaces the generated one. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">embedDomain</code></td>
-                    <td>string</td>
-                    <td>"players.brightcove.net"</td>
-                    <td>This value is only used when the embed code is not set. Used to provide a custom domain if proxy is being used. Can be updated dynamically. </td>
-                </tr>
-                <tr>
-                    <td><code translate="no">embedDimensions</code></td>
-                    <td>boolean</td>
-                    <td>false</td>
-                    <td>If true, the current dimensions of the player will be provided in the embed code. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">deeplinking</code></td>
-                    <td>boolean</td>
-                    <td>false</td>
-                    <td>If true, direct links will include a start offset. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">offset</code></td>
-                    <td>string</td>
-                    <td>"00:00:00"</td>
-                    <td>An offset in "hh:mm:ss" format to use for sharing URLs. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">removeDirect</code></td>
-                    <td>boolean</td>
-                    <td>false</td>
-                    <td>If true, turns off the direct link. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">removeEmbed</code></td>
-                    <td>boolean</td>
-                    <td>false</td>
-                    <td>If true, turns off the embed code. Can be updated dynamically.</td>
-                </tr>
-                <tr>
-                    <td><code translate="no">services</code></td>
-                    <td>SocialSharingConfigurationServices</td>
-                    <td>
-                        <ul>
-                            <li>facebook</li>
-                            <li>twitter</li>
-                            <li>tumblr</li>
-                            <li>pinterestk</li>
-                            <li>linkedin</li>
-                        </ul>
-                    </td>
-                    <td>Can be updated dynamically.</td>
-                </tr>
-            </tbody>
-          </table>
-    </div>
+  <h2 id="sample-implementations">Sample Implementations</h2> 
+  <p>To help you quickly get up to speed with the Brightcove Web & Smart TV SDK, we offer several sample implementations. These examples demonstrate various features and use cases, providing a hands-on way to learn how to use the SDK effectively.</p>
+  <p>Explore a variety of sample implementations by visiting the following links:</p>
+  <ul>
+    <li><p>Preset Video Cloud Media:</p>
+    <ul>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod">VOD</a></p></li>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:vod-drm">VOD with DRM</a></p></li>
+      <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-presets.html#preset:mat">Video Cloud VOD with Multiple Audio Tracks</a></p></li>
+    </ul>
+    </li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-playlist.html">Video Cloud Playlists</a></p></li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-video-cloud.html?accountId=3303963094001&policyKey=BCpkADawqM0k6S1rIqFhnNBmm3NQxaFcIuu0oEG5BTIuxtTtoJ6ohz9hYoxeGaisA7V2Ry2XRz0tPEsSaYAwiGGzZWbsXFhzGCkT_R-L8JpFxP8x2mRnJ4eCAcbYvjIt9PuXiM5ZCG3UUJwb&videoId=ref%3Abbb-clear&watermarkingToken=&authToken=&tveToken=&adConfigId=&viewerId=&filterSourcesTo=&streamConcurrency=false&imaSdkUrl=&imaServerUrl=">Custom Video Cloud Media</a></p></li>
+    <li><p><a target="_blank" href="https://bc-players-qa.s3.amazonaws.com/sdk/latest/web-sdk-vanilla-demo-app/web/playback-remote.html?accountId=&sourceUrl=&keySystem=&licenseUrl=&certificateUrl=">Custom Remote Media</a></p></li>
+  </ul>
 </section>
 
 
