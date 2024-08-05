@@ -1,6 +1,6 @@
 ---
-title: 'Step-by-Step: Simple Video App for Samsung'
-description: In this topic, you will learn how to build a simple video playback app using the Web & Smart TV SDK.
+title: 'Getting started developing with Tizen'
+description: In this topic, you will learn how you can launch your apps and start developing with Tizen Studio.
 parent: Sample Apps
 grandparent: Web & Smart TV SDK
 layout: staging
@@ -10,16 +10,37 @@ layout: staging
   <h1>{{ page.title }}</h1>
   <summary>{{ page.description }}</summary>
   <section class="bcls-section">
-    <h2 id="Overview">Overview</h2>
-    <p>This example plays a video returned from the <a target="_blank" href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library.</p>
-    <p>For this option, you will need a Policy Key. If you are not familiar with Policy Keys, see <a target="_blank" href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</p>
-  </section>
-  <section class="bcls-section">
     <h2 id="prerequisites">Prerequisites</h2>
     <ul>
-      <li><p><strong>Tizen Studio</strong>: Ensure you have Tizen Studio installed on your system. You can download it from <a target="_blank" href="https://developer.tizen.org/development/tizen-studio/download">here</a>.
-      </p></li>
+      <li><strong>Tizen Studio</strong>: Ensure you have Tizen Studio installed on your system. You can download it from <a target="_blank" href="https://developer.tizen.org/development/tizen-studio/download">here</a>.</li>
     </ul>
+  </section>
+  <section class="bcls-section">
+    <h2 id="extensions">Installing Additional SDK Extensions</h2>
+    <p>Folow these steps to install some additional SDK extensions for TV app development.</p>
+    <ol class="bcls-tasklist">
+      <li><p><strong>Open the Tizen Package Manager</strong>:</p>
+        <ul>
+          <li>Launch the Tizen Studio.</li>
+          <li>Navigate to <strong>Tools </strong>> <strong>Package Manager</strong>.</li>
+        </ul>
+      </li>
+      <li><p><strong>Install TV Extensions</strong>:</p>
+        <ul>
+          <li>In the Package Manager, navigate to the <strong>Extension SDK</strong> tab.
+            <img class="ui-image" src="/assets/images/web-sdk/extensions.webp" alt="">
+          </li>
+          <li>Look for:
+            <ul>
+              <li><strong>TV Extensions</strong></li>
+              <li><strong>TV Extensions Tools</strong></li>
+              <li><strong>Samsung Certificate extension</strong></li>
+            </ul>
+          </li>
+          <li>Install</li>
+        </ul>
+      </li>
+    </ol>
   </section>
   <section class="bcls-section">
     <h2 id="create-certificates">Create Certificates</h2>
@@ -27,55 +48,56 @@ layout: staging
     <ol class="bcls-tasklist">
       <li><p>Launch Tizen Studio.</p></li>
       <li><p>Navigate to <strong>Tools </strong>> <strong>Certificate Manager</strong>.</p></li>
-      <li><p>Create a new certificate profile. According to the Tizen policy, all applications must be signed with valid certificates before they can be installed or run. The signature verifies the source of the application and makes sure it has not been tampered with since its publication. Detailed instructions can be found <a href="https://developer.samsung.com/smarttv/develop/getting-started/setting-up-sdk/creating-certificates.html">here</a>.</p></li>
+      <li><p>Create a new certificate profile. According to the Tizen policy, all applications must be signed with valid certificates before they can be installed or run. The signature verifies the source of the application and makes sure it has not been tampered with since its publication. Detailed instructions can be found <a target="_blank" href="https://developer.samsung.com/smarttv/develop/getting-started/setting-up-sdk/creating-certificates.html">here</a>.</p></li>
     </ol>
   </section>
   <section class="bcls-section">
     <h2 id="launch">Launching the Application</h2>
-    <h3>Download the sample</h3>
+    <!-- <h3>Download the sample</h3>
     <ol class="bcls-tasklist">
       <li><p>Clone or download the Web & Smart TV SDK samples to your local system.</p></li>
       <li><p>Navigate to the sdk/packages/web-sdk-vanilla-demo-app/tizen/ sample app.</p></li>
       <li><p>Run the <code translate="no">npm install</code> command.</p></li>
       <li><p>Open and run the newly created workspace.</p></li>
-    </ol>
-    <h3>Enable Developer Mode</h3>
+    </ol> -->
+    <h3>Enable Developer Mode for physical devices</h3>
     <ol class="bcls-tasklist">
-      <li><p>For physical devices navigate to the Apps panel on your Samsung TV.</p></li>
+      <li><p>Ensure your Samsung TV is connected to the same network as your development machine.</p></li>
+      <li><p>Navigate to the Apps panel on your Samsung TV.</p>
+        <img class="ui-image" src="/assets/images/web-sdk/apps.webp" alt="">
+      </li>
       <li><p>Input the code <code translate="no">12345</code> using the remote control to enable developer mode.</p></li>
-      <li><p>Insert the IP address of your laptop (A restart is required after enabling developer mode.).</p></li>
+      <li><p>Insert the IP address of your laptop.</p></li>
+      <li><p>Restart.</p></li>
     </ol>
     <h3>Connect Tizen Studio to the Device</h3>
     <ol class="bcls-tasklist">
       <li><p>In Tizen Studio, navigate to <strong>Tools </strong>> <strong>Device Manager</strong></p></li>
-      <li><p>In the <strong>Device Manager</strong>, click <strong>Remote Device Manager</strong> in the top right corner to manage devices.</p></li>
+      <li><p>In the <strong>Device Manager</strong>, click <strong>Remote Device Manager</strong> in the top right corner to manage devices.</p>
+        <img class="ui-image" src="/assets/images/web-sdk/device1.webp" alt="">
+      </li>
       <li><p><strong>Add a New Device</strong>: </p>
       <ul>
-        <li><p>Click <strong>scan</strong> to search for available devices.</p></li>
+        <li><p>Click <strong>scan</strong> to search for available devices.</p>
+          <img class="ui-image" src="/assets/images/web-sdk/device2.webp" alt="">
+        </li>
         <li><p>Or click <i class="fa-solid fa-plus"></i> to manually insert the IP address of the TV you want to connect to.</p></li>
       </ul>
      </li>
-     <li>Once connected, close the <strong>Device Manager</strong>. <a href="https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html">Here</a>, For more details.</li>
+     <li>Once connected, right click on your device > <strong>Permit to install applications</strong>.</li>
+     <li>close the <strong>Device Manager</strong>. <a target="_blank" href="https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html">Here</a>, For more details.</li>
     </ol>
     <h3>Import Project into Tizen Studio</h3>
     <ol class="bcls-tasklist">
       <li><p>In Tizen Studio navigate to <strong>File</strong> > <strong>Import</strong> > <strong>General</strong> > <strong>Existing Projects into Workspace</strong>.</p></li>
       <li><p>Select the directory containing the Tizen project.</p></li>
-      <li><p>Right-click on the project and select <strong>Run As</strong> > <strong>Tizen Web Application</strong> (for physical devices) or <strong>Tizen Web Simulator Application</strong> (Samsung TV) for the simulator.</p></li>
+      
     </ol>
-    <h3>Modify the Project for Simple Video Playback</h3>
-    <p>Edit the <strong>index.tizen.html</strong> file to include a simple <a href="https://studio.support.brightcove.com/publish/general/step-step-using-players-module-create-and-publish-player.html">video player</a>. Here's an example modification:</p>
-    <pre class="line-numbers"><code class="language-html" translate="No">&#60;html&#62;
-&#60;head&#62;
-    &#60;title>Simple Video App&#60;/title&#62;
-&#60;/head&#62;
-&#60;body&#62;
-    &#60;video-js id="my-player" data-video-id="your-video-id" controls&#62;&#60;/video-js&#62;
-    &#60;script&#62;
-        videojs('my-player');
-    &#60;/script&#62;
-&#60;/body&#62;
-&#60;/html&#62;</code></pre>
+    <h3>Run or Debug</h3>
+    <ol class="bcls-tasklist">
+      <li><p>Right-click on the project, select <strong>Run As</strong> > <strong>Tizen Web Application</strong> (for physical devices) or <strong>Tizen Web Simulator Application</strong> (Samsung TV) for the simulator.</p></li>
+      <li><p>Right-click on the project, select <strong>Debug As</strong> opens the developer tools after launching the application.</p></li>
+    </ol>
   </section>
   
 </article>
