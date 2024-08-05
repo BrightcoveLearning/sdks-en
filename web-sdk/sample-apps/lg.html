@@ -1,6 +1,6 @@
 ---
-title: 'Step-by-Step: Simple Video App for LG'
-description: In this topic, you will learn how to build a simple video playback app using the Web & Smart TV SDK.
+title: 'Getting started developing with LG webOS'
+description: This document provides detailed instructions for installing and testing applications on LG webOS devices.
 parent: Sample Apps
 grandparent: Web & Smart TV SDK
 layout: staging
@@ -9,11 +9,6 @@ layout: staging
 <article class="bcls-article">
   <h1>{{ page.title }}</h1>
   <summary>{{ page.description }}</summary>
-  <section class="bcls-section">
-    <h2 id="Overview">Overview</h2>
-    <p>This example plays a video returned from the <a target="_blank" href="https://apis.support.brightcove.com/playback/getting-started/overview-playback-api.html">Brightcove Playback API</a>, which is the latest and recommended API to retrieve content from your Video Cloud library.</p>
-    <p>For this option, you will need a Policy Key. If you are not familiar with Policy Keys, see <a target="_blank" href="https://apis.support.brightcove.com/policy/getting-started/overview-policy-api.html">Policy API Overview</a>.</p>
-  </section>
   <section class="bcls-section">
     <h2 id="system-requirements">System Requirements</h2>
     <div class="table-responsive">
@@ -79,8 +74,9 @@ fi</code></pre>
       </li>
       <li><strong>Install and Configure VSCode Extension</strong>:
       <ul>
-        <li><p>Download and install the webOS TV extension for VSCode.</p></li>
+        <li><p>Download and install the webOS TV SDK extension for VSCode.</p></li>
         <li><p>Restart your PC.</p></li>
+        <li><p>Install the <a href="https://webostv.developer.lge.com/develop/getting-started/developer-mode-app">Developer mode app</a>.</p></li>
         <li><p>In VSCode, click the Plus sign in the new TV icon extension to install a new device. Ensure the LG TV is in developer mode and connected to the same WiFi as your PC.</p></li>
         <li><p>Select the device, set up <strong>SSH Key</strong>, and enter the passphrase shown on the STV in developer mode (Enable Key Server).</p></li>
       </ul>
@@ -96,9 +92,10 @@ fi</code></pre>
 
         </code></pre>
         <aside class="bcls-aside bcls-aside--information"><p>Note: For each build, open the project folder in VSCode:</p>
-          <p><strong>File</strong> > <strong>Open Folder</strong> > <strong>Select folder</strong> > <strong>File will load</strong> > <strong>View</strong> > <strong>Command Palette</strong> > <strong>webOS TV: Package Application</strong> ><strong> Enter</strong> > <strong>Yes</strong></p></aside>
+          <!-- <p><strong>File</strong> > <strong>Open Folder</strong> > <strong>Select folder</strong> > <strong>File will load</strong> > <strong>View</strong> > <strong>Command Palette</strong> > <strong>webOS TV: Package Application</strong> ><strong> Enter</strong> > <strong>Yes</strong></p> -->
+        </aside>
       </li>
-      <li><p>In your-lg-device, select Install Application, select the app file ipk.</p></li>
+      <li><p>In your-lg-device, select Install Application, select the app file IPK.</p></li>
       <li><p>The app now appear below the <strong>Installed</strong> section below your your-lg-device right-click on it, select <strong>Run</strong> or <strong>Debug</strong>.</p></li>
 
     </ol>
@@ -112,9 +109,22 @@ fi</code></pre>
       </li>
       <li><p><a target="_blank" href="https://webostv.developer.lge.com/develop/tools/simulator-installation">Instal the simulator</a>.</p></li>
       <li><p>Open the LG Simulator.</p></li>
-      <li><p>Click <strong>App</strong> in the controller.</p></li>
+      <li><p>Click <strong>App</strong> in the controller.</p>
+        <img class="ui-image" src="/assets/images/web-sdk/appcontrol.webp" alt="">
+      </li>
       <li><p>Find the <strong>dist</strong> directory.</p></li>
       <li><p>Once inside the directory, click <strong>open</strong>.</p></li>
     </ol>
+  </section>
+  <section class="bcls-section">
+    <h2 id="common-issues">Common Issues</h2>
+    <p><strong>Not being able to install an app on your LG device</strong>:</p>
+    <ul>
+      <li>Check the internet connection.</li>
+      <li>Verify the LG device is on the same network.</li>
+      <li>Confirm if the LG device's IP address has changed.</li>
+      <li>Update the LG TV's firmware.</li>
+      <li>Factory reset the LG TV.</li>
+    </ul>
   </section>
 </article>
