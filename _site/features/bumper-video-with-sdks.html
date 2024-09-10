@@ -2228,7 +2228,38 @@
 
   <section class="bcls-section">
     <h2 id="Using_Playback_Rights_Android">Android Implementation</h2>
-    <p>The Native SDK for Android will support bumper videos in the near future.</p>
+    <p>A player requests a bumper from the Playback API like any other video and insert it before ads and content.</p>
+    <aside class="bcls-aside bcls-aside--information"><strong>Note</strong>: Bumpers are a player-level feature, meaning a given player may only be associated with a single bumper. Playlists share the same bumper video.</aside>
+    <p>There are two ways to configure a player to play a bumper video:</p>
+    <ol>
+      <li>
+        <h3>Playback Service (BCOVPlaybackService) methods.</h3>
+    <p>The <code translate="no">bumperID</code> is the unique reference to find and play a bumper video before other content.</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">//Building the instance of the bumper component, providing the existing videoView and catalog.
+ bumperComponent = new BumperComponent.Builder(brightcoveVideoView, catalog).build();
+ bumperComponent.setVideoBumperID("Bumper ID");
+ //Initializing the bumper.
+ bumperComponent.init();
+ </code></pre>
+      </li>
+      <li>
+        <h3>Custom Fields.</h3>
+    <p>The <code translate="no">bumper_id</code> field can be defined in Custom Fields in Video Cloud. The <code translate="no">bumper_id</code> can be used without the signatures previously defined. It must be a valid video ID or reference ID.</p>
+    <pre class="line-numbers"><code class="language-java" translate="No">//Building the instance of the bumper component, providing the existing videoView and catalog.
+ bumperComponent = new BumperComponent.Builder(brightcoveVideoView, catalog).build();
+    //Obtaining the bumper id from the video custom fields
+    Map<String, Object> customFields = (Map<String, Object>) mVideo.getProperties().get(Video.Fields.CUSTOM_FIELDS);
+    if ((customFields != null && !customFields.isEmpty()) &&   (customFields.containsKey(bumperComponent.getVIDEO_CUSTOM_FIELD_BUMPER_ID()))) {
+        bumperComponent.setVideoBumperID((String) customFields.get(bumperComponent.getVIDEO_CUSTOM_FIELD_BUMPER_ID()));
+    }
+ //Initializing the bumper.
+ bumperComponent.init();
+ </code></pre>
+      </li>
+    </ol>
+    
+    <p>You can access the video view for the bumper to modify it as any other video view by using: </p>
+    <pre class="line-numbers"><code class="language-java" translate="No">bumperComponent.getBumperVideoView();</code></pre>
 
   </section>
 
