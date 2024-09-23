@@ -1,5 +1,18 @@
 Brightcove Native Player for Android Release Notes:
 
+Version 9.2.1
+  SDK Changes:
+    * Fixes an issue where the current position view is not properly updated when manually seeking.
+    * Addresses an unexpected view stacking behavior that could occur if a caption cue had less than 250ms of its remaining duration in the current second of playback.
+    * Fixes a problem where Generic Stream Concurrency is not completely stopped once the setStreamConcurrencyEnabled(false) is called.
+    * Two new methods were added to enable and disable stream concurrency: enableStreamConcurrency() or disableStreamConcurrency(). Side note, stream concurrency cannot be initiated after the video started to play.
+    * Deprecated the method setStreamConcurrencyEnabled(boolean) in the BaseVideoView class. Instead us enableStreamConcurrency() or disableStreamConcurrency() from the same class.
+  
+  SSAI Plugin Changes:
+    * Fixes a problem where seeking within the player's progress bar would lead to unexpected replay of midroll ads.
+    * Fixes a crash while using custom controllers and SSAI.
+    * Fixes a formatting exception when the Tracking Events returned an invalid URI.
+    
 Version 9.2.0
 
   SDK Changes:
