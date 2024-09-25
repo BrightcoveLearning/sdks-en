@@ -2336,10 +2336,13 @@
         </ul>
         </li>
         <li>Brightcove Analytics support (<a target="_blank" href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Data Collection API v2</a>).</li>
+        <li>Brightcove <a target="_blank" href="https://studio.support.brightcove.com/analytics/module/ad-insights.html">Ad Insights</a> support.</li>
+        <li>Brightcove <a target="_blank" href="https://apis.support.brightcove.com/xdr/getting-started/xdr-overview.html">Cross-Device Resume</a> support.</li>
         <li>Multichannel Audio on supported devices (5.1 AC3, 5.1 E-AC3, Dolby Atmos)
         </li>
         <li><a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">OOTB Voice Controls</a> support.</li>
-        <li>Brightcove Forensic Watermarking</li>
+        <li>Brightcove Forensic Watermarking.</li>
+        <li>Custom playlists support.</li>
         <li>Configurable sources and DRM systems prioritization.</li>
         <li>Multiple Audio Tracks support.</li>
         <li>Configurable stream buffering timeout.</li>
@@ -2354,13 +2357,14 @@
             </ul>
         </li>
         <li>Brightcove Edge Playback Authorization (EPA) support.</li>
+        <li>Brightcove <a target="_blank" href="https://apis.support.brightcove.com/playback-restrictions/guides/generic-stream-concurrency.html">Generic Stream Concurrency</a>.</li>
         <li>Load custom Brightcove videos metadata.</li>
         <li>External video and playlist sources support.</li>
         <li>Utilities
             <ul>
-                <li>Brightscript general utilities</li>
-                <li>Logging component</li>
-                <li>Dialog component</li>
+                <li>Brightscript general utilities.</li>
+                <li>Logging component.</li>
+                <li>Dialog component.</li>
             </ul>
         </li>
     </ul>
@@ -2403,10 +2407,17 @@
                 </ul>
             </li>
         </ul>
-        <h3>Custom UI/UX</h3>
+        <!-- <h3>Custom UI/UX</h3>
         <ul>
             <li><strong>TBD</strong>.</li>
-        </ul>
+        </ul> -->
+    </section>
+    <section class="bcls-section">
+        <h2 id="generic-concurrency">Brightcove Generic Stream Concurrency</h2>
+        <p>The <a target="_blank" href="https://apis.support.brightcove.com/playback-restrictions/guides/generic-stream-concurrency.html">Generic Stream Concurrency</a> allow users to limit stream concurrency using a heartbeat mechanism without the need for DRM. Generic Stream Concurrency allows you to specify the maximum number of video streams a particular user can watch simultaneously. Limiting stream concurrency will help the user to prevent their content being stolen or illegally watched through the theft or inappropriate sharing of credentials.</p>
+        <p>In order for the Generic Stream Concurrency feature to work, a JWT must be provided in the <code translate="no">bcPlayer.credentials.auth_token</code> property and the <code translate="no">bcPlayer.enableGsc</code> flag must be enabled.</p>
+        <aside class="bcls-aside bcls-aside--information">Note: This feature only applies to non-DRM videos.</aside>
+
     </section>
     <section class="bcls-section">
         <h2 id="brightcove-analytics">Brightcove Analytics</h2>
@@ -2427,7 +2438,7 @@
             <li><strong>catalog_request_error</strong>: Sent on an error Playback API response.</li>
         </ul>
         <br>
-        <p><strong>Supported parameters</strong></p>
+        <p><strong>Metrics</strong></p>
         <ul>
             <li><strong>sesion</strong>: random UUID representing the unique session ID.</li>
             <li><strong>domain</strong>: <code translate="no">videocloud</code>videocloud for Brightcove sources, <code translate="no">external</code> for other sources.</li>
@@ -2472,10 +2483,59 @@
             <li><strong>rebuffering_count</strong>: specifies the number of rebufferings in a playback session.</li>
             <li><strong>forward_buffer_seconds</strong>: specifies the start time of the segment from the start of the video (this value is retrieved from <code translate="no">bcPlayer.downloadedSegment</code>).</li>
             <li><strong>measured_bps</strong>: specifies the ratio of the number of bits included in the most recently downloaded segment to the time spend downloading that segment, in bits per second. Calculated from the data provided by <code translate="no">bcPlayer.downloadedSegment</code>.</li>
-            <li><strong>player_width</strong>: specifies the player width as per the <code translate="no">bcPlayer.width field</code>.</li>
+            <li><strong>player_width</strong>: specifies the player width as per the <code translate="no">bcPlayer.width</code> field.</li>
             <li><strong>player_height</strong>: specifies the player height as per the <code translate="no">bcPlayer.height</code> field.</li>
             <li><strong>dropped_frames</strong>: specifies the number of frames that have been dropped since playback was started (this value is retrieved from <code translate="no">bcPlayer.decoderStats</code>).</li>
+            <li><strong>remote_ip</strong>: specifies the Roku device external IP address.</li>
+            <li><strong>user_agent</strong>: specifies Roku's user-agent value as per <code translate="no">roUrlTransfer.GetUserAgent()</code>.</li>
+            <li><strong>platform</strong>: hardcoded to <code translate="no">"roku-sdk"</code>.</li>
+            <li><strong>media_type</strong>: hardcoded to <code>"video"</code>.</li>
+            <li><strong>delivery_type</strong>: <code translate="no">"ondemand"</code> for VOD, <code translate="no">"live"</code> for live streams.</li>
+            <li><strong>start_time_ms</strong>: specifies the video playback start time.</li>
+            <li><strong>load_time_ms</strong>: specifies the video load time.</li>
         </ul>
+        <h3>Ad Insights</h3>
+        <p>Ad insights helps understand the impact of ad monetization on audience's engagement by showing the relationships between ad frequency/intensity and session length/frequency to help understand the most effective ad loads.</p>
+        <p>The following events and metrics are supported in the Roku SDK. Since some of the metric values are retrieved from the VAST/VMAP file provided, it’s possible that some metrics are not sent if their values can’t be found. <a target="_blank" href="https://studio.support.brightcove.com/analytics/module/ad-insights.html">Learn more</a></p>
+        <p><strong>Events</strong></p>
+        <ul>
+            <li><strong>ad_mode_begin</strong>: Sent when the ad pod begin.</li>
+            <li><strong>ad_error</strong>: Sent when there was an error during ad mode.</li>
+            <li><strong>ad_begin</strong>: Sent when an ad within the pod has begun.</li>
+            <li><strong>ad_viewable_impression</strong>: Sent per the MRC Viewability Standards. (The ad must be at least 50% visible on the screen for two consecutive seconds. These do not have to be the first two seconds, but can be any two seconds during the ad’s playback).</li>
+            <li><strong>ad_complete</strong>: Sent when an ad within the pod has ended.</li>
+            <li><strong>ad_mode_complete</strong>: Sent when the ad pod has ended.</li>
+            <li><strong>video_resumed</strong>: Sent when the content playback has resumed. (This is only send following mid-rolls).</li>
+        </ul>
+
+        <p><strong>Metrics</strong></p>
+        <ul>
+            <li><strong>ads_pod_index</strong>: Specifies the index of the pod relative to the content.</li>
+            <li><strong>ads_pod_ad_count</strong>: Specifies the number of ads in the current pod.</li>
+            <li><strong>ads_pod_duration</strong>: Specifies the total number of seconds the ad pod is expected to run.</li>
+            <li><strong>ads_pod_host</strong>: Host name from the ad server URL called to return the ad pod.</li>
+            <li><strong>ads_pod_type</strong>: Specifies the type of the pod (pre, mid, post).</li>
+            <li><strong>ads_pod_request_ms</strong>: Milliseconds from ad request sent to ad request received.</li>
+            <li><strong>ads_pod_request_mode</strong>: Specifies how ads were requested.</li>
+            <li><strong>ads_pod_time_offset</strong>: Specifies the content time offset at which the current ad pod was scheduled.</li>
+            <li><strong>ads_ad_index</strong>: Specifies the position of the ad relative to the pod.</li>
+            <li><strong>ads_ad_system</strong>: Specifies source ad server information included in the ad response.</li>
+            <li><strong>ads_ad_advertiser</strong>: Specifies the advertiser name as defined by the serving party.</li>
+            <li><strong>ads_ad_isci</strong>: Specifies the CI (Industry Standard Commercial Identifier) code for an ad.</li>
+            <li><strong>ads_ad_creative_id</strong>: Specifies the ID of the selected creative for the ad.</li>
+            <li><strong>ads_ad_duration</strong>: Specifies the duration in seconds of the selected ad.</li>
+            <li><strong>ads_ad_title</strong>: Specifies the ad title from the VAST response.</li>
+            <li><strong>ads_ad_audible_duration</strong>: Specifies the number of seconds of ad playback where volume was >= 1% and not muted.</li>
+            <li><strong>ads_ad_play_duration</strong>: Specifies the number of seconds of ad media played.</li>
+            <li><strong>ads_ad_skipped</strong>: Specifies if the ad was skipped.</li>
+            <li><strong>ads_ad_interaction</strong>: Specifies if the ad was interacted.</li>
+        </ul>
+        
+    </section>
+    <section class="bcls-section">
+        <h2 id="sample-app">Sample App</h2>
+        <p>The <a target="_blank" href="https://github.com/brightcove/roku-player-sdk-sample">Roku SDK Sample App</a> provides a set of Roku SDK application examples to help you learn about the Roku SDK components and features in a practical environment. </p>
+        <p>The <a target="_blank" href="https://github.com/brightcove/roku-player-sdk-sample/blob/main/README.md">README.md</a> file provides all the details on how to set it up, configure, customize and launch </p>
     </section>
   <section class="bcls-section">
     <h2 id="setup">Setup</h2>
@@ -2533,13 +2593,20 @@
   https://players.brightcove.net/roku-sdk/1.2.3/roku-sdk.pkg
       </code></pre>
     </div>
+    <p>It’s also possible to retrieve the most recent version of the Roku SDK library package from the following endpoint:</p>
+
+    <ul>
+        <li><a href="https://players.brightcove.net/roku-sdk/latest/roku-sdk.pkg">https://players.brightcove.net/roku-sdk/latest/roku-sdk.pkg</a></li>
+    </ul>
+    <aside class="bcls-aside bcls-aside--tip">Note: Packages referenced by dynamic endpoints are automatically updated whenever a new build is released. It’s recommended that fixed endpoints (ie roku-sdk/X.Y.Z/ endpoints) are used to retrieve specific versions of the Roku SDK, especially when <a href="#loading-dinamically">loading it dynamically</a> in a Roku app, to avoid regression or compatibility issues.</aside>
   
     <!-- Tip Note -->
-    <aside class="bcls-aside bcls-aside--tip">
-      <p>Note: <code translate="no">https://players.brightcove.net/roku-sdk/1/roku-sdk.pkg</code> - refers to the most recent version in the v1 major release. In this case, it refers to the v1.2.3 release. </p>
-      <p>It's recommended to always use the most recent stable version to take advantage of the latest features and fixes.</p>
-    </aside>
-
+    
+    <h3>Changelog</h3>
+    <p>The changelog can be retrieved from the following endpoint. A full list of available Roku SDK versions is included.</p>
+    <ul>
+        <li><a href="https://players.brightcove.net/roku-sdk/CHANGELOG.md">https://players.brightcove.net/roku-sdk/CHANGELOG.md</a></li>
+    </ul>
   
 <!-- end -->
 
@@ -2560,12 +2627,12 @@
                         &#60;/interface&#62;
                         &#60;script type="text/brightscript" uri="MainScene.brs"/&#62;
                         &#60;children&#62;
-                            &#60;ComponentLibrary id="bcLib" uri="&#60;https://brightcove/sdk/remote/url/here/bcLib.pkg&#62;" /&#62;
+                            &#60;ComponentLibrary id="bcLib" uri="https://players.brightcove.net/roku-sdk/1/roku-sdk.pkg" /&#62;
                         &#60;/children&#62;
                     &#60;/component&#62;
                 </code></pre>
         </li>
-        <li>In the <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully downloaded. 
+        <li>In the <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully downloaded and ready to be referenced. 
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
                     m.bcLib = m.top.findNode("bcLib")
@@ -2593,7 +2660,7 @@
         </li>
     </ol>
     <h3>Loading the library locally</h3>
-    <p>In this case, you should manually download the Roku SDK package file from Brightcove sources and embed it into a Roku channel. In this process the library is simply loaded from the internal channel’s file structure at runtime. This is the recommended approach as it’s much faster and efficient than letting ComponentLibrary download and load the SDK package. For this approach, the following steps can be taken:</p>
+    <p>In this case, you should manually download the Roku SDK package file from Brightcove sources and embed it into a Roku channel. In this process the library is simply loaded from the internal channel’s file structure at runtime. This is the recommended approach as it’s much faster and efficient than letting <code translate="no">ComponentLibrary</code> download and load the SDK package. For this approach, the following steps can be taken:</p>
     <ol class="bcls-tasklist-restart">
         <li>Download the SDK package manually.</li>
         <li>Place the SDK package in the Roku channel file structure (in this case, we named it <strong>bcLib.pkg</strong>). The exact location doesn't matter. In the following example, it was placed in the lib directory.
@@ -2619,7 +2686,7 @@
                     &#60;/component&#62;
                 </code></pre>
         </li>
-        <li>In the <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully downloaded. 
+        <li>In the <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully loaded. 
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
                     m.bcLib = m.top.findNode("bcLib")
@@ -2652,8 +2719,8 @@
         <p>This process is asynchronous, so it runs at the same time as other tasks (ie, CMS API calls or other channel initialization tasks).</p>
     </aside>
     <hr>
-    <h3>Loading the library dynamically</h3>
-    <p>It’s recommended to set the ComponentLibrary in the scene’s children section with the proper package URL so that the library loading process starts immediately during the Scene initialization, but depending on the use case, it could also be useful to be able to dynamically load the library anywhere in the channel. This can be done by initializing the ComponentLibrary node in the brightscript code as such:</p>
+    <h3 id="loading-dinamically">Loading the library dynamically</h3>
+    <p>It’s recommended to set the <code translate="no">ComponentLibrary</code> in the scene’s children section with the proper package URL so that the library loading process starts immediately during the Scene initialization, but depending on the use case, it could also be useful to be able to dynamically load the library anywhere in the channel. This can be done by initializing the <code translate="no">ComponentLibrary</code> node in the brightscript code as such:</p>
     <pre class="line-numbers">
         <code class="language-basic" translate="No">sub init()
             ' this can be placed anywhere in the Scene node code, 
@@ -2671,19 +2738,18 @@
     <h2 id="accessing-components">Accessing Components</h2>
     <p>Once the SDK library is successfully loaded (ie, the <code translate="no">ComponentLibrary</code> <code translate="no">loadStatus</code> field is ready), an instance of any of its components can be created like so:</p>
     <pre class="line-numbers">
-        <code class="language-basic" translate="No">
-            ' 1 - create an instance of the bcPlayer node
-            ' This won't make the bcPlayer node visible in the app, it still needs to be added to the node tree list after this step
+        <code class="language-basic" translate="No">' creating an instance of the bcPlayer component from the bcLib library
 
-            m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ ' 1 - create an instance of the bcPlayer node
+ ' This won't make the bcPlayer node visible in the app, it still needs to be added to the node tree list after this step 
+m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer") 
 
-            ' 2 - create an instance of the bcPlayer node and append it to the parentNode node.
-            ' If parentNode is already in the node tree list and is visible, this will also make the bcPlayer node visible in the app
-
-            m.bcPlayer = parentNode.createChild("bcLib:bcPlayer")
-        </code></pre>
+ ' 2 - create an instance of the bcPlayer node and append it to the parentNode node.
+' If parentNode is already in the node tree list and is visible, this will also make the bcPlayer node visible in the app 
+ m.bcPlayer = parentNode.createChild("bcLib:bcPlayer")
+         </code></pre>
         <aside class="bcls-aside bcls-aside--information">Note: To reference a component from an external library, the following nomenclature should be use: <code translate="no">“&#60;ComponentLibrary-id&#62;:&#60;component-name&#62;"</code>.</aside>
-  </section>
+   </section>
   <section class="bcls-section">
     <h2 id="bcPlayer">bcPlayer component</h2>
     <p>The <strong>bcPlayer</strong> component is the main SDK node as it enables both Brightcove sources and external sources video playback in Roku channels. This node essentially extends Roku’s native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node, allowing all its fields to be easily accessed for further customization options. It is possible to configure the appearance of some elements in the node as well as some behaviors and flows by customizing the node fields values.</p>
@@ -2695,66 +2761,78 @@
     <p>Once an instance of the node is available, it’s possible to customize it by setting up its fields. All the fields default values are listed below.</p>
     <pre class="line-numbers">
         <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-            m.bcPlayer.setFields({
-              streamPreference: ["hls", "dash", "mp4"],
-              drmPreference: ["widevine", "playready", "none"],
-              logLevel: 4,
-              credentials: invalid,           
-              env: "production",
-              watermarkToken: "",
-              spinnerConfig: {},
-              closeOnBack: true,
-              retryOnError: true,
-              enableDialogs: true,
-              bufferTimeout: 0,
-              dialogTheme: {
-                DialogBackgroundColor: "#00000000",
-                DialogSecondaryItemColor: "#00000000"
-              },
-              loading: false
-            })
+ m.bcPlayer.observeField("on", "onEvent") ' read-only field
+ m.bcPlayer.observeField("adPlaying", "onAdPlaying") ' read-only field
+ m.bcPlayer.setFields({
+   streamPreference: ["hls", "dash", "mp4"],
+   drmPreference: ["widevine", "playready", "none"],
+   width: 1920, ' current UI width
+   height: 1080, ' current UI height
+   logLevel: 0,
+   credentials: invalid,           
+   env: "production",
+   watermarkToken: "",
+   spinnerConfig: {},
+   closeOnBack: "hard",
+   retryOnError: true,
+   retryOnBufferTimeout: false,
+   enableDialogs: true,
+   enableGsc: false,
+   bufferTimeout: 0,
+   dialogTheme: {
+     DialogBackgroundColor: "#00000000",
+     DialogSecondaryItemColor: "#00000000"
+   }
+ }) 
 
-            analytics = m.bcPlayer.analytics
-            analytics.setFields({
-              accountId: ""
-              url: ""
-              applicationID: ""
-              env: ""
-              playerId: ""
-              playerName: ""
-              accountId: ""
-              user: ""
-              destination: ""
-              source: ""
-              eventOut: {} ' read-only
-            })
+ playback = m.bcPlayer.playback
+ playback.observeField("index", "onIndex") ' read-only field
+ playback.setFields({
+   loop: false,
+   autoPlayNext: false
+ }) 
 
-            ssai = m.bcPlayer.ssai
-            ssai.setFields({
-              enabled: false
-              enableDiscontinuities: true
-              adMeasurements: {}
-              bcovToken: ""
-              macros: {}
-              event: {} ' read-only
-            })
+ analytics = m.bcPlayer.analytics
+ analytics.observeField("eventOut", "onAnalyticsEvent") ' read-only field
+ analytics.setFields({
+   accountId: ""
+   url: ""
+   applicationID: ""
+   env: ""
+   playerId: ""
+   playerName: ""
+   accountId: ""
+   user: ""
+   destination: ""
+   source: ""
+ }) 
 
-            csai = m.bcPlayer.csai
-            csai.setFields({
-              enabled: false
-              useCSAS: true
-              closeOnFinish: true
-              maxRequests: 1
-              enableJIT: true
-              enableInPodStitching: true
-              adMeasurements: {}
-              adConstraints: {}
-              event: {} ' read-only
-            })
-        </code></pre>
-        <h3 id="fields">Fields</h3>
-        <p>The bcPlayer node is configured through a set of fields.  Since it extends the native Video node, all native fields are also accessible; these can be checked out in <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Roku documentation</a>.</p>
-        <p>The following tags are used in this section to make the identification of the different types of fields easier.</p>
+ ssai = m.bcPlayer.ssai
+ ssai.observeField("event", "onSSAIEvent") ' read-only field
+ ssai.setFields({
+   enabled: false
+   enableDiscontinuities: true
+   adMeasurements: {}
+   bcovToken: ""
+   macros: {}
+ }) 
+
+ csai = m.bcPlayer.csai
+ csai.observeField("event", "onCSAIEvent") ' read-only field
+ csai.setFields({
+  enabled: false
+   useCSAS: true
+   closeOnFinish: true
+   maxRequests: 1
+   enableJIT: true
+   enableInPodStitching: true
+   adMeasurements: {}
+   adConstraints: {}
+ })
+         </code></pre>
+         <h3 id="fields">Fields</h3>
+         <p>The bcPlayer node is configured through a set of fields.  Since it extends the native Video node, all native fields are also accessible; these can be checked out in <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Roku documentation</a>.</p>
+         <p>The following tags are used in this section to make the identification of the different types of fields easier.</p>
         <ul>
             <li><p><code class="text-secondary" translate="No">&#60;VALUE_TYPE&#62;
             </code> Specifies the expected type of a field value or ASSOCIATIVE ARRAY key value (e.g., string, float, integer…).</p></li>
@@ -2770,8 +2848,8 @@
             <h3 id="credentials">Credentials</h3>
             <p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-            <p>Configures Brightcove API credentials. It should contain the account ID as well as the policy key. These are used to retrieve video metadata from the Brightcove Playback API.</p>
-            <p>If the credentials aren’t provided, the bcPlayer node will only be able to playback videos from external sources through <code translate="no">bcPlayer.setSources</code> and <code translate="no">bcPlayer.addSource</code> functions.</p>
+            <p>Configures Brightcove API credentials. It should contain the account ID as well as the policy key. These are used to retrieve video metadata from the Brightcove Playback or EPA API.</p>
+            <p>If the credentials aren’t provided, the bcPlayer node will only be able to playback videos from external sources through the <code translate="no">bcPlayer.loadCustom</code> function.</p>
             <p><strong>Possible Values:</strong></p>
             <p>An ASSOCIATIVE ARRAY containing the following keys:</p>
             <ul>
@@ -2792,7 +2870,8 @@
                     <li><p>Specifies the JSON Web Token required to:</p>
                     <ul>
                         <li>Provide Playback Restriction rules (Playback Rights) through Edge Playback Authorization (EPA).</li>
-                        <li>To specify License Keys Protection for HLSe content playback.</li>
+                        <li>Specify License Keys Protection for HLSe content playback.</li>
+                        <li>Enable the Generic Stream Concurrency feature.</li>
                     </ul>
                     </li>
                 </ul>
@@ -2801,22 +2880,22 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.credentials = {
-                      account_id: "&#60;brightcove_user_account_id&#62;"
-                      policy_key: "&#60;brightcove_user_policy_key&#62;"
-                      auth_token: "&#60;brightcove_user_auth_token&#62;"
-                    }
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      credentials: {
-                        account_id: "&#60;brightcove_user_account_id&#62;"
-                        policy_key: "&#60;brightcove_user_policy_key&#62;"
-                        auth_token: "&#60;brightcove_user_auth_token&#62;"
-                      }
-                    })
+ m.bcPlayer.credentials = {
+   account_id: "&#60;brightcove_user_account_id&#62;"
+   policy_key: "&#60;brightcove_user_policy_key&#62;"
+   auth_token: "&#60;brightcove_user_auth_token&#62;"
+ }
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   credentials: {
+     account_id: "&#60;brightcove_user_account_id&#62;"
+     policy_key: "&#60;brightcove_user_policy_key&#62;"
+     auth_token: "&#60;brightcove_user_auth_token&#62;"
+   }
+ })
                 </code></pre>
                 <aside class="bcls-aside bcls-aside--information">
                     <p>Notes: The <strong>policy_key</strong> and <strong>auth_token</strong> properties specify which Playback API service is used to retrieve Brightcove catalog metadata (through the <strong>bcPlayer.getVideo</strong>, <strong>bcPlayer.getVideos</strong>, <strong>bcPlayer.getPlaylist</strong> and <strong>bcPlayer.getRelated</strong> functions):</p>
@@ -2908,16 +2987,17 @@
                 </li>
                 
             </ul>
+            <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.watermarkToken = "&#60;forensic_watermarking_token&#62;"
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      watermarkToken: "&#60;forensic_watermarking_token&#62;"
-                    })
+ m.bcPlayer.watermarkToken = "&#60;forensic_watermarking_token&#62;"
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   watermarkToken: "&#60;forensic_watermarking_token&#62;"
+ })
                 </code></pre>
         </section>
         <hr>
@@ -2949,14 +3029,14 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.streamPreference = ["dash"]  ' will only playback DASH sources
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      streamPreference: ["dash", "mp4"] ' will play DASH sources. If no DASH source is availble, will play MP4 sources
-                    })
+ m.bcPlayer.streamPreference = ["dash"]  ' will only playback DASH sources
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   streamPreference: ["dash", "mp4"] ' will play DASH sources. If no DASH source is availble, will play MP4 sources
+ })
                 </code></pre>
         </section>
         <hr>
@@ -2992,14 +3072,14 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.streamPreference = ["none"]  ' play sources with no DRM encryption only
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      streamPreference: ["playready", "widevine"] ' play a DASH source encrypted with Playready DRM and, if not available, play a Widevine encrypted source instead
-                    })
+ m.bcPlayer.streamPreference = ["none"]  ' play sources with no DRM encryption only
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   streamPreference: ["playready", "widevine"] ' play a DASH source encrypted with Playready DRM and, if not available, play a Widevine encrypted source instead
+ })
                 </code></pre>
         </section>
         <hr>
@@ -3018,7 +3098,7 @@
                 <li><p><code translate="no">-1</code> disable all the logging.
                 </p>
                 </li>
-                <li><p><code translate="no">0</code> log error messages only.
+                <li><p><code translate="no">0</code> <code class="text-warning" translate="no">DEFAULT</code> log error messages only.
                 </p>
                 </li>
                 <li><p><code translate="no">1</code> log error and warning messages.
@@ -3030,21 +3110,21 @@
                 <li><p><code translate="no">3</code> log error, warning, info and verbose messages.
                 </p>
                 </li>
-                <li><p><code translate="no">4</code> <code class="text-warning" translate="no">DEFAULT</code> log error, warning, info, verbose and debug messages.
+                <li><p><code translate="no">4</code>  log error, warning, info, verbose and debug messages.
                 </p>
                 </li>
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.logLevel = 3
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      logLevel: 3
-                    })
+ m.bcPlayer.logLevel = 3
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   logLevel: 3
+ })
                 </code></pre>
         </section>
         <hr>
@@ -3119,28 +3199,28 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.spinnerConfig = {
-                      url: "pkg:/my/spinner/image.png"
-                      size: 200
-                      color: "#d32228"
-                      clockwise: false  ' counterclockwise rotation
-                      interval: 0.8     ' completes a 360 rotation in 800 miliseconds
-                      opacity: 0.8      ' sets an opacity of 80%
-                    }
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      spinnerConfig: {
-                        url: "pkg:/my/spinner/image.png"
-                        size: 200
-                        color: "#d32228"
-                        clockwise: false  ' counterclockwise rotation
-                        interval: 0.8     ' completes a 360 rotation in 800 miliseconds
-                        opacity: 0.8      ' sets an opacity of 80%
-                      }
-                    })
+ m.bcPlayer.spinnerConfig = {
+   url: "pkg:/my/spinner/image.png"
+   size: 200
+   color: "#d32228"
+   clockwise: false  ' counterclockwise rotation
+   interval: 0.8     ' completes a 360 rotation in 800 miliseconds
+   opacity: 0.8      ' sets an opacity of 80%
+ }
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   spinnerConfig: {
+     url: "pkg:/my/spinner/image.png"
+     size: 200
+     color: "#d32228"
+     clockwise: false  ' counterclockwise rotation
+     interval: 0.8     ' completes a 360 rotation in 800 miliseconds
+     opacity: 0.8      ' sets an opacity of 80%
+   }
+ })
                 </code></pre>
         </section>
         <hr>
@@ -3149,8 +3229,12 @@
             <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
             <p>Controls the custom loading spinner visibility. This field is used by internal functions but it also allows the custom spinner to be controller externally if needed.</p>
-            <p>Keep in mind that the OOTB UI has its loading spinner. This field is independent from the OOTB UI built in loading spinner.
+            <p>Keep in mind that
             </p>
+            <ul>
+                <li>The OOTB UI has its own loading spinner. This field is independent from the OOTB UI built in loading spinner.</li>
+                <li>Internal bcPlayer functions will automatically toggle the loading field value depending on what operations are being executed.</li>
+            </ul>
             <p>The appearance of the loading spinner can be customized through the <a target="_blank" href="#spinner-config">spinnerConfig</a> field.</p>
             
             <p><strong>Possible Values:</strong></p>
@@ -3162,14 +3246,14 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.loading = true
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      loading: true
-                    })
+ m.bcPlayer.loading = true
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   loading: true
+ })
                 </code></pre>
         </section>
         <hr>
@@ -3180,9 +3264,10 @@
             <p>Configures the activation of the retry on error flow. This flow allows bcPlayer to automatically retry the video playback with another video source when a specific source results in a playback error during the initial buffering process.</p>
             <p>If all the available video sources fail to play an error will be triggered.
             </p>
-            <p>The retry on error flow follows the sources type and DRM encryption preferences/priorities set in the streamPreference and drmPreference fields.</p>
+            <p>The retry on error flow follows the sources type and DRM encryption preferences/priorities set in the <code translate="no">bcPlayer.streamPreference</code> and <code translate="no">bcPlayer.drmPreference</code> fields.</p>
 
             <p>This flow is only relevant at the initial source loading, ie, a playback error triggered mid-playback will not trigger the retry on error flow.</p>
+            <p>This feature is not applicable to CSAI videos.</p>
             
             <p><strong>Possible Values:</strong></p>
             <ul>
@@ -3192,15 +3277,49 @@
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.retryOnError = false
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      retryOnError: false
-                    })
+ m.bcPlayer.retryOnError = false
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   retryOnError: false
+ })
                 </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="closeOnBack">retryOnBufferTimeout</h3>
+            <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
+            </code></p>
+            <p>Configures the retry on buffer timeout feature which, when enabled, allows bcPlayer to automatically retry video playback with a different video source when a buffering timeout error occurs.</p>
+            <p>If the <code translate="no">bcPlayer.bufferTimeout</code> configuration is disabled (ie, is set to <code translate="no">0</code>), this feature is ignored.
+            </p>
+            <p>The <code translate="no">bcPlayer.on.timeout</code> event data contains a <code translate="no">retry</code> flag which indicates if bcPlayer is going to retry the playback with a different source.</p>
+            
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><p><code translate="no">false</code> <code class="text-warning" translate="no">DEFAULT</code> Disables the retry on buffer timeout feature.</p></li>
+                <li><p><code translate="no">true</code> Enables the retry on buffer timeout feature, if <code translate="no">bcPlayer.bufferTimeout</code> is enabled.</p></li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ m.bcPlayer.on.observeField("timeout", "onTimeout")
+ m.bcPlayer.retryOnBufferTimeout = true
+
+ ' or
+
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   retryOnBufferTimeout: true
+ })
+
+ ...
+
+ sub onTimeout(ev)
+   ' ev.getData() -> {contentIndex: Integer, bufferingStatus: AssociativeArray, retry: Boolean}
+ end sub</code></pre>
         </section>
         <hr>
         <section>
@@ -3210,24 +3329,79 @@
             <p>Configures the back remote control button action to terminate the bcPlayer node when pressed.</p>
             <p>It’s enabled by default, when you press the back button, the bcPlayer node will be terminated (to bring it back, it needs to be reinitialized from scratch).
             </p>
-            <p>This behavior can be disabled, in which case developers can capture the back button press through a <code translate="no">bcPlayer.on.keyEvent</code> event listener and handle it as they see fit without having to terminate the bcPlayer node.</p>
-            
+            <p>Setting it to <code translate="no">soft</code> causes the bcPlayer to do a soft close, which means that the current playback session is stopped and terminated but the bcPlayer node instance is kept alive and ready to receive other commands.</p>
+        
+            <p>This behavior can be disabled (by setting this field to <code translate="no">off</code>), in which case developers could capture the back key press through the <code translate="no">bcPlayer.on.keyEvent event</code> listener and handle it manually. This also means that the bcPlayer node will let the back key event bubble up, so the app should be prepared to capture and handle it in a <code translate="no">onKeyEvent</code> function.</p>
+            <p>If an invalid value is set, it’ll automatically be reset back to <code translate="no">hard</code>.</p>
+            <aside class="bcls-aside bcls-aside--information">Note: 
+                <ul>
+                    <li>Once the bcPlayer node is completely terminated/killed, it’s not possible to use it again, so a new bcPlayer instance would need to be created and initialized.</li>
+                    <li>The close action will trigger a <code translate="no">bcPlayer.on.close</code> event, where the close type (<code translate="no">soft</code> or <code translate="no">hard</code>) can be checked.</p>
+                    </li>
+                </ul>
+            </aside>
             <p><strong>Possible Values:</strong></p>
             <ul>
-                <li><p><code translate="no">false</code> Disables the close on error behavior.</p></li>
-                <li><p><code translate="no">true</code> <code class="text-warning" translate="no">DEFAULT</code> Enables the close on error behavior.</p></li>
+                <li><p><code translate="no">off</code> Disables the close on back action.</p></li>
+                <li><p><code translate="no">soft</code> Soft closes the bcPlayer when the user presses the back key.</p></li>
+                <li><p><code translate="no">hard</code> <code class="text-warning" translate="no">DEFAULT</code> Hard closes the bcPlayer when the user presses the back key.</p></li>
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.closeOnBack = false
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      closeOnBack: false
-                    })
+ m.bcPlayer.closeOnBack = "off" ' disable the close on back action
+
+ ' or
+
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   closeOnBack: "off"
+ })
+
+ ...
+ 
+ ' somewhere in a bcPlayer parent node...
+ function onKeyEvent(key as string, press as boolean) as boolean
+   handled = false
+   if key = "back" then
+     closePlayer() ' developers should handle the back key press here since the closeOnBack action was disabled
+     handled = true
+   end if
+   return handled
+ end function
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="closeOnFinished">closeOnFinished</h3>
+            <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+            <p>Configures the bcPlayer behavior at the end of video playback.</p>
+            <p>When enabled (i.e., set to <code translate="no">soft</code> or <code translate="no">hard</code>), the bcPlayer will automatically close once the video playback reaches the end. In a playlist, this behavior depends on the following playback configurations:</p>
+            <ul>
+                <li><code translate="no">bcPlayer.playback.autoPlayNext</code> - if the <code translate="no">autoPlayNext</code> flag is enabled, once a video reaches the end, it'll play the next video in the playlist, if available.</li>
+                <li><code translate="no">bcPlayer.playback.loop</code> - if the <code translate="no">loop</code> flag is enabled, once the last video in the playlist finishes, it'll loop the playlist and play the first video.</li>
+            </ul>
+            <p>When disabled (i.e., set to <code translate="no">off</code>), developers should handle the <code translate="no">finished</code> event manually through the <code translate="no">bcPlayer.on.finished</code> or the <code translate="no">bcPlayer.csai.close</code> event.</p>
+            <p>If an invalid value is set, it'll automatically be reset back to <code translate="no">hard</code>.</p>
+            <p>Keep in mind that the close action will trigger a bcPlayer.on.close event, where the close type (<code translate="no">soft</code> or <code translate="no">hard</code>) can be checked.</p>
+            
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><p><code translate="no">off</code>: Disables the close on finish action.</p></li>
+                <li><p><code translate="no">soft</code>: Soft closes the bcPlayer when video playback finishes (depending on whether it’s playing a playlist or not and on the autoPlayNext and loop configuration values).</p></li>
+                <li><p><code translate="no">hard</code> <code class="text-warning" translate="no">DEFAULT</code>: Hard closes the bcPlayer when video playback finishes (depending on whether it’s playing a playlist or not and on the <code translate="no">autoPlayNext</code> and loop configuration values).</p></li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ m.bcPlayer.closeOnFinished = "off"
+
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   closeOnFinished: "off"
+ })
                 </code></pre>
         </section>
         <hr>
