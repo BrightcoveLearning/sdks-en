@@ -3397,7 +3397,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
  m.bcPlayer.closeOnFinished = "off"
 
  ' or
- 
+
  m.bcPlayer.setFields({
    ' ...other fields here...
    closeOnFinished: "off"
@@ -3423,15 +3423,52 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.enableDialogs = false
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      enableDialogs: false
-                    })
+ m.bcPlayer.enableDialogs = false
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   enableDialogs: false
+ })
                 </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="enablegsc">enableGSC</h3>
+            <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
+            </code></p>
+            <p>Toggles Brightcove Generic Stream Concurrency (GSC) feature on and off in bcPlayer.</p>
+            <p>Generic Stream Concurrency allows developers to define the number of video streams that a specific user can watch concurrently. Limiting stream concurrency helps preventing content being stolen or illegally watched through the theft or inappropriate sharing of credentials. <a href="https://apis.support.brightcove.com/playback-restrictions/guides/generic-stream-concurrency.html">Learn more</a>.
+            </p>
+            <aside class="bcls-aside bcls-aside--information">Note: To properly enable the <strong>GSC</strong> feature, a <strong>JWT</strong> must also be provided in <code translate="no">bcPlayer.credentials.auth_token</code>.</aside>
+            
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><p><code translate="no">false</code> <code class="text-warning" translate="no">DEFAULT</code> Disables the GSC feature.</p></li>
+                <li><p><code translate="no">true</code> Enables the the GSC feature if a valid <code translate="no">bcPlayer.credentials.auth_token</code> is also provided.</p></li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ m.bcPlayer.credentials = {
+   ...
+   auth_token: "<JWT>"
+   ...
+ }
+ m.bcPlayer.enableGSC = true
+
+ ' or
+
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   credentials: {
+     ...
+     auth_token: "<JWT>"
+     ...
+   }
+   enableGSC: true
+ })</code></pre>
         </section>
         <hr>
         <section>
@@ -3496,30 +3533,693 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.dialogTheme = {
-                      DialogBackgroundColor: "#00000000"
-                      DialogTextColor: "#dbdbdb"
-                      DialogFocusColor: "#d32228"
-                      DialogFocusItemColor: "#ab2125"
-                      DialogSecondaryItemColor: "#dbdbdb"
-                      DialogFootprintColor: "#dbdbdb"
-                    }
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      dialogTheme: {
-                        DialogBackgroundColor: "#00000000"
-                        DialogTextColor: "#dbdbdb"
-                        DialogFocusColor: "#d32228"
-                        DialogFocusItemColor: "#ab2125"
-                        DialogSecondaryItemColor: "#dbdbdb"
-                        DialogFootprintColor: "#dbdbdb"
-                      }
-                    })
+ m.bcPlayer.dialogTheme = {
+   DialogBackgroundColor: "#00000000"
+   DialogTextColor: "#dbdbdb"
+   DialogFocusColor: "#d32228"
+   DialogFocusItemColor: "#ab2125"
+   DialogSecondaryItemColor: "#dbdbdb"
+   DialogFootprintColor: "#dbdbdb"
+ }
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   dialogTheme: {
+     DialogBackgroundColor: "#00000000"
+     DialogTextColor: "#dbdbdb"
+     DialogFocusColor: "#d32228"
+     DialogFocusItemColor: "#ab2125"
+     DialogSecondaryItemColor: "#dbdbdb"
+     DialogFootprintColor: "#dbdbdb"
+   }
+ })
                 </code></pre>
         </section>
+        <hr>
+        
+        <section>
+            <h3 id="bufferTimeout">bufferTimeout</h3>
+            <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
+            </code></p>
+            <p>Configures the buffering timeout period, in seconds. This configuration allows developers to setup a timer which is initiated once the initial video buffering begins and at the end of which a timeout error will be triggered if the video playback hasn’t yet initiated.
+            </p>
+            <p>Setting it to 0 disables the buffering timeout timer.
+            </p>
+            <p>When the video buffering times out, a <code translate="no">bcPlayer.on.timeout</code> event is triggered. Additionally, if the <code translate="no">bcPlayer.retryOnBufferTimeout</code> configuration flag is enabled, the bcPlayer will retry the playback with a different source, if available. Otherwise, a dialog window is shown (if <code translate="no">bcPlayer.enableDialogs</code> is enabled).</p>
+            
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li>A positive integer value (seconds).</li>
+                <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">0</code> buffering timeout disabled.</li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ m.bcPlayer.bufferTimeout = 20
+ 
+ ' or
+ 
+ m.bcPlayer.setFields({
+   ' ...other fields here...
+   bufferTimeout: 20
+ })
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="sdkVersion">sdkVersion</h3>
+            <p><code translate="no" class="text-secondary">STRING</code> <code translate="no">READ-ONLY</code></p>
+            <p>Provides the Roku SDK version.</p>
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li>The version number in the following format: <code translate="no">&#60;major-version&#62;.&#60;minor-version&#62;.&#60;build-version&#62;</code></li>
+                
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                sdkVersion = m.bcPlayer.sdkVersion
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="adPlaying">adPlaying</h3>
+            <p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no">READ-ONLY</code></p>
+            <p>Indicates if a SSAI or CSAI ad is currently playing.</p>
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><code translate="no">true</code> An ad is currently playing.</li>
+                <li><code translate="no">false</code> No ad is currently playing.</li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">sub init()
+                  m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+                  m.bcPlayer.observeField("adPlaying", "onAdPlaying")
+                end sub
+                
+                ...
+                
+                sub onAdPlaying(ev)
+                  ? "is it playing ads? " ev.getData()
+                end sub
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="relative-position">relativePosition</h3>
+            <p><code translate="no" class="text-secondary">FLOAT</code> <code translate="no">READ-ONLY</code></p>
+            <p>Specifies the relative playback position on SSAI enabled videos. The relative position is the video content playback position when all the ads are ignored.</p>
+            <p>When playing a video without SSAI, the <code translate="no">relativePosition</code> value reflects the native <code translate="no">Video.position</code> field.</p>
+            
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">sub init()
+   m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+   m.bcPlayer.observeField("relativePosition", "onRelativePosition")
+ end sub
+ 
+ ...
+ 
+ sub onRelativePosition(ev)
+   ? "Relative position: " ev.getData()
+ end sub
+                </code></pre>
+        </section>
+        <hr>
+        <section>
+            <h3 id="visibleOnScreen">visibleOnScreen</h3>
+            <p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no">READ-ONLY</code></p>
+            <p>Specifies if the bcPlayer node is at least 50% of its size visible on the screen based on its size, position and <code translate="no">visible</code> and <code translate="no">opacity</code> field.</p>
+            <p>Please be aware that this field does not have into account the app node tree list so, for example, it ignores situations where another component is positioned over the bcPlayer node and covers it partially or completely.</p>
+            <p><strong>Possible Values:</strong></p>
+            <ul>
+                <li><code translate="no">true</code> The bcPlayer node is at least 50% visible on the screen.</li>
+                <li><code translate="no">false</code> The bcPlayer node is completely hidden or less than 50% visible on the screen.</li>
+            </ul>
+            <p>Code Snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">sub init()
+   m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+   m.bcPlayer.observeField("visibleOnScreen", "onVisibleOnScreen")
+ end sub
+ 
+ ...
+ 
+ sub onAdPlaying(ev)
+   ? "Is bcPlayer visible on screen? " ev.getData()
+ end sub
+                </code></pre>
+        </section>
+        <hr>
+        <section id="playback">
+            <h3>playback</h3>
+            <p><code class="text-secondary" translate="no">NODE</code></p>
+            <p>Allows for a deeper level of control over video playback and content management in the <code translate="no">bcPlayer</code>.</p>
+            <p>Fields</p>
+        
+            <div class="table-responsive">
+                <table class="bcls-table">
+                    <thead class="bcls-table__head">
+                        <tr>
+                            <th>Field</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bcls-table__body">
+                        <tr>
+                            <td class="align-top"><code translate="no">index</code></td>
+                            <td class="align-top">
+                                <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">READ-ONLY</code></p>
+                                <p>Specifies the index of the video playing in a playlist. It's set to <code translate="no">0</code> when a single video is playing. It's set to <code translate="no">-1</code> when no video is playing.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">loop</code></td>
+                            <td class="align-top">
+                                <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies if video playback should automatically loop in a playlist when executing the <code translate="no">playNext</code> and <code translate="no">playPrevious</code> playback functions.</p>
+                                <ul>
+                                    
+                                    <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">false</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">autoPlayNext</code></td>
+                            <td class="align-top">
+                                <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies if bcPlayer should automatically play the next video in a playlist when video playback finishes.</p>
+                                <ul>
+                                    
+                                    <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">false</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Functions</p>
+            <div class="table-responsive">
+                <table class="bcls-table">
+                    <thead class="bcls-table__head">
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bcls-table__body">
+                        <tr>
+                            <td class="align-top"><code translate="no">load</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">content</code></p>
+                                        <p><code class="text-secondary" translate="no">NODE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    </li>
+                                    <li>
+                                        <p><code translate="no">position</code></p>
+                                        <p><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <p>Supported values:</p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">replace</code></li>
+                                            <li><code translate="no">append</code></li>
+                                            <li><code translate="no">prepend</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Loads new content into <code translate="no">bcPlayer</code> for playback.</p>
+                                <p>This function is used internally by the bcPlayer <code translate="no">loadCustom</code>, <code translate="no">load</code>, <code translate="no">getVideo</code>, <code translate="no">getVideos</code>, <code translate="no">getPlaylist</code> and <code translate="no">getRelated</code> functions so, generally, there should be no reason to use it directly, although it does provide more flexibility for custom use-cases.</p>
+                                <p><code translate="no">content</code> specifies the ContentNode to be loaded, this can represent either a single video or a playlist.</p>
+                                <p>If <code translate="no">content</code> is <code translate="no">Invalid</code>, the existing content is removed (keep in mind that if a video is playing at this time, the playback is <strong>not</strong> interrupted).</p>
+                                <p><code translate="no">position</code> specifies where the <code translate="no">content</code> should be loaded <strong>if any content is already present</strong>. The options are:</p>
+                                <ul>
+                                    <li><code translate="no">replace</code> &rarr; replaces the existing content with the new one. This is the default behavior.</li>
+                                    <li><code translate="no">append</code> &rarr; adds the new content at the end of the existing content. If the existing content is <strong>not</strong> a playlist, it creates a playlist containing the previous content and the new content.</li>
+                                    <li><code translate="no">prepend</code> &rarr; adds the new content at the start of the existing content. If the existing content is <strong>not</strong> a playlist, it creates a playlist containing the new content and the previous content.</li>
+                                </ul>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if <code translate="no">content</code> was successfully added.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">preload</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">index</code></p>
+                                        <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> -1</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Preloads a video for playback at a later time. It does not start video playback.</p>
+                                <p>Preloading a video means to process and initialize the SSAI and CSAI components as well as validate the video stream TTL, when applicable. As such, please keep in mind that this is an asynchronous process.</p>
+                                <p>This process is useful when there’s a need to get everything ready to start playing a specific video at a later time (through the <code translate="no">play</code> function, for example).</p>
+                                <p>The <code translate="no">index</code> parameter specifies the index of the video in the playlist to be preloaded. If <code translate="no">index</code> is not provided, it'll preload the first video in the playlist or the loaded video if there’s no playlist.</p>
+                                <p>If there’s a video playback session currently ongoing when <code translate="no">preload</code> is executed, this session is terminated prior to the preload process, unless index represents the current video, in which case no action is taken.</p>
+                                <p>Triggers a <code translate="no">bcPlayer.on.loadItem</code> event once the video is successfully loaded.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the preload action was successfully initiated.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">play</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">index</code></p>
+                                        <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> -1</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Preloads a video and initiates or resumes playback.</p>
+                                <p>The <code translate="no">index</code> parameter specifies the index of the video to play in the playlist.</p>
+                                <p>If <code translate="no">index</code> is not provided it defaults to the first video in the playlist or the single video loaded. If index refers to the current playback session, the play action will be applied to the active video, depending on its playback state, as such:</p>
+                                <ul>
+                                    <li>if video is paused &rarr; resumes playback</li>
+                                    <li>if video is already playing or buffering &rarr; action is ignored</li>
+                                    <li>if video is CSAI and is ready to start &rarr; starts CSAI video playback</li>
+                                    <li>otherwise &rarr; sets bcPlayer <code translate="no">control</code> field to <code translate="no">play</code></li>
+                                </ul>
+                                <p>Just like <code translate="no">preload</code> and <code translate="no">prebuffer</code> functions, the <code translate="no">play</code> function loads the specified video, when applicable, and starts playback immediately. As such, please keep in mind that this might be an asynchronous process.</p>
+                                <p>Triggers a <code translate="no">bcPlayer.on.loadItem</code> event once the video is successfully loaded.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the play action was successfully initiated.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">prebuffer</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">index</code></p>
+                                        <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Preloads a video and starts prebuffering it.</p>
+                                <p>The <code translate="no">prebuffer</code> function behaves just like the <code translate="no">play</code> function but instead of initiating video playback, it starts prebuffering the video stream. As such, please keep in mind that this might be an asynchronous process.</p>
+                                <p>If <code translate="no">index</code> is lower than <code translate="no">0</code>, it resets to the first video in the playlist if applicable or to the current video session if applicable, in which case video playback is interrupted and prebuffer is initiated on the same video.</p>
+                                <p>Prebuffering does not apply to CSAI videos.</p>
+                                <p>Triggers a <code translate="no">bcPlayer.on.loadItem</code> event once the video is successfully loaded.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the prebuffer action was successfully initiated.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">pause</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Pauses video playback.</p>
+                                <p>Applies to CSAI and non-CSAI videos.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the pause command was successfully set.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">terminate</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Stops video playback. Essentially, the <code translate="no">terminate</code> function applies the <code translate="no">stop</code> control command to bcPlayer.</p>
+                                <p>Applies to CSAI and non-CSAI videos.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the stop command was successfully set.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">playNext</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Plays the next video in the playlist.</p>
+                                <p>Applies to playlists only.</p>
+                                <p>Essentially, this function executes the <code translate="no">play</code> function passing along the next video index in the <code translate="no">index</code> parameter.</p>
+                                <p>When the <code translate="no">playNext</code> function is called on the last video of the playlist, the behavior depends on the loop field value:</p>
+                                <ul>
+                                    <li>if loop is <code translate="no">true</code> &rarr; plays the first video in the playlist</li>
+                                    <li>if loop is <code translate="no">false</code> &rarr; nothing happens</li>
+                                </ul>
+                                <p>Triggers a <code translate="no">bcPlayer.on.next</code> event if the next action was successfully executed.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the next action was successfully executed.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">playPrevious</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Plays the previous video in the playlist.</p>
+                                <p>Applies to playlists only.</p>
+                                <p>Essentially, this function executes the <code translate="no">play</code> function passing along the previous video index in the <code translate="no">index</code> parameter.</p>
+                                <p>When the <code translate="no">playPrevious</code> function is called on the first video of the playlist, the behavior depends on the loop field value:</p>
+                                <ul>
+                                    <li>if loop is <code translate="no">true</code> &rarr; plays the last video in the playlist</li>
+                                    <li>if loop is <code translate="no">false</code> &rarr; nothing happens</li>
+                                </ul>
+                                <p>Triggers a <code translate="no">bcPlayer.on.previous</code> event if the previous action was successfully executed.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the previous action was successfully executed.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">seek</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">position</code></p>
+                                        <p><code class="text-secondary" translate="no">FLOAT</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Seeks to the specified position. Essentially, the <code translate="no">seek</code> function sets the <code translate="no">seek</code> Video field value.</p>
+                                <p>Applies to CSAI and non-CSAI videos.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the seek value was successfully set.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">replay</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Seeks back 10 seconds in the current playback session. Essentially, the <code translate="no">replay</code> function applies the <code translate="no">replay</code> control command.</p>
+                                <p>Applies to CSAI and non-CSAI videos.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the replay command was successfully set.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">clear</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">hard</code></p>
+                                        <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> true</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Clears the current playback session.</p>
+                                <p>It essentially stops the current playback, clears the bcPlayer content and internal flags.</p>
+                                <p>The <code translate="no">hard</code> parameter allows the <code translate="no">index</code> read-only <code translate="no">bcPlayer.playback</code> field to be reset back to <code translate="no">-1</code> if <code translate="no">true</code> (the default behavior).</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">removeItem</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">index</code></p>
+                                        <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    </li>
+                                    <li>
+                                        <p><code translate="no">force</code></p>
+                                        <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> false</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Removes the video specified by the <code translate="no">index</code> parameter.</p>
+                                <p>Only applicable to playlists.</p>
+                                <p>[TBI] The <code translate="no">force</code> parameter allows to customize the function behavior when removing the video that is currently playing:</p>
+                                <ul>
+                                    <li>if <code translate="no">true</code> &rarr; stops video playback</li>
+                                    <li>if <code translate="no">false</code> &rarr; nothing happens</li>
+                                </ul>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the video was successfully removed.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getContent</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Retrieves the current bcPlayer content.</p>
+                                <p>If the current content is a playlist, it returns a ContentNode containing child ContentNodes representing the videos in the playlist.</p>
+                                <p>Returns a <code translate="no">NODE</code> value or <code translate="no">Invalid</code> if no content is set.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getItemCount</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Returns the number of videos currently loaded into the bcPlayer.</p>
+                                <p>Returns <code translate="no">1</code> if content is not a playlist.</p>
+                                <p>Returns <code translate="no">0</code> if no content is set.</p>
+                                <p>Returns a <code translate="no">INTEGER</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getItem</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">index</code></p>
+                                        <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                        <ul>
+                                            <li><code class="text-warning" translate="no">DEFAULT</code> -1</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Retrieves a single video ContentNode through its index specified by the <code translate="no">index</code> parameter.</p>
+                                <p>If the content is not a playlist, <code translate="no">index</code> can be omitted.</p>
+                                <p>If <code translate="no">index</code> is lower than <code translate="no">0</code>, returns the video that is currently playing, if applicable, otherwise returns <code translate="no">Invalid</code>.</p>
+                                <p>Returns <code translate="no">Invalid</code> if no content is set.</p>
+                                <p>Returns a <code translate="no">NODE</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getActiveItem</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Retrieves the video that is currently playing, similar to calling <code translate="no">getItem</code> with no parameters.</p>
+                                <p>Returns <code translate="no">Invalid</code> if no video is playing.</p>
+                                <p>Returns a <code translate="no">NODE</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getFirstItem</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Retrieves the first video in the playlist.</p>
+                                <p>Returns <code translate="no">Invalid</code> if no content is set or content is not a playlist.</p>
+                                <p>Returns a <code translate="no">NODE</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getLastItem</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Retrieves the last video in the playlist.</p>
+                                <p>Returns <code translate="no">Invalid</code> if no content is set or content is not a playlist.</p>
+                                <p>Returns a <code translate="no">NODE</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">getTrickplay</code></td>
+                            <td class="align-top">-</td>
+                            <td class="align-top">
+                                <p>Retrieves the native UI TrickplayBar node.</p>
+                                <p>When CSAI video playback is ongoing, returns the RAFContentRenderer TrickplayBar node instead.</p>
+                                <p>Returns <code translate="no">Invalid</code> if the <code translate="no">bcPlayer.enableUI</code> field is <code translate="no">false</code>.</p>
+                                <p>Returns a <code translate="no">NODE</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">isActiveItem</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">node</code></p>
+                                        <p><code class="text-secondary" translate="no">NODE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Checks if the provided node is currently active/playing.</p>
+                                <p>Returns a <code translate="no">BOOLEAN</code> value.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top"><code translate="no">is</code></td>
+                            <td class="align-top">
+                                <ul>
+                                    <li>
+                                        <p><code translate="no">option</code></p>
+                                        <p><code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                        <p>Supported values:</p>
+                                        <ul>
+                                            <li>Any Video <code translate="no">state</code> supported value (<code translate="no">playing</code>, <code translate="no">buffering</code>, <code translate="no">paused</code>, <code translate="no">stopping</code>, <code translate="no">stopped</code>, <code translate="no">finished</code>, <code translate="no">error</code>)</li>
+                                            <li><code translate="no">prebuffering</code></li>
+                                            <li><code translate="no">active</code></li>
+                                            <li><code translate="no">ssai</code></li>
+                                            <li><code translate="no">csai</code></li>
+                                            <li><code translate="no">csaiactive</code></li>
+                                            <li><code translate="no">dvr</code></li>
+                                            <li><code translate="no">live</code></li>
+                                            <li><code translate="no">playingads</code></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td class="align-top">
+                                <p>Allows to check the state of the ongoing playback session. Returns a <code translate="no">BOOLEAN</code> value specifying the state of the <code translate="no">option</code> provided, as follows:</p>
+                                <ul>
+                                    <li>
+                                        <strong>Any Video <code translate="no">state</code> supported value</strong>
+                                        <ul>
+                                            <li>Specifies if the current playback state reflects <code translate="no">option</code>.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>prebuffering</strong>
+                                        <ul>
+                                            <li>specifies if bcPlayer is prebuffering a video (ie, <code translate="no">control = "prebuffer"</code>). Always returns <code translate="no">false</code> when playing CSAI videos.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>active</strong>
+                                        <ul>
+                                            <li>specifies if there’s a video playing or ready for playback in bcPlayer.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>ssai</strong>
+                                        <ul>
+                                            <li>specifies if the current video is properly configured to setup SSAI (ie, the video <code translate="no">adsData</code> ContentNode property is properly set).</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>csai</strong>
+                                        <ul>
+                                            <li>specifies if the current video is properly configured to setup CSAI (ie, the video <code translate="no">adsData</code> ContentNode property is properly set).</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>csaiactive</strong>
+                                        <ul>
+                                            <li>specifies if CSAI video playing is currently ongoing.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>dvr</strong> [TBI]
+                                        <ul>
+                                            <li>specifies if DVR video is currently playing.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>live</strong>
+                                        <ul>
+                                            <li>specifies if the current video is a live stream (ie, the video <code translate="no">live</code> ContentNode property is set to <code translate="no">true</code>).</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>playingads</strong>
+                                        <ul>
+                                            <li>specifies if bcPlayer is currently playing ads.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>                                                                     
+                    </tbody>
+                </table>
+            </div>
+            <p>Code snippet</p>
+            <pre class="line-numbers">
+                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+
+ ' setup the main bcPlayer configurations
+ m.bcPlayer.setFields({
+   credentials: {...}
+   ...
+ })
+
+ ' setup the playback configurations, if needed
+ m.bcPlayer.playback.setFields({
+   loop: true, ' enable the playlist loop behavior
+   autoPlayNext: true  ' enable the autoPlayNext behavior
+ })
+
+ ' -------------------------------------------------
+ ' Use-case 1 - add a custom video ContentNode and start playback
+ ' -------------------------------------------------
+ videoLoaded = m.bcPlayer.playback.callFunc("load", MyVideoContentNode)
+ if videoLoaded then
+   m.bcPlayer.playback.callFunc("play")
+ else
+   ' handle the load process failure
+ end if
+ ' -------------------------------------------------
+
+ ' -------------------------------------------------
+ ' Use-case 2 - add custom video metadata and start prebuffering it
+ ' -------------------------------------------------
+ m.bcPlayer.on.observeField("load", "onLoad") ' since the loadCustom fucntion is asynchronous, we need to wait for the process to complete before handling its playback
+ m.bcPlayer.callFunc("loadCustom", {<my-video>}, {autoplay: -1}) ' load the custom video metadata and disable autoplay
+
+ ...
+
+ sub onLoad(ev)
+   data = ev.getData()
+   if data.error <> invalid then
+     ' handle the load error
+     return
+   end if
+
+   ' the video content has been loaded successfully, initiate the prebuffer process
+   m.bcPlayer.playback.callFunc("prebuffer", 0)
+ end sub
+ ' -------------------------------------------------
+
+ ' -------------------------------------------------
+ ' Use-case 3 - retrieve a Brightcove playlist and prebuffer the 3rd video in the playlist
+ ' -------------------------------------------------
+ m.bcPlayer.on.observeField("load", "onLoad")
+ m.bcPlayer.on.observeField("error", "onError")
+ m.bcPlayer.callFunc("getPlaylist", "my-playlist-id", {autoplay: -1}) ' load the playlist and disable the autoplay behavior
+
+ ...
+
+ sub onError(ev)
+   data = ev.getData()
+   if data.source = "getPlaylist" then
+     ' handle an eventual getPlaylist error
+   end if
+ end sub
+
+ sub onLoad(ev)
+   data = ev.getData()
+   if data.error <> invalid then
+     ' handle the load error
+     return
+   end if
+   ' the playlist content has been loaded successfully, initiate the prebuffer process
+   m.bcPlayer.playback.callFunc("prebuffer", 2)
+ end sub
+ ' -------------------------------------------------
+ 
+ ' -------------------------------------------------
+ ' Use-case 4 - update the active video title
+ ' -------------------------------------------------
+ activeVideo = m.bcPlayer.playback.callFunc("getActiveItem")
+ if activeVideo <> invalid then
+   activeVideo.title = "A Brand New Fancy Title"
+ end if
+ ' -------------------------------------------------</code></pre>
+        </section>
+        
+        
         <hr>
         <section>
             <h3 id="analytics">analytics</h3>
@@ -3585,7 +4285,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                               
                               <li>Applies to the following metrics:
                                 <ul>
-                                    <li><code translate="no">player</code> - <code translate="no">applicationID</code> is appended to the default value of player as such: <code translate="no">&#60;player&#62;/&#60;applicationID&#62;</code></li>
+                                    <li><code translate="no">player</code> - <code translate="no">applicationID</code> is appended to the default value of <code translate="no">player</code> as such: <code translate="no">&#60;player&#62;/&#60;applicationID&#62;</code></li>
                                     <li><code translate="no">player_name</code> - if the <code translate="no">playerName</code> is provided, <code translate="no">applicationID</code> is appended to its value as such: <code translate="no">&#60;playerName&#62;/&#60;applicationID&#62;</code>. Otherwise <code translate="no">player_name</code> takes the value of <code translate="no">applicationID</code></li>
                                 </ul>
                               </li>
@@ -3732,75 +4432,6 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
         </section>
         <hr>
         <section>
-            <h3 id="bufferTimeout">bufferTimeout</h3>
-            <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
-            </code></p>
-            <p>Configures the buffering timeout error timer period in seconds. This configuration allows to setup a timer which is initiated once the initial video buffering begins and at the end of which a timeout error will trigger if the video playback hasn’t yet been initiated.
-            </p>
-            <p>Setting it to 0 disables the buffering timeout timer.
-            </p>
-            <p>If the <a target="_blank" href="#retry-error">retryOnError</a> config is enabled, if a buffering timeout error is trigger it’ll retry playing other available sources with no visual interruption to the user. Although an error will still be triggered through the <code translate="no">bcPlayer.on.error</code> event.</p>
-            
-            <p><strong>Possible Values:</strong></p>
-            <ul>
-                <li>A positive integer value (seconds).</li>
-                <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">0</code> buffering timeout disabled.</li>
-            </ul>
-            <p>Code Snippet</p>
-            <pre class="line-numbers">
-                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                    m.bcPlayer.bufferTimeout = 20
-                    
-                    ' or
-                    
-                    m.bcPlayer.setFields({
-                      ' ...other fields here...
-                      bufferTimeout: 20
-                    })
-                </code></pre>
-        </section>
-        <hr>
-        <section>
-            <h3 id="sdkVersion">sdkVersion</h3>
-            <p><code translate="no" class="text-secondary">STRING</code> <code translate="no">READ-ONLY</code></p>
-            <p>Provides the Roku SDK version.</p>
-            <p><strong>Possible Values:</strong></p>
-            <ul>
-                <li>The version number in the following format: <code translate="no">&#60;major-version&#62;.&#60;minor-version&#62;.&#60;build-version&#62;</code></li>
-                
-            </ul>
-            <p>Code Snippet</p>
-            <pre class="line-numbers">
-                <code class="language-basic" translate="No">m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                sdkVersion = m.bcPlayer.sdkVersion
-                </code></pre>
-        </section>
-        <hr>
-        <section>
-            <h3 id="adPlaying">adPlaying</h3>
-            <p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no">READ-ONLY</code></p>
-            <p>Indicates if a SSAI or CSAI ad is currently playing.</p>
-            <p><strong>Possible Values:</strong></p>
-            <ul>
-                <li><code translate="no">true</code> - an ad is currently playing.</li>
-                <li><code translate="no">false</code> - no ad is currently playing.</li>
-            </ul>
-            <p>Code Snippet</p>
-            <pre class="line-numbers">
-                <code class="language-basic" translate="No">sub init()
-                  m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                  m.bcPlayer.observeField("adPlaying", "onAdPlaying")
-                end sub
-                
-                ...
-                
-                sub onAdPlaying(ev)
-                  ? "is it playing ads? " ev.getData()
-                end sub
-                </code></pre>
-        </section>
-        <hr>
-        <section>
             <h3 id="on">on</h3>
             <p><code translate="no" class="text-secondary">ROSGNODE</code> <code translate="no">READ-ONLY</code></p>
             <p>Allows access to all the bcPlayer events. Developers should setup event listeners to capture the events data through the <code translate="no">observeField()</code> or <code translate="no">observeFieldScoped()</code> functions. Check the table below for all the available events and the data they provide. Check the code snippet to understand how to setup event listeners to capture these events.
@@ -3868,17 +4499,85 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                             <li><p><code translate="no">error</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
                                 <p>Specifies the error message. Only available when an error occurs during the loading process.</p>
                             </li>
+                            <li>
+                                <p><code translate="no">autoplay</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies the autoplay video index as provided to the <code translate="no">load</code> or <code translate="no">loadCustom</code> functions. Defaults to <code translate="no">0</code>. Only available when the loading process is successful.</p>
+                            </li>
+                            <li>
+                                <p><code translate="no">prebuffer</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies the prebuffer value as provided to the <code translate="no">load</code> or <code translate="no">loadCustom</code> functions. Defaults to <code translate="no">false</code>. Only available when the loading process is successful.</p>
+                            </li>
+                            <li>
+                                <p><code translate="no">position</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies the position value as provided to the <code translate="no">load</code> or <code translate="no">loadCustom</code> functions. Defaults to <code translate="no">replace</code>. Only available when the loading process is successful.</p>
+                            </li>
                         </ul>
                         </td>
                         <td class="align-top"><p>Allows for a better tracking of the load and loadCustom progress. The <code translate="no">load</code> event is triggered when metadata load process starts, when it ends and when an error occurs during the loading process.  It also triggers during the custom metadata loading process initiated through the <code translate="no">loadCustom</code> function.</p></td>
                     </tr>
                     <tr>
+                        <td class="align-top"><code translate="no">loadItem</code></td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
+                            <p>Provides an AssociativeArray object with the following properties:</p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">index</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the index of the video that was just loaded.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">node</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the loaded video ContentNode.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">ads</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies what ad system was set up during the video load. The possible values are:</p>
+                                    <ul>
+                                        <li><code translate="no">none</code> &rarr; no ads were setup for the video</li>
+                                        <li><code translate="no">csai</code> &rarr; CSAI was setup for the video</li>
+                                        <li><code translate="no">ssai</code> &rarr; SSAI was setup for the video</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p><code translate="no">duration</code> <code class="text-secondary" translate="no">FLOAT</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the duration of the load operation.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">operation</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies what action triggered the load operation. The possible values are:</p>
+                                    <ul>
+                                        <li><code translate="no">preload</code></li>
+                                        <li><code translate="no">prebuffer</code></li>
+                                        <li><code translate="no">play</code></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p><code translate="no">error</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                    <p>Specifies the error data if the load operation failed. The possible values are:</p>
+                                    <ul>
+                                        <li>
+                                            <p><code translate="no">message</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                            <p>Specifies the error message.</p>
+                                        </li>
+                                        <li>
+                                            <p><code translate="no">data</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                            <p>Provides additional data on the error. This data varies depending on the error and operation.</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            <p>Triggers when a new video is loaded in the bcPlayer for playback. This event is triggered by the <code translate="no">play</code>, <code translate="no">prebuffer</code> and <code translate="no">preload</code> <code translate="no">bcPlayer.playback</code> functions. In a playlist, it's also triggered when triggering the <code translate="no">next</code> and <code translate="no">previous</code> actions, either manually by the app user or automatically when video playback reaches the end.</p>
+                        </td>
+                    </tr>                    
+                    <tr>
                         <td class="align-top">start</td>
                         <td><p><code translate="no" class="text-secondary">ASSOCOATIVE ARRAY</code></p>
                             <p>Provides an ASSOCIATIVE ARRAY object with the following  properties:</p>
                             <ul>
-                                <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
-                                <p>Reference to the native <code translate="no">Video.contentIndex</code> field. Specifies the index of the video that is currently playing in the playlist. It’s set to <code translate="no">0</code> if only a single video is playing.</p>
+                                <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                <p>Specifies the index of the video that is currently playing in the playlist. It’s set to <code translate="no">0</code> when playing a single video.</p>
                                 </li>
                                 <li><p><code translate="no">downloadedSegment</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                                 <p>Reference to the native <code translate="no">Video.downloadedSegment</code> field.</p>
@@ -4032,17 +4731,50 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                 
                             </ul>
                             </td>
-                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered at the start of every video playback. It triggers only once per video asset, and it provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a> node. Please refer to the Roku documentation for more specific details on those fields.</p></td>
+                        <td class="align-top"><p>The <code translate="no">start</code> event is triggered as soon as video playback starts, ie. the first time that the player status is set to <code translate="no">playing</code>. It triggers only once per playback session and provides a set of useful information about the video that just started playing. Most of the information provided is retrieved from the native <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/media-playback-nodes/video.md">Video</a>, but when playing a CSAI video, this information is retrieved from RAF’s own renderer component. Please refer to the Roku documentation for more specific details on those fields.</p>
+                        <p>Keep in mind that if the user rewinds or seeks to a specific position after the video playback has finished, this event is triggered once again for the same video.</p></td>
                     </tr>
                     <tr>
-                        <td class="align-top">play</td>
-                        <td>To be implemented</td>
-                        <td></td>
+                        <td class="align-top"><code translate="no">playing</code></td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
+                            <p>Provides an AssociativeArray object with the following properties:</p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the index of the video that is currently playing in a playlist. Defaults to <code translate="no">0</code> when playing a single video.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">position</code> <code class="text-secondary" translate="no">FLOAT</code> <code class="text-primary" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the current playback position.</p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            
+                            <p>Reflects the <code translate="no">playing</code> value of the <code translate="no">Video.state</code> field and specifies that the stream playback has started, either for the first time, after rebuffering or a resume action. When playing a CSAI video, this event reflects the <code translate="no">playing</code> state of RAF’s renderer node.</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="align-top">pause</td>
-                        <td>To be implemented</td>
-                        <td></td>
+                        <td class="align-top"><code translate="no">pause</code></td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
+                            <p>Provides an AssociativeArray object with the following properties:</p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the index of the video that is currently playing in a playlist. Defaults to <code translate="no">0</code> when playing a single video.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">position</code> <code class="text-secondary" translate="no">FLOAT</code> <code class="text-primary" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the current playback position.</p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            
+                            <p>Reflects the <code translate="no">paused</code> value of the <code translate="no">Video.state</code> field and specifies that the stream playback has been paused. When playing a CSAI video, this event reflects RAF’s <code translate="no">paused</code> event.</p>
+                        </td>
                     </tr>
                     <tr>
                         <td class="align-top">resume</td>
@@ -4170,12 +4902,11 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                     </tr>
                     <tr>
                         <td class="align-top">playlistIndex</td>
-                        <td class="align-top"><p><code translate="no" class="text-secondary">INTEGER</code> <code class="text-dark" translate="no">NATIVE</code></p>
+                        <td class="align-top"><p><code translate="no" class="text-secondary">INTEGER</code></p>
                         <ul>
-                            <li>Integer number</li>
+                            <li><code>-1</code> <code class="text-warning" translate="no">DEFAULT</code><p>Integer number</p></li>
                         </ul></td>
-                        <td class="align-top"><p>Triggered right before starting video playback. Provides the index of the video that will start playing in the playlist.</p>
-                        <p>This event reflects the native <code translate="no">Video.contentIndex</code> field and its generally useful when playing video playlists. </p>
+                        <td class="align-top"><p>Triggered when loading up a video for playback. Specifies the index of the video that was loaded.</p>
                         <p>When playing a single video this event sends <code translate="no">0</code>.</p>
                         </td>
                     </tr>
@@ -4210,8 +4941,8 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                     <li><p><code translate="no">getVideos</code> triggered when an error occurs within the getVideos function.</p></li>
                                     <li><p><code translate="no">getPlaylist</code> triggered when an error occurs within the getPlaylist function.</p></li>
                                     <li><p><code translate="no">getRelated</code> triggered when an error occurs within the getRelated function.</p></li>
-                                    <li><p><code translate="no">setSources</code> triggered when an error occurs within the setSources function.</p></li>
-                                    <li><p><code translate="no">addSource</code> triggered when an error occurs within the addSource function.</p></li>
+                                    <!-- <li><p><code translate="no">setSources</code> triggered when an error occurs within the setSources function.</p></li>
+                                    <li><p><code translate="no">addSource</code> triggered when an error occurs within the addSource function.</p></li> -->
                                     <li><p><code translate="no">refreshSources</code> triggered when an error occurs within the execution of the sources refresh feature.</p></li>
                                 </ul>
                             </li>
@@ -4260,7 +4991,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                     <li>
                                     <p><code translate="no">completedStreamInfo</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-                                    <p> Value of the native Video.completedStreamInfo field. Useful on playback errors. Only present on playback, playback-retrial and playback-buffering error sources.</p></li>
+                                    <p> Value of the native Video.completedStreamInfo field. Useful on playback errors. Only present on <code translate="no">playback</code>, <code translate="no">playback-retrial</code> and <code translate="no">playback-buffering</code> error sources.</p></li>
                                     <li>
                                     <p><code translate="no">errorMsg</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
@@ -4280,7 +5011,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             </code></p>
                                     <p>The value of this property depends on the error <code translate="no">source</code>:</p>
                                     <ul>
-                                        <li><p><code translate="no">playback/playback-retrial/playback-buffering</code>: contains the value of the native Video.errorInfo field. Only present if errorCode is not 0.</p></li>
+                                        <li><p><code translate="no">playback/playback-retrial/playback-buffering</code>: contains the value of the native Video.errorInfo field. Only present if errorCode is not <code translate="no">0</code>.</p></li>
                                         <li><p><code translate="no">getVideo/getVideos/getPlaylist/getRelated/refreshSources</code>: contains the Playback API request error response body. The expected value is an ASSOCIATIVE ARRAY object containing the following properties (for more detailed information on these please check the <a target="_blank" href="https://apis.support.brightcove.com/playback/references/reference_v2.html">Playback API documentation</a> page):</p>
                                         <ul>
                                             <li><p><code translate="no">error_code</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p></li>
