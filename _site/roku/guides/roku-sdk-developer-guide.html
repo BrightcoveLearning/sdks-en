@@ -4516,7 +4516,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <td class="align-top"><p>Allows for a better tracking of the load and loadCustom progress. The <code translate="no">load</code> event is triggered when metadata load process starts, when it ends and when an error occurs during the loading process.  It also triggers during the custom metadata loading process initiated through the <code translate="no">loadCustom</code> function.</p></td>
                     </tr>
                     <tr>
-                        <td class="align-top"><code translate="no">loadItem</code></td>
+                        <td class="align-top">loadItem</td>
                         <td class="align-top">
                             <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
                             <p>Provides an AssociativeArray object with the following properties:</p>
@@ -4735,7 +4735,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <p>Keep in mind that if the user rewinds or seeks to a specific position after the video playback has finished, this event is triggered once again for the same video.</p></td>
                     </tr>
                     <tr>
-                        <td class="align-top"><code translate="no">playing</code></td>
+                        <td class="align-top">playing</td>
                         <td class="align-top">
                             <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
                             <p>Provides an AssociativeArray object with the following properties:</p>
@@ -4756,7 +4756,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         </td>
                     </tr>
                     <tr>
-                        <td class="align-top"><code translate="no">pause</code></td>
+                        <td class="align-top">pause</td>
                         <td class="align-top">
                             <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
                             <p>Provides an AssociativeArray object with the following properties:</p>
@@ -5022,15 +5022,15 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                 </li>
                                 <li><p><code translate="no">retry</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-                                <p>If <code translate="no">true</code> specifies that it wasn't possible to playback a specific video source and the player will retry with a different source. If all the available video sources fail to play, a <code translate="no">playback-retrial</code> error will be triggered (and in that case, retry value is reset to <code translate="no">false</code>). Only present if retryOnError is enabled on <code translate="no">playback</code>, <code translate="no">playback-retrial</code> and <code translate="no">playback-buffering</code> error sources.</p>
+                                <p>If <code translate="no">true</code> specifies that it wasn't possible to playback a specific video source and the player will retry with a different source. If all the available video sources fail to play, a <code translate="no">playback-retrial</code> error will be triggered (and in that case, retry value is reset to <code translate="no">false</code>). Only present if <a href="#retryOnError">retryOnError</a> is enabled on <code translate="no">playback</code>, <code translate="no">playback-retrial</code> and <code translate="no">playback-buffering</code> error sources.</p>
                                 </li>
                                 <li><p><code translate="no">retries</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-                                <p>Specifies the number of source playback retries that were executed. Only present if retryOnError is enabled on <code translate="no">playback</code>, <code translate="no">playback-retrial</code> and <code translate="no">playback-buffering</code> error sources.</p>
+                                <p>Specifies the number of source playback retries that were executed. Only present if <a href="#retryOnError">retryOnError</a> is enabled on <code translate="no">playback</code>, <code translate="no">playback-retrial</code> and <code translate="no">playback-buffering</code> error sources.</p>
                                 </li>
                                 <li><p><code translate="no">source</code> <code translate="no">ASSOCIATIVE</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-                                <p>Specifies an invalid video source which bcPlayer wasn’t able to properly parse into the expected Video ContentNode fields. Only present in a specific <code translate="no">playback-retrial</code> error.</p>
+                                <p>Specifies an invalid video source which bcPlayer wasn’t able to properly parse into the expected <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Video ContentNode fields</a>. Only present in a specific <code translate="no">playback-retrial</code> error.</p>
                                 </li>
                                         
                                     
@@ -5046,12 +5046,12 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <td><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
                         <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
                         <ul>
-                            <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                            <li><p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reflects the value of the native <code translate="no">Video.contentIndex</code> field.</p></li>
                             <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">FLOAT</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                             <p>Reflects the value of the native <code translate="no">Video.position</code> field.</p></li>
                             <li><p><code translate="no">bufferingStatus</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-dark">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
-                            <p>Reflects the value of the native Video.bufferingStatus field.
+                            <p>Reflects the value of the native <code translate="no">Video.bufferingStatus</code> field.
                                 The following properties are available:</p>
                             <ul>
                                 <li><p><code translate="no">percentage</code> <code translate="no" class="text-secondary">FLOAT</code> <code class="text-danger" translate="no">REQUIRED</code></p>
@@ -5111,6 +5111,30 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <td>To be implemented</td>
                         <td></td>
                     </tr>
+                    <tr>
+                        <td class="align-top">timeout</td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code></p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">contentIndex</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies the video index.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">bufferingStatus</code> <code class="text-secondary" translate="no">ASSOCIATIVEARRAY</code> <code class="text-dark" translate="no">NATIVE</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Provides the native <code translate="no">Video.bufferingStatus</code> field value.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">retry</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <p>Specifies if bcPlayer will retry video playback with a different source. This depends on the <code translate="no">bcPlayer.retryOnBufferTimeout</code> flag value.</p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            
+                            <p>Triggered when video buffering times out. This event is only applicable if the <code translate="no">bcPlayer.bufferTimeout</code> field is set to a value higher than <code translate="no">0</code>.</p>
+                        </td>
+                    </tr>                    
                     <tr>    
                         <td class="align-top">dialogClose</td>
                         <td><p><code class="text-secondary" translate="no">BOOLEAN</code></p>
@@ -5136,16 +5160,58 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         </td>
                         <td class="align-top"><p>Triggered when the <code translate="no">width</code> or <code translate="no">height</code> bcPlayer native fields change, although it will only trigger if both values are higher than zero.</p></td>
                     </tr>
-                    <tr>    
+                    <tr>
+                        <td class="align-top">isHidden</td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">BOOLEAN</code></p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">true</code> &rarr; bcPlayer is partially or completely hidden.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">false</code> &rarr; bcPlayer is completely visible in the screen.</p>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            <p>Triggered when the bcPlayer node visibility changes. This event is controlled by a <code translate="no">renderTracking</code> field value, which means that it’s set to <code translate="no">true</code> when the <code translate="no">renderTracking</code> field is set to <code translate="no">none</code> and <code translate="no">false</code> otherwise.</p>
+                            <p>Be aware that this event might not be 100% accurate in certain situations due to the way the Roku OS handles the native Video node, preventing the native <code translate="no">renderTracking</code> function from working properly within the Video node.</p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="align-top">close</td>
+                        <td class="align-top">
+                            <p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
+                            <ul>
+                                <li>
+                                    <p>type <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
+                                    <ul>
+                                        <li><code translate="no">soft</code> &rarr; Specifies that a soft close was requested.</li>
+                                        <li><code translate="no">hard</code> &rarr; Specifies that a hard close was requested.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="align-top">
+                            <p>Triggered when bcPlayer close action is called. This action can be called by developers themselves through the <code translate="no">bcPlayer.callFunc("close", true/false)</code> function or automatically by the <code translate="no">closeOnAuto</code> or <code translate="no">closeOnFinished</code> configurations (when enabled).</p>
+                            <p>The <strong>type</strong> property specifies what type of close action was requested, <strong>soft</strong> or <strong>hard</strong>.</p>
+                            <ul>
+                                <li><strong>soft</strong> &rarr; the current playback session, if set, is terminated and the content is cleared. bcPlayer internal components remain on standby.</li>
+                                <li><strong>hard</strong> &rarr; bcPlayer is completely terminated/killed. Once a hard close is requested, it’s not possible to use the same bcPlayer instance anymore.</li>
+                            </ul>
+                            <p>Keep in mind that the <strong>hard</strong> close process is asynchronous. If, for example, there are any HTTP requests ongoing, it’ll wait for those requests to complete and only then end the close process. At that point, the <code translate="no">bcPlayer.on.closed</code> event is triggered specifying that the bcPlayer was completely terminated.</p>
+                        </td>
+                    </tr>                                        
+                    <tr>    
+                        <td class="align-top">closed</td>
                         <td class="align-top"><p><code class="text-secondary" translate="no">BOOLEAN</code></p>
                         <ul>
                             <li><p><code translate="no">true</code> the bcPlayer node has been completely terminated.</p></li>
                             <li><p><code translate="no">false</code> not used.</p></li>
                         </ul>
                         </td>
-                        <td class="align-top"><p>Triggered when the bcPlayer is completely terminated. Keep in mind that when the close function is called, the bcPlayer is not terminated immediately as it still waits for any task that might still be in progress. Once all tasks complete, the <code translate="no">close</code> event is triggered.</p>
-                        <p>This event can be used to clean up any remaining bcPlayer references and observers.</p>
+                        <td class="align-top"><p>Triggered when bcPlayer and it’s internal components were completely terminated by a <strong>hard</strong> close. At this point, the bcPlayer node reference cannot be used as it’s internal functions are no longer available.</p>
+                        <p>Typically, this is where all bcPlayer references and field observers in the app are removed / unobserved.</p>
                         </td>
                     </tr>
                     <tr>    
@@ -5201,19 +5267,12 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <p>Keep in mind that some button events are captured by the native Video node, in which case bcPlayer won’t be able to capture it and make it available in this event.</p>
                         </td>
                     </tr>
-                    <tr>    
-                        <td class="align-top">voiceComand</td>
-                        <td class="align-top"><p><code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
-                        <p>Provides an ASSOCIATIVE ARRAY object with the following keys:</p>
-                        <ul>
-                            <li><p><code translate="no">handled</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-danger" translate="no">REQUIRED</code></p>
-                            <p>Indicates if the event was handled internally by bcPlayer.</p>
-                            </li>
-                            <li><p>event specific properties</p></li>
-                        </ul>
+                    <tr>
+                        <td class="align-top">voiceCommand</td>
+                        <td class="align-top">
+                            <p>[TBI]</p>
                         </td>
-                        <td class="align-top"><p>Provides voice commands events data. The contents of the ASSOCIATIVE ARRAY will vary depend of the voice command event. It contains the native event properties plus the handled property which indicates if the event was handled internally by bcPlayer. Keep in mind that some events may not be triggered in this event when the native Video node captures it and handles it internally, specially when using the Roku’s OOTB UI/UX.</p>
-                        </td>
+                        <td class="align-top"></td>
                     </tr>
                 </tbody>
             </table>
@@ -5222,36 +5281,39 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
 
-                    m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
-                  
-                    ' setup an event listener specifically for the "finished" event
-                    m.bcPlayer.on.observeField("finished", "onFinished")
-                    
-                    ' its also possible to handle all the events in a single event listener function
-                    m.bcPlayer.on.observeField("finished", "onPlayerEvent")
-                    m.bcPlayer.on.observeField("error", "onPlayerEvent")
-                  
-                  end sub
-                  
-                  ' create the event listener function where the event data can be accessed
-                  sub onFinished(ev)
-                    
-                    data = ev.getData()   ' data contains the "finished" event data
-                    
-                    ' handle the "finished" event here...
-                    
-                  end sub
-                  
-                  ' create a universal event listener function where all the events can be handled
-                  sub onPlayerEvent(ev)
-                    
-                    data = ev.getData()   ' "data" contains the event data
-                    event = ev.getField() ' "event" contains the event name ("finished" or "error" in this example)
-                    
-                    ' handle the event here... 
-                    ' typically there should be an if or switch structure to filter the events
-                    
-                  end sub
+   m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
+ 
+   ' setup an event listener specifically for the "finished" event
+   m.bcPlayer.on.observeField("finished", "onFinished")
+   
+   ' its also possible to handle all the events in a single event listener function
+   m.bcPlayer.on.observeField("finished", "onPlayerEvent")
+   m.bcPlayer.on.observeField("error", "onPlayerEvent")
+ 
+ end sub
+ 
+ ' create the event listener function where the event data can be accessed
+ sub onFinished(ev)
+   
+   data = ev.getData()   ' data contains the "finished" event data
+   
+   ' handle the "finished" event here...
+   
+ end sub
+ 
+ ' create a universal event listener function where all the events can be handled
+ sub onPlayerEvent(ev)
+   
+   ' "data" contains the event data
+   data = ev.getData()
+
+   ' "event" contains the event name ("finished" or "error" in this example)
+   event = ev.getField()
+   
+   ' handle the event here... 
+   ' typically there should be an if or switch structure to filter the events
+   
+ end sub
                 </code></pre>
             
         </section>
@@ -5276,7 +5338,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                   StreamFormat: "hls/dash"            ' set the stream format
                   adsData: {                          ' adsData should be an AssociativeArray object
                     type: "ssai",                     ' specifies that this is a SSAI enabled video
-                    adBreaks: <adBreaks-ad-structure> ' provide the Ad Structure array as requested by Roku. This information is usually parsed from a VAST/VMAP document
+                    adBreaks: &#60; adBreaks-ad-structure&#62;  ' provide the Ad Structure array as requested by Roku. This information is usually parsed from a VAST/VMAP document
                   }
                 })
                 </code></pre>
@@ -5410,14 +5472,14 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                         
                                     <ul>Possible values:
                                         <li><p><code translate="no">""</code> <code translate="no" class="text-warning">DEFAULT</code> uses bcPlayer.credentials.auth_token token if available, otherwise ignores it.</p></li>
-                                        <li><p><code translate="no">"&#60;JWT&#62;"</code>  sets the bcov_auth query parameter with the token provided.</p></li>
+                                        <li><p><code translate="no">"&#60;JWT&#62;"</code>  sets the <code translate="no">bcov_auth</code> query parameter with the token provided.</p></li>
                                     </ul></td>
                                 </tr>
                                 <tr>    
                                     <td class="align-top">macros</td>
                                     <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                                        <p>Specifies a list of macros that will get replaced in the video ad tag source URL (VMAP). These only apply to the query parameters identified with &#123;&#123;url.&#60;macro&#62;&#125;&#125;. </p>
-                                        <p>For example, if the VMAP ad tag URL contains the following query parameter: <code translate="no">...&foobar=...</code>, setting bcPlayer.ssai.macros to {foo: "bar"} would replace  with bar and in the end it would look like so:  <code translate="no">...&foobar=bar...</code></p>
+                                        <p>Specifies a list of macros that will get replaced in the video ad tag source URL (VMAP). These only apply to the query parameters identified with <code translate="no">&#123;&#123;url.&#60;macro&#62;&#125;&#125;</code>. </p>
+                                        <p>For example, if the VMAP ad tag URL contains the following query parameter: <code translate="no">...&foobar=...</code>, setting <code translate="no">bcPlayer.ssai.macros</code> to <code translate="no">{foo: "bar"}</code> would replace  with bar and in the end it would look like so:  <code translate="no">...&foobar=bar...</code></p>
                                         <p>Roku macros can also be used as a macro value. Using the same ad tag example, setting <code translate="no">bcPlayer.ssai.macros</code> to <code translate="no">&#123;foo: "&#123;ROKU_ADS_DISPLAY_WIDTH&#125;"&#125;</code> would replace <code translate="no">&#123;&#123;url.foo&#125;&#125;</code> with the display width value and in the end it would look like so: <code translate="no">...&foobar=1080....</code> The list of supported macros can be found <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
                                         <p>Be aware that the <code translate="no">ROKU_ADS_CONTENT_ID</code>, <code translate="no">ROKU_ADS_CONTENT_GENRE</code>, <code translate="no">ROKU_ADS_CONTENT_LENGTH</code> and <code translate="no">ROKU_ADS_KIDS_CONTENT</code> macros value depend on their respective <code translate="">bcPlayer.ssai.adMeasurements</code> values, so if ad measurements are disabled, these macros won’t be available. More info <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros" target="_blank" rel="noopener noreferrer">here</a>.</p>
                                         
@@ -5445,7 +5507,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                                                     <li><p><code translate="no">vmap-parse</code> - VMAP parse complete. The <code translate="no">data</code> property contains the parsed data.</p></li>
                                                                     <li><p><code translate="no">vmap-response</code> - VMAP download complete. The <code translate="no">data</code> property contains the response object. If the download fails, an <code translate="no">error</code>event is triggered instead.</p></li>
                                                                     <li><p><code translate="no">raf-init</code> - RAF lib was initialized and all configs were set (except for the adBreaks).</p></li>
-                                                                    <li><p><code translate="no">vmap-pods</code>  - the adBreaks were loaded into RAF through the stitchedAdsInit function. The data property contains the list of adBreaks structured as required by Roku (reference).</p></li>
+                                                                    <li><p><code translate="no">raf-pods</code>  - The adBreaks were loaded into RAF through the <code translate="no">stitchedAdsInit</code> function. The <code translate="no">data</code> property contains the list of adBreaks structured as required by Roku (<a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#ad-structure">reference</a>).</p></li>
                                                                 </ul>
                                                             </li>
                                                             <li>RAF events
@@ -5465,10 +5527,10 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                                         <code translate="no">data</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code>
                                                     <p>Provides the data related to the event. This property might not be available in some events.</p></li>
                                                     <li>
-                                                        <code translate="no">index</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-danger">REQUIRED</code>
+                                                        <code translate="no">index</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-danger">REQUIRED</code>
                                                     <p>Specifies the index of the currently playing asset in a playlist or 0 if a single video is playing.</p></li>
                                                     <li>
-                                                        <code translate="no">live</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-danger">REQUIRED</code>
+                                                        <code translate="no">live</code> <code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-danger">REQUIRED</code>
                                                     <p>Specifies if the currently playing asset is a live stream.</p></li>
                                                 </ul>
                                             </li>
@@ -5497,7 +5559,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <h3 id="csai">csai</h3>
             <p>Allows to configure CSAI support in the <code translate="no">bcPlayer</code>.</p>
             <p><code translate="no">bcPlayer</code> employs Roku's <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) solution for CSAI handling.</p>
-            <aside class="bcls-aside bcls-aside--tip"><p>Note: CSAS doesn’t work as expected with Live video streams.</p>
+            <aside class="bcls-aside bcls-aside--tip"><p>Note: CSAS enabled live videos only support pre-rolls.</p>
             <p>CSAS video playback is handled automatically by RAF.</p></aside>
             <p>When playing videos with CSAS, RAF creates its own internal Video nodes to seamlessly stitch video content and ad content together. This means that the bcPlayer native Video fields won't be able to control video playback or get the usual playback events. Alternatively, while playing CSAS videos, the following options are available:</p>
             <ul>
@@ -5607,7 +5669,16 @@ end sub
                                 <li><p><code translate="no">true</code> - enables CSAI support in the <code translate="no">bcPlayer</code>.</p></li>
                             </ul></td>
                         </tr>
-                        <tr>    
+                        <tr>
+                            <td class="align-top">maxRequests</td>
+                            <td class="align-top">
+                                <p><code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                <p>Specifies the maximum number of attempts the <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object">getAds()</a> function is allowed to make. This property allows RAF's <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadprefsuserokuadsasfallback-as-boolean-maxrequests-as-integer">setAdPrefs()</a> function parameter to be customized.</p>
+                                <p><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">5</code></p>
+                            </td>
+
+                        </tr>
+                        <!-- <tr>    
                             <td class="align-top">useCSAS</td>
                             <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Toggles the CSAI implementation between <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md" target="_blank" rel="noopener noreferrer">Client-Side Ad Stitching</a> (CSAS) and RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p>
@@ -5618,8 +5689,8 @@ end sub
                                 <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> - Implements Client-Side Ad Stitching (CSAS).</p></li>
                                 <li><p><code translate="no">false</code> - implements CSAI through RAF's <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#client-ad-insertion" target="_blank" rel="noopener noreferrer">showAds()</a> function.</p></li>
                             </ul></td>
-                        </tr>
-                        <tr>    
+                        </tr> -->
+                        <!-- <tr>    
                             <td class="align-top">closeOnFinish</td>
                             <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Specifies if <code translate="no">bcPlayer</code> should automatically close when CSAI video playback finishes. Only applicable when playing a single video or the last video in a playlist.</p>
@@ -5628,8 +5699,8 @@ end sub
                                 <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> - closes the <code translate="no">bcPlayer</code> when CSAI video playback finishes.</p></li>
                                 <li><p><code translate="no">false</code> - no action occurs when playback finishes. The close even can be accessed through <code translate="no">bcPlayer.csai.event</code> to customize the behavior.</p></li>
                             </ul></td>
-                        </tr>
-                        <tr>    
+                        </tr> -->
+                        <!-- <tr>    
                             <td class="align-top">maxRequests</td>
                             <td><p><code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Specifies the maximum number of attempts the <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#getadsmsg-as-string-as-object" target="_blank" rel="noopener noreferrer">getAds()</a> function is allowed to make. This property allows RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#setadprefsuserokuadsasfallback-as-boolean-maxrequests-as-integer" target="_blank" rel="noopener noreferrer">setAdPrefs()</a> function parameter to be customized.</p>
@@ -5637,8 +5708,8 @@ end sub
                              <code translate="no" class="text-warning">DEFAULT</code> <code translate="no">1</code></li>
                                 
                            </td>
-                        </tr>
-                        <tr>    
+                        </tr> -->
+                        <!-- <tr>    
                             <td class="align-top">enableJIT</td>
                             <td><p><code translate="no" class="text-secondary">BOOLEAN</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Specifies RAF’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/raf-api.md#enablejitpodsenabled-as-boolean" target="_blank" rel="noopener noreferrer">enableJITPods()</a> function parameter.</p>
@@ -5647,11 +5718,11 @@ end sub
                                 <li><p><code translate="no">true</code> <code translate="no" class="text-warning">DEFAULT</code> - Enables “Just In Time” fetching of midroll ads.</p></li>
                                 <li><p><code translate="no">false</code> - disabled JIT feature.</p></li>
                             </ul></td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <td>enableInPodStitching</td>
                             <td>To be implemented.</td>
-                        </tr>
+                        </tr> -->
                         <tr>    
                             <td class="align-top">adMeasurements</td>
                             <td><p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
@@ -5797,13 +5868,8 @@ end sub
             <hr>
             <section>
                 <h3 id="load">Load</h3>
-                <p>Asynchronously loads Playback API contents (a video or a playlist) into the bcPlayer and starts the playback. Usually the data entered in the load function comes from the bcAPI component available in the Brightcove SDK which retrieves videos data from the Playback API, but it’s also used internally by the <a target="_blank" href="#get-video">getVideo</a>, <a target="_blank" href="#get-videos">getVideos</a>, <a target="_blank" href="#get-playlist">getPlaylist</a> and <a target="_blank" href="#get-related">getRelated</a> functions.</p>
-                <p>The load function may trigger two bcPlayer.on.load events:</p>
-                <ul>
-                    <li>A start event when the load process begins.</li>
-                    <li>an error event when an error occurs during the load process.</li>
-                    <li>An end event when the load process is completed and the new Video content is set.</li>
-                </ul>
+                <p>Loads Brightcove Playback API video or playlist metadata into the bcPlayer asynchronously. Usually the data entered in the load function comes from the bcAPI component available in the Brightcove SDK which retrieves videos data from the Playback API, but it’s also used internally by the <a target="_blank" href="#get-video">getVideo</a>, <a target="_blank" href="#get-videos">getVideos</a>, <a target="_blank" href="#get-playlist">getPlaylist</a> and <a target="_blank" href="#get-related">getRelated</a> functions.</p>
+                <p>The <code translate="no">load</code> function triggers a <code translate="no">bcPlayer.on.load</code> event reporting on the success or failure of the  load process.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">data</code> <code translate="no" class="text-secondary">DYNAMIC</code> <code class="text-danger" translate="no">REQUIRED</code> Brightcove videos data to load into the bcPlayer for playback. This data can represent a single video or multiple videos. The possible values are:</p>
@@ -5893,6 +5959,20 @@ end sub
                         <li><p>
                             <code translate="no">autoplay</code> <code class="text-secondary" translate="no">INTEGER</code> <code class="text-success" translate="No">OPTIONAL
                 </code> [To be implemented] Specifies the index of the video that should start playing when the load process ends (in case of a playlist). A value of <code translate="no">-1</code> will prevent the video from auto playing when the load process ends. By default autoplay is set to <code translate="no">0</code>.</p></li>
+                <li>
+                    <p><code translate="no">prebuffer</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                    <p>Specifies if it should start prebuffering the video stream indicated in the <code translate="no">autoplay</code> option.</p>
+                    <ul>
+                        <li>
+                            <p><code translate="no">false</code> <code class="text-warning" translate="no">DEFAULT</code></p>
+                            <p>if <code translate="no">autoplay</code> is set (ie, >= 0), video playback will start when the loading process finishes</p>
+                        </li>
+                        <li>
+                            <p><code translate="no">true</code></p>
+                            <p>if <code translate="no">autoplay</code> is set (ie, >= 0), video prebuffering will be initiated when the loading process finishes</p>
+                        </li>
+                    </ul>
+                </li>                
                         <li><p>
                             <code translate="no">position</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
                 </code> [To be implemented] Specifies where the new data should be loaded if bcPlayer already has content. Ie, should the data replace the old content, should it be added to the end or start of the current content. Possible values:</p>
@@ -5929,7 +6009,7 @@ end sub
                 
                         ' OR
                 
-                        ' [To be implemented] Set some options to customize the playlist loading behavior
+                        ' Set some options to customize the playlist loading behavior
                         m.bcPlayer.callFunc("load", playlistMetadata, &#123;
                           autoplay: 3 ' start playing the video in the index 3 of the playlist
                           position: "end" ' append the playlist to the current contents
@@ -5996,7 +6076,7 @@ end sub
                         <li><p><code translate="no">options</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                         <p>Additional options allow some behaviors to be customized. The following properties can be set in this object:</p>
                             <ul>
-                                <li><p><code translate="no">autoplay</code> <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                <li><p><code translate="no">autoplay</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Specifies the index of the video that should start playing when the load process ends (in case of a playlist).</p>
                                 <ul>
                                     <li><code translate="no">0</code><code translate="no" class="text-warning">DEFAULT</code>
@@ -6007,16 +6087,30 @@ end sub
                                     </li>
                                 </ul>
                                 </li>
-                                <li><p>[To be Implemented] <code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                                <li>
+                                    <p><code translate="no">prebuffer</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                                    <p>Specifies if it should start prebuffering the video stream indicated in the <code translate="no">autoplay</code> option.</p>
+                                    <ul>
+                                        <li>
+                                            <p><code translate="no">false</code> <code class="text-warning" translate="no">DEFAULT</code></p>
+                                            <p>if <code translate="no">autoplay</code> is set (ie, >= 0), video playback will start when the loading process finishes</p>
+                                        </li>
+                                        <li>
+                                            <p><code translate="no">true</code></p>
+                                            <p>if <code translate="no">autoplay</code> is set (ie, >= 0), video prebuffering will be initiated when the loading process finishes</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
                                 <p>Specify the position the new metadata should be load into if bcPlayer already contains previous contents. The possible string values are:</p>
                                 <ul>
                                     <li><code translate="no">replace</code><code translate="no" class="text-warning">DEFAULT</code>
                                     <p>Replace previous contents with the new content. If <code translate="no">position</code> isn't specified, <code translate="no">replace</code> is used by default. If the current content is a single video, the new content will always replace it.</p>
                                     </li>
-                                    <li>[To be Implemented] <code translate="no">append</code>
+                                    <li><code translate="no">append</code>
                                     <p>Add the new content at the end of the current content. Only applicable if the current content is a playlist.</p>
                                     </li>
-                                    <li>[To be Implemented] <code translate="no">prepend</code>
+                                    <li><code translate="no">prepend</code>
                                     <p>Add the new content at the start of the current content. Only applicable if the current content is a playlist.</p>
                                     </li>
                     
@@ -6071,10 +6165,10 @@ end sub
                             <p>Specifies if the video metadata should be loaded into bcPlayer once the request response is available.</p>
                             <ul>
                                 <li><code translate="no">true</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
-                                <p>Video metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the autoplay and position options [To be implemented].</p>
+                                <p>Video metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the <code translate="no">autoplay</code> and <code translate="no">position</code> options.</p>
                                 </li>
                                 <li><code translate="no">false</code></p>
-                                <p>When <code translate="no">autoload</code> is disabled, <code translate="no">getVideo</code> will only retrieve Brightcove video metadata. In this case, <code translate="no">getVideo</code> immediately returns a <code translate="no">Node</code> object which contains a <code translate="no">response</code> field that can be used to setup an observer function to capture the request response details.</p>
+                                <p>When <code translate="no">autoload</code> is disabled, <code translate="no">getVideo</code> will only retrieve Brightcove video metadata. In this case, <code translate="no">getVideo</code> immediately returns a <code translate="no">Node</code> object which contains a <code translate="no">response</code> field that can be used to setup an observer function to capture the request response data.</p>
                                 </li>
                             </ul>
                         </li>
@@ -6082,7 +6176,7 @@ end sub
                             <p>[To be implemented] Specifies the index of the video that should start playing when the load process ends (in case of a playlist). A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
                         </li>
                         <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
+                            <p>Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
                             <ul>
                                 <li><code translate="no">replace</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
                                 <p>Replace previous contents with the new content. If <code translate="no">position</code> isn't specified, <code translate="no">replace</code> is used by default.</p>
@@ -6095,7 +6189,11 @@ end sub
                                 </li>
                             </ul>
                         </li>
-                    
+                        <li>
+                            <p><code translate="no">&lt;custom-prop&gt;</code> <code class="text-secondary" translate="no">DYNAMIC</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                            <p>It’s also possible to specify custom properties to be passed along to the response object. These are especially useful when the <code translate="no">autoload</code> option is disabled. On the other hand, if the <code translate="no">autoload</code> option is enabled, these properties are ignored.</p>
+                        </li>
+                        
                         </ul>
                     </li>
                     </ul>
@@ -6112,52 +6210,58 @@ end sub
                     <p>Code Snippet</p>
                     <pre class="line-numbers">
                         <code class="language-basic" translate="No">sub init()
-                            ' autoload enabled
-                            m.bcPlayer.callFunc("getVideo", videoID, {
-                              params: {ad_config_id: adConfigID},
-                              autoplay: -1 ' To be implemented feature
-                            })
-                    
-                            ' OR
-                    
-                            ' autoload disabled
-                            responseNode = m.bcPlayer.callFunc("getVideo", videoID, {
-                              params: {ad_config_id: adConfigID},
-                              autoload: false
-                            })
-                    
-                            ' make sure the response Node is available so it can be used to retrieve the response metadata
-                            if responseNode &#60;&#62; invalid then
-                    
-                              ' set up an observer function for the "response" field
-                              responseNode.observeField("response", "onVideoResponse")
-                    
-                            end if
-                    
-                          end sub
-                    
-                          sub onVideoResponse(ev)
-                    
-                            ' ev.getData() returns the Playback API response properties
-                            response = ev.getData()
-                    
-                            ' if the request failed for any reason, handle the error
-                            if response.code &#60;&#62; 200 then
-                              ' handle the failed request here
-                              return
-                            end if
-                    
-                            ' the "body" property contains the Video metadata
-                            videoMetadata = response.body
-                    
-                            ' if needed, "videoMetadata" can be customized here before feeding it into the "load" function (keep in mind some properties shouldn't be changed)
-                    
-                            ' load the customized video metadata into bcPlayer for playback
-                            m.bcPlayer.callFunc("load", videoMetadata, {
-                              autoplay: -1 ' To be implemented feature
-                            })
-                    
-                          end sub
+ ' autoload enabled
+ m.bcPlayer.callFunc("getVideo", videoID, {
+   params: {ad_config_id: adConfigID},
+   autoplay: -1
+ })
+
+ ' OR
+
+ ' autoload disabled
+ responseNode = m.bcPlayer.callFunc("getVideo", videoID, {
+   params: {ad_config_id: adConfigID},
+   autoload: false,
+   myCustomOption: "hello world"
+ })
+
+ ' make sure the response Node is available so it can be used to retrieve the response metadata
+ if responseNode &#60;&#62; invalid then
+
+ ' set up an observer function for the "response" field
+ responseNode.observeField("response", "onVideoResponse")
+
+ end if
+
+ end sub
+
+ sub onVideoResponse(ev)
+
+ ' ev.getData() returns the Playback API response properties
+ response = ev.getData()
+
+ ' if the request failed for any reason, handle the error
+ if response.code &#60;&#62; 200 then
+   ' handle the failed request here
+   return
+ end if
+
+ options = response.options 
+
+ ' retrieve the custom properties from the response object
+  myCustomOption = options.myCustomOption
+
+ ' the "body" property contains the Video metadata
+ videoMetadata = response.body
+
+ ' if needed, "videoMetadata" can be customized here before feeding it into the "load" function (keep in mind some properties shouldn't be changed)
+
+ ' load the customized video metadata into bcPlayer for playback
+ m.bcPlayer.callFunc("load", videoMetadata, {
+   autoplay: -1
+ })
+
+ end sub
                         </code></pre>
                 </section>
     
@@ -6198,7 +6302,7 @@ end sub
                             <p>Specifies if the videos metadata should be loaded into bcPlayer once the request response is available.</p>
                             <ul>
                                 <li><code translate="no">true</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
-                                <p>Videos metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the <code translate="no">autoplay</code> and <code translate="no">position</code> options [To be implemented].</p>
+                                <p>Videos metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the <code translate="no">autoplay</code> and <code translate="no">position</code> options.</p>
                                 </li>
                                 <li><code translate="no">false</code></p>
                                 <p>When <code translate="no">autoload</code> is disabled, <code translate="no">getVideos</code> immediately returns a <code translate="no">Node</code> object which contains a <code translate="no">response</code> field that can be used to setup an observer function to capture the request response details.</p>
@@ -6206,10 +6310,10 @@ end sub
                             </ul>
                         </li>
                             <li><p><code translate="no">autoplay</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specifies the index of the video that should start playing when the load process ends (in case of a playlist). A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
+                            <p>Specifies the index of the video that should start playing when the load process ends (in case of a playlist). A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
                         </li>
                         <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
+                            <p>Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
                             <ul>
                                 <li><code translate="no">replace</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
                                 <p>Replace previous contents with the new content. If <code translate="no">position</code> isn't specified, <code translate="no">replace</code> is used by default.</p>
@@ -6222,7 +6326,11 @@ end sub
                                 </li>
                             </ul>
                         </li>
-                    
+                        <li>
+                            <p><code translate="no">&lt;custom-prop&gt;</code> <code class="text-secondary" translate="no">DYNAMIC</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                            <p>It’s also possible to specify custom properties to be passed along to the response object. These are especially useful when the <code translate="no">autoload</code> option is disabled. On the other hand, if the <code translate="no">autoload</code> option is enabled, these properties are ignored.</p>
+                        </li>
+                        
                         </ul>
                     </li>
                     </ul>
@@ -6241,7 +6349,7 @@ end sub
                             ' autoload enabled
                             m.bcPlayer.callFunc("getVideos", "name:wildlife", {
                               params: {limit: 10, offset: 20},
-                              autoplay: -1 ' To be implemented feature
+                              autoplay: -1
                             })
                     
                             ' OR
@@ -6249,7 +6357,8 @@ end sub
                             ' autoload disabled
                             responseNode = m.bcPlayer.callFunc("getVideos", "name:wildlife", {
                               params: {limit: 10, offset: 20},
-                              autoload: false
+                              autoload: false,
+                              myCustomOption: "hello world"
                             })
                     
                             ' make sure the response Node is available so it can be used to retrieve the response metadata
@@ -6272,7 +6381,12 @@ end sub
                               ' handle the failed request here
                               return
                             end if
-                    
+
+                            options = response.options 
+                            
+                            ' retrieve the custom properties from the response object
+                            myCustomOption = options.myCustomOption
+
                             ' the "body" property contains videos metadata
                             videosMetadata = response.body
                     
@@ -6280,7 +6394,7 @@ end sub
                     
                             ' load the customized videos metadata into bcPlayer for playback
                             m.bcPlayer.callFunc("load", videosMetadata, {
-                              autoplay: -1 ' To be implemented feature
+                              autoplay: -1
                             })
                     
                           end sub
@@ -6322,7 +6436,7 @@ end sub
                             <p>Specifies if the playlist metadata should be loaded into bcPlayer once the request response is available.</p>
                             <ul>
                                 <li><code translate="no">true</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
-                                <p>Playlist metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the <code translate="no">autoplay</code> and <code translate="no">position</code> options [To be implemented].</p>
+                                <p>Playlist metadata will automatically be loaded into bcPlayer. The load behavior can be customized through the <code translate="no">autoplay</code> and <code translate="no">position</code> options.</p>
                                 </li>
                                 <li><code translate="no">false</code></p>
                                 <p>When <code translate="no">autoload</code> is disabled, <code translate="no">getPlaylist</code> only retrieve Brightcove videos metadata. In this case, <code translate="no">getPlaylist</code> returns a <code translate="no">Node</code> object which contains a <code translate="no">response</code> field that can be used to setup an observer function to capture the request response details.</p>
@@ -6330,10 +6444,10 @@ end sub
                             </ul>
                         </li>
                             <li><p><code translate="no">autoplay</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specifies the index of the video that should start playing when the load process ends. A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
+                            <p>Specifies the index of the video that should start playing when the load process ends. A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
                         </li>
                         <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
+                            <p>Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
                             <ul>
                                 <li><code translate="no">replace</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
                                 <p>Replace previous contents with the new content. If <code translate="no">position</code> isn't specified, <code translate="no">replace</code> is used by default.</p>
@@ -6346,7 +6460,10 @@ end sub
                                 </li>
                             </ul>
                         </li>
-                    
+                        <li></li>
+                            <p><code translate="no">&lt;custom-prop&gt;</code> <code class="text-secondary" translate="no">DYNAMIC</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                            <p>It’s also possible to specify custom properties to be passed along to the response object. These are especially useful when the <code translate="no">autoload</code> option is disabled. On the other hand, if the <code translate="no">autoload</code> option is enabled, these properties are ignored.</p>
+                        </li>
                         </ul>
                     </li>
                     </ul>
@@ -6365,7 +6482,7 @@ end sub
                             ' autoload enabled
                             m.bcPlayer.callFunc("getPlaylist", playlistID, {
                               params: {limit: 10, offset: 20},
-                              autoplay: 3 ' To be implemented feature
+                              autoplay: 3
                             })
                     
                             ' OR
@@ -6373,7 +6490,8 @@ end sub
                             ' autoload disabled
                             responseNode = m.bcPlayer.callFunc("getPlaylist", playlistID, {
                               params: {limit: 10, offset: 20},
-                              autoload: false
+                              autoload: false,
+                              myCustomOption: "hello world"
                             })
                     
                             ' make sure the response Node is available so it can be used to retrieve the response metadata
@@ -6396,6 +6514,11 @@ end sub
                               ' handle the failed request here
                               return
                             end if
+
+                            options = response.options
+
+                            ' retrieve the custom properties from the response object
+                            myCustomOption = options.myCustomOption
                     
                             ' the "body" property contains the playlist metadata
                             playlistMetadata = response.body
@@ -6404,7 +6527,7 @@ end sub
                     
                             ' load the customized playlist metadata into bcPlayer for playback
                             m.bcPlayer.callFunc("load", playlistMetadata, {
-                              autoplay: 3 ' To be implemented feature
+                              autoplay: 3 ' TBI feature
                             })
                     
                           end sub
@@ -6456,10 +6579,10 @@ end sub
                             </ul>
                         </li>
                             <li><p><code translate="no">autoplay</code> <code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specifies the index of the video that should start playing when the load process ends. A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
+                            <p>Specifies the index of the video that should start playing when the load process ends. A value of <code translate="no">-1</code> will prevent auto playback when the load process ends. By default <code translate="no">autoplay</code> is set to <code translate="no">0</code>. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled.</p>
                         </li>
                         <li><p><code translate="no">position</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>[To be implemented] Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
+                            <p>Specify the position the new metadata should be load into if bcPlayer already contains previous contents. Internally. this property is passed along to the load function, which is responsible for the metadata load process. Ignored if <code translate="no">autoload</code> is disabled. The possible string values are:</p>
                             <ul>
                                 <li><code translate="no">replace</code>  <code translate="no" class="text-warning">DEFAULT</code></p>
                                 <p>Replace previous contents with the new content. If <code translate="no">position</code> isn't specified, <code translate="no">replace</code> is used by default.</p>
@@ -6472,7 +6595,10 @@ end sub
                                 </li>
                             </ul>
                         </li>
-                    
+                        <li></li>
+                            <p><code translate="no">&lt;custom-prop&gt;</code> <code class="text-secondary" translate="no">DYNAMIC</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                            <p>It’s also possible to specify custom properties to be passed along to the response object. These are especially useful when the <code translate="no">autoload</code> option is disabled. On the other hand, if the <code translate="no">autoload</code> option is enabled, these properties are ignored.</p>
+                        </li>
                         </ul>
                     </li>
                     </ul>
@@ -6491,7 +6617,7 @@ end sub
                             ' autoload enabled
                             m.bcPlayer.callFunc("getRelated", videoID, {
                               params: {limit: 10, offset: 20},
-                              autoplay: 3 ' To be implemented feature
+                              autoplay: 3 
                             })
                     
                             ' OR
@@ -6499,7 +6625,8 @@ end sub
                             ' autoload disabled
                             responseNode = m.bcPlayer.callFunc("getRelated", videoID, {
                               params: {limit: 10, offset: 20},
-                              autoload: false
+                              autoload: false,
+                              myCustomOption: "hello world"
                             })
                     
                             ' make sure the response Node is available so it can be used to retrieve the response metadata
@@ -6522,6 +6649,11 @@ end sub
                               ' handle the failed request here
                               return
                             end if
+                                
+                            options = response.options 
+
+                            ' retrieve the custom properties from the response object
+                            myCustomOption = options.myCustomOption
                     
                             ' the "body" property contains the related videos metadata
                             relatedMetadata = response.body
