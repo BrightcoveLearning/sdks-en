@@ -2167,151 +2167,190 @@
 
   <section class="bcls-section">
     <h2 id="overview">Overview</h2>
-    <p>The Brightcove Roku SDK is a Roku <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/control-nodes/componentlibrary.md">ComponentLibrary</a> package that can be imported and loaded into a Roku channel, allowing easy access to Brightcove’s Playback services.</p>
+    <p>The Brightcove Roku SDK is a Roku <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/control-nodes/componentlibrary.md">ComponentLibrary</a> package that can be imported and loaded into a Roku channel, allowing easy access to Brightcove’s Playback services in a Roku channel through a set of Brightscript components.</p>
   </section>
   <section class="bcls-section">
-    <h2 id="components">Components</h2>
-    <p>The Brightcove Roku SDK package contains the following components:</p>
+    <h2 id="index">Index</h2>
     <ul>
-        <li><strong><a href="#bcPlayer">bcPlayer</a></strong> - Allows for Brightcove and external sources video playback using Roku’s Video node.
-        <ul>
-            <li><a href="#fields">Fields</a>
+        <li><a href="#features">Features</a>
             <ul>
-                <li><a href="#credentials">credentials</a></li>
-                <li><a href="#watermarkToken">watermarkToken</a></li>
-                <li><a href="#streamPreference">streamPreference</a></li>
-                <li><a href="#drmPreference">drmPreference</a></li>
-                <li><a href="#logLevel">logLevel</a></li>
-                <li><a href="#spinnerConfig">spinnerConfig</a></li>
-                <li><a href="#loading">loading</a></li>
-                <li><a href="#retryOnError">retryOnError</a></li>
-                <li><a href="#closeOnBack">closeOnBack</a></li>
-                <li><a href="#enableDialogs">enableDialogs</a></li>
-                <li><a href="#dialogTheme">dialogTheme</a></li>
-                <li><a href="#analytics">analytics</a></li>
-                <li><a href="#bufferTimeout">bufferTimeout</a></li>
-                <li><a href="#sdkVersion">sdkVersion</a></li>
-                <li><a href="#adPlaying">adPlaying</a></li>
-                <li><a href="#on">on</a></li>
-                <li><a href="#ssai">ssai</a></li>
-                <li><a href="#csai">csai</a></li>
-
+                <li><a href="#additions">Future additions</a></li>
+                <li><a href="#sources-refresh">Source Refresh</a></li>
+                <li><a href="#voice-controls">Voice Control</a>
+                    <ul>
+                        <li><a href="#oobt">OOTB UI/UX</a></li>
+                    </ul>
+                </li>
+                <li><a href="#generic-concurrency">Brightcove Generic Stream Concurrency</a></li>
+                <li><a href="#brightcove-analytics">Brightcove Analytics</a>
+                    <ul>
+                        <li><a href="#adInsights">Ad Insights</a></li>
+                    </ul>
+                </li>
             </ul>
-            </li>
-            <li><a href="#bcPlayer-functions">Functions</a>
+        </li>
+        <li><a href="#sample-app">Sample App</a></li>
+        <li><a href="#setup">Setup</a>
+            <ul>
+                <li><a href="#packageSources">Package sources</a></li>
+                <li><a href="#changelog">Changelog</a></li>
+                <li><a href="#directSource">Loading the library directly from the source</a></li>
+                <li><a href="#loadingLocally">Loading the library locally</a></li>
+                <li><a href="#loading-dinamically">Loading the library dynamically</a></li>
+                <li><a href="#accessing-components">Accessing Roku SDK components</a></li>
+            </ul>
+        </li>
+        <li><a href="#bcPlayer">Components</a>
+            <ul>
+                <li><strong><a href="#bcPlayer">bcPlayer</a></strong>
                 <ul>
-                    <li><a href="#load">load</a></li>
-                    <li><a href="#loadCustom">loadCustom</a></li>
-                    <li><a href="#getVideo">getVideo</a></li>
-                    <li><a href="#getVideos">getVideos</a></li>
-                    <li><a href="#getPlaylist">getPlaylist</a></li>
-                    <li><a href="#getRelated">getRelated</a></li>
-                    <li><a href="#playback">playback</a></li>
-                    <li><a href="#playlist">playlist</a></li>
-                    <li><a href="#close">close</a></li>
+                    <li><a href="#fields">Fields</a>
+                    <ul>
+                        <li><a href="#credentials">credentials</a></li>
+                        <li><a href="#watermarkToken">watermarkToken</a></li>
+                        <li><a href="#streamPreference">streamPreference</a></li>
+                        <li><a href="#drmPreference">drmPreference</a></li>
+                        <li><a href="#logLevel">logLevel</a></li>
+                        <li><a href="#spinnerConfig">spinnerConfig</a></li>
+                        <li><a href="#loading">loading</a></li>
+                        <li><a href="#retryOnError">retryOnError</a></li>
+                        <li><a href="#retryBufferTimeout">retryOnBufferTimeout</a></li>
+                        <li><a href="#closeOnBack">closeOnBack</a></li>
+                        <li><a href="#closeOnFinished">closeOnFinished</a></li>
+                        <li><a href="#enableDialogs">enableDialogs</a></li>
+                        <li><a href="#enablegsc">enableGSC</a></li>
+                        <li><a href="#dialogTheme">dialogTheme</a></li>
+                        <li><a href="#bufferTimeout">bufferTimeout</a></li>
+                        <li><a href="#analytics">analytics</a></li>
+                        <li><a href="#bufferTimeout">bufferTimeout</a></li>
+                        <li><a href="#sdkVersion">sdkVersion</a></li>
+                        <li><a href="#adPlaying">adPlaying</a></li>
+                        <li><a href="#relative-position">relativePosition</a></li>
+                        <li><a href="#visibleOnScreen">visibleOnScreen</a></li>
+                        <li><a href="#playback">playback</a></li>
+                        <li><a href="#analytics">analytics</a></li>
+                        <li><a href="#on">on</a></li>
+                        <li><a href="#ssai">ssai</a></li>
+                        <li><a href="#csai">csai</a></li>
+        
+                    </ul>
+                    </li>
+                    <li><a href="#bcPlayer-functions">Functions</a>
+                        <ul>
+                            <li><a href="#load">load</a></li>
+                            <li><a href="#loadCustom">loadCustom</a></li>
+                            <li><a href="#getVideo">getVideo</a></li>
+                            <li><a href="#getVideos">getVideos</a></li>
+                            <li><a href="#getPlaylist">getPlaylist</a></li>
+                            <li><a href="#getRelated">getRelated</a></li>
+                            <li><a href="#close">close</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#videoSourcesSelection">Video Sources selection</a></li>
                 </ul>
-            </li>
-            <li><a href="#videoSourcesSelection">Video Sources selection</a></li>
-        </ul>
+                </li>
+                <li><strong><a href="#bcAPI">bcAPI</a></strong>
+                <ul>
+                    <li><a href="#configFields">Config Fields</a>
+                    <ul>
+                        <li><a href="#bcAPI-credentials">credentials</a></li>
+                        <li><a href="#bcAPI-maxRequests">maxRequests</a></li>
+                        <li><a href="#bcAPI-logger">logger</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#actionFields">Action Fields</a>
+                    <ul>
+                        <li><a href="#request">request</a></li>
+                        <li><a href="#bcAPI-getVideo">getVideo</a></li>
+                        <li><a href="#bcAPI-getVideos">getVideos</a></li>
+                        <li><a href="#bcAPI-getRelated">getRelated</a></li>
+                        <li><a href="#bcAPI-getPlaylist">getPlaylist</a></li>
+                        <li><a href="#abort">abort</a></li>
+                        <li><a href="#kill">kill</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#outputFields">Output Fields</a>
+                    <ul>
+                        <li><a href="#response">response</a></li>
+                        <li><a href="#ready">ready</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                <li><strong><a href="#utils">Utils</a></strong>
+                <ul>
+                    <li><a href="#utils-functions">Functions</a>
+                    <ul>
+                        <li><a href="#validate">validate</a></li>
+                        <li><a href="#contains">contains</a></li>
+                        <li><a href="#indexOf">indexOf</a></li>
+                        <li><a href="#isBool">isBool</a></li>
+                        <li><a href="#isFunction">isFunction</a></li>
+                        <li><a href="#isAA">isAA</a></li>
+                        <li><a href="#isArray">isArray</a></li>
+                        <li><a href="#isInt">isInt</a></li>
+                        <li><a href="#isFloat">isFloat</a></li>
+                        <li><a href="#isNumber">isNumber</a></li>
+                        <li><a href="#isString">isString</a></li>
+                        <li><a href="#charAt">charAt</a></li>
+                        <li><a href="#toString">toString</a></li>
+                        <li><a href="#toDouble">toDouble</a></li>
+                        <li><a href="#setAddFields">setAddFields</a></li>
+                        <li><a href="#addURLParams">addURLParams</a></li>
+                        <li><a href="#match">match</a></li>
+                        <li><a href="#replace">replace</a></li>
+                        <li><a href="#truncate">truncate</a></li>
+                        <li><a href="#toMD5">toMD5</a></li>
+                        <li><a href="#toSHA1">toSHA1</a></li>
+                        <li><a href="#toSHA256">toSHA256</a></li>
+                        <li><a href="#toSHA512">toSHA512</a></li>
+                        <li><a href="#is4kReady">is4kReady</a></li>
+                        <li><a href="#isHDRReady">isHDRReady</a></li>
+                        <li><a href="#canPlayAudio">canPlayAudio</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                <li><strong><a href="#logger-id">Logger</a></strong>
+                <ul>
+                    <li><a href="#logger-fields">Fields</a>
+                    <ul>
+                        <li><a href="#level">level</a></li>
+                        <li><a href="#mode">mode</a></li>
+                        <li><a href="#output">output</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#logger-functions">Functions</a>
+                    <ul>
+                        <li><a href="#error">error</a></li>
+                        <li><a href="#warn">warn</a></li>
+                        <li><a href="#info">info</a></li>
+                        <li><a href="#debug">debug</a></li>
+                        <li><a href="#verbose">verbose</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                <li><strong><a href="#dialog">Dialog</a></strong>
+                <ul>
+                    <li><a href="#dialog-fields">Fields</a>
+                    <ul>
+                        <li><a href="#theme">theme</a></li>
+                        <li><a href="#titleConfig">titleConfig</a></li>
+                        <li><a href="#content">content</a></li>
+                        <li><a href="#sidecard">sidecard</a></li>
+                        <li><a href="#buttons">buttons</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </li>
+                
+                
+            </ul>
+
         </li>
-        <li><strong><a href="#bcAPI">bcAPI</a></strong> - Provides independent access to Brightcove’s Playback API and an interface for general HTTP requests.
-        <ul>
-            <li><a href="#configFields">Config Fields</a>
-            <ul>
-                <li><a href="#bcAPI-credentials">credentials</a></li>
-                <li><a href="#bcAPI-maxRequests">maxRequests</a></li>
-                <li><a href="#bcAPI-logger">logger</a></li>
-            </ul>
-            </li>
-            <li><a href="#actionFields">Action Fields</a>
-            <ul>
-                <li><a href="#request">request</a></li>
-                <li><a href="#bcAPI-getVideo">getVideo</a></li>
-                <li><a href="#bcAPI-getVideos">getVideos</a></li>
-                <li><a href="#bcAPI-getRelated">getRelated</a></li>
-                <li><a href="#bcAPI-getPlaylist">getPlaylist</a></li>
-                <li><a href="#abort">abort</a></li>
-                <li><a href="#kill">kill</a></li>
-            </ul>
-            </li>
-            <li><a href="#outputFields">Output Fields</a>
-            <ul>
-                <li><a href="#response">response</a></li>
-                <li><a href="#ready">ready</a></li>
-            </ul>
-            </li>
-        </ul>
-        </li>
-        <li><strong><a href="#utils">Utils</a></strong> - Provides general Brightscript helping functions.
-        <ul>
-            <li><a href="#utils-functions">Functions</a>
-            <ul>
-                <li><a href="#validate">validate</a></li>
-                <li><a href="#contains">contains</a></li>
-                <li><a href="#indexOf">indexOf</a></li>
-                <li><a href="#isBool">isBool</a></li>
-                <li><a href="#isFunction">isFunction</a></li>
-                <li><a href="#isAA">isAA</a></li>
-                <li><a href="#isArray">isArray</a></li>
-                <li><a href="#isArrayisInt">isArrayisInt</a></li>
-                <li><a href="#isFloat">isFloat</a></li>
-                <li><a href="#isNumber">isNumber</a></li>
-                <li><a href="#isString">isString</a></li>
-                <li><a href="#charAt">charAt</a></li>
-                <li><a href="#toString">toString</a></li>
-                <li><a href="#toDouble">toDouble</a></li>
-                <li><a href="#setAddFields">setAddFields</a></li>
-                <li><a href="#addURLParams">addURLParams</a></li>
-                <li><a href="#match">match</a></li>
-                <li><a href="#replace">replace</a></li>
-                <li><a href="#truncate">truncate</a></li>
-                <li><a href="#toMD5">toMD5</a></li>
-                <li><a href="#toSHA1">toSHA1</a></li>
-                <li><a href="#toSHA256">toSHA256</a></li>
-                <li><a href="#toSHA512">toSHA512</a></li>
-                <li><a href="#is4kReady">is4kReady</a></li>
-                <li><a href="#isHDRReady">isHDRReady</a></li>
-                <li><a href="#canPlayAudio">canPlayAudio</a></li>
-            </ul>
-            </li>
-        </ul>
-        </li>
-        <li><strong><a href="#logger-id">Logger</a></strong> - Customizable logger node.
-        <ul>
-            <li><a href="#logger-fields">Fields</a>
-            <ul>
-                <li><a href="#level">level</a></li>
-                <li><a href="#mode">mode</a></li>
-                <li><a href="#output">output</a></li>
-            </ul>
-            </li>
-            <li><a href="#logger-functions">Functions</a>
-            <ul>
-                <li><a href="#error">error</a></li>
-                <li><a href="#warn">warn</a></li>
-                <li><a href="#info">info</a></li>
-                <li><a href="#verbose">verbose</a></li>
-                <li><a href="#debug">debug</a></li>
-            </ul>
-            </li>
-        </ul>
-        </li>
-        <li><strong><a href="#dialog">Dialog</a></strong> - Customizable <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/standard-dialog.md">StandardDialog</a> node.
-        <ul>
-            <li><a href="#dialog-fields">Fields</a>
-            <ul>
-                <li><a href="#theme">theme</a></li>
-                <li><a href="#titleConfig">titleConfig</a></li>
-                <li><a href="#content">content</a></li>
-                <li><a href="#sidecard">sidecard</a></li>
-                <li><a href="#buttons">buttons</a></li>
-            </ul>
-            </li>
-        </ul>
-        </li>
-        
-        
     </ul>
+    
   </section>
   <section class="bcls-section">
     <h2 id="features">Features</h2>
@@ -2370,6 +2409,14 @@
     </ul>
   </section>
   <section class="bcls-section">
+    <h2 id="additions">Future additions</h2>
+    <ul>
+        <li>TVe support</li>
+        <li>Google IMA DAI support</li>
+        <li>Custom trickplay UI/UX support</li>
+    </ul>
+    </section>
+  <section class="bcls-section">
     <h2 id="sources-refresh">Sources Refresh</h2>
     <p>Brightcove video sources have a Time To Live (TTL) timestamp associated with it which, once expired, video playback will not be possible through that source. The bcPlayer automatically checks for sources TTL expiration in the following situations:</p>
     <ul>
@@ -2386,7 +2433,7 @@
     <section class="bcls-section">
         <h2 id="voice-controls">Voice Controls</h2>
         <p>Allows users to control the video playback through voice commands. These voice commands are captured by a supported Roku Remote Control as well as the Roku mobile app and sent to the Roku app. With the OOTB Roku UI most of these commands are handled natively. With a custom UI experience the Brightcove SDK will automatically handle the commands. <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/media-playback/voice-controls/transport-controls.md">Learn more</a>.</p>
-        <h3>OOTB UI/UX</h3>
+        <h3 id="oobt">OOTB UI/UX</h3>
         <ul>
             <li><strong>Basic Commands</strong>.
                 <ul>
@@ -2494,7 +2541,7 @@
             <li><strong>start_time_ms</strong>: specifies the video playback start time.</li>
             <li><strong>load_time_ms</strong>: specifies the video load time.</li>
         </ul>
-        <h3>Ad Insights</h3>
+        <h3 id="adInsights">Ad Insights</h3>
         <p>Ad insights helps understand the impact of ad monetization on audience's engagement by showing the relationships between ad frequency/intensity and session length/frequency to help understand the most effective ad loads.</p>
         <p>The following events and metrics are supported in the Roku SDK. Since some of the metric values are retrieved from the VAST/VMAP file provided, it’s possible that some metrics are not sent if their values can’t be found. <a target="_blank" href="https://studio.support.brightcove.com/analytics/module/ad-insights.html">Learn more</a></p>
         <p><strong>Events</strong></p>
@@ -2544,7 +2591,7 @@
 
 <!-- start -->
 
-    <h3>Package Sources</h3>
+    <h3 id="packageSources">Package Sources</h3>
     <p>
       To include the Roku SDK in your project, you will need to obtain the SDK package source. 
       Brightcove provides access to the Roku SDK through a specific URL endpoint using Semantic Versioning. 
@@ -2602,7 +2649,7 @@
   
     <!-- Tip Note -->
     
-    <h3>Changelog</h3>
+    <h3 id="changelog">Changelog</h3>
     <p>The changelog can be retrieved from the following endpoint. A full list of available Roku SDK versions is included.</p>
     <ul>
         <li><a href="https://players.brightcove.net/roku-sdk/CHANGELOG.md">https://players.brightcove.net/roku-sdk/CHANGELOG.md</a></li>
@@ -2610,7 +2657,7 @@
   
 <!-- end -->
 
-    <h3>Loading the library directly from the source</h3>
+    <h3 id="directSource">Loading the library directly from the source</h3>
     <!-- <aside class="bcls-aside bcls-aside--information">Note: Brightcove updates the Roku SDK regularly, and loading the SDK from the remote location makes it easier to stay up-to-date with the latest fixes and features.</aside> -->
     <p>In this case the Roku SDK package URL can be set directly into the <code translate="no">ComponentLibrary</code> <code translate="no">uri</code> field. The <code translate="no">ComponentLibrary</code> node will handle the package file download and loading process automatically. For example, to load the latest v1 major release into a Roku channel, you can follow these steps:</p>
     <ol class="bcls-tasklist">
@@ -2659,7 +2706,7 @@
                 </code></pre>
         </li>
     </ol>
-    <h3>Loading the library locally</h3>
+    <h3 id="loadingLocally">Loading the library locally</h3>
     <p>In this case, you should manually download the Roku SDK package file from Brightcove sources and embed it into a Roku channel. In this process the library is simply loaded from the internal channel’s file structure at runtime. This is the recommended approach as it’s much faster and efficient than letting <code translate="no">ComponentLibrary</code> download and load the SDK package. For this approach, the following steps can be taken:</p>
     <ol class="bcls-tasklist-restart">
         <li>Download the SDK package manually.</li>
@@ -2733,9 +2780,8 @@
         end sub
         </code></pre>
         <p>This allows you to control where and when exactly they want to load the library package into their Roku channel.</p>
-  </section>
-  <section class="bcls-section">
-    <h2 id="accessing-components">Accessing Components</h2>
+  <hr>
+    <h3 id="accessing-components">Accessing Roku SDK components</h3>
     <p>Once the SDK library is successfully loaded (ie, the <code translate="no">ComponentLibrary</code> <code translate="no">loadStatus</code> field is ready), an instance of any of its components can be created like so:</p>
     <pre class="line-numbers">
         <code class="language-basic" translate="No">' creating an instance of the bcPlayer component from the bcLib library
@@ -3289,7 +3335,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
         </section>
         <hr>
         <section>
-            <h3 id="closeOnBack">retryOnBufferTimeout</h3>
+            <h3 id="retryBufferTimeout">retryOnBufferTimeout</h3>
             <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
             <p>Configures the retry on buffer timeout feature which, when enabled, allows bcPlayer to automatically retry video playback with a different video source when a buffering timeout error occurs.</p>
@@ -3674,8 +3720,8 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                 </code></pre>
         </section>
         <hr>
-        <section id="playback">
-            <h3>playback</h3>
+        <section>
+            <h3 id="playback">playback</h3>
             <p><code class="text-secondary" translate="no">NODE</code></p>
             <p>Allows for a deeper level of control over video playback and content management in the <code translate="no">bcPlayer</code>.</p>
             <p>Fields</p>
@@ -6821,7 +6867,7 @@ end sub
                       
                       end sub             
                     </code></pre> -->
-                    <hr>
+                    <!-- <hr>
                 <section>
                     <h3 id="playback">playback</h3>
                     <p>Allows control of <code translate="no">bcPlayer</code> playback. It provides the same playback actions as the native Video <code translate="no">control</code> field plus some other custom actions introduced by <code translate="no">bcPlayer</code>.</p>
@@ -6899,9 +6945,9 @@ end sub
                     
                     end sub
                         </code></pre>
-                </section>
+                </section> -->
 
-                    <hr>
+                    <!-- <hr>
                 <section>
                     <h3 id="playlist">playlist</h3>
                     
@@ -6987,7 +7033,7 @@ end sub
                     </ul>
                     </li>
                     </ul>
-                    <!-- <p>Return Value</p>
+                    <p>Return Value</p>
                     <ul>
                         <li><p><code translate="no">void</code></p>
                         <p>Parameters for some of the supported actions. Required for the following actions:</p>
@@ -7000,7 +7046,7 @@ end sub
                             <p>[To be implemented] Specifies the sort options</p></li>
                         </ul>
                         </li>
-                    </ul> -->
+                    </ul>
                     
                     <p>Return Value</p>
                     <p><code translate="no" class="text-secondary">DYNAMIC</code> The return value depends on the action executed. If content is not a playlist the return value is invalid for all actions. Otherwise, the return value per action is the following:</p>
@@ -7033,45 +7079,82 @@ end sub
                     
                           end sub
                         </code></pre>
-                </section>
+                </section> -->
 
                     <hr>
                 <section>
                     <h3 id="close">close</h3>
-                    <p>Closes bcPlayer and terminates all ongoing tasks and playback in the bcPlayer. The closing procedure is asynchronous so that any pending task doesn’t get abruptly interrupted. The closed confirmation can be obtained from the <code translate="no">bcPlayer.on.close</code> event.</p>
-                    <p>Parameters:</p>
+                    <p>Initiates the close action, which depending on the parameter provided, terminates/kills bcPlayer completely (<strong>hard</strong> close) or just stops and clears the current playback session (<strong>soft</strong> close). By default, if no parameter is provided, it executes a <strong>hard</strong> close.</p>
+                    <p>The <strong>hard</strong> close is an asynchronous process, at the end of which it triggers a <code translate="no">bcPlayer.on.closed</code> event to confirm that the close process is complete.</p>
+                    <p>Once the close action is called, the <code translate="no">bcPlayer.on.close</code> event is also triggered specifying the type of close action that was called (<strong>soft</strong> or <strong>hard</strong>).</p>
+                    <p>The close process can also be triggered internally by the <code translate="no">closeOnBack</code> and <code translate="no">closeOnFinished</code> configurations, if configured to do so.</p>
+                    <p>Be aware that a <strong>hard</strong> close completely kills the bcPlayer node instance and it’s not possible to access/use its functions afterwards.</p>
+                    <p>Parameters</p>
                     <ul>
-                        <li>This function has no parameters</li>
+                        <li>
+                            <p><code translate="no">kill</code> <code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="no">OPTIONAL</code></p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">true</code> <code class="text-warning" translate="no">DEFAULT</code></p>
+                                    <p>Triggers a <strong>hard</strong> close action, which terminates/kills the bcPlayer instance completely.</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">false</code></p>
+                                    <p>Triggers a <strong>soft</strong> close action, which stops the current playback session and clears the content. The bcPlayer node remains on standby waiting for other commands.</p>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-                    <p>Return Value</p>
-                    <ul>
-                        <li><p><code translate="no" class="text-secondary">VOID</code></p></li>
-                    </ul>
+                    <p>Return value</p>
+                    <p><code class="text-secondary" translate="no">VOID</code></p>
+
                     <p>Code Snippet</p>
                     <pre class="line-numbers">
                         <code class="language-basic" translate="No">sub init()
-                            ' listen for the "close" event, in case some action needs to be taken only after the complete termination of the bcPlayer
-                            m.bcPlayer.on.observeField("close", "onClose")
-                    
-                            ' trigger the close action
-                            m.bcPlayer.callFunc("close")
-                    
-                          end sub
-                    
-                          sub onClose(ev)
-                    
-                            ' m.bcPlayer is now completely terminated
-                    
-                          end sub
+
+   ...
+
+   ' listen for the "close" event, in case some action needs to be taken when closing bcPlayer
+   m.bcPlayer.on.observeField("close", "onClose")
+
+   ' listen for the "closed" event, which is only triggered by a hard close
+   m.bcPlayer.on.observeField("closed", "onClosed")
+
+   ' trigger the close action
+   m.bcPlayer.callFunc("close")
+
+ end sub
+
+ sub onClose(ev)
+
+   data = ev.getData() ' data => {type: "soft" / "hard"}
+
+   ' bcPlayer close action was triggered, 
+   ' data.type specifies what type of close was requested
+
+ end sub
+
+ sub onClosed()
+
+   ' bcPlayer was completely terminated by a hard close action. 
+   ' If there's still any bcPlayer reference in the app or fields observers, these
+   ' should be removed / unobserved at this point
+
+   m.bcPlayer.on.unobserveField("close")
+   m.bcPlayer.on.unobserveField("closed")
+   m.bcPlayer = invalid
+
+ end sub
                         </code></pre>
                 </section>
         </section>
+        <hr>
         <section>
-            <h3 id="videoSourcesSelection">Video Sources Selection</h3>
+            <h2 id="videoSourcesSelection">Video Sources Selection</h2>
             <p>When playing a Videocloud video or playlist in the bcPlayer node through the load, playVideo, playVideos, playPlaylist and playRelated functions, the video/videos metadata is parsed and the video sources are filtered through the following stages:</p>
 
             <table class="bcls-table">
-                <caption class="bcls-caption--table">Video Sources</caption>
+                
                 <thead class="bcls-table__head">
                     <tr>
                         <th>Step</th>
@@ -7094,11 +7177,8 @@ end sub
                             <ul>
                                 <li><p>The source contains the <code translate="no">codecs</code> property.</p></li>
                                 <li><p>The source contains the <code translate="no">has_joc</code> property set to <code translate="no">true</code>.</p></li>
-                                <li><p>Encryption dependent:</p>
-                                <ul>
-                                    <li><p>HLSe: The source with a <code translate="no">ext_x_version</code> property value different than 7.</p></li>
-                                    <li><p>HLS: The source with the highest <code translate="no">ext_x_version</code> property value.</p></li>
-                                </ul>
+                                <li><p>The source with the highest <code translate="no">ext_x_version</code> property value.</p>
+                                
                                 </li>
                             </ul>
                             </li>
@@ -7114,7 +7194,7 @@ end sub
                             <code class="language-basic" translate="No">{ 
                                 mp4: { 
                                   http: [&#60;video-source&#62;, ...], 
-                                  https: [<video-source>, ...] 
+                                  https: [&#60;video-source&#62;, ...] 
                                 },
                                 hls: {
                                   widevine: { 
@@ -7182,7 +7262,7 @@ end sub
                     <tr >
                         <td class="align-top">3</td>
                         <td><p>Once a Videocloud video source has been selected, it’s then converted into the required <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/getting-started/architecture/content-metadata.md">Video ContentNode fields</a>.</p>
-                        <p>At this stage the selected source URL is also verified for any supported query parameters we might need to set, such as the Forensic Watermarking token.</p>
+                        <p>At this stage the selected source URL is also verified for any supported query parameters we might need to set, such as the Forensic Watermarking token or JWT.</p>
                         </td>
                     </tr>
                 </tbody>
@@ -7190,9 +7270,9 @@ end sub
 
             <aside class="bcls-aside bcls-aside--information"><ul>
                 <p>Notes:</p>
-                <li><p>Since the source mapping object is stored internally, If retryOnError is enabled, every time a source fails to play, the stages 2 and 3 are executed once again so that another source is selected for playback. In this case, the source that failed to play is removed from the source mapping object so it isn’t repeatedly selected. This process is repeated until a source starts playing or no source is left to retry (in which case an error will occur).</p></li>
+                <li><p>Since the source mapping object is stored internally, If retryOnError is enabled, every time a source fails to play, the stages 2 and 3 are executed once again so that another source is selected for playback. In this case, the source that failed to play is removed from the source mapping object so it isn’t repeatedly selected. This process is repeated until a source starts playing or no source is left to retry (in which case an error is triggered).</p></li>
                 <li><p>This process is transparent to app users and app developers. It’s an internal process so the only way to partially controlling it is through the streamPreference and drmPreference bcPlayer config fields.</p></li>
-                <li><p>Roku does not support HLSe (AES-128 encrypted HLS sources) with v7 manifests so the SDK forces the selection of v4 manifests instead. If v4 manifest aren’t available, HLSe sources will be ignored and if no other sources are available, the SDK won’t be able to playback the video.</p></li>
+                
                 <li><p>This process doesn’t apply for external sources.</p></li>
             </ul></aside>
           
@@ -7216,37 +7296,27 @@ end sub
             ' create a bcAPI node reference
             m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
           
-            ' since a Task node initizalization is assyncronous, observe the "ready" field so all functions can be accessed once bcAPI loads completely
+            ' observe the response field to access the API responses
             m.bcAPI.observeField("ready", "onAPIready")
             
             ' configure bcAPI node fields
             m.bcAPI.setFields({
               credentials: invalid,
               <!-- env: "production", -->
-              logger: invalid, ' optional: provide a bcLib:Logger reference to capture logs from the bcAPI node
+              logger: invalid, ' optional: provide a bcLib:Logger node instance
               maxRequests: 5,
-              kill: false,
-              abort: false,
               control: "run" ' initialize bcAPI task imediately
             })
             
-          end sub
-          
-          &#60;...&#62;
-          
-          sub onAPIready(ev)
-            isReady = ev.getData()
-            if isReady then
-            
-              ' m.bcAPI node is ready to trigger API requests
-              
-            else
-            
-              ' m.bcAPI node was terminated and is no longer available to process new API requests
-            
-            end if
-            
-          end sub
+            m.bcAPI.getVideo = {id: "&#60;my-video-id&#62;"}
+
+            end sub
+
+            sub onAPIResponse(ev)
+
+              response = ev.getData()
+
+            end sub
         </code></pre>
         <hr>
         <h3 id="configFields">Config Fields</h3>
@@ -7286,13 +7356,14 @@ end sub
                 <p>Code Snippet</p>
                 <pre class="line-numbers">
                     <code class="language-basic" translate="No">m.bcAPI.credentials = {account_id: "my-account-id", policy_key: "my-policy-key"}
-                        ' OR
-                
-                        m.bcAPI.setFields({
-                          ' ...
-                          credentials: {account_id: "my-account-id", policy_key: "my-policy-key"},
-                          ' ...
-                        })
+
+ ' OR
+ 
+ m.bcAPI.setFields({
+   ' ...
+   credentials: {account_id: "my-account-id", policy_key: "my-policy-key"},
+   ' ...
+ })
                     </code></pre>
             </section>
             <hr>
@@ -7397,7 +7468,7 @@ end sub
         
         <hr>
         <section>
-            <h3 id="actionFields">Action Fields</h3>
+            <h2 id="actionFields">Action Fields</h2>
             <p>Since <code translate="no">bcAPI</code> is a Task node, it's not feasible to interact with it through Functions so all the actions requested to this node are initiated through its fields. Check below the list of all possible actions this node provides.</p>
             <hr>
             <section>
@@ -7421,7 +7492,11 @@ end sub
                     <ul>
                         <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
-                        <p>A custom request ID so it can then be identified when processing the response. Specially useful when parsing responses from the response field instead of a response Node. If not provided, the response <code translate="no">id</code> property is set to the timestamp the request was initiated at.</p>
+                        <p>A custom request ID so it can then be identified when processing the response data. Specially useful when parsing responses from the response field instead of a response Node. If not provided, defaults to “request“.</p>
+                        <ul>
+                            <li><code class="text-secondary" translate="no">request</code>    <code class="text-warning" translate="No">DEFAULT</code></li>
+                        </ul>
+                        <br>
                     </li>
                         <li><p><code translate="no">url</code> <code class="text-secondary" translate="no">STRING</code>    <code class="text-danger" translate="No">REQUIRED
                         </code></p>
@@ -7445,7 +7520,7 @@ end sub
                     </li>
                         <li><p><code translate="no">body</code> <code class="text-secondary" translate="no">STRING / ASSOCIATIVE ARRAY</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
-                        <p>Request body. If an Associative Array object is provided, it’s automatically parsed into a string.</p>
+                        <p>Request body. If an Associative Array object is provided, it’s automatically parsed into a string before sending the request.</p>
                     </li>
                         <li><p><code translate="no">gzip</code> <code class="text-secondary" translate="no">BOOLEAN</code>    <code class="text-success" translate="No">OPTIONAL
                         </code></p>
@@ -7464,7 +7539,7 @@ end sub
                         <p>Specifies how the response body should be formatted. The possible values are:</p>
                         <ul>
                             <li><p><code translate="no">auto</code> <code translate="no" class="text-warning">DEFAULT</code></p>
-                            <p>Checks for the content-type response header and if it’s set to <code translate="no">application/json</code> the response body is parsed into an Associative Array object. If not, the response body is set as a string.</p>
+                            <p>Checks for the <code translate="no">content-type</code> response header and if it’s set to <code translate="no">application/json</code> the response body is parsed into an Associative Array object. If not, the response body is set as a string.</p>
                             </li>
                             <li><p><code translate="no">json</code></p>
                             <p>Forces the parsing of the response body into an Associative Array object. This may result in unwanted results if the response content is not a valid JSON string.</p>
@@ -7487,87 +7562,78 @@ end sub
                 <p>Code Snippet</p>
                 <pre class="line-numbers">
                     <code class="language-basic" translate="No">sub init()
-      
-                        ' initialize bcAPI node reference
-                        m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
-                        
-                        ' observe the "ready" field
-                        m.bcAPI.observeField("ready", "onReady")  
-                        
-                        ' setup bcAPI config fields and initiate the bcAPI Task
-                        m.bcAPI.setFields({
-                          ' ...
-                          control: "run"
-                        })
-                        
-                      end sub
-                      
-                      sub onReady(ev)
-                        
-                        isReady = ev.getData()
-                        if isReady then
-                        
-                          ' observe bcAPI "response" field to retrieve the response data
-                          ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                          m.bcAPI.observeField("response", "onResponse")
-                          
-                          ' setup the request configuration and initiate it
-                          m.bcAPI.request = {
-                            data: {
-                              id: "myCustomRequest" ' it's important that a custom ID is set here so that this request response can be easily identified in the response observing function
-                              url: "https://my.request.url"
-                              method: "post",
-                              body: {some: "body-content"}
-                              options: {extradata: "some data I may need in the response"}
-                            }
-                          }
-                          
-                          ' OR
-                        
-                          ' create a response Node that will be used to "catch" the request response data
-                          responseNode = createObject("roSGNode", "Node")
-                      
-                          ' create an Associative Array "response" field in this Node
-                          responseNode.addFields({ response: {} })
-                          
-                          ' observe the just added "response" field to capture the response data
-                          responseNode.observeField("response", "onResponse")
-                        
-                          ' setup the request configuration, provide the response Node and initiate the request
-                          m.bcAPI.request = {
-                            node: responseNode,
-                            data: {
-                              id: "myOtherCustomRequest" ' the id could be omitted when parsing the response in a specific function
-                              url: "https://my.other.request.url"
-                              method: "post",
-                              body: {someOther: "body-content"}
-                              options: {extradata: "some other data I may need in the response"}
-                            }
-                          }
-                        
-                        end if
-                        
-                      end sub
-                      
-                      sub onResponse(ev)
-                        
-                        response = ev.getData()
-                        
-                        ' the data provided in the "options" property is available in the response object as is
-                        options = response.options
-                        ? options.extradata
-                        
-                        if response.id = "myCustomRequest" then
-                      
-                          ' handle "myCustomRequest" response here
-                      
-                        else if response.id = "myOtherCustomRequest" then
-                      
-                          ' handle "myOtherCustomRequest" response here    
-                      
-                        end if
-                        
-                      end sub
+
+ ' initialize bcAPI node reference
+ m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+ ' setup bcAPI config fields and initiate the bcAPI Task
+ m.bcAPI.setFields({
+   ' ...
+   control: "run"
+ })
+
+ ' observe bcAPI "response" field to retrieve the response data
+ ' keep in mind that if a response Node isn't provided, all request responses 
+ ' are set into the bcAPI response field
+ m.bcAPI.observeField("response", "onResponse")
+
+ ' setup the request configuration and initiate it
+ m.bcAPI.request = {
+   data: {
+     ' it's important that a custom ID is set here so that this request response 
+     ' can be easily identified in the response observing function
+     id: "myCustomRequest"
+     url: "https://my.request.url"
+     method: "post",
+     body: {some: "body-content"}
+     options: {extradata: "some data I may need in the response"}
+   }
+ }
+
+ ' OR
+
+ ' create a response Node that will be used to "catch" the request response data
+ responseNode = createObject("roSGNode", "Node")
+
+ ' create an Associative Array "response" field in this Node
+ responseNode.addFields({ response: {} })
+
+ ' observe the just added "response" field to capture the response data
+ responseNode.observeField("response", "onResponse")
+
+ ' setup the request configuration, provide the response Node and initiate the request
+ m.bcAPI.request = {
+   node: responseNode,
+   data: {
+     ' the id could be omitted when parsing the response in a specific function
+     id: "myOtherCustomRequest" 
+     url: "https://my.other.request.url"
+     method: "post",
+     body: {someOther: "body-content"}
+     options: {extradata: "some other data I may need in the response"}
+   }
+ }
+
+ end sub
+
+ sub onResponse(ev)
+
+   response = ev.getData()
+
+   ' the data provided in the "options" property is available in the response object as is
+   options = response.options
+   ? options.extradata
+
+   if response.id = "myCustomRequest" then
+
+     ' handle "myCustomRequest" response here
+
+   else if response.id = "myOtherCustomRequest" then
+
+     ' handle "myOtherCustomRequest" response here    
+   end if
+
+ end sub
                     </code></pre>
             </section>
             <hr>
@@ -7614,51 +7680,60 @@ end sub
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
-                <code class="language-basic" translate="No">' just like the request action, once the bcAPI is ready, the flow should be exactly the same
-                    sub onReady(ev)
-                    
-                      ' observe bcAPI "response" field to retrieve the response data
-                      ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                      m.bcAPI.observeField("response", "onResponse")
-                      
-                      ' setup the getVideo configuration and initiate it
-                      m.bcAPI.getVideo = {
-                        id: "<brightcove-video-id>",
-                        params: {
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                      ' OR
-                      
-                      ' create a response Node that will be used to "catch" the getVideo response data
-                      responseNode = createObject("roSGNode", "Node")
-                      
-                      ' create an Associative Array "response" field in this Node
-                      responseNode.addFields({ response: {} })
-                      
-                      ' observe the just added "response" field to capture the response data
-                      responseNode.observeField("response", "onResponse")
-                      
-                      ' setup the getVideo configuration, provide the response Node and initiate the API request
-                      m.bcAPI.getVideo = {
-                        node: responseNode,
-                        id: "<brightcove-video-id>",
-                        params: {
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                    end sub
-                    
-                    sub onResponse(ev)
-                      
-                      response = ev.getData()
-                      
-                      ' handle the "getVideo" request response here
-                      ' response.id is "getVideo"
-                      
-                    end sub
+                <code class="language-basic" translate="No">sub init()
+
+ ' initialize bcAPI node reference
+ m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+ ' setup bcAPI config fields and initiate the bcAPI Task
+ m.bcAPI.setFields({
+   ' ...
+   control: "run"
+ })
+
+ ' observe bcAPI "response" field to retrieve the response data
+ ' keep in mind that if a response Node isn't provided, all request responses are 
+ ' set into the bcAPI response field
+ m.bcAPI.observeField("response", "onResponse")
+ 
+ ' setup the getVideo configuration and initiate it
+ m.bcAPI.getVideo = {
+   id: "&#60;brightcove-video-id&#62;",
+   params: {
+     ad_config_id: "my-ad-config-id"
+   }
+ }
+   
+   ' OR
+   
+   ' create a response Node that will be used to "catch" the getVideo response data
+   responseNode = createObject("roSGNode", "Node")
+   
+   ' create an Associative Array "response" field in this Node
+   responseNode.addFields({ response: {} })
+   
+   ' observe the just added "response" field to capture the response data
+   responseNode.observeField("response", "onResponse")
+   
+   ' setup the getVideo configuration, provide the response Node and initiate the API request
+   m.bcAPI.getVideo = {
+     node: responseNode,
+     id: "<brightcove-video-id>",
+     params: {
+       ad_config_id: "my-ad-config-id"
+     }
+   }
+   
+ end sub
+ 
+ sub onResponse(ev)
+   
+   response = ev.getData()
+   
+   ' handle the "getVideo" request response here
+   ' response.id is "getVideo"
+   
+ end sub
                 </code></pre>
         </section>
         <hr>
@@ -7710,55 +7785,64 @@ end sub
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
-                <code class="language-basic" translate="No">' just like the request action, once the bcAPI is ready, the flow should be exactly the same
-                    sub onReady(ev)
-                    
-                      ' observe bcAPI "response" field to retrieve the response data
-                      ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                      m.bcAPI.observeField("response", "onResponse")
-                      
-                      ' setup the getVideos configuration and initiate it
-                      m.bcAPI.getVideos = {
-                        query: "&#60;videos-search-query&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                      ' OR
-                      
-                      ' create a response Node that will be used to "catch" the getVideos response data
-                      responseNode = createObject("roSGNode", "Node")
-                      
-                      ' create an Associative Array "response" field in this Node
-                      responseNode.addFields({ response: {} })
-                      
-                      ' observe the just added "response" field to capture the response data
-                      responseNode.observeField("response", "onResponse")
-                      
-                      ' setup the getVideos configuration, provide the response Node and initiate the API request
-                      m.bcAPI.getVideos = {
-                        node: responseNode,
-                        query: "&#60;videos-search-query&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                    end sub
-                    
-                    sub onResponse(ev)
-                      
-                      response = ev.getData()
-                      
-                      ' handle the "getVideos" request response here
-                      ' response.id is "getVideos"
-                      
-                    end sub
+                <code class="language-basic" translate="No">sub init()
+
+ ' initialize bcAPI node reference
+ m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+ ' setup bcAPI config fields and initiate the bcAPI Task
+ m.bcAPI.setFields({
+   ' ...
+   control: "run"
+ })
+
+ ' observe bcAPI "response" field to retrieve the response data
+ ' keep in mind that if a response Node isn't provided, all request responses are 
+ ' set into the bcAPI response field
+ m.bcAPI.observeField("response", "onResponse")
+
+ ' setup the getVideos configuration and initiate it
+ m.bcAPI.getVideos = {
+   query: "<videos-search-query>",
+   params: {
+     limit: 10,
+     offset: 20,
+     ad_config_id: "my-ad-config-id"
+   }
+ }
+   
+   ' OR
+   
+   ' create a response Node that will be used to "catch" the getVideos response data
+   responseNode = createObject("roSGNode", "Node")
+   
+   ' create an Associative Array "response" field in this Node
+   responseNode.addFields({ response: {} })
+   
+   ' observe the just added "response" field to capture the response data
+   responseNode.observeField("response", "onResponse")
+   
+   ' setup the getVideos configuration, provide the response Node and initiate the API request
+   m.bcAPI.getVideos = {
+     node: responseNode,
+     query: "&#60;videos-search-query&#62;",
+     params: {
+       limit: 10,
+       offset: 20,
+       ad_config_id: "my-ad-config-id"
+     }
+   }
+   
+ end sub
+ 
+ sub onResponse(ev)
+   
+   response = ev.getData()
+   
+   ' handle the "getVideos" request response here
+   ' response.id is "getVideos"
+   
+ end sub
                 </code></pre>
         </section>
         <hr>
@@ -7775,7 +7859,7 @@ end sub
             <p><strong>Possible Values:</strong></p>
             <p>An AssociativeArray object containing the following properties:</p>
             <ul>
-                <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code> Hide the custom loading spinner.</p>
+                <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                 <p>Brightcove video ID or reference ID to retrieve the related videos from. To get the related videos of a video using the video reference ID, <code translate="no">id</code> must be formatted like so: <code translate="no">ref:&#60;reference_id&#62;</code>.</p>
                 </li>
                 <li><p><code translate="no">params</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="no">OPTIONAL</code></p>
@@ -7807,55 +7891,64 @@ end sub
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
-                <code class="language-basic" translate="No">' just like the request action, once the bcAPI is ready, the flow should be exactly the same
-                    sub onReady(ev)
-                    
-                      ' observe bcAPI "response" field to retrieve the response data
-                      ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                      m.bcAPI.observeField("response", "onResponse")
-                      
-                      ' setup the getVideos configuration and initiate it
-                      m.bcAPI.getRelated = {
-                        id: "&#60;video-id&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                      ' OR
-                      
-                      ' create a response Node that will be used to "catch" the getRelated response data
-                      responseNode = createObject("roSGNode", "Node")
-                      
-                      ' create an Associative Array "response" field in this Node
-                      responseNode.addFields({ response: {} })
-                      
-                      ' observe the just added "response" field to capture the response data
-                      responseNode.observeField("response", "onResponse")
-                      
-                      ' setup the getRelated configuration, provide the response Node and initiate the API request
-                      m.bcAPI.getRelated = {
-                        node: responseNode,
-                        id: "&#60;video-id&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                    end sub
-                    
-                    sub onResponse(ev)
-                      
-                      response = ev.getData()
-                      
-                      ' handle the "getRelated" request response here
-                      ' response.id is "getRelated"
-                      
-                    end sub
+                <code class="language-basic" translate="No">sub init()
+
+ ' initialize bcAPI node reference
+ m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+ ' setup bcAPI config fields and initiate the bcAPI Task
+ m.bcAPI.setFields({
+   ' ...
+   control: "run"
+ })
+
+ ' observe bcAPI "response" field to retrieve the response data
+ ' keep in mind that if a response Node isn't provided, all request responses are 
+ ' set into the bcAPI response field
+ m.bcAPI.observeField("response", "onResponse")
+
+ ' setup the getVideos configuration and initiate it
+ m.bcAPI.getRelated = {
+   id: "&#60;video-i&#62;",
+   params: {
+     limit: 10,
+     offset: 20,
+     ad_config_id: "my-ad-config-id"
+   }
+ }
+   
+   ' OR
+   
+   ' create a response Node that will be used to "catch" the getRelated response data
+   responseNode = createObject("roSGNode", "Node")
+   
+   ' create an Associative Array "response" field in this Node
+   responseNode.addFields({ response: {} })
+   
+   ' observe the just added "response" field to capture the response data
+   responseNode.observeField("response", "onResponse")
+   
+   ' setup the getRelated configuration, provide the response Node and initiate the API request
+   m.bcAPI.getRelated = {
+     node: responseNode,
+     id: "&#60;video-id&#62;",
+     params: {
+       limit: 10,
+       offset: 20,
+       ad_config_id: "my-ad-config-id"
+     }
+   }
+   
+ end sub
+ 
+ sub onResponse(ev)
+   
+   response = ev.getData()
+   
+   ' handle the "getRelated" request response here
+   ' response.id is "getRelated"
+   
+ end sub
                 </code></pre>
         </section>
         <hr>
@@ -7870,7 +7963,7 @@ end sub
             <p><strong>Possible Values:</strong></p>
             <p>An AssociativeArray object containing the following properties:</p>
             <ul>
-                <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code> Hide the custom loading spinner.</p>
+                <li><p><code translate="no">id</code> <code class="text-secondary" translate="no">STRING</code> <code class="text-danger" translate="no">REQUIRED</code></p>
                     <p>Brightcove playlist ID or reference ID to be retrieved. To get a playlist using a playlist reference ID, <code translate="no">id</code> must be formatted like so: <code translate="no">ref:&#60;reference_id&#62;</code>.</p>
                     </li>
                     <li><p><code translate="no">params</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-success" translate="no">OPTIONAL</code></p>
@@ -7898,55 +7991,64 @@ end sub
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
-                <code class="language-basic" translate="No">' just like the request action, once the bcAPI is ready, the flow should be exactly the same
-                    sub onReady(ev)
-                    
-                      ' observe bcAPI "response" field to retrieve the response data
-                      ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                      m.bcAPI.observeField("response", "onResponse")
-                      
-                      ' setup the getPlaylist configuration and initiate it
-                      m.bcAPI.getPlaylist = {
-                        id: "&#60;playlist-id&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                      ' OR
-                      
-                      ' create a response Node that will be used to "catch" the getPlaylist response data
-                      responseNode = createObject("roSGNode", "Node")
-                      
-                      ' create an Associative Array "response" field in this Node
-                      responseNode.addFields({ response: {} })
-                      
-                      ' observe the just added "response" field to capture the response data
-                      responseNode.observeField("response", "onResponse")
-                      
-                      ' setup the getPlaylist configuration, provide the response Node and initiate the API request
-                      m.bcAPI.getPlaylist = {
-                        node: responseNode,
-                        id: "&#60;playlist-id&#62;",
-                        params: {
-                          limit: 10,
-                          offset: 20,
-                          ad_config_id: "my-ad-config-id"
-                        }
-                      }
-                      
-                    end sub
-                    
-                    sub onResponse(ev)
-                      
-                      response = ev.getData()
-                      
-                      ' handle the "getPlaylist" request response here
-                      ' response.id is "getPlaylist"
-                      
-                    end sub
+                <code class="language-basic" translate="No">sub init()
+
+ ' initialize bcAPI node reference
+ m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+ ' setup bcAPI config fields and initiate the bcAPI Task
+ m.bcAPI.setFields({
+   ' ...
+   control: "run"
+ })
+
+ ' observe bcAPI "response" field to retrieve the response data
+ ' keep in mind that if a response Node isn't provided, all request responses are 
+ ' set into the bcAPI response field
+ m.bcAPI.observeField("response", "onResponse")
+
+ ' setup the getPlaylist configuration and initiate it
+ m.bcAPI.getPlaylist = {
+   id: "&#60;playlist-id&#62;",
+   params: {
+     limit: 10,
+     offset: 20,
+     ad_config_id: "my-ad-config-id"
+   }
+ }
+   
+   ' OR
+   
+   ' create a response Node that will be used to "catch" the getPlaylist response data
+   responseNode = createObject("roSGNode", "Node")
+   
+   ' create an Associative Array "response" field in this Node
+   responseNode.addFields({ response: {} })
+   
+   ' observe the just added "response" field to capture the response data
+   responseNode.observeField("response", "onResponse")
+   
+   ' setup the getPlaylist configuration, provide the response Node and initiate the API request
+   m.bcAPI.getPlaylist = {
+     node: responseNode,
+     id: "&#60;playlist-id&#62;",
+     params: {
+       limit: 10,
+       offset: 20,
+       ad_config_id: "my-ad-config-id"
+     }
+   }
+   
+ end sub
+ 
+ sub onResponse(ev)
+   
+   response = ev.getData()
+   
+   ' handle the "getPlaylist" request response here
+   ' response.id is "getPlaylist"
+   
+ end sub
                 </code></pre>
         </section>
         <hr>
@@ -7964,10 +8066,11 @@ end sub
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">' ...
+                    
+ ' all requests that had a response Node provided will get notified once the request is aborted
+ m.bcAPI.abort = true
 
-                    m.bcAPI.abort = true ' all requests that had a response Node provided will get notified once the request is aborted
-                    m.bcAPI.abort = true
-                ' ...
+ ' ...
                 </code></pre>
         </section>
         <hr>
@@ -8001,7 +8104,7 @@ end sub
         
         <hr>
         <section>
-            <h3 id="outputFields">Output Fields</h3>
+            <h2 id="outputFields">Output Fields</h2>
             <section>
                 <h3 id="response">response</h3>
                 <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
@@ -8021,14 +8124,30 @@ end sub
                         <p>The response HTTP headers.</p>
                         </li>
                         <li><p><code translate="no">failure</code> <code class="text-secondary" translate="no">STRING</code></p>
-                        <p>An error message is applicable, <code translate="no">OK</code> in a successful request. <code translate="no">failure</code> contains the <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string" target="_blank" rel="noopener noreferrer">GetFailureReason</a> value.</p>
+                        <p>An error message is applicable, <code translate="no">OK</code> in a successful request. <code translate="no">failure</code> contains the <a target="_blank" href="https://developer.roku.com/en-ca/docs/references/brightscript/events/rourlevent.md#getfailurereason-as-string" target="_blank" rel="noopener noreferrer">GetFailureReason</a> function.</p>
                         </li>
                         <li><p><code translate="no">duration</code> <code class="text-secondary" translate="no">FLOAT</code></p>
                         <p>Request duration since its initialization until a response is received.</p>
                         </li>
-                        <li><p><code translate="no">body</code> <code class="text-secondary" translate="no">STRING / ASSOCIATIVE ARRAY</code></p>
-                        <p>In a request the <code translate="no">body</code> format may depend on the <code translate="no">forceFormat</code> option.</p>
-                        <p>In a Brightcove Playback API request the response metadata is provided in an Associative Array object.</p>
+                        <li>
+                            <p><code translate="no">body</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code> <code class="text-secondary" translate="no">STRING</code></p>
+                            <p>The response body.</p>
+                            <p>In a request the <code translate="no">body</code> format may depend on the <code translate="no">forceFormat</code> option.</p>
+                            <p>In a Brightcove Playback API request the response metadata is provided in an Associative Array object.</p>
+                        </li>
+                        <li>
+                            <p><code translate="no">request</code> <code class="text-secondary" translate="no">ASSOCIATIVE ARRAY</code></p>
+                            <p>Some data from the original request, includes the following properties:</p>
+                            <ul>
+                                <li>
+                                    <p><code translate="no">url</code> <code class="text-secondary" translate="no">STRING</code></p>
+                                    <p>The request URL</p>
+                                </li>
+                                <li>
+                                    <p><code translate="no">method</code> <code class="text-secondary" translate="no">STRING</code></p>
+                                    <p>The request method (get, post, etc)</p>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     </li>
@@ -8059,70 +8178,64 @@ end sub
                 <p>Code Snippet</p>
                 <pre class="line-numbers">
                     <code class="language-basic" translate="No">sub init()
-                        ' initialize bcAPI node reference
-                        m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
-                
-                        ' observe the "ready" field
-                        m.bcAPI.observeField("ready", "onReady")
-                
-                        ' setup bcAPI config fields and initiate the bcAPI Task
-                        m.bcAPI.setFields({
-                          ' ...
-                          control: "run"
-                        })
-                
-                      end sub
-                
-                      sub onReady(ev)
-                
-                        isReady = ev.getData()
-                        if isReady then
-                
-                          ' observe bcAPI "response" field to retrieve the response data
-                          ' keep in mind that if a response Node isn't provided, all request responses are set into the bcAPI response field
-                          m.bcAPI.observeField("response", "onResponse")
-                
-                          ' setup the request configuration and initiate it
-                          m.bcAPI.request = {
-                            data: {...}
-                          }
-                
-                          ' OR
-                
-                          ' create a response Node that will be used to "catch" the request response data
-                          responseNode = createObject("roSGNode", "Node")
-                
-                          ' create an Associative Array "response" field in this Node
-                          responseNode.addFields({ response: {} })
-                
-                          ' observe the just added "response" field to capture the response data
-                          responseNode.observeField("response", "onResponse")
-                
-                          ' setup the request configuration, provide the response Node and initiate the request
-                          ' bcAPI.response will not get this request response
-                          m.bcAPI.request = {
-                            node: responseNode,
-                            data: {...}
-                          }
-                
-                        end if
-                
-                      end sub
-                
-                      sub onResponse(ev)
-                
-                        response = ev.getData()
-                
-                        ' handle request response
-                
-                      end sub
-                    </code></pre>
+
+   ' initialize bcAPI node reference
+   m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+   ' setup bcAPI config fields and initiate the bcAPI Task
+   m.bcAPI.setFields({
+     ' ...
+     control: "run"
+   })
+
+   ' observe bcAPI "response" field to retrieve the response data
+   ' keep in mind that if a response Node isn't provided, all request responses are 
+   ' set into the bcAPI response field
+   m.bcAPI.observeField("response", "onResponse")
+
+   ' setup the request configuration and initiate it
+   m.bcAPI.request = {
+     data: {...}
+   }
+
+   ' OR
+
+   ' create a response Node that will be used to "catch" the request response data
+   responseNode = createObject("roSGNode", "Node")
+
+   ' create an Associative Array "response" field in this Node
+   responseNode.addFields({ response: {} })
+
+   ' observe the just added "response" field to capture the response data
+   responseNode.observeField("response", "onResponse")
+
+   ' setup the request configuration, provide the response Node and initiate the request
+   ' bcAPI.response will not get this request response
+   m.bcAPI.request = {
+     node: responseNode,
+     data: {...}
+   }
+
+ end sub
+
+ sub onResponse(ev)
+
+   response = ev.getData()
+
+   ' handle request response
+
+ end sub</code></pre>
             </section>
             <hr>
         <section>
             <h3 id="ready">ready</h3>
-            <p><code translate="no" class="text-secondary">BOOLEAN</code></p>
-            <p>Indicates if the bcAPI Task is ready to receive request commands, Because of the asynchronous nature of Roku Task nodes, it’s recommended to observe for the <code translate="no">ready</code> field and only make use of it once <code translate="no">ready</code> is <code translate="no">true</code>. It can then be observed for the <code translate="no">false</code> value to confirm that the Task was completely terminated, if needed.</p>
+            <p><code class="text-secondary" translate="no">BOOLEAN</code></p>
+            <p>Read-only field that indicates if the bcAPI Task is ready to process request commands or has been terminated.</p>
+            <p>A bcAPI node instance can be terminated through the following actions:</p>
+            <ul>
+                <li><p>setting its <code translate="no">control</code> field to <code translate="no">stop</code></p></li>
+                <li><p>setting its <code translate="no">kill</code> field is set to <code translate="no">true</code></p></li>
+            </ul>
 
             <p><strong>Possible Values:</strong></p>
             <ul>
@@ -8132,40 +8245,45 @@ end sub
             <p>Code Snippet</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
-  
-                    ' initialize bcAPI node reference
-                    m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
-                    
-                    ' observe the "ready" field
-                    m.bcAPI.observeField("ready", "onReady")  
-                    
-                    ' setup bcAPI config fields and initiate the bcAPI Task
-                    m.bcAPI.setFields({
-                      ' ...
-                      control: "run"
-                    })
-                    
-                  end sub
-                  
-                  sub onReady(ev)
-                    
-                    isReady = ev.getData()
-                    if isReady then
-                      
-                      ' bcAPI is ready to trigger HTTP/API requests
-                      
-                    else
-                    
-                      ' bcAPI hasn't been initiated yet OR hasn't been completely terminated yet
-                    
-                    end if
-                    
-                  end sub
-                </code></pre>
-        </section>
+
+   ' initialize bcAPI node reference
+   m.bcAPI = createObject("roSGNode", "bcLib:bcAPI")
+
+   ' observe the "ready" field
+   m.bcAPI.observeField("ready", "onReady")
+
+   ' setup bcAPI config fields and initiate the bcAPI Task
+   m.bcAPI.setFields({
+     ' ...
+     control: "run"
+   })
+
+   ' Trigger bcAPI requests here
+   ' The bcAPI node is able to process request commands at this point, right after its initialization.
+   ' There's no need to wait for it to be ready as it can detect that a new request command was initiated
+
+   ' ...
+
+   ' terminate the bcAPI node instance.
+   ' This will abort all ongoing requests and terminate the task, after which the ready field is set to false
+   m.bcAPI.kill = true
+
+ end sub
+
+ sub onReady(ev)
+
+   isReady = ev.getData()
+   if NOT isReady then
+
+     ' the bcAPI task been terminated and cannot be used anymore
+
+   end if
+
+ end sub</code></pre>
         </section>
         
-        <hr>
+        
+    
             <section class="bcls-section">
                 <h2 id="utils">Utils</h2>
                 <p>The Utils node provides a set of Brightscript helping utilities that may be useful for validations or common operations.</p>
@@ -8353,7 +8471,7 @@ end sub
                     
                     </ul>
                     <p>Return Value</p>
-                    <p><code translate="no" class="text-secondary">INTEGER</code></p>
+                    <p><code translate="no" class="text-secondary">BOOLEAN</code></p>
                     <p>Returns <code translate="no">true</code> if <code translate="no">needle</code> is found in <code translate="no">haystack</code> or <code translate="no">false</code> otherwise.</p>
                     <p>Code Snippet</p>
                     <pre class="line-numbers">
@@ -8389,6 +8507,7 @@ end sub
                 
                 </ul>
                 <p>Return Value</p>
+                <p><code translate="no" class="text-secondary">INTEGER</code></p>
                 <ul>
                     <li><p><code translate="no">-1</code> if needle isn't found.</p></li>
                     <li><p>Index of needle in haystack. Either the <code translate="no">haystack</code> array index where needle was found or the <code translate="no">inStr()</code> result if <code translate="no">needle</code> and <code translate="no">haystack</code> are strings.</p></li>
@@ -8779,12 +8898,12 @@ end sub
                         <hr>
                         <section>
                 <h3 id="match">match</h3>
-                <p>Search for matching substrings in a String through a regex pattern. If the matching pattern contains N parenthetical substrings, the relevant substrings are returned as an array of length N+1, where array[0] is again the entire match and each additional entry in the array is the match for the corresponding parenthetical expression.</p>
+                <p>Search for matching substrings in a String through a regex pattern. If the matching pattern contains N parenthetical substrings, the relevant substrings are returned as an array of length <code translate="no">N+1</code>, where <code translate="no">array[0]</code> is again the entire match and each additional entry in the array is the match for the corresponding parenthetical expression.</p>
                 <p>Uses Roku’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/components/roregex.md">roRegex</a> component internally.</p>
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">string</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                    <p>The string to check.</p>
+                    <p>The string to be searched for matching substrings.</p>
                     </li>
                     <li><p><code translate="no">pattern</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
                     <p>The regex pattern.</p>
@@ -8818,10 +8937,10 @@ end sub
                 <p>Parameters:</p>
                 <ul>
                     <li><p><code translate="no">string</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                    <p>The string to check.</p>
+                    <p>The string where occurrences of a matching <code translate="no">pattern</code> will be replaced by <code translate="no">replacement</code>.</p>
                     </li>
                     <li><p><code translate="no">pattern</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                    <p>The end characters to check.</p>
+                    <p>The regex pattern.</p>
                     </li>
                     <li><p><code translate="no">replacement</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
                     <p>The string to be used to replace matches in the provided <code translate="no">string</code>.</p>
@@ -9027,7 +9146,7 @@ end sub
                 </ul>
                 <p>Return Value</p>
                 <p><code translate="no" class="text-secondary">BOOLEAN</code></p>
-                <p>Returns <code translate="no">true</code> if the device is able to reproduce the specified audio codec, <code translate="no">false</code> otherwise. Essentially returns the value of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> return result property.</p>
+                <p>Returns <code translate="no">true</code> if the device is able to reproduce the specified audio codec, <code translate="no">false</code> otherwise. Essentially returns the value of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/brightscript/interfaces/ifdeviceinfo.md#candecodeaudioaudio_format-as-object-as-object">CanDecodeAudio</a> return <code translate="no">result</code> property.</p>
                 <p>Code Snippet</p>
                 <pre class="line-numbers">
                     <code class="language-basic" translate="No">m.bcUtils = createObject("roSGNode", "bcLib:Utils")
@@ -9092,8 +9211,9 @@ end sub
         
         <section class="bcls-section">
             <h2 id="logger-id">Logger</h2>
-            <p>The Logger node allows for logging messages to be configured and triggered.</p>
-            <p>bcPlayer node has an internal Logger node and one can also be provided to the bcAPI node so that internal log messages can be triggered and captured.</p>
+            <p>The Logger node allows to configure and trigger logging messages.</p>
+            <p>The bcPlayer node already has an internal Logger node which can be configured through the <code translate="no">bcPlayer.logLevel</code> field. Keep in mind that when running a Roku app in production, the bcPlayer logs should be captured through the <code translate="no">bcPlayer.on.logOutput</code> event.</p>
+            <p>A Logger node can also be provided to bcAPI nodes to trigger internal logging messages.</p>
             <p>An instance of this node can be created like so:</p>
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
@@ -9124,29 +9244,29 @@ end sub
                 <section>
                     <h3 id="level">level</h3>
                     <p><code translate="no" class="text-secondary">INTEGER</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                    <p>Allows the minimum log level to be customized. Only log messages with an equal or higher level are printed or sent to <code translate="no">output</code>.</p>
+                    <p>Specifies the minimum log level. Only log messages with an equal or higher level are triggered.</p>
                     <p><strong>Possible Values:</strong></p>
                     <ul>
-                        <li><p><code translate="no">0</code> Error. All log messages are processed.</p></li>
-                        <li><p><code translate="no">1</code> Warning. Only warning or higher level log messages are processed.</p></li>
-                        <li><p><code translate="no">2</code> Info. Only Info or higher level log messages are processed.</p></li>
-                        <li><p><code translate="no">3</code> Verbose. Only verbose or higher level log messages are processed.</p></li>
-                        <li><p><code translate="no">4</code> <code translate="no" class="text-warning">DEFAULT</code> Debug. Only debug or higher level log messages are processed.</p></li>
+                        <li><p><code translate="no">0</code> Error.  Triggers Error logs only. </p></li>
+                        <li><p><code translate="no">1</code> Warning. Triggers Warning and Error logs only.</p></li>
+                        <li><p><code translate="no">2</code> Info. Triggers Info, Warning and Error logs only.</p></li>
+                        <li><p><code translate="no">3</code> Debug. Triggers Debug, Info, Warning and Error logs only.</p></li>
+                        <li><p><code translate="no">4</code> <code translate="no" class="text-warning">DEFAULT</code> Verbose. Triggers all log levels.</p></li>
                     </ul>
                 </section>
                 <hr>
                 <section>
                     <h3 id="mode">mode</h3>
                     <p><code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                    <p>Specifies the log mode.</p>
+                    <p>Specifies where the log messages are sent to.</p>
                     <p><strong>Possible values:</strong></p>
                     <ul>
                         <li><p><code translate="no">telnet</code> <code translate="no" class="text-warning">DEFAULT</code></p>
-                        <p>Immediately prints log messages in the following format:</p>
+                        <p>Prints log messages in the following format:</p>
                         <p><code translate="no">[hh:mm:ss.ms][&#60;level-label&#62;]: &#60;log-message&#62; &#60;optional-data&#62;</code></p>
                         </li>
                         <li><p><code translate="no">capture</code></p>
-                        <p>Log messages are sent to output.</p>
+                        <p>Log messages are sent to the output field.</p>
                         </li>
                     </ul>
                 </section>
@@ -9154,7 +9274,7 @@ end sub
                 <section>
                     <h3 id="output">output</h3>
                     <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
-                    <p>Read-only field used to capture log details. May be useful to transfer log details to be processed by an external log handler. </p>
+                    <p>Read-only field used to capture log messages data. This can be useful to transfer log data to an external logging component.</p>
                     <p>Only applicable if mode is set to <code translate="no">capture</code>.</p>
                     <p><strong>Possible values:</strong></p>
                     <p>Provides an Associative Array object with the following properties:</p>
@@ -9240,28 +9360,8 @@ end sub
                     </section>
                     <hr>
                     <section>
-                        <h3 id="verbose">verbose</h3>
-                        <p>Triggers a verbose log message (level 3).</p>
-                        <p>Parameters:</p>
-                        <ul>
-                            <li><p><code translate="no" class="text-secondary">message</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
-                            <p>Specifies the log message.</p>
-                            </li>
-                            <li><p><code translate="no" class="text-secondary">params</code> <code translate="no" class="text-secondary">DYNAMIC</code> <code translate="no" class="text-success">OPTIONAL</code></p>
-                            <p>Specifies any useful data to be logged.</p>
-                            </li>
-                            
-                        </ul>
-                        <p>Code Snippet</p>
-                        <pre class="line-numbers">
-                            <code class="language-basic" translate="No">m.bcLogger = createObject("roSGNode", "bcLib:Logger")
-                                m.bcLogger.callFunc("verbose", "my verbose message", &#60;optional-data&#62;)
-                            </code></pre>
-                    </section>
-                    <hr>
-                    <section>
                         <h3 id="debug">debug</h3>
-                        <p>Triggers a debug log message (level 4).</p>
+                        <p>Triggers a debug log message (level 3).</p>
                         <p>Parameters:</p>
                         <ul>
                             <li><p><code translate="no" class="text-secondary">message</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -9278,6 +9378,27 @@ end sub
                                 m.bcLogger.callFunc("debug", "my debug message", &#60;optional-data&#62;)
                             </code></pre>
                     </section>
+                    <hr>
+                    <section></section>
+                        <h3 id="verbose">verbose</h3>
+                        <p>Triggers a verbose log message (level 4).</p>
+                        <p>Parameters:</p>
+                        <ul>
+                            <li><p><code translate="no" class="text-secondary">message</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
+                            <p>Specifies the log message.</p>
+                            </li>
+                            <li><p><code translate="no" class="text-secondary">params</code> <code translate="no" class="text-secondary">DYNAMIC</code> <code translate="no" class="text-success">OPTIONAL</code></p>
+                            <p>Specifies any useful data to be logged.</p>
+                            </li>
+                            
+                        </ul>
+                        <p>Code Snippet</p>
+                        <pre class="line-numbers">
+                            <code class="language-basic" translate="No">m.bcLogger = createObject("roSGNode", "bcLib:Logger")
+                                m.bcLogger.callFunc("verbose", "my verbose message", &#60;optional-data&#62;)
+                            </code></pre>
+                    </section>
+                    
                 </section>
         </section>
         <section class="bcls-section">
@@ -9378,7 +9499,7 @@ end sub
                             <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
                             <p>Adds the specified component to the Dialog content area. The <code translate="no">type</code> property value defines what type of component will be added as well as the other properties specific to that component. The following sets of properties are supported, per component type:</p>
                             <ul>
-                                <li>Text component
+                                <li>Text component (<a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-text-item.md">StdTextItem</a>)
                                     <ul>
                                         <li>
                                             <p><code translate="no">type</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-danger">REQUIRED</code></p>
@@ -9518,7 +9639,7 @@ end sub
                                 },
                                 {
                                     type: "multistyle",
-                                    text: "My <p>Pretty</p> Dialog"
+                                    text: "My &#60;p&#62;Pretty&#60;/p&#62; Dialog"
                                     styles: {
                                         default: {
                                             fontSize: 34
@@ -9641,19 +9762,19 @@ end sub
                     <p>An Array where each item is mapped into a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a>. Any combination of the following items is supported:</p>
                     <ul>
                         <li>
-                            <p><code translate="no" class="text-secondary">STRING</code></p>
+                            <p>A String Value <code translate="no" class="text-secondary">STRING</code></p>
                             <p>Adds a <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> node with its <code translate="no">text</code> field set to the text provided.</p>
                         </li>
-                        <li>
-                            <p>An Associative Array containing any of the <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-side-card-area.md">StdDlgSideCardArea</a> fields plus the following custom properties:</p>
-                            <ul>
+                       
+                            
+                            
                                 <li>
-                                    <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
+                                    <p>An Associative Array object <code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
                                     <p>Allows for some extra <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/standard-dialog-framework-nodes/std-dlg-button.md">StdDlgButton</a> customization options. The following properties are supported:</p>
-                                    <ul>
-                                        <li>
-                                            <p><code translate="no" class="text-secondary">ASSOCIATIVE ARRAY</code></p>
-                                            <p>An Associative Array object specifying the name of a Node and its fields. The following properties are required:</p>
+                                    
+                                        
+                                            
+                                            
                                             <ul>
                                                 <li>
                                                 <p><code translate="no">text</code> <code translate="no" class="text-secondary">STRING</code> <code translate="no" class="text-success">OPTIONAL</code></p>
@@ -9680,11 +9801,11 @@ end sub
                                                 </li>
                                                 
                                             </ul>
-                                        </li>
-                                    </ul>
+                                       
+                                   
                                 </li>
-                            </ul>
-                        </li>
+                            
+                        
                     </ul>
 
                     <p>Code Sinippet</p>
