@@ -1,0 +1,260 @@
+---
+title: 'Roku SDK Release Notes'
+description: 'In this topic, you will find the latest information on changes and
+enhancements to the Roku SDK.'
+parent: Resources
+grandparent: Roku Development
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+  <br/>
+
+    <section id="Current_release" class="section">
+      <h2 id="Current_release"><strong>Current release</strong></h2>
+      <h3>Version 2.0.0</h3>
+      <h4>18 Sep 2024</h4>
+      <p>Changed:</p>
+<ul>
+    <li>Changed Brightcove's EPA requests <code>Authorization</code> header to <code>Bcov-Auth</code>.</li>
+    <li>The <code>bcPlayer.closeOnBack</code> field is now a string. The supported values are <code>soft</code>, <code>hard</code> and <code>off</code>.</li>
+    <li>Changed the default <code>bcPlayer.LogLevel</code> field value to <code>0</code>.</li>
+    <li>The <code>bcPlayer.width</code> and <code>bcPlayer.height</code> fields values now default to the screen resolution.</li>
+    <li>The <code>bcPlayer.on.playlistIndex</code> event now reflects the <code>bcPlayer.playback.index</code> field from the new custom playlist implementation.</li>
+    <li>The <code>bcPlayer.on.close</code> event data is now an AssociativeArray object that specifies what type of close action was executed.</li>
+    <li>Changed the following options in the <code>bcPlayer.load()</code> function:
+        <ul>
+            <li>The <code>position</code> supported values are now <code>replace</code>, <code>append</code> and <code>prepend</code>.</li>
+            <li>Added the <code>prebuffer</code> option to control whether it should prebuffer the video or start playback.</li>
+        </ul>
+    </li>
+    <li>The <code>bcPlayer.loadCustom()</code> function now applies the specified <code>position</code> option.</li>
+    <li>Switched the order of the debug and verbose log levels in the Logger component. Verbose is now 4 and debug is now 3. This change means that verbose is the new default log level.</li>
+    <li>It's now possible to access <code>bcAPI</code> features right after creating a node instance without having to observe its <code>ready</code> field.</li>
+    <li>(CSAS) RAF's <code>setAdPrefs()</code> <code>maxRequests</code> property now defaults to <code>5</code>.</li>
+    <li>The <code>play_request</code> Data Collection event is now only triggered once per video playback session.</li>
+</ul>
+
+<p>Fixed</p>
+<ul>
+    <li>(CSAI) Fixed RAF's <code>setAdConstraints()</code> being set when <code>bcPlayer.csai.adConstraints</code> is set to <code>{}</code> (the default value).</li>
+    <li>Fixed Brightcove DRM sources filtering.</li>
+    <li>Fixed v7 HLSe sources manifest support.</li>
+    <li>Fixed the sources fresh not reusing the original <code>ad_config_id</code> and <code>config_id</code> Playback API parameters.</li>
+    <li>Fixed request refresh not allowing pending HTTP requests to complete before closing.</li>
+    <li>Fixed the <code>seq</code> and <code>range</code> Data Collection metric values.</li>
+    <li>Fixed the <code>bcPlayer.analytics.eventOut</code> not providing the event name.</li>
+    <li>Fixed the <code>application/vnd.apple.mpegurl</code> Brightcove sources not being recognized as HLS.</li>
+</ul>
+
+<p>Added</p>
+<ul>
+    <li>Added the missing <code>event</code> property in <code>bcPlayer.analytics.eventOut</code>.</li>
+    <li>Added the following <code>bcPlayer.on</code> events:
+        <ul>
+            <li><code>pause</code> – triggered when video playback is paused.</li>
+            <li><code>loadItem</code> – triggered when a new video is loaded.</li>
+            <li><code>closed</code> – triggered when the bcPlayer closes completely.</li>
+            <li><code>timeout</code> – triggered when buffering times out, when enabled.</li>
+        </ul>
+    </li>
+    <li>Added the <code>reqParams</code> field into Brightcove videos ContentNodes. This field contains the Playback API request query parameters. Applicable to both the <code>bcPlayer</code> and <code>bcAPI</code> components.</li>
+    <li>Added support for audio-only MP4 sources.</li>
+    <li>Added the <code>bcPlayer.retryOnBufferTimeout</code> configuration field, allowing the retry function to be configured to trigger upon a buffering timeout.</li>
+    <li>Added the <code>bcPlayer.relativePosition</code> read-only field which specifies the relative playback position when playing SSAI videos.</li>
+    <li>Added the <code>bcPlayer.closeOnFinished</code> field. The supported values are <code>soft</code>, <code>hard</code>, and <code>off</code>.</li>
+    <li>Added the <code>bcPlayer.enableGsc</code> field to toggle the Generic Stream Concurrency feature on and off.</li>
+    <li>Added the <code>bcPlayer.visibleOnScreen</code> read-only field which specifies if the bcPlayer node is visible in the screen based on its size, position, and <code>visible</code> and <code>opacity</code> fields.</li>
+    <li>Added support for CSAS on SSAI videos streams (pre-rolls only).</li>
+    <li>Added support for both CSAS and SSAI on playlist videos.</li>
+    <li>Added a new custom playlist implementation which can be controlled through the <code>bcPlayer.playback</code> node.</li>
+    <li>Added support for Brightcove's Generic Stream Concurrency feature.</li>
+    <li>Added the next and previous playlist buttons into the <code>Video.pivotNode</code> node when <code>bcPlayer.enableUI</code> is enabled.</li>
+    <li>Added the <code>prebuffer</code> option to the <code>bcPlayer.load()</code> function.</li>
+    <li>Added the following properties to the <code>bcPlayer.on.load</code> event data:
+        <ul>
+            <li><code>autoplay</code> – specifies the <code>bcPlayer.load()</code> or <code>loadCustom()</code> <code>autoplay</code> option value.</li>
+            <li><code>prebuffer</code> – specifies the <code>bcPlayer.load()</code> or <code>loadCustom()</code> <code>prebuffer</code> option value.</li>
+            <li><code>position</code> – specifies the <code>bcPlayer.load()</code> or <code>loadCustom()</code> <code>position</code> option value.</li>
+        </ul>
+    </li>
+    <li>Added support for Brightcove Ad Insight events and metrics.</li>
+    <li>Added the following Brightcove Data Collection metrics:
+        <ul>
+            <li><code>ip_address</code> – the hop device external IP address.</li>
+            <li><code>user_agent</code> – Roku's user-agent value as per <code>roUrlTransfer.GetUserAgent()</code>.</li>
+            <li><code>platform</code> – hardcoded to <code>roku-sdk</code>.</li>
+            <li><code>content_type</code> – hardcoded to <code>video</code>.</li>
+            <li><code>delivery_type</code> – <code>ondemand</code> for VOD, <code>live</code> for live streams.</li>
+            <li><code>real_time_ms</code> – playback start time.</li>
+            <li><code>load_time_ms</code> – video load time.</li>
+        </ul>
+    </li>
+</ul>
+
+<p>Deprecated</p>
+<ul>
+    <li>Removed the <code>bcPlayer.playlist()</code> function as playlist functions can now be accessed through the <code>bcPlayer.playback</code> field.</li>
+    <li>Removed the <code>bcPlayer.playback()</code> function as playback functions can now be accessed through the <code>bcPlayer.playback</code> field.</li>
+    <li>Removed the following <code>bcPlayer.csai</code> fields:
+        <ul>
+            <li><code>useCSAS</code> – it wasn't used as only CSAS implementation is currently supported.</li>
+            <li><code>closeOnFinish</code> – replaced by the <code>bcPlayer.closeOnFinish</code> field.</li>
+            <li><code>enableJIT</code> – it was only applicable to the custom CSAI implementation (currently only CSAS is supported).</li>
+            <li><code>enableInPodStitching</code> – it was only applicable to the custom CSAI implementation (currently only CSAS is supported).</li>
+        </ul>
+    </li>
+    <li>Removed CSAS RAF's <code>enableInPodStitching</code> configuration as it's only applicable to the custom CSAI implementation (currently only CSAS is supported).</li>
+    <li>The native Video playlist setup is no longer supported. The <code>bcPlayer.playback</code> node should instead be used to setup and manage playlists. The following alternatives are provided to the most common playlist related Video fields:
+        <ul>
+            <li><code>Video.contentIsPlaylist</code> – the <code>bcPlayer.playback.callFunc("is", "playlist")</code> solution should be used instead.</li>
+            <li><code>Video.playlistIndex</code> – the <code>bcPlayer.playback.index</code> field should be used instead.</li>
+            <li><code>Video.nextContentIndex</code> – the <code>bcPlayer.playback.callFunc("playNext")</code>, <code>bcPlayer.playback.callFunc("playPrevious")</code> or <code>bcPlayer.playback.callFunc("play")</code> solutions should be used instead.</li>
+        </ul>
+    </li>
+</ul>
+
+
+    </section>
+    <section class="section">
+      
+      <h2 id="Previous_releases"><strong>Previous releases</strong></h2>
+
+      <h3>Version 1.0.0</h3>
+      <h4>01 May 2024</h4>
+      <p>Changed</p>
+<ul>
+    <li>The <code>account_id</code> property is now required by the bcPlayer <code>load</code> function to load Brightcove videos metadata. This property value must match the bcPlayer <code>credentials.account_id</code> config value.</li>
+    <li>Renamed the bcPlayer <code>addSource</code> function to <code>loadCustom</code> and changed the following items in this function:
+        <ul>
+            <li>Added the <code>autoplay</code> options property to specify the index that should start playing once the metadata is loaded. Defaults to 0, plays the first item.</li>
+            <li>Added the <code>prebuffer</code> options property to specify whether it should preload the stream or start the playback. Only applicable to single videos.</li>
+            <li>Removed the <code>position</code> options property. <code>loadCustom</code> will always replace the existing content.</li>
+            <li><code>loadCustom</code> now also triggers a bcPlayer <code>on.load</code> event.</li>
+        </ul>
+    </li>
+    <li>Renamed the bcPlayer <code>on.play</code> event to <code>on.playing</code>. This event is triggered when the Video state is set to <code>playing</code>.</li>
+    <li>Added the property <code>reason</code> to the bcPlayer <code>on.finished</code> event data, specifying what caused the stream to finish. The possible values are:
+        <ul>
+            <li><code>stopped</code>: the playback has been interrupted either by the user or another operation.</li>
+            <li><code>finished</code>: the playback has completed. It either reached the end of the stream or a playback error occurred.</li>
+        </ul>
+    </li>
+</ul>
+<p>Fixed</p>
+<ul>
+    <li>Fixed the Utils <code>toString</code> function not properly formatting Associative Arrays and Arrays.</li>
+</ul>
+
+
+<p>Added</p>
+<ul>
+    <li>Added bcPlayer <code>on.isHidden</code> event: indicates if the bcPlayer node is completely hidden based on the renderTracking value.</li>
+    <li>Added bcPlayer <code>sdkVersion</code> field: provides the SDK version number.</li>
+    <li>Added bcPlayer <code>voiceControls</code> field: toggles custom voice controls handling on/off (currently only the "next" voice command is handled by the bcPlayer, all other commands are handled natively by the Video node).</li>
+    <li>Added <code>adPlaying</code> field: indicates if an ad is playing.</li>
+    <li>Added support for Brightcove Analytics.
+        <ul>
+            <li>Added bcPlayer <code>analytics</code> field which allows for some BC Analytics parameters to be customized:
+                <ul>
+                    <li><code>accountId</code>: specifies the Videocloud account ID used in the Analytics events. If not set, the bcPlayer credentials are used.</li>
+                    <li><code>url</code>: specifies a different URL where the BC Analytics metrics should be redirected to. Useful for debugging purposes.</li>
+                    <li><code>applicationID</code>: used to denote a specific instance or application of a player.</li>
+                    <li><code>env</code>: specifies the Brightcove Analytics API environment. Defaults to <code>production</code>.</li>
+                    <li><code>playerId</code>: used to build the <code>player_name</code> parameter. Useful for metrics filtering purposes.</li>
+                    <li><code>viewerId</code>: used to build the <code>player_name</code> parameter. Useful for metrics filtering purposes.</li>
+                    <li><code>user</code>: specifies a user identification.</li>
+                    <li><code>orientation</code>: specifies the <code>destination</code> parameter.</li>
+                    <li><code>source</code>: specifies the <code>source</code> parameter.</li>
+                    <li><code>eventOut</code>: [read-only] allows access to all the events data every time an event is triggered.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>The following events are supported:
+        <ul>
+            <li><code>player_load</code></li>
+            <li><code>player_ready</code></li>
+            <li><code>catalog_request</code></li>
+            <li><code>catalog_response</code></li>
+            <li><code>catalog_error</code></li>
+            <li><code>video_impression</code></li>
+            <li><code>play_request</code></li>
+            <li><code>video_view</code></li>
+            <li><code>video_engagement</code></li>
+            <li><code>ad_mode_begin</code></li>
+            <li><code>ad_mode_complete</code></li>
+        </ul>
+    </li>
+    <li>Added support for Brightcove SSAI
+        <ul>
+            <li>SSAI playback is not supported with native playlists.</li>
+            <li>Added bcPlayer <code>ssai</code> field which allows for some SSAI parameters to be customized:
+                <ul>
+                    <li><code>enabled</code>: enabled or disable SSAI handling.</li>
+                    <li><code>enabledDiscontinuities</code>: toggles playback with Discontinuities in HLS & MultiPeriods in Dash. More info <a href="https://apis.support.brightcove.com/ssai/getting-started/video-cloud-ssai-ad-config-api.html#Entrypoint_URL_parameters">here</a>.</li>
+                    <li><code>adMeasurements</code>: allows the ad measurement parameters to be overridden. If set to invalid, RAF.enabledAdMeasurements() will be disabled. If set to an AssocArray, the following optional properties are supported:
+                        <ul>
+                            <li><code>childDirected</code>: specifies the RAF.setContentGenre() childDirected parameter. Defaults to <code>false</code>.</li>
+                            <li><code>contentId</code>: specifies the RAF.setContentId() parameter. If not provided, the video ContentNode <code>id</code> field is used instead.</li>
+                            <li><code>contentGenre</code>: specifies the RAF.setContentGenre() parameter. If not provided, the video ContentNode <code>Categories</code> or <code>tags</code> field is used instead.</li>
+                            <li><code>contentLength</code>: specifies the RAF.setContentLength() parameter. If not provided, the video ContentNode <code>Length</code> field is used instead. It's set to a value of <code>999999</code> in Live videos.</li>
+                            <li><code>bcovToken</code>: specifies the token used to authorize playback of HLSe streams protected by Brightcove's Playback Authorization Service.</li>
+                            <li><code>macros</code>: specifies the list of macros and respective values that will be replaced in the VMAP ad tag. These only apply to the variables specified as <code>{url.*}</code> in the VMAP ad tag. More info <a href="https://developer.roku.com/en-gb/docs/developer-program/advertising/integrating-roku-advertising-framework.md#url-parameter-macros">here</a>.</li>
+                            <li><code>event</code>: [read-only] allows access to all the ads related events.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>Added support for CSAI through RAF's CSAS implementation.
+        <ul>
+            <li>CSAI playback is not supported with native playlists.</li>
+            <li>CSAI does not support the Retry Playback feature.</li>
+            <li>Playback control over CSAI streams should be done through the bcPlayer <code>playback</code> function.</li>
+            <li>Added bcPlayer <code>csai</code> field which allows for some CSAI parameters to be customized:
+                <ul>
+                    <li><code>enabled</code>: enabled or disable CSAI handling.</li>
+                    <li><code>useCSAS</code>: use RAF's CSAS implementation (WIP: changing this setting has no effect. It's always enabled).</li>
+                    <li><code>closeOnFinish</code>: specifies if the bcPlayer should close when a CSAI source playback finishes.</li>
+                    <li><code>maxRequests</code>: specifies RAF.setAdPrefs() <code>maxRequests</code> parameter.</li>
+                    <li><code>enableJIT</code>: specifies RAF.enableJITPods() parameter.</li>
+                    <li><code>enableInPodStitching</code>: [WIP] not supported.</li>
+                    <li><code>adMeasurements</code>: allows the ad measurement parameters to be overridden. If set to invalid, RAF.enableAdMeasurements() will be disabled. If set to an AssocArray, the following optional properties are supported:
+                        <ul>
+                            <li><code>childDirected</code>: specifies the RAF.setContentGenre() <code>childDirected</code> parameter. Defaults to <code>false</code>.</li>
+                            <li><code>contentId</code>: specifies the RAF.setContentId() parameter. If not provided, the video ContentNode <code>id</code> field is used instead.</li>
+                            <li><code>contentGenre</code>: specifies the RAF.setContentGenre() parameter. If not provided, the video ContentNode <code>Categories</code> or <code>tags</code> field is used instead.</li>
+                            <li><code>contentLength</code>: specifies the RAF.setContentLength() parameter. If not provided, the video ContentNode <code>Length</code> field is used instead. It's set to a value of <code>999999</code> in Live videos.</li>
+                        </ul>
+                    </li>
+                    <li><code>adConstraints</code>: specifies RAF.setAdConstraints() parameters.</li>
+                    <li><code>event</code>: [read-only] allows access to all the playback and ads related events.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li>Added support for the <code>seek</code> action in the bcPlayer <code>playback</code> function.</li>
+    <li>Added the following Utils functions:
+        <ul>
+            <li><code>isFunction</code>: verifies if a variable is a Function.</li>
+            <li><code>toDouble</code>: converts a string value to a Double value.</li>
+            <li><code>setAddFields</code>: adds new fields / updates existing fields values in the specified Node.</li>
+            <li><code>addURLParams</code>: adds the specified key-value params into the URL provided. It does not check if params already exist in the URL.</li>
+        </ul>
+    </li>
+    <li>The Utils <code>validate</code> function is now able to verify other property types in the <code>type</code> map property (if not <code>string</code>, <code>number</code>, <code>boolean</code>, <code>array</code>, <code>node</code> or <code>aa</code>).</li>
+</ul>
+
+<p>Deprecated</p>
+<ul>
+    <li>Removed bcPlayer <code>setSources</code> function. Alternatively the <code>loadCustom</code> function should be used to load custom sources.</li>
+    <li>Removed the <code>startsWith</code> and <code>endsWith</code> Utils functions as these are already available as native functions.</li>
+</ul>
+<hr>
+<h3>Version 0.0.1</h3>
+<h4>27 Oct 2023</h4>    
+</section>
