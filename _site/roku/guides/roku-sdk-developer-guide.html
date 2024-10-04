@@ -2397,7 +2397,7 @@
         <li>CSAI <a target="_blank" href="https://developer.roku.com/en-gb/docs/developer-program/advertising/csas.md">CSAS</a> support.
         <ul>
             <li>VOD.</li>
-            <li>Live [to be implemented].</li>
+            <li>Live - Pre-rolls only.</li>
         </ul>
         </li>
         <li>Brightcove Analytics support (<a target="_blank" href="https://apis.support.brightcove.com/data-collection/getting-started/overview-data-collection-api-v2.html">Data Collection API v2</a>).</li>
@@ -2424,7 +2424,7 @@
         <li>Brightcove Edge Playback Authorization (EPA) support.</li>
         <li>Brightcove <a target="_blank" href="https://apis.support.brightcove.com/playback-restrictions/guides/generic-stream-concurrency.html">Generic Stream Concurrency</a>.</li>
         <li>Load custom Brightcove videos metadata.</li>
-        <li>External video and playlist sources support.</li>
+        <li>External/Custom sources support.</li>
         <li>Utilities
             <ul>
                 <li>Brightscript general utilities.</li>
@@ -2501,8 +2501,8 @@
             <li><strong>player_load</strong>: Sent when the player is initialized.</li>
             <li><strong>video_impression</strong>: Sent when the metadata for a video added to the player finishes loading and the player is ready to start video playback, either via auto-play or user interaction.</li>
             <li><strong>play_request</strong>: Sent when the user presses to play the asset. (once per session per media stream).</li>
-            <li><strong>video_view</strong>: Sent when the first frame of the video starts (applies to the video content. If a pre-roll is present, the video is triggered as soon as the pre-roll ends).</li>
-            <li><strong>video_engagement</strong>: Sent periodically every 10 seconds while video content is playing.</li>
+            <li><strong>video_view</strong>: Sent when the first frame of the video starts (applies to the video content. If a pre-roll is present, the <code translate="no">video_view</code> is triggered as soon as the pre-roll ends).</li>
+            <li><strong>video_engagement</strong>: Sent periodically every 10 seconds while video content is playing, or sooner if playback is interrupted for any reason.</li>
             <li><strong>ad_mode_begin</strong>: Sent when an ad break starts.</li>
             <li><strong>ad_mode_complete</strong>: Sent when an ad break finishes.</li>
             <li><strong>error</strong>: Sent when a playback error occurs.</li>
@@ -2524,7 +2524,7 @@
                 <code translate="no">&#60;#-of-events&#62;</code>_<code translate="no">&#60;#-of-streams&#62;</code>.</li>
             <li><strong>device_type</strong>: hardcoded to <code translate="no">tv</code>.</li>
             <li><strong>user</strong>: <code class="text-success" translate="No">OPTIONAL
-            </code>  specifies the user identification for Viewer Analytics purposes. This parameter should be provided through the <code translate="no">bcPlayer.analytics.user</code> field..</li>
+            </code>  specifies the user identification for Viewer Analytics purposes. The <code translate="no">user</code> is also required to use Brightcove’s Cross-Device Resume feature. This value should be provided through the <code translate="no">bcPlayer.analytics.user</code> field.</li>
             <li><strong>destination</strong>: <code class="text-success" translate="No">OPTIONAL
             </code> value of <code translate="no">bcPlayer.analytics.destination</code>, if provided.</li>
             <li><strong>source</strong>: <code class="text-success" translate="No">OPTIONAL
@@ -2594,7 +2594,7 @@
             <li><strong>ads_ad_index</strong>: Specifies the position of the ad relative to the pod.</li>
             <li><strong>ads_ad_system</strong>: Specifies source ad server information included in the ad response.</li>
             <li><strong>ads_ad_advertiser</strong>: Specifies the advertiser name as defined by the serving party.</li>
-            <li><strong>ads_ad_isci</strong>: Specifies the CI (Industry Standard Commercial Identifier) code for an ad.</li>
+            <li><strong>ads_ad_isci</strong>: Specifies the CI (Industry Standard Commercial Identifier) code for an ad. Currently we are attributing the adId.</li>
             <li><strong>ads_ad_creative_id</strong>: Specifies the ID of the selected creative for the ad.</li>
             <li><strong>ads_ad_duration</strong>: Specifies the duration in seconds of the selected ad.</li>
             <li><strong>ads_ad_title</strong>: Specifies the ad title from the VAST response.</li>
@@ -2687,7 +2687,7 @@
     <h3 id="directSource">Loading the library directly from the source</h3>
     <!-- <aside class="bcls-aside bcls-aside--information">Note: Brightcove updates the Roku SDK regularly, and loading the SDK from the remote location makes it easier to stay up-to-date with the latest fixes and features.</aside> -->
     <p>In this case the Roku SDK package URL can be set directly into the <code translate="no">ComponentLibrary</code> <code translate="no">uri</code> field. The <code translate="no">ComponentLibrary</code> node will handle the package file download and loading process automatically. For example, to load the latest v1 major release into a Roku channel, you can follow these steps:</p>
-    <ol class="bcls-tasklist">
+    <ol class="bcls-tasklist-restart">
         <li><p>In the scene XML component, create the <code translate="no">ComponentLibrary</code> node and set its <code translate="No">id</code> and <code translate="No">uri</code> fields. </p>
             <ul>
                 <li><p>The <code translate="No">uri</code> field contains the SDK package URL.</p></li>
@@ -2806,10 +2806,10 @@
             m.bcLib.uri = "&#60;path_or_url_to_the_pkg_file&#62;"
         end sub
         </code></pre>
-        <p>This allows you to control where and when exactly they want to load the library package into their Roku channel.</p>
+        <p>This allows you to control where and when exactly they want to load the Roku SDK library package into their Roku channel.</p>
   <hr>
     <h3 id="accessing-components">Accessing Roku SDK components</h3>
-    <p>Once the SDK library is successfully loaded (ie, the <code translate="no">ComponentLibrary</code> <code translate="no">loadStatus</code> field is ready), an instance of any of its components can be created like so:</p>
+    <p>Once the SDK library is successfully loaded (ie, the <code translate="no">ComponentLibrary</code> <code translate="no">loadStatus</code> field is <code translate="no">ready</code>), an instance of any of its components can be created like so:</p>
     <pre class="line-numbers">
         <code class="language-basic" translate="No">' creating an instance of the bcPlayer component from the bcLib library
 
@@ -2847,6 +2847,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
    watermarkToken: "",
    spinnerConfig: {},
    closeOnBack: "hard",
+   closeOnFinished: "hard",
    retryOnError: true,
    retryOnBufferTimeout: false,
    enableDialogs: true,
@@ -2894,11 +2895,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
  csai.observeField("event", "onCSAIEvent") ' read-only field
  csai.setFields({
   enabled: false
-   useCSAS: true
-   closeOnFinish: true
-   maxRequests: 1
-   enableJIT: true
-   enableInPodStitching: true
+   maxRequests: 5
    adMeasurements: {}
    adConstraints: {}
  })
@@ -2971,9 +2968,9 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
  })
                 </code></pre>
                 <aside class="bcls-aside bcls-aside--information">
-                    <p>Notes: The <strong>policy_key</strong> and <strong>auth_token</strong> properties specify which Playback API service is used to retrieve Brightcove catalog metadata (through the <strong>bcPlayer.getVideo</strong>, <strong>bcPlayer.getVideos</strong>, <strong>bcPlayer.getPlaylist</strong> and <strong>bcPlayer.getRelated</strong> functions):</p>
+                    <p>Notes: The <strong>policy_key</strong> and <strong>auth_token</strong> properties specify which Playback API service is used to retrieve Brightcove catalog metadata (through the <strong>bcPlayer.getVideo</strong>, <strong>bcPlayer.getVideos</strong>, <strong>bcPlayer.getPlaylist</strong> and <strong>bcPlayer.getRelated</strong> functions), according to the following combinations:</p>
                     <ul>
-                        <li><p><strong>policy_key</strong> set / <strong>auth_token</strong> not set: </p>
+                        <li><p><strong>policy_key</strong> set & <strong>auth_token</strong> not set: </p>
                         <ul>
                             <li><p>The Edge Playback API service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is not available.</p></li>
@@ -2981,14 +2978,14 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                             <li><p>HLSe with License Key protection needs Playback Auth.</p></li> -->
                         </ul>
                         </li>
-                        <li><p><strong>policy_key</strong> not set / <strong>auth_token</strong> set: </p>
+                        <li><p><strong>policy_key</strong> not set & <strong>auth_token</strong> set: </p>
                         <ul>
                             <li><p>The Edge Playback Authorization service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is available.</p></li>
                             <!-- <li><p>HLSe content playback is possible.</p></li> -->
                         </ul>
                         </li>
-                        <li><p>both <strong>policy_key</strong> set and <strong>auth_token</strong>  set: </p>
+                        <li><p>both <strong>policy_key</strong> set & <strong>auth_token</strong>  set: </p>
                         <ul>
                             <li><p>The Edge Playback API service is used to retrieve Brightcove catalog metadata.</p></li>
                             <li><p>Access to Playback Restrictions and Playback Rights is not available.</p></li>
@@ -3051,7 +3048,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <p>Please check <a target="_blank" href="https://apis.support.brightcove.com/general/overview-forensic-watermarking.html#Limitations">Videocloud documentation</a> for more information on Forensic Watermark.</p>
             
             <p><strong>Possible Values:</strong></p>
-            <p>An ASSOCIATIVE ARRAY containing the following keys:</p>
+            <!-- <p>An ASSOCIATIVE ARRAY containing the following keys:</p> -->
             <ul>
                 <li><p>A string containing the Forensic Watermarking token.
                 </p>
@@ -3166,7 +3163,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             </aside>
             
             <p><strong>Possible Values:</strong></p>
-            <p>An array containing any combination of the following values:</p>
+            <!-- <p>An array containing any combination of the following values:</p> -->
             <ul>
                 <li><p><code translate="no">-1</code> disable all the logging.
                 </p>
@@ -3180,10 +3177,10 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                 <li><p><code translate="no">2</code> log error, warning and info messages.
                 </p>
                 </li>
-                <li><p><code translate="no">3</code> log error, warning, info and verbose messages.
+                <li><p><code translate="no">3</code> log error, warning, info and debug messages.
                 </p>
                 </li>
-                <li><p><code translate="no">4</code>  log error, warning, info, verbose and debug messages.
+                <li><p><code translate="no">4</code>  log error, warning, info, debug and verbose messages.
                 </p>
                 </li>
             </ul>
@@ -3311,7 +3308,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <p>The appearance of the loading spinner can be customized through the <a target="_blank" href="#spinner-config">spinnerConfig</a> field.</p>
             
             <p><strong>Possible Values:</strong></p>
-            <p>An array containing any combination of the following values:</p>
+            <!-- <p>An array containing any combination of the following values:</p> -->
             <ul>
                 <li><p><code translate="no">false</code> <code class="text-warning" translate="no">DEFAULT</code> Hide the custom loading spinner.</p></li>
                 <li><p><code translate="no">true</code> Show the custom loading spinner.</p></li>
@@ -3334,7 +3331,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <h3 id="retryOnError">retryOnError</h3>
             <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-            <p>Configures the activation of the retry on error flow. This flow allows bcPlayer to automatically retry the video playback with another video source when a specific source results in a playback error during the initial buffering process.</p>
+            <p>Toggles the retry on error feature which, when enabled, allows bcPlayer to automatically retry video playback with a different video source if a playback error is triggered during the initial video buffering process.</p>
             <p>If all the available video sources fail to play an error will be triggered.
             </p>
             <p>The retry on error flow follows the sources type and DRM encryption preferences/priorities set in the <code translate="no">bcPlayer.streamPreference</code> and <code translate="no">bcPlayer.drmPreference</code> fields.</p>
