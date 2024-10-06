@@ -3394,10 +3394,10 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
         <hr>
         <section>
             <h3 id="closeOnBack">closeOnBack</h3>
-            <p><code class="text-secondary" translate="no">BOOLEAN</code> <code class="text-success" translate="No">OPTIONAL
+            <p><code class="text-secondary" translate="no">STRING</code> <code class="text-success" translate="No">OPTIONAL
             </code></p>
-            <p>Configures the back remote control button action to terminate the bcPlayer node when pressed.</p>
-            <p>It’s enabled by default, when you press the back button, the bcPlayer node will be terminated (to bring it back, it needs to be reinitialized from scratch).
+            <p>Configures the back key press action.</p>
+            <p>It’s set to <code translate="no">hard</code> by default, which means that when the user presses the back key, it’ll completely terminate/kill the bcPlayer instance.
             </p>
             <p>Setting it to <code translate="no">soft</code> causes the bcPlayer to do a soft close, which means that the current playback session is stopped and terminated but the bcPlayer node instance is kept alive and ready to receive other commands.</p>
         
@@ -3451,7 +3451,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                 <li><code translate="no">bcPlayer.playback.autoPlayNext</code> - if the <code translate="no">autoPlayNext</code> flag is enabled, once a video reaches the end, it'll play the next video in the playlist, if available.</li>
                 <li><code translate="no">bcPlayer.playback.loop</code> - if the <code translate="no">loop</code> flag is enabled, once the last video in the playlist finishes, it'll loop the playlist and play the first video.</li>
             </ul>
-            <p>When disabled (i.e., set to <code translate="no">off</code>), developers should handle the <code translate="no">finished</code> event manually through the <code translate="no">bcPlayer.on.finished</code> or the <code translate="no">bcPlayer.csai.close</code> event.</p>
+            <p>When disabled (i.e., set to <code translate="no">off</code>), developers should handle the <code translate="no">finished</code> event manually through the <code translate="no">bcPlayer.on.finished</code> or the <code translate="no">bcPlayer.csai</code> <code translate="no">close</code> event.</p>
             <p>If an invalid value is set, it'll automatically be reset back to <code translate="no">hard</code>.</p>
             <p>Keep in mind that the close action will trigger a bcPlayer.on.close event, where the close type (<code translate="no">soft</code> or <code translate="no">hard</code>) can be checked.</p>
             
@@ -3459,7 +3459,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             <ul>
                 <li><p><code translate="no">off</code>: Disables the close on finish action.</p></li>
                 <li><p><code translate="no">soft</code>: Soft closes the bcPlayer when video playback finishes (depending on whether it’s playing a playlist or not and on the autoPlayNext and loop configuration values).</p></li>
-                <li><p><code translate="no">hard</code> <code class="text-warning" translate="no">DEFAULT</code>: Hard closes the bcPlayer when video playback finishes (depending on whether it’s playing a playlist or not and on the <code translate="no">autoPlayNext</code> and loop configuration values).</p></li>
+                <li><p><code translate="no">hard</code> <code class="text-warning" translate="no">DEFAULT</code>: Hard closes the bcPlayer when video playback finishes (depending on whether it’s playing a playlist or not and on the <code translate="no">autoPlayNext</code> and <code translate="no">loop</code> configuration values).</p></li>
             </ul>
             <p>Code Snippet</p>
             <pre class="line-numbers">
@@ -3635,7 +3635,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
             </code></p>
             <p>Configures the buffering timeout period, in seconds. This configuration allows developers to setup a timer which is initiated once the initial video buffering begins and at the end of which a timeout error will be triggered if the video playback hasn’t yet initiated.
             </p>
-            <p>Setting it to 0 disables the buffering timeout timer.
+            <p>Setting it to <code translate="no">0</code> disables the buffering timeout timer.
             </p>
             <p>When the video buffering times out, a <code translate="no">bcPlayer.on.timeout</code> event is triggered. Additionally, if the <code translate="no">bcPlayer.retryOnBufferTimeout</code> configuration flag is enabled, the bcPlayer will retry the playback with a different source, if available. Otherwise, a dialog window is shown (if <code translate="no">bcPlayer.enableDialogs</code> is enabled).</p>
             
@@ -3738,8 +3738,8 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
  
  ...
  
- sub onAdPlaying(ev)
-   ? "Is bcPlayer visible on screen? " ev.getData()
+ sub onVisibleOnScreen(ev)
+  ? "Is bcPlayer visible on screen? " ev.getData()
  end sub
                 </code></pre>
         </section>
@@ -3747,7 +3747,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
         <section>
             <h3 id="playback">playback</h3>
             <p><code class="text-secondary" translate="no">NODE</code></p>
-            <p>Allows for a deeper level of control over video playback and content management in the <code translate="no">bcPlayer</code>.</p>
+            <p>Allows for a deeper level of control over video playback and content management in the bcPlayer.</p>
             <p>Fields</p>
         
             <div class="table-responsive">
@@ -3823,7 +3823,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                 </ul>
                             </td>
                             <td class="align-top">
-                                <p>Loads new content into <code translate="no">bcPlayer</code> for playback.</p>
+                                <p>Loads new content into bcPlayer for playback.</p>
                                 <p>This function is used internally by the bcPlayer <code translate="no">loadCustom</code>, <code translate="no">load</code>, <code translate="no">getVideo</code>, <code translate="no">getVideos</code>, <code translate="no">getPlaylist</code> and <code translate="no">getRelated</code> functions so, generally, there should be no reason to use it directly, although it does provide more flexibility for custom use-cases.</p>
                                 <p><code translate="no">content</code> specifies the ContentNode to be loaded, this can represent either a single video or a playlist.</p>
                                 <p>If <code translate="no">content</code> is <code translate="no">Invalid</code>, the existing content is removed (keep in mind that if a video is playing at this time, the playback is <strong>not</strong> interrupted).</p>
@@ -3900,7 +3900,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                             <td class="align-top">
                                 <p>Preloads a video and starts prebuffering it.</p>
                                 <p>The <code translate="no">prebuffer</code> function behaves just like the <code translate="no">play</code> function but instead of initiating video playback, it starts prebuffering the video stream. As such, please keep in mind that this might be an asynchronous process.</p>
-                                <p>If <code translate="no">index</code> is lower than <code translate="no">0</code>, it resets to the first video in the playlist if applicable or to the current video session if applicable, in which case video playback is interrupted and prebuffer is initiated on the same video.</p>
+                                <p>If index is lower than <code translate="no">0</code>, it resets to the first video in the playlist if applicable or to the current video session if applicable, in which case video playback is interrupted and prebuffer is initiated on the same video.</p>
                                 <p>Prebuffering does not apply to CSAI videos.</p>
                                 <p>Triggers a <code translate="no">bcPlayer.on.loadItem</code> event once the video is successfully loaded.</p>
                                 <p>Returns a <code translate="no">BOOLEAN</code> value specifying if the prebuffer action was successfully initiated.</p>
@@ -4236,7 +4236,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
  ' Use-case 2 - add custom video metadata and start prebuffering it
  ' -------------------------------------------------
  m.bcPlayer.on.observeField("load", "onLoad") ' since the loadCustom fucntion is asynchronous, we need to wait for the process to complete before handling its playback
- m.bcPlayer.callFunc("loadCustom", {<my-video>}, {autoplay: -1}) ' load the custom video metadata and disable autoplay
+ m.bcPlayer.callFunc("loadCustom", {&#60;my-video&#62;}, {autoplay: -1}) ' load the custom video metadata and disable autoplay
 
  ...
 
@@ -4317,7 +4317,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                                 
                                     <li>Specifies the Video Cloud Account ID for the Analytics events specifically.
                                     </li>
-                                    <li>Applies to the account, player and player_name metrics.</li>
+                                    <li>Applies to the <code translate="no">account</code>, <code translate="no">player</code> and <code translate="no">player_name</code> metrics.</li>
                                 
                                 <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
                                     
@@ -4422,10 +4422,10 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                               
                                   <li>Specifies the user identification.
                                   </li>
-                                  <li>Applies to the user metric.</li>
+                                  <li>Applies to the <code translate="no">user</code> metric.</li>
                                   <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
                                     <ul>
-                                        <li>If not set, the user metric will not be added to the request.</li>
+                                        <li>If not set, the <code translate="no">user</code> metric will not be added to the request.</li>
                                     </ul>
                                   </li>
                           </ul>
@@ -4438,12 +4438,12 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                             </code>
                           <ul>
                               
-                                  <li>Allows to specify the destination metric.
+                                  <li>Allows to specify the <code translate="no">destination</code> metric.
                                   </li>
                               
                               <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
                             <ul>
-                                <li>If not set, the destination metric will not be added to the request.</li>
+                                <li>If not set, the <code translate="no">destination</code> metric will not be added to the request.</li>
                             </ul></li>
                           </ul>
                           </td>
@@ -4460,7 +4460,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                               
                                   <li><code class="text-warning" translate="no">DEFAULT</code> <code translate="no">""</code>
                                     <ul>
-                                        <li>If not set, the source metric will not be added to the request.</li>
+                                        <li>If not set, the <code translate="no">source</code> metric will not be added to the request.</li>
                                     </ul></li>
                           </ul>
                           </td>
@@ -4503,8 +4503,8 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
         <hr>
         <section>
             <h3 id="on">on</h3>
-            <p><code translate="no" class="text-secondary">ROSGNODE</code> <code translate="no">READ-ONLY</code></p>
-            <p>Allows access to all the bcPlayer events. Developers should setup event listeners to capture the events data through the <code translate="no">observeField()</code> or <code translate="no">observeFieldScoped()</code> functions. Check the table below for all the available events and the data they provide. Check the code snippet to understand how to setup event listeners to capture these events.
+            <p><code translate="no" class="text-secondary">NODE</code> <code translate="no">READ-ONLY</code></p>
+            <p>Allows access to all the bcPlayer events. Developers should setup event listeners to capture the events data through the <code translate="no">observeField()</code> or <code translate="no">observeFieldScoped()</code> functions. Check the table below for all the available events and the data they provide.
             </p>
             <p><strong>Event List</strong></p>
             <div class="table-responsive">
@@ -4522,7 +4522,7 @@ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer")
                         <td class="align-top">sdkReady</td>
                         <td><p><code translate="no" class="text-secondary">BOOLEAN</code></p>
                         <ul>
-                            <li><p><code translate="no">true</code> bcPlayer features are "live" and ready to use.</p></li>
+                            <li><p><code translate="no">true</code> bcPlayer internal components have been loaded and are ready to use.</p></li>
                             <li><p><code translate="no">false</code> bcPlayer features are not available.</p></li>
                         </ul></td>
                         <td><p>Indicates if the bcPlayer internal components have been completely initiated. If the <code translate="no">sdkReady</code> value is <code translate="no">false</code>, the bcPlayer features are not available to use.</p></td>
