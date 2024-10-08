@@ -2225,7 +2225,7 @@
 <h3>Brightcove SDK version</h3>
 <ul>
   <li>
-    Native SDK for Android (coming soon)
+    The Android Native SDK is not supported
   </li>
   <li>
     Native SDK for iOS 6.5.0 and newer
@@ -2233,12 +2233,12 @@
 </ul>
 </section>
 
-<section class="bcls-section">
+<!-- <section class="bcls-section">
 <h2 id="Android_Implementation">Android Implementation</h2>
 
 <p>The Native SDK for Android will support China Delivery at a later date.</p>
 
-<!-- <p>To use China Delivery with the Native SDK for Android, follow these steps:</p>
+<p>To use China Delivery with the Native SDK for Android, follow these steps:</p>
 <ol class="bcls-tasklist">
   <li>
     <p>
@@ -2261,9 +2261,9 @@
   <li>
     For a complete code example, see the <a href="https://github.com/BrightcoveOS/android-player-samples/tree/master/brightcove-exoplayer/ThumbnailScrubberSampleApp/src/main">ThumbnailScrubberSampleApp</a>
   </li>
-</ol> -->
+</ol>
 
-</section>
+</section> -->
 
 <section class="bcls-section">
 <h2 id="iOS_Implementation">iOS Implementation</h2>
@@ -2310,6 +2310,25 @@
   }</code></pre>
   </li>
 </ol>
+</section>
+<section class="bcls-section">
+  <h2 id="Custom_players">Custom players</h2>
+  <p>To support Brightcove China Delivery with a custom player, you must update how it connects to Brightcove from within China Delivery.</p>
+  <p>The <a href="https://apis.support.brightcove.com/playback/index.html">Playback API</a> endpoint hostname must be changed from <code translate="no">edge.api.brightcove.com</code> to <code>yourdomain.cn</code>. Here is an example: </p>
+  <p><strong>The following endpoint:</strong></p>
+  <code translate="no">https://edge.api.brightcove.com/playback/v1/accounts/123450001/videos/543210001</code>
+  <p></p>
+  <p><strong>Would become:</strong></p>
+  <code translate="no">https://videos.yourdomain.cn/playback/v1/accounts/4602926340001/videos/6126356694001</code>
+  <p></p>
+  <p>The <a href="https://apis.support.brightcove.com/data-collection/index.html">Data Collection API</a> hostname must be changed from from <code translate="no">metrics.brightcove.com</code> to <code translate="no">yourdomain.cn</code>. Here is an example:</p>
+  <p><strong>The following endpoint:</strong></p>
+  <code translate="no">https://metrics.brightcove.com/v2/tracker?event=video_view&amp;domain=videocloud&account=123&video=789</code>
+  <p></p>
+  <p><strong>Would become:</strong></p>
+  <code translate="no">https://videos.yourdomain.cn/v2/tracker?event=video_view&amp;domain=videocloud&account=123&video=789</code>
+  <p></p>
+  <p>In the examples shown above <code translate="no">videos.yourdomain.cn</code> is the ICP-licensed and active hostname configured for the China Delivery account.</p>
 </section>
 
 <section class="bcls-section">
