@@ -2612,60 +2612,51 @@
     </section>
   <section class="bcls-section">
     <h2 id="setup">Setup</h2>
-    <p>To setup Brightcove Roku SDK in a Roku channel, you must request access to the SDK package file. Brightcove provides two ways for developers to access the SDK package file.</p>
+    <p>To setup Brightcove Roku SDK in a Roku channel you first need to request access to the SDK package file. Since Roku’s <a target="_blank" href="https://developer.roku.com/en-gb/docs/references/scenegraph/control-nodes/componentlibrary.md">ComponentLibrary</a> allows packages to be imported and loaded both locally and remotely into a Roku channel, Brightcove provides two different ways for developers to gain access to the SDK package file.</p>
     <aside class="bcls-aside bcls-aside--information">Note: In the following examples, <strong>bcLib.pkg</strong> is the Brightcove SDK library package provided by Brightcove.</aside>
 
 <!-- start -->
 
     <h3 id="packageSources">Package Sources</h3>
     <p>
-      To include the Roku SDK in your project, you will need to obtain the SDK package source. 
-      Brightcove provides access to the Roku SDK through a specific URL endpoint using Semantic Versioning. 
-      This enables you to target specific versions of the SDK you wish to implement in your Roku applications.
+        The Roku SDK library package sources can be obtained from <strong>https://players.brightcove.net/roku-sdk</strong>. Since Roku SDK releases use Semantic Versioning, the URL endpoint will vary depending on what release version of interest. It’s possible to obtain specific versions of the Roku SDK package like so:
     </p>
+    
+    <pre class="line-numbers">
+        <code class="language-html" translate="no">
+    https://players.brightcove.net/roku-sdk/<span class="text-danger">{MAJOR-VERSION}</span>.<span class="text-success">{MINOR-VERSION}</span>.<span class="text-success">{BUILD-VERSION}</span>/roku-sdk.pkg
+        </code>
+      </pre>
+    
+      <p>Where <code class="text-success" translate="no">MINOR-VERSION</code> and <code class="text-success" translate="no">BUILD-VERSION</code> are optional, but <code class="text-danger" translate="no">MAYOR-VERSION</code> is always required.</p>
+    
+      <p>A full list of available Roku SDK versions is included in the <a href="https://players.brightcove.net/roku-sdk/CHANGELOG.md">changelog</a>.</p>
+      
+      <p>Brightcove always recommends the latest Roku SDK version, but if you have specific need of a version, you can specify version numbers in the URL.</p>
+    
+      <p>For example, if we assume that these versions were available:</p>
+      <ul class="bcls-list">
+        <li>1.0.0</li>
+        <li>1.0.1</li>
+        <li>1.2.0</li>
+        <li>1.2.1</li>
+        <li>1.2.2</li>
+        <li>1.2.3</li>
+        <li>2.0.0</li>
+      </ul>
+
+      <p>The following examples specify how the Roku SDK packages could be retrieved based on the requested version:</p>
+    
+      <ul class="bcls-list">
+        <li><code translate="no">https://players.brightcove.net/roku-sdk/1/roku-sdk.pkg</code> - refers to the most recent version in the v1 major release. In this example, it would refer to the v1.2.3 release.
+          <ul>
+            <li>Keep in mind that if the v1.2.4 or v1.3.0 versions were released, this endpoint would retrieve those packages instead.</li>
+          </ul>
+        </li>
+        <li><code translate="no">https://players.brightcove.net/roku-sdk/1.0/roku-sdk.pkg</code> - refers to the most recent version in the v1.0 minor release. In this example, it refers to the v1.0.1 release.</li>
+        <li><code translate="no">https://players.brightcove.net/roku-sdk/1.2.3/roku-sdk.pkg</code> - in this case, refers to the v1.2.3 release.</li>
+      </ul>
   
-    <!-- Information Note -->
-    <aside class="bcls-aside bcls-aside--information">
-      The base URL for all SDK versions is <code translate="no">https://players.brightcove.net/roku-sdk</code>.
-      Remember to replace the version placeholders with the desired version numbers.
-    </aside>
-  
-    <!-- Code Block for SDK Download Link -->
-    <div class="bcls-code-block">
-      <pre class="line-numbers"><code class="language-markup" translate="no">
-  &lt;!-- Latest Major Version --&gt;
-  https://players.brightcove.net/roku-sdk/{MAJOR_VERSION}/roku-sdk.pkg
-  
-  &lt;!-- Specific Version --&gt;
-  https://players.brightcove.net/roku-sdk/{MAJOR_VERSION}.{MINOR_VERSION}.{BUILD_VERSION}/roku-sdk.pkg
-      </code></pre>
-    </div>
-  
-    <!-- List of Available Versions -->
-    <p><strong>Available Versions</strong></p>
-    <ol class="bcls-tasklist">
-      <li>1.0.0</li>
-      <li>1.0.1</li>
-      <li>1.2.0</li>
-      <li>1.2.1</li>
-      <li>1.2.2</li>
-      <li>1.2.3</li>
-      <li>2.0.0</li>
-    </ol>
-  
-    <!-- Example for Specific Version Retrieval -->
-    <p><strong>Retrieving a Specific Version</strong></p>
-    <p>
-      To download a specific version of the Roku SDK, replace the placeholders in the URL with the respective version numbers.
-      For instance, to download version 1.2.3, your URL would be:
-    </p>
-  
-    <!-- Code Block for Specific Version Example -->
-    <div class="bcls-code-block">
-      <pre class="line-numbers"><code class="language-markup" translate="no">
-  https://players.brightcove.net/roku-sdk/1.2.3/roku-sdk.pkg
-      </code></pre>
-    </div>
     <p>It’s also possible to retrieve the most recent version of the Roku SDK library package from the following endpoint:</p>
 
     <ul>
@@ -2676,7 +2667,7 @@
     <!-- Tip Note -->
     
     <h3 id="changelog">Changelog</h3>
-    <p>See the <a target="_blank" href="https://sdks.support.brightcove.com/roku/resources/brightcove-roku-changelog.html">Roku SDK Changelog</a></p>
+    <!-- <p>See the <a target="_blank" href="https://sdks.support.brightcove.com/roku/resources/brightcove-roku-changelog.html">Roku SDK Changelog</a></p> -->
     <p>The changelog can be retrieved from the following endpoint. A full list of available Roku SDK versions is included.</p>
     <ul>
         <li><a href="https://players.brightcove.net/roku-sdk/CHANGELOG.md">https://players.brightcove.net/roku-sdk/CHANGELOG.md</a></li>
@@ -2737,7 +2728,7 @@
     <p>In this case, you should manually download the Roku SDK package file from Brightcove sources and embed it into a Roku channel. In this process the library is simply loaded from the internal channel’s file structure at runtime. This is the recommended approach as it’s much faster and efficient than letting <code translate="no">ComponentLibrary</code> download and load the SDK package. For this approach, the following steps can be taken:</p>
     <ol class="bcls-tasklist-restart">
         <li>Download the SDK package manually.</li>
-        <li>Place the SDK package in the Roku channel file structure (in this case, we named it <strong>bcLib.pkg</strong>). The exact location doesn't matter. In the following example, it was placed in the lib directory.
+        <li>Place the SDK package in the Roku channel file structure (feel free to rename the file, in this case we named it <strong>bcLib.pkg</strong>). The exact location doesn't matter. In the following example, it was placed in the lib directory.
             <figure class="bcls-figure">
                 <img class="bcls-image" src="/assets/images/s-misc-img/developer/roku/ruku-library-locally.webp" alt="Loading the roku library locally">
               </figure>
@@ -2760,7 +2751,7 @@
                     &#60;/component&#62;
                 </code></pre>
         </li>
-        <li>In the <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully loaded. 
+        <li>In the scene's <code translate="no">init()</code> function of the Scene's brightscript file, set up the ComponentLibrary reference and an observer for the <code translate="no">loadStatus</code> field so you can detect when the SDK library is successfully loaded. 
             <pre class="line-numbers">
                 <code class="language-basic" translate="No">sub init()
                     m.bcLib = m.top.findNode("bcLib")
@@ -2815,13 +2806,17 @@
 
  ' 1 - create an instance of the bcPlayer node
  ' This won't make the bcPlayer node visible in the app, it still needs to be added to the node tree list after this step 
-m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer") 
+ m.bcPlayer = createObject("roSGNode", "bcLib:bcPlayer") 
 
  ' 2 - create an instance of the bcPlayer node and append it to the parentNode node.
-' If parentNode is already in the node tree list and is visible, this will also make the bcPlayer node visible in the app 
+ ' If parentNode is already in the node tree list and is visible, this will also make the bcPlayer node visible in the app 
  m.bcPlayer = parentNode.createChild("bcLib:bcPlayer")
          </code></pre>
-        <aside class="bcls-aside bcls-aside--information">Note: To reference a component from an external library, the following nomenclature should be use: <code translate="no">“&#60;ComponentLibrary-id&#62;:&#60;component-name&#62;"</code>.</aside>
+        <p>In place of the usual SGNode component name (in the <code>createObject</code> and <code>createChild</code> functions), an external library component must be referred as: “<code>
+            &#60;ComponentLibrary-id&#62;
+        </code>:<code>
+            &#60;component-name&#62;
+        </code>".</p>
    </section>
   <section class="bcls-section">
     <h2 id="bcPlayer">bcPlayer component</h2>
