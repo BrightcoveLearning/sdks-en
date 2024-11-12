@@ -2181,7 +2181,17 @@
 <section class="bcls-section">
     <h2 id="Playback-Notification_plugin_implementation">Playback-Notification plugin implementation</h2>
     <p>The Android SDK offers a new plugin for creating a notification for playback in the background only.</p>
-    <aside class="bcls-aside bcls-aside--information"><strong>Note:</strong> The notification provided by this plugin cannot be used for other background tasks.</aside>
+    <aside class="bcls-aside bcls-aside--information"><p><strong>Note:</strong></p>
+        <ul>
+            <li><p>The notification provided by this plugin cannot be used for other background tasks.</p></li>
+            <li><p>The Android system requires the applications to have permission to post notifications. This should be done on the application side before playing media in the background.</p>
+                <p>For more details on how to do it, check the <a target="_blank" href="https://developer.android.com/develop/ui/views/notifications/build-notification">Google documentation</a>.</p>
+            </li>
+        </ul>
+        
+    
+    
+    </aside>
     <p>The purpose of this plugin is to separate logic for background and foreground playback. Here is the list of steps for the implementation:</p>
     <ol class="bcls-tasklist">
         <li><p>To add the new dependency, include the new plugin in your <code>build.gradle</code> file:</p>
