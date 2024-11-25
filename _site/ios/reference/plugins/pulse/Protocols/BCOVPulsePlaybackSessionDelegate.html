@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVSSAICompanionSlot Class Reference</title>
+	<title>BCOVPulsePlaybackSessionDelegate Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -60,7 +60,7 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithView:width:height:">- initWithView:width:height:</option>
+		<option value="//api/name/createSessionForVideo:withPulseHost:contentMetadata:requestSettings:">- createSessionForVideo:withPulseHost:contentMetadata:requestSettings:</option>
 		
 	</optgroup>
 	
@@ -77,16 +77,16 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVSSAICompanionSlot Class Reference</h1>
+					<h1 class="title">BCOVPulsePlaybackSessionDelegate Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Inherits from</th>
+	<th>Conforms to</th>
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVSSAICompanionSlot.h</td>
+	<td>BCOVPulseComponent.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -96,7 +96,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>This class represents a companion slot to be populated with a matching companion ad.</p>
+						<p>A delegate protocol for users of the Brightcove Pulse advertising plugin.
+This delegate allows you to override the content metadata and request settings
+dynamically.</p>
 					</div>
 					
 					
@@ -112,9 +114,9 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithView:width:height:" title="initWithView:width:height:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithView:width:height:">&ndash;&nbsp;initWithView:width:height:</a></code>
-</h3>
+	<a name="//api/name/createSessionForVideo:withPulseHost:contentMetadata:requestSettings:" title="createSessionForVideo:withPulseHost:contentMetadata:requestSettings:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createSessionForVideo:withPulseHost:contentMetadata:requestSettings:">&ndash;&nbsp;createSessionForVideo:withPulseHost:contentMetadata:requestSettings:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -123,12 +125,14 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>The designated initializer.</p>
+				<p>Called immediately before the Pulse Plugin calls <code>[OOPulse startSessionWithDelegate:]</code>
+to allow the user to first modify the ads request object, for example, to change
+the category property.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithView:(UIView *)<em>view</em> width:(NSInteger)<em>width</em> height:(NSInteger)<em>height</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (id&lt;OOPulseSession&gt;)createSessionForVideo:(BCOVVideo *)<em>video</em> withPulseHost:(NSString *)<em>pulseHost</em> contentMetadata:(OOContentMetadata *)<em>contentMetadata</em> requestSettings:(OORequestSettings *)<em>requestSettings</em></code></div>
 
 		    
 			
@@ -137,13 +141,23 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>width</code></th>
-						<td><p>The width of the companion ad to match.</p></td>
+						<th scope="row" class="argument-name"><code>video</code></th>
+						<td><p>The current video content.</p></td>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>height</code></th>
-						<td><p>The height of the companion ad to match.</p></td>
+						<th scope="row" class="argument-name"><code>pulseHost</code></th>
+						<td><p>The Pulse hostname.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>contentMetadata</code></th>
+						<td><p>The content metadata.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>requestSettings</code></th>
+						<td><p>The request settings.</p></td>
 					</tr>
 				
 				</table>
@@ -153,7 +167,7 @@
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>An intialized instance.</p>
+				<p>The newly created Pulse ad session.</p>
 			</div>
 			
 
@@ -162,7 +176,9 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>The designated initializer.</p>
+				<p>Called immediately before the Pulse Plugin calls <code>[OOPulse startSessionWithDelegate:]</code>
+to allow the user to first modify the ads request object, for example, to change
+the category property.</p>
 			</div>
 			
 
@@ -173,7 +189,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAICompanionSlot.h</code></p>
+				<p><code class="declared-in-ref">BCOVPulseComponent.h</code></p>
 			</div>
 			
 			
@@ -192,7 +208,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

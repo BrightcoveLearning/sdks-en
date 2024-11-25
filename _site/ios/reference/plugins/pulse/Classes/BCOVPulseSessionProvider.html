@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVSource(BCOVSSAIAdditions) Category Reference</title>
+	<title>BCOVPulseSessionProvider Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -60,7 +60,7 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithVMAPXMLData:properties:">- initWithVMAPXMLData:properties:</option>
+		<option value="//api/name/requestSessionExtensionWithContentMetadata:requestSettings:success:">- requestSessionExtensionWithContentMetadata:requestSettings:success:</option>
 		
 	</optgroup>
 	
@@ -77,13 +77,19 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVSource(BCOVSSAIAdditions) Category Reference</h1>
+					<h1 class="title">BCOVPulseSessionProvider Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td>BCOVPlaybackSessionProvider</td>
+</tr><tr>
 	<th>Declared in</th>
-	<td>BCOVSSAIComponent.h</td>
+	<td>BCOVPulseSessionProvider.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -93,7 +99,12 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Category methods added to BCOVSource to support BCOVSSAI.</p>
+						<p>Session provider implementation that delivers playback sessions with support
+for Pulse.</p>
+
+<p>Instances of this class should not be created directly by clients of the
+Brightcove Player SDK for iOS; instead use the <code>[BCOVPlayerSDKManager createPulseSessionProviderWithPulseHost:contentMetadata:requestSettings:adContainer:companionSlots:upstreamSessionProvider:options:]</code>
+factory method (which is added as a category method).</p>
 					</div>
 					
 					
@@ -109,8 +120,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithVMAPXMLData:properties:" title="initWithVMAPXMLData:properties:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithVMAPXMLData:properties:">&ndash;&nbsp;initWithVMAPXMLData:properties:</a></code>
+	<a name="//api/name/requestSessionExtensionWithContentMetadata:requestSettings:success:" title="requestSessionExtensionWithContentMetadata:requestSettings:success:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestSessionExtensionWithContentMetadata:requestSettings:success:">&ndash;&nbsp;requestSessionExtensionWithContentMetadata:requestSettings:success:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -120,12 +131,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Constructs a new source with the specified VMAP XML data.</p>
+				<p>Requests an extension of the current session.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithVMAPXMLData:(NSData *)<em>data</em> properties:(NSDictionary *)<em>properties</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)requestSessionExtensionWithContentMetadata:(OOContentMetadata *)<em>contentMetadata</em> requestSettings:(OORequestSettings *)<em>requestSettings</em> success:(void ( ^ ) ( void ))<em>onSuccess</em></code></div>
 
 		    
 			
@@ -134,13 +145,20 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>data</code></th>
-						<td><p>The NSData for the new source&rsquo;s VMAP XML configuration</p></td>
+						<th scope="row" class="argument-name"><code>contentMetadata</code></th>
+						<td><p>An OOContentMetadata that will be used to extend the
+current session object.</p></td>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>properties</code></th>
-						<td><p>The metadata or properties related to the new source.</p></td>
+						<th scope="row" class="argument-name"><code>requestSettings</code></th>
+						<td><p>An OORequestSettings that will be used to extend the
+current session.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>onSuccess</code></th>
+						<td><p>A success block if the session was successfully extended.</p></td>
 					</tr>
 				
 				</table>
@@ -148,18 +166,13 @@
 			
 
 			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>A new source configured with the specified VMAP data.</p>
-			</div>
-			
 
 			
 
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Constructs a new source with the specified VMAP XML data.</p>
+				<p>Requests an extension of the current session.</p>
 			</div>
 			
 
@@ -170,7 +183,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIComponent.h</code></p>
+				<p><code class="declared-in-ref">BCOVPulseSessionProvider.h</code></p>
 			</div>
 			
 			
@@ -189,7 +202,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

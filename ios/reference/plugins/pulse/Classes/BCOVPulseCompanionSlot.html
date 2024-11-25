@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVSSAIAdComponentDisplayContainer Class Reference</title>
+	<title>BCOVPulseCompanionSlot Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -54,19 +54,13 @@
 
 	
 	
-	<optgroup label="Properties">
-		
-		<option value="//api/name/delegate">delegate</option>
-		
-	</optgroup>
-	
 
 	
 
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithCompanionSlots:">- initWithCompanionSlots:</option>
+		<option value="//api/name/initWithView:width:height:">- initWithView:width:height:</option>
 		
 	</optgroup>
 	
@@ -83,7 +77,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVSSAIAdComponentDisplayContainer Class Reference</h1>
+					<h1 class="title">BCOVPulseCompanionSlot Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -91,11 +85,8 @@
 	<th>Inherits from</th>
 	<td>NSObject</td>
 </tr><tr>
-	<th>Conforms to</th>
-	<td>BCOVPlaybackSessionConsumer</td>
-</tr><tr>
 	<th>Declared in</th>
-	<td>BCOVSSAIAdComponentDisplayContainer.h</td>
+	<td>BCOVPulseCompanionSlot.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -105,20 +96,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>This class is used to display the ad UI and handle companion ads for BCOVSSAI.</p>
-
-<p>The UI includes a banner displaying the countdown until content starts and the learn more button
-and a skip button for skippable ads. This object only added the ad view to the hierarchy
-when an ad is going to be played, and it is removed when the ad is complete.</p>
-
-<p>When an ad contains companions, this object will attempt to match the width
-and height of those companions with the width and height of the BCOVSSAICompanionSlots
-managed by this object. If no match is found, the companion will not be populated.
-If a match occurs, the companion slot will remain populated until another ad
-with a matching companion slot takes its place.</p>
-
-<p>After creating this object, it must be added to the playback controller as a session
-consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
+						<p>This class represents a companion slot to be populated with a matching companion ad.</p>
 					</div>
 					
 					
@@ -134,8 +112,8 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithCompanionSlots:" title="initWithCompanionSlots:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithCompanionSlots:">&ndash;&nbsp;initWithCompanionSlots:</a></code>
+	<a name="//api/name/initWithView:width:height:" title="initWithView:width:height:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithView:width:height:">&ndash;&nbsp;initWithView:width:height:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -150,7 +128,7 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable instancetype)initWithCompanionSlots:(NSArray *)<em>companionSlots</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithView:(UIView *)<em>view</em> width:(NSInteger)<em>width</em> height:(NSInteger)<em>height</em></code></div>
 
 		    
 			
@@ -159,8 +137,18 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>companionSlots</code></th>
-						<td><p>An array of BCOVSSAICompanionSlots to be populated.</p></td>
+						<th scope="row" class="argument-name"><code>view</code></th>
+						<td><p>The UIView to display the ad companion.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>width</code></th>
+						<td><p>The width of the companion ad to match.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>height</code></th>
+						<td><p>The height of the companion ad to match.</p></td>
 					</tr>
 				
 				</table>
@@ -170,7 +158,7 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>An initialized instance.</p>
+				<p>An intialized instance.</p>
 			</div>
 			
 
@@ -190,53 +178,7 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/delegate" title="delegate"></a>
-	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The delegate for the BCOVSSAIAdComponentDisplayContainer.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nullable, nonatomic, weak) id&lt;BCOVSSAIAdComponentDelegate&gt; delegate</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The delegate for the BCOVSSAIAdComponentDisplayContainer.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSSAIAdComponentDisplayContainer.h</code></p>
+				<p><code class="declared-in-ref">BCOVPulseCompanionSlot.h</code></p>
 			</div>
 			
 			
@@ -255,7 +197,7 @@ consumer via <code>[BCOVPlaybackController addSessionConsumer:]</code>.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
