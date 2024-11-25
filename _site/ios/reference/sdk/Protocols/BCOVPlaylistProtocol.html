@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVPlaylist Protocol Reference</title>
+	<title>BCOVPlaylistProtocol Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -97,16 +97,16 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVPlaylist Protocol Reference</h1>
+					<h1 class="title">BCOVPlaylistProtocol Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Conforms to</th>
-	<td>NSFastEnumeration<br />NSObject</td>
+	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVPlaylist.h</td>
+	<td>BrightcovePlayerSDK-Swift.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -118,9 +118,7 @@
 						<h2 class="subtitle subtitle-overview">Overview</h2>
 						<p>Value class representing a playlist in the Brightcove Player SDK ecosystem.
 A playlist is an ordered collection of <a href="#//api/name/videos">videos</a>, as well as additional optional
-metadata about the collection in the form of <a href="#//api/name/properties">properties</a>. Note that because
-BCOVPlaylist implements NSFastEnumeration, it can be used in methods that
-take NSFastEnumeration parameters (such as <a href="../Protocols/BCOVPlaybackController.html#//api/name/setVideos:"><code>[BCOVPlaybackController setVideos:]</code></a>).</p>
+metadata about the collection in the form of <a href="#//api/name/properties">properties</a>.</p>
 					</div>
 					
 					
@@ -152,7 +150,7 @@ take NSFastEnumeration parameters (such as <a href="../Protocols/BCOVPlaybackCon
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSArray *videos</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSArray&lt;BCOVVideo*&gt; *videos</code></div>
 
 		    
 			
@@ -175,7 +173,7 @@ take NSFastEnumeration parameters (such as <a href="../Protocols/BCOVPlaybackCon
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -221,7 +219,7 @@ take NSFastEnumeration parameters (such as <a href="../Protocols/BCOVPlaybackCon
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -245,7 +243,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray&lt;BCOVVideo*&gt; *allPlayableVideos</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSArray&lt;BCOVVideo*&gt; *allPlayableVideos</code></div>
 
 		    
 			
@@ -269,7 +267,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -293,7 +291,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray&lt;BCOVVideo*&gt; *allFailedVideos</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSArray&lt;BCOVVideo*&gt; *allFailedVideos</code></div>
 
 		    
 			
@@ -317,7 +315,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -335,37 +333,17 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns a modified version of this playlist. Because BCOVPlaylist objects
-are immutable, an entirely new BCOVPlaylist must be created even if only
-a single change is needed. Therefore, this method provides a convenient way
-to obtain a temporary mutable copy of this instance and modify it (within
-<code>updateBlock</code>).</p>
+				<p>returns:
+The copy of this cue point modified by <code>updateBlock</code>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)update:(void ( ^ ) ( id&lt;BCOVMutablePlaylist&gt; mutablePlaylist ))<em>updateBlock</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BCOVPlaylist *_Nonnull)update:(SWIFT_NOESCAPE void ( ^ _Nonnull ) ( BCOVMutablePlaylist *_Nonnull ))<em>updateBlock</em></code></div>
 
 		    
 			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>updateBlock</code></th>
-						<td><p>A block which is passed a mutable copy of this playlist.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
 
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>The copy of this cue point modified by <code>updateBlock</code>.</p>
-			</div>
 			
 
 			
@@ -373,16 +351,8 @@ to obtain a temporary mutable copy of this instance and modify it (within
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns a modified version of this playlist. Because BCOVPlaylist objects
-are immutable, an entirely new BCOVPlaylist must be created even if only
-a single change is needed. Therefore, this method provides a convenient way
-to obtain a temporary mutable copy of this instance and modify it (within
-<code>updateBlock</code>).</p>
-
-<p>Do not attempt to save a reference to the mutable playlist passed to
-<code>updateBlock</code>, as the behavior of doing this is undefined. Instead, make
-whatever modifications are necessary in the block and then capture the
-playlist object returned from this method.</p>
+				<p>returns:
+The copy of this cue point modified by <code>updateBlock</code>.</p>
 			</div>
 			
 
@@ -393,7 +363,7 @@ playlist object returned from this method.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -411,27 +381,15 @@ playlist object returned from this method.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns an array of error-free <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects, stripping out
-any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an error.</p>
+				<p>returns:
+Returns an array of error-free <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;BCOVVideo*&gt; *)allPlayableVideosFrom:(id&lt;NSFastEnumeration&gt;)<em>videos</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;BCOVVideo*&gt; *_Nonnull)allPlayableVideosFrom:(NSArray&lt;BCOVVideo*&gt; *_Nonnull)<em>videos</em></code></div>
 
 		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>videos</code></th>
-						<td><p>The array of vidoes to be filtered</p></td>
-					</tr>
-				
-				</table>
-			</div>
 			
 
 			
@@ -441,8 +399,8 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns an array of error-free <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects, stripping out
-any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an error.</p>
+				<p>returns:
+Returns an array of error-free <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects</p>
 			</div>
 			
 
@@ -453,7 +411,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -471,27 +429,15 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain an er
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns an array of <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain errors, stripping out
-any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that do not contain an error.</p>
+				<p>returns:
+an array of <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain errors</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;BCOVVideo*&gt; *)allFailedVideosFrom:(id&lt;NSFastEnumeration&gt;)<em>videos</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;BCOVVideo*&gt; *_Nonnull)allFailedVideosFrom:(NSArray&lt;BCOVVideo*&gt; *_Nonnull)<em>videos</em></code></div>
 
 		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>videos</code></th>
-						<td><p>The array of vidoes to be filtered</p></td>
-					</tr>
-				
-				</table>
-			</div>
 			
 
 			
@@ -501,8 +447,8 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that do not contai
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns an array of <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain errors, stripping out
-any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that do not contain an error.</p>
+				<p>returns:
+an array of <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that contain errors</p>
 			</div>
 			
 
@@ -513,7 +459,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that do not contai
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -532,7 +478,7 @@ any <a href="../Classes/BCOVVideo.html">BCOVVideo</a> objects that do not contai
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVVideo Protocol Reference</title>
+	<title>BCOVVideoProtocol Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -91,7 +91,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVVideo Protocol Reference</h1>
+					<h1 class="title">BCOVVideoProtocol Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -100,7 +100,7 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVVideo.h</td>
+	<td>BrightcovePlayerSDK-Swift.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -116,7 +116,7 @@ information specific to accessing the content. The video provides a container
 for referencing these <a href="#//api/name/sources">sources</a> in the aggregate, and a place for metadata
 about the video or the collection of <a href="#//api/name/sources">sources</a> in the form of <a href="#//api/name/properties">properties</a>. Also,
 a video may have a cue point collection, which is a set of cue points that
-describe specific locations in the video&rsquo;s content timeline.</p>
+describe specific locations in the video’s content timeline.</p>
 					</div>
 					
 					
@@ -144,12 +144,12 @@ describe specific locations in the video&rsquo;s content timeline.</p>
 			
 			<div class="method-subsection brief-description">
 				<p>The cue points associated to this video. These cue points apply equally to
-the content at each of this video&rsquo;s <a href="#//api/name/sources">sources</a>.</p>
+the content at each of this video’s <a href="../Protocols/BCOVVideoProtocol.html#//api/name/sources">sources</a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) BCOVCuePointCollection *cuePoints</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, strong) BCOVCuePointCollection *cuePoints</code></div>
 
 		    
 			
@@ -162,7 +162,7 @@ the content at each of this video&rsquo;s <a href="#//api/name/sources">sources<
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The cue points associated to this video. These cue points apply equally to
-the content at each of this video&rsquo;s <a href="#//api/name/sources">sources</a>.</p>
+the content at each of this video’s <a href="../Protocols/BCOVVideoProtocol.html#//api/name/sources">sources</a>.</p>
 			</div>
 			
 
@@ -173,7 +173,7 @@ the content at each of this video&rsquo;s <a href="#//api/name/sources">sources<
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -191,9 +191,9 @@ the content at each of this video&rsquo;s <a href="#//api/name/sources">sources<
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Metadata or properties related to this video or its <a href="#//api/name/sources">sources</a> in the aggregate.
+				<p>Metadata or properties related to this video or its <a href="../Protocols/BCOVVideoProtocol.html#//api/name/sources">sources</a> in the aggregate.
 You can find constants for the keys that this SDK uses with this dictionary
-near the top of this header file.</p>
+near the top of this class definition.</p>
 			</div>
 			
 		    
@@ -210,9 +210,9 @@ near the top of this header file.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Metadata or properties related to this video or its <a href="#//api/name/sources">sources</a> in the aggregate.
+				<p>Metadata or properties related to this video or its <a href="../Protocols/BCOVVideoProtocol.html#//api/name/sources">sources</a> in the aggregate.
 You can find constants for the keys that this SDK uses with this dictionary
-near the top of this header file.</p>
+near the top of this class definition.</p>
 			</div>
 			
 
@@ -223,7 +223,7 @@ near the top of this header file.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -242,13 +242,13 @@ near the top of this header file.</p>
 			
 			<div class="method-subsection brief-description">
 				<p>The economics field that comes from Video Cloud.
-kBCOVEconomicsAdSupported is the default, and means that the ads should be displayed.
-kBCOVEconomicsFree means that no ads should be shown during video playback.</p>
+BCOVEconomics.AdSupported is the default, and means that the ads should be displayed.
+BCOVEconomics.Free means that no ads should be shown during video playback.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic) BCOVEconomics economics</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) enum BCOVEconomics economics</code></div>
 
 		    
 			
@@ -261,8 +261,8 @@ kBCOVEconomicsFree means that no ads should be shown during video playback.</p>
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The economics field that comes from Video Cloud.
-kBCOVEconomicsAdSupported is the default, and means that the ads should be displayed.
-kBCOVEconomicsFree means that no ads should be shown during video playback.</p>
+BCOVEconomics.AdSupported is the default, and means that the ads should be displayed.
+BCOVEconomics.Free means that no ads should be shown during video playback.</p>
 			</div>
 			
 
@@ -273,7 +273,7 @@ kBCOVEconomicsFree means that no ads should be shown during video playback.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -291,7 +291,7 @@ kBCOVEconomicsFree means that no ads should be shown during video playback.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>The sources which comprise the actual destinations at which this video&rsquo;s
+				<p>The sources which comprise the actual destinations at which this video’s
 content can be accessed.</p>
 			</div>
 			
@@ -309,7 +309,7 @@ content can be accessed.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>The sources which comprise the actual destinations at which this video&rsquo;s
+				<p>The sources which comprise the actual destinations at which this video’s
 content can be accessed.</p>
 			</div>
 			
@@ -321,7 +321,7 @@ content can be accessed.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -339,14 +339,15 @@ content can be accessed.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>The URL at which this video&rsquo;s VTT thumbnails source is available.
+				<p>The URL at which this video’s VTT thumbnails source is available.
 This value overrides any thumbnails VTT track that the SDK uses
-from a PAPI response.</p>
+from a PAPI response.
+The value will be <code>nil</code> if you have not set a value.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSURL *thumbnailVTTURL</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSURL *thumbnailVTTURL</code></div>
 
 		    
 			
@@ -358,11 +359,10 @@ from a PAPI response.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>The URL at which this video&rsquo;s VTT thumbnails source is available.
+				<p>The URL at which this video’s VTT thumbnails source is available.
 This value overrides any thumbnails VTT track that the SDK uses
-from a PAPI response.</p>
-
-<p>The value will be <code>nil</code> if you have not set a value.</p>
+from a PAPI response.
+The value will be <code>nil</code> if you have not set a value.</p>
 			</div>
 			
 
@@ -373,7 +373,7 @@ from a PAPI response.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -391,37 +391,17 @@ from a PAPI response.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Returns a modified version of this source. Because BCOVVideo objects
-are immutable, an entirely new BCOVVideo must be created even if only
-a single change is needed. Therefore, this method provides a convenient way
-to obtain a temporary mutable copy of this instance and modify it (within
-<code>updateBlock</code>).</p>
+				<p>returns:
+The copy of this video modified by <code>updateBlock</code>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)update:(void ( ^ ) ( id&lt;BCOVMutableVideo&gt; mutableVideo ))<em>updateBlock</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BCOVVideo *_Nonnull)update:(SWIFT_NOESCAPE void ( ^ _Nonnull ) ( BCOVMutableVideo *_Nonnull ))<em>updateBlock</em></code></div>
 
 		    
 			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>updateBlock</code></th>
-						<td><p>A block which is passed a mutable copy of this video.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
 
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>The copy of this video modified by <code>updateBlock</code>.</p>
-			</div>
 			
 
 			
@@ -429,16 +409,8 @@ to obtain a temporary mutable copy of this instance and modify it (within
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Returns a modified version of this source. Because BCOVVideo objects
-are immutable, an entirely new BCOVVideo must be created even if only
-a single change is needed. Therefore, this method provides a convenient way
-to obtain a temporary mutable copy of this instance and modify it (within
-<code>updateBlock</code>).</p>
-
-<p>Do not attempt to save a reference to the mutable video passed to
-<code>updateBlock</code>, as the behavior of doing this is undefined. Instead, make
-whatever modifications are necessary in the block and then capture the video
-object returned from this method.</p>
+				<p>returns:
+The copy of this video modified by <code>updateBlock</code>.</p>
 			</div>
 			
 
@@ -449,7 +421,7 @@ object returned from this method.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVVideo.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -468,7 +440,7 @@ object returned from this method.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

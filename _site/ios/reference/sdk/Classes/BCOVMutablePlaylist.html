@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVMutableSource Protocol Reference</title>
+	<title>BCOVMutablePlaylist Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -56,17 +56,21 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/deliveryMethod">deliveryMethod</option>
-		
 		<option value="//api/name/properties">properties</option>
 		
-		<option value="//api/name/url">url</option>
+		<option value="//api/name/videos">videos</option>
 		
 	</optgroup>
 	
 
 	
 
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithVideos:properties:">- initWithVideos:properties:</option>
+		
+	</optgroup>
 	
 	
 </select>
@@ -81,16 +85,16 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVMutableSource Protocol Reference</h1>
+					<h1 class="title">BCOVMutablePlaylist Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Conforms to</th>
-	<td><a href="../Protocols/BCOVSource.html">BCOVSource</a></td>
+	<th>Inherits from</th>
+	<td><a href="../Classes/BCOVPlaylist.html">BCOVPlaylist</a> : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVSource.h</td>
+	<td>BrightcovePlayerSDK-Swift.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -100,7 +104,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Sub-protocol of <a href="../Classes/BCOVSource.html">BCOVSource</a>, used only in its <code>-update</code> method.</p>
+						<p>Sub-protocol of <a href="../Classes/BCOVPlaylist.html">BCOVPlaylist</a>, used only in its <code>-update</code> method.</p>
 					</div>
 					
 					
@@ -116,103 +120,41 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/url" title="url"></a>
-	<h3 class="method-title"><code><a href="#//api/name/url">&nbsp;&nbsp;url</a></code>
-<span class="task-item-suffix">required method</span></h3>
+	<a name="//api/name/videos" title="videos"></a>
+	<h3 class="method-title"><code><a href="#//api/name/videos">&nbsp;&nbsp;videos</a></code>
+</h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
 
 		<div class="method-info-container">
 			
-			
-			<div class="method-subsection brief-description">
-				<p>The URL at which this source instance&rsquo;s media is accessible.</p>
-			</div>
-			
-		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, copy) NSURL *url</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray&lt;BCOVVideo*&gt; *videos</code></div>
 
 		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The URL at which this source instance&rsquo;s media is accessible.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSource.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/deliveryMethod" title="deliveryMethod"></a>
-	<h3 class="method-title"><code><a href="#//api/name/deliveryMethod">&nbsp;&nbsp;deliveryMethod</a></code>
-<span class="task-item-suffix">required method</span></h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The delivery method describing this source in relation to other sources in
-the same video.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, copy) NSString *deliveryMethod</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The delivery method describing this source in relation to other sources in
-the same video.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSource.h</code></p>
-			</div>
-			
-			
 		</div>
 	</div>
 </div><div class="section-method">
 	<a name="//api/name/properties" title="properties"></a>
 	<h3 class="method-title"><code><a href="#//api/name/properties">&nbsp;&nbsp;properties</a></code>
-<span class="task-item-suffix">required method</span></h3>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *properties</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithVideos:properties:" title="initWithVideos:properties:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithVideos:properties:">&ndash;&nbsp;initWithVideos:properties:</a></code>
+</h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -221,12 +163,13 @@ the same video.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>The metadata or properties related to this source instance.</p>
+				<p>returns:
+A new playlist with the specified <a href="../Classes/BCOVPlaylist.html#//api/name/videos">videos</a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, copy) NSDictionary *properties</code></div>
+			<div class="method-subsection method-declaration"><code>- (nonnull instancetype)initWithVideos:(NSArray&lt;BCOVVideo*&gt; *_Nonnull)<em>videos</em> properties:(NSDictionary *_Nullable)<em>properties</em></code></div>
 
 		    
 			
@@ -238,7 +181,8 @@ the same video.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>The metadata or properties related to this source instance.</p>
+				<p>returns:
+A new playlist with the specified <a href="../Classes/BCOVPlaylist.html#//api/name/videos">videos</a>.</p>
 			</div>
 			
 
@@ -249,7 +193,7 @@ the same video.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVSource.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -268,7 +212,7 @@ the same video.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

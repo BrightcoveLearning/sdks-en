@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BCOVMutablePlaylist Protocol Reference</title>
+	<title>BCOVMutableSource Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -56,15 +56,23 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/deliveryMethod">deliveryMethod</option>
+		
 		<option value="//api/name/properties">properties</option>
 		
-		<option value="//api/name/videos">videos</option>
+		<option value="//api/name/url">url</option>
 		
 	</optgroup>
 	
 
 	
 
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithURL:deliveryMethod:properties:">- initWithURL:deliveryMethod:properties:</option>
+		
+	</optgroup>
 	
 	
 </select>
@@ -79,16 +87,16 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BCOVMutablePlaylist Protocol Reference</h1>
+					<h1 class="title">BCOVMutableSource Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Conforms to</th>
-	<td><a href="../Protocols/BCOVPlaylist.html">BCOVPlaylist</a></td>
+	<th>Inherits from</th>
+	<td><a href="../Classes/BCOVSource.html">BCOVSource</a> : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BCOVPlaylist.h</td>
+	<td>BrightcovePlayerSDK-Swift.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -98,7 +106,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Sub-protocol of <a href="../Classes/BCOVPlaylist.html">BCOVPlaylist</a>, used only in its <code>-update</code> method.</p>
+						<p>Sub-class of <a href="../Classes/BCOVSource.html">BCOVSource</a>, used only in its <code>-update</code> method.</p>
 					</div>
 					
 					
@@ -114,9 +122,9 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/videos" title="videos"></a>
-	<h3 class="method-title"><code><a href="#//api/name/videos">&nbsp;&nbsp;videos</a></code>
-<span class="task-item-suffix">required method</span></h3>
+	<a name="//api/name/url" title="url"></a>
+	<h3 class="method-title"><code><a href="#//api/name/url">&nbsp;&nbsp;url</a></code>
+</h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -124,13 +132,9 @@
 		<div class="method-info-container">
 			
 			
-			<div class="method-subsection brief-description">
-				<p>The <a href="../Classes/BCOVVideo.html">BCOVVideo</a> instances which comprise this playlist.</p>
-			</div>
-			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, copy) NSArray *videos</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSURL *url</code></div>
 
 		    
 			
@@ -139,11 +143,6 @@
 
 			
 
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The <a href="../Classes/BCOVVideo.html">BCOVVideo</a> instances which comprise this playlist.</p>
-			</div>
 			
 
 			
@@ -153,7 +152,44 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deliveryMethod" title="deliveryMethod"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deliveryMethod">&nbsp;&nbsp;deliveryMethod</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *deliveryMethod</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -162,7 +198,44 @@
 </div><div class="section-method">
 	<a name="//api/name/properties" title="properties"></a>
 	<h3 class="method-title"><code><a href="#//api/name/properties">&nbsp;&nbsp;properties</a></code>
-<span class="task-item-suffix">required method</span></h3>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *properties</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithURL:deliveryMethod:properties:" title="initWithURL:deliveryMethod:properties:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithURL:deliveryMethod:properties:">&ndash;&nbsp;initWithURL:deliveryMethod:properties:</a></code>
+</h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -171,12 +244,13 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Additional properties or metadata related to this playlist.</p>
+				<p>returns:
+A new source with the specified URL, delivery method, and <a href="#//api/name/properties">properties</a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readwrite, copy) NSDictionary *properties</code></div>
+			<div class="method-subsection method-declaration"><code>- (nonnull instancetype)initWithURL:(NSURL *_Nullable)<em>url</em> deliveryMethod:(NSString *_Nullable)<em>deliveryMethod</em> properties:(NSDictionary *_Nullable)<em>properties</em></code></div>
 
 		    
 			
@@ -188,7 +262,8 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Additional properties or metadata related to this playlist.</p>
+				<p>returns:
+A new source with the specified URL, delivery method, and <a href="#//api/name/properties">properties</a>.</p>
 			</div>
 			
 
@@ -199,7 +274,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BCOVPlaylist.h</code></p>
+				<p><code class="declared-in-ref">BrightcovePlayerSDK-Swift.h</code></p>
 			</div>
 			
 			
@@ -218,7 +293,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-07-18</p>
+						<p class="copyright">Copyright &copy; 2024 Brightcove. All rights reserved. Updated: 2024-11-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
