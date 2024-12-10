@@ -1,0 +1,20 @@
+---
+title: 'Android SDK v10 Migration Guide'
+description: In this topic, you will learn about Brightcove Android SDK has been migrated from the ExoPlayer library (v2.19.1) to the Media3 library (v1.4.1).
+parent: Basics
+grandparent: Android Development
+---
+
+<h1>{{ page.title }}</h1>
+<article class="bcls-article">
+  <summary>{{ page.description }}</summary>
+<section class="bcls-section">
+<h2 id="Overview">Overview</h2>
+<p>The Brightcove Android SDK has been migrated from the ExoPlayer library (v2.19.1) to the Media3 library (v1.4.1). This change is effective as of Brightcove Android SDK v10.0.0.</p>
+<h3>Migration</h3>
+<p>Most of the changes to accomplish the migration were internal to the Android SDK. However, the Media3 library removed and merged extensions and classes into its core, so the ExoPlaybackPreparer and ExoQueueNavigator classes were removed from the Android SDK.
+
+    Another way this migration could affect your app is when accessing classes directly from the ExoPlayer library. To remedy this, update your class imports to use the new ones from the Media3 library.</p>
+    <p>To see the map of the ExoPlayer classes and where they were moved to in the Media3 library, go to <a href="https://developer.android.com/media/media3/exoplayer/mappings">ExoPlayer to Media3 Mappings</a>.</p>
+    <aside class="bcls-aside bcls-aside--information language-editable">Note: To learn more about migration guide, see <a href="https://developer.android.com/media/media3/exoplayer/migration-guide">AndroidX Media3 migration guide</a>.</aside>
+</section>

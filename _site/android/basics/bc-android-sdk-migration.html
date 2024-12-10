@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"> 
     <head>
-        <title>The Native SDK for Android Release 8.0.0</title>
+        <title>Android SDK v10 Migration Guide</title>
         
         <!-- Meta -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="In this topic, you will learn about the new functionality provided by the Brightcove Native SDK for Android version 8.0.0.">
+        <meta name="description" content="In this topic, you will learn about Brightcove Android SDK has been migrated from the ExoPlayer library (v2.19.1) to the Media3 library (v1.4.1).">
         
         <!-- Google Font -->
         <link href="/assets/s-site-assets-stylesheets/fonts/poppins.css" rel="stylesheet">
@@ -430,7 +430,7 @@
                   
                   
                   
-                  <li class="nav-item section-doc"><a class="nav-link" href="/android/framework/android-sdk-8-release.html" aria-current="page">Native SDK Release v8.0.0</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/android/framework/android-sdk-8-release.html">Native SDK Release v8.0.0</a></li>
                   
                   
                   
@@ -484,7 +484,7 @@
                   
                   
                   
-                  <li class="nav-item"><a class="nav-link" href="/android/basics/bc-android-sdk-migration.html">Android SDK v10 Migration Guide</a></li>
+                  <li class="nav-item section-doc"><a class="nav-link" href="/android/basics/bc-android-sdk-migration.html" aria-current="page">Android SDK v10 Migration Guide</a></li>
                   
                   
                   
@@ -2150,11 +2150,11 @@
             
             
             
-            <li class="breadcrumb-item"><a class="theme-link" href="/android/framework/">Framework</a></li>
+            <li class="breadcrumb-item"><a class="theme-link" href="/android/basics/">Basics</a></li>
             
             
             
-            <li class="breadcrumb-item active" aria-current="page">The Native SDK for Android Release 8.0.0</li>
+            <li class="breadcrumb-item active" aria-current="page">Android SDK v10 Migration Guide</li>
             
             
           </ol>
@@ -2175,193 +2175,19 @@
       <br>
       
       
-<h1>The Native SDK for Android Release 8.0.0</h1>
+<h1>Android SDK v10 Migration Guide</h1>
 <article class="bcls-article">
-  <summary>In this topic, you will learn about the new functionality provided by the Brightcove Native SDK for Android version 8.0.0.</summary>
-
+  <summary>In this topic, you will learn about Brightcove Android SDK has been migrated from the ExoPlayer library (v2.19.1) to the Media3 library (v1.4.1).</summary>
 <section class="bcls-section">
-  <h2 id="Overview">Overview</h2>
-  <p>The Brightcove Native SDK for Android is available in a new major version bringing important architecture changes and playback enhancements, including:</p>
-  <ul>
-    <!-- <li>Android 13 compatibility</li> -->
-    <li>Support for audio-only content</li>
-    <li>Media-Style notification with customizable playback controls from the notification shade and lockscreen</li>
-    <li>Support for an on-going foreground service for continuous playback</li>
-    <li>Improved loading playlists and pre-buffering media for a smoother end-user experience</li>  
-  </ul>
+<h2 id="Overview">Overview</h2>
+<p>The Brightcove Android SDK has been migrated from the ExoPlayer library (v2.19.1) to the Media3 library (v1.4.1). This change is effective as of Brightcove Android SDK v10.0.0.</p>
+<h3>Migration</h3>
+<p>Most of the changes to accomplish the migration were internal to the Android SDK. However, the Media3 library removed and merged extensions and classes into its core, so the ExoPlaybackPreparer and ExoQueueNavigator classes were removed from the Android SDK.
+
+    Another way this migration could affect your app is when accessing classes directly from the ExoPlayer library. To remedy this, update your class imports to use the new ones from the Media3 library.</p>
+    <p>To see the map of the ExoPlayer classes and where they were moved to in the Media3 library, go to <a href="https://developer.android.com/media/media3/exoplayer/mappings">ExoPlayer to Media3 Mappings</a>.</p>
+    <aside class="bcls-aside bcls-aside--information language-editable">Note: To learn more about migration guide, see <a href="https://developer.android.com/media/media3/exoplayer/migration-guide">AndroidX Media3 migration guide</a>.</aside>
 </section>
-
-<section class="bcls-section">
-  <h2 id="Audio_only_content">Audio-only content</h2>
-  <p>The Brightcove Native SDK for Android supports audio-only playback and rich playback controls. Audio playback will continue to play even if the host application is in the background, giving the end-user more control of their listening experience. Support for audio playback has been integrated with the current Native SDK for Android APIs to ensure backward compatibility with all of Brightcove's features.</p>
-  <p>For implementation details, see the <a href="/features/audio-only-with-sdks.html">Audio Only with the Native SDKs</a> document.</p>
-</section>
-
-<section class="bcls-section">
-  <h2 id="SDK changes">SDK changes</h2>
-  <p>With this release of the Native SDK for Android, the following classes were added to support continuous integration with background playback, ExoPlayer, and media style notifications:</p>
-  <ul>
-    <li><code translate="No">MediaPlayback&lt;Player&gt;</code></li>
-    <li><code translate="No">BrightcoveNotification</code></li>
-    <li><code translate="No">MediaPlaybackService</code></li>
-  </ul>
-</section>
-
-<section class="bcls-section">
-  <h2 id="MediaPlayback">MediaPlayback&lt;Player&gt;</h2>
-  <p>With the changes in the Native SDK for Android version 8.0.0, Brightcove has decoupled playback business logic out of the <code translate="No">View</code> and <code translate="No">Activity</code>. This business logic now lives in the new <code translate="No">MediaPlayback</code> class, enabling media to persist beyond the <code translate="No">Activity</code> lifecycle using a <code translate="No">ForegroundService</code>. The playback status is shared across the notification and its corresponding View (when the app is in the foreground).</p>
-  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media playback" src="/assets/images/android/framework/sdk8migration/media-playback.webp" />
-    <figcaption class="bcls-caption--image">Media playback</figcaption>
-  </figure>
-  <p>Brightcove has made significant improvements in the utilization of ExoPlayer's internal playlist support. Previously, a new instance of ExoPlayer was created for each media item loaded into the SDK.</p>
-  <p>Now, media playback enhances pre-buffering the <code translate="No">MediaSource</code> for ExoPlayer.  This improves performance and employs ExoPlayer's <code translate="No">Player.Listener</code> to emit important playback states.</p>
-  <p>Support for foreground and background playback will merge a <code translate="No">FOREGROUND_SERVICE</code> permission to your <strong>AndroidManifest</strong> file during your app build process. This permission is a requirement with SDK v8.0.0.</p>
-</section>
-
-<section class="bcls-section">
-  <h2 id="BrightcoveNotification">BrightcoveNotification</h2>
-  <p>Users can interact with the player from the notification and lock screen using action buttons. By default, the notification includes play, pause, next, and previous action buttons.</p>
-  <p>You can customize the action buttons by retrieving the notification instance and setting a <code translate="No">config</code>.</p>
-  <pre class="line-numbers"><code class="language-java" translate="No">BrightcoveExoPlayerVideoView player = findViewById(R.id.player_view);
-PlaybackNotification.Config config = new PlaybackNotification.Config(this)
-  .setUsePlayPauseActions(true)
-  .setUseNextAction(false)
-  .setUsePreviousAction(false)
-  .setUseFastForwardAction(true)
-  .setUseRewindAction(true);
-player.getPlayback().getNotification().setConfig(config);</code></pre>
-
-    <p>The following table shows the default values and descriptions of the action buttons:</p>
-    <div style="overflow-x:auto;">
-      <table class="bcls-table">
-        <thead class="bcls-table__head">
-          <tr>
-            <th>Method Name</th>  
-            <th>Default Value</th>     
-            <th>Description</th>                  
-          </tr>
-        </thead>
-        <tbody class="bcls-table__body">
-          <tr>
-            <td><code translate="No">usePlayPauseActions</code></td>   
-            <td><code translate="No">True</code></td>      
-            <td>Sets whether the play and pause actions are used</td>              
-          </tr> 
-          <tr>
-            <td><code translate="No">useRewindAction</code></td>   
-            <td><code translate="No">True</code></td>      
-            <td>Sets whether the rewind action is used</td>              
-          </tr>   
-          <tr>
-            <td><code translate="No">useRewindActionInCompatView</code></td>   
-            <td><code translate="No">False</code></td>      
-            <td>If <code translate="No">useRewindAction</code> is true, sets whether the rewind action is also used in compact view (including the lock screen notification); Else does nothing</td>              
-          </tr>  
-          <tr>
-            <td><code translate="No">useFastForwardAction</code></td>   
-            <td><code translate="No">True</code></td>      
-            <td>Sets whether the fast forward action is used</td>              
-          </tr> 
-          <tr>
-            <td><code translate="No">useFastForwardActionInCompactView</code></td>   
-            <td><code translate="No">False</code></td>      
-            <td>If <code translate="No">useFastForwardAction</code> is true, sets whether the fast forward action is also used in compact view (including the lock screen notification); Else does nothing</td>              
-          </tr> 
-          <tr>
-            <td><code translate="No">usePreviousAction</code></td>   
-            <td><code translate="No">True</code></td>      
-            <td>Whether the previous action is used</td>              
-          </tr>      
-          <tr>
-            <td><code translate="No">usePrevioiusActionInCompatMode</code></td>   
-            <td><code translate="No">False</code></td>      
-            <td>If <code translate="No">usePreviousAction</code> is true, sets whether the previous action is also used in compact view (including the lock screen notification); Else does nothing</td>              
-          </tr>  
-          <tr>
-            <td><code translate="No">useNextAction</code></td>   
-            <td><code translate="No">True</code></td>      
-            <td>Whether the next action is used</td>              
-          </tr>
-          <tr>
-            <td><code translate="No">useNextActionInCompactView</code></td>   
-            <td><code translate="No">False</code></td>      
-            <td>If <code translate="No">useNextAction</code> is true, sets whether the next action is also used in compact view (including the lock screen notification); Else does nothing</td>              
-          </tr>
-          <tr>
-            <td><code translate="No">useStopAction</code></td>   
-            <td><code translate="No">False</code></td>      
-            <td>Sets whether the stop action is used</td>              
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Notification metadata</h3>
-    <p>By default, the notification uses the asset's metadata and creates an implied <code translate="No">PendingIntent</code> to recreate your activity. If you need further control over metadata displayed in the notification, you may implement a <code translate="No">MediaDescriptionAdapter</code>:</p>
-    <pre class="line-numbers"><code class="language-java" translate="No">new PlaybackNotification.Config(this)
-  .setAdapter(new PlaybackNotification.MediaDescriptionAdapter() {
-    @Override
-    public CharSequence getCurrentContentTitle(
-            MediaPlayback playback
-    ) {
-        // TODO: return the current content title
-    }
-
-    @Override
-    public Bitmap getCurrentLargeIcon(
-            MediaPlayback playback,
-            BitmapCallback callback
-    ) {
-        // TODO: return the bitmap for currently playing item
-    }
-
-    @Nullable
-    @Override
-    public PendingIntent createCurrentContentIntent(
-            MediaPlayback&lt;?&gt; playback
-    ) {
-        // TODO: return your custom PendingIntent
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getCurrentContentText(
-            MediaPlayback&lt;?&gt; playback
-    ) {
-        // TODO: return the current content text
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getCurrentSubText(
-            MediaPlayback&lt;?&gt; playback
-    ) {
-        // TODO: return the current sub-text.
-    }
-  }
-);</code></pre>
-  
-</section>
-
-<section class="bcls-section">
-  <h2 id="MediaPlaybackService">MediaPlaybackService</h2>
-  <p>The Native SDK for Android supports notifications designed for media playback. The default player behavior when playing an audio asset is to start a new <a href="https://developer.android.com/guide/components/foreground-services">ForegroundService</a> with an ongoing playback notification with media controls. The media controls are displayed below the Quick Settings panel and on the lock screen:</p>
-  <p>The media controls are found on the lock screen and below the Quick Settings panel:</p>
-  <figure class="bcls-figure"><img class="bcls-image--no-border" alt="Media controls" src="/assets/images/android/framework/sdk8migration/media-controls.webp" />
-    <figcaption class="bcls-caption--image">Media controls</figcaption>
-  </figure>
-  <p>The notification lets users view and control playback when the host application is in the background. The Native SDK automatically handles:</p>
-  <ul>
-    <li>Loading album artwork and metadata</li>
-    <li>Action buttons (play/pause, next, previous, fast-forward, rewind, and stop)</li>
-    <li>Activity lifecycle events</li>
-  </ul>
-  <p>You can customize the notification style and media controls using the <code translate="No">PlaybackNotification.Config</code> class.</p>
-  
-</section>
-
-</article>
-
 <!-- <div class="col-sm-2 right-side-bar" style="display: inline-block;max-width: 20%;"> -->
   
   <nav class="right-side-nav" id="right_side_nav">
