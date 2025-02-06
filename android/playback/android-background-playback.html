@@ -170,29 +170,37 @@ grandparent: Android Development
             <pre class="line-numbers">
                 <code class="language-kotlin" translate="No">
                     // Kotlin 
-                    val manager = PlayerNotificationManager.Builder(
-                        config.context, config.notificationId, config.channelId
-                    ).setChannelImportance(config.channelImportance)
-                    .setChannelNameResourceId(config.channelNameResourceId)
-                    .setMediaDescriptionAdapter(createAdapter(config))
-                    .setNotificationListener(listener)
-                    .build()
-                    manager.setSmallIcon(config.smallIconResourceId)
-                    manager.setUseNextAction(config.useNextAction)
-                    manager.setUsePreviousAction(config.usePreviousAction)
-                    manager.setUseNextActionInCompactView(config.useNextActionInCompactView)
-                    manager.setUsePreviousActionInCompactView(config.usePreviousActionInCompactView)
-                    manager.setColor(config.color)
-                    manager.setColorized(config.colorized)
-                    manager.setUseFastForwardAction(config.useFastForwardAction)
-                    manager.setUseFastForwardActionInCompactView(config.useFastForwardActionInCompactView)
-                    manager.setUsePlayPauseActions(config.usePlayPauseActions)
-                    manager.setUseRewindAction(config.useRewindAction)
-                    manager.setUseRewindActionInCompactView(config.useRewindActionInCompactView)
-                    manager.setUseStopAction(false)
-                    manager.setVisibility(config.visibility)
-                    manager.setPriority(config.priority)
-                    manager.setUseChronometer(true)
+                    val videoDisplayComponent = baseVideoView.videoDisplay as ExoPlayerVideoDisplayComponent
+                    val notification = BackgroundPlaybackNotification.getInstance(context)
+                    val config = PlaybackNotificationConfig(context)
+                        .setStreamTypes(*PlaybackNotification.StreamType.entries.toTypedArray())
+                        .setUseRewindAction(false)
+                        .setUseRewindActionInCompactView(false)
+                        .setUseNextAction(false)
+                        .setUseNextActionInCompactView(false)
+                        .setUsePreviousAction(false)
+                        .setUsePreviousActionInCompactView(false)
+                        .setUseFastForwardAction(false)
+                        .setUseFastForwardActionInCompactView(false)
+                        .setAdapter(object : PlaybackNotification.MediaDescriptionAdapter {
+                            override fun getCurrentContentTitle(playback: MediaPlayback<*>?): CharSequence {
+                                return "My custom title"
+                            }
+                            override fun createCurrentContentIntent(playback: MediaPlayback<*>?): PendingIntent? {
+                                // Create an intent to launch your activity when the notification is clicked
+                                val intent = Intent(context, MyActivity::class.java)
+                                // Create a PendingIntent from the intent
+                                return PendingIntent.getActivity( context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+                            }
+                            override fun getCurrentContentText(playback: MediaPlayback<*>?): CharSequence {
+                                return "My custom text"
+                            }
+                            override fun getCurrentSubText(playback: MediaPlayback<*>?): CharSequence {
+                                return "My custom subtext"
+                            }
+                        })
+                    notification?.setConfig(config)
+                    notification?.playback = videoDisplayComponent.playback
 
                 </code>
             </pre>
@@ -202,29 +210,46 @@ grandparent: Android Development
             <pre class="line-numbers">
                 <code class="language-java" translate="No">
                     // Java
-                    PlayerNotificationManager manager = new PlayerNotificationManager.Builder(
-                        config.context, config.notificationId, config.channelId
-                    ).setChannelImportance(config.channelImportance)
-                        .setChannelNameResourceId(config.channelNameResourceId)
-                        .setMediaDescriptionAdapter(createAdapter(config))
-                        .setNotificationListener(listener)
-                        .build()
-                    manager.setSmallIcon(config.smallIconResourceId)
-                    manager.setUseNextAction(config.useNextAction)
-                    manager.setUsePreviousAction(config.usePreviousAction)
-                    manager.setUseNextActionInCompactView(config.useNextActionInCompactView)    
-                    manager.setUsePreviousActionInCompactView(config.usePreviousActionInCompactView)
-                    manager.setColor(config.color)
-                    manager.setColorized(config.colorized)
-                    manager.setUseFastForwardAction(config.useFastForwardAction)
-                    manager.setUseFastForwardActionInCompactView(config.useFastForwardActionInCompactView)
-                    manager.setUsePlayPauseActions(config.usePlayPauseActions)
-                    manager.setUseRewindAction(config.useRewindAction)       
-                    manager.setUseRewindActionInCompactView(config.useRewindActionInCompactView)
-                    manager.setUseStopAction(false)
-                    manager.setVisibility(config.visibility)
-                    manager.setPriority(config.priority)
-                    manager.setUseChronometer(true)
+                    ExoPlayerVideoDisplayComponent displayComponent = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay());
+                    PlaybackNotification notification = BackgroundPlaybackNotification.getInstance(this);
+                    PlaybackNotificationConfig config = new PlaybackNotificationConfig(context)
+                        .setStreamTypes(PlaybackNotification.StreamType.values())
+                        .setUseRewindAction(false)
+                        .setUseRewindActionInCompactView(false)
+                        .setUsePreviousAction(false)
+                        .setUsePreviousActionInCompactView(false)
+                        .setUseNextAction(false)
+                        .setUseNextActionInCompactView(false)
+                        .setUseFastForwardAction(false)
+                        .setUseFastForwardActionInCompactView(false)
+                        .setAdapter(new PlaybackNotification.MediaDescriptionAdapter() {
+                            @Override
+                            public CharSequence getCurrentContentTitle(MediaPlayback<?> playback) {
+                                return "Title blah"; // Replace with actual title logic
+                            }
+
+                            @Nullable
+                            @Override
+                            public PendingIntent createCurrentContentIntent(MediaPlayback<?> playback) {
+                                Intent intent = new Intent(context, MyActivity.class);
+                                // Create a PendingIntent from the intent
+                                return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                            }
+
+                            @Nullable
+                            @Override
+                            public CharSequence getCurrentContentText(MediaPlayback<?> playback) {
+                                return "Text";
+                            }
+
+                            @Nullable
+                            @Override
+                            public CharSequence getCurrentSubText(MediaPlayback<?> playback) {
+                                return "Subtext";
+                            }
+                        });
+                        notification.setConfig(config);
+                        notification.setPlayback(displayComponent.getPlayback());
 
                 </code>
             </pre>
