@@ -2,6 +2,26 @@ Brightcove Native Player for Android Release Notes:
 
 Release Notes:
 
+Version 10.0.1
+  SDK Changes:
+    * Adds a URL request key value for Brightcove Edge API requests for Next-Generation Live videos.
+    * Upgrade the Android Gradle Plugin to v8.2.1 and Gradle to v8.2.
+    * Fixes crashes of Generic Stream Concurrency when stopping the current session or requesting the active ones.
+    * Fixes an issue with the captions background having the same shadow as edge-styled text.
+    * Fixes a crash when trying to delete a video with an index value outside the bounds of a playlist.
+
+  Playback-Notification Changes:
+    * Fixes an issue where two media could simultaneously be played in the background.
+
+  SSAI changes:
+    * Fixes an issue where ads started in the wrong position when rewinding on TVs.
+
+  IMA Changes:
+    * Validates IMA ads nullability when extracting its properties
+  
+  OfflinePlayback:
+    * Adds status in Japanese to the download notification.
+
 Version 10.0.0
   SDK Changes:
     * Standardize the User-Agent to conform to the DeviceAtlas standard
@@ -12,9 +32,6 @@ Version 10.0.0
 
   IMA Plugin Changes:
     * Update the IMA library to v3.36.0.
-
-  Playback Notification Plugin Changes:
-    * Fix an issue where two media could simultaneously be played in the background.
 
 Version 9.2.3
   Exoplayer Changes:
