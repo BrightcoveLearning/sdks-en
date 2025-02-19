@@ -410,7 +410,7 @@ brightcoveVideoView.getEventEmitter().on(EventType.DID_SET_VIDEO, new EventListe
 ...
 private void setMute(boolean mute) {
   volume = mute ? 0F : 100F;
-  Map&lt;string, Object&gt; properties = new HashMap&lt;&gt;();
+  Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();
   properties.put(Event.VOLUME, volume);
   brightcoveVideoView.getEventEmitter().emit(EventType.SET_VOLUME, properties);
 }</a></code></pre>
