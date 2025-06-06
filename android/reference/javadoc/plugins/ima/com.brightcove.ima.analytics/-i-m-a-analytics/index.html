@@ -1,0 +1,299 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>IMAAnalytics</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":plugins:ima:dokkaHtmlPartial/main">ima</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="ima::com.brightcove.ima.analytics/IMAAnalytics///PointingToDeclaration//-1093625605">
+  <div class="breadcrumbs"><a href="../../index.html">ima</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.ima.analytics</a><span class="delimiter">/</span><span class="current">IMAAnalytics</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>IMAAnalytics</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">IMAAnalytics</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1515042509%2FConstructors%2F-1093625605" anchor-label="IMAAnalytics" id="-1515042509%2FConstructors%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-m-a-analytics.html"><span><span>IMAAnalytics</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1515042509%2FConstructors%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventEmitter<span class="token operator">: </span>EventEmitter<span class="token punctuation">, </span></span><span class="parameter ">googleIMAVideoAdPlayer<span class="token operator">: </span><a href="../../com.brightcove.ima/-google-i-m-a-video-ad-player/index.html">GoogleIMAVideoAdPlayer</a><span class="token punctuation">, </span></span><span class="parameter ">adsRequests<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span>AdsRequest<span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">videoView<span class="token operator">: </span>BaseVideoView<span class="token punctuation">, </span></span><span class="parameter ">adView<span class="token operator">: </span>View</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-2058987229%2FFunctions%2F-1093625605" anchor-label="finishAdInsightsTimerTasks" id="-2058987229%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="finish-ad-insights-timer-tasks.html"><span>finish</span><wbr><span>Ad</span><wbr><span>Insights</span><wbr><span>Timer</span><wbr><span><span>Tasks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2058987229%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="finish-ad-insights-timer-tasks.html"><span class="token function">finishAdInsightsTimerTasks</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Finish ad insights timer tasks.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="290518969%2FFunctions%2F-1093625605" anchor-label="getAdInsight" id="290518969%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-ad-insight.html"><span>get</span><wbr><span>Ad</span><wbr><span><span>Insight</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="290518969%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-ad-insight.html"><span class="token function">getAdInsight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">adInsightEvent<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>AdInsight</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1495782476%2FFunctions%2F-1093625605" anchor-label="getAdPodInsight" id="1495782476%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-ad-pod-insight.html"><span>get</span><wbr><span>Ad</span><wbr><span>Pod</span><wbr><span><span>Insight</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1495782476%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-ad-pod-insight.html"><span class="token function">getAdPodInsight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">adInsightEvent<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>AdInsight</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1311370507%2FFunctions%2F-1093625605" anchor-label="resetAdInsightValues" id="-1311370507%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reset-ad-insight-values.html"><span>reset</span><wbr><span>Ad</span><wbr><span>Insight</span><wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1311370507%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="reset-ad-insight-values.html"><span class="token function">resetAdInsightValues</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Reset ad insight parameter values after ad is complete or skipped.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1364326914%2FFunctions%2F-1093625605" anchor-label="setAdCuePoints" id="1364326914%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-cue-points.html"><span>set</span><wbr><span>Ad</span><wbr><span>Cue</span><wbr><span><span>Points</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1364326914%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-cue-points.html"><span class="token function">setAdCuePoints</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">adCuePoints<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/Float.html">Float</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-86144%2FFunctions%2F-1093625605" anchor-label="setAdLoadedTimeMs" id="-86144%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-loaded-time-ms.html"><span>set</span><wbr><span>Ad</span><wbr><span>Loaded</span><wbr><span>Time</span><wbr><span><span>Ms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-86144%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-loaded-time-ms.html"><span class="token function">setAdLoadedTimeMs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1289876579%2FFunctions%2F-1093625605" anchor-label="setAdPodRequestStartTime" id="-1289876579%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-pod-request-start-time.html"><span>set</span><wbr><span>Ad</span><wbr><span>Pod</span><wbr><span>Request</span><wbr><span>Start</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1289876579%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-pod-request-start-time.html"><span class="token function">setAdPodRequestStartTime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1307335388%2FFunctions%2F-1093625605" anchor-label="setAdsAdInteraction" id="1307335388%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ads-ad-interaction.html"><span>set</span><wbr><span>Ads</span><wbr><span>Ad</span><wbr><span><span>Interaction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1307335388%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ads-ad-interaction.html"><span class="token function">setAdsAdInteraction</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2081669118%2FFunctions%2F-1093625605" anchor-label="setAdsAdSkipped" id="2081669118%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ads-ad-skipped.html"><span>set</span><wbr><span>Ads</span><wbr><span>Ad</span><wbr><span><span>Skipped</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2081669118%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ads-ad-skipped.html"><span class="token function">setAdsAdSkipped</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1293841791%2FFunctions%2F-1093625605" anchor-label="setAdsAdStartTime" id="1293841791%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ads-ad-start-time.html"><span>set</span><wbr><span>Ads</span><wbr><span>Ad</span><wbr><span>Start</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1293841791%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ads-ad-start-time.html"><span class="token function">setAdsAdStartTime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-225423873%2FFunctions%2F-1093625605" anchor-label="setAdsPodRequestMs" id="-225423873%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ads-pod-request-ms.html"><span>set</span><wbr><span>Ads</span><wbr><span>Pod</span><wbr><span>Request</span><wbr><span><span>Ms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-225423873%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ads-pod-request-ms.html"><span class="token function">setAdsPodRequestMs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1473340638%2FFunctions%2F-1093625605" anchor-label="setContentPaused" id="-1473340638%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-content-paused.html"><span>set</span><wbr><span>Content</span><wbr><span><span>Paused</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1473340638%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-content-paused.html"><span class="token function">setContentPaused</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isContentPaused<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-591901631%2FFunctions%2F-1093625605" anchor-label="startAdInsightTimerTasks" id="-591901631%2FFunctions%2F-1093625605" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:ima:dokkaHtmlPartial/main" data-filterable-set=":plugins:ima:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="start-ad-insight-timer-tasks.html"><span>start</span><wbr><span>Ad</span><wbr><span>Insight</span><wbr><span>Timer</span><wbr><span><span>Tasks</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-591901631%2FFunctions%2F-1093625605"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:ima:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="start-ad-insight-timer-tasks.html"><span class="token function">startAdInsightTimerTasks</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Starts ad insights timer tasks</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

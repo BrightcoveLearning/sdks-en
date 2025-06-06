@@ -1,0 +1,629 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>VideoDisplayComponent</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtmlPartial/main">sdk</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="sdk::com.brightcove.player.display/VideoDisplayComponent///PointingToDeclaration//615590247">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.display</a><span class="delimiter">/</span><span class="current">VideoDisplayComponent</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Video</span><wbr><span>Display</span><wbr><span><span>Component</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../../com.brightcove.player.event/-emits/index.html"><span class="token annotation builtin">Emits</span></a><span class="token punctuation">(</span><span>events<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.BUFFERED_UPDATE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.COMPLETED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_INTERRUPT_CONTENT</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_PAUSE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_PLAY</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_RESUME_CONTENT</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_SEEK_TO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_SET_SOURCE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_STOP</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.ERROR</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PAUSE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PLAY</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PROGRESS</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.SOURCE_NOT_PLAYABLE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.STOP</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DURATION_CHANGED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_SIZE_KNOWN</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.WILL_CHANGE_VIDEO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.READY_TO_PLAY</a></span><wbr><span class="token punctuation">]</span></span><wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation builtin">@</span><a href="../../com.brightcove.player.event/-listens-for/index.html"><span class="token annotation builtin">ListensFor</span></a><span class="token punctuation">(</span><span>events<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.COMPLETED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_SET_SOURCE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PAUSE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PLAY</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.PREBUFFER_NEXT_VIDEO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.SEEK_TO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.SET_SOURCE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.STOP</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DURATION_CHANGED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.WILL_CHANGE_VIDEO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.WILL_INTERRUPT_CONTENT</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.WILL_RESUME_CONTENT</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.READY_TO_PLAY</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.SET_VOLUME</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_SET_VIDEO</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.ON_FRAME_AVAILABLE</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.DID_SEEK_TO</a></span><wbr><span class="token punctuation">]</span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">VideoDisplayComponent</a> : <a href="../../com.brightcove.player.event/-abstract-component/index.html">AbstractComponent</a></div><p class="paragraph">The VideoDisplayComponent wraps the Brightcove EventEmitter around the lifecycle of the standard Android MediaPlayer API. The intended goal is that the end developer should never have to interact directly with the MediaPlayer instance, but rather only have to fire events at it via the EventEmitter.LifeCycle To begin playing, the VideoDisplayComponent (VDC) must first receive a EventType.SET_SOURCE event, containing a valid Source parameter. Once the source is set, the VDC will emit EventType.DID_SET_SOURCE. Once set, the the VDC will respond to the following events: </p><ul><li>EventType.PLAY: plays the video / resumes playback if paused</li><li>EventType.PAUSE: pauses the video</li><li>EventType.SEEK_TO: seeks to the position</li><li>EventType.STOP: stops the video and destroys the player</li></ul> In addition, the VDC will emit Progress , buffering, and video_completed events.<h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>android.</span><wbr><span>media.</span><wbr><span>Media</span><wbr><span><span>Player</span></span></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.player.model/-source/index.html"><span><span>Source</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.player.event/-abstract-component/index.html"><span>Abstract</span><wbr><span><span>Component</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.player.event/-event-emitter/index.html"><span>Event</span><wbr><span><span>Emitter</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.player.event/-event-type/index.html"><span>Event</span><wbr><span><span>Type</span></span></a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-460835259%2FConstructors%2F615590247" anchor-label="VideoDisplayComponent" id="-460835259%2FConstructors%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-video-display-component.html"><span>Video</span><wbr><span>Display</span><wbr><span><span>Component</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-460835259%2FConstructors%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">renderView<span class="token operator">: </span><a href="../../com.brightcove.player.view/-render-view/index.html">RenderView</a><span class="token punctuation">, </span></span><span class="parameter ">eventEmitter<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="804036375%2FFunctions%2F615590247" anchor-label="addListener" id="804036375%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span>add</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="804036375%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span class="token function">addListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.on() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="809728854%2FFunctions%2F615590247" anchor-label="addOnceListener" id="809728854%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span>add</span><wbr><span>Once</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="809728854%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span class="token function">addOnceListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.once() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-21648353%2FFunctions%2F615590247" anchor-label="createPlayback" id="-21648353%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-playback.html"><span>create</span><wbr><span><span>Playback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-21648353%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="create-playback.html"><span class="token function">createPlayback</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.playback/-media-playback/index.html">MediaPlayback</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="brief ">Create the MediaPlayback for the <a href="index.html">VideoDisplayComponent</a>.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1005196855%2FFunctions%2F615590247" anchor-label="destroyPlayer" id="-1005196855%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="destroy-player.html"><span>destroy</span><wbr><span><span>Player</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1005196855%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="destroy-player.html"><span class="token function">destroyPlayer</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Destroys the current player and releases it from memory.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1504814822%2FFunctions%2F615590247" anchor-label="getAnalytics" id="1504814822%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-analytics.html"><span>get</span><wbr><span><span>Analytics</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1504814822%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-analytics.html"><span class="token function">getAnalytics</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.analytics/-analytics/index.html">Analytics</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1236727736%2FFunctions%2F615590247" anchor-label="getCurrentSource" id="1236727736%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-source.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1236727736%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-current-source.html"><span class="token function">getCurrentSource</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source/index.html">Source</a></div><div class="brief ">Gets reference to the video source that is currently configured for playback, if any</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1088536873%2FFunctions%2F615590247" anchor-label="getCurrentSourceOrFail" id="-1088536873%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-source-or-fail.html"><span>get</span><wbr><span>Current</span><wbr><span>Source</span><wbr><span>Or</span><wbr><span><span>Fail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1088536873%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-current-source-or-fail.html"><span class="token function">getCurrentSourceOrFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source/index.html">Source</a></div><div class="brief ">Gets reference to the video source that is currently configured for playback, if any</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1935227180%2FFunctions%2F615590247" anchor-label="getCurrentVideo" id="1935227180%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-video.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1935227180%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-current-video.html"><span class="token function">getCurrentVideo</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-video/index.html">Video</a></div><div class="brief ">Gets reference to the video that is currently configured for playback, if any</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="345938251%2FFunctions%2F615590247" anchor-label="getCurrentVideoOrFail" id="345938251%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-video-or-fail.html"><span>get</span><wbr><span>Current</span><wbr><span>Video</span><wbr><span>Or</span><wbr><span><span>Fail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="345938251%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-current-video-or-fail.html"><span class="token function">getCurrentVideoOrFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-video/index.html">Video</a></div><div class="brief ">Gets reference to the video that is currently configured for playback, if any</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="769653373%2FFunctions%2F615590247" anchor-label="getEventEmitter" id="769653373%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/get-event-emitter.html"><span>get</span><wbr><span>Event</span><wbr><span><span>Emitter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="769653373%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/get-event-emitter.html"><span class="token function">getEventEmitter</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a></div><div class="brief ">Provides a reference to the EventEmitter with which this component was initialized</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1884468549%2FFunctions%2F615590247" anchor-label="getLiveEdge" id="1884468549%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-live-edge.html"><span>get</span><wbr><span>Live</span><wbr><span><span>Edge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1884468549%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-live-edge.html"><span class="token function"><strike>getLiveEdge</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Obtains the playhead position of the "live edge".</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1082237399%2FFunctions%2F615590247" anchor-label="getLiveEdgeLong" id="-1082237399%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-live-edge-long.html"><span>get</span><wbr><span>Live</span><wbr><span>Edge</span><wbr><span><span>Long</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1082237399%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-live-edge-long.html"><span class="token function">getLiveEdgeLong</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></div><div class="brief ">Obtains the playhead position of the "live edge".</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-314941529%2FFunctions%2F615590247" anchor-label="getMediaPlayer" id="-314941529%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-media-player.html"><span>get</span><wbr><span>Media</span><wbr><span><span>Player</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-314941529%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-media-player.html"><span class="token function">getMediaPlayer</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span>MediaPlayer</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1477762099%2FFunctions%2F615590247" anchor-label="getPlayback" id="1477762099%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-playback.html"><span>get</span><wbr><span><span>Playback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1477762099%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-playback.html"><span class="token function">getPlayback</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.playback/-media-playback/index.html">MediaPlayback</a></div><div class="brief ">Get the current playback.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1096755115%2FFunctions%2F615590247" anchor-label="getPlayerCurrentPosition" id="1096755115%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-player-current-position.html"><span>get</span><wbr><span>Player</span><wbr><span>Current</span><wbr><span><span>Position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1096755115%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-player-current-position.html"><span class="token function">getPlayerCurrentPosition</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></div><div class="brief ">Returns the current playhead position of the underlying video player.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-537043789%2FFunctions%2F615590247" anchor-label="getRenderView" id="-537043789%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-render-view.html"><span>get</span><wbr><span>Render</span><wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-537043789%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-render-view.html"><span class="token function">getRenderView</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.view/-render-view/index.html">RenderView</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1168085520%2FFunctions%2F615590247" anchor-label="hasDvr" id="1168085520%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-dvr.html"><span>has</span><wbr><span><span>Dvr</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1168085520%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-dvr.html"><span class="token function">hasDvr</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Indicates if Live with DVR is supported.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1534032681%2FFunctions%2F615590247" anchor-label="isCurrentMediaAudioOnly" id="-1534032681%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-current-media-audio-only.html"><span>is</span><wbr><span>Current</span><wbr><span>Media</span><wbr><span>Audio</span><wbr><span><span>Only</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1534032681%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-current-media-audio-only.html"><span class="token function">isCurrentMediaAudioOnly</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1056744640%2FFunctions%2F615590247" anchor-label="isCurrentVideo360Mode" id="-1056744640%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-current-video360-mode.html"><span>is</span><wbr><span>Current</span><wbr><span><span>Video360Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1056744640%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-current-video360-mode.html"><span class="token function">isCurrentVideo360Mode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="616216286%2FFunctions%2F615590247" anchor-label="isInLiveEdge" id="616216286%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-in-live-edge.html"><span>is</span><wbr><span>In</span><wbr><span>Live</span><wbr><span><span>Edge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="616216286%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-in-live-edge.html"><span class="token function">isInLiveEdge</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Checks the current playhead position with the live edge position and determines if it is in live edge.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-777161728%2FFunctions%2F615590247" anchor-label="isLive" id="-777161728%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-live.html"><span>is</span><wbr><span><span>Live</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-777161728%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-live.html"><span class="token function">isLive</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Provides a default for handling live videos.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="175879266%2FFunctions%2F615590247" anchor-label="onSurfaceTextureAvailable" id="175879266%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-texture-available.html"><span>on</span><wbr><span>Surface</span><wbr><span>Texture</span><wbr><span><span>Available</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="175879266%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-surface-texture-available.html"><span class="token function">onSurfaceTextureAvailable</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceTexture<span class="token operator">: </span>SurfaceTexture<span class="token punctuation">, </span></span><span class="parameter ">width<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">height<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-567982358%2FFunctions%2F615590247" anchor-label="onSurfaceTextureDestroyed" id="-567982358%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-texture-destroyed.html"><span>on</span><wbr><span>Surface</span><wbr><span>Texture</span><wbr><span><span>Destroyed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-567982358%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-surface-texture-destroyed.html"><span class="token function">onSurfaceTextureDestroyed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceTexture<span class="token operator">: </span>SurfaceTexture</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1203713672%2FFunctions%2F615590247" anchor-label="onSurfaceTextureSizeChanged" id="-1203713672%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-texture-size-changed.html"><span>on</span><wbr><span>Surface</span><wbr><span>Texture</span><wbr><span>Size</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1203713672%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-surface-texture-size-changed.html"><span class="token function">onSurfaceTextureSizeChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceTexture<span class="token operator">: </span>SurfaceTexture<span class="token punctuation">, </span></span><span class="parameter ">width<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">height<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1478137608%2FFunctions%2F615590247" anchor-label="onSurfaceTextureUpdated" id="1478137608%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-surface-texture-updated.html"><span>on</span><wbr><span>Surface</span><wbr><span>Texture</span><wbr><span><span>Updated</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1478137608%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-surface-texture-updated.html"><span class="token function">onSurfaceTextureUpdated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceTexture<span class="token operator">: </span>SurfaceTexture</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-274429258%2FFunctions%2F615590247" anchor-label="removeListener" id="-274429258%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span>remove</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-274429258%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span class="token function">removeListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Removes the specified listener from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-719239316%2FFunctions%2F615590247" anchor-label="removeListeners" id="-719239316%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span>remove</span><wbr><span><span>Listeners</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-719239316%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span class="token function">removeListeners</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Removes all set listeners from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-471019677%2FFunctions%2F615590247" anchor-label="setProgressInterval" id="-471019677%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-progress-interval.html"><span>set</span><wbr><span>Progress</span><wbr><span><span>Interval</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-471019677%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-progress-interval.html"><span class="token function">setProgressInterval</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">progressInterval<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the the interval in milliseconds at which to fire PROGRESS events during playback.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1301130254%2FFunctions%2F615590247" anchor-label="setRendererConfig" id="-1301130254%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-renderer-config.html"><span>set</span><wbr><span>Renderer</span><wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1301130254%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-renderer-config.html"><span class="token function">setRendererConfig</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">rendererConfig<span class="token operator">: </span><a href="../../com.brightcove.player.model/-renderer-config/index.html">RendererConfig</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1085984176%2FFunctions%2F615590247" anchor-label="setShouldPlayAudioOnlyInBackground" id="-1085984176%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-should-play-audio-only-in-background.html"><span>set</span><wbr><span>Should</span><wbr><span>Play</span><wbr><span>Audio</span><wbr><span>Only</span><wbr><span>In</span><wbr><span><span>Background</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1085984176%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-should-play-audio-only-in-background.html"><span class="token function">setShouldPlayAudioOnlyInBackground</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">play<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1660328030%2FFunctions%2F615590247" anchor-label="setTextInformationFrameListener" id="-1660328030%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-text-information-frame-listener.html"><span>set</span><wbr><span>Text</span><wbr><span>Information</span><wbr><span>Frame</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1660328030%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-text-information-frame-listener.html"><span class="token function">setTextInformationFrameListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.metadata/-text-information-frame-listener/index.html">TextInformationFrameListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the Text Information Frame Listener.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-767406026%2FFunctions%2F615590247" anchor-label="shouldPlayAudioOnlyInBackground" id="-767406026%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="should-play-audio-only-in-background.html"><span>should</span><wbr><span>Play</span><wbr><span>Audio</span><wbr><span>Only</span><wbr><span>In</span><wbr><span><span>Background</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-767406026%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="should-play-audio-only-in-background.html"><span class="token function">shouldPlayAudioOnlyInBackground</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1055710890%2FFunctions%2F615590247" anchor-label="surfaceChanged" id="-1055710890%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-changed.html"><span>surface</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1055710890%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="surface-changed.html"><span class="token function">surfaceChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceHolder<span class="token operator">: </span>SurfaceHolder<span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">width<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">height<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1943099726%2FFunctions%2F615590247" anchor-label="surfaceCreated" id="1943099726%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-created.html"><span>surface</span><wbr><span><span>Created</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1943099726%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="surface-created.html"><span class="token function">surfaceCreated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceHolder<span class="token operator">: </span>SurfaceHolder</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1087446335%2FFunctions%2F615590247" anchor-label="surfaceDestroyed" id="1087446335%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="surface-destroyed.html"><span>surface</span><wbr><span><span>Destroyed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1087446335%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="surface-destroyed.html"><span class="token function">surfaceDestroyed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">surfaceHolder<span class="token operator">: </span>SurfaceHolder</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

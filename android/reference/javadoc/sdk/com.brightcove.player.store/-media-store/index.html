@@ -1,0 +1,265 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MediaStore</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtmlPartial/main">sdk</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="sdk::com.brightcove.player.store/MediaStore///PointingToDeclaration//615590247">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.store</a><span class="delimiter">/</span><span class="current">MediaStore</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Media</span><wbr><span><span>Store</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">MediaStore</a></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-base-store/index.html">BaseStore</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="920421405%2FFunctions%2F615590247" anchor-label="compact" id="920421405%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="compact.html"><span><span>compact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="920421405%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="compact.html"><span class="token function">compact</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Compacts the physical database file size by running the SQLite <a href="http://www.sqlitetutorial.net/sqlite-vacuum/">VACUUM</a> statement.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-868235931%2FFunctions%2F615590247" anchor-label="deleteEntity" id="-868235931%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-entity.html"><span>delete</span><wbr><span><span>Entity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-868235931%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="delete-entity.html"><span class="token function">deleteEntity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entity<span class="token operator">: </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Deletes an identifiable entity from the store.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-771519118%2FFunctions%2F615590247" anchor-label="deleteOfflineVideo" id="-771519118%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-offline-video.html"><span>delete</span><wbr><span>Offline</span><wbr><span><span>Video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-771519118%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="delete-offline-video.html"><span class="token function">deleteOfflineVideo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Deletes the first offline video entity with the given video identifier.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="188018940%2FFunctions%2F615590247" anchor-label="findOfflineAssetUri" id="188018940%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-offline-asset-uri.html"><span>find</span><wbr><span>Offline</span><wbr><span>Asset</span><wbr><span><span>Uri</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="188018940%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="find-offline-asset-uri.html"><span class="token function">findOfflineAssetUri</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uri<span class="token operator">: </span>Uri</span></span><span class="token punctuation">)</span><span class="token operator">: </span>Uri</div><div class="brief ">Finds the local URI of a remote asset that has been downloaded successfully.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1131668836%2FFunctions%2F615590247" anchor-label="findOfflineVideo" id="1131668836%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-offline-video.html"><span>find</span><wbr><span>Offline</span><wbr><span><span>Video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1131668836%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="find-offline-video.html">T</a><span class="token operator"> : </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a><span class="token operator">?</span><span class="token operator">&gt; </span><a href="find-offline-video.html"><span class="token function">findOfflineVideo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="find-offline-video.html">T</a></div><div class="brief ">Finds the first offline video entity with the given video identifier.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1800018605%2FFunctions%2F615590247" anchor-label="getFileSize" id="1800018605%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-size.html"><span>get</span><wbr><span>File</span><wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1800018605%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="get-file-size.html"><span class="token function">getFileSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></div><div class="brief ">Gets the size of the backing database file.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1682706524%2FFunctions%2F615590247" anchor-label="onCreated" id="1682706524%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-created.html"><span>on</span><wbr><span><span>Created</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1682706524%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="on-created.html"><span class="token function">onCreated</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Called when new EntityDataStore has been created.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1963618900%2FFunctions%2F615590247" anchor-label="onUpgraded" id="1963618900%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-upgraded.html"><span>on</span><wbr><span><span>Upgraded</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1963618900%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><a href="on-upgraded.html"><span class="token function">onUpgraded</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">oldVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">newVersion<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Called when the EntityDataStore has been upgraded from an previous version to a new version.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1072673179%2FFunctions%2F615590247" anchor-label="refreshEntity" id="1072673179%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="refresh-entity.html"><span>refresh</span><wbr><span><span>Entity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1072673179%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="refresh-entity.html">E</a><span class="token operator"> : </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a><span class="token operator">?</span><span class="token operator">&gt; </span><a href="refresh-entity.html"><span class="token function">refreshEntity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entity<span class="token operator">: </span><a href="refresh-entity.html">E</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="refresh-entity.html">E</a></div><div class="brief ">Refresh the given entity.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1511835508%2FFunctions%2F615590247" anchor-label="saveEntity" id="1511835508%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="save-entity.html"><span>save</span><wbr><span><span>Entity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1511835508%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="save-entity.html">T</a><span class="token operator"> : </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a><span class="token operator">?</span><span class="token operator">&gt; </span><a href="save-entity.html"><span class="token function">saveEntity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entity<span class="token operator">: </span><a href="save-entity.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="save-entity.html">T</a></div><div class="brief ">Inserts or updates the given entity.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1463689550%2FFunctions%2F615590247" anchor-label="saveOfflineLicense" id="1463689550%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="save-offline-license.html"><span>save</span><wbr><span>Offline</span><wbr><span><span>License</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1463689550%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="save-offline-license.html">T</a><span class="token operator"> : </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a><span class="token operator">?</span><span class="token operator">&gt; </span><a href="save-offline-license.html"><span class="token function">saveOfflineLicense</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="../../com.brightcove.player.model/-video/index.html">Video</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="save-offline-license.html">T</a></div><div class="brief ">Updates the entity with given unique video identifier to save the video license information.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-171534264%2FFunctions%2F615590247" anchor-label="saveOfflineVideo" id="-171534264%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="save-offline-video.html"><span>save</span><wbr><span>Offline</span><wbr><span><span>Video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-171534264%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="save-offline-video.html">T</a><span class="token operator"> : </span><a href="../-identifiable-entity/index.html">IdentifiableEntity</a><span class="token operator">?</span><span class="token operator">&gt; </span><a href="save-offline-video.html"><span class="token function">saveOfflineVideo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="../../com.brightcove.player.model/-video/index.html">Video</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="save-offline-video.html">T</a></div><div class="brief ">Updates the entity with given unique video identifier to save the video metadata object, while retaining the previously saved license information.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

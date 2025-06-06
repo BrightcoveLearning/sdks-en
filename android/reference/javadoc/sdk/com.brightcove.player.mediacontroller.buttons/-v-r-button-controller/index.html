@@ -1,0 +1,678 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>VRButtonController</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtmlPartial/main">sdk</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="sdk::com.brightcove.player.mediacontroller.buttons/VRButtonController///PointingToDeclaration//615590247">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.mediacontroller.buttons</a><span class="delimiter">/</span><span class="current">VRButtonController</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>VRButton</span><wbr><span><span>Controller</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">VRButtonController</a> : <a href="../-abstract-button-controller/index.html">AbstractButtonController</a></div><p class="paragraph">The default Brightcove VR mode button controller. This class is responsible for toggling the video between Video 360 view and VR view.</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Sergio Martinez --- smartinez@brightcove.com</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-192633357%2FConstructors%2F615590247" anchor-label="VRButtonController" id="-192633357%2FConstructors%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-v-r-button-controller.html"><span>VRButton</span><wbr><span><span>Controller</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-192633357%2FConstructors%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">videoView<span class="token operator">: </span><a href="../../com.brightcove.player.view/-base-video-view/index.html">BaseVideoView</a><span class="token punctuation">, </span></span><span class="parameter ">controlBar<span class="token operator">: </span><a href="../../com.brightcove.player.mediacontroller/-brightcove-control-bar/index.html">BrightcoveControlBar</a><span class="token punctuation">, </span></span><span class="parameter ">font<span class="token operator">: </span>Typeface</span></span><span class="token punctuation">)</span></div><div class="brief ">Builds a VR button controller object.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1683212841%2FProperties%2F615590247" anchor-label="button" id="1683212841%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/button.html"><span><span>button</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1683212841%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="../-abstract-button-controller/button.html">button</a><span class="token operator">: </span>Button</div><div class="brief ">The button widget.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2032663933%2FProperties%2F615590247" anchor-label="DEFAULT_AUDIO_TRACKS_BUTTON_ID" id="-2032663933%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-a-u-d-i-o_-t-r-a-c-k-s_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_AUDIO_TRACKS_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2032663933%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-a-u-d-i-o_-t-r-a-c-k-s_-b-u-t-t-o-n_-i-d.html">DEFAULT_AUDIO_TRACKS_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-572160281%2FProperties%2F615590247" anchor-label="DEFAULT_CAPTIONS_BUTTON_ID" id="-572160281%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-c-a-p-t-i-o-n-s_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_CAPTIONS_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-572160281%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-c-a-p-t-i-o-n-s_-b-u-t-t-o-n_-i-d.html">DEFAULT_CAPTIONS_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-572652462%2FProperties%2F615590247" anchor-label="DEFAULT_FAST_FORWARD_BUTTON_ID" id="-572652462%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-f-a-s-t_-f-o-r-w-a-r-d_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_FAST_FORWARD_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-572652462%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-f-a-s-t_-f-o-r-w-a-r-d_-b-u-t-t-o-n_-i-d.html">DEFAULT_FAST_FORWARD_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1807807800%2FProperties%2F615590247" anchor-label="DEFAULT_FULL_SCREEN_BUTTON_ID" id="1807807800%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-f-u-l-l_-s-c-r-e-e-n_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_FULL_SCREEN_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1807807800%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-f-u-l-l_-s-c-r-e-e-n_-b-u-t-t-o-n_-i-d.html">DEFAULT_FULL_SCREEN_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-745278232%2FProperties%2F615590247" anchor-label="DEFAULT_LIVE_BUTTON_ID" id="-745278232%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-l-i-v-e_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_LIVE_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-745278232%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-l-i-v-e_-b-u-t-t-o-n_-i-d.html">DEFAULT_LIVE_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1816414816%2FProperties%2F615590247" anchor-label="DEFAULT_PLAY_BUTTON_ID" id="-1816414816%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-p-l-a-y_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_PLAY_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1816414816%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-p-l-a-y_-b-u-t-t-o-n_-i-d.html">DEFAULT_PLAY_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1982586183%2FProperties%2F615590247" anchor-label="DEFAULT_REWIND_BUTTON_ID" id="-1982586183%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-r-e-w-i-n-d_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_REWIND_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1982586183%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-r-e-w-i-n-d_-b-u-t-t-o-n_-i-d.html">DEFAULT_REWIND_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="950438876%2FProperties%2F615590247" anchor-label="DEFAULT_SEEK_BUTTON_ID" id="950438876%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-s-e-e-k_-b-u-t-t-o-n_-i-d.html"><span><span>DEFAULT_SEEK_BUTTON_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="950438876%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/-d-e-f-a-u-l-t_-s-e-e-k_-b-u-t-t-o-n_-i-d.html">DEFAULT_SEEK_BUTTON_ID</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1117302572%2FProperties%2F615590247" anchor-label="font" id="1117302572%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/font.html"><span><span>font</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1117302572%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/font.html">font</a><span class="token operator">: </span>Typeface</div><div class="brief ">The button font, used for testing.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="924420960%2FProperties%2F615590247" anchor-label="id" id="924420960%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/id.html"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="924420960%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-abstract-button-controller/id.html">id</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">The Android resource id.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="804036375%2FFunctions%2F615590247" anchor-label="addListener" id="804036375%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span>add</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="804036375%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span class="token function">addListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.on() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="809728854%2FFunctions%2F615590247" anchor-label="addOnceListener" id="809728854%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span>add</span><wbr><span>Once</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="809728854%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span class="token function">addOnceListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.once() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-344324747%2FFunctions%2F615590247" anchor-label="getEventEmitter" id="-344324747%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/get-event-emitter.html"><span>get</span><wbr><span>Event</span><wbr><span><span>Emitter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-344324747%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/get-event-emitter.html"><span class="token function">getEventEmitter</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a></div><div class="brief ">Implements a getter for the SDK event emitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="71644029%2FFunctions%2F615590247" anchor-label="getManagedState" id="71644029%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-managed-state.html"><span>get</span><wbr><span>Managed</span><wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="71644029%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-managed-state.html"><span class="token function">getManagedState</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Implements a getter for the managed video state.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1748863082%2FFunctions%2F615590247" anchor-label="getProperties" id="-1748863082%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/get-properties.html"><span>get</span><wbr><span><span>Properties</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1748863082%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/get-properties.html"><span class="token function">getProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div><div class="brief ">Implements a default behavior to get the current properties without any additional processing.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="976325282%2FFunctions%2F615590247" anchor-label="getStateList" id="976325282%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/get-state-list.html"><span>get</span><wbr><span>State</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="976325282%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/get-state-list.html"><span class="token function">getStateList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../-button-state/index.html">ButtonState</a><span class="token operator">&gt;</span></div><div class="brief ">Gets the button state list providing information about the states associated with a button face.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1999585036%2FFunctions%2F615590247" anchor-label="getVisibilityState" id="1999585036%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-visibility-state.html"><span>get</span><wbr><span>Visibility</span><wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1999585036%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-visibility-state.html"><span class="token function">getVisibilityState</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Gets the maintained visibility state for a button.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-603335091%2FFunctions%2F615590247" anchor-label="onAccessibilityStateChanged" id="-603335091%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-accessibility-state-changed.html"><span>on</span><wbr><span>Accessibility</span><wbr><span>State</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-603335091%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-accessibility-state-changed.html"><span class="token function">onAccessibilityStateChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Called back on change in the accessibility state.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1603495546%2FFunctions%2F615590247" anchor-label="onBack" id="1603495546%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-back.html"><span>on</span><wbr><span><span>Back</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1603495546%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-back.html"><span class="token function">onBack</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On back key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="200733917%2FFunctions%2F615590247" anchor-label="onDpadCenter" id="200733917%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-dpad-center.html"><span>on</span><wbr><span>Dpad</span><wbr><span><span>Center</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="200733917%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-dpad-center.html"><span class="token function">onDpadCenter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On dpad center key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="819629616%2FFunctions%2F615590247" anchor-label="onDpadDown" id="819629616%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-dpad-down.html"><span>on</span><wbr><span>Dpad</span><wbr><span><span>Down</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="819629616%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-dpad-down.html"><span class="token function">onDpadDown</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On dpad down key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-570764437%2FFunctions%2F615590247" anchor-label="onDpadLeft" id="-570764437%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-dpad-left.html"><span>on</span><wbr><span>Dpad</span><wbr><span><span>Left</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-570764437%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-dpad-left.html"><span class="token function">onDpadLeft</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On dpad left key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1605750870%2FFunctions%2F615590247" anchor-label="onDpadRight" id="1605750870%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-dpad-right.html"><span>on</span><wbr><span>Dpad</span><wbr><span><span>Right</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1605750870%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-dpad-right.html"><span class="token function">onDpadRight</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On dpad right key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="109345623%2FFunctions%2F615590247" anchor-label="onDpadUp" id="109345623%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-dpad-up.html"><span>on</span><wbr><span>Dpad</span><wbr><span><span>Up</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="109345623%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-dpad-up.html"><span class="token function">onDpadUp</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On dpad up key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="459845242%2FFunctions%2F615590247" anchor-label="onFastForward" id="459845242%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-fast-forward.html"><span>on</span><wbr><span>Fast</span><wbr><span><span>Forward</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="459845242%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-fast-forward.html"><span class="token function">onFastForward</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On fast forward key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-961522302%2FFunctions%2F615590247" anchor-label="onHome" id="-961522302%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-home.html"><span>on</span><wbr><span><span>Home</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-961522302%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-home.html"><span class="token function">onHome</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On home key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-682343166%2FFunctions%2F615590247" anchor-label="onMenu" id="-682343166%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-menu.html"><span>on</span><wbr><span><span>Menu</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-682343166%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-menu.html"><span class="token function">onMenu</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On menu key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-110464595%2FFunctions%2F615590247" anchor-label="onPause" id="-110464595%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-pause.html"><span>on</span><wbr><span><span>Pause</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-110464595%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-pause.html"><span class="token function">onPause</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On pause key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-75260467%2FFunctions%2F615590247" anchor-label="onPlay" id="-75260467%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-play.html"><span>on</span><wbr><span><span>Play</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-75260467%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-play.html"><span class="token function">onPlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On play key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-720574079%2FFunctions%2F615590247" anchor-label="onPlayPause" id="-720574079%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-play-pause.html"><span>on</span><wbr><span>Play</span><wbr><span><span>Pause</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-720574079%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-play-pause.html"><span class="token function">onPlayPause</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On play pause key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-111471258%2FFunctions%2F615590247" anchor-label="onRewind" id="-111471258%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-rewind.html"><span>on</span><wbr><span><span>Rewind</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-111471258%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-rewind.html"><span class="token function">onRewind</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On rewind key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1973876031%2FFunctions%2F615590247" anchor-label="onSkipBackward" id="1973876031%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-skip-backward.html"><span>on</span><wbr><span>Skip</span><wbr><span><span>Backward</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1973876031%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-skip-backward.html"><span class="token function">onSkipBackward</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On skip backward key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2038668445%2FFunctions%2F615590247" anchor-label="onSkipForward" id="2038668445%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/on-skip-forward.html"><span>on</span><wbr><span>Skip</span><wbr><span><span>Forward</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2038668445%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/on-skip-forward.html"><span class="token function">onSkipForward</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">event<span class="token operator">: </span>KeyEvent</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">On skip forward key actioned</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-274429258%2FFunctions%2F615590247" anchor-label="removeListener" id="-274429258%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span>remove</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-274429258%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span class="token function">removeListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Removes the specified listener from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-719239316%2FFunctions%2F615590247" anchor-label="removeListeners" id="-719239316%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span>remove</span><wbr><span><span>Listeners</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-719239316%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span class="token function">removeListeners</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Removes all set listeners from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1424630008%2FFunctions%2F615590247" anchor-label="setVisibility" id="-1424630008%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/set-visibility.html"><span>set</span><wbr><span><span>Visibility</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1424630008%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/set-visibility.html"><span class="token function">setVisibility</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">visibility<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the button visibility.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1600989122%2FFunctions%2F615590247" anchor-label="syncStates" id="-1600989122%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-abstract-button-controller/sync-states.html"><span>sync</span><wbr><span><span>States</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1600989122%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-abstract-button-controller/sync-states.html"><span class="token function">syncStates</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Implements to update a state (toggle) button to display the correct glyph and content description for the current managed state value.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

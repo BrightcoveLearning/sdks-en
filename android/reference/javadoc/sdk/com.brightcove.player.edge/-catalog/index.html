@@ -1,0 +1,337 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Catalog</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtmlPartial/main">sdk</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="sdk::com.brightcove.player.edge/Catalog///PointingToDeclaration//615590247">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.edge</a><span class="delimiter">/</span><span class="current">Catalog</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Catalog</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="../../com.brightcove.player.event/-emits/index.html"><span class="token annotation builtin">Emits</span></a><span class="token punctuation">(</span><span>events<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.ERROR</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.ACCOUNT</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DOWNLOAD_STARTED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DOWNLOAD_COMPLETED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DOWNLOAD_CANCELLED</a><span class="token punctuation">, </span></span><wbr><span><a href="../../com.brightcove.player.event/-event-type/index.html">EventType.VIDEO_DOWNLOAD_FAILED</a></span><wbr><span class="token punctuation">]</span></span><wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation builtin">@</span><a href="../../com.brightcove.player.event/-listens-for/index.html"><span class="token annotation builtin">ListensFor</span></a><span class="token punctuation">(</span><span>events<span class="token operator"> = </span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Catalog</a> : <a href="../../com.brightcove.player.event/-abstract-component/index.html">AbstractComponent</a></div><p class="paragraph">The Catalog class provides asynchronous methods for retrieving information about videos from Brightcove's Edge API services. </p><p class="paragraph"> Network requests such as those implemented by the Catalog class sometimes fail. If the request succeeds, the listener's onVideo() method will be invoked. If an error occurs during the execution of the request, the listener's onError() method will be invoked.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-690154602%2FConstructors%2F615590247" anchor-label="Catalog" id="-690154602%2FConstructors%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-catalog.html"><span><span>Catalog</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-690154602%2FConstructors%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventEmitter<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a><span class="token punctuation">, </span></span><span class="parameter ">account<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">policy<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventEmitter<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a><span class="token punctuation">, </span></span><span class="parameter ">account<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">policy<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">baseURL<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1315270652%2FClasslikes%2F615590247" anchor-label="Builder" id="1315270652%2FClasslikes%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-builder/index.html"><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1315270652%2FClasslikes%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-builder/index.html">Builder</a> : <span data-unresolved-link="com.brightcove.player.edge/Catalog.AbstractBuilder///PointingToDeclaration/">Catalog.AbstractBuilder</span><span class="token operator">&lt;</span><span data-unresolved-link="com.brightcove.player.edge/Catalog.AbstractBuilder///PointingToGenericParameters(0)/">T</span><span class="token operator">&gt; </span></div><div class="brief ">The Builder to create the Catalog object.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="2041438847%2FProperties%2F615590247" anchor-label="DEFAULT_EDGE_BASE_URL" id="2041438847%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-f-a-u-l-t_-e-d-g-e_-b-a-s-e_-u-r-l.html"><span><span>DEFAULT_EDGE_BASE_URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2041438847%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-d-e-f-a-u-l-t_-e-d-g-e_-b-a-s-e_-u-r-l.html">DEFAULT_EDGE_BASE_URL</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"https://edge.api.brightcove.com/playback/v1"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1615419954%2FProperties%2F615590247" anchor-label="DEFAULT_EPA_BASE_URL" id="-1615419954%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-f-a-u-l-t_-e-p-a_-b-a-s-e_-u-r-l.html"><span><span>DEFAULT_EPA_BASE_URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1615419954%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-d-e-f-a-u-l-t_-e-p-a_-b-a-s-e_-u-r-l.html">DEFAULT_EPA_BASE_URL</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"https://edge-auth.api.brightcove.com/playback/v1"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1367524445%2FProperties%2F615590247" anchor-label="properties" id="-1367524445%2FProperties%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="properties.html"><span><span>properties</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1367524445%2FProperties%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="properties.html">properties</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="804036375%2FFunctions%2F615590247" anchor-label="addListener" id="804036375%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span>add</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="804036375%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-listener.html"><span class="token function">addListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.on() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="809728854%2FFunctions%2F615590247" anchor-label="addOnceListener" id="809728854%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span>add</span><wbr><span>Once</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="809728854%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/add-once-listener.html"><span class="token function">addOnceListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">listener<span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-listener/index.html">EventListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Convenience method to add an EventListener for the given type using the EventEmitter.once() method.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1923963319%2FFunctions%2F615590247" anchor-label="empty" id="1923963319%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="empty.html"><span><span>empty</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1923963319%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="empty.html"><span class="token function">empty</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Catalog</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1320114966%2FFunctions%2F615590247" anchor-label="findPlaylistByID" id="1320114966%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-playlist-by-i-d.html"><span>find</span><wbr><span>Playlist</span><wbr><span>By</span><wbr><span><span>ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1320114966%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-i-d.html"><span class="token function">findPlaylistByID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlistID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-i-d.html"><span class="token function">findPlaylistByID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlistID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">httpRequestConfig<span class="token operator">: </span><a href="../../com.brightcove.player.network/-http-request-config/index.html">HttpRequestConfig</a><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Retrieves a Playlist from the Playback API service by its playlist ID.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-i-d.html"><span class="token function"><strike>findPlaylistByID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlistID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-i-d.html"><span class="token function"><strike>findPlaylistByID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlistID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">queryParameters<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-171081510%2FFunctions%2F615590247" anchor-label="findPlaylistByReferenceID" id="-171081510%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-playlist-by-reference-i-d.html"><span>find</span><wbr><span>Playlist</span><wbr><span>By</span><wbr><span>Reference</span><wbr><span><span>ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-171081510%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-reference-i-d.html"><span class="token function">findPlaylistByReferenceID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-reference-i-d.html"><span class="token function">findPlaylistByReferenceID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">httpRequestConfig<span class="token operator">: </span><a href="../../com.brightcove.player.network/-http-request-config/index.html">HttpRequestConfig</a><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Retrieves a Playlist from the Playback API service by its reference ID, a customer supplied unique identifier.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-reference-i-d.html"><span class="token function"><strike>findPlaylistByReferenceID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-playlist-by-reference-i-d.html"><span class="token function"><strike>findPlaylistByReferenceID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">queryParameters<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">playlistListener<span class="token operator">: </span><a href="../-playlist-listener/index.html">PlaylistListener</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1276122992%2FFunctions%2F615590247" anchor-label="findVideoByID" id="-1276122992%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-video-by-i-d.html"><span>find</span><wbr><span>Video</span><wbr><span>By</span><wbr><span><span>ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1276122992%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-i-d.html"><span class="token function">findVideoByID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-i-d.html"><span class="token function">findVideoByID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">httpRequestConfig<span class="token operator">: </span><a href="../../com.brightcove.player.network/-http-request-config/index.html">HttpRequestConfig</a><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Retrieves a Video from the Playback API service by its video ID.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-i-d.html"><span class="token function"><strike>findVideoByID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-i-d.html"><span class="token function"><strike>findVideoByID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">queryParameters<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="566725708%2FFunctions%2F615590247" anchor-label="findVideoByReferenceID" id="566725708%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-video-by-reference-i-d.html"><span>find</span><wbr><span>Video</span><wbr><span>By</span><wbr><span>Reference</span><wbr><span><span>ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="566725708%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-reference-i-d.html"><span class="token function">findVideoByReferenceID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-reference-i-d.html"><span class="token function">findVideoByReferenceID</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">httpRequestConfig<span class="token operator">: </span><a href="../../com.brightcove.player.network/-http-request-config/index.html">HttpRequestConfig</a><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Retrieves a Video from the Playback API service by its reference ID, a customer supplied unique identifier.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-reference-i-d.html"><span class="token function"><strike>findVideoByReferenceID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-video-by-reference-i-d.html"><span class="token function"><strike>findVideoByReferenceID</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">referenceID<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">queryParameters<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">videoListener<span class="token operator">: </span><a href="../-video-listener/index.html">VideoListener</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="769653373%2FFunctions%2F615590247" anchor-label="getEventEmitter" id="769653373%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/get-event-emitter.html"><span>get</span><wbr><span>Event</span><wbr><span><span>Emitter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="769653373%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/get-event-emitter.html"><span class="token function">getEventEmitter</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.event/-event-emitter/index.html">EventEmitter</a></div><div class="brief ">Provides a reference to the EventEmitter with which this component was initialized</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1853004423%2FFunctions%2F615590247" anchor-label="getInstance" id="-1853004423%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-instance.html"><span>get</span><wbr><span><span>Instance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1853004423%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-instance.html"><span class="token function">getInstance</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Catalog</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-274429258%2FFunctions%2F615590247" anchor-label="removeListener" id="-274429258%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span>remove</span><wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-274429258%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listener.html"><span class="token function">removeListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">eventType<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Removes the specified listener from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-719239316%2FFunctions%2F615590247" anchor-label="removeListeners" id="-719239316%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span>remove</span><wbr><span><span>Listeners</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-719239316%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../com.brightcove.player.event/-abstract-component/remove-listeners.html"><span class="token function">removeListeners</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Removes all set listeners from the EventEmitter.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

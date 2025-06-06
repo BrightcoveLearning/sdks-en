@@ -1,0 +1,209 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>BrightcoveSourceSelector</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtmlPartial/main">sdk</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="sdk::com.brightcove.player.controller/BrightcoveSourceSelector///PointingToDeclaration//615590247">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.controller</a><span class="delimiter">/</span><span class="current">BrightcoveSourceSelector</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Brightcove</span><wbr><span>Source</span><wbr><span><span>Selector</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">BrightcoveSourceSelector</a> : <a href="../-source-selector/index.html">SourceSelector</a></div><p class="paragraph">It is the default SourceSelector implementation that will automatically select a Source rendition based on the following rules: </p><ul><li>If an HLS source rendition exists use it (there should be only one, if any)</li><li>If no HLS renditions exists, but MP4 renditions exist, use the rendition that is closest to 256 kBps</li><li>If no HLS or MP4 renditions exist, throw a NoSourceFoundException</li></ul></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="2109549408%2FConstructors%2F615590247" anchor-label="BrightcoveSourceSelector" id="2109549408%2FConstructors%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brightcove-source-selector.html"><span>Brightcove</span><wbr><span>Source</span><wbr><span><span>Selector</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2109549408%2FConstructors%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1716390663%2FFunctions%2F615590247" anchor-label="findBestSourceByBitRate" id="1716390663%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-best-source-by-bit-rate.html"><span>find</span><wbr><span>Best</span><wbr><span>Source</span><wbr><span>By</span><wbr><span>Bit</span><wbr><span><span>Rate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1716390663%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-best-source-by-bit-rate.html"><span class="token function">findBestSourceByBitRate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sourceCollection<span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a><span class="token punctuation">, </span></span><span class="parameter ">bitRate<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source/index.html">Source</a></div><div class="brief ">Given a SourceCollection, finds the Source with the closest bit rate to the given value.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1438299145%2FFunctions%2F615590247" anchor-label="findHEVCSources" id="-1438299145%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-h-e-v-c-sources.html"><span>find</span><wbr><span><span>HEVCSources</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1438299145%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-h-e-v-c-sources.html"><span class="token function">findHEVCSources</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sourceCollection<span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a></div><div class="brief ">Searches for HEVC sources in the provided <a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a> and creates a new <a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a> with the sources found.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="650839350%2FFunctions%2F615590247" anchor-label="findNonHEVCSources" id="650839350%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-non-h-e-v-c-sources.html"><span>find</span><wbr><span>Non</span><wbr><span><span>HEVCSources</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="650839350%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-non-h-e-v-c-sources.html"><span class="token function">findNonHEVCSources</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sourceCollection<span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a></div><div class="brief ">Searches for non HEVC sources in the provided <a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a> and creates a new <a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a> with the sources found.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1421272877%2FFunctions%2F615590247" anchor-label="findSourcesByProfileVersion" id="-1421272877%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-sources-by-profile-version.html"><span>find</span><wbr><span>Sources</span><wbr><span>By</span><wbr><span>Profile</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1421272877%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="find-sources-by-profile-version.html"><span class="token function">findSourcesByProfileVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sourceCollection<span class="token operator">: </span><a href="../../com.brightcove.player.model/-source-collection/index.html">SourceCollection</a><span class="token punctuation">, </span></span><span class="parameter ">profileVersion<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Set.html">Set</a><span class="token operator">&lt;</span><a href="../../com.brightcove.player.model/-source/index.html">Source</a><span class="token operator">&gt;</span></div><div class="brief ">Find the Sources in the SourceCollection associated to the provided profile version.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="210584310%2FFunctions%2F615590247" anchor-label="isPreferHls" id="210584310%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-prefer-hls.html"><span>is</span><wbr><span>Prefer</span><wbr><span><span>Hls</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="210584310%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-prefer-hls.html"><span class="token function">isPreferHls</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Returns whether to prefer HLS sources to other <a href="../../com.brightcove.player.model/-delivery-type/index.html">delivery types</a>.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-655088144%2FFunctions%2F615590247" anchor-label="selectSource" id="-655088144%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="select-source.html"><span>select</span><wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-655088144%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="select-source.html"><span class="token function">selectSource</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">video<span class="token operator">: </span><a href="../../com.brightcove.player.model/-video/index.html">Video</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source/index.html">Source</a></div><div class="brief ">Determines best appropriate Source within given Video object based on logic implemented.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="select-source.html"><span class="token function">selectSource</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sources<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Set.html">Set</a><span class="token operator">&lt;</span><a href="../../com.brightcove.player.model/-source/index.html">Source</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.model/-source/index.html">Source</a></div><div class="brief ">Attempts to select the HTTPS source included in the source Set, if available.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-75684728%2FFunctions%2F615590247" anchor-label="setPreferHls" id="-75684728%2FFunctions%2F615590247" data-filterable-set=":sdk:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtmlPartial/main" data-filterable-set=":sdk:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-prefer-hls.html"><span>set</span><wbr><span>Prefer</span><wbr><span><span>Hls</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-75684728%2FFunctions%2F615590247"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-prefer-hls.html"><span class="token function">setPreferHls</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">preferHls<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets whether to prefer HLS sources to other <a href="../../com.brightcove.player.model/-delivery-type/index.html">delivery types</a>.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
