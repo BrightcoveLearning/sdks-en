@@ -1,0 +1,382 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>OmnitureComponent</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":plugins:omniture:dokkaHtmlPartial/main">omniture</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="omniture::com.brightcove.omniture/OmnitureComponent///PointingToDeclaration//-958945523">
+  <div class="breadcrumbs"><a href="../../index.html">omniture</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.omniture</a><span class="delimiter">/</span><span class="current">OmnitureComponent</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Omniture</span><wbr><span><span>Component</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">OmnitureComponent</a></div><p class="paragraph">Implements an integration with the Adobe Mobile Library for Android. This component will respond to playback events emitted by video players using the Brightcove Native Player for Android, and track the appropriate events via the Media interface for video tracking. For more information on the Media interface, see below: http://microsite.omniture.com/t2/help/en_US/mobile/android/video_qs.html This class also supports the use of Video Heartbeat as an alternative to milestone tracking provided by the above. For information on the use of Video Heartbeat can be found at: http://microsite.omniture.com/t2/help/en_US/sc/appmeasurement/hbvideo/</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-625543385%2FConstructors%2F-958945523" anchor-label="OmnitureComponent" id="-625543385%2FConstructors%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-omniture-component.html"><span>Omniture</span><wbr><span><span>Component</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-625543385%2FConstructors%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter<span class="token punctuation">, </span></span><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">playerName<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">playerId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">For the Omniture component to be able to properly track video playback events in Omniture, the following parameters must be properly specified:</div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter<span class="token punctuation">, </span></span><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">playerName<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">playerId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">baseVideoView<span class="token operator">: </span>BaseVideoView<span class="token punctuation">, </span></span><span class="parameter ">useHeartbeat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief ">To support video heartbeat tracking with the omniture plugin, the following parameters must be specified:</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="2003058889%2FClasslikes%2F-958945523" anchor-label="DefaultMediaNameFactory" id="2003058889%2FClasslikes%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-default-media-name-factory/index.html"><span>Default</span><wbr><span>Media</span><wbr><span>Name</span><wbr><span><span>Factory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2003058889%2FClasslikes%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-default-media-name-factory/index.html">DefaultMediaNameFactory</a> : <a href="-media-name-factory/index.html">OmnitureComponent.MediaNameFactory</a></div><div class="brief ">Default implementation of MediaNameFactory which follows these steps: <ol><li>If video exists and has an ID property as identified by Video.Fields.ID, use it</li><li>Otherwise if given a Source object, presumably the one chosen by the current SourceSelector implementation, use the URL from that Source</li><li>Otherwise fall back to the DEFAULT_MEDIA_NAME constant value</li></ol></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1031216478%2FClasslikes%2F-958945523" anchor-label="MediaNameFactory" id="-1031216478%2FClasslikes%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-name-factory/index.html"><span>Media</span><wbr><span>Name</span><wbr><span><span>Factory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1031216478%2FClasslikes%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-media-name-factory/index.html">MediaNameFactory</a></div><div class="brief ">Provides a simple interface to allow the generation of media names that are tracked in Omniture to be customized.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="121846091%2FClasslikes%2F-958945523" anchor-label="TrackingState" id="121846091%2FClasslikes%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tracking-state/index.html"><span>Tracking</span><wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="121846091%2FClasslikes%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-tracking-state/index.html">TrackingState</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1611965748%2FProperties%2F-958945523" anchor-label="DEFAULT_MEDIA_ID" id="1611965748%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-f-a-u-l-t_-m-e-d-i-a_-i-d.html"><span><span>DEFAULT_MEDIA_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1611965748%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-d-e-f-a-u-l-t_-m-e-d-i-a_-i-d.html">DEFAULT_MEDIA_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"unknown"</span></div><div class="brief ">Video player Id used in tracking when none is specified in the video properties map.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1356416871%2FProperties%2F-958945523" anchor-label="DEFAULT_PLAYER_NAME" id="1356416871%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-f-a-u-l-t_-p-l-a-y-e-r_-n-a-m-e.html"><span><span>DEFAULT_PLAYER_NAME</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1356416871%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-d-e-f-a-u-l-t_-p-l-a-y-e-r_-n-a-m-e.html">DEFAULT_PLAYER_NAME</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"Default Player"</span></div><div class="brief ">Video player name used in tracking when none is specified in the constructor.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1686502885%2FProperties%2F-958945523" anchor-label="HEARTBEAT_APP_VERSION" id="-1686502885%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-a-p-p_-v-e-r-s-i-o-n.html"><span><span>HEARTBEAT_APP_VERSION</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1686502885%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-a-p-p_-v-e-r-s-i-o-n.html">HEARTBEAT_APP_VERSION</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatAppVersion"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2107234770%2FProperties%2F-958945523" anchor-label="HEARTBEAT_CHANNEL" id="2107234770%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-c-h-a-n-n-e-l.html"><span><span>HEARTBEAT_CHANNEL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2107234770%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-c-h-a-n-n-e-l.html">HEARTBEAT_CHANNEL</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatChannel"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1350865282%2FProperties%2F-958945523" anchor-label="HEARTBEAT_DEBUG_LOGGING" id="1350865282%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-d-e-b-u-g_-l-o-g-g-i-n-g.html"><span><span>HEARTBEAT_DEBUG_LOGGING</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1350865282%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-d-e-b-u-g_-l-o-g-g-i-n-g.html">HEARTBEAT_DEBUG_LOGGING</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatDebugLogging"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-610362836%2FProperties%2F-958945523" anchor-label="HEARTBEAT_OVP" id="-610362836%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-o-v-p.html"><span><span>HEARTBEAT_OVP</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-610362836%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-o-v-p.html">HEARTBEAT_OVP</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatOVP"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-343262999%2FProperties%2F-958945523" anchor-label="HEARTBEAT_SSL" id="-343262999%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-s-s-l.html"><span><span>HEARTBEAT_SSL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-343262999%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-s-s-l.html">HEARTBEAT_SSL</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatSSL"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1264335338%2FProperties%2F-958945523" anchor-label="HEARTBEAT_TRACKING_SERVER" id="1264335338%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-h-e-a-r-t-b-e-a-t_-t-r-a-c-k-i-n-g_-s-e-r-v-e-r.html"><span><span>HEARTBEAT_TRACKING_SERVER</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1264335338%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-h-e-a-r-t-b-e-a-t_-t-r-a-c-k-i-n-g_-s-e-r-v-e-r.html">HEARTBEAT_TRACKING_SERVER</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"heartbeatTrackingServer"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1490971568%2FProperties%2F-958945523" anchor-label="mediaMeasurement" id="-1490971568%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="media-measurement.html"><span>media</span><wbr><span><span>Measurement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1490971568%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="media-measurement.html">mediaMeasurement</a><span class="token operator">: </span>Media</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1455842004%2FProperties%2F-958945523" anchor-label="playerId" id="-1455842004%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-id.html"><span>player</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455842004%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="player-id.html">playerId</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1996442428%2FProperties%2F-958945523" anchor-label="playerName" id="1996442428%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-name.html"><span>player</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1996442428%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="player-name.html">playerName</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1894379304%2FProperties%2F-958945523" anchor-label="TAG" id="-1894379304%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-t-a-g.html"><span><span>TAG</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1894379304%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-t-a-g.html">TAG</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="431663849%2FProperties%2F-958945523" anchor-label="VIDEO_ID" id="431663849%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-v-i-d-e-o_-i-d.html"><span><span>VIDEO_ID</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="431663849%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-v-i-d-e-o_-i-d.html">VIDEO_ID</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"videoId"</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1254571848%2FProperties%2F-958945523" anchor-label="videoMetadata" id="1254571848%2FProperties%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="video-metadata.html"><span>video</span><wbr><span><span>Metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1254571848%2FProperties%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="video-metadata.html">videoMetadata</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1406308935%2FFunctions%2F-958945523" anchor-label="setMediaNameFactory" id="1406308935%2FFunctions%2F-958945523" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:omniture:dokkaHtmlPartial/main" data-filterable-set=":plugins:omniture:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-media-name-factory.html"><span>set</span><wbr><span>Media</span><wbr><span>Name</span><wbr><span><span>Factory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1406308935%2FFunctions%2F-958945523"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:omniture:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-media-name-factory.html"><span class="token function">setMediaNameFactory</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">factory<span class="token operator">: </span><a href="-media-name-factory/index.html">OmnitureComponent.MediaNameFactory</a></span></span><span class="token punctuation">)</span></div><div class="brief ">This method allows a user of the Omniture plugin to override the logic used to generate a media name used in Omniture video tracking.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

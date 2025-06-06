@@ -1,0 +1,453 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DashDownloadable</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":plugins:offline-playback:dokkaHtmlPartial/main">offline-playback</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="offline-playback::com.brightcove.player.offline/DashDownloadable///PointingToDeclaration//-303386867">
+  <div class="breadcrumbs"><a href="../../index.html">offline-playback</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.player.offline</a><span class="delimiter">/</span><span class="current">DashDownloadable</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Dash</span><wbr><span><span>Downloadable</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">DashDownloadable</a> : <a href="../-media-downloadable/index.html">MediaDownloadable</a></div><p class="paragraph">A <a href="../-media-downloadable/index.html">MediaDownloadable</a> responsible to manage the download of a Dash Video and its assets.</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Sergio Martinez - smartinez@brightcove.com </p><p class="paragraph">FIXME The way the class attempts to read the DASH manifest is convulated and inefficent - Raaj</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="160386063%2FConstructors%2F-303386867" anchor-label="DashDownloadable" id="160386063%2FConstructors%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dash-downloadable.html"><span>Dash</span><wbr><span><span>Downloadable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="160386063%2FConstructors%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">video<span class="token operator">: </span>Video<span class="token punctuation">, </span></span><span class="parameter ">downloadEventListener<span class="token operator">: </span><a href="../-media-downloadable/-download-event-listener/index.html">MediaDownloadable.DownloadEventListener</a><span class="token punctuation">, </span></span><span class="parameter ">requestConfig<span class="token operator">: </span><a href="../-request-config/index.html">RequestConfig</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-270301176%2FProperties%2F-303386867" anchor-label="AUDIO_LANGUAGE_ROLES" id="-270301176%2FProperties%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/-a-u-d-i-o_-l-a-n-g-u-a-g-e_-r-o-l-e-s.html"><span><span>AUDIO_LANGUAGE_ROLES</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-270301176%2FProperties%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-media-downloadable/-a-u-d-i-o_-l-a-n-g-u-a-g-e_-r-o-l-e-s.html">AUDIO_LANGUAGE_ROLES</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"AUDIO_LANGUAGE_ROLES"</span></div><div class="brief ">The key for the Bundle which returns the available audio language roles as ArrayList, matching the size and indexes of .</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2065363201%2FProperties%2F-303386867" anchor-label="AUDIO_LANGUAGES" id="2065363201%2FProperties%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/-a-u-d-i-o_-l-a-n-g-u-a-g-e-s.html"><span><span>AUDIO_LANGUAGES</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2065363201%2FProperties%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-media-downloadable/-a-u-d-i-o_-l-a-n-g-u-a-g-e-s.html">AUDIO_LANGUAGES</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"AUDIO_LANGUAGES"</span></div><div class="brief ">The key for the Bundle which returns the available audio languages as ArrayList</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-627476966%2FProperties%2F-303386867" anchor-label="CAPTIONS" id="-627476966%2FProperties%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/-c-a-p-t-i-o-n-s.html"><span><span>CAPTIONS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-627476966%2FProperties%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-media-downloadable/-c-a-p-t-i-o-n-s.html">CAPTIONS</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"CAPTIONS"</span></div><div class="brief ">The key for the Bundle which returns the available captions as ArrayList</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-463293632%2FProperties%2F-303386867" anchor-label="DEFAULT_MPD_NAME" id="-463293632%2FProperties%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/-d-e-f-a-u-l-t_-m-p-d_-n-a-m-e.html"><span><span>DEFAULT_MPD_NAME</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-463293632%2FProperties%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-media-downloadable/-d-e-f-a-u-l-t_-m-p-d_-n-a-m-e.html">DEFAULT_MPD_NAME</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"master.mpd"</span></div><div class="brief ">The name of that will be used for saving DASH manifest.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1812243524%2FProperties%2F-303386867" anchor-label="VIDEO_RENDITIONS" id="1812243524%2FProperties%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/-v-i-d-e-o_-r-e-n-d-i-t-i-o-n-s.html"><span><span>VIDEO_RENDITIONS</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1812243524%2FProperties%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../-media-downloadable/-v-i-d-e-o_-r-e-n-d-i-t-i-o-n-s.html">VIDEO_RENDITIONS</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"VIDEO_RENDITIONS"</span></div><div class="brief ">The key for the Bundle which returns the available video renditions as ArrayList</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1953112677%2FFunctions%2F-303386867" anchor-label="cancelDownload" id="1953112677%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/cancel-download.html"><span>cancel</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1953112677%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/cancel-download.html"><span class="token function">cancelDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Cancels download of the media if it has not been completed yet.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1682858578%2FFunctions%2F-303386867" anchor-label="create" id="-1682858578%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/create.html"><span><span>create</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1682858578%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/create.html"><span class="token function">create</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">video<span class="token operator">: </span>Video<span class="token punctuation">, </span></span><span class="parameter ">downloadEventListener<span class="token operator">: </span><a href="../-media-downloadable/-download-event-listener/index.html">MediaDownloadable.DownloadEventListener</a><span class="token punctuation">, </span></span><span class="parameter ">requestConfig<span class="token operator">: </span><a href="../-request-config/index.html">RequestConfig</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-media-downloadable/index.html">MediaDownloadable</a></div><div class="brief ">Creates the best <a href="../-media-downloadable/index.html">MediaDownloadable</a> for the given video based on the supported delivery types.</div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/create.html"><span class="token function">create</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span>Context<span class="token punctuation">, </span></span><span class="parameter ">videoUrl<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">downloadEventListener<span class="token operator">: </span><a href="../-media-downloadable/-download-event-listener/index.html">MediaDownloadable.DownloadEventListener</a><span class="token punctuation">, </span></span><span class="parameter ">requestConfig<span class="token operator">: </span><a href="../-request-config/index.html">RequestConfig</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-media-downloadable/index.html">MediaDownloadable</a></div><div class="brief ">Creates the best <a href="../-media-downloadable/index.html">MediaDownloadable</a> for the given video url on the supported delivery types.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-558287532%2FFunctions%2F-303386867" anchor-label="deleteDownload" id="-558287532%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/delete-download.html"><span>delete</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-558287532%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/delete-download.html"><span class="token function">deleteDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Deletes the offline copy of the media.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1801225946%2FFunctions%2F-303386867" anchor-label="estimatedSize" id="-1801225946%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="estimated-size.html"><span>estimated</span><wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1801225946%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="estimated-size.html"><span class="token function">estimatedSize</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><a href="../-media-downloadable/-on-video-size-callback/index.html">MediaDownloadable.OnVideoSizeCallback</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Returns the estimated total size of the media, which includes all assets such video, audio and subtitles.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-329272411%2FFunctions%2F-303386867" anchor-label="getConfigurationBundle" id="-329272411%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/get-configuration-bundle.html"><span>get</span><wbr><span>Configuration</span><wbr><span><span>Bundle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-329272411%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/get-configuration-bundle.html"><span class="token function">getConfigurationBundle</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span>Bundle</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="930607768%2FFunctions%2F-303386867" anchor-label="getDownloadDirectory" id="930607768%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/get-download-directory.html"><span>get</span><wbr><span>Download</span><wbr><span><span>Directory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="930607768%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/get-download-directory.html"><span class="token function">getDownloadDirectory</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/io/File.html">File</a></div><div class="brief ">Gets the directory the will hold all the assets related to this media.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="216268899%2FFunctions%2F-303386867" anchor-label="getDownloadStatus" id="216268899%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/get-download-status.html"><span>get</span><wbr><span>Download</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="216268899%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/get-download-status.html"><span class="token function">getDownloadStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../com.brightcove.player.network/-download-status/index.html">DownloadStatus</a></div><div class="brief ">Checks the overall download status by inspecting the status of each request in the entire download set.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1396008448%2FFunctions%2F-303386867" anchor-label="getEstimatedSize" id="1396008448%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/get-estimated-size.html"><span>get</span><wbr><span>Estimated</span><wbr><span><span>Size</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1396008448%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/get-estimated-size.html"><span class="token function">getEstimatedSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></div><div class="brief ">Returns the estimated total size of the media, which includes all assets such video, audio and subtitles.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1088882904%2FFunctions%2F-303386867" anchor-label="getMediaFormatTracksAvailable" id="1088882904%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-media-format-tracks-available.html"><span>get</span><wbr><span>Media</span><wbr><span>Format</span><wbr><span>Tracks</span><wbr><span><span>Available</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1088882904%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-media-format-tracks-available.html"><span class="token function">getMediaFormatTracksAvailable</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mediaFormatListener<span class="token operator">: </span><a href="../-media-downloadable/-media-format-listener/index.html">MediaDownloadable.MediaFormatListener</a></span></span><span class="token punctuation">)</span></div><div class="brief ">An asynchronous call to retrieve the MediaFormat tracks available for the current video.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1146922350%2FFunctions%2F-303386867" anchor-label="onLoadCanceled" id="1146922350%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-load-canceled.html"><span>on</span><wbr><span>Load</span><wbr><span><span>Canceled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1146922350%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-load-canceled.html"><span class="token function">onLoadCanceled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">loadable<span class="token operator">: </span>MediaPresentationDescriptionLoadable<span class="token punctuation">, </span></span><span class="parameter ">elapsedRealtimeMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">loadDurationMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">released<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="323412423%2FFunctions%2F-303386867" anchor-label="onLoadCompleted" id="323412423%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-load-completed.html"><span>on</span><wbr><span>Load</span><wbr><span><span>Completed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="323412423%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-load-completed.html"><span class="token function">onLoadCompleted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">loadable<span class="token operator">: </span>MediaPresentationDescriptionLoadable<span class="token punctuation">, </span></span><span class="parameter ">elapsedRealtimeMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">loadDurationMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="413305844%2FFunctions%2F-303386867" anchor-label="onLoadError" id="413305844%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-load-error.html"><span>on</span><wbr><span>Load</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="413305844%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="on-load-error.html"><span class="token function">onLoadError</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">loadable<span class="token operator">: </span>MediaPresentationDescriptionLoadable<span class="token punctuation">, </span></span><span class="parameter ">elapsedRealtimeMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">loadDurationMs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/io/IOException.html">IOException</a><span class="token punctuation">, </span></span><span class="parameter ">errorCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span>LoadErrorAction</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1565197845%2FFunctions%2F-303386867" anchor-label="pauseDownload" id="1565197845%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/pause-download.html"><span>pause</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1565197845%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/pause-download.html"><span class="token function">pauseDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Attempts to pause download of this media.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1225071079%2FFunctions%2F-303386867" anchor-label="registerDownloadable" id="1225071079%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/register-downloadable.html"><span>register</span><wbr><span><span>Downloadable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1225071079%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/register-downloadable.html"><span class="token function">registerDownloadable</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">deliveryType<span class="token operator">: </span>DeliveryType<span class="token punctuation">, </span></span><span class="parameter ">downloadableClass<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="../-media-downloadable/index.html">MediaDownloadable</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief ">Registers the downloadable class that must be used to handled download of the specified media delivery type.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1487946956%2FFunctions%2F-303386867" anchor-label="requestDownload" id="-1487946956%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-download.html"><span>request</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1487946956%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="request-download.html"><span class="token function">requestDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Requests the media to be downloaded asynchronously.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-630994158%2FFunctions%2F-303386867" anchor-label="resumeDownload" id="-630994158%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/resume-download.html"><span>resume</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-630994158%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/resume-download.html"><span class="token function">resumeDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Attempts to resume download of this media.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1767560143%2FFunctions%2F-303386867" anchor-label="setConfigurationBundle" id="1767560143%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/set-configuration-bundle.html"><span>set</span><wbr><span>Configuration</span><wbr><span><span>Bundle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1767560143%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/set-configuration-bundle.html"><span class="token function">setConfigurationBundle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bundle<span class="token operator">: </span>Bundle</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1011691156%2FFunctions%2F-303386867" anchor-label="setVideoBitrate" id="1011691156%2FFunctions%2F-303386867" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:offline-playback:dokkaHtmlPartial/main" data-filterable-set=":plugins:offline-playback:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-media-downloadable/set-video-bitrate.html"><span>set</span><wbr><span>Video</span><wbr><span><span>Bitrate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1011691156%2FFunctions%2F-303386867"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:offline-playback:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-media-downloadable/set-video-bitrate.html"><span class="token function">setVideoBitrate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">videoBitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the video bitrate cap which will be used to determine what rendition will be downloaded.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

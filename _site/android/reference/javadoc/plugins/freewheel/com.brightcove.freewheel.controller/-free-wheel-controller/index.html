@@ -1,0 +1,400 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>FreeWheelController</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../../index.html">
+                            Brightcove Player SDK for Android 10.1.0
+                    </a>            </div>
+            <div class="library-version">10.1.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":plugins:freewheel:dokkaHtmlPartial/main">freewheel</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="freewheel::com.brightcove.freewheel.controller/FreeWheelController///PointingToDeclaration//-247441577">
+  <div class="breadcrumbs"><a href="../../index.html">freewheel</a><span class="delimiter">/</span><a href="../index.html">com.brightcove.freewheel.controller</a><span class="delimiter">/</span><span class="current">FreeWheelController</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Free</span><wbr><span>Wheel</span><wbr><span><span>Controller</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">FreeWheelController</a></div><p class="paragraph">The FreeWheelController is responsible for managing the lifecycle of a Freewheel Ad sequence and fitting it within the context of the Brightcove Android SDK, by hooking into the BC Event system. It instantiates and controls a default instance of FreeWheel's AdManager, AdContext, each populated with default values. In addition, the FreeWheelController manages an instance of AdCuePointComponent (responsible for generating CuePoints from the AdContext and executing ad playback)</p><p class="paragraph">When we mention 'default values', we refer the developer to the FreeWheel documentation for their various classes. As described below, one of the design goals for this class is to provide a developer with access to the FreeWheel components. One can supply their own AdManager instance, or set the values on an AdContext before an AdRequest is made.</p><h2 class="">Lifecycle</h2> The general usage of the FWC goes thusly: <ul><li>An AdManager is instantiated or created outside of this class and passed to it via setAdManager()</li><li></li><li>An AdContext is generated from the AdManager</li><li>The FreeWheelController emits an event containing the current AdContext and an AdRequestConfiguration before the ads are requested, allowing end users to edit the current context</li><li></li><li>An ad request is submitted to the FreeWheel servers</li><li></li><li>Once received, CuePoints are created, when relevant, for each ad</li></ul><p class="paragraph">The FreeWheelController listens for several key events in the video playback lifecycle of the Brightcove Android sdk. End developers that wish to edit the AdContext before it is emitted should listen for the FreeWheelEventType.WILL_SUBMIT_AD_REQUEST event, and access the current context (or set it) via the AD_CONTEXT_KEY.</p><h2 class="">Implementation Details &amp;Requirements</h2><p class="paragraph">A few important details to note when using the FreeWheelController:</p><ul><li>When laying out the SurfaceView / BrightcoveVideoView, note that the Surface must be contained within a FrameLayout. This is a requirement of Freewheel in the way that they take control of the SurfaceView during Ad Rendering</li><li></li></ul><h2 class="">Sample Setup</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea"> freeWheelController = new FreeWheelController(this, bcVideoView, eventEmitter);
+ //configure your own IAdManager or supply connection information
+ freeWheelController.setAdURL("http://demo.v.fwmrm.net/");
+ freeWheelController.setAdNetworkId(90750);
+ freeWheelController.setProfile("fw_tutorial_android");
+ freeWheelController.setSiteSectionId("fw_tutorial_android");
+ freeWheelController.enable();
+ </code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>IAd</span><wbr><span><span>Context</span></span></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>IAd</span><wbr><span><span>Manager</span></span></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.freewheel.cuepoint/-ad-cue-point-component/index.html"><span>Ad</span><wbr><span>Cue</span><wbr><span>Point</span><wbr><span><span>Component</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../../com.brightcove.freewheel.event/-free-wheel-event-type/index.html"><span>Free</span><wbr><span>Wheel</span><wbr><span>Event</span><wbr><span><span>Type</span></span></a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>com.</span><wbr><span>brightcove.</span><wbr><span>player.</span><wbr><span>display.</span><wbr><span>Video</span><wbr><span>Display</span><wbr><span><span>Component</span></span></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="208589826%2FConstructors%2F-247441577" anchor-label="FreeWheelController" id="208589826%2FConstructors%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-free-wheel-controller.html"><span>Free</span><wbr><span>Wheel</span><wbr><span><span>Controller</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="208589826%2FConstructors%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span>Activity<span class="token punctuation">, </span></span><span class="parameter ">frameLayout<span class="token operator">: </span>FrameLayout<span class="token punctuation">, </span></span><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span>Activity<span class="token punctuation">, </span></span><span class="parameter ">frameLayout<span class="token operator">: </span>FrameLayout<span class="token punctuation">, </span></span><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter<span class="token punctuation">, </span></span><span class="parameter ">manager<span class="token operator">: </span>IAdManager</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span>Activity<span class="token punctuation">, </span></span><span class="parameter ">surfaceView<span class="token operator">: </span>SurfaceView<span class="token punctuation">, </span></span><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">activity<span class="token operator">: </span>Activity<span class="token punctuation">, </span></span><span class="parameter ">surfaceView<span class="token operator">: </span>SurfaceView<span class="token punctuation">, </span></span><span class="parameter ">emitter<span class="token operator">: </span>EventEmitter<span class="token punctuation">, </span></span><span class="parameter ">manager<span class="token operator">: </span>IAdManager</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-444763394%2FProperties%2F-247441577" anchor-label="AD_CONTEXT_KEY" id="-444763394%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-d_-c-o-n-t-e-x-t_-k-e-y.html"><span><span>AD_CONTEXT_KEY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-444763394%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-d_-c-o-n-t-e-x-t_-k-e-y.html">AD_CONTEXT_KEY</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"adContextKey"</span></div><div class="brief ">Key used for storing the current IAdContext in an Event</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="680855783%2FProperties%2F-247441577" anchor-label="AD_REQUEST_CONFIGURATION_KEY" id="680855783%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-d_-r-e-q-u-e-s-t_-c-o-n-f-i-g-u-r-a-t-i-o-n_-k-e-y.html"><span><span>AD_REQUEST_CONFIGURATION_KEY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="680855783%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-d_-r-e-q-u-e-s-t_-c-o-n-f-i-g-u-r-a-t-i-o-n_-k-e-y.html">AD_REQUEST_CONFIGURATION_KEY</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"adRequestConfigurationKey"</span></div><div class="brief ">Key used for storing the current AdRequestConfiguration in an Event</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1635674168%2FProperties%2F-247441577" anchor-label="AD_SLOTS_KEY" id="1635674168%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-a-d_-s-l-o-t-s_-k-e-y.html"><span><span>AD_SLOTS_KEY</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1635674168%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-a-d_-s-l-o-t-s_-k-e-y.html">AD_SLOTS_KEY</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator"> = </span><span class="token string">"adSlotsKey"</span></div><div class="brief ">Key used for storing a <a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a> of ISlot instances for use by developers, e.g.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1410193676%2FProperties%2F-247441577" anchor-label="adCuePointComponent" id="1410193676%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ad-cue-point-component.html"><span>ad</span><wbr><span>Cue</span><wbr><span>Point</span><wbr><span><span>Component</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1410193676%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="ad-cue-point-component.html">adCuePointComponent</a><span class="token operator">: </span><a href="../../com.brightcove.freewheel.cuepoint/-ad-cue-point-component/index.html">AdCuePointComponent</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="819956511%2FProperties%2F-247441577" anchor-label="adManager" id="819956511%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ad-manager.html"><span>ad</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="819956511%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">var </span><a href="ad-manager.html">adManager</a><span class="token operator">: </span>IAdManager</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="573655503%2FProperties%2F-247441577" anchor-label="currentVideo" id="573655503%2FProperties%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="current-video.html"><span>current</span><wbr><span><span>Video</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="573655503%2FProperties%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">val </span><a href="current-video.html">currentVideo</a><span class="token operator">: </span>Video</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1796265729%2FFunctions%2F-247441577" anchor-label="disable" id="1796265729%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="disable.html"><span><span>disable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1796265729%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="disable.html"><span class="token function">disable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Disables the plugin; prevents further event listening.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="560926958%2FFunctions%2F-247441577" anchor-label="enable" id="560926958%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="enable.html"><span><span>enable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="560926958%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="enable.html"><span class="token function">enable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Enables the FreeWheel plugin.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1561047939%2FFunctions%2F-247441577" anchor-label="getCurrentContext" id="-1561047939%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-context.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1561047939%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-current-context.html"><span class="token function">getCurrentContext</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span>IAdContext</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-787799743%2FFunctions%2F-247441577" anchor-label="isActive" id="-787799743%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-active.html"><span>is</span><wbr><span><span>Active</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-787799743%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-active.html"><span class="token function">isActive</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">In order to listen in on the event system, the Controller needs to be enabled, after various settings (AdURL, AdManagerURL, NetworkId, ProfileId, SiteSectionId) have been set.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2133888424%2FFunctions%2F-247441577" anchor-label="isAdRequestingEnabled" id="2133888424%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-ad-requesting-enabled.html"><span>is</span><wbr><span>Ad</span><wbr><span>Requesting</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2133888424%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="is-ad-requesting-enabled.html"><span class="token function">isAdRequestingEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Returns whether ad requesting is enabled.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="546132029%2FFunctions%2F-247441577" anchor-label="setAdManagerURL" id="546132029%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-manager-u-r-l.html"><span>set</span><wbr><span>Ad</span><wbr><span>Manager</span><wbr><span><span>URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="546132029%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-manager-u-r-l.html"><span class="token function"><strike>setAdManagerURL</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1531791750%2FFunctions%2F-247441577" anchor-label="setAdNetworkId" id="1531791750%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-network-id.html"><span>set</span><wbr><span>Ad</span><wbr><span>Network</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1531791750%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-network-id.html"><span class="token function">setAdNetworkId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1872052974%2FFunctions%2F-247441577" anchor-label="setAdRequestingEnabled" id="-1872052974%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-requesting-enabled.html"><span>set</span><wbr><span>Ad</span><wbr><span>Requesting</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1872052974%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-requesting-enabled.html"><span class="token function">setAdRequestingEnabled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the flag which controls whether ads are requested for new videos.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2040857534%2FFunctions%2F-247441577" anchor-label="setAdURL" id="-2040857534%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-ad-u-r-l.html"><span>set</span><wbr><span>Ad</span><wbr><span><span>URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2040857534%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-ad-u-r-l.html"><span class="token function">setAdURL</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2040317957%2FFunctions%2F-247441577" anchor-label="setProfile" id="2040317957%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-profile.html"><span>set</span><wbr><span><span>Profile</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2040317957%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-profile.html"><span class="token function">setProfile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">profile<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="297819093%2FFunctions%2F-247441577" anchor-label="setSiteSectionId" id="297819093%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-site-section-id.html"><span>set</span><wbr><span>Site</span><wbr><span>Section</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="297819093%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-site-section-id.html"><span class="token function">setSiteSectionId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sectionId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1190001805%2FFunctions%2F-247441577" anchor-label="setSubmissionTimeout" id="1190001805%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-submission-timeout.html"><span>set</span><wbr><span>Submission</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1190001805%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-submission-timeout.html"><span class="token function">setSubmissionTimeout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">timeout<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-820181537%2FFunctions%2F-247441577" anchor-label="setupContext" id="-820181537%2FFunctions%2F-247441577" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":plugins:freewheel:dokkaHtmlPartial/main" data-filterable-set=":plugins:freewheel:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="setup-context.html"><span>setup</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-820181537%2FFunctions%2F-247441577"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":plugins:freewheel:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="setup-context.html"><span class="token function">setupContext</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Creates a new AdContext, which can be used to enable ad playback when replaying a video.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
